@@ -5,7 +5,11 @@
   import Circle from '../../assets/icons/times-circle-solid.svg.svelte';
 
   export let data = [];
+  
+  // The placeholder text for the input field
   export let query = '';
+
+  // The placeholder text for the input field
   export let placeholder = 'Platzhalter';
   export let inputClass = '';
   export let listClass = '';
@@ -120,7 +124,7 @@
 
 <svelte:window on:keydown={handleKeyDown} />
 
-<div class="autocomplete" use:clickOutside on:clickOutside={handleClickOutside}>
+<div class="container" use:clickOutside on:clickOutside={handleClickOutside}>
   <input
     type="text"
     class={`${inputClass} ${open ? 'open' : 'close'}`}
@@ -166,67 +170,54 @@
 <style lang="scss">
   @import '../../styles/scss/base.scss';
 
-  .autocomplete {
+  .container {
     position: relative;
     display: block;
-    color: white;
-
+    color: black;
     input {
-      @extend %copy;
-      border: 1px solid $reanimation-warmgrey;
+      border: 1px solid black;
       border-radius: $border-radius-input;
       background: transparent;
       padding: 0 0.75em;
       height: $input-height;
-      margin: 0;
-      color: white;
       display: block;
+      outline-offset: 2px;
+      text-size-adjust: none;
       width: 100%;
       &:focus-visible {
-        outline: none;
-        box-shadow: 0px 0px 1rem 0px rgb(89, 32, 192);
+        outline: 2px solid gray;
       }
       &.open {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
       }
     }
-    input[type='text'] {
-      -webkit-text-size-adjust: none;
-      text-size-adjust: none;
-    }
 
     ul {
       position: absolute;
       top: 100%;
-      border: 1px solid $reanimation-warmgrey;
+      border: 1px solid gray;
       border-bottom-left-radius: $border-radius-input;
       border-bottom-right-radius: $border-radius-input;
       border-top: 0;
       left: 0;
       right: 0;
-      box-shadow: 0px 4px 4px rgba(black, 0.2);
       max-height: 10rem;
-      background: $reanimation-violetblue;
+      background: white;
       overflow-y: scroll;
       z-index: 1000;
 
-      &:empty {
-        box-shadow: none;
-      }
-
       li {
-        @extend %caption;
         padding: 0.5em;
-        border-bottom: 1px solid rgba(white, 0.1);
+        border-bottom: 1px solid gray;
         cursor: pointer;
         &[data-active='true'] {
           text-decoration: underline;
-          background-color: $reanimation-violetblue-hover;
         }
 
         &:last-child {
           padding-bottom: 0.3rem;
+          border-bottom: 0;
         }
       }
     }
@@ -235,13 +226,13 @@
       position: absolute;
       transform: translateY(-50%);
       top: 50%;
-      right: 0.75rem;
-      width: 1.2rem;
-      height: 1.2rem;
+      right: 0.5rem;
+      width: 1rem;
+      height: 1rem;
 
       &:hover,
-      &:focus {
-        color: $orange--1;
+      &:focus-visible {
+        color: red;
         cursor: pointer;
       }
     }

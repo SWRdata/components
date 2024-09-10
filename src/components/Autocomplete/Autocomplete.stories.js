@@ -7,10 +7,18 @@ export default {
   component: AutoComplete,
 }
 
-export const Ags = {
+const testData = ["Apples", "Oranges", "Pears", "Peaches", "Bananas"].map((el) => {
+  return {
+    value: el,
+    label: el,
+    details: {},
+  }
+})
+
+export const Basic = {
   args: {
-    options: ["Hello", "World"],
-    groupName: "two-options",
-    value: "Hello",
+    data: testData,
+    query: "apples",
+    placeholder: "Select a fruit",
   },
 }
