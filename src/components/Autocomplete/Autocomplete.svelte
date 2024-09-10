@@ -11,8 +11,14 @@
 
   // The placeholder text for the input field
   export let placeholder = 'Platzhalter';
+
+  // The class applied to the input field.
   export let inputClass = '';
+
+  // The class applied to the list container.
   export let listClass = '';
+
+  // The class applied to the labels.
   export let labelClass = '';
 
   let input;
@@ -100,25 +106,12 @@
 </script>
 
 <!--
-  This component is used to display a list of suggestions for a given query. If an item
-  is clicked or an enter key is pressed, the selected item will be returned by an
-  custom select event.
-  
-  Props:
-  - **data** *array* The list of possible suggestions to display. For the expected format, scroll down.
-  - **query** *string* The current value of the input.
-  - **placeholder** *string* The placeholder text for the input field.
-  - **inputClass** *string* The class applied to the input field.
-  - **listClass** *string* The class applied to the list container.
-  - **labelClass** *string* The class applied to the labels.
-  
-  Events:
-  - **select** *function* The event that is triggered when an item is selected.
-  
-  Data should be provided as array of objects. Each object contains the information for a dropdown entry:
+  This component is used to display a list of suggestions for a given query. If an item is clicked or an enter key is pressed, the selected item will be returned by a custom `select` event.
+    
+  Data should be provided as array of objects of the following shape:
   - **value** *string* the text that is displayed in the input. Has to be unique!
   - **label** *string* | *svelte component* | *array of svelte component and props object* text, html or component displayed in the dropdown list
-  - **details** *object* extra data needed by selection handler
+  - **details** *object* extra data passed to the selection handler
   @component
 -->
 
