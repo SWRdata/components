@@ -1,0 +1,43 @@
+$swr-inner-container-width-m: 490px;
+$swr-inner-container-width-l: 730px;
+$swr-inner-container-width-xl: 976px;
+$swr-padding-removal: 20px;
+$reanimation-width: 1440px;
+$reanimation-max-width: 1440px;
+$reanimation-max-text-width: 864px;
+$reanimation-ff-text: 'SWR-VAR-Text';
+$reanimation-ff-sans: 'SWR-VAR-Sans';
+$reanimation-ff-slab: 'SWR-VAR-Slab';
+$transition-fast: 150ms;
+
+// Padding
+$reanimation-padding-s: 16px;
+$reanimation-padding-m: 32px;
+$reanimation-padding-l: 48px;
+$reanimation-padding-xl: 64px;
+$reanimation-padding-xxl: 96px;
+$reanimation-padding-xxxl: 112px;
+
+// Breakpoints
+$break-phone: 510px;
+$break-tablet: 992px;
+$break-desktop-small: 1200px;
+$break-desktop-large: 1400px;
+$break-desktop-xl: 1400px;
+
+// Colors
+$reanimation-black: #0c0c0c;
+$reanimation-violetblue: #1d0b40;
+$reanimation-violetblue-hover: #2d155d;
+$reanimation-violet: #5920c0;
+$reanimation-blue: #3053d9;
+$reanimation-warmgrey: #dbd5cd;
+$reanimation-activeorange: #ff3300;
+
+// Breakout radius
+$border-radius-box: 8px;
+$border-radius-input: 4px;
+
+// max container width
+$app-max-width: 650px !default;
+$input-height: 2.35em;

@@ -1,0 +1,30 @@
+@mixin flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin respond-min($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin respond-max($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+  &:active {
+    // &:focus {
+    @content;
+  }
+}
