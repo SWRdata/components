@@ -1,4 +1,4 @@
-# SWR Components
+# SWRdata/Components
 
 Experimental component library for SWR Data interactives.
 
