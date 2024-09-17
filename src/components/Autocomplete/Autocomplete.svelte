@@ -5,27 +5,31 @@
   export let data = [];
   export let query = '';
   export let placeholder = 'Platzhalter';
-
+  
+  
+  const sortData = (a, b) => {
+    return a.value.localeCompare(b.value);
+  }
+  
   let listRef;
+  let controlsRef;
+  let inputRef;
   const dispatch = createEventDispatcher();
 
-  let shownItems = data.sort((a, b) => a.value.localeCompare(b.value)).slice(0, 250);
   let highlightedItemIndex = -1;
+  $: suggestions = data.sort(sortData).slice(0, 50);
   $: isActive = false;
-
-  // display max 250 items in dropdown
-  const setShownItems = (d) => (shownItems = d.slice(0, 250));
 
   // Insert clicked item into search input,
   // dispatch it as select event and close the dropdown
   const handleItemClick = (index) => {
     highlightedItemIndex = index;
-    setSelectedItem(shownItems[highlightedItemIndex]);
+    setSelectedItem(suggestions[highlightedItemIndex]);
   };
 
   const setSelectedItem = (item) => {
-    if (!item) return;
     query = item.value;
+    isActive = false;
     dispatch('select', { item });
   };
 
@@ -34,53 +38,49 @@
     if (e.key === 'ArrowDown') {
       e.preventDefault();
       highlightedItemIndex =
-        highlightedItemIndex < shownItems.length - 1 ? highlightedItemIndex + 1 : 0;
+        highlightedItemIndex < suggestions.length - 1 ? highlightedItemIndex + 1 : 0;
       const target = listRef.querySelector(`ul li:nth-child(${highlightedItemIndex + 1})`);
       target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       highlightedItemIndex =
-        highlightedItemIndex > 0 ? highlightedItemIndex - 1 : shownItems.length - 1;
+        highlightedItemIndex > 0 ? highlightedItemIndex - 1 : suggestions.length - 1;
       const target = listRef.querySelector(`ul li:nth-child(${highlightedItemIndex + 1})`);
       target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     } else if (e.key === 'Enter') {
-      setSelectedItem(shownItems[highlightedItemIndex]);
-      isActive = false;
+      if (highlightedItemIndex > -1){
+        setSelectedItem(suggestions[highlightedItemIndex]);
+        isActive = false;
+      }
     }
   };
 
-  const handleRemove = (e) => {
+  const handleClear = (e) => {
     query = '';
-    setShownItems(data);
+    inputRef.focus()
+    setSuggestions()
     dispatch('select', {
-      item: undefined
+      item: null
     });
   };
 
+
+  const setSuggestions  = () => {
+    suggestions = data.filter((el) =>{
+        return el.value.toLowerCase().startsWith(query.toLowerCase())
+      }).sort(sortData);
+  }
+
   // update dropdown list if input value changes
-  const filterCountries = () => {
-    let filtered;
-    const lowerCasedQuery = query?.toLowerCase();
-    if (!lowerCasedQuery || lowerCasedQuery.length === 0) {
-      filtered = data;
+  const handleInput = () => {
+    isActive = true;
+    if (query.length === 0){
+      suggestions = data
     } else {
-      const lowerCasedData = data.map((d) => {
-        d.lowerCasedValue = d.value.toLowerCase();
-        return d;
-      });
-      let filteredData = lowerCasedData.filter((d) =>
-        d.lowerCasedValue.toLowerCase().startsWith(lowerCasedQuery)
-      );
-      if (!filteredData) {
-        filteredData = lowerCasedData.filter((d) => {
-          d.lowerCasedValue.includes(lowerCasedQuery);
-        });
-      }
-      filtered = filteredData;
+      setSuggestions()
+      highlightedItemIndex = -1;
     }
-    highlightedItemIndex = -1;
-    setShownItems(filtered.sort((a, b) => a.value.localeCompare(b.value)));
-  };
+  }
 </script>
 
 <!--
@@ -93,7 +93,7 @@ Data should be provided as array of objects. Each object contains the informatio
 @component
 -->
 
-<div class="autocomplete" on:keydown={handleKeyDown}>
+<div class="autocomplete">
   <input
     type="text"
     {placeholder}
@@ -101,20 +101,26 @@ Data should be provided as array of objects. Each object contains the informatio
     autocorrect="off"
     autocapitalize="off"
     data-testid="autocomplete-input"
+    bind:this={inputRef}
+    on:keydown={handleKeyDown}
     bind:value={query}
-    on:input={filterCountries}
+    on:input={handleInput}
     on:focus={() => {
       isActive = true;
     }}
-    on:blur={() => {
-      window.setTimeout(() => {
-        isActive = false;
-      }, 100);
+    on:blur={(e) => {
+      if (listRef.contains(e.relatedTarget)){
+        window.setTimeout(()=>{
+          isActive = false;
+        }, 100)
+      } else if (!controlsRef.contains(e.relatedTarget)){
+        isActive = false
+      }
     }}
   />
 
   <ul tabindex="-1" bind:this={listRef} class:active={isActive}>
-    {#each shownItems as item, i (item.value)}
+    {#each suggestions as item, i (item.value)}
       <li>
         <button
           class={`item ${i === highlightedItemIndex ? 'active' : ''}`}
@@ -130,9 +136,11 @@ Data should be provided as array of objects. Each object contains the informatio
       </li>
     {/each}
   </ul>
-  <button type="button" on:click={handleRemove} class="clear" class:active={query.length > 0}>
-    <Circle />
-  </button>
+  <div class="controls" bind:this={controlsRef}>
+    <button type="button" on:click={handleClear} class="clear" class:active={query.length > 0}>
+      <Circle />
+    </button>
+  </div>
 </div>
 
 <style lang="scss">
@@ -192,10 +200,11 @@ Data should be provided as array of objects. Each object contains the informatio
         background: transparent;
         border: 0;
         text-align: left;
-        border-bottom: 1px solid rgba(black, 0.1);
+        border-bottom: 1px solid rgba(black, 0.5);
         cursor: pointer;
         &.active, &:hover {
           text-decoration: underline;
+          background-color: rgba(black, .1);
         }
       }
     }
@@ -209,7 +218,6 @@ Data should be provided as array of objects. Each object contains the informatio
       height: 1.2rem;
       background: transparent;
       border: 0;
-      color: white;
       display: none;
       &.active {
         display: block;

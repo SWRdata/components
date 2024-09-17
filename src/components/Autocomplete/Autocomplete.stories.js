@@ -15,11 +15,19 @@ const testData = ["Apples", "Oranges", "Pears", "Peaches", "Bananas"].map((el) =
   }
 })
 
+export const Basic = {
+  args: {
+    data: testData,
+    query: "",
+    placeholder: "Select a fruit",
+  },
+}
+
 const onSelect = fn((e) => {
   return e.detail
 })
 
-export const Basic = {
+export const Test = {
   parameters: {
     docs: {
       story: {
@@ -43,7 +51,7 @@ export const Basic = {
       const bananasOption = canvas.getByText("Bananas")
       await userEvent.click(bananasOption)
       expect(input).toHaveValue("Bananas")
-      expect(onSelect).toHaveReturnedWith({ item: { label: "Bananas", value: "Bananas", lowerCasedValue: "bananas", details: {} } })
+      expect(onSelect).toHaveReturnedWith({ item: { label: "Bananas", value: "Bananas", details: {} } })
     })
     await userEvent.clear(input)
     await step("Select using the keyboard", async () => {
@@ -53,7 +61,7 @@ export const Basic = {
       await userEvent.keyboard("{ArrowDown}")
       await userEvent.keyboard("{Enter}")
       expect(input).toHaveValue("Apples")
-      expect(onSelect).toHaveReturnedWith({ item: { label: "Apples", value: "Apples", lowerCasedValue: "apples", details: {} } })
+      expect(onSelect).toHaveReturnedWith({ item: { label: "Apples", value: "Apples", details: {} } })
     })
     await userEvent.clear(input)
   },
