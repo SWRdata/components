@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Sophora</title>
+  <link rel="stylesheet" href="/main.css">
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+  <script src="/node_modules/jquery-pjax/jquery.pjax.js"></script>
+  <script src="/index.js"></script>
+
+</head>
+
+<body>
+  <header class="site__header">
+    <h1>Mock Sophora</h1>
+    <nav>
+      <a href="/">Home (PJAX)</a>
+      <a href="/page-a">Page A (PJAX)</a>
+    </nav>
+  </header>
+
+  <section id="pjax-container">
+    {{ content }}
+  </section>
+
+</body>
+
+</html>

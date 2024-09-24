@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
-  import Circle from '../../assets/icons/times-circle-solid.svg.svelte';
+  import Circle from '../assets/icons/times-circle-solid.svg.svelte';
 
   export let data = [];
   export let query = '';
@@ -144,7 +144,7 @@ Data should be provided as array of objects. Each object contains the informatio
 </div>
 
 <style lang="scss">
-  @import '../../styles/scss/base.scss';
+  @import '../styles/scss/base.scss';
 
   .autocomplete {
     position: relative;

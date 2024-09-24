@@ -1,0 +1,13 @@
+---
+layout: base
+---
+
+<header class="page__header">
+  <h1>Home</h1>
+  <p>This is a testing fixture to debug our component work while we don't have real access to the SWR CMS. It implements jQuery (3.7.1) and jQuery pjax (so we can spot hydration issues) and has a global stylesheet (so we can test style encapsulation). It's built with Eleventy for convenience, but that shouldn't make a difference for our purposes.</p>
+</header>
+
+<main class="site__content">
+  <p>I'm a paragraph in the mock Sophora container. I should appear red (from the global stylesheet)</p>
+  {% include "test/sveltekit-component.html" %}
+</main>

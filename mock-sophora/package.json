@@ -1,0 +1,19 @@
+{
+  "name": "mock-sophora",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "start": "npx @11ty/eleventy --serve --quiet",
+    "import-sveltekit": "node ./utils/import-sveltekit.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "jquery": "3.7.1",
+    "jquery-pjax": "^2.0.1"
+  }
+}

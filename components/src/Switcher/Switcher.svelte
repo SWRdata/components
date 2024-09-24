@@ -40,7 +40,7 @@ Radio-like form component to choose exactly one of a given set of options.
 </ol>
 
 <style lang="scss">
-  @import "../../styles/scss/base.scss";
+  @import "../styles/scss/base.scss";
 
   .container {
     width: 100%;
