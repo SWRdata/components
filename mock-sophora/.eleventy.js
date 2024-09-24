@@ -1,4 +1,6 @@
 module.exports = function (eleventyConfig) {
+  eleventyConfig.setUseGitIgnore(false)
+
   eleventyConfig.addPassthroughCopy("main.css")
   eleventyConfig.addPassthroughCopy("index.js")
   eleventyConfig.addPassthroughCopy("_app/")
