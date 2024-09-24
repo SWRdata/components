@@ -1,13 +1,11 @@
 <script>
-	import Switcher from '@components/Switcher';
+	import { dev } from '$app/environment';
+	import App from '../lib/App.svelte';
 </script>
 
-<h1>This is a mock sveltekit app</h1>
-
-<Switcher options={['Apples', 'Oranges', 'Bananas']}></Switcher>
-
-<style>
-	h1 {
-		color: blue;
-	}
-</style>
+<p>I'm inside the Svelte app but outside the shadow DOM</p>
+{#if dev}
+	<App />
+{:else}
+	<swrdata-element />
+{/if}

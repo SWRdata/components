@@ -11,3 +11,4 @@ Experimental component library for SWR Data interactives.
 ## Notes
 
 - https://github.com/sveltejs/kit/issues/10411
+- Big caveat: We can't use _declarative_ shadow DOM until probably Svelte 5
