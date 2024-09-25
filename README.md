@@ -2,6 +2,8 @@
 
 Experimental component library for SWR Data interactives.
 
+[![Deploy Storybook](https://github.com/SWRdata/components/actions/workflows/deploy-storybook.yml/badge.svg)](https://github.com/SWRdata/components/actions/workflows/deploy-storybook.yml)
+
 ## Project structure
 
 There are three parts to this repository:
@@ -12,9 +14,9 @@ There are three parts to this repository:
 
 ## Proposed workflow
 
-1. Run `npm run start` in the `/components` directory to launch Storybook, then do any component work you need to do
+1. Run `npm run start` in the `/components` directory to launch Storybook, then work on any component
 2. Run `npm run start` in the `mock-sveltekit` directory to launch the sample app, import your components and ensure they work as expected.
-3. Run `npm run build` to make a static build of the sample app when you're done
+3. When you're done run `npm run build` to make a static build of the sample app
 4. Run `npm run import` in the `mock-sophora/` directory to import the statically-built app into the `_includes` directory (this mimics a server-side include)
 5. Run `npm run start` to start the mock Sophora environment and see if your app behaves as expected.
 
