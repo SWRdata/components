@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  build-deploy:
+  run-tests:
     runs-on: ubuntu-latest
     defaults:
       run:
