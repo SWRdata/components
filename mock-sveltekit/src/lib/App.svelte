@@ -4,11 +4,13 @@
 	import Switcher from '@components/Switcher';
 </script>
 
-<p>I'm inside the Svelte app and inside the shadow DOM, so I don't inherit global styles.</p>
-<Switcher options={['Apples', 'Oranges']} />
+<div class="container">
+	<p>I'm inside the Svelte app and inside the shadow DOM, so I don't inherit global styles.</p>
+	<Switcher options={['Apples', 'Oranges']} />
+</div>
 
 <style>
-	p {
-		background: pink;
+	.container {
+		all: initial;
 	}
 </style>
