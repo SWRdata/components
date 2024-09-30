@@ -1,0 +1,18 @@
+@import 'typography';
+
+:root {
+	--reanimation-black: #0c0c0c;
+	--reanimation-violetblue: #1d0b40;
+	--reanimation-violetblue-hover: #2d155d;
+	--reanimation-violet: #5920c0;
+	--reanimation-blue: #3053d9;
+	--reanimation-warmgrey: #dbd5cd;
+	--reanimation-activeorange: #ff3300;
+
+	--border-radius-container: 8px;
+	--border-radius-input: 4px;
+	--input-height: 2rem;
+
+	--swr-sans: 'SWR-VAR-Sans', sans-serif;
+	--swr-text: 'SWR-VAR-Text', sans-serif;
+}

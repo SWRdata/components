@@ -1,0 +1,49 @@
+@font-face {
+	font-family: 'SWR-VAR-Sans';
+	font-weight: 400 600 700;
+	font-display: swap;
+	src:
+		local('SWR-VAR-Sans'),
+		url('https://www.swr.de/assets/fonts/swr_type/SWR_VAR_WEB/SWR-VAR-Sans.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'SWR-VAR-Text';
+	font-weight: 400 600 700;
+	font-display: swap;
+	src:
+		local('SWR-VAR-Text'),
+		url('https://www.swr.de/assets/fonts/swr_type/SWR_VAR_WEB/SWR-VAR-Text.woff2') format('woff2');
+}
+
+%caption {
+	font-family: var(--swr-sans);
+	font-size: 0.9rem;
+	line-height: 1;
+	letter-spacing: 0.0045em;
+}
+
+%caption-bold {
+	@extend %caption;
+	font-weight: 700;
+}
+
+%copy {
+	font-family: var(--swr-sans);
+	font-size: 1.1rem;
+	line-height: 1.45;
+	letter-spacing: 0.0045em;
+}
+
+%copy-bold {
+	@extend %copy;
+	font-weight: 700;
+}
+
+%h3 {
+	@extend %copy;
+	font-family: var(--swr-sans);
+	font-size: 2.2rem;
+	line-height: 1.15;
+	font-weight: 600;
+	letter-spacing: 0.0025em;
+}

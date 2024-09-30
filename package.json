@@ -1,14 +1,16 @@
 {
-  "name": "swr-components",
-  "version": "1.0.0",
-  "description": "Experimental component library for SWR Data interactives.",
-  "main": "index.js",
-  "scripts": {},
-  "author": "",
-  "license": "UNLICENSED",
-  "workspaces": [
-    "components",
-    "mock-sophora",
-    "mock-sveltekit"
-  ]
+	"name": "swr-components",
+	"version": "1.0.0",
+	"description": "Experimental component library for SWR Data interactives.",
+	"main": "index.js",
+	"scripts": {},
+	"author": "",
+	"license": "UNLICENSED",
+	"workspaces": [
+		"components",
+		"mock-sophora",
+		"mock-sveltekit",
+		"data",
+		"apps"
+	]
 }
