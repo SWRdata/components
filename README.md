@@ -46,9 +46,9 @@ Merges into the main branch are protected and require a pull request review.
 
 Only merges following [conventional commits](https://www.conventionalcommits.org/) will trigger a new release. Quick summary:
 
--   PATCH version bump: commit with message "fix: ..."
--   MINOR version bump: commit with message "feat: ..."
--   MAJOR version bump: commit with message "<type>!: ..." or include "BREAKING CHANGE: ..." in the footer
+-   PATCH version bump: Commit message "fix: ..."
+-   MINOR version bump: Commit message "feat: ..."
+-   MAJOR version bump: Commit message "<type>!: ..." or include "BREAKING CHANGE: ..." in the footer
 
 For further questions, refer to the [Semantic Release Docs (FAQ)](https://semantic-release.gitbook.io/semantic-release/support/faq).
 
