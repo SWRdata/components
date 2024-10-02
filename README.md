@@ -30,4 +30,4 @@ There are three parts to this repository:
 
 ## NPM Release Workflow
 
-TODO
+TODO add readme to ./components
