@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/SWRdata/components/compare/v1.0.4...v1.0.5) (2024-10-02)
+
+
+### Bug Fixes
+
+* Add section on NPM release workflow to README ([3b9b8bc](https://github.com/SWRdata/components/commit/3b9b8bc424d5d2ef363979311e352fc88c935d95))
+
 ## [1.0.4](https://github.com/SWRdata/components/compare/v1.0.3...v1.0.4) (2024-10-02)
 
 
