@@ -50,13 +50,15 @@ Only merges following [conventional commits](https://www.conventionalcommits.org
 -   MINOR version bump: commit with message "feat: ..."
 -   MAJOR version bump: commit with message "<type>!: ..." or include "BREAKING CHANGE: ..." in the footer
 
+For further questions, refer to the [Semantic Release Docs (FAQ)](https://semantic-release.gitbook.io/semantic-release/support/faq).
+
 ### GitHub Action Configuration
 
-See the [`release.yml` workflow](.github/workflows/release.yml).
+See the [`release.yml` workflow](.github/workflows/release.yml) and the release plugins in the `package.json`](components/package.json).
 
 ### Private Registry
 
-The package is currently pushed with restricted acces, as configured in [`components/package.json`](components/package.json):
+The package is currently pushed with restricted acces, as configured in the [`package.json`](components/package.json):
 
 ```
 "publishConfig": {
