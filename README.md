@@ -30,4 +30,43 @@ There are three parts to this repository:
 
 ## NPM Release Workflow
 
-TODO add readme to ./components
+Merges into the main branch automatically trigger a release to NPM and update the GitHub tag accordingly.
+
+### Branch Protection
+
+Merges into the main branch are protected and require a pull request review.
+
+### Automatic Publishing & Semantic Versioning
+
+[Semantic Release](https://github.com/semantic-release/) automatically:
+
+-   analyzes commits and bumps the version (major, minor, or patch).
+-   updates the [changelog](components/CHANGELOG.md).
+-   publishes the package to the [NPM registry](https://www.npmjs.com/package/@swr-data-lab/components).
+-   pushes the release to GitHub with a tag reflecting the NPM package version.
+
+Only merges following [conventional commits](https://www.conventionalcommits.org/) will trigger a new release. Quick summary:
+
+-   PATCH version bump: commit with message "fix: ..."
+-   MINOR version bump: commit with message "feat: ..."
+-   MAJOR version bump: commit with message "<type>!: ..." or include "BREAKING CHANGE: ..." in the footer
+
+### GitHub Action Configuration
+
+See the [`release.yml` workflow](.github/workflows/release.yml).
+
+### Private Registry
+
+The package is currently pushed with restricted acces, as configured in [`components/package.json`](components/package.json):
+
+```
+"publishConfig": {
+    "access": "restricted"
+},
+```
+
+Therefore, the authentication configuration inside the [`.npmrc` config file](components/.npmrc) is required. The NPM access token is defined as a GitHub repository secret.
+
+### How to use the released package
+
+See the [usage example repository](https://github.com/SWRdata/components-usage-example) and follow the instructions in its README.
