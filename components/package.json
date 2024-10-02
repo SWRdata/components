@@ -47,5 +47,23 @@
     "vite": "^5.0.3",
     "wait-on": "^8.0.1"
   },
-  "type": "module"
+  "type": "module",
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/changelog",
+            {
+                "changelogFile": "docs/CHANGELOG.md"
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "assets": ["docs/CHANGELOG.md"]
+            }
+        ]
+    ]
+  }
 }
