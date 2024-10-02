@@ -64,7 +64,7 @@ The package is currently pushed with restricted acces, as configured in [`compon
 },
 ```
 
-Therefore, the authentication configuration inside the [`.npmrc` config file](components/.npmrc) is required. The NPM access token is defined as a GitHub repository secret.
+Therefore, the authentication configuration inside the [`.npmrc` config file](components/.npmrc) is required. The `NPM_TOKEN` is filled from the GitHub repository secret.
 
 ### How to use the released package
 
