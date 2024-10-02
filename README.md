@@ -44,7 +44,7 @@ Merges into the main branch are protected and require a pull request review.
 -   publishes the package to the [NPM registry](https://www.npmjs.com/package/@swr-data-lab/components).
 -   pushes the release to GitHub with a tag reflecting the NPM package version.
 
-Only merges following [conventional commits](https://www.conventionalcommits.org/) will trigger a new release. Quick summary:
+Only merges following [conventional commits](https://www.conventionalcommits.org/) will trigger a new release. Summary:
 
 -   PATCH version bump: Commit message "fix: ..."
 -   MINOR version bump: Commit message "feat: ..."
