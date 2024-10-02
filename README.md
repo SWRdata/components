@@ -41,7 +41,6 @@ Merges into the main branch are protected and require a pull request review.
 [Semantic Release](https://github.com/semantic-release/) automatically:
 
 -   analyzes commits and bumps the version (major, minor, or patch).
--   updates the [changelog](components/CHANGELOG.md).
 -   publishes the package to the [NPM registry](https://www.npmjs.com/package/@swr-data-lab/components).
 -   pushes the release to GitHub with a tag reflecting the NPM package version.
 
