@@ -1,7 +1,10 @@
 <script>
 	import Autocomplete from '@components/Autocomplete';
 	import Switcher from '@components/Switcher';
+	import Card from '@components/Card';
 	import Container from '@components/Container';
+	import Input from '@components/Input';
+	import Button from '@components/Button';
 	import gemeinden from '@data/ags.csv';
 
 	const baseUrl = 'https://notfallrettung.swr.de';
@@ -33,53 +36,54 @@
 </script>
 
 <Container>
-	<header>
-		<h3 class="title">Beim Herzstillstand <em>zählt jede Sekunde.</em></h3>
-		<p class="intro">
-			Gib deinen Namen, Wohnort, Alter und Geschlecht ein, um zu lesen, wie die Notfallrettung bei
-			Dir aussieht.
-		</p>
-	</header>
-	<form>
-		<div class="form__cols">
-			<div class="form__input">
-				<label for="name">Vorname</label>
-				<input placeholder="Max Mustermann" id="name" type="text" bind:value={formData.name} />
-			</div>
-			<div class="form__input">
-				<label for="name">Wohnort</label>
-				<Autocomplete
-					placeholder="Baden-Baden"
-					on:select={(e) => {
-						if (e.detail?.item) {
-							formData.ags = e.detail.item.details.ags;
-							formData.place = e.detail.item.value;
-							formData.lat = e.detail.item.details.lat;
-							formData.lon = e.detail.item.details.lon;
-						} else {
-							// In Svelte 5 you can "delete" from state objects, but for now:
-							formData = Object.fromEntries(
-								Object.entries(formData).filter(
-									([key]) => !['ags', 'place', 'lat', 'lon'].includes(key)
-								)
-							);
+	<Card>
+		<header>
+			<h3 class="title">Beim Herzstillstand <em>zählt jede Sekunde.</em></h3>
+			<p class="intro">
+				Gib deinen Namen, Wohnort, Alter und Geschlecht ein, um zu lesen, wie die Notfallrettung bei
+				Dir aussieht.
+			</p>
+		</header>
+		<form>
+			<Input
+				label="Vorname"
+				placeholder="Vorname"
+				name="name"
+				type="text"
+				bind:value={formData.name}
+			/>
+			<Autocomplete
+				label="Wohnort"
+				name="wohnort"
+				placeholder="Trage hier eine Gemeinde ein"
+				on:select={(e) => {
+					if (e.detail?.item) {
+						formData.ags = e.detail.item.details.ags;
+						formData.place = e.detail.item.value;
+						formData.lat = e.detail.item.details.lat;
+						formData.lon = e.detail.item.details.lon;
+					} else {
+						// In Svelte 5 you can "delete" from state objects, but for now:
+						formData = Object.fromEntries(
+							Object.entries(formData).filter(
+								([key]) => !['ags', 'place', 'lat', 'lon'].includes(key)
+							)
+						);
+					}
+				}}
+				data={gemeinden.map((el) => {
+					return {
+						value: el.name,
+						label: el.name,
+						details: {
+							ags: el.ags,
+							lon: el.lon,
+							lat: el.lat
 						}
-					}}
-					data={gemeinden.map((el) => {
-						return {
-							value: el.name,
-							label: el.name,
-							details: {
-								ags: el.ags,
-								lon: el.lon,
-								lat: el.lat
-							}
-						};
-					})}
-				/>
-			</div>
-		</div>
-		<div class="form__cols">
+					};
+				})}
+			/>
+
 			<Switcher
 				label="Alter"
 				groupName="age"
@@ -93,17 +97,29 @@
 				bind:value={formData.gender}
 			/>
 			<div class="form__submit">
-				<a href={url} class="button" class:is-disabled={Object.entries(formData).length < 7}
-					>Zum interaktiven Artikel</a
-				>
+				<Button
+					href={url}
+					label="Zum Artikel"
+					as="a"
+					disabled={Object.entries(formData).length < 7}
+				/>
 				<a href={baseUrl} class="text-link">Ohne Personalisierung lesen</a>
 			</div>
-		</div>
-	</form>
+		</form>
+	</Card>
 </Container>
 
 <style lang="scss">
+	header,
+	form {
+		font-family: var(--swr-sans);
+	}
 	.title {
+		font-family: var(--swr-sans);
+		font-size: 2.2rem;
+		line-height: 1.15;
+		font-weight: 600;
+		letter-spacing: 0.0025em;
 		margin: 0;
 		margin-bottom: 1.5rem;
 		text-wrap: balance;
@@ -112,70 +128,32 @@
 			text-decoration: underline;
 			text-underline-offset: 0.15em;
 			text-decoration-thickness: 0.125em;
+			text-decoration-color: var(--orange);
 		}
-	}
-	pre {
-		text-align: left;
 	}
 
 	.intro {
 		text-wrap: balance;
+		font-size: 1.25em;
 		margin-bottom: 1em;
-		display: none;
 	}
 
-	input {
-		color: inherit;
-		padding: 0 0.75em;
-		width: 100%;
-		background: transparent;
-		&:focus-visible {
-			outline: none;
-			box-shadow: 0px 0px 1rem 0px rgb(89, 32, 192);
-		}
-	}
-
-	label,
-	legend {
-		margin-bottom: 0.5em;
-	}
-
-	.form__input {
-		display: flex;
-		flex-flow: column;
-		margin-bottom: 1.25em;
-	}
-
-	.form__cols {
+	form {
 		display: grid;
-		& > * {
-			flex-basis: 0;
-			flex-grow: 1;
-		}
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1em 1.5em;
 	}
 
 	.form__submit {
+		grid-column: span 2;
 		display: flex;
 		align-items: baseline;
 		gap: 1.5em;
-		flex-flow: column;
+		margin-top: 1.5em;
 	}
 
 	.text-link {
 		color: white;
 		opacity: 0.75;
-	}
-
-	.button {
-		display: inline-flex;
-		align-items: center;
-		justify-self: flex-start;
-		padding: 0 1.5em;
-		color: white;
-		margin-top: 0.75rem;
-		&.is-disabled {
-			opacity: 0.5;
-			pointer-events: none;
-		}
 	}
 </style>

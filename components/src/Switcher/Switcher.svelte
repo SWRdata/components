@@ -46,29 +46,28 @@ Radio-like form component to choose exactly one of a given set of options.
 <style lang="scss">
 	@import '../styles/base.scss';
 
-	.container {
+	fieldset {
 		border: 0;
-		padding: 0;
 	}
+
 	legend {
-		@extend %caption;
+		@extend %form-label;
 	}
 
 	ul {
 		width: 100%;
 		display: flex;
 		flex-direction: row;
-		border-radius: var(--border-radius-input);
+		border-radius: $border-radius-input;
 		overflow: hidden;
 		padding: 0;
 		margin: 0;
 		overflow: hidden;
 		border: 1px solid currentColor;
-		outline-offset: 2px;
 
 		&:focus-within,
 		&:active {
-			outline: 2px solid lightgray;
+			outline: 3px solid rgba(white, 0.5);
 		}
 	}
 	li {
@@ -84,8 +83,7 @@ Radio-like form component to choose exactly one of a given set of options.
 	label {
 		@extend %copy;
 		line-height: 1;
-		padding-top: 0.1em;
-		height: var(--input-height);
+		height: $input-height;
 		cursor: pointer;
 		margin: 0;
 		flex-basis: 0;
@@ -95,7 +93,7 @@ Radio-like form component to choose exactly one of a given set of options.
 		justify-content: center;
 		color: currentColor;
 		position: relative;
-		transition: var(--transition-fast);
+		transition: $transition-fast;
 		text-underline-offset: 0.1em;
 		border-right: 1px solid currentColor;
 		&:hover,
@@ -108,7 +106,7 @@ Radio-like form component to choose exactly one of a given set of options.
 			width: 1em;
 			height: auto;
 			opacity: 0;
-			transition: var(--transition-fast);
+			transition: $transition-fast;
 			display: block;
 		}
 		.is-selected & {

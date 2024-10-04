@@ -3,20 +3,23 @@
 	import Circle from '../assets/times-circle-solid.svg.svelte';
 
 	export let data = [];
-	export let query = '';
-	export let placeholder = 'Platzhalter';
+	export let query: string = '';
+	export let placeholder: string = 'Platzhalter';
+	export let label: string;
+	export let name: string;
 
 	const sortData = (a, b) => {
 		return a.value.localeCompare(b.value);
 	};
 
 	let listRef;
-	let controlsRef;
 	let inputRef;
+	let controlsRef;
 	const dispatch = createEventDispatcher();
+	const maxSuggestions = 100;
 
 	let highlightedItemIndex = -1;
-	$: suggestions = data.sort(sortData).slice(0, 50);
+	$: suggestions = data.sort(sortData).slice(0, maxSuggestions);
 	$: isActive = false;
 
 	// Insert clicked item into search input,
@@ -54,7 +57,7 @@
 		}
 	};
 
-	const handleClear = (e) => {
+	const handleClear = () => {
 		query = '';
 		inputRef.focus();
 		setSuggestions();
@@ -68,6 +71,7 @@
 			.filter((el) => {
 				return el.value.toLowerCase().startsWith(query.toLowerCase());
 			})
+			.slice(0, maxSuggestions)
 			.sort(sortData);
 	};
 
@@ -93,9 +97,11 @@ Data should be provided as array of objects. Each object contains the informatio
 @component
 -->
 
-<div class="autocomplete">
+<div class="autocomplete" class:active={isActive}>
+	<label for={name}>{label}</label>
 	<input
 		type="text"
+		{name}
 		{placeholder}
 		autocomplete="off"
 		autocorrect="off"
@@ -119,7 +125,7 @@ Data should be provided as array of objects. Each object contains the informatio
 		}}
 	/>
 
-	<ul tabindex="-1" bind:this={listRef} class:active={isActive}>
+	<ul tabindex="-1" bind:this={listRef}>
 		{#each suggestions as item, i (item.value)}
 			<li>
 				<button
@@ -151,32 +157,21 @@ Data should be provided as array of objects. Each object contains the informatio
 		display: block;
 		color: white;
 
-		input {
-			@extend %copy;
-			border: 1px solid currentColor;
-			border-radius: var(--border-radius-input);
-			background: transparent;
-			padding: 0 0.5em;
-			color: currentColor;
-			height: var(--input-height);
-			margin: 0;
-			display: block;
-			width: 100%;
-			&:focus-visible {
-				border-bottom-right-radius: 0;
-				border-bottom-left-radius: 0;
-			}
+		label {
+			@extend %form-label;
 		}
-		input[type='text'] {
-			text-size-adjust: none;
+
+		input {
+			@extend %form-input;
 		}
 
 		ul {
 			position: absolute;
 			top: 100%;
 			border: 1px solid currentColor;
-			border-bottom-left-radius: var(--border-radius-input);
-			border-bottom-right-radius: var(--border-radius-input);
+			background: $reanimation-violetblue;
+			border-bottom-left-radius: $border-radius-input;
+			border-bottom-right-radius: $border-radius-input;
 			border-top: 0;
 			left: 0;
 			right: 0;
@@ -189,10 +184,6 @@ Data should be provided as array of objects. Each object contains the informatio
 			&:empty {
 				box-shadow: none;
 			}
-			&.active {
-				opacity: 1;
-				pointer-events: all;
-			}
 
 			.item {
 				@extend %caption;
@@ -201,19 +192,19 @@ Data should be provided as array of objects. Each object contains the informatio
 				background: transparent;
 				border: 0;
 				text-align: left;
-				border-bottom: 1px solid rgba(black, 0.5);
+				color: currentColor;
+				border-bottom: 1px solid rgba(white, 0.25);
 				cursor: pointer;
 				&.active,
 				&:hover {
 					text-decoration: underline;
-					background-color: rgba(black, 0.1);
+					background-color: rgba(white, 0.05);
 				}
 			}
 		}
 
 		.clear {
 			position: absolute;
-			transform: translateY(-50%);
 			top: 50%;
 			right: 0.75rem;
 			width: 1.2rem;
@@ -221,13 +212,24 @@ Data should be provided as array of objects. Each object contains the informatio
 			background: transparent;
 			border: 0;
 			display: none;
+			color: white;
 			&.active {
 				display: block;
 			}
 			&:hover,
 			&:focus {
-				color: var(--orange);
+				color: $orange;
 				cursor: pointer;
+			}
+		}
+		&.active {
+			ul {
+				opacity: 1;
+				pointer-events: all;
+			}
+			input {
+				border-bottom-right-radius: 0;
+				border-bottom-left-radius: 0;
 			}
 		}
 	}

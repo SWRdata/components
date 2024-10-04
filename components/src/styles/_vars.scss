@@ -1,0 +1,31 @@
+$reanimation-black: #0c0c0c;
+$reanimation-violetblue: #1d0b40;
+$reanimation-violetblue-hover: #2d155d;
+$reanimation-violet: #5920c0;
+$reanimation-blue: #3053d9;
+$reanimation-warmgrey: #dbd5cd;
+$reanimation-activeorange: #ff3300;
+$orange: #ff3300;
+
+$border-radius-container: 8px;
+$border-radius-input: 4px;
+$input-height: 2.5rem;
+$app-max-width: 40rem;
+
+$swr-sans: 'SWR-VAR-Sans', sans-serif;
+$swr-text: 'SWR-VAR-Text', sans-serif;
+
+$transition-fast: 150ms;
+
+// Breakpoints
+$break-phone: 510px;
+$break-tablet: 992px;
+$break-desktop-small: 1200px;
+$break-desktop-large: 1400px;
+$break-desktop-xl: 1400px;
+
+@mixin bp($point) {
+	@media (min-width: $point) {
+		@content;
+	}
+}
