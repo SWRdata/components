@@ -4,15 +4,15 @@
 
 const fs = require('fs-extra');
 
-// const svelteOutputPath = "../mock-sveltekit/build"
-const svelteOutputPath = '../apps/p074-forwarding/build';
+const svelteOutputPath = process.argv[2] || '../mock-sveltekit/build';
 const outputPath = '.';
 
 console.log('Copying Sveltekit output to mock-sophora...');
 
 // Copy the index.html file...
 const inputHTML = fs.readFileSync(`${svelteOutputPath}/index.html`, { encoding: 'utf8' });
-const inputBody = inputHTML.match(/(?:<body.+>)([\s\S]+)(?:<\/body>)/);
+const inputBody = inputHTML.match(/(?:<body>)([\s\d.\S]+)(?:<\/body>)/);
+
 const indexHTML = inputBody[1];
 fs.writeFileSync(`${outputPath}/_includes/test/sveltekit-component.html`, indexHTML);
 
