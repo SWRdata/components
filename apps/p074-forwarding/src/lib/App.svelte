@@ -1,3 +1,5 @@
+<svelte:options customElement="swrdata-element" />
+
 <script>
 	import Autocomplete from '@components/Autocomplete';
 	import Switcher from '@components/Switcher';
@@ -98,9 +100,9 @@
 			/>
 			<div class="form__submit">
 				<Button
+					as="a"
 					href={url}
 					label="Zum Artikel"
-					as="a"
 					disabled={Object.entries(formData).length < 7}
 				/>
 				<a href={baseUrl} class="text-link">Ohne Personalisierung lesen</a>
