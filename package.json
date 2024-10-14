@@ -1,6 +1,6 @@
 {
 	"name": "swr-components",
-	"version": "1.0.1",
+	"version": "1.0.0",
 	"description": "Experimental component library for SWR Data interactives.",
 	"main": "index.js",
 	"scripts": {},
