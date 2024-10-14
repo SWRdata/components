@@ -1,2 +1,2 @@
-import AutoComplete from "./Autocomplete.svelte"
-export default AutoComplete
+import Autocomplete from './Autocomplete.svelte';
+export default Autocomplete;
