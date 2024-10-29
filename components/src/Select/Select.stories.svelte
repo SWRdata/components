@@ -38,10 +38,18 @@
 
 <script>
 	import { Story, Template } from '@storybook/addon-svelte-csf';
+
+	let selectedItem;
 </script>
 
 <Template let:args>
-	<Select {...args} />
+	<Select {...args} bind:selectedItem />
+
+	{#if selectedItem}
+		<code class="output">
+			{JSON.stringify(selectedItem)}
+		</code>
+	{/if}
 </Template>
 
 <Story
@@ -114,3 +122,12 @@
 		groupHeaderSelectable: true
 	}}
 />
+
+<style>
+	.output {
+		display: block;
+		margin-top: 1rem;
+		padding: 1rem;
+		background: #dadada;
+	}
+</style>
