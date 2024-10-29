@@ -60,5 +60,8 @@
 			"svelte": "./src/index.js"
 		}
 	},
-	"version": "1.0.6"
+	"version": "1.0.6",
+	"dependencies": {
+		"svelte-select": "^5.8.3"
+	}
 }
