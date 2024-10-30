@@ -3,6 +3,7 @@
 	import groupedJobs from '../assets/mock_data/jobs_grouped.json';
 	import groupedThreeDigits from '../assets/mock_data/jobs_3.json';
 	import groupedFourDigits from '../assets/mock_data/jobs_4.json';
+	import jobsData from '../assets/mock_data/jobs_addons.json';
 
 	export const meta = {
 		title: 'Input Components/Svelte Select',
@@ -123,11 +124,62 @@
 	}}
 />
 
+<Story name="Custom items">
+	<Select
+		bind:selectedItem
+		inputId="job-select"
+		placeholder="Berufe"
+		items={jobsData
+			.sort((a, b) => a.label.localeCompare(b.label))
+			.map((item) => ({
+				value: item.value,
+				label: `${item.label}: ${item.add_on}`, // used for filtering
+				title: item.label, // used for display
+				add_on: item.add_on
+			}))}
+		groupHeaderSelectable={false}
+	>
+		<div slot="item" let:item class="custom-item">
+			<h4 class="custom-item-title">{item.title}</h4>
+			<p class="custom-item-addon">{item.add_on}</p>
+		</div>
+		<div slot="selection" let:selection class="selection">
+			{selection.title}
+		</div>
+	</Select>
+
+	{#if selectedItem}
+		<code class="output">
+			{JSON.stringify(selectedItem)}
+		</code>
+	{/if}
+</Story>
+
 <style>
 	.output {
 		display: block;
 		margin-top: 1rem;
 		padding: 1rem;
 		background: #dadada;
+	}
+
+	.custom-item {
+		font-family: sans-serif;
+		font-size: 0.9rem;
+		margin-top: 0.2rem;
+	}
+
+	.custom-item-title {
+		margin: 0;
+		padding: 0;
+		line-height: 1.4;
+	}
+
+	.custom-item-addon {
+		margin: 0;
+		padding: 0;
+		line-height: 1;
+		opacity: 0.6;
+		font-size: 0.8rem;
 	}
 </style>

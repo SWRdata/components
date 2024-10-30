@@ -62,7 +62,18 @@ based on https://github.com/rob-balfre/svelte-select
 	{placeholder}
 	{groupHeaderSelectable}
 	bind:value={selectedItem}
-></Select>
+>
+	<svelte:fragment slot="item" let:item>
+		<slot name="item" {item}>
+			{item.label}
+		</slot>
+	</svelte:fragment>
+	<svelte:fragment slot="selection" let:selection>
+		<slot name="selection" {selection}>
+			{selection.label}
+		</slot>
+	</svelte:fragment>
+</Select>
 
 <style lang="scss">
 	@import '../styles/base.scss';
