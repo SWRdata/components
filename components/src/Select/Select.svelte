@@ -32,8 +32,6 @@
 	 */
 	export let items: Option[] = [];
 
-	$: items, console.log(items);
-
 	let groupBy: ((item: Option) => string) | undefined;
 	$: groupBy =
 		items.length > 0 && items.every((item) => item.group)
