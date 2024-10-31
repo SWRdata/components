@@ -1,9 +1,6 @@
 <script context="module">
 	import Select from './Select.svelte';
-	import groupedJobs from '../assets/mock_data/jobs_grouped.json';
-	import groupedThreeDigits from '../assets/mock_data/jobs_3.json';
-	import groupedFourDigits from '../assets/mock_data/jobs_4.json';
-	import jobsData from '../assets/mock_data/jobs_addons.json';
+	import jobsData from '../assets/mock_data/jobs.json';
 
 	export const meta = {
 		title: 'Input Components/Svelte Select',
@@ -31,22 +28,31 @@
 				type: { name: 'string', required: false },
 				defaultValue: 'Bitte auswählen'
 			}
-			// items (interface)
-			// groupHeaderSelectable
 		}
 	};
 </script>
 
 <script>
 	import { Story, Template } from '@storybook/addon-svelte-csf';
+	import {
+		userEvent,
+		within,
+		expect,
+		getByTestId,
+		getAllByLabelText,
+		getByText
+	} from '@storybook/test';
+	import { hasContext } from 'svelte';
+	import Input from '../Input/Input.svelte';
 
 	let selectedItem;
+	let component;
 </script>
 
 <Template let:args>
-	<label for={args.inputId}>Label</label>
+	<label for={args.inputId}>Select</label>
 
-	<Select {...args} bind:value={selectedItem} />
+	<Select {...args} bind:this={component} bind:value={selectedItem} />
 
 	{#if selectedItem}
 		<code class="output">
@@ -58,11 +64,32 @@
 <Story
 	name="Simple"
 	args={{
+		inputId: 'select',
 		items: [
 			{ value: 'chocolate', label: 'Chocolate' },
 			{ value: 'cake', label: 'Cake' },
 			{ value: 'ice-cream', label: 'Ice Cream' }
 		]
+	}}
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const select = canvas.getByLabelText('Select');
+
+		await step('Clicking an option selects that item', async () => {
+			await userEvent.click(select);
+			await userEvent.click(canvas.getByText('Cake'));
+			expect(selectedItem).toEqual({ value: 'cake', label: 'Cake' });
+		});
+
+		await step('Entering a complete label selects that item', async () => {
+			await userEvent.type(select, 'Chocolate{enter}');
+			expect(selectedItem).toEqual({ value: 'chocolate', label: 'Chocolate' });
+		});
+
+		await step('Entering a unique part of a label selects the matching item', async () => {
+			await userEvent.type(select, 'Ice{enter}');
+			expect(selectedItem).toEqual({ value: 'ice-cream', label: 'Ice Cream' });
+		});
 	}}
 />
 
@@ -80,59 +107,79 @@
 />
 
 <Story
-	name="Jobs (3 digits)"
+	name="Grouped (group header selectable)"
 	args={{
 		inputId: 'job-select',
 		placeholder: 'Ihr Beruf',
-		items: groupedThreeDigits
+		groupHeaderSelectable: true,
+		items: [
+			{ value: 'chocolate', label: 'Chocolate', group: 'Sweet' },
+			{ value: 'pizza', label: 'Pizza', group: 'Savory' },
+			{ value: 'cake', label: 'Cake', group: 'Sweet' },
+			{ value: 'chips', label: 'Chips', group: 'Savory' },
+			{ value: 'ice-cream', label: 'Ice Cream', group: 'Sweet' }
+		]
+	}}
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const select = canvas.getByLabelText('Select');
+
+		await step('Clicking an option header selects that header item', async () => {
+			await userEvent.click(select);
+			await userEvent.click(canvas.getByText('Savory'));
+			expect(selectedItem).toEqual({
+				groupHeader: true,
+				id: 'Savory',
+				label: 'Savory',
+				selectable: true,
+				value: 'Savory'
+			});
+		});
+
+		await step('Entering a label text selects its group header', async () => {
+			await userEvent.type(select, 'Chocolate{enter}');
+			expect(selectedItem).toEqual({
+				groupHeader: true,
+				id: 'Sweet',
+				label: 'Sweet',
+				selectable: true,
+				value: 'Sweet'
+			});
+		});
 	}}
 />
 
 <Story
-	name="Jobs (3 digits)"
-	args={{
-		inputId: 'job-select',
-		placeholder: 'Ihr Beruf',
-		items: groupedThreeDigits
-	}}
-/>
+	name="Custom items"
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const select = canvas.getByLabelText('Berufe');
 
-<Story
-	name="Jobs (4 digits)"
-	args={{
-		inputId: 'job-select',
-		placeholder: 'Ihr Beruf',
-		items: groupedFourDigits
-	}}
-/>
+		await step('Render custom list item with the supplied data', async () => {
+			await userEvent.type(select, 'Journalismus');
+			expect(canvas.getByTestId('custom-item-title').innerText).toEqual('Journalismus');
+			expect(canvas.getByTestId('custom-item-addon').innerText).toContain('Redakteur/in');
+			await userEvent.type(select, '{enter}');
+			expect(selectedItem.details.title).toEqual('Journalismus');
+		});
 
-<Story
-	name="Jobs (grouped)"
-	args={{
-		inputId: 'job-select',
-		placeholder: 'Ihr Beruf',
-		items: groupedJobs,
-		groupHeaderSelectable: false
-	}}
-/>
+		await step('Entering an item\'s "title" selects that item', async () => {
+			await userEvent.type(select, 'Tierpflege{enter}');
+			expect(selectedItem.details.title).toEqual('Tierpflege');
+		});
 
-<Story
-	name="Jobs (grouped, group header selectable)"
-	args={{
-		inputId: 'job-select',
-		placeholder: 'Ihr Beruf',
-		items: groupedJobs,
-		groupHeaderSelectable: true
+		await step('Entering an item\'s "addon" selects that item', async () => {
+			await userEvent.type(select, 'Zirkuskünstler{enter}');
+			expect(selectedItem.details.title).toEqual('Schauspiel und Tanz');
+		});
 	}}
-/>
-
-<Story name="Custom items">
-	<label for="job-select">Label</label>
+>
+	<label for="job-select">Berufe</label>
 
 	<Select
 		bind:value={selectedItem}
 		inputId="job-select"
-		placeholder="Berufe"
+		placeholder="z.B. Taxifahrer/in"
 		items={jobsData
 			.sort((a, b) => a.label.localeCompare(b.label))
 			.map((item) => ({
@@ -146,8 +193,10 @@
 		groupHeaderSelectable={false}
 	>
 		<div slot="item" let:item class="custom-item">
-			<h4 class="custom-item-title">{item.details.title}</h4>
-			<p class="custom-item-addon">{item.details.addon}</p>
+			<h4 class="custom-item-title" data-testid="custom-item-title">
+				{item.details.title}
+			</h4>
+			<p class="custom-item-addon" data-testid="custom-item-addon">{item.details.addon}</p>
 		</div>
 		<div slot="selection" let:selection class="selection">
 			{selection.details.title}
