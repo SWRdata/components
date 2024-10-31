@@ -44,7 +44,9 @@
 </script>
 
 <Template let:args>
-	<Select {...args} bind:selectedItem />
+	<label for={args.inputId}>Label</label>
+
+	<Select {...args} bind:value={selectedItem} />
 
 	{#if selectedItem}
 		<code class="output">
@@ -125,8 +127,10 @@
 />
 
 <Story name="Custom items">
+	<label for="job-select">Label</label>
+
 	<Select
-		bind:selectedItem
+		bind:value={selectedItem}
 		inputId="job-select"
 		placeholder="Berufe"
 		items={jobsData
@@ -134,17 +138,19 @@
 			.map((item) => ({
 				value: item.value,
 				label: `${item.label}: ${item.add_on}`, // used for filtering
-				title: item.label, // used for display
-				add_on: item.add_on
+				details: {
+					title: item.label, // used for display
+					addon: item.add_on // used for display
+				}
 			}))}
 		groupHeaderSelectable={false}
 	>
 		<div slot="item" let:item class="custom-item">
-			<h4 class="custom-item-title">{item.title}</h4>
-			<p class="custom-item-addon">{item.add_on}</p>
+			<h4 class="custom-item-title">{item.details.title}</h4>
+			<p class="custom-item-addon">{item.details.addon}</p>
 		</div>
 		<div slot="selection" let:selection class="selection">
-			{selection.title}
+			{selection.details.title}
 		</div>
 	</Select>
 
@@ -170,13 +176,13 @@
 	}
 
 	.custom-item-title {
-		margin: 0;
+		margin: 0 0 0 -0.8rem;
 		padding: 0;
 		line-height: 1.4;
 	}
 
 	.custom-item-addon {
-		margin: 0;
+		margin: 0 0 0 -0.8rem;
 		padding: 0;
 		line-height: 1;
 		opacity: 0.6;

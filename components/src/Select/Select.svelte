@@ -10,9 +10,10 @@
 	/**
 	 * The interface for select options
 	 */
-	interface SelectItem {
+	interface Option {
 		value: string;
 		label: string;
+		details: any;
 		group?: string;
 	}
 
@@ -29,14 +30,14 @@
 	/**
 	 * The list of select options
 	 */
-	export let items: SelectItem[] = [];
+	export let items: Option[] = [];
 
 	$: items, console.log(items);
 
-	let groupBy: ((item: SelectItem) => string) | undefined;
+	let groupBy: ((item: Option) => string) | undefined;
 	$: groupBy =
 		items.length > 0 && items.every((item) => item.group)
-			? (item: SelectItem) => item.group as string
+			? (item: Option) => item.group as string
 			: undefined;
 
 	/**
@@ -44,8 +45,7 @@
 	 */
 	export let groupHeaderSelectable: boolean = false;
 
-	export let selectedItem: SelectItem | undefined;
-	// $: selectedItem: console.log("Selected item: ", selectedItem);
+	export let value: Option | undefined;
 </script>
 
 <!--
@@ -55,14 +55,7 @@ based on https://github.com/rob-balfre/svelte-select
 @component
 -->
 
-<Select
-	{items}
-	{groupBy}
-	id={inputId}
-	{placeholder}
-	{groupHeaderSelectable}
-	bind:value={selectedItem}
->
+<Select {items} {groupBy} id={inputId} {placeholder} {groupHeaderSelectable} bind:value>
 	<svelte:fragment slot="item" let:item>
 		<slot name="item" {item}>
 			{item.label}
