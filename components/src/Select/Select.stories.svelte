@@ -1,6 +1,6 @@
 <script context="module">
 	import Select from './Select.svelte';
-	import jobsData from '../assets/mock_data/jobs.json';
+	import jobsData from './mock_data/jobs.json';
 
 	export const meta = {
 		title: 'Input Components/Svelte Select',
