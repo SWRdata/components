@@ -5,13 +5,13 @@
 	export const meta = {
 		title: 'Input Components/Svelte Select',
 		component: Select,
+
 		// FIXME: remove this manual documentation when autodocs are fixed
-		// TODO: finish documentation
 		parameters: {
 			docs: {
 				description: {
 					component:
-						'This component is a select input with search feature and various options such as grouped items, multi-select etc. based on https://github.com/rob-balfre/svelte-select'
+						'This component is a select input with a search feature and various options such as grouped items, multi-select etc. based on https://github.com/rob-balfre/svelte-select'
 				}
 			}
 		},
@@ -27,6 +27,15 @@
 				control: 'text',
 				type: { name: 'string', required: false },
 				defaultValue: 'Bitte auswählen'
+			},
+			groupHeaderSelectable: {
+				description: 'Whether the group names should be selectable as well',
+				type: { name: 'boolean', required: false },
+				defaultValue: 'false'
+			},
+			value: {
+				description: 'The currently selected option',
+				type: { name: 'any', required: false }
 			}
 		}
 	};
