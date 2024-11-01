@@ -13,8 +13,8 @@
 	interface Option {
 		value: string;
 		label: string;
-		details: any;
 		group?: string;
+		details?: any;
 	}
 
 	/**
