@@ -43,6 +43,11 @@
 	 */
 	export let groupHeaderSelectable: boolean = false;
 
+	/**
+	 * Enable clearing the input
+	 */
+	export let clearable: boolean = true;
+
 	export let value: Option | undefined;
 </script>
 
@@ -53,7 +58,7 @@ based on https://github.com/rob-balfre/svelte-select
 @component
 -->
 
-<Select {items} {groupBy} id={inputId} {placeholder} {groupHeaderSelectable} bind:value>
+<Select {items} {groupBy} id={inputId} {placeholder} {groupHeaderSelectable} {clearable} bind:value>
 	<svelte:fragment slot="item" let:item>
 		<slot name="item" {item}>
 			{item.label}

@@ -33,6 +33,11 @@
 				type: { name: 'boolean', required: false },
 				defaultValue: 'false'
 			},
+			clearable: {
+				description: 'Show a button to clear the input',
+				type: { name: 'boolean', required: false },
+				defaultValue: 'false'
+			},
 			value: {
 				description: 'The currently selected option',
 				type: { name: 'any', required: false }
@@ -74,6 +79,7 @@
 	name="Simple"
 	args={{
 		inputId: 'select',
+		clearable: true,
 		items: [
 			{ value: 'chocolate', label: 'Chocolate' },
 			{ value: 'cake', label: 'Cake' },
@@ -98,6 +104,12 @@
 		await step('Entering a unique part of a label selects the matching item', async () => {
 			await userEvent.type(select, 'Ice{enter}');
 			expect(selectedItem).toEqual({ value: 'ice-cream', label: 'Ice Cream' });
+		});
+
+		await step('Tapping the clear button clears the input', async () => {
+			const clearButton = document.querySelector('.clear-select');
+			await userEvent.click(clearButton);
+			expect(selectedItem).toEqual(undefined);
 		});
 	}}
 />
