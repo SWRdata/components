@@ -7,6 +7,6 @@
 	:host {
 		--swr-sans: #{$swr-sans};
 		--swr-text: #{$swr-text};
-		--orange: #{$orange};
+		--orange: #{$color-activeorange};
 	}
 </style>

@@ -169,7 +169,7 @@ Data should be provided as array of objects. Each object contains the informatio
 			position: absolute;
 			top: 100%;
 			border: 1px solid currentColor;
-			background: $reanimation-violetblue;
+			background: $color-violetblue;
 			border-bottom-left-radius: $border-radius-input;
 			border-bottom-right-radius: $border-radius-input;
 			border-top: 0;
@@ -218,7 +218,7 @@ Data should be provided as array of objects. Each object contains the informatio
 			}
 			&:hover,
 			&:focus {
-				color: $orange;
+				color: $color-activeorange;
 				cursor: pointer;
 			}
 		}

@@ -15,7 +15,7 @@
 	@import '../styles/base.scss';
 	.button {
 		@extend %copy-bold;
-		background: $reanimation-violet;
+		background: $color-violet;
 		display: inline-flex;
 		align-items: center;
 		justify-self: flex-start;
