@@ -11,7 +11,6 @@
 		color: white;
 		background: $color-violetblue;
 		border-radius: $border-radius-container;
-		margin: 0 1rem;
 		padding: 1.5rem;
 		@include bp($break-tablet) {
 			padding: 2.5rem;
