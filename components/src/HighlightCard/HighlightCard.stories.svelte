@@ -56,7 +56,5 @@
 
 	:global(.columns > *) {
 		flex: 1;
-		/* flex-direction: column; */
-		/* justify-content: space-between; */
 	}
 </style>
