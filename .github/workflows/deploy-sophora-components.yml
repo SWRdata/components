@@ -1,0 +1,31 @@
+name: 'Deploy Storybook'
+on:
+  workflow_dispatch:
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    env:
+      BASE_PATH: 'https://static.datenhub.net/apps/sophora-components/${{ github.head_ref || github.ref_name }}/'
+    defaults:
+      run:
+        working-directory: ./sophora-components
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Create .env file for production
+        run: |
+          touch .env
+          echo BASE_PATH=$BASE_PATH >> .env
+      - run: npm ci
+      - run: npm run build
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+      - name: 'Upload files to GCP'
+        uses: 'google-github-actions/upload-cloud-storage@v2'
+        with:
+          path: './components/storybook-static'
+          parent: false
+          destination: 'datenhub-net-static/apps/sophora-components/${{ github.head_ref || github.ref_name }}/'
