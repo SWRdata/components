@@ -5,10 +5,11 @@
 <style lang="scss">
 	@import '../styles/base.scss';
 	.card {
+		@extend %copy;
 		width: auto;
 		max-width: $app-max-width;
 		color: white;
-		background: $reanimation-violetblue;
+		background: $color-violetblue;
 		border-radius: $border-radius-container;
 		margin: 0 1rem;
 		padding: 1.5rem;
