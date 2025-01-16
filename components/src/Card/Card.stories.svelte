@@ -29,15 +29,3 @@
 		<p>can be added to a basic <code>Card</code> component.</p>
 	</Card>
 </Story>
-
-<Template let:args>
-	<Card {...args} bind:this={component}><slot /></Card>
-</Template>
-
-<Story
-	name="Simple"
-	args={{
-		inputId: 'select',
-		clearable: true
-	}}
-/>
