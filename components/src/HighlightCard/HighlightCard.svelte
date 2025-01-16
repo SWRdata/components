@@ -44,7 +44,7 @@
 
 	.middle {
 		font-family: $swr-sans;
-		font-size: 60px;
+		font-size: 54px;
 		font-weight: 700;
 		padding-bottom: 0.2em;
 	}

@@ -44,6 +44,7 @@
 		/* Apply SWR.de default spacing */
 		padding-left: var(--cnt-wdth);
 		padding-right: var(--cnt-wdth);
+		padding-bottom: 1rem;
 
 		@media (min-width: 1200px) {
 			margin: 0 -1rem;
@@ -52,10 +53,10 @@
 	}
 
 	:global(.highlight-cards > *) {
-		margin: 1rem 0;
+		margin-bottom: 1rem;
 
 		@media (min-width: 1200px) {
-			margin: 1rem;
+			margin: 0 1rem;
 			flex: 1;
 		}
 	}
