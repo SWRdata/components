@@ -1,4 +1,4 @@
-name: 'Deploy Storybook'
+name: 'Deploy sophora-components'
 on:
   workflow_dispatch:
 jobs:
