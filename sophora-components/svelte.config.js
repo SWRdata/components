@@ -7,7 +7,8 @@ const dev = process.argv.includes('dev');
 const config = {
 	kit: {
 		paths: {
-			base: dev ? '' : process.env.BASE_PATH
+			base: dev ? '' : process.env.BASE_PATH,
+			assets: dev ? '' : process.env.ASSETS_PATH
 		},
 		adapter: adapter({
 			pages: 'build',
