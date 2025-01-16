@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BASE_PATH: '/apps/sophora-components/${{ github.head_ref || github.ref_name }}'
-      ASSETS_PATH: 'https://static.datenhub.net/apps/sophora-components/${{ github.head_ref || github.ref_name }}/'
+      ASSETS_PATH: 'https://static.datenhub.net/apps/sophora-components/${{ github.head_ref || github.ref_name }}'
     defaults:
       run:
         working-directory: ./sophora-components
