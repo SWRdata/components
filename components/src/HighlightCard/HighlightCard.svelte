@@ -2,11 +2,9 @@
 	import Card from '../Card/Card.svelte';
 
 	export let topline = '';
-	export let highlight = '';
-	export let highlightSecondary = '';
+	export let value = '';
+	export let unit = '';
 	export let subline = '';
-	export let alignCards = true;
-	export let maxWidth = '500px';
 </script>
 
 <Card>
@@ -18,9 +16,9 @@
 		{/if}
 		<div class="middle">
 			<span class="underline">
-				{highlight}
+				{value}
 			</span>
-			{highlightSecondary}
+			{unit}
 		</div>
 		<div class="bottom">
 			{@html subline}

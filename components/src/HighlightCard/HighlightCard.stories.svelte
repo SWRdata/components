@@ -25,36 +25,43 @@
 <Story name="Basic HighlightCard">
 	<HighlightCard
 		topline="Die letzte Großspende liegt bei"
-		highlight="375.000"
-		highlightSecondary="Euro"
+		value="375.000"
+		unit="Euro"
 		subline="Der Betrag ging am 7. Januar von Dr. Kim Musterperson ein."
 	/>
 </Story>
 
 <Story name="Basic HighlightCard">
-	<div class="columns">
+	<div class="highlight-cards">
 		<HighlightCard
 			topline="Im aktuellen Jahr wurden bisher"
-			highlight="375.000"
-			highlightSecondary="€"
+			value="375.000"
+			unit="€"
 			subline="an Parteien gespendet."
 		/>
 		<HighlightCard
 			topline="Die letzte Großspende liegt bei"
-			highlight="37.500"
-			highlightSecondary="€"
+			value="37.500"
+			unit="€"
 			subline="Der Betrag ging am 7. Januar von Dr. Kim Musterperson ein."
 		/>
 	</div>
 </Story>
 
 <style>
-	.columns {
-		display: flex;
-		margin-top: 2rem;
+	.highlight-cards {
+		@media (min-width: 900px) {
+			margin: 0 -1rem;
+			display: flex;
+		}
 	}
 
-	:global(.columns > *) {
-		flex: 1;
+	:global(.highlight-cards > *) {
+		margin: 1rem 0;
+
+		@media (min-width: 900px) {
+			margin: 2rem 1rem;
+			flex: 1;
+		}
 	}
 </style>
