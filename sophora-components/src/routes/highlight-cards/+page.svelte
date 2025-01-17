@@ -40,6 +40,21 @@
 </div>
 
 <style>
+	/* 
+     * Fonts need to be loaded in the component to work in the SWR Aktuell app, as no web fonts are present in the context. 
+     * TODO: Move font loading elsewhere?
+     */
+	@font-face {
+		font-family: 'SWR-VAR-Text';
+		src: url('https://www.swr.de/assets/fonts/swr_type/SWR_VAR_WEB/SWR-VAR-Text.woff2')
+			format('woff2');
+	}
+	@font-face {
+		font-family: 'SWR-VAR-Sans';
+		src: url('https://www.swr.de/assets/fonts/swr_type/SWR_VAR_WEB/SWR-VAR-Sans.woff2')
+			format('woff2');
+	}
+
 	.highlight-cards {
 		/* Apply SWR.de default spacing */
 		padding-left: var(--cnt-wdth);
