@@ -130,8 +130,14 @@ const shades = {
 		dark3: '#262D87',
 		dark4: '#211C64',
 		dark5: '#1D0B40'
+	},
+	gray: {
+		light3: 'hsl(225, 2%, 77%)',
+		base: 'hsl(227, 2%, 50%)',
+		dark3: 'hsl(236, 2%, 34%)'
 	}
 };
+
 const scales = {
 	violets: [
 		shades.violet.dark3,
@@ -156,4 +162,7 @@ const scales = {
 	apple_plum: [...Object.entries(shades.apple).reverse(), ...Object.entries(shades.plum)],
 	forest_plum: [...Object.entries(shades.forest).reverse(), ...Object.entries(shades.plum)]
 };
+
+const typography = {};
+
 export { shades, scales };

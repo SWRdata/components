@@ -1,0 +1,68 @@
+import { Title, Story, ColorPalette, ColorItem, Meta, Typeset } from '@storybook/blocks';
+import {shades, scales} from "./Tokens"
+
+<Meta title='Design Tokens'/>
+
+# Design Tokens
+
+## Usage
+
+The `<DesignTokens>` component makes colours, type sizes and other design tokens available to its children as CSS variables.
+
+```jsx
+<script>
+  import DesignTokens from "components"
+</script>
+
+<DesignTokens>
+  <p>I'm a sample paragraph</p>
+</DesignTokens>
+
+<style>
+  p {
+    color: var(--violet-dark-1)
+  }
+</style>
+```
+
+You can also import from `Tokens` directly to use colours in maps and charts:
+
+```js
+import { scales } from 'Tokens'
+import { scaleThreshold } from 'd3-scale';
+const sampleScale = scaleThreshold([0, 10], scales.red_blue);
+```
+
+## Available Tokens
+
+### Typography
+
+### Colours
+
+<ColorPalette>
+{["violet", "red", "teal", "yellow", "forest", "pink", "orange", "plum", "apple", "blue", "gray"].map((el, i) => {
+	return(
+		<ColorItem
+		title={`${el.split("")[0].toUpperCase()}${el.slice(1)}`}
+		colors={shades[el]}
+	/>
+			) 
+})}
+</ColorPalette>
+
+### Linear Scales
+### Categorical Scales
+### Divergent Scales
+
+<ColorPalette>
+{["red_blue", "red_violet",  "red_forest", "red_apple", "red_teal", "violet_teal","violet_orange", "blue_pink", "teal_pink","forest_plum","apple_plum",  "orange_blue", "orange_teal"].map((el, i) => {
+	return(
+		<ColorItem
+		
+		title={`${el.split("_").join("/")}`}
+		subtitle={el}
+		colors={scales[el]}
+	/>
+			) 
+})}
+</ColorPalette>
