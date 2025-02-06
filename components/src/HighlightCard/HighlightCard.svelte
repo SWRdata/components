@@ -57,6 +57,6 @@
 
 	.underline {
 		width: fit-content;
-		background: linear-gradient(to bottom, transparent 90%, $color-activeorange 90%);
+		background: linear-gradient(to bottom, transparent 90%, var(--red-base) 90%);
 	}
 </style>
