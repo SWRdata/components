@@ -17,6 +17,7 @@
 		gap: 0.5rem;
 		font-size: var(--fs-small-1);
 		font-family: var(--swr-sans);
+		line-height: 1.4;
 	}
 	.notes {
 		width: 100%;
