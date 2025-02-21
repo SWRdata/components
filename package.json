@@ -12,5 +12,10 @@
 		"mock-sophora",
 		"mock-sveltekit",
 		"data"
-	]
+	],
+	"overrides": {
+		"svelte-select": {
+			"svelte-floating-ui": "1.5.9"
+		}
+	}
 }
