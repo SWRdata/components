@@ -1,2 +1,2 @@
-import Select from "./Select.svelte"
-export default Select
+import Select from './Select.svelte';
+export default Select;
