@@ -6,11 +6,11 @@
 	@import '../styles/base.scss';
 	.card {
 		@extend %copy;
+		color: white;
 		width: auto;
 		max-width: $app-max-width;
-		color: white;
-		background: $color-violetblue;
-		border-radius: $border-radius-container;
+		background: var(--violet-dark-5);
+		border-radius: var(--br-large);
 		padding: 1.5rem;
 		@include bp($break-tablet) {
 			padding: 2.5rem;

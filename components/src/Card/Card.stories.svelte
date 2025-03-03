@@ -1,5 +1,6 @@
 <script context="module">
 	import Card from './Card.svelte';
+	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	export const meta = {
 		title: 'Input Components/Card',
@@ -24,8 +25,10 @@
 </script>
 
 <Story name="Basic card">
-	<Card>
-		<h1>Any content</h1>
-		<p>can be added to a basic <code>Card</code> component.</p>
-	</Card>
+	<DesignTokens>
+		<Card>
+			<h1>Any content</h1>
+			<p>can be added to a basic <code>Card</code> component.</p>
+		</Card>
+	</DesignTokens>
 </Story>

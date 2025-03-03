@@ -1,5 +1,6 @@
 <script context="module">
 	import HighlightCard from './HighlightCard.svelte';
+	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	export const meta = {
 		title: 'Input Components/HighlightCard',
@@ -23,29 +24,33 @@
 </script>
 
 <Story name="Basic HighlightCard">
-	<HighlightCard
-		topline="Die letzte Großspende liegt bei"
-		value="375.000"
-		unit="Euro"
-		subline="Der Betrag ging am 7. Januar von Dr. Kim Musterperson ein."
-	/>
+	<DesignTokens>
+		<HighlightCard
+			topline="Die letzte Großspende liegt bei"
+			value="375.000"
+			unit="Euro"
+			subline="Der Betrag ging am 7. Januar von Dr. Kim Musterperson ein."
+		/>
+	</DesignTokens>
 </Story>
 
 <Story name="Basic HighlightCard">
-	<div class="highlight-cards">
-		<HighlightCard
-			topline="Im aktuellen Jahr wurden bisher"
-			value="375.000"
-			unit="€"
-			subline="an Parteien gespendet."
-		/>
-		<HighlightCard
-			topline="Die letzte Großspende liegt bei"
-			value="37.500"
-			unit="€"
-			subline="Der Betrag ging am 7. Januar von Dr. Kim Musterperson ein."
-		/>
-	</div>
+	<DesignTokens>
+		<div class="highlight-cards">
+			<HighlightCard
+				topline="Im aktuellen Jahr wurden bisher"
+				value="375.000"
+				unit="€"
+				subline="an Parteien gespendet."
+			/>
+			<HighlightCard
+				topline="Die letzte Großspende liegt bei"
+				value="37.500"
+				unit="€"
+				subline="Der Betrag ging am 7. Januar von Dr. Kim Musterperson ein."
+			/>
+		</div>
+	</DesignTokens>
 </Story>
 
 <style>
