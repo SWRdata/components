@@ -34,7 +34,7 @@
 	</DesignTokens>
 </Story>
 
-<Story name="Basic HighlightCard">
+<Story name="Multiple HighlightCards">
 	<DesignTokens>
 		<div class="highlight-cards">
 			<HighlightCard

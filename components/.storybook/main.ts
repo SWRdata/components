@@ -1,20 +1,37 @@
+import { dirname, join } from "path";
 import type { StorybookConfig } from "@storybook/sveltekit";
 
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, "package.json")));
+}
+
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|ts|svelte)"],
+  stories: [
+    "../src/**/*.stories.@(js|ts|svelte)",
+    "../src/**/*.mdx",
+  ],
+
   addons: [
-    "@storybook/addon-svelte-csf",
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
+    {
+      name: '@storybook/addon-svelte-csf',
+      options: {
+        legacyTemplate: true
+      }
+    },
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@chromatic-com/storybook"),
+    getAbsolutePath("@storybook/addon-interactions"),
+    getAbsolutePath("@storybook/addon-mdx-gfm")
   ],
   framework: {
-    name: "@storybook/sveltekit",
+    name: getAbsolutePath("@storybook/sveltekit"),
     options: {},
   },
-  core: {
-    builder: '@storybook/builder-vite'
+
+  docs: {
+    autodocs: true
   }
 };
+
 export default config;
