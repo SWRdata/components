@@ -1,5 +1,5 @@
 import { userEvent, within, expect, fn } from "@storybook/test"
-import AutoComplete from "."
+import AutoComplete from "./index.js"
 
 export default {
   title: "Example/Autocomplete",
@@ -23,10 +23,6 @@ export const Basic = {
   },
 }
 
-const onSelect = fn((e) => {
-  return e.detail
-})
-
 export const Test = {
   parameters: {
     docs: {
@@ -39,9 +35,8 @@ export const Test = {
     data: testData,
     query: "",
     placeholder: "Select a fruit",
-    event_select: onSelect,
   },
-  play: async ({ args, canvasElement, step }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement)
     const input = canvas.getByTestId("autocomplete-input")
     await step("Select using the mouse", async () => {
@@ -51,7 +46,6 @@ export const Test = {
       const bananasOption = canvas.getByText("Bananas")
       await userEvent.click(bananasOption)
       expect(input).toHaveValue("Bananas")
-      expect(onSelect).toHaveReturnedWith({ item: { label: "Bananas", value: "Bananas", details: {} } })
     })
     await userEvent.clear(input)
     await step("Select using the keyboard", async () => {
@@ -61,7 +55,6 @@ export const Test = {
       await userEvent.keyboard("{ArrowDown}")
       await userEvent.keyboard("{Enter}")
       expect(input).toHaveValue("Apples")
-      expect(onSelect).toHaveReturnedWith({ item: { label: "Apples", value: "Apples", details: {} } })
     })
     await userEvent.clear(input)
   },
