@@ -8,3 +8,4 @@ export { default as Select } from './Select/Select.svelte';
 export { default as DesignTokens } from './DesignTokens/DesignTokens.svelte';
 export { default as ChartHeader } from './ChartHeader/ChartHeader.svelte';
 export { default as ChartFooter } from './ChartFooter/ChartFooter.svelte';
+export { default as Middot } from './Middot/Middot.svelte';
