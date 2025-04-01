@@ -7,6 +7,9 @@
 	// Machine-readable name for the form field. Should be unique to other fields in the form.
 	export let groupName: string = '';
 
+	// Type size
+	export let size: string = 'default';
+
 	// The currently selected option
 	export let value: string = options[0];
 
@@ -23,7 +26,7 @@ Radio-like form component to choose exactly one of a given set of options.
 @component
 -->
 
-<fieldset class="container">
+<fieldset class="container" class:small={size === "small"}>
 	<legend>{label}</legend>
 	<ul>
 		{#each options as o (o)}
@@ -44,21 +47,21 @@ Radio-like form component to choose exactly one of a given set of options.
 </fieldset>
 
 <style lang="scss">
-	@import '../styles/base.scss';
-
 	fieldset {
 		border: 0;
+		font-family: var(--swr-sans);
 	}
 
 	legend {
-		@extend %form-label;
+		font-size: var(--fs-small-2);
+		margin-bottom: .25em;
 	}
 
 	ul {
 		width: 100%;
 		display: flex;
 		flex-direction: row;
-		border-radius: $border-radius-input;
+		border-radius: var(--br-small);
 		overflow: hidden;
 		padding: 0;
 		margin: 0;
@@ -80,10 +83,13 @@ Radio-like form component to choose exactly one of a given set of options.
 		position: absolute;
 		left: -999px;
 	}
+	.small label {
+		font-size: var(--fs-small-1)
+	}
 	label {
-		@extend %copy;
+		font-size: var(--fs-base);
+		height: 2.5em;
 		line-height: 1;
-		height: $input-height;
 		cursor: pointer;
 		margin: 0;
 		flex-basis: 0;
@@ -93,7 +99,7 @@ Radio-like form component to choose exactly one of a given set of options.
 		justify-content: center;
 		color: currentColor;
 		position: relative;
-		transition: $transition-fast;
+		transition: var(--fast);
 		text-underline-offset: 0.1em;
 		border-right: 1px solid currentColor;
 		&:hover,
@@ -106,7 +112,7 @@ Radio-like form component to choose exactly one of a given set of options.
 			width: 1em;
 			height: auto;
 			opacity: 0;
-			transition: $transition-fast;
+			transition: var(--fast);
 			display: block;
 		}
 		.is-selected & {
