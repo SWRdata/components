@@ -1,21 +1,17 @@
 <script>
-	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
-
 	export let title = '';
-	export let subtitle = '';
+	export let subtitle = null;
 </script>
 
-<DesignTokens>
-	<header class="container">
-		<h2 class="title">{title}</h2>
+<header class="container">
+	<h2 class="title">{title}</h2>
+	{#if subtitle}
 		<p class="subtitle">{subtitle}</p>
-		<slot />
-	</header>
-</DesignTokens>
+	{/if}
+	<slot name="content" />
+</header>
 
 <style lang="scss">
-	@use '../styles/vars.scss';
-
 	.container {
 		color: var(--violet-blue);
 		font-family: var(--swr-sans);

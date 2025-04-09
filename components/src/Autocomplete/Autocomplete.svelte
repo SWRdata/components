@@ -108,8 +108,8 @@ Data should be provided as array of objects. Each object contains the informatio
 		autocapitalize="off"
 		data-testid="autocomplete-input"
 		bind:this={inputRef}
-		on:keydown={handleKeyDown}
 		bind:value={query}
+		on:keydown={handleKeyDown}
 		on:input={handleInput}
 		on:focus={() => {
 			isActive = true;
@@ -150,7 +150,7 @@ Data should be provided as array of objects. Each object contains the informatio
 </div>
 
 <style lang="scss">
-	@import '../styles/base.scss';
+	@use '../styles/base.scss';
 
 	.autocomplete {
 		position: relative;
@@ -169,9 +169,9 @@ Data should be provided as array of objects. Each object contains the informatio
 			position: absolute;
 			top: 100%;
 			border: 1px solid currentColor;
-			background: $color-violetblue;
-			border-bottom-left-radius: $border-radius-input;
-			border-bottom-right-radius: $border-radius-input;
+			background: var(--violet-dark-3);
+			border-bottom-left-radius:  var(--br-small);
+			border-bottom-right-radius: var(--br-small);
 			border-top: 0;
 			left: 0;
 			right: 0;
@@ -218,7 +218,7 @@ Data should be provided as array of objects. Each object contains the informatio
 			}
 			&:hover,
 			&:focus {
-				color: $color-activeorange;
+				color: var(--red-base);
 				cursor: pointer;
 			}
 		}

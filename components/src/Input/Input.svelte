@@ -11,7 +11,7 @@
 </div>
 
 <style lang="scss">
-	@import '../styles/base.scss';
+	@use '../styles/base.scss';
 
 	label {
 		@extend %form-label;

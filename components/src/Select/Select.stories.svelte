@@ -3,7 +3,7 @@
 	import jobsData from './mock_data/jobs.json';
 
 	export const meta = {
-		title: 'Input Components/Select',
+		title: 'Form/Select',
 		component: Select,
 
 		// FIXME: remove this manual documentation when autodocs are fixed

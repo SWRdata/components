@@ -1,16 +1,26 @@
 <script context="module">
+	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import ChartFooter from './ChartFooter.svelte';
-	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 	import Middot from '../Middot/Middot.svelte';
+	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
-	export const meta = {
-		title: 'Chart/ChartFooter',
-		component: ChartFooter
-	};
-</script>
 
-<script>
-	import { Story } from '@storybook/addon-svelte-csf';
+	const { Story } = defineMeta({
+    title: 'Chart/ChartFooter',
+	
+    parameters: {
+			docs: {
+				description: {
+					component:
+						'Default footer for in-article charts.'
+				}
+			}
+		},
+    argTypes: {
+      layout: {control: "inline-radio", options: ["one-up", "two-up"]},
+    },
+	args: {layout: "one-up"},
+  })
 </script>
 
 <Story name="One-up">

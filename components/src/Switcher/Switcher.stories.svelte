@@ -2,21 +2,33 @@
   import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Switcher from './Switcher.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
-	import {
+  import {
 		userEvent,
 		within,
 		expect,
 	} from '@storybook/test';
 
   const { Story } = defineMeta({
-    title: 'Input Components/Switcher',
+    title: 'Form/Switcher',
+    parameters: {
+			docs: {
+				description: {
+					component:
+						'Radio-like form component to choose exactly one of a given set of options.'
+				}
+			}
+		},
     argTypes: {
-      size: {control: "text"}
-    },
-    tags: ['autodocs'],
+      label: {control: "text", description: "Visible label for the input"},
+      value: {control: "text", description: "The currently selected option"},
+      groupName: {control: "text", description: "Machine-readable name for the form field. Should be unique to other fields in the form."},
+      size: {control: "inline-radio", options: ["default", "small"], defaultValue: {summary: "default"}},
+      options: {control: "object", description: "The options available in the switcher."},
+    }
   })
 
 </script>
+
 
 <Story name="Two Options">
 	<DesignTokens>

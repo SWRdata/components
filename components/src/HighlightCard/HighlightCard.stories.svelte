@@ -3,24 +3,13 @@
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	export const meta = {
-		title: 'Input Components/HighlightCard',
+		title: 'Display/HighlightCard',
 		component: HighlightCard
 	};
 </script>
 
 <script>
 	import { Story, Template } from '@storybook/addon-svelte-csf';
-	import {
-		userEvent,
-		within,
-		expect,
-		getByTestId,
-		getAllByLabelText,
-		getByText
-	} from '@storybook/test';
-	import { hasContext } from 'svelte';
-
-	let component;
 </script>
 
 <Story name="Basic HighlightCard">

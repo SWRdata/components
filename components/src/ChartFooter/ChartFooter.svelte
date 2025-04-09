@@ -1,6 +1,8 @@
 <script>
 	import Logotype from '../Logotype/Logotype.svelte';
+	
 	export let layout = 'one-up';
+
 </script>
 
 <footer class={`container ${layout}`}>
@@ -11,7 +13,7 @@
 </footer>
 
 <style lang="scss">
-	@use '../styles/vars.scss';
+	@use '../styles/base.scss';
 
 	.container {
 		gap: 0.5rem;
@@ -42,7 +44,7 @@
 	.two-up {
 		display: grid;
 		grid-template-columns: 1fr;
-		@include vars.bp(vars.$break-phone) {
+		@media(min-width: base.$break-phone) {
 			grid-template-columns: 2.5fr 1fr;
 			align-items: last baseline;
 			justify-items: flex-end;

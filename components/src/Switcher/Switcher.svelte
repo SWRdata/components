@@ -1,16 +1,9 @@
+
 <script lang="ts">
 	export let label: string = '';
-
-	// The options available in the switcher.
 	export let options: string[] = [];
-
-	// Machine-readable name for the form field. Should be unique to other fields in the form.
 	export let groupName: string = '';
-
-	// Type size
 	export let size: string = 'default';
-
-	// The currently selected option
 	export let value: string = options[0];
 
 	function optionToID(o: string) {
@@ -20,11 +13,6 @@
 		return `${groupName}-option-${o.replace(/ /g, '-').toLowerCase()}`;
 	}
 </script>
-
-<!--
-Radio-like form component to choose exactly one of a given set of options.
-@component
--->
 
 <fieldset class="container" class:small={size === "small"}>
 	<legend>{label}</legend>

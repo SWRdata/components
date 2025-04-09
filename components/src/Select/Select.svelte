@@ -72,13 +72,4 @@ based on https://github.com/rob-balfre/svelte-select
 </Select>
 
 <style lang="scss">
-	@import '../styles/base.scss';
-
-	// TODO: styling (font etc.)
-	// .svelte-select, .svelte-select-list {
-	//     @extend %copy;
-	// }
-	// 	--border: 3px solid blue;
-	// 	--border-radius: 10px;
-	// 	--placeholder-color: blue;
 </style>

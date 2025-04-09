@@ -16,12 +16,13 @@
 		'display: contents',
 		'--fast: 150ms',
 		'--slow: 300ms',
+		'--app-max-width: 40rem',
 		'--br-large: 8px',
 		'--br-small: 4px',
-		'--ratio: 1.15',
 		'--input-height: 2.5rem',
 		'--swr-sans: "SWR-VAR-Sans", sans-serif',
 		'--swr-text: "SWR-VAR-Text", sans-serif',
+		'--ratio: 1.15',
 		'--fs-small-3: calc(var(--fs-small-2) / var(--ratio))',
 		'--fs-small-2: calc(var(--fs-small-1) / var(--ratio))',
 		'--fs-small-1: calc(var(--fs-base) / var(--ratio))',
@@ -31,6 +32,8 @@
 		'--fs-large-3: calc(var(--fs-large-2) * var(--ratio))'
 	];
 </script>
+
+
 
 <div class="container" style={rules.join(';')}>
 	<slot />
