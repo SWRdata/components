@@ -63,7 +63,6 @@
 
 	:global(.highlight-cards > *) {
 		margin: 1rem 0;
-
 		@media (min-width: 900px) {
 			margin: 2rem 1rem;
 			flex: 1;

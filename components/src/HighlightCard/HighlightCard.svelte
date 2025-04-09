@@ -27,8 +27,6 @@
 </Card>
 
 <style lang="scss">
-	@import '../styles/base.scss';
-
 	.card-wrapper {
 		display: flex;
 		flex-direction: column;
@@ -43,7 +41,7 @@
 	}
 
 	.middle {
-		font-family: $swr-sans;
+		font-family: var(--swr-sans);
 		font-size: 54px;
 		font-weight: 700;
 		padding-bottom: 0.2em;
