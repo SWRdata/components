@@ -25,13 +25,11 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-mdx-gfm")
   ],
   framework: {
-    name: getAbsolutePath("@storybook/sveltekit"),
+    name: "@storybook/sveltekit",
     options: {},
   },
 
-  docs: {
-    autodocs: true
-  }
+  docs: {}
 };
 
 export default config;
