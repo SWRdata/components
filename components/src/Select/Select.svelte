@@ -1,75 +1,79 @@
 <script lang="ts">
 	import Select from 'svelte-select';
-
-	// FUTURE: is it possible to highlight match in select options?
-
-	/** FIXME:
-	 * NOTE: Storybook autodocs are not working for this component
-	 * because of the Select import. Set the docs manually instead. */
-
-	/**
+	import { type SelectItem } from './Select.types';
+	/**./SelectItem.types./Select.types
 	 * The interface for select options
 	 */
-	interface Option {
-		value: string;
-		label: string;
-		group?: string;
-		details?: any;
+
+	interface SelectProps {
+		/**
+		 * The input field's ID. Should be unique across the page.
+		 */
+		inputId: string;
+		/**
+		 * The input field's placeholder text
+		 */
+		placeholder: string;
+		/**
+		 * The list of select options
+		 */
+		items: SelectItem[];
+		/**
+		 * Define custom item groupings. By default items are grouped by their `group` key
+		 */
+		groupBy?: ((item: SelectItem) => string) | undefined;
+		/**
+		 * Whether group names should be selectable
+		 */
+		groupHeaderSelectable?: boolean;
+		clearable?: boolean;
+		value: SelectItem | undefined;
 	}
 
-	/**
-	 * The input field's ID
-	 */
-	export let inputId: string = 'select';
+	let {
+		inputId = 'select',
+		placeholder = 'Bitte auswählen',
+		items = [],
+		groupBy,
+		groupHeaderSelectable = false,
+		clearable = true,
+		value = $bindable(undefined)
+	}: SelectProps = $props();
 
-	/**
-	 * The input field's placeholder text
-	 */
-	export let placeholder: string = 'Bitte auswählen';
-
-	/**
-	 * The list of select options
-	 */
-	export let items: Option[] = [];
-
-	let groupBy: ((item: Option) => string) | undefined;
-	$: groupBy =
-		items.length > 0 && items.every((item) => item.group)
-			? (item: Option) => item.group as string
-			: undefined;
-
-	/**
-	 * Whether the group names should be selectable as well
-	 */
-	export let groupHeaderSelectable: boolean = false;
-
-	/**
-	 * Enable clearing the input
-	 */
-	export let clearable: boolean = true;
-
-	export let value: Option | undefined;
+	const groupByFn = groupBy || ((item: SelectItem) => item.group as string);
 </script>
 
-<!--
-This component is a select input with search feature 
-and various options such as grouped items, multi-select etc.
-based on https://github.com/rob-balfre/svelte-select
-@component
--->
-
-<Select {items} {groupBy} id={inputId} {placeholder} {groupHeaderSelectable} {clearable} bind:value>
-	<svelte:fragment slot="item" let:item>
-		<slot name="item" {item}>
-			{item.label}
-		</slot>
-	</svelte:fragment>
-	<svelte:fragment slot="selection" let:selection>
-		<slot name="selection" {selection}>
-			{selection.label}
-		</slot>
-	</svelte:fragment>
-</Select>
+<div class="container">
+	<Select
+		{items}
+		groupBy={items.length > 0 && items.every((item) => item.group) ? groupByFn : undefined}
+		id={inputId}
+		{placeholder}
+		{groupHeaderSelectable}
+		{clearable}
+		class="container"
+		bind:value
+	>
+		<div class="item" slot="item" let:item>
+			<slot name="item" {item}>
+				{item.label}
+			</slot>
+		</div>
+		<div class="selection" slot="selection" let:selection>
+			<slot name="selection" {selection}>
+				{selection.label}
+			</slot>
+		</div>
+	</Select>
+</div>
 
 <style lang="scss">
+	.item {
+		font-family: var(--swr-sans);
+		color: var(--violet-dark-5);
+	}
+	.selection {
+		font-family: var(--swr-sans);
+		color: var(--violet-dark-5);
+	}
 </style>
