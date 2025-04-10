@@ -2,7 +2,7 @@ import { userEvent, within, expect } from '@storybook/test';
 import AutoComplete from './index.js';
 
 export default {
-	title: 'Form/Autocomplete',
+	title: 'Deprecated/Autocomplete',
 	tags: ['autodocs'],
 	component: AutoComplete
 };

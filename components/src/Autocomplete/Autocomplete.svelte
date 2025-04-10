@@ -170,7 +170,7 @@ Data should be provided as array of objects. Each object contains the informatio
 			top: 100%;
 			border: 1px solid currentColor;
 			background: var(--violet-dark-3);
-			border-bottom-left-radius:  var(--br-small);
+			border-bottom-left-radius: var(--br-small);
 			border-bottom-right-radius: var(--br-small);
 			border-top: 0;
 			left: 0;
