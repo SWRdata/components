@@ -1,10 +1,31 @@
-
 <script lang="ts">
-	export let label: string = '';
-	export let options: string[] = [];
-	export let groupName: string = '';
-	export let size: string = 'default';
-	export let value: string = options[0];
+	interface SwitcherProps {
+		/**
+		 * Human-readable label for the input.
+		 */
+		label: string;
+		options: string[];
+		/**
+		 * Machine-readable name for the input. Should be unique across the document.
+		 */
+		groupName: string;
+		/**
+		 * Type size
+		 */
+		size?: 'default' | 'small';
+		/**
+		 * The currently-selected option
+		 */
+		value: string | null;
+	}
+
+	let {
+		label,
+		options,
+		groupName,
+		size = 'default',
+		value = $bindable(null)
+	}: SwitcherProps = $props();
 
 	function optionToID(o: string) {
 		// TODO: This should use $id() when it comes out, so
@@ -14,7 +35,7 @@
 	}
 </script>
 
-<fieldset class="container" class:small={size === "small"}>
+<fieldset class="container" class:small={size === 'small'}>
 	<legend>{label}</legend>
 	<ul>
 		{#each options as o (o)}
@@ -42,7 +63,7 @@
 
 	legend {
 		font-size: var(--fs-small-2);
-		margin-bottom: .25em;
+		margin-bottom: 0.25em;
 	}
 
 	ul {
@@ -72,7 +93,7 @@
 		left: -999px;
 	}
 	.small label {
-		font-size: var(--fs-small-1)
+		font-size: var(--fs-small-1);
 	}
 	label {
 		font-size: var(--fs-base);
