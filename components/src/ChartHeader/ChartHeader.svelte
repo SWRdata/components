@@ -1,6 +1,12 @@
-<script>
-	export let title = '';
-	export let subtitle = null;
+<script lang="ts">
+	import type { Snippet } from 'svelte';
+
+	interface ChartHeaderProps {
+		title: string;
+		subtitle: string | null;
+		content: Snippet | null;
+	}
+	let { title, subtitle = null, content = null }: ChartHeaderProps = $props();
 </script>
 
 <header class="container">
@@ -8,10 +14,14 @@
 	{#if subtitle}
 		<p class="subtitle">{subtitle}</p>
 	{/if}
-	<slot name="content" />
+	{#if content}
+		<div class="content">
+			{@render content()}
+		</div>
+	{/if}
 </header>
 
-<style lang="scss">
+<style>
 	.container {
 		color: var(--violet-blue);
 		font-family: var(--swr-sans);
