@@ -3,7 +3,7 @@
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	export const meta = {
-		title: 'Display/Card',
+		title: 'Display/Card/Base',
 		component: Card
 	};
 </script>
