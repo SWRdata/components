@@ -12,24 +12,8 @@ $break-desktop-xl: 1400px;
 
 // TODO drop everything below
 
-$color-black: #0c0c0c;
-$color-violetblue: #1d0b40;
-$color-violetblue-hover: #2d155d;
-$color-violet: #5920c0;
-$color-blue: #3053d9;
-$color-warmgrey: #dbd5cd;
-$color-activeorange: #ff3300;
-
-$border-radius-container: 8px;
-$border-radius-input: 4px;
-$input-height: 2.5rem;
-$app-max-width: 40rem;
-
-$swr-sans: 'SWR-VAR-Sans', serif;
-$swr-text: 'SWR-VAR-Text', serif;
-
 %caption {
-	font-family: $swr-sans;
+	font-family: var(--swr-sans);
 	font-size: 0.9rem;
 	line-height: 1;
 	letter-spacing: 0.0045em;
@@ -47,7 +31,7 @@ $swr-text: 'SWR-VAR-Text', serif;
 }
 
 %copy {
-	font-family: $swr-sans;
+	font-family: var(--swr-sans);
 	font-size: 1.1rem;
 	line-height: 1.45;
 	letter-spacing: 0.0045em;
@@ -60,15 +44,14 @@ $swr-text: 'SWR-VAR-Text', serif;
 
 %form-input {
 	@extend %copy;
-	height: $input-height;
+	height: 2.5em;
 	width: 100%;
 	border: 1px solid currentColor;
-	border-radius: $border-radius-input;
+	border-radius: var(--br-small);
 	background: transparent;
 	padding: 0 0.5em;
 	padding-top: 0.1em;
 	color: currentColor;
-	height: $input-height;
 	margin: 0;
 	display: block;
 	width: 100%;
