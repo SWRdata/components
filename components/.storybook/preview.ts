@@ -2,6 +2,9 @@ import type { Preview } from "@storybook/svelte";
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: { order: ['About', 'Design Tokens', "Display", "Chart", ["ChartHeader"], "Form", "Deprecated"] },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
