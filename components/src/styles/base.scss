@@ -1,9 +1,3 @@
-@mixin bp($point) {
-	@media (min-width: $point) {
-		@content;
-	}
-}
-
 $break-phone: 510px;
 $break-tablet: 992px;
 $break-desktop-small: 1200px;
