@@ -1,5 +1,5 @@
 import { Title, Story, ColorPalette, ColorItem, Meta, Typeset } from '@storybook/blocks';
-import {shades, scales} from "./Tokens"
+import { shades, scales } from "./Tokens"
 
 <Meta title='Design Tokens'/>
 
@@ -13,7 +13,7 @@ The `<DesignTokens>` component makes colours, type sizes and other design tokens
 
 ```jsx
 <script>
-  import DesignTokens from "components"
+  import DesignTokens from "@swr-data-lab/components"
 </script>
 
 <DesignTokens>
@@ -22,17 +22,17 @@ The `<DesignTokens>` component makes colours, type sizes and other design tokens
 
 <style>
   p {
-	  color: var(--violet-dark-1) // this works
+    color: var(--violet-dark-1) // this works
   }
 </style>
 ```
 
-You can also import from `Tokens` directly to use colours in maps and charts:
+You can also import `tokens` directly to use them in Javascript:
 
-```js
-import { scales } from 'Tokens'
+```jsx
+import tokens from "@swr-data-lab/components"
 import { scaleThreshold } from 'd3-scale';
-const sampleScale = scaleThreshold([0, 10], scales.red_blue);
+const sampleScale = scaleThreshold([0, 10], tokens.scales.red_blue);
 ```
 
 ### Figma

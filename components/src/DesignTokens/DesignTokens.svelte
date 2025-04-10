@@ -33,8 +33,6 @@
 	];
 </script>
 
-
-
 <div class="container" style={rules.join(';')}>
 	<slot />
 </div>
