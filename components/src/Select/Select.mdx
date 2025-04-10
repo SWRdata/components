@@ -1,4 +1,4 @@
-import { Story,  Meta, Primary, Controls, Stories, Source } from '@storybook/blocks';
+import { Story,  Meta, Primary, Controls, Stories} from '@storybook/blocks';
  
 import * as SelectStories from './Select.stories.svelte';
 
@@ -12,13 +12,14 @@ This component is a select input with a search feature and various options such 
 
 Select items passed to the `items` prop must be of type `SelectItem`:
 
-<Source language="typescript" code="interface SelectItem {
+```ts
+interface SelectItem {
     value: string;
     label: string;
     group?: string;
     details?: any;
 }
-"/>
+```
 
 <Controls/>
 
