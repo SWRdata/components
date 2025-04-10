@@ -1,6 +1,6 @@
 <script context="module">
 	import Middot from './Middot.svelte';
-	import DesignTokens from '../DesignTokens';
+	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	export const meta = {
 		title: 'Chart/Middot',
@@ -17,4 +17,3 @@
 		<Middot></Middot>
 	</DesignTokens>
 </Story>
-

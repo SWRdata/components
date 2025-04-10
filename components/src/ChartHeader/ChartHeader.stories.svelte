@@ -1,6 +1,6 @@
 <script context="module">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import DesignTokens from '../DesignTokens/';
+	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	import ChartHeader from './ChartHeader.svelte';
 

@@ -1,6 +1,6 @@
 <script context="module">
 	import Logotype from './Logotype.svelte';
-	import DesignTokens from '../DesignTokens';
+	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	export const meta = {
 		title: 'Chart/Logotype',
@@ -17,4 +17,3 @@
 		<Logotype></Logotype>
 	</DesignTokens>
 </Story>
-

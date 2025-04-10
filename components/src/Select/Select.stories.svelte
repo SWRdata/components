@@ -1,7 +1,6 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Select from './Select.svelte';
-	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 	import StoryTemplate from './SelectStoriesTemplate.svelte';
 	import jobsData from './mock_data/jobs.json';
 
