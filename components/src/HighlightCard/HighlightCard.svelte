@@ -1,10 +1,14 @@
-<script>
+<script lang="ts">
 	import Card from '../Card/Card.svelte';
 
-	export let topline = '';
-	export let value = '';
-	export let unit = '';
-	export let subline = '';
+	interface HighlightCardProps {
+		topline?: string;
+		value?: string;
+		unit?: string;
+		subline?: string;
+	}
+
+	let { topline, value, unit, subline }: HighlightCardProps = $props();
 </script>
 
 <Card>
@@ -20,9 +24,11 @@
 			</span>
 			{unit}
 		</div>
-		<div class="bottom">
-			{@html subline}
-		</div>
+		{#if subline}
+			<div class="bottom">
+				{@html subline}
+			</div>
+		{/if}
 	</div>
 </Card>
 

@@ -1,5 +1,17 @@
+<script lang="ts">
+	import type { Snippet } from 'svelte';
+
+	interface CardProps {
+		children?: Snippet;
+	}
+
+	let { children }: CardProps = $props();
+</script>
+
 <div class="card">
-	<slot />
+	{#if children}
+		{@render children()}
+	{/if}
 </div>
 
 <style lang="scss">

@@ -1,15 +1,12 @@
-<script context="module">
+<script context="module" lang="ts">
+	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Card from './Card.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
-	export const meta = {
+	const { Story } = defineMeta({
 		title: 'Display/Card/Base',
 		component: Card
-	};
-</script>
-
-<script>
-	import { Story, Template } from '@storybook/addon-svelte-csf';
+	});
 </script>
 
 <Story name="Basic card">
