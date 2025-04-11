@@ -1,4 +1,4 @@
-<script context="module">
+<script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import { userEvent, within, expect } from '@storybook/test';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
