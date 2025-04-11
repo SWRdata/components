@@ -1,2 +1,9 @@
 import DesignTokens from './DesignTokens.svelte';
-export default DesignTokens;
+import { shades, scales } from './Tokens';
+
+const tokens = {
+	shades,
+	scales
+};
+
+export { DesignTokens, tokens };

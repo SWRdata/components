@@ -1,6 +1,8 @@
 <script>
 	import HighlightCard from '@components/HighlightCard';
+	import { DesignTokens } from '@components/DesignTokens';
 	import { onMount } from 'svelte';
+
 	let root;
 	let entries = [];
 
@@ -29,14 +31,16 @@
 </script>
 
 <div class="highlight-cards" bind:this={root}>
-	{#each entries as entry}
-		<HighlightCard
-			topline={entry.topline}
-			value={entry.value}
-			unit={entry.unit}
-			subline={entry.subline}
-		/>
-	{/each}
+	<DesignTokens>
+		{#each entries as entry}
+			<HighlightCard
+				topline={entry.topline}
+				value={entry.value}
+				unit={entry.unit}
+				subline={entry.subline}
+			/>
+		{/each}
+	</DesignTokens>
 </div>
 
 <style>

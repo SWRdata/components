@@ -1,19 +1,16 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import Card from './Card.svelte';
+	import Middot from './Middot.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Display/Card/Base',
-		component: Card
+		title: 'Chart/Middot',
+		component: Middot
 	});
 </script>
 
-<Story name="Basic card">
+<Story name="Basic">
 	<DesignTokens>
-		<Card>
-			<h1>Any content</h1>
-			<p>can be added to a basic <code>Card</code> component.</p>
-		</Card>
+		<Middot></Middot>
 	</DesignTokens>
 </Story>

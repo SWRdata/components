@@ -6,6 +6,7 @@ export { default as Input } from './Input/Input.svelte';
 export { default as Button } from './Button/Button.svelte';
 export { default as Select } from './Select/Select.svelte';
 export { default as DesignTokens } from './DesignTokens/DesignTokens.svelte';
+export { tokens as tokens } from './DesignTokens/index.js';
 export { default as ChartHeader } from './ChartHeader/ChartHeader.svelte';
 export { default as ChartFooter } from './ChartFooter/ChartFooter.svelte';
 export { default as Middot } from './Middot/Middot.svelte';

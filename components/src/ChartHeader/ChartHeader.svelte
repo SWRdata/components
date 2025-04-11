@@ -1,21 +1,27 @@
-<script>
-	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
+<script lang="ts">
+	import type { Snippet } from 'svelte';
 
-	export let title = '';
-	export let subtitle = '';
+	interface ChartHeaderProps {
+		title: string;
+		subtitle?: string;
+		children?: Snippet;
+	}
+	let { title, subtitle, children }: ChartHeaderProps = $props();
 </script>
 
-<DesignTokens>
-	<header class="container">
-		<h2 class="title">{title}</h2>
+<header class="container">
+	<h2 class="title">{title}</h2>
+	{#if subtitle}
 		<p class="subtitle">{subtitle}</p>
-		<slot />
-	</header>
-</DesignTokens>
+	{/if}
+	{#if children}
+		<div class="content">
+			{@render children()}
+		</div>
+	{/if}
+</header>
 
-<style lang="scss">
-	@use '../styles/vars.scss';
-
+<style>
 	.container {
 		color: var(--violet-blue);
 		font-family: var(--swr-sans);

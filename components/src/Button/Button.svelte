@@ -1,21 +1,26 @@
 <script lang="ts">
-	export let as: string = 'button';
-	export let label: string = '';
-	export let href: string = '';
-	export let disabled: boolean = false;
+	interface ButtonProps {
+		as: 'button' | 'a';
+		label: string;
+		href?: string;
+		disabled?: boolean;
+		onclick?: (e: MouseEvent) => any | void;
+	}
+
+	const { as = 'button', label, href, disabled, onclick }: ButtonProps = $props();
 </script>
 
 {#if as === 'a'}
 	<a class="button" class:disabled {href}>{label}</a>
 {:else}
-	<button class="button" on:click {disabled}>{label}</button>
+	<button class="button" {onclick} {disabled}>{label}</button>
 {/if}
 
 <style lang="scss">
-	@import '../styles/base.scss';
+	@use '../styles/base.scss';
 	.button {
 		@extend %copy-bold;
-		background: $color-violet;
+		background: var(--violet-dark-3);
 		display: inline-flex;
 		align-items: center;
 		justify-self: flex-start;
@@ -24,11 +29,11 @@
 		color: white;
 		border: 1px solid rgba(white, 0.1);
 		box-shadow: 0px 0px 10px rgba(black, 0.05);
-		border-radius: $border-radius-input;
+		border-radius: var(--br-small);
 		text-shadow: 0px 0px 5px rgba(black, 0.05);
 		font-size: 1.2rem;
 		text-decoration: none;
-		@include bp($break-tablet) {
+		@media (min-width: base.$break-tablet) {
 			font-size: 1.4rem;
 		}
 		&:hover,
@@ -39,7 +44,6 @@
 		&.disabled,
 		&:disabled {
 			opacity: 0.5;
-			/* pointer-events: none; */
 		}
 	}
 </style>

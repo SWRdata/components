@@ -1,23 +1,46 @@
-<script>
+<script lang="ts">
+	import type { Snippet } from 'svelte';
 	import Logotype from '../Logotype/Logotype.svelte';
-	export let layout = 'one-up';
+
+	interface ChartFooterProps {
+		layout: 'one-up' | 'two-up';
+		children?: Snippet;
+	}
+
+	let { layout = 'one-up', children }: ChartFooterProps = $props();
 </script>
 
 <footer class={`container ${layout}`}>
-	<div class="notes">
-		<slot />
-	</div>
+	{#if children}
+		<div class="notes">
+			{@render children()}
+		</div>
+	{/if}
 	<Logotype />
 </footer>
 
 <style lang="scss">
-	@use '../styles/vars.scss';
+	@use '../styles/base.scss';
 
 	.container {
 		gap: 0.5rem;
 		font-size: var(--fs-small-1);
 		font-family: var(--swr-sans);
 		line-height: 1.4;
+	}
+	.one-up {
+		display: flex;
+		flex-flow: column;
+		align-items: flex-start;
+	}
+	.two-up {
+		display: grid;
+		grid-template-columns: 1fr;
+		@media (min-width: base.$break-phone) {
+			grid-template-columns: 2.5fr 1fr;
+			align-items: last baseline;
+			justify-items: flex-end;
+		}
 	}
 	.notes {
 		width: 100%;
@@ -30,22 +53,7 @@
 	footer :global(summary) {
 		&:hover,
 		&:focus-visible {
-			color: rgb(50, 50, 50);
-		}
-	}
-
-	.one-up {
-		display: flex;
-		flex-flow: column;
-		align-items: flex-start;
-	}
-	.two-up {
-		display: grid;
-		grid-template-columns: 1fr;
-		@include vars.bp(vars.$break-phone) {
-			grid-template-columns: 2.5fr 1fr;
-			align-items: last baseline;
-			justify-items: flex-end;
+			color: var(--gray-dark-3);
 		}
 	}
 </style>

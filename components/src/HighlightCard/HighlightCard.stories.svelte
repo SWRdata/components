@@ -1,26 +1,12 @@
-<script context="module">
+<script context="module" lang="ts">
+	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import HighlightCard from './HighlightCard.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
-	export const meta = {
-		title: 'Input Components/HighlightCard',
+	const { Story } = defineMeta({
+		title: 'Display/Card/HighlightCard',
 		component: HighlightCard
-	};
-</script>
-
-<script>
-	import { Story, Template } from '@storybook/addon-svelte-csf';
-	import {
-		userEvent,
-		within,
-		expect,
-		getByTestId,
-		getAllByLabelText,
-		getByText
-	} from '@storybook/test';
-	import { hasContext } from 'svelte';
-
-	let component;
+	});
 </script>
 
 <Story name="Basic HighlightCard">
@@ -63,7 +49,6 @@
 
 	:global(.highlight-cards > *) {
 		margin: 1rem 0;
-
 		@media (min-width: 900px) {
 			margin: 2rem 1rem;
 			flex: 1;
