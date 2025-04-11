@@ -1,9 +1,6 @@
 <script lang="ts">
 	import Select from 'svelte-select';
 	import { type SelectItem } from './Select.types';
-	/**./SelectItem.types./Select.types
-	 * The interface for select options
-	 */
 
 	interface SelectProps {
 		/**
