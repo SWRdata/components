@@ -1,14 +1,19 @@
 <script lang="ts">
-	export let as: string = 'button';
-	export let label: string = '';
-	export let href: string = '';
-	export let disabled: boolean = false;
+	interface ButtonProps {
+		as: 'button' | 'a';
+		label: string;
+		href?: string;
+		disabled?: boolean;
+		onclick?: (e: MouseEvent) => any | void;
+	}
+
+	const { as = 'button', label, href, disabled, onclick }: ButtonProps = $props();
 </script>
 
 {#if as === 'a'}
 	<a class="button" class:disabled {href}>{label}</a>
 {:else}
-	<button class="button" on:click {disabled}>{label}</button>
+	<button class="button" {onclick} {disabled}>{label}</button>
 {/if}
 
 <style lang="scss">
