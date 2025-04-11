@@ -1,15 +1,12 @@
-<script context="module">
+<script context="module" lang="ts">
+	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Logotype from './Logotype.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
-	export const meta = {
+	const { Story } = defineMeta({
 		title: 'Chart/Logotype',
 		component: Logotype
-	};
-</script>
-
-<script>
-	import { Story, Template } from '@storybook/addon-svelte-csf';
+	});
 </script>
 
 <Story name="Basic">
