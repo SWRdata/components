@@ -26,7 +26,7 @@
 	<DesignTokens>
 		<ChartFooter layout="two-up">
 			Daten: <a href="#1">Zensus 2022</a>
-			(Durchschnittsmieten und Einwohnerzahlen),
+			(Durchschnittsmieten und Einwohnerzahlen)
 		</ChartFooter>
 	</DesignTokens>
 </Story>
