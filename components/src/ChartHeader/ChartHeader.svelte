@@ -3,10 +3,10 @@
 
 	interface ChartHeaderProps {
 		title: string;
-		subtitle: string | null;
-		content: Snippet | null;
+		subtitle?: string;
+		children?: Snippet;
 	}
-	let { title, subtitle = null, content = null }: ChartHeaderProps = $props();
+	let { title, subtitle, children }: ChartHeaderProps = $props();
 </script>
 
 <header class="container">
@@ -14,9 +14,9 @@
 	{#if subtitle}
 		<p class="subtitle">{subtitle}</p>
 	{/if}
-	{#if content}
+	{#if children}
 		<div class="content">
-			{@render content()}
+			{@render children()}
 		</div>
 	{/if}
 </header>

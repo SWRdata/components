@@ -4,16 +4,16 @@
 
 	interface ChartFooterProps {
 		layout: 'one-up' | 'two-up';
-		notes: Snippet | null;
+		children?: Snippet;
 	}
 
-	let { layout = 'one-up', notes }: ChartFooterProps = $props();
+	let { layout = 'one-up', children }: ChartFooterProps = $props();
 </script>
 
 <footer class={`container ${layout}`}>
-	{#if notes}
+	{#if children}
 		<div class="notes">
-			{@render notes()}
+			{@render children()}
 		</div>
 	{/if}
 	<Logotype />
