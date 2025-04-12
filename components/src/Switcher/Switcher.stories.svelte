@@ -12,13 +12,7 @@
 
 <Story name="Two Options">
 	<DesignTokens>
-		<Switcher
-			options={['Option A', 'Option B']}
-			groupName="two-options"
-			value="Option A"
-			size="default"
-			label="Label"
-		/>
+		<Switcher options={['Option A', 'Option B']} value="Option A" size="default" label="Label" />
 	</DesignTokens>
 </Story>
 
@@ -41,7 +35,6 @@
 	<DesignTokens>
 		<Switcher
 			options={['Apples', 'Oranges', 'Bananas', 'Peaches']}
-			groupName="four-options"
 			value="Oranges"
 			label="Label"
 			size="small"
