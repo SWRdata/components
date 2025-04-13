@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { shades } from './Tokens';
 
 	const rules = [
@@ -29,7 +29,8 @@
 		'--fs-base: clamp(1rem, calc(1.5vw + 0.25rem), 1.125rem)',
 		'--fs-large-1: calc(var(--fs-base) * var(--ratio))',
 		'--fs-large-2: calc(var(--fs-large-1) * var(--ratio))',
-		'--fs-large-3: calc(var(--fs-large-2) * var(--ratio))'
+		'--fs-large-3: calc(var(--fs-large-2) * var(--ratio))',
+		'--fs-large-4: 3.375rem'
 	];
 </script>
 

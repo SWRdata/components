@@ -47,8 +47,7 @@
 	}
 
 	.middle {
-		font-family: var(--swr-sans);
-		font-size: 54px;
+		font-size: var(--fs-large-4);
 		font-weight: 700;
 		padding-bottom: 0.2em;
 	}
