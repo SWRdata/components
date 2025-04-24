@@ -13,11 +13,14 @@
 	{/if}
 </div>
 
-<style>
+<style lang="scss">
 	.container {
 		font-family: var(--swr-sans);
 		font-size: var(--fs-base);
-		letter-spacing: 0.0035em;
-		line-height: 1.45;
+		letter-spacing: 0.0045em;
+		line-height: 1.5;
+		p {
+			margin-bottom: 0.5em;
+		}
 	}
 </style>

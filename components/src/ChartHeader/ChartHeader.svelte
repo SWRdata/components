@@ -1,7 +1,9 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import slugify from "../utils/slugify.ts" 
-	
+	import Headline from '../Headline/Headline.svelte';
+	import Copy from '../Copy/Copy.svelte';
+	import slugify from '../utils/slugify';
+
 	interface ChartHeaderProps {
 		title: string;
 		subtitle?: string;
@@ -11,9 +13,9 @@
 </script>
 
 <header class="container" id={slugify(title)}>
-	<h2 class="title">{title}</h2>
+	<Headline>{title}</Headline>
 	{#if subtitle}
-		<p class="subtitle">{subtitle}</p>
+		<Copy><p class="subtitle">{subtitle}</p></Copy>
 	{/if}
 	{#if children}
 		<div class="content">
@@ -27,19 +29,10 @@
 		color: var(--violet-blue);
 		font-family: var(--swr-sans);
 	}
-	.title {
-		font-size: var(--fs-large-3);
-		line-height: 1.05;
-		text-wrap: balance;
-		font-weight: 700;
-		margin-bottom: 0.2em;
-	}
 	.subtitle {
 		text-wrap: balance;
-		margin-bottom: 0.25em;
-		font-size: var(--fs-large-1);
-		&:last-child {
-			margin-bottom: 0;
-		}
+	}
+	.content {
+		margin-top: 0.25em;
 	}
 </style>
