@@ -123,7 +123,7 @@
 		}
 		.is-selected & {
 			background: rgb(247, 247, 247);
-			font-weight: 700;
+			font-weight: 600;
 			box-shadow: inset 5px 0px 0 0 var(--violet-dark-5);
 			@media (min-width: base.$break-phone) {
 				box-shadow: inset 0 -3px 0 0 var(--violet-dark-5);
