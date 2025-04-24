@@ -2,12 +2,13 @@
 	import type { Snippet } from 'svelte';
 
 	interface CopyProps {
+		weight: 'regular' | 'bold';
 		children?: Snippet;
 	}
-	let { children }: CopyProps = $props();
+	let { weight = 'regular', children }: CopyProps = $props();
 </script>
 
-<div class="container">
+<div class={['container', weight]}>
 	{#if children}
 		{@render children()}
 	{/if}
@@ -17,10 +18,15 @@
 	.container {
 		font-family: var(--swr-sans);
 		font-size: var(--fs-base);
-		letter-spacing: 0.0045em;
-		line-height: 1.5;
+		letter-spacing: 0.005em;
+		line-height: 1.475;
 		p {
 			margin-bottom: 0.5em;
 		}
+	}
+
+	.bold {
+		font-weight: 585;
+		letter-spacing: 0;
 	}
 </style>
