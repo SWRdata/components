@@ -1,11 +1,31 @@
-import { Title, Story, ColorPalette, ColorItem, Meta, Typeset } from '@storybook/blocks';
+import { Title, Story, ColorPalette, ColorItem, Meta, Typeset, Canvas } from '@storybook/blocks';
 import { shades, scales, typography } from "./Tokens"
+
+import * as HeadlineStories from "../Headline/Headline.stories.svelte"
+import * as CopyStories from "../Copy/Copy.stories.svelte"
+import * as NoteStories from "../Note/Note.stories.svelte"
 
 <Meta title='Design Tokens'/>
 
 # Design Tokens
 
-## Web
+## Table of Contents
+ 
+- [Usage](#usage)
+  - [Web](#web)
+  - [Figma](#figma) 
+- [Typography](#typography)
+  - [Sizes](#sizes)
+  - [Styles](#styles)
+- [Colours](#colours)
+	- [Shades](#shades)
+	- [Linear scales](#linear-scales)
+	- [Categorical Scales](#categorical-scales)
+	- [Divergent Scales](#divergent-scales)
+
+## Usage
+
+### Web
 
 The `<DesignTokens>` component makes colours, type sizes and other design tokens available to its children as CSS variables.
 
@@ -33,23 +53,30 @@ import { scaleThreshold } from 'd3-scale';
 const sampleScale = scaleThreshold([0, 10], tokens.scales.red_blue);
 ```
 
-## Figma
+### Figma
 
 The tokens on this page are available as a [Figma library](https://www.figma.com/design/Wrd7uUV3GxpNXXkM5ozuHk/Datalab-Design-Tokens?node-id=0-1&t=iOqDxhuMdvEyY8VK-1). This is enabled by default for any file in the [SWR Data Lab team](https://www.figma.com/files/1125823985461580916/team/1415988138343592768). 
 
 
 ## Typography
-
 ### Sizes
 
-<Typeset fontWeight={500} fontFamily='SWR-VAR-Sans' sampleText='Pollenflug in BW: Was Heuschnupfengeplagte jetzt wissen sollten' fontSizes={Object.entries(typography.sizes).map(([key, size]) => {
+<Typeset fontWeight={600} fontFamily='SWR-VAR-Text' sampleText='Pollenflug in BW: Was Heuschnupfengeplagte jetzt wissen sollten' fontSizes={Object.entries(typography.wide.sizes).map(([key, size]) => {
 	return size
 })}/>
 
 ### Styles
+#### Headline
+<Canvas of={HeadlineStories.Default}/>
+
+#### Copy
+<Canvas of={CopyStories.Default}/>
+
+#### Note
+<Canvas of={NoteStories.Default}/>
 
 ## Colours
-
+### Shades
 <ColorPalette>
 {["violet", "plum", "pink", "red", "orange", "yellow", "apple" , "forest","teal",    "blue", "gray"].map((el, i) => {
 	return(

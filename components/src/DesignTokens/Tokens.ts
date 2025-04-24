@@ -164,15 +164,18 @@ const scales: ColourMap = {
 	forest_plum: [...Object.values(shades.forest).reverse(), ...Object.values(shades.plum)]
 };
 
+
 const typography = {
-	sizes: {
-		'fs-xxs': '0.75rem',
-		'fs-xs': '0.875rem',
-		'fs-sm': '1rem',
-		fs: '1.25rem',
-		'fs-md': '1.5rem',
-		'fs-lg': '2rem',
-		'fs-xl': '2.5rem'
+	wide: {
+		sizes: {
+			"fs-small-3": "0.75rem",
+			"fs-small-2": "0.875rem",
+			"fs-small-1": "1rem",
+			"fs-base": "1.25rem",
+			"fs-large-1": "1.5rem",
+			"fs-large-2": "2rem",
+			"fs-large-3": "2.5rem"
+		}
 	}
 };
 
