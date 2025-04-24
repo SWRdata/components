@@ -1,4 +1,4 @@
-import { Story,  Meta, Primary, Controls, Stories } from '@storybook/blocks';
+import { Story, Meta, Primary, Controls, Stories } from '@storybook/blocks';
  
 import * as ChartHeaderStories from './ChartHeader.stories.svelte';
 
@@ -8,6 +8,7 @@ import * as ChartHeaderStories from './ChartHeader.stories.svelte';
 
 Standard chart header.
 
+- The slugified `title` is set as the header element's `id` attribute (useful for linking to interactives from in-article table of contents)
 - Any nested HTML will render under the description (useful for i.e colour keys and interactives controls).
 
 <Controls  />
