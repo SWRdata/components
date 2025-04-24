@@ -59,11 +59,8 @@ The tokens on this page are available as a [Figma library](https://www.figma.com
 
 
 ## Typography
-### Sizes
 
-<Typeset fontWeight={600} fontFamily='SWR-VAR-Text' sampleText='Pollenflug in BW: Was Heuschnupfengeplagte jetzt wissen sollten' fontSizes={Object.entries(typography.wide.sizes).map(([key, size]) => {
-	return size
-})}/>
+Type sizes and paragraph styles are designed to match the typography on [swr.de](https://www.swr.de/). **Styles** come with built-in settings for `line-height`, `letter-spacing`, etc. and should be preferred over using **sizes** directly.
 
 ### Styles
 #### Headline
@@ -74,6 +71,12 @@ The tokens on this page are available as a [Figma library](https://www.figma.com
 
 #### Note
 <Canvas of={NoteStories.Default}/>
+
+### Sizes
+<Typeset fontWeight={600} fontFamily='SWR-VAR-Text' sampleText='Pollenflug in BW: Was Heuschnupfengeplagte jetzt wissen sollten' fontSizes={Object.entries(typography.wide.sizes).map(([key, size]) => {
+	return size
+})}/>
+
 
 ## Colours
 ### Shades
