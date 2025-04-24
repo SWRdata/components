@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-
+	import slugify from "../utils/slugify.ts" 
+	
 	interface ChartHeaderProps {
 		title: string;
 		subtitle?: string;
@@ -9,7 +10,7 @@
 	let { title, subtitle, children }: ChartHeaderProps = $props();
 </script>
 
-<header class="container">
+<header class="container" id={slugify(title)}>
 	<h2 class="title">{title}</h2>
 	{#if subtitle}
 		<p class="subtitle">{subtitle}</p>

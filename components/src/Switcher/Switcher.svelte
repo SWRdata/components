@@ -1,16 +1,15 @@
 <script lang="ts">
 	interface SwitcherProps {
 		/**
-		 * Human-readable label for the input.
+		 * Human-readable label
 		 */
 		label: string;
+		/**
+		 * Available options
+		 */
 		options: string[];
 		/**
-		 * Machine-readable name for the input. Should be unique across the document.
-		 */
-		groupName: string;
-		/**
-		 * Type size
+		 * Display size
 		 */
 		size?: 'default' | 'small';
 		/**
@@ -19,18 +18,12 @@
 		value: string | null;
 	}
 
-	let {
-		label,
-		options,
-		groupName,
-		size = 'default',
-		value = $bindable(null)
-	}: SwitcherProps = $props();
+	let { label, options, size = 'default', value = $bindable(null) }: SwitcherProps = $props();
+
+	const groupId = $props.id();
+	const groupName = 'select-' + groupId;
 
 	function optionToID(o: string) {
-		// TODO: This should use $id() when it comes out, so
-		// input IDs are guaranteed unique across the app
-		// See: https://github.com/sveltejs/svelte/issues/13108
 		return `${groupName}-option-${o.replace(/ /g, '-').toLowerCase()}`;
 	}
 </script>
@@ -42,12 +35,6 @@
 			<li class:is-selected={o === value}>
 				<label for={optionToID(o)}>
 					{o}
-					<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M19.7054 6.29119C20.0969 6.68077 20.0984 7.31393 19.7088 7.7054L9.75697 17.7054C9.56928 17.894 9.31416 18 9.04809 18C8.78201 18 8.52691 17.8939 8.33925 17.7053L4.2911 13.6365C3.90157 13.245 3.90318 12.6118 4.2947 12.2223C4.68621 11.8327 5.31938 11.8344 5.7089 12.2259L9.04825 15.5823L18.2912 6.2946C18.6808 5.90314 19.3139 5.90161 19.7054 6.29119Z"
-							fill="currentColor"
-						/>
-					</svg>
 				</label>
 				<input id={optionToID(o)} name={groupName} value={o} type="radio" bind:group={value} />
 			</li>
@@ -56,6 +43,8 @@
 </fieldset>
 
 <style lang="scss">
+	@use '../styles/base.scss';
+
 	fieldset {
 		border: 0;
 		font-family: var(--swr-sans);
@@ -63,29 +52,34 @@
 
 	legend {
 		font-size: var(--fs-small-2);
-		margin-bottom: 0.25em;
+		font-weight: 500;
+		margin-bottom: 0.35em;
 	}
 
 	ul {
 		width: 100%;
 		display: flex;
-		flex-direction: row;
-		border-radius: var(--br-small);
+		flex-direction: column;
 		overflow: hidden;
 		padding: 0;
 		margin: 0;
-		overflow: hidden;
 		border: 1px solid currentColor;
+		border-radius: var(--br-small);
+
+		@media (min-width: base.$break-phone) {
+			flex-flow: row;
+		}
 
 		&:focus-within,
 		&:active {
-			outline: 3px solid rgba(white, 0.5);
+			outline: 2px solid var(--blue-light-2);
 		}
 	}
 	li {
 		display: contents;
 		&:last-child label {
 			border-right: 0;
+			border-bottom: 0;
 		}
 	}
 	input {
@@ -94,41 +88,45 @@
 	}
 	.small label {
 		font-size: var(--fs-small-1);
+		height: 2.25em;
+		padding: 0 0.65em;
 	}
 	label {
 		font-size: var(--fs-base);
-		height: 2.5em;
 		line-height: 1;
+		white-space: nowrap;
+		padding: 0 1em;
 		cursor: pointer;
 		margin: 0;
-		flex-basis: 0;
-		flex-grow: 1;
 		align-items: center;
 		display: flex;
-		justify-content: center;
 		color: currentColor;
 		position: relative;
 		transition: var(--fast);
-		text-underline-offset: 0.1em;
-		border-right: 1px solid currentColor;
+		text-underline-offset: 0.2em;
+		border-bottom: 1px solid currentColor;
+		height: 2.25em;
+		@media (min-width: base.$break-phone) {
+			justify-content: center;
+			padding: 0 1em;
+			flex-basis: 0;
+			flex-grow: 1;
+			border-right: 1px solid currentColor;
+			border-bottom: 0;
+		}
+		@media (min-width: base.$break-tablet) {
+			height: 2.5em;
+		}
 		&:hover,
 		&:focus-visible {
 			text-decoration: underline;
 		}
-		svg {
-			position: absolute;
-			left: 0.65em;
-			width: 1em;
-			height: auto;
-			opacity: 0;
-			transition: var(--fast);
-			display: block;
-		}
 		.is-selected & {
-			background: white;
-			color: black;
-			svg {
-				opacity: 1;
+			background: rgb(247, 247, 247);
+			font-weight: 700;
+			box-shadow: inset 5px 0px 0 0 var(--violet-dark-5);
+			@media (min-width: base.$break-phone) {
+				box-shadow: inset 0 -3px 0 0 var(--violet-dark-5);
 			}
 		}
 	}
