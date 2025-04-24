@@ -35,8 +35,8 @@
 		--br-large: 8px;
 		--br-small: 4px;
 		--input-height: 2.5rem;
-		--swr-sans: 'SWR-VAR-Sans', sans-serif;
 		--swr-text: 'SWR-VAR-Text', sans-serif;
+		--swr-sans: 'SWR-VAR-Sans', sans-serif;
 
 		// Type scale copied 1:1 from swr.de
 

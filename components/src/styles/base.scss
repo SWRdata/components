@@ -31,20 +31,11 @@ $break-desktop-xl: 1400px;
 	margin-bottom: 0.5em;
 }
 
-%copy {
+%form-input {
 	font-family: var(--swr-sans);
 	font-size: 1.1rem;
 	line-height: 1.45;
 	letter-spacing: 0.0045em;
-}
-
-%copy-bold {
-	@extend %copy;
-	font-weight: 600;
-}
-
-%form-input {
-	@extend %copy;
 	height: 2.5em;
 	width: 100%;
 	border: 1px solid currentColor;

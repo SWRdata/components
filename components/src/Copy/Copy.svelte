@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 
 	interface CopyProps {
-		weight: 'regular' | 'bold';
+		weight?: 'regular' | 'bold';
 		children?: Snippet;
 	}
 	let { weight = 'regular', children }: CopyProps = $props();
@@ -20,9 +20,6 @@
 		font-size: var(--fs-base);
 		letter-spacing: 0.005em;
 		line-height: 1.475;
-		p {
-			margin-bottom: 0.5em;
-		}
 	}
 
 	.bold {
