@@ -13,20 +13,12 @@ $break-desktop-large: 1400px;
 $break-desktop-xl: 1400px;
 
 // TODO drop everything below
-%caption {
+
+%form-label {
 	font-family: var(--swr-sans);
 	font-size: 0.9rem;
 	line-height: 1;
 	letter-spacing: 0.0045em;
-}
-
-%caption-bold {
-	@extend %caption;
-	font-weight: 600;
-}
-
-%form-label {
-	@extend %caption;
 	display: block;
 	margin-bottom: 0.5em;
 }

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import Circle from '../assets/times-circle-solid.svg.svelte';
+	import Caption from '../Caption/Caption.svelte';
 
 	export let data = [];
 	export let query: string = '';
@@ -137,7 +138,9 @@ Data should be provided as array of objects. Each object contains the informatio
 						handleItemClick(i);
 					}}
 				>
-					{item.label}
+					<Caption>
+						{item.label}
+					</Caption>
 				</button>
 			</li>
 		{/each}
@@ -188,7 +191,6 @@ Data should be provided as array of objects. Each object contains the informatio
 			}
 
 			.item {
-				@extend %caption;
 				padding: 0.5em;
 				width: 100%;
 				background: transparent;
