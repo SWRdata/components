@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	interface CopyProps {
+	interface CaptionProps {
 		weight?: 'regular' | 'bold';
 		children?: Snippet;
 	}
-	let { weight = 'regular', children }: CopyProps = $props();
+	let { weight = 'regular', children }: CaptionProps = $props();
 </script>
 
 <div class={['container', weight]}>
