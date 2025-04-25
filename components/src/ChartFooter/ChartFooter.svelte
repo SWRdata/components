@@ -37,7 +37,7 @@
 	.two-up {
 		display: grid;
 		grid-template-columns: 1fr;
-		@media (min-width: base.$break-phone) {
+		@media (min-width: base.$bp-s) {
 			grid-template-columns: 2.5fr 1fr;
 			align-items: last baseline;
 			justify-items: flex-end;

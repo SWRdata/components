@@ -27,7 +27,7 @@
 		background: var(--violet-dark-5);
 		border-radius: var(--br-large);
 		padding: 1.5rem;
-		@media (min-width: base.$break-tablet) {
+		@media (min-width: base.$bp-m) {
 			padding: 2.5rem;
 		}
 	}
