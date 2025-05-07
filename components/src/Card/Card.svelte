@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import Copy from '../Copy/Copy.svelte';
 
 	interface CardProps {
 		children?: Snippet;
@@ -10,7 +11,9 @@
 
 <div class="card">
 	{#if children}
-		{@render children()}
+		<Copy>
+			{@render children()}
+		</Copy>
 	{/if}
 </div>
 
@@ -18,14 +21,13 @@
 	@use '../styles/base.scss';
 
 	.card {
-		@extend %copy;
 		color: white;
 		width: auto;
 		max-width: var(--app-max-width);
 		background: var(--violet-dark-5);
 		border-radius: var(--br-large);
 		padding: 1.5rem;
-		@media (min-width: base.$break-tablet) {
+		@media (min-width: base.$bp-m) {
 			padding: 2.5rem;
 		}
 	}

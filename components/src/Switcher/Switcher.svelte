@@ -66,7 +66,7 @@
 		border: 1px solid currentColor;
 		border-radius: var(--br-small);
 
-		@media (min-width: base.$break-phone) {
+		@media (min-width: base.$bp-s) {
 			flex-flow: row;
 		}
 
@@ -106,7 +106,7 @@
 		text-underline-offset: 0.2em;
 		border-bottom: 1px solid currentColor;
 		height: 2.25em;
-		@media (min-width: base.$break-phone) {
+		@media (min-width: base.$bp-s) {
 			justify-content: center;
 			padding: 0 1em;
 			flex-basis: 0;
@@ -114,7 +114,7 @@
 			border-right: 1px solid currentColor;
 			border-bottom: 0;
 		}
-		@media (min-width: base.$break-tablet) {
+		@media (min-width: base.$bp-s) {
 			height: 2.5em;
 		}
 		&:hover,
@@ -123,9 +123,9 @@
 		}
 		.is-selected & {
 			background: rgb(247, 247, 247);
-			font-weight: 700;
+			font-weight: 600;
 			box-shadow: inset 5px 0px 0 0 var(--violet-dark-5);
-			@media (min-width: base.$break-phone) {
+			@media (min-width: base.$bp-s) {
 				box-shadow: inset 0 -3px 0 0 var(--violet-dark-5);
 			}
 		}

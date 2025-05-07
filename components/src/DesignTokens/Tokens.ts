@@ -1,4 +1,14 @@
-const shades = {
+interface ColourMap {
+	[index: string]: ColourPalette | ColourList;
+}
+interface ColourPalette {
+	[index: string]: string
+}
+interface ColourList {
+	[index: number]: string
+}
+
+const shades: ColourMap = {
 	violet: {
 		light5: '#f3eefa',
 		light4: '#e5dbf5',
@@ -138,31 +148,36 @@ const shades = {
 	}
 };
 
-const scales = {
-	violets: [
-		shades.violet.dark3,
-		shades.violet.dark2,
-		shades.violet.dark1,
-		shades.violet.base,
-		shades.violet.light1,
-		shades.violet.light2,
-		shades.violet.light3
-	],
-	red_blue: [...Object.entries(shades.red).reverse(), ...Object.entries(shades.blue)],
-	red_violet: [...Object.entries(shades.red).reverse(), ...Object.entries(shades.violet)],
-	violet_teal: [...Object.entries(shades.violet).reverse(), ...Object.entries(shades.teal)],
-	orange_teal: [...Object.entries(shades.orange).reverse(), ...Object.entries(shades.teal)],
-	red_forest: [...Object.entries(shades.red).reverse(), ...Object.entries(shades.forest)],
-	red_apple: [...Object.entries(shades.red).reverse(), ...Object.entries(shades.apple)],
-	red_teal: [...Object.entries(shades.red).reverse(), ...Object.entries(shades.violet)],
-	violet_orange: [...Object.entries(shades.violet).reverse(), ...Object.entries(shades.orange)],
-	orange_blue: [...Object.entries(shades.orange).reverse(), ...Object.entries(shades.blue)],
-	teal_pink: [...Object.entries(shades.teal).reverse(), ...Object.entries(shades.pink)],
-	blue_pink: [...Object.entries(shades.blue).reverse(), ...Object.entries(shades.pink)],
-	apple_plum: [...Object.entries(shades.apple).reverse(), ...Object.entries(shades.plum)],
-	forest_plum: [...Object.entries(shades.forest).reverse(), ...Object.entries(shades.plum)]
+const scales: ColourMap = {
+	red_blue: [...Object.values(shades.red).reverse(), ...Object.values(shades.blue)],
+	red_violet: [...Object.values(shades.red).reverse(), ...Object.values(shades.violet)],
+	violet_teal: [...Object.values(shades.violet).reverse(), ...Object.values(shades.teal)],
+	orange_teal: [...Object.values(shades.orange).reverse(), ...Object.values(shades.teal)],
+	red_forest: [...Object.values(shades.red).reverse(), ...Object.values(shades.forest)],
+	red_apple: [...Object.values(shades.red).reverse(), ...Object.values(shades.apple)],
+	red_teal: [...Object.values(shades.red).reverse(), ...Object.values(shades.violet)],
+	violet_orange: [...Object.values(shades.violet).reverse(), ...Object.values(shades.orange)],
+	orange_blue: [...Object.values(shades.orange).reverse(), ...Object.values(shades.blue)],
+	teal_pink: [...Object.values(shades.teal).reverse(), ...Object.values(shades.pink)],
+	blue_pink: [...Object.values(shades.blue).reverse(), ...Object.values(shades.pink)],
+	apple_plum: [...Object.values(shades.apple).reverse(), ...Object.values(shades.plum)],
+	forest_plum: [...Object.values(shades.forest).reverse(), ...Object.values(shades.plum)]
 };
 
-const typography = {};
 
-export { shades, scales };
+const typography = {
+	wide: {
+		sizes: {
+			"fs-small-3": "0.75rem",
+			"fs-small-2": "0.875rem",
+			"fs-small-1": "1rem",
+			"fs-base": "1.25rem",
+			"fs-large-1": "1.5rem",
+			"fs-large-2": "2rem",
+			"fs-large-3": "2.5rem",
+			"fs-large-4": "3.5rem"
+		}
+	}
+};
+
+export { shades, scales, typography };

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import Logotype from '../Logotype/Logotype.svelte';
+	import Note from '../Note/Note.svelte';
 
 	interface ChartFooterProps {
 		layout: 'one-up' | 'two-up';
@@ -12,9 +13,9 @@
 
 <footer class={`container ${layout}`}>
 	{#if children}
-		<div class="notes">
+		<Note>
 			{@render children()}
-		</div>
+		</Note>
 	{/if}
 	<Logotype />
 </footer>
@@ -24,9 +25,9 @@
 
 	.container {
 		gap: 0.5rem;
-		font-size: var(--fs-small-1);
-		font-family: var(--swr-sans);
-		line-height: 1.4;
+		:global(div) {
+			width: 100%;
+		}
 	}
 	.one-up {
 		display: flex;
@@ -36,24 +37,10 @@
 	.two-up {
 		display: grid;
 		grid-template-columns: 1fr;
-		@media (min-width: base.$break-phone) {
+		@media (min-width: base.$bp-s) {
 			grid-template-columns: 2.5fr 1fr;
 			align-items: last baseline;
 			justify-items: flex-end;
-		}
-	}
-	.notes {
-		width: 100%;
-	}
-	footer :global(*) {
-		margin-bottom: 0;
-		color: var(--gray-base);
-	}
-	footer :global(a),
-	footer :global(summary) {
-		&:hover,
-		&:focus-visible {
-			color: var(--gray-dark-3);
 		}
 	}
 </style>

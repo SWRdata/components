@@ -1,7 +1,9 @@
 <script lang="ts">
+	import Copy from '../Copy/Copy.svelte';
+
 	interface ButtonProps {
-		as: 'button' | 'a';
 		label: string;
+		as?: 'button' | 'a';
 		href?: string;
 		disabled?: boolean;
 		onclick?: (e: MouseEvent) => any | void;
@@ -11,31 +13,32 @@
 </script>
 
 {#if as === 'a'}
-	<a class="button" class:disabled {href}>{label}</a>
+	<a class="button" class:disabled {href}>
+		<Copy weight="bold">
+			{label}
+		</Copy>
+	</a>
 {:else}
-	<button class="button" {onclick} {disabled}>{label}</button>
+	<button class="button" {onclick} {disabled}>
+		<Copy weight="bold">
+			{label}
+		</Copy>
+	</button>
 {/if}
 
 <style lang="scss">
-	@use '../styles/base.scss';
 	.button {
-		@extend %copy-bold;
 		background: var(--violet-dark-3);
 		display: inline-flex;
 		align-items: center;
 		justify-self: flex-start;
-		padding: 0.25em 1.25em;
-		padding-bottom: 0.35em;
+		padding: 0.45em 1.25em;
 		color: white;
 		border: 1px solid rgba(white, 0.1);
 		box-shadow: 0px 0px 10px rgba(black, 0.05);
 		border-radius: var(--br-small);
 		text-shadow: 0px 0px 5px rgba(black, 0.05);
-		font-size: 1.2rem;
 		text-decoration: none;
-		@media (min-width: base.$break-tablet) {
-			font-size: 1.4rem;
-		}
 		&:hover,
 		&:focus-visible {
 			text-decoration: underline;
