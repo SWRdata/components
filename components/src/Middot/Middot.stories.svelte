@@ -4,8 +4,7 @@
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Chart/Middot',
-		component: Middot
+		title: 'Chart/Middot'
 	});
 </script>
 

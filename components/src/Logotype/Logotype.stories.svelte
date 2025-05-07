@@ -4,8 +4,7 @@
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Chart/Logotype',
-		component: Logotype
+		title: 'Chart/Logotype'
 	});
 </script>
 

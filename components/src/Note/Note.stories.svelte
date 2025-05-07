@@ -6,8 +6,7 @@
 	import Note from './Note.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Typography/Note',
-		component: Note
+		title: 'Typography/Note'
 	});
 </script>
 

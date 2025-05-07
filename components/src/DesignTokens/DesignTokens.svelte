@@ -1,5 +1,11 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { shades } from './Tokens';
+
+	interface DesignTokensProps {
+		children?: Snippet;
+	}
+	let { children }: DesignTokensProps = $props();
 
 	const rules = [
 		...Object.keys(shades).map((key) => {
@@ -16,7 +22,9 @@
 </script>
 
 <div class="container" style={rules.join(';')}>
-	<slot />
+	{#if children}
+		{@render children()}
+	{/if}
 </div>
 
 <style lang="scss">

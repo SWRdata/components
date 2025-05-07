@@ -5,8 +5,7 @@
 	import Copy from './Copy.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Typography/Copy',
-		component: Copy
+		title: 'Typography/Copy'
 	});
 </script>
 

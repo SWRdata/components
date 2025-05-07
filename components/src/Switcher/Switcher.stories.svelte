@@ -2,11 +2,10 @@
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Switcher from './Switcher.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
-	import { userEvent, within, expect } from '@storybook/test';
+	import { userEvent, within, expect } from 'storybook/test';
 
 	const { Story } = defineMeta({
-		title: 'Form/Switcher',
-		component: Switcher
+		title: 'Form/Switcher'
 	});
 </script>
 

@@ -5,8 +5,7 @@
 	import Caption from './Caption.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Typography/Caption',
-		component: Caption
+		title: 'Typography/Caption'
 	});
 </script>
 
