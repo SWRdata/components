@@ -1,13 +1,12 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import { userEvent, within, expect } from '@storybook/test';
+	import { userEvent, within, expect } from 'storybook/test';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	import Autocomplete from './Autocomplete.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Deprecated/Autocomplete',
-		component: Autocomplete
+		title: 'Deprecated/Autocomplete'
 	});
 
 	const testData = ['Apples', 'Oranges', 'Pears', 'Peaches', 'Bananas'].map((el) => {

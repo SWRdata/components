@@ -1,12 +1,11 @@
 <script context="module">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
-	import { expect } from '@storybook/test';
+	import { expect } from 'storybook/test';
 	import ChartHeader from './ChartHeader.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Chart/ChartHeader',
-		component: ChartHeader
+		title: 'Chart/ChartHeader'
 	});
 </script>
 

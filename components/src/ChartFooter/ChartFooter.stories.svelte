@@ -6,8 +6,7 @@
 	import Middot from '../Middot/Middot.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Chart/ChartFooter',
-		component: ChartFooter
+		title: 'Chart/ChartFooter'
 	});
 </script>
 

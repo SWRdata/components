@@ -11,20 +11,14 @@ const config: StorybookConfig = {
     '../src/**/*.mdx'
   ],
 
-  addons: [
-    {
-      name: '@storybook/addon-svelte-csf',
-      options: {
-        legacyTemplate: true
-      }
-    },
-    getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('@chromatic-com/storybook'),
-    getAbsolutePath('@storybook/experimental-addon-test')
-  ],
+  addons: [{
+    name: getAbsolutePath("@storybook/addon-svelte-csf"),
+    options: {
+      legacyTemplate: true
+    }
+  }, getAbsolutePath('@storybook/addon-links'), getAbsolutePath('@chromatic-com/storybook'), getAbsolutePath('@storybook/addon-vitest'), getAbsolutePath("@storybook/addon-docs")],
   framework: {
-    name: '@storybook/sveltekit',
+    name: getAbsolutePath("@storybook/sveltekit"),
     options: {}
   },
 

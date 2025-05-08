@@ -5,13 +5,12 @@
 	import jobsData from './mock_data/jobs.json';
 
 	const { Story } = defineMeta({
-		title: 'Form/Select',
-		component: Select
+		title: 'Form/Select'
 	});
 </script>
 
 <script lang="ts">
-	import { userEvent, within, expect } from '@storybook/test';
+	import { userEvent, within, expect } from 'storybook/test';
 	import { type SelectItem } from './Select.types';
 	let selectedItem: SelectItem | undefined = undefined;
 </script>

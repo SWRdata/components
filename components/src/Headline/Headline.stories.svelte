@@ -5,8 +5,7 @@
 	import Headline from './Headline.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Typography/Headline',
-		component: Headline
+		title: 'Typography/Headline'
 	});
 </script>
 
