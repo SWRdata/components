@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Select from './Select.svelte';
+	import FormLabel from '../FormLabel/FormLabel.svelte';
 	import StoryTemplate from './SelectStoriesTemplate.svelte';
 	import jobsData from './mock_data/jobs.json';
 
@@ -147,7 +148,7 @@
 >
 	<StoryTemplate>
 		{#snippet demoComponent()}
-			<label for="job-select">Berufe</label>
+			<FormLabel htmlFor="job-select">Berufe</FormLabel>
 			<Select
 				bind:value={selectedItem}
 				inputId="job-select"

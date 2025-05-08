@@ -2,17 +2,27 @@
 	import type { Snippet } from 'svelte';
 
 	interface FormLabelProps {
-		htmlFor: string;
+		as?: string;
+		htmlFor?: string;
 		children?: Snippet;
 	}
-	let { htmlFor, children }: FormLabelProps = $props();
+	let { as = 'label', htmlFor, children }: FormLabelProps = $props();
 </script>
 
-<label class="container" for={htmlFor}>
-	{#if children}
-		{@render children()}
-	{/if}
-</label>
+{#if as == 'legend'}
+	<legend class="container">
+		{#if children}
+			{@render children()}
+		{/if}
+	</legend>
+{/if}
+{#if as == 'label'}
+	<label class="container" for={htmlFor}>
+		{#if children}
+			{@render children()}
+		{/if}
+	</label>
+{/if}
 
 <style>
 	.container {

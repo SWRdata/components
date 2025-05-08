@@ -7,14 +7,6 @@ $bp-l: 1024px;
 $bp-xl: 1440px;
 
 // TODO drop everything below
-%form-label {
-	font-family: var(--swr-sans);
-	font-size: 0.9rem;
-	line-height: 1;
-	letter-spacing: 0.0045em;
-	display: block;
-	margin-bottom: 0.5em;
-}
 
 %form-input {
 	font-family: var(--swr-sans);
