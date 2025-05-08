@@ -10,14 +10,14 @@
 </script>
 
 {#if as == 'legend'}
-	<legend class="container">
+	<legend class="container" data-testid="label-container">
 		{#if children}
 			{@render children()}
 		{/if}
 	</legend>
 {/if}
 {#if as == 'label'}
-	<label class="container" for={htmlFor}>
+	<label class="container" for={htmlFor} data-testid="label-container">
 		{#if children}
 			{@render children()}
 		{/if}

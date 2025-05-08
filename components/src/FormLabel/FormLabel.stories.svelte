@@ -1,5 +1,7 @@
 <script context="module">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
+	import { userEvent, within, expect } from 'storybook/test';
+
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	import FormLabel from './FormLabel.svelte';
@@ -16,7 +18,18 @@
 	</DesignTokens>
 </Story>
 
-<Story name="With Select">
+<Story
+	name="With Select"
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const label = canvas.getByTestId('label-container');
+		const input = canvas.getByPlaceholderText('...');
+		await step('Clicking the label focuses the input', async () => {
+			await userEvent.click(label);
+			expect(input).toHaveFocus();
+		});
+	}}
+>
 	<DesignTokens>
 		<FormLabel htmlFor="select-gemeinde">Deine Gemeinde</FormLabel>
 		<Select

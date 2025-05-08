@@ -52,12 +52,6 @@
 		font-family: var(--swr-sans);
 	}
 
-	legend {
-		font-size: var(--fs-small-2);
-		font-weight: 500;
-		margin-bottom: 0.35em;
-	}
-
 	ul {
 		width: 100%;
 		display: flex;
