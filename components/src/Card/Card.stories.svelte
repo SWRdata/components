@@ -4,11 +4,12 @@
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Display/Card/Base'
+		title: 'Display/Card/Base',
+		component: Card
 	});
 </script>
 
-<Story name="Basic card">
+<Story name="Basic card" asChild>
 	<DesignTokens>
 		<Card>
 			<h1>Any content</h1>

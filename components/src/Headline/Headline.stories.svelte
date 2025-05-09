@@ -5,11 +5,12 @@
 	import Headline from './Headline.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Typography/Headline'
+		title: 'Typography/Headline',
+		component: Headline
 	});
 </script>
 
-<Story name="Default">
+<Story name="Default" asChild>
 	<DesignTokens>
 		<Headline>Baden-Württemberg heizt überdurchschnittlich viel mit Wärmepumpe</Headline>
 	</DesignTokens>

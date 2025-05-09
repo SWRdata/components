@@ -1,4 +1,4 @@
-<script context="module">
+<script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import { userEvent, within, expect } from 'storybook/test';
 
@@ -8,11 +8,12 @@
 	import Select from '../Select/Select.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Form/Label'
+		title: 'Form/Label',
+		component: FormLabel
 	});
 </script>
 
-<Story name="Default">
+<Story name="Default" asChild>
 	<DesignTokens>
 		<FormLabel htmlFor="">Deine Gemeinde</FormLabel>
 	</DesignTokens>
@@ -20,6 +21,7 @@
 
 <Story
 	name="With Select"
+	asChild
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const label = canvas.getByTestId('label-container');

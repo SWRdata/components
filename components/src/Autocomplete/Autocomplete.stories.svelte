@@ -6,7 +6,8 @@
 	import Autocomplete from './Autocomplete.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Deprecated/Autocomplete'
+		title: 'Deprecated/Autocomplete',
+		component: Autocomplete
 	});
 
 	const testData = ['Apples', 'Oranges', 'Pears', 'Peaches', 'Bananas'].map((el) => {
@@ -20,7 +21,7 @@
 
 <Story
 	name="Basic"
-	tags={['autodocs']}
+	asChild
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByTestId('autocomplete-input');

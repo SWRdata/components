@@ -6,11 +6,12 @@
 	import Middot from '../Middot/Middot.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Chart/ChartFooter'
+		title: 'Chart/ChartFooter',
+		component: ChartFooter
 	});
 </script>
 
-<Story name="One-up" tags={['autodocs']}>
+<Story name="One-up" asChild>
 	<DesignTokens>
 		<ChartFooter layout="one-up">
 			Daten: <a href="#1">Zensus 2022</a>
@@ -21,7 +22,7 @@
 	</DesignTokens>
 </Story>
 
-<Story name="Two-up">
+<Story name="Two-up" asChild>
 	<DesignTokens>
 		<ChartFooter layout="two-up">
 			Daten: <a href="#1">Zensus 2022</a>

@@ -5,11 +5,12 @@
 	import Copy from './Copy.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Typography/Copy'
+		title: 'Typography/Copy',
+		component: Copy
 	});
 </script>
 
-<Story name="Default">
+<Story name="Default" asChild>
 	<DesignTokens>
 		<Copy>
 			Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen), bedient derzeit
@@ -19,7 +20,7 @@
 		</Copy>
 	</DesignTokens>
 </Story>
-<Story name="Bold">
+<Story name="Bold" asChild>
 	<DesignTokens>
 		<Copy weight="bold">
 			Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen), bedient derzeit

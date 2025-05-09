@@ -4,11 +4,12 @@
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Display/Card/HighlightCard'
+		title: 'Display/Card/HighlightCard',
+		component: HighlightCard
 	});
 </script>
 
-<Story name="Basic HighlightCard">
+<Story name="Basic HighlightCard" asChild>
 	<DesignTokens>
 		<HighlightCard
 			topline="Die letzte Großspende liegt bei"
@@ -19,7 +20,7 @@
 	</DesignTokens>
 </Story>
 
-<Story name="Multiple HighlightCards">
+<Story name="Multiple HighlightCards" asChild>
 	<DesignTokens>
 		<div class="highlight-cards">
 			<HighlightCard

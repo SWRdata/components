@@ -4,16 +4,17 @@
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Form/Button'
+		title: 'Form/Button',
+		component: Button
 	});
 </script>
 
-<Story name="Basic">
+<Story name="Basic" asChild>
 	<DesignTokens>
 		<Button label="This is a button label"></Button>
 	</DesignTokens>
 </Story>
-<Story name="Disabled">
+<Story name="Disabled" asChild>
 	<DesignTokens>
 		<Button disabled label="This button is disabled"></Button>
 	</DesignTokens>

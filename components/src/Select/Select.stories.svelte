@@ -6,7 +6,8 @@
 	import jobsData from './mock_data/jobs.json';
 
 	const { Story } = defineMeta({
-		title: 'Form/Select'
+		title: 'Form/Select',
+		component: Select
 	});
 </script>
 
@@ -18,6 +19,7 @@
 
 <Story
 	name="Simple"
+	asChild
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const select = canvas.getByLabelText('Select');
@@ -59,7 +61,7 @@
 	/>
 </Story>
 
-<Story name="Grouped">
+<Story name="Grouped" asChild>
 	<StoryTemplate
 		bind:selectedItem
 		args={{
@@ -76,6 +78,7 @@
 
 <Story
 	name="Grouped (group header selectable)"
+	asChild
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const select = canvas.getByLabelText('Select');
@@ -123,6 +126,7 @@
 
 <Story
 	name="Custom items"
+	asChild
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const select = canvas.getByLabelText('Berufe');

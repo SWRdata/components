@@ -5,16 +5,17 @@
 	import Caption from './Caption.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Typography/Caption'
+		title: 'Typography/Caption',
+		component: Caption
 	});
 </script>
 
-<Story name="Default">
+<Story name="Default" asChild>
 	<DesignTokens>
 		<Caption>Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen)</Caption>
 	</DesignTokens>
 </Story>
-<Story name="Bold">
+<Story name="Bold" asChild>
 	<DesignTokens>
 		<Caption weight="bold">
 			Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen)
