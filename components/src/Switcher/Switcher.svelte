@@ -1,4 +1,6 @@
 <script lang="ts">
+	import FormLabel from '../FormLabel/FormLabel.svelte';
+
 	interface SwitcherProps {
 		/**
 		 * Human-readable label
@@ -29,7 +31,7 @@
 </script>
 
 <fieldset class="container" class:small={size === 'small'}>
-	<legend>{label}</legend>
+	<FormLabel as="legend">{label}</FormLabel>
 	<ul>
 		{#each options as o (o)}
 			<li class:is-selected={o === value}>
@@ -48,12 +50,6 @@
 	fieldset {
 		border: 0;
 		font-family: var(--swr-sans);
-	}
-
-	legend {
-		font-size: var(--fs-small-2);
-		font-weight: 500;
-		margin-bottom: 0.35em;
 	}
 
 	ul {

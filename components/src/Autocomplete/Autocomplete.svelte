@@ -161,9 +161,6 @@ Data should be provided as array of objects. Each object contains the informatio
 		color: white;
 		display: flex;
 		flex-flow: column;
-		label {
-			@extend %form-label;
-		}
 
 		input {
 			@extend %form-input;

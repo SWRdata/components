@@ -1,4 +1,6 @@
 <script lang="ts">
+	import FormLabel from '../FormLabel/FormLabel.svelte';
+
 	export let label: string = '';
 	export let name: string = '';
 	export let placeholder: string = '';
@@ -6,16 +8,13 @@
 </script>
 
 <div class="container">
-	<label for={name}>{label}</label>
+	<FormLabel htmlFor={name}>{label}</FormLabel>
 	<input {name} type="text" {placeholder} bind:value />
 </div>
 
 <style lang="scss">
 	@use '../styles/base.scss';
 
-	label {
-		@extend %form-label;
-	}
 	input {
 		@extend %form-input;
 	}
