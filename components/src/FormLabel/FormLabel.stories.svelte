@@ -24,6 +24,10 @@
 		const canvas = within(canvasElement);
 		const label = canvas.getByTestId('label-container');
 		const input = canvas.getByPlaceholderText('...');
+		await step('Label renders children', async () => {
+			await userEvent.click(label);
+			expect(label).toHaveTextContent('Deine Gemeinde');
+		});
 		await step('Clicking the label focuses the input', async () => {
 			await userEvent.click(label);
 			expect(input).toHaveFocus();
