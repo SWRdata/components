@@ -9,3 +9,4 @@ export { tokens as tokens } from './DesignTokens/index.js';
 export { default as ChartHeader } from './ChartHeader/ChartHeader.svelte';
 export { default as ChartFooter } from './ChartFooter/ChartFooter.svelte';
 export { default as Middot } from './Middot/Middot.svelte';
+export { default as FormLabel } from './FormLabel/FormLabel.svelte';
