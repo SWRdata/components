@@ -6,11 +6,12 @@
 	import Note from './Note.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Typography/Note'
+		title: 'Typography/Note',
+		component: Note
 	});
 </script>
 
-<Story name="Default">
+<Story name="Default" asChild>
 	<DesignTokens>
 		<Note>
 			Daten: <a href="#1">Zensus 2022</a>

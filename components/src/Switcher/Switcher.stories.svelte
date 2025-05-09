@@ -5,11 +5,12 @@
 	import { userEvent, within, expect } from 'storybook/test';
 
 	const { Story } = defineMeta({
-		title: 'Form/Switcher'
+		title: 'Form/Switcher',
+		component: Switcher
 	});
 </script>
 
-<Story name="Two Options">
+<Story name="Two Options" asChild>
 	<DesignTokens>
 		<Switcher options={['Option A', 'Option B']} value="Option A" size="default" label="Label" />
 	</DesignTokens>
@@ -17,6 +18,7 @@
 
 <Story
 	name="Four Options"
+	asChild
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		await step('Clicking selects the expected option', async () => {

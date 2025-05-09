@@ -5,12 +5,14 @@
 	import ChartHeader from './ChartHeader.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Chart/ChartHeader'
+		title: 'Chart/ChartHeader',
+		component: ChartHeader
 	});
 </script>
 
 <Story
 	name="Default"
+	asChild
 	play={async ({ step }) => {
 		await step('Container has ID attribute derived from title prop', async () => {
 			const containerEl = document.querySelector('#mehr-uber-60-jahrige-in-allen-berufen');
