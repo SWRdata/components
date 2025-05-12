@@ -2,7 +2,11 @@ import { dirname, join } from 'path';
 import type { StorybookConfig } from '@storybook/sveltekit';
 
 function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, 'package.json')));
+  if (process.platform.includes("win")) {
+    return value
+  } else {
+    return dirname(require.resolve(join(value, 'package.json')));
+  }
 }
 
 const config: StorybookConfig = {
