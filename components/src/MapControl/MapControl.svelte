@@ -6,13 +6,12 @@
 		position: ControlPosition;
 		control: IControl;
 		className?: string;
-		group?: boolean;
 		children?: Snippet;
 	}
 
-	let { position, control, className, group = true, children }: MapControlProps = $props();
+	let { position, control, className, children }: MapControlProps = $props();
 
-	const ctx = getContext('ctx');
+	const mapContext: any = getContext('mapContext');
 	let el: HTMLDivElement | undefined = $state();
 
 	let ctrl = $derived.by(() => {
@@ -31,17 +30,19 @@
 	});
 
 	$effect(() => {
-		if (el && ctx.map) {
-			ctx.map.addControl(ctrl, position);
+		if (mapContext && mapContext.map && ctrl) {
+			mapContext.map.addControl(ctrl, position);
 		}
 	});
+
 	onDestroy(() => {
-		console.log('bye');
-		ctx.map.removeControl(control);
+		if (mapContext.map) {
+			mapContext.map.removeControl(control);
+		}
 	});
 </script>
 
-<div bind:this={el} class={`maplibregl-ctrl ${className}`} class:maplibre-ctrl-group={group}>
+<div bind:this={el} class={`maplibregl-ctrl ${className}`}>
 	{#if children}
 		{@render children()}
 	{/if}

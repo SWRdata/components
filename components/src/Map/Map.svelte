@@ -42,14 +42,15 @@
 
 	let container: HTMLElement;
 
-	let ctx: any = $state({
-		map: undefined
+	let mapContext: any = $state({
+		map: undefined,
+		loaded: false
 	});
 
-	setContext('ctx', ctx);
+	setContext('mapContext', mapContext);
 
 	onMount(() => {
-		ctx.map = new maplibre.Map({
+		mapContext.map = new maplibre.Map({
 			container,
 			style,
 			minZoom,
@@ -61,30 +62,31 @@
 		});
 
 		if (!allowRotation) {
-			ctx.map.touchZoomRotate.disableRotation();
+			mapContext.map.touchZoomRotate.disableRotation();
 		}
 
-		ctx.map.on('load', () => {
-			zoom = ctx.map.getZoom();
-			center = ctx.map.getCenter();
-			pitch = ctx.map.getPitch();
-			bearing = ctx.map.getBearing();
+		mapContext.map.on('load', () => {
+			mapContext.loaded = true;
+			zoom = mapContext.map.getZoom();
+			center = mapContext.map.getCenter();
+			pitch = mapContext.map.getPitch();
+			bearing = mapContext.map.getBearing();
 		});
 
-		ctx.map.on('moveend', () => {
-			zoom = ctx.map.getZoom();
-			center = ctx.map.getCenter();
-			pitch = ctx.map.getPitch();
-			bearing = ctx.map.getBearing();
+		mapContext.map.on('moveend', () => {
+			zoom = mapContext.map.getZoom();
+			center = mapContext.map.getCenter();
+			pitch = mapContext.map.getPitch();
+			bearing = mapContext.map.getBearing();
 		});
 	});
 
 	onDestroy(async () => {
-		if (ctx.map) ctx.map.remove();
+		if (mapContext.map) mapContext.map.remove();
 	});
 
 	$effect(() => {
-		if (ctx.map) ctx.map.setStyle(style);
+		if (mapContext.map) mapContext.map.setStyle(style);
 	});
 </script>
 
@@ -104,10 +106,7 @@
 		width: 100%;
 		height: 100%;
 	}
-	button {
-		position: absolute;
-		z-index: 1000;
-	}
+
 	.debug {
 		position: absolute;
 		top: 0;
