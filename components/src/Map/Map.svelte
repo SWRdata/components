@@ -1,6 +1,7 @@
 <script lang="ts">
 	import maplibre, { type StyleSpecification, type Map } from 'maplibre-gl';
 	import { setContext, onMount, onDestroy, type Snippet } from 'svelte';
+	import { createMapContext } from './context.svelte';
 	import { SWRDataBaseLight } from '../MapStyle';
 	import { dev } from '$app/environment';
 
@@ -42,12 +43,7 @@
 
 	let container: HTMLElement;
 
-	let mapContext: any = $state({
-		map: undefined,
-		loaded: false
-	});
-
-	setContext('mapContext', mapContext);
+	const mapContext = createMapContext();
 
 	onMount(() => {
 		mapContext.map = new maplibre.Map({
@@ -60,10 +56,6 @@
 			zoom: initialLocation.zoom,
 			...options
 		});
-
-		if (!allowRotation) {
-			mapContext.map.touchZoomRotate.disableRotation();
-		}
 
 		mapContext.map.on('load', () => {
 			mapContext.loaded = true;
@@ -88,11 +80,21 @@
 	$effect(() => {
 		if (mapContext.map) mapContext.map.setStyle(style);
 	});
+
+	$effect(() => {
+		if (allowRotation) {
+			mapContext.map.touchZoomRotate.enableRotation();
+		} else {
+			mapContext.map.touchZoomRotate.disableRotation();
+		}
+	});
 </script>
 
 <div bind:this={container} class="container" data-testid="map-container">
-	{#if children}
-		{@render children()}
+	{#if mapContext.map}
+		{#if children}
+			{@render children()}
+		{/if}
 	{/if}
 	{#if dev}
 		<div class="debug">
@@ -169,7 +171,9 @@
 			position: absolute;
 			z-index: 2;
 			display: flex;
-			gap: 0.2em;
+			flex-flow: column;
+			gap: 0.5em;
+			align-items: flex-start;
 		}
 
 		.maplibregl-ctrl-top-left {
@@ -201,6 +205,67 @@
 			background: #fff;
 			border-radius: var(--br-small);
 			border: 1px solid var(--gray-dark-2);
+		}
+
+		.maplibregl-ctrl-group button {
+			background-color: transparent;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			display: block;
+			height: 29px;
+			outline: none;
+			padding: 0;
+			width: 29px;
+		}
+
+		.maplibregl-ctrl-group button + button {
+			border-top: 1px solid lightgray;
+		}
+
+		.maplibregl-ctrl button .maplibregl-ctrl-icon {
+			background-position: 50%;
+			background-repeat: no-repeat;
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+
+		.maplibregl-ctrl-attrib-button:focus,
+		.maplibregl-ctrl-group button:focus {
+			box-shadow: 0 0 2px 2px #0096ff;
+		}
+
+		.maplibregl-ctrl button:disabled {
+			cursor: not-allowed;
+		}
+
+		.maplibregl-ctrl button:disabled .maplibregl-ctrl-icon {
+			opacity: 0.25;
+		}
+
+		.maplibregl-ctrl button:not(:disabled):hover {
+			background-color: rgb(0 0 0/5%);
+		}
+
+		.maplibregl-ctrl-group button:focus:focus-visible {
+			box-shadow: 0 0 2px 2px #0096ff;
+		}
+
+		.maplibregl-ctrl-group button:focus:not(:focus-visible) {
+			box-shadow: none;
+		}
+
+		.maplibregl-ctrl-group button:focus:first-child {
+			border-radius: 4px 4px 0 0;
+		}
+
+		.maplibregl-ctrl-group button:focus:last-child {
+			border-radius: 0 0 4px 4px;
+		}
+
+		.maplibregl-ctrl-group button:focus:only-child {
+			border-radius: inherit;
 		}
 	}
 </style>

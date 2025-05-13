@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { getContext, onDestroy, type Snippet } from 'svelte';
+	import { type Snippet } from 'svelte';
 	import { type ControlPosition, type IControl } from 'maplibre-gl';
+	import { getMapContext } from '../Map/context.svelte';
 
 	interface MapControlProps {
 		position: ControlPosition;
@@ -10,35 +11,26 @@
 	}
 
 	let { position, control, className, children }: MapControlProps = $props();
-
-	const mapContext: any = getContext('mapContext');
 	let el: HTMLDivElement | undefined = $state();
 
-	let ctrl = $derived.by(() => {
-		if (control) {
-			return control;
-		}
+	const { map } = $derived(getMapContext());
 
-		return {
-			onAdd: () => {
-				return el!;
-			},
-			onRemove: () => {
-				el?.parentNode?.removeChild(el);
-			}
-		};
+	let ctrl = $derived.by(() => {
+		return control
+			? control
+			: {
+					onAdd: () => el!,
+					onRemove: () => el?.parentNode?.removeChild(el)
+				};
 	});
 
 	$effect(() => {
-		if (mapContext && mapContext.map && ctrl) {
-			mapContext.map.addControl(ctrl, position);
+		if (map && ctrl) {
+			map.addControl(ctrl, position);
 		}
-	});
-
-	onDestroy(() => {
-		if (mapContext.map) {
-			mapContext.map.removeControl(control);
-		}
+		return () => {
+			map.removeControl(control);
+		};
 	});
 </script>
 

@@ -3,6 +3,7 @@
 	import { within, expect } from 'storybook/test';
 	import Map from './Map.svelte';
 	import ScaleControl from '../ScaleControl/ScaleControl.svelte';
+	import NavigationControl from '../NavigationControl/NavigationControl.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	const { Story } = defineMeta({
@@ -22,12 +23,29 @@
 			const mapEl = containerEl.querySelector('.maplibregl-canvas');
 			expect(mapEl).toBeTruthy();
 		});
+		await step('Scale control renders', async () => {
+			const el = containerEl.querySelector('.maplibregl-ctrl-scale');
+			expect(el).toBeTruthy();
+		});
+		await step('Scale renders expected value', async () => {
+			const el = containerEl.querySelector('.maplibregl-ctrl-scale');
+			expect(el).toHaveTextContent('100 km');
+		});
+		await step('Navigation Control renders', async () => {
+			const zoomInEl = containerEl.querySelector('.maplibregl-ctrl-zoom-in');
+			const zoomOutEl = containerEl.querySelector('.maplibregl-ctrl-zoom-out');
+			expect(zoomInEl).toBeTruthy();
+			expect(zoomInEl).toHaveRole('button');
+			expect(zoomOutEl).toBeTruthy();
+			expect(zoomOutEl).toHaveRole('button');
+		});
 	}}
 >
 	<div class="container">
 		<DesignTokens>
 			<Map>
 				<ScaleControl />
+				<NavigationControl />
 			</Map>
 		</DesignTokens>
 	</div>
