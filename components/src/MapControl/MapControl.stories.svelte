@@ -7,5 +7,3 @@
 		component: MapControl
 	});
 </script>
-
-<Story name="Basic"></Story>

@@ -6,6 +6,8 @@ const MAP_CONTEXT_KEY = Symbol.for('map-context');
 export class MapContext {
     map = $state() as MapLibre;
     loaded = $state(false);
+    minzoom = $state(0);
+    maxzoom = $state(24);
 }
 
 export function getMapContext(): MapContext {

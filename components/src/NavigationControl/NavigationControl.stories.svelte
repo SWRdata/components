@@ -7,5 +7,3 @@
 		component: NavigationControl
 	});
 </script>
-
-<Story name="Basic"></Story>

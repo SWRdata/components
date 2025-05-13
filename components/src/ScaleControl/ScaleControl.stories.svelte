@@ -7,5 +7,3 @@
 		component: ScaleControl
 	});
 </script>
-
-<Story name="Basic"></Story>
