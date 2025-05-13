@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
 	import { type ControlPosition, type IControl } from 'maplibre-gl';
-	import { getMapContext } from '../Map/context.svelte';
+	import { getMapContext } from '../Map/context.svelte.ts';
 
 	interface MapControlProps {
 		position: ControlPosition;
@@ -34,7 +34,7 @@
 	});
 </script>
 
-<div bind:this={el} class={`maplibregl-ctrl ${className}`}>
+<div bind:this={el} class={`maplibregl-ctrl`}>
 	{#if children}
 		{@render children()}
 	{/if}

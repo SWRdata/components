@@ -7,5 +7,3 @@
 		component: AttributionControl
 	});
 </script>
-
-<Story name="Basic"></Story>

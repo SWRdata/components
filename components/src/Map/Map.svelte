@@ -167,7 +167,6 @@
 		.maplibregl-ctrl-bottom-right,
 		.maplibregl-ctrl-top-left,
 		.maplibregl-ctrl-top-right {
-			pointer-events: none;
 			position: absolute;
 			z-index: 2;
 			display: flex;
@@ -192,8 +191,8 @@
 		}
 
 		.maplibregl-ctrl-bottom-right {
-			bottom: 0;
-			right: 0;
+			bottom: 0.5em;
+			right: 0.5em;
 		}
 
 		.maplibregl-ctrl {

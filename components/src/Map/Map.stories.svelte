@@ -5,6 +5,7 @@
 	import ScaleControl from '../ScaleControl/ScaleControl.svelte';
 	import NavigationControl from '../NavigationControl/NavigationControl.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
+	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 
 	const { Story } = defineMeta({
 		title: 'Map/Map',
@@ -13,8 +14,8 @@
 </script>
 
 <Story
-	name="Basic"
 	asChild
+	name="Basic"
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const containerEl = canvas.getByTestId('map-container');
@@ -39,6 +40,11 @@
 			expect(zoomOutEl).toBeTruthy();
 			expect(zoomOutEl).toHaveRole('button');
 		});
+
+		await step('Attribution control renders', async () => {
+			const el = containerEl.querySelector('.maplibregl-ctrl-attrib');
+			expect(el).toBeTruthy();
+		});
 	}}
 >
 	<div class="container">
@@ -46,6 +52,7 @@
 			<Map>
 				<ScaleControl />
 				<NavigationControl />
+				<AttributionControl />
 			</Map>
 		</DesignTokens>
 	</div>
