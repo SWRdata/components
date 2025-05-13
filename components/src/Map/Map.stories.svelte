@@ -32,7 +32,7 @@
 			const el = containerEl.querySelector('.maplibregl-ctrl-scale');
 			expect(el).toHaveTextContent('100 km');
 		});
-		await step('Navigation Control renders', async () => {
+		await step('Navigation control renders', async () => {
 			const zoomInEl = containerEl.querySelector('.maplibregl-ctrl-zoom-in');
 			const zoomOutEl = containerEl.querySelector('.maplibregl-ctrl-zoom-out');
 			expect(zoomInEl).toBeTruthy();
