@@ -41,14 +41,15 @@
 	}: MapProps = $props();
 
 	let container: HTMLElement;
-	let map: Map;
 
-	setContext('map', {
-		getMap: () => map
+	let ctx: any = $state({
+		map: undefined
 	});
 
+	setContext('ctx', ctx);
+
 	onMount(() => {
-		map = new maplibre.Map({
+		ctx.map = new maplibre.Map({
 			container,
 			style,
 			minZoom,
@@ -60,34 +61,34 @@
 		});
 
 		if (!allowRotation) {
-			map.touchZoomRotate.disableRotation();
+			ctx.map.touchZoomRotate.disableRotation();
 		}
 
-		map.on('load', () => {
-			zoom = map.getZoom();
-			center = map.getCenter();
-			pitch = map.getPitch();
-			bearing = map.getBearing();
+		ctx.map.on('load', () => {
+			zoom = ctx.map.getZoom();
+			center = ctx.map.getCenter();
+			pitch = ctx.map.getPitch();
+			bearing = ctx.map.getBearing();
 		});
 
-		map.on('moveend', () => {
-			zoom = map.getZoom();
-			center = map.getCenter();
-			pitch = map.getPitch();
-			bearing = map.getBearing();
+		ctx.map.on('moveend', () => {
+			zoom = ctx.map.getZoom();
+			center = ctx.map.getCenter();
+			pitch = ctx.map.getPitch();
+			bearing = ctx.map.getBearing();
 		});
 	});
 
 	onDestroy(async () => {
-		if (map) map.remove();
+		if (ctx.map) ctx.map.remove();
 	});
 
 	$effect(() => {
-		if (map) map.setStyle(style);
+		if (ctx.map) ctx.map.setStyle(style);
 	});
 </script>
 
-<div bind:this={container} class="container">
+<div bind:this={container} class="container" data-testid="map-container">
 	{#if children}
 		{@render children()}
 	{/if}
@@ -103,6 +104,10 @@
 		width: 100%;
 		height: 100%;
 	}
+	button {
+		position: absolute;
+		z-index: 1000;
+	}
 	.debug {
 		position: absolute;
 		top: 0;
@@ -112,7 +117,6 @@
 		z-index: 1000;
 		font-family: monospace;
 	}
-
 	:global {
 		.maplibregl-map {
 			overflow: hidden;
@@ -130,8 +134,7 @@
 			width: 100%;
 		}
 
-		.maplibregl-canvas-container.maplibregl-interactive,
-		.maplibregl-ctrl-group button.maplibregl-ctrl-compass {
+		.maplibregl-canvas-container.maplibregl-interactive {
 			cursor: grab;
 			user-select: none;
 		}
@@ -140,8 +143,7 @@
 			cursor: pointer;
 		}
 
-		.maplibregl-canvas-container.maplibregl-interactive:active,
-		.maplibregl-ctrl-group button.maplibregl-ctrl-compass:active {
+		.maplibregl-canvas-container.maplibregl-interactive:active {
 			cursor: grabbing;
 		}
 
@@ -159,6 +161,47 @@
 		.maplibregl-canvas-container.maplibregl-touch-zoom-rotate.maplibregl-touch-drag-pan
 			.maplibregl-canvas {
 			touch-action: none;
+		}
+		.maplibregl-ctrl-bottom-left,
+		.maplibregl-ctrl-bottom-right,
+		.maplibregl-ctrl-top-left,
+		.maplibregl-ctrl-top-right {
+			pointer-events: none;
+			position: absolute;
+			z-index: 2;
+			display: flex;
+			gap: 0.2em;
+		}
+
+		.maplibregl-ctrl-top-left {
+			left: 0;
+			top: 0;
+		}
+
+		.maplibregl-ctrl-top-right {
+			right: 0;
+			top: 0;
+		}
+
+		.maplibregl-ctrl-bottom-left {
+			bottom: 0.5em;
+			left: 0.5em;
+		}
+
+		.maplibregl-ctrl-bottom-right {
+			bottom: 0;
+			right: 0;
+		}
+
+		.maplibregl-ctrl {
+			pointer-events: auto;
+			transform: translate(0);
+		}
+
+		.maplibregl-ctrl-group {
+			background: #fff;
+			border-radius: var(--br-small);
+			border: 1px solid var(--gray-dark-2);
 		}
 	}
 </style>
