@@ -6,7 +6,8 @@
 	import NavigationControl from '../NavigationControl/NavigationControl.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
-	import GeoCoderControl from '../GeoCoderControl/GeoCoderControl.svelte';
+	import GeocoderControl from '../GeocoderControl/GeocoderControl.svelte';
+	import LinkToLocationControl from '../LinkToLocationControl/LinkToLocationControl.svelte';
 
 	const { Story } = defineMeta({
 		title: 'Map/Map',
@@ -59,7 +60,7 @@
 				<ScaleControl />
 				<NavigationControl />
 				<AttributionControl />
-				<GeoCoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
+				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 			</Map>
 		</DesignTokens>
 	</div>

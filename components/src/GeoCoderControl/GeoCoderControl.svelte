@@ -7,7 +7,7 @@
 	type Language = 'de' | 'en';
 	type Country = 'de' | 'at';
 
-	interface GeoCoderControlProps {
+	interface GeocoderControlProps {
 		key: string;
 		service: 'maptiler';
 		limit?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
@@ -21,7 +21,7 @@
 		countries = 'de',
 		languages = 'en',
 		limit = 3
-	}: GeoCoderControlProps = $props();
+	}: GeocoderControlProps = $props();
 
 	const countriesArr = Array.isArray(countries) ? countries : [countries];
 	const languagesArr = Array.isArray(languages) ? languages : [languages];

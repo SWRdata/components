@@ -30,6 +30,7 @@ export class MaptilerGeocoderAPI implements MaplibreGeocoderApi {
                     place_name: feature.place_name,
                     language: feature.properties.display_name,
                     text: feature.text,
+                    bbox: feature.bbox,
                     geometry: {
                         type: 'Point',
                         coordinates: feature.center
