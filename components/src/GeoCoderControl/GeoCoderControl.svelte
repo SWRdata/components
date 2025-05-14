@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { MapTilerGeocoderLanguage, ISO3166Alpha2Country } from './types';
 	import maplibre from 'maplibre-gl';
 	import MaplibreGeocoder, { type MaplibreGeocoderApi } from '@maplibre/maplibre-gl-geocoder';
 	import { MaptilerGeocoderAPI } from './GeocoderAPIs';
 	import MapControl from '../MapControl/MapControl.svelte';
 
-	type Language = keyof typeof MapTilerGeocoderLanguage;
-	type Country = keyof typeof ISO3166Alpha2Country;
+	type Language = 'de' | 'en';
+	type Country = 'de' | 'at';
+
 	interface GeoCoderControlProps {
 		key: string;
 		service: 'maptiler';
