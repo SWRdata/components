@@ -1,2 +1,2 @@
-import GeoCoderControl from './GeoCoderControl.svelte';
-export default GeoCoderControl;
+import GeocoderControl from './GeocoderControl.svelte';
+export default GeocoderControl;
