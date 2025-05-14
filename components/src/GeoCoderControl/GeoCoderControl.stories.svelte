@@ -7,5 +7,3 @@
 		component: GeoCoderControl
 	});
 </script>
-
-<Story name="Basic"></Story>

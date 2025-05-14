@@ -7,5 +7,3 @@
 		component: LinkToLocationControl
 	});
 </script>
-
-<Story name="Basic"></Story>

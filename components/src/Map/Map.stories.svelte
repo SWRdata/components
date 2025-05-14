@@ -6,6 +6,7 @@
 	import NavigationControl from '../NavigationControl/NavigationControl.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
+	import GeoCoderControl from '../GeoCoderControl/GeoCoderControl.svelte';
 
 	const { Story } = defineMeta({
 		title: 'Map/Map',
@@ -45,6 +46,11 @@
 			const el = containerEl.querySelector('.maplibregl-ctrl-attrib');
 			expect(el).toBeTruthy();
 		});
+
+		await step('Geocoder control renders', async () => {
+			const el = containerEl.querySelector('.maplibregl-ctrl-geocoder');
+			expect(el).toBeTruthy();
+		});
 	}}
 >
 	<div class="container">
@@ -53,6 +59,7 @@
 				<ScaleControl />
 				<NavigationControl />
 				<AttributionControl />
+				<GeoCoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 			</Map>
 		</DesignTokens>
 	</div>

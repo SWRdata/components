@@ -176,8 +176,8 @@
 		}
 
 		.maplibregl-ctrl-top-left {
-			left: 0;
-			top: 0;
+			left: 0.5em;
+			top: 0.5em;
 		}
 
 		.maplibregl-ctrl-top-right {
