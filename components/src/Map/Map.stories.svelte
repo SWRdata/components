@@ -6,7 +6,7 @@
 	import NavigationControl from '../NavigationControl/NavigationControl.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
-	import GeocoderControl from '../GeocoderControl/GeocoderControl.svelte';
+	import GeocoderControl from '../GeocoderControl';
 
 	const { Story } = defineMeta({
 		title: 'Map/Map',
