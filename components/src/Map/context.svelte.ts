@@ -1,12 +1,10 @@
-import type { Map as MapLibre, Marker } from 'maplibre-gl';
+import type { Map as MapLibre, Marker, Source, LayerSpecification } from 'maplibre-gl';
 import { getContext, setContext } from 'svelte';
 
 const MAP_CONTEXT_KEY = Symbol.for('map-context');
-const SOURCE_KEY = Symbol.for('source');
-const LAYER_KEY = Symbol.for('layer');
+const SOURCE_CONTEXT_KEY = Symbol.for('source-context');
+const LAYER_CONTEXT_KEY = Symbol.for('layer-context');
 const POPUP_TARGET_KEY = Symbol.for("popup-target")
-
-
 
 export class Box<T> {
     value = $state() as T;
@@ -16,7 +14,6 @@ export class Box<T> {
     }
 }
 
-
 export class MapContext {
     map = $state() as MapLibre;
     loaded = $state(false);
@@ -24,11 +21,21 @@ export class MapContext {
     maxzoom = $state(24);
 }
 
-export function setSource(value: Box<string | undefined>) {
-    setContext(SOURCE_KEY, value);
+export class SourceContext {
+    source = $state() as Source;
+    loaded = $state(false);
+    minzoom = $state(0);
+    maxzoom = $state(24);
 }
-export function setLayer(value: Box<string | undefined>) {
-    setContext(LAYER_KEY, value);
+export class LayerContext {
+    layer = $state() as LayerSpecification;
+}
+
+export function setSourceContext(value: Box<string | undefined>) {
+    setContext(SOURCE_CONTEXT_KEY, value);
+}
+export function setLayerContext(value: string) {
+    setContext(LAYER_CONTEXT_KEY, value);
 }
 
 export function setPopupTarget(value: Box<Marker | string | undefined>) {
@@ -41,7 +48,7 @@ export function getPopupTarget(): Box<Marker | string> | undefined {
 
 export function updatedSourceContext() {
     const source = new Box<string | undefined>(undefined);
-    setSource(source);
+    setSourceContext(source);
 
     return {
         source,
@@ -50,7 +57,7 @@ export function updatedSourceContext() {
 
 export function updatedLayerContext(interactive = true) {
     const layer = new Box<string | undefined>(undefined);
-    setLayer(layer);
+    setLayerContext(layer);
 
     if (interactive) {
         setPopupTarget(layer);
@@ -63,6 +70,12 @@ export function updatedLayerContext(interactive = true) {
 
 export function getMapContext(): MapContext {
     return getContext(MAP_CONTEXT_KEY);
+}
+export function getSourceContext(): SourceContext {
+    return getContext(SOURCE_CONTEXT_KEY);
+}
+export function getLayerContext(): LayerContext {
+    return getContext(LAYER_CONTEXT_KEY);
 }
 
 export function createMapContext(): MapContext {

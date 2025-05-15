@@ -1,30 +1,50 @@
 <script lang="ts">
 	import { onDestroy, type Snippet } from 'svelte';
-	import { type VectorTileSource } from 'maplibre-gl';
+	import { type Map, type SourceSpecification } from 'maplibre-gl';
 	import { getMapContext, updatedSourceContext } from '../Map/context.svelte.ts';
 	import { addSource, removeSource } from './source.js';
 
 	interface MapSourceProps {
 		id: string;
-		type: 'vector' | 'geojson' | 'raster' | 'raster-dem';
 		url?: string;
+		data?: string;
 		minZoom?: number;
 		maxZoom?: number;
 		tileSize?: number;
+		sourceSpec: SourceSpecification;
+		onLoad?: (url?: string, data?: string, map: Map) => undefined;
 		children?: Snippet;
 	}
 
-	const { minZoom = 0, maxZoom = 24, tileSize = 256, id, children }: MapSourceProps = $props();
-	const { map } = $derived(getMapContext());
+	const { id, sourceSpec, children }: MapSourceProps = $props();
+
+	const { map, loaded: mapLoaded } = $derived(getMapContext());
 	let loaded = $state(false);
-	let sourceObj: VectorTileSource | undefined = $state();
-	const { source } = updatedSourceContext();
+
+	const sleep = (ms: number) => {
+		return new Promise((resolve) => setTimeout(resolve, ms));
+	};
+
+	const pollSourceLoaded = async () => {
+		await sleep(10);
+		if (map.isSourceLoaded(id)) {
+			console.log(`Source ${id} loaded`);
+			loaded = true;
+		} else {
+			pollSourceLoaded();
+		}
+	};
+
+	$effect(() => {
+		if (mapLoaded) {
+			map.addSource(id, sourceSpec);
+			pollSourceLoaded();
+		}
+	});
 
 	onDestroy(async () => {
-		if (source.value && map) {
-			removeSource(map, source.value, sourceObj);
-			source.value = undefined;
-			sourceObj = undefined;
+		if (mapLoaded) {
+			map.removeSource(id);
 		}
 	});
 </script>

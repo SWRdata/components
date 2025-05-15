@@ -7,5 +7,3 @@
 		component: MapSource
 	});
 </script>
-
-<Story name="Basic"></Story>
