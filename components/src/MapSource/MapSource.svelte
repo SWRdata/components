@@ -1,54 +1,54 @@
 <script lang="ts">
 	import { onDestroy, type Snippet } from 'svelte';
-	import { type Map, type SourceSpecification } from 'maplibre-gl';
-	import { getMapContext, updatedSourceContext } from '../Map/context.svelte.ts';
-	import { addSource, removeSource } from './source.js';
+	import { type Map, type Source, type SourceSpecification } from 'maplibre-gl';
+	import { getMapContext, createSourceContext } from '../Map/context.svelte.ts';
+
+	type Source = maplibregl.VectorTileSource;
 
 	interface MapSourceProps {
 		id: string;
-		url?: string;
-		data?: string;
-		minZoom?: number;
-		maxZoom?: number;
-		tileSize?: number;
 		sourceSpec: SourceSpecification;
-		onLoad?: (url?: string, data?: string, map: Map) => undefined;
+		source?: Source;
+		onLoad?: (map: Map, url?: string, data?: string) => undefined;
 		children?: Snippet;
 	}
 
-	const { id, sourceSpec, children }: MapSourceProps = $props();
+	let { id, sourceSpec, source = $bindable(), children }: MapSourceProps = $props();
+	let firstRun = true;
 
-	const { map, loaded: mapLoaded } = $derived(getMapContext());
-	let loaded = $state(false);
+	// Get map context
+	const { map, styleLoaded } = $derived(getMapContext());
 
-	const sleep = (ms: number) => {
-		return new Promise((resolve) => setTimeout(resolve, ms));
-	};
+	// Create source context
+	const sourceContext = createSourceContext();
 
-	const pollSourceLoaded = async () => {
-		await sleep(10);
-		if (map.isSourceLoaded(id)) {
-			console.log(`Source ${id} loaded`);
-			loaded = true;
-		} else {
-			pollSourceLoaded();
-		}
-	};
-
+	// 1. Add the source to the map using the spec, then get the
+	// actual source object back from the map instance
 	$effect(() => {
-		if (mapLoaded) {
-			map.addSource(id, sourceSpec);
-			pollSourceLoaded();
+		if (map && styleLoaded) {
+			// See: https://svelte.dev/docs/svelte/$state#$state.snapshot
+			map.addSource(id, $state.snapshot(sourceSpec) as SourceSpecification);
+			source = map.getSource(id);
+			firstRun = true;
 		}
 	});
 
-	onDestroy(async () => {
-		if (mapLoaded) {
-			map.removeSource(id);
+	// 2. Do extra stuff with the source object
+	$effect(() => {
+		if (source) {
+			console.log(`Got source object for ${id}`);
 		}
+	});
+
+	$effect(() => {
+		source;
+		firstRun = false;
+	});
+
+	onDestroy(() => {
+		map?.removeSource(id);
+		source = undefined;
 	});
 </script>
 
-{#if loaded}
-	{@render children?.()}
-{/if}
+{@render children?.()}

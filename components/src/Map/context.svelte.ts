@@ -1,4 +1,4 @@
-import type { Map as MapLibre, Marker, Source, LayerSpecification } from 'maplibre-gl';
+import type { Map as MapLibre, Marker, LayerSpecification, VectorSourceSpecification } from 'maplibre-gl';
 import { getContext, setContext } from 'svelte';
 
 const MAP_CONTEXT_KEY = Symbol.for('map-context');
@@ -15,27 +15,48 @@ export class Box<T> {
 }
 
 export class MapContext {
-    map = $state() as MapLibre;
-    loaded = $state(false);
+    _map = $state(null) as MapLibre | null;
     minzoom = $state(0);
     maxzoom = $state(24);
+    styleLoaded = $state(false);
+    private _listener?: maplibregl.Listener = undefined;
+
+    get map() {
+        return this._map;
+    }
+
+    set map(value: maplibregl.Map | null) {
+        // Unbind any old event listeners
+        if (this._listener) {
+            this._map?.off('styledata', this._listener);
+            this._listener = undefined;
+        }
+        // Set new map instance and bind new event listeners
+        this._map = value;
+        if (this._map) {
+            this._listener = this._onstyledata.bind(this);
+            this._map.on('styledata', this._listener);
+        }
+    }
+
+    private _onstyledata(e: maplibregl.MapStyleDataEvent) {
+        this.styleLoaded = true
+    }
 }
 
 export class SourceContext {
-    source = $state() as Source;
+    _source = $state();
     loaded = $state(false);
     minzoom = $state(0);
     maxzoom = $state(24);
+
+    get source() {
+        console.log("gettign source")
+        return this._source;
+    }
 }
 export class LayerContext {
     layer = $state() as LayerSpecification;
-}
-
-export function setSourceContext(value: Box<string | undefined>) {
-    setContext(SOURCE_CONTEXT_KEY, value);
-}
-export function setLayerContext(value: string) {
-    setContext(LAYER_CONTEXT_KEY, value);
 }
 
 export function setPopupTarget(value: Box<Marker | string | undefined>) {
@@ -46,38 +67,25 @@ export function getPopupTarget(): Box<Marker | string> | undefined {
     return getContext(POPUP_TARGET_KEY);
 }
 
-export function updatedSourceContext() {
-    const source = new Box<string | undefined>(undefined);
-    setSourceContext(source);
-
-    return {
-        source,
-    };
+export function createMapContext(): MapContext {
+    console.log("Setting map context");
+    return setContext(MAP_CONTEXT_KEY, new MapContext());
 }
-
-export function updatedLayerContext(interactive = true) {
-    const layer = new Box<string | undefined>(undefined);
-    setLayerContext(layer);
-
-    if (interactive) {
-        setPopupTarget(layer);
-    }
-
-    return {
-        layer,
-    };
-}
-
 export function getMapContext(): MapContext {
     return getContext(MAP_CONTEXT_KEY);
+}
+
+export function createSourceContext(): SourceContext {
+    return setContext(SOURCE_CONTEXT_KEY, new SourceContext());
 }
 export function getSourceContext(): SourceContext {
     return getContext(SOURCE_CONTEXT_KEY);
 }
+
 export function getLayerContext(): LayerContext {
     return getContext(LAYER_CONTEXT_KEY);
 }
 
-export function createMapContext(): MapContext {
-    return setContext(MAP_CONTEXT_KEY, new MapContext());
+export function setLayerContext(value: string) {
+    setContext(LAYER_CONTEXT_KEY, value);
 }

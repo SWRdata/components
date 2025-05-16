@@ -1,16 +1,14 @@
 <script lang="ts">
-	import type { LineLayoutProps, LinePaintProps } from 'maplibre-gl';
-	import { getMapContext, getSourceContext, setLayerContext } from '../Map/context.svelte.ts';
+	import type { AddLayerObject, LineLayoutProps, LinePaintProps } from 'maplibre-gl';
+	import { getMapContext } from '../Map/context.svelte.ts';
 	import { onDestroy } from 'svelte';
 
 	interface MapVectorLayerProps {
 		id: string;
-		/**
-		 * ID for a VectorTileSource
-		 */
 		sourceId: string;
+		sourceLayer: string;
+		placeBelow: string;
 		visible?: boolean;
-		placeBelow?: string;
 		minZoom?: number;
 		maxZoom?: number;
 		paint?: LinePaintProps;
@@ -19,6 +17,7 @@
 	const {
 		id,
 		sourceId,
+		sourceLayer,
 		visible = true,
 		placeBelow = 'label-place-capital',
 		paint,
@@ -27,21 +26,36 @@
 		maxZoom = 24
 	}: MapVectorLayerProps = $props();
 
-	const { map, loaded: mapLoaded } = $derived(getMapContext());
-	const { source } = $derived(getSourceContext());
-	setLayerContext(id);
+	const { map, styleLoaded } = $derived(getMapContext());
+	let beforeId: string | undefined = $state();
+
+	const layerSpec = {
+		id,
+		type: 'line',
+		source: sourceId,
+		'source-layer': sourceLayer,
+		layout: $state.snapshot(layout) ?? {},
+		paint: $state.snapshot(paint) ?? {},
+		minzoom: minZoom,
+		maxzoom: maxZoom
+	} as AddLayerObject;
 
 	$effect(() => {
-		if (mapLoaded) {
+		if (map && styleLoaded) {
+			const style = map.getStyle();
+			beforeId = style.layers.find((l) => {
+				return l.id === placeBelow;
+			})?.id;
+		}
+	});
+	$effect(() => {
+		if (map && styleLoaded && beforeId) {
 			console.log(`Rendering layer ${id}`);
-			map.addLayer({ id: id, type: 'line', 'source-layer': sourceId, source: source });
+			map.addLayer(layerSpec, beforeId);
 		}
 	});
 
-	onDestroy(async () => {
+	onDestroy(() => {
 		if (map && map.getLayer(id)) map.removeLayer(id);
 	});
 </script>
-
-<style>
-</style>

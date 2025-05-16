@@ -58,7 +58,6 @@
 		});
 
 		mapContext.map.on('load', () => {
-			mapContext.loaded = true;
 			zoom = mapContext.map.getZoom();
 			center = mapContext.map.getCenter();
 			pitch = mapContext.map.getPitch();

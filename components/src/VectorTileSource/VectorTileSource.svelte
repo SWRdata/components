@@ -21,4 +21,4 @@
 	};
 </script>
 
-<MapSource {id} {minZoom} {maxZoom} {sourceSpec} />
+<MapSource {id} {sourceSpec} />
