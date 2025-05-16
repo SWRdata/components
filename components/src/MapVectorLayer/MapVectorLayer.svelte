@@ -1,5 +1,11 @@
 <script lang="ts">
-	import type { AddLayerObject, LineLayoutProps, LinePaintProps } from 'maplibre-gl';
+	import type {
+		AddLayerObject,
+		FillLayoutProps,
+		FillPaintProps,
+		LineLayoutProps,
+		LinePaintProps
+	} from 'maplibre-gl';
 	import { getMapContext } from '../Map/context.svelte.ts';
 	import { onDestroy } from 'svelte';
 
@@ -8,11 +14,12 @@
 		sourceId: string;
 		sourceLayer: string;
 		placeBelow: string;
+		type: 'line' | 'fill';
 		visible?: boolean;
 		minZoom?: number;
 		maxZoom?: number;
-		paint?: LinePaintProps;
-		layout?: LineLayoutProps;
+		paint?: LinePaintProps | FillPaintProps;
+		layout?: LineLayoutProps | FillLayoutProps;
 	}
 	const {
 		id,
@@ -20,6 +27,7 @@
 		sourceLayer,
 		visible = true,
 		placeBelow = 'label-place-capital',
+		type,
 		paint,
 		layout,
 		minZoom = 0,
@@ -31,7 +39,7 @@
 
 	const layerSpec = {
 		id,
-		type: 'line',
+		type,
 		source: sourceId,
 		'source-layer': sourceLayer,
 		layout: $state.snapshot(layout) ?? {},

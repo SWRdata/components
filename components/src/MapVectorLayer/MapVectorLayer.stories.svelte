@@ -20,11 +20,30 @@
 				<VectorTileSource id="ev-infra-source" {url} />
 				<MapVectorLayer
 					sourceId="ev-infra-source"
+					type="fill"
+					id="coverage-fill"
+					sourceLayer="coverage"
+					placeBelow="street-residential"
+					paint={{
+						'fill-color': [
+							'step',
+							['get', 'coverage_2025'],
+							'white',
+							1,
+							'lightgray',
+							1.3,
+							'lightgreen'
+						]
+					}}
+				></MapVectorLayer>
+				<MapVectorLayer
+					sourceId="ev-infra-source"
 					sourceLayer="coverage"
 					id="ev-infra-outline"
+					type="line"
 					paint={{
-						'line-width': 1,
-						'line-color': 'red',
+						'line-width': 0.5,
+						'line-color': 'purple',
 						'line-opacity': 1
 					}}
 				/>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onDestroy, type Snippet } from 'svelte';
-	import { type Map, type Source, type SourceSpecification } from 'maplibre-gl';
+	import { type Map, type SourceSpecification } from 'maplibre-gl';
 	import { getMapContext, createSourceContext } from '../Map/context.svelte.ts';
 
 	type Source = maplibregl.VectorTileSource;
@@ -46,8 +46,16 @@
 	});
 
 	onDestroy(() => {
-		map?.removeSource(id);
-		source = undefined;
+		if (map && styleLoaded) {
+			const layers = map?.getStyle().layers;
+			layers
+				.filter((l) => l.type !== 'background' && l.source == id)
+				.forEach((l) => {
+					map?.removeLayer(l.id);
+				});
+			map.removeSource(id);
+			source = undefined;
+		}
 	});
 </script>
 
