@@ -2,6 +2,7 @@
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import MapVectorLayer from './MapVectorLayer.svelte';
 	import Map from '../Map/Map.svelte';
+	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 	import VectorTileSource from '../VectorTileSource/VectorTileSource.svelte';
 
@@ -14,9 +15,9 @@
 </script>
 
 <Story asChild name="Basic">
-	<div class="container">
-		<DesignTokens>
-			<Map>
+	<DesignTokens>
+		<div class="container">
+			<Map showDebug={true}>
 				<VectorTileSource id="ev-infra-source" {url} />
 				<MapVectorLayer
 					sourceId="ev-infra-source"
@@ -47,9 +48,10 @@
 						'line-opacity': 1
 					}}
 				/>
+				<AttributionControl />
 			</Map>
-		</DesignTokens>
-	</div>
+		</div>
+	</DesignTokens>
 </Story>
 
 <style>

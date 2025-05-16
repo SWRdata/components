@@ -13,8 +13,8 @@
 		id: string;
 		sourceId: string;
 		sourceLayer: string;
-		placeBelow: string;
 		type: 'line' | 'fill';
+		placeBelow: string;
 		visible?: boolean;
 		minZoom?: number;
 		maxZoom?: number;

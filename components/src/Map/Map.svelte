@@ -3,7 +3,6 @@
 	import { setContext, onMount, onDestroy, type Snippet } from 'svelte';
 	import { createMapContext } from './context.svelte';
 	import { SWRDataBaseLight } from '../MapStyle';
-	import { dev } from '$app/environment';
 
 	interface Location {
 		lat: number;
@@ -13,6 +12,8 @@
 
 	interface MapProps {
 		style?: StyleSpecification | string;
+		initialLocation?: Location;
+		allowRotation?: boolean;
 		minZoom?: number;
 		maxZoom?: number;
 		zoom?: number;
@@ -20,9 +21,8 @@
 		pitch?: number;
 		bearing?: number;
 		loading?: boolean;
-		allowRotation?: boolean;
-		initialLocation?: Location;
 		options?: any;
+		showDebug?: boolean;
 		children?: Snippet;
 	}
 
@@ -38,7 +38,8 @@
 		bearing = $bindable(),
 		loading = $bindable(true),
 		allowRotation = false,
-		initialLocation = { lat: 51.5, lng: 10, zoom: 5 }
+		showDebug = false,
+		initialLocation = { lat: 51.3, lng: 10.2, zoom: 5 }
 	}: MapProps = $props();
 
 	let container: HTMLElement;
@@ -51,7 +52,7 @@
 			style,
 			minZoom,
 			maxZoom,
-			attributionControl: false,
+			attributionControl: false, // We have a component for it, so we disable it here
 			center: [initialLocation.lng, initialLocation.lat],
 			zoom: initialLocation.zoom,
 			...options
@@ -95,7 +96,7 @@
 			{@render children()}
 		{/if}
 	{/if}
-	{#if dev}
+	{#if showDebug}
 		<div class="debug">
 			{JSON.stringify({ ...center, zoom })}
 		</div>
