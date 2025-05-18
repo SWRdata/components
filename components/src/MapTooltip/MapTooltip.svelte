@@ -5,22 +5,31 @@
 
 	interface MapTooltipProps {
 		position: LngLatLike | undefined;
-		offset?: number;
-		maxWidth?: string;
-		showCloseButton?: boolean;
-		closeOnClick?: boolean;
-		mouseEvents?: boolean;
 		children?: Snippet;
+		maxWidth?: number;
+		showCloseButton?: boolean;
+		/**
+		 * Close the tooltip if the user clicks anywhere on the map
+		 */
+		closeOnClick?: boolean;
+		/**
+		 * y axis offset (px)
+		 */
+		offset?: number;
+		/**
+		 * Toggle mouse events on the tooltip element. Should be false if the tooltip appears on hover to avoid flickering.
+		 */
+		mouseEvents?: boolean;
 	}
 
 	let {
-		offset = 20,
-		closeOnClick = true,
-		showCloseButton = false,
-		mouseEvents = false,
-		maxWidth = '360px',
 		position,
-		children
+		children,
+		offset = 20,
+		maxWidth = 360,
+		showCloseButton = false,
+		closeOnClick = true,
+		mouseEvents = false
 	}: MapTooltipProps = $props();
 
 	const { map } = $derived(getMapContext());
@@ -28,8 +37,8 @@
 	let tooltip = new Popup({
 		closeButton: showCloseButton,
 		closeOnClick: closeOnClick,
-		offset: offset,
-		maxWidth: maxWidth
+		maxWidth: `${maxWidth}px`,
+		offset: offset
 	});
 
 	let el: Node | undefined = $state();
