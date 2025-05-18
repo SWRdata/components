@@ -1,19 +1,25 @@
 <script lang="ts">
-	import { getContext, onDestroy, type Snippet } from 'svelte';
-	import { type Map, Popup } from 'maplibre-gl';
+	import { onDestroy, type Snippet } from 'svelte';
+	import { type LngLatLike, Popup } from 'maplibre-gl';
 	import { getMapContext } from '../Map/context.svelte.ts';
 
 	interface MapTooltipProps {
-		offset: number;
-		showCloseButton: boolean;
-		closeOnClick: boolean;
+		position: LngLatLike | undefined;
+		offset?: number;
+		maxWidth?: string;
+		showCloseButton?: boolean;
+		closeOnClick?: boolean;
+		mouseEvents?: boolean;
 		children?: Snippet;
 	}
 
 	let {
-		offset = 5,
-		showCloseButton = true,
+		offset = 20,
 		closeOnClick = true,
+		showCloseButton = false,
+		mouseEvents = false,
+		maxWidth = '360px',
+		position,
 		children
 	}: MapTooltipProps = $props();
 
@@ -23,28 +29,122 @@
 		closeButton: showCloseButton,
 		closeOnClick: closeOnClick,
 		offset: offset,
-		maxWidth: '360px'
+		maxWidth: maxWidth
 	});
 
-	let data = getContext('hover');
 	let el: Node | undefined = $state();
 
-	function updateTooltip(data: any, el: Node, map: Map) {
-		if (data.id) {
-			tooltip.setLngLat(data.event.lngLat).setDOMContent(el).addTo(map);
+	$effect(() => {
+		if (position && el && map) {
+			tooltip.setLngLat(position).setDOMContent(el).addTo(map);
 		} else {
 			tooltip.remove();
-		}
-	}
-
-	$effect(() => {
-		if (el && map) {
-			updateTooltip(data, el, map);
 		}
 	});
 	onDestroy(() => tooltip.remove());
 </script>
 
-<div bind:this={el}>
+<div bind:this={el} class="container" class:mouseEvents>
 	{@render children?.()}
 </div>
+
+<style>
+	.container {
+		background: white;
+		padding: 0.5em;
+		border: 1px solid black;
+		pointer-events: none;
+	}
+	.mouseEvents {
+		pointer-events: all;
+	}
+
+	:global {
+		.maplibregl-popup {
+			top: 0;
+			left: 0;
+			display: flex;
+			position: absolute;
+			will-change: transform;
+		}
+		.maplibregl-popup-anchor-top,
+		.maplibregl-popup-anchor-top-left,
+		.maplibregl-popup-anchor-top-right {
+			flex-direction: column;
+		}
+		.maplibregl-popup-anchor-bottom,
+		.maplibregl-popup-anchor-bottom-left,
+		.maplibregl-popup-anchor-bottom-right {
+			flex-direction: column-reverse;
+		}
+
+		.maplibregl-popup-anchor-left {
+			flex-direction: row;
+		}
+		.maplibregl-popup-anchor-right {
+			flex-direction: row-reverse;
+		}
+		.maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+			transform: translateY(50%) rotate(45deg);
+			align-self: center;
+		}
+		.maplibregl-popup-anchor-top .maplibregl-popup-tip {
+			transform: translateY(-50%) rotate(-135deg);
+			align-self: center;
+		}
+
+		.maplibregl-popup-anchor-left .maplibregl-popup-tip {
+			transform: translateX(-50%) rotate(135deg);
+			align-self: center;
+		}
+		.maplibregl-popup-anchor-top-left .maplibregl-popup-tip {
+			transform: translateY(1em) translateX(-50%) rotate(135deg);
+		}
+		.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip {
+			transform: translateY(-1em) translateX(-50%) rotate(135deg);
+		}
+		.maplibregl-popup-anchor-right .maplibregl-popup-tip {
+			transform: translateX(50%) rotate(-45deg);
+			align-self: center;
+		}
+		.maplibregl-popup-anchor-top-right .maplibregl-popup-tip {
+			transform: translateX(-1em) translateY(-50%) rotate(-135deg);
+			align-self: flex-end;
+		}
+		.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
+			transform: translateX(-1em) translateY(50%) rotate(45deg);
+			align-self: flex-end;
+		}
+
+		.maplibregl-popup-close-button {
+			background-color: transparent;
+			border: 0;
+			cursor: pointer;
+			position: absolute;
+			top: 0.5em;
+			right: 0.5em;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding-bottom: 0.1em;
+			border: 1px solid black;
+			font-size: 1.2rem;
+			width: 1.25em;
+			height: 1.25em;
+			z-index: 100;
+		}
+
+		.maplibregl-popup-close-button:hover {
+			background: rgb(245, 245, 245);
+		}
+
+		.maplibregl-popup-tip {
+			width: 0.65rem;
+			height: 0.65rem;
+			background: white;
+			position: absolute;
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
+		}
+	}
+</style>

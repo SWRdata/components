@@ -209,9 +209,8 @@ const style: StyleSpecification = {
 	},
 	glyphs: 'https://static.datenhub.net/maps/fonts/{fontstack}/{range}.pbf',
 	sources: {
-		'versatiles-shortbread': {
-			attribution:
-				'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		'versatiles-osm': {
+			attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 			tiles: ['https://tiles.versatiles.org/tiles/osm/{z}/{x}/{y}'],
 			type: 'vector',
 			scheme: 'xyz',
@@ -229,7 +228,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-ocean',
 			type: 'fill',
 			'source-layer': 'ocean',
@@ -238,7 +237,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-glacier',
 			type: 'fill',
 			'source-layer': 'water_polygons',
@@ -248,7 +247,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-industrial',
 			type: 'fill',
 			'source-layer': 'land',
@@ -259,7 +258,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-agriculture',
 			type: 'fill',
 			'source-layer': 'land',
@@ -289,7 +288,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-waste',
 			type: 'fill',
 			'source-layer': 'land',
@@ -305,7 +304,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-park',
 			type: 'fill',
 			'source-layer': 'land',
@@ -321,7 +320,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-garden',
 			type: 'fill',
 			'source-layer': 'land',
@@ -337,7 +336,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-burial',
 			type: 'fill',
 			'source-layer': 'land',
@@ -353,7 +352,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-leisure',
 			type: 'fill',
 			'source-layer': 'land',
@@ -363,7 +362,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-rock',
 			type: 'fill',
 			'source-layer': 'land',
@@ -373,7 +372,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-forest',
 			type: 'fill',
 			'source-layer': 'land',
@@ -389,7 +388,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-grass',
 			type: 'fill',
 			'source-layer': 'land',
@@ -405,7 +404,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-vegetation',
 			type: 'fill',
 			'source-layer': 'land',
@@ -421,7 +420,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-sand',
 			type: 'fill',
 			'source-layer': 'land',
@@ -431,7 +430,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'land-wetland',
 			type: 'fill',
 			'source-layer': 'land',
@@ -447,7 +446,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-river',
 			type: 'line',
 			'source-layer': 'water_lines',
@@ -472,7 +471,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-canal',
 			type: 'line',
 			'source-layer': 'water_lines',
@@ -496,7 +495,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-stream',
 			type: 'line',
 			'source-layer': 'water_lines',
@@ -520,7 +519,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-ditch',
 			type: 'line',
 			'source-layer': 'water_lines',
@@ -543,7 +542,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-area',
 			type: 'fill',
 			'source-layer': 'water_polygons',
@@ -559,7 +558,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-area-river',
 			type: 'fill',
 			'source-layer': 'water_polygons',
@@ -575,7 +574,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-area-small',
 			type: 'fill',
 			'source-layer': 'water_polygons',
@@ -591,7 +590,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-dam-area',
 			type: 'fill',
 			'source-layer': 'dam_polygons',
@@ -607,7 +606,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-dam',
 			type: 'line',
 			'source-layer': 'dam_lines',
@@ -621,7 +620,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-pier-area',
 			type: 'fill',
 			'source-layer': 'pier_polygons',
@@ -637,7 +636,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'water-pier',
 			type: 'line',
 			'source-layer': 'pier_lines',
@@ -657,7 +656,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'site-dangerarea',
 			type: 'fill',
 			'source-layer': 'sites',
@@ -669,7 +668,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'site-university',
 			type: 'fill',
 			'source-layer': 'sites',
@@ -680,7 +679,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'site-college',
 			type: 'fill',
 			'source-layer': 'sites',
@@ -691,7 +690,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'site-school',
 			type: 'fill',
 			'source-layer': 'sites',
@@ -702,7 +701,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'site-hospital',
 			type: 'fill',
 			'source-layer': 'sites',
@@ -713,7 +712,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'site-prison',
 			type: 'fill',
 			'source-layer': 'sites',
@@ -724,7 +723,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'site-parking',
 			type: 'fill',
 			'source-layer': 'sites',
@@ -734,7 +733,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'site-bicycleparking',
 			type: 'fill',
 			'source-layer': 'sites',
@@ -744,7 +743,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'site-construction',
 			type: 'fill',
 			'source-layer': 'sites',
@@ -755,7 +754,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'airport-area',
 			type: 'fill',
 			'source-layer': 'street_polygons',
@@ -766,7 +765,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'airport-taxiway:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -789,7 +788,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'airport-runway:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -815,7 +814,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'airport-taxiway',
 			type: 'line',
 			'source-layer': 'streets',
@@ -844,7 +843,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'airport-runway',
 			type: 'line',
 			'source-layer': 'streets',
@@ -877,7 +876,7 @@ const style: StyleSpecification = {
 		},
 
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'building',
 			type: 'fill',
 			'source-layer': 'buildings',
@@ -892,7 +891,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-pedestrian-zone',
 			type: 'fill',
 			'source-layer': 'street_polygons',
@@ -908,7 +907,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-way-footway:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -931,7 +930,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-way-steps:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -954,7 +953,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-way-path:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -977,7 +976,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-way-cycleway:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1000,7 +999,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-track:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1029,7 +1028,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-pedestrian:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1059,7 +1058,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-service:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1093,7 +1092,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-livingstreet:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1123,7 +1122,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-residential:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1139,7 +1138,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-unclassified:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1169,7 +1168,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-tertiary-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1199,7 +1198,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-secondary-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1224,7 +1223,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-primary-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1241,7 +1240,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-trunk-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1257,7 +1256,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-motorway-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1274,7 +1273,7 @@ const style: StyleSpecification = {
 			minzoom: 12
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-tertiary:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1304,7 +1303,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-secondary:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1335,7 +1334,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-primary:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1362,7 +1361,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-trunk:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1378,7 +1377,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-motorway:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1394,7 +1393,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-way-footway',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1418,7 +1417,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-way-steps',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1442,7 +1441,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-way-path',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1466,7 +1465,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-way-cycleway',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1490,7 +1489,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-track',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1519,7 +1518,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-pedestrian',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1549,7 +1548,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-service',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1583,7 +1582,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-livingstreet',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1613,7 +1612,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-residential',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1634,7 +1633,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-unclassified',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1664,7 +1663,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-track-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1683,7 +1682,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-pedestrian-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1715,7 +1714,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-service-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1735,7 +1734,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-livingstreet-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1767,7 +1766,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-residential-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1785,7 +1784,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-unclassified-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1817,7 +1816,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-tertiary-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1847,7 +1846,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-secondary-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1860,7 +1859,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-primary-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1873,7 +1872,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-trunk-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1886,7 +1885,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-motorway-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1900,7 +1899,7 @@ const style: StyleSpecification = {
 			minzoom: 12
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-tertiary',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1930,7 +1929,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-secondary',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1957,7 +1956,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-primary',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1975,7 +1974,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-trunk',
 			type: 'line',
 			'source-layer': 'streets',
@@ -1993,7 +1992,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-street-motorway',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2006,7 +2005,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-transport-monorail',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2018,7 +2017,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-transport-funicular',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2030,7 +2029,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-transport-tram',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2042,7 +2041,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-transport-narrowgauge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2054,7 +2053,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-transport-lightrail',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2066,7 +2065,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'tunnel-transport-rail',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2078,7 +2077,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-pedestrian-zone',
 			type: 'fill',
 			'source-layer': 'street_polygons',
@@ -2096,7 +2095,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'way-footway:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2119,7 +2118,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'way-steps:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2142,7 +2141,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'way-path:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2165,7 +2164,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'way-cycleway:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2188,7 +2187,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-track:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2217,7 +2216,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-pedestrian:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2247,7 +2246,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-service:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2282,7 +2281,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-livingstreet:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2317,7 +2316,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-residential:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2338,7 +2337,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-unclassified:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2373,7 +2372,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-tertiary-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2409,7 +2408,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-secondary-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2431,7 +2430,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-primary-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2453,7 +2452,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-trunk-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2475,7 +2474,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-motorway-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2497,7 +2496,7 @@ const style: StyleSpecification = {
 			minzoom: 12
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-tertiary:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2533,7 +2532,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-secondary:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2569,7 +2568,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-primary:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2590,7 +2589,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-trunk:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2611,7 +2610,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-motorway:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2632,7 +2631,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'way-footway',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2655,7 +2654,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'way-steps',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2678,7 +2677,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'way-path',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2701,7 +2700,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'way-cycleway',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2724,7 +2723,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-track',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2753,7 +2752,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-pedestrian',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2784,7 +2783,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-service',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2819,7 +2818,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-livingstreet',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2840,7 +2839,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-residential',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2861,7 +2860,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-unclassified',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2896,7 +2895,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-track-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2916,7 +2915,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-pedestrian-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2949,7 +2948,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-service-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -2970,7 +2969,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-livingstreet-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3003,7 +3002,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-residential-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3022,7 +3021,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-unclassified-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3055,7 +3054,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-tertiary-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3091,7 +3090,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-secondary-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3113,7 +3112,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-primary-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3135,7 +3134,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-trunk-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3157,7 +3156,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-motorway-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3180,7 +3179,7 @@ const style: StyleSpecification = {
 			minzoom: 12
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-tertiary',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3216,7 +3215,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-secondary',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3243,7 +3242,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-primary',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3270,7 +3269,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-trunk',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3292,7 +3291,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'street-motorway',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3314,7 +3313,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'transport-rail:dashes',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3333,7 +3332,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'transport-monorail',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3359,7 +3358,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'transport-funicular',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3385,7 +3384,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'transport-tram',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3403,7 +3402,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'transport-narrowgauge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3421,7 +3420,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'transport-lightrail',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3444,7 +3443,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'transport-rail',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3462,7 +3461,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'transport-ferry',
 			type: 'line',
 			'source-layer': 'ferries',
@@ -3485,7 +3484,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-footway:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3510,7 +3509,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-steps:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3535,7 +3534,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-path:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3560,7 +3559,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-cycleway:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3585,7 +3584,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-track:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3614,7 +3613,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-pedestrian:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3644,7 +3643,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-service:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3678,7 +3677,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-livingstreet:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3708,7 +3707,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-residential:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3724,7 +3723,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-unclassified:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3754,7 +3753,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-tertiary-link:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3784,7 +3783,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-secondary-link:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3809,7 +3808,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-primary-link:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3825,7 +3824,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-trunk-link:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3850,7 +3849,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-motorway-link:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3867,7 +3866,7 @@ const style: StyleSpecification = {
 			minzoom: 12
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-tertiary:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3897,7 +3896,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-secondary:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3927,7 +3926,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-primary:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3942,7 +3941,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-trunk:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3958,7 +3957,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-motorway:bridge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -3974,7 +3973,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-pedestrian-zone',
 			type: 'fill',
 			'source-layer': 'street_polygons',
@@ -3990,7 +3989,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-footway:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4013,7 +4012,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-steps:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4036,7 +4035,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-path:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4059,7 +4058,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-cycleway:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4082,7 +4081,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-track:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4108,7 +4107,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-pedestrian:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4135,7 +4134,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-service:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4166,7 +4165,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-livingstreet:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4193,7 +4192,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-residential:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4206,7 +4205,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-unclassified:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4233,7 +4232,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-tertiary-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4260,7 +4259,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-secondary-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4282,7 +4281,7 @@ const style: StyleSpecification = {
 		},
 		{
 			'source-layer': 'streets',
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-primary-link:outline',
 			type: 'line',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'primary'], ['==', 'link', true]],
@@ -4294,7 +4293,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-trunk-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4307,7 +4306,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-motorway-link:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4320,7 +4319,7 @@ const style: StyleSpecification = {
 			minzoom: 12
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-tertiary:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4347,7 +4346,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-secondary:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4374,7 +4373,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-primary:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4386,7 +4385,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-trunk:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4398,7 +4397,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-motorway:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4410,7 +4409,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-footway',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4433,7 +4432,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-steps',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4456,7 +4455,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-path',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4479,7 +4478,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-way-cycleway',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4502,7 +4501,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-track',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4528,7 +4527,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-pedestrian',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4555,7 +4554,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-service',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4586,7 +4585,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-livingstreet',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4613,7 +4612,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-residential',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4626,7 +4625,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-unclassified',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4653,7 +4652,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-track-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4669,7 +4668,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-pedestrian-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4701,7 +4700,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-service-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4718,7 +4717,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-livingstreet-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4750,7 +4749,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-residential-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4768,7 +4767,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-unclassified-bicycle',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4800,7 +4799,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-tertiary-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4827,7 +4826,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-secondary-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4848,7 +4847,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-primary-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4861,7 +4860,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-trunk-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4874,7 +4873,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-motorway-link',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4888,7 +4887,7 @@ const style: StyleSpecification = {
 			minzoom: 12
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-tertiary',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4915,7 +4914,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-secondary',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4933,7 +4932,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-primary',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4951,7 +4950,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-trunk',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4964,7 +4963,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-street-motorway',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4977,7 +4976,7 @@ const style: StyleSpecification = {
 			layout: street_layout
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-monorail:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -4989,7 +4988,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-funicular:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -5001,7 +5000,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-tram:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -5013,7 +5012,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-narrowgauge:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -5025,7 +5024,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-lightrail:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -5037,7 +5036,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-rail:outline',
 			type: 'line',
 			'source-layer': 'streets',
@@ -5049,7 +5048,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-monorail',
 			type: 'line',
 			'source-layer': 'streets',
@@ -5061,7 +5060,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-funicular',
 			type: 'line',
 			'source-layer': 'streets',
@@ -5073,7 +5072,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-tram',
 			type: 'line',
 			'source-layer': 'streets',
@@ -5085,7 +5084,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-narrowgauge',
 			type: 'line',
 			'source-layer': 'streets',
@@ -5097,7 +5096,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-lightrail',
 			type: 'line',
 			'source-layer': 'streets',
@@ -5109,7 +5108,7 @@ const style: StyleSpecification = {
 			}
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'bridge-transport-rail',
 			type: 'line',
 			'source-layer': 'streets',
@@ -5123,7 +5122,7 @@ const style: StyleSpecification = {
 		...buildAdmin([0, 1, 2, 3]),
 
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-street-pedestrian',
 			type: 'symbol',
 			'source-layer': 'street_labels',
@@ -5149,7 +5148,7 @@ const style: StyleSpecification = {
 			minzoom: 14
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-street-livingstreet',
 			type: 'symbol',
 			'source-layer': 'street_labels',
@@ -5175,7 +5174,7 @@ const style: StyleSpecification = {
 			minzoom: 14
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-street-residential',
 			type: 'symbol',
 			'source-layer': 'street_labels',
@@ -5201,7 +5200,7 @@ const style: StyleSpecification = {
 			minzoom: 15
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-street-unclassified',
 			type: 'symbol',
 			'source-layer': 'street_labels',
@@ -5226,7 +5225,7 @@ const style: StyleSpecification = {
 			minzoom: 14
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-street-tertiary',
 			type: 'symbol',
 			'source-layer': 'street_labels',
@@ -5252,7 +5251,7 @@ const style: StyleSpecification = {
 			minzoom: 14
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-street-secondary',
 			type: 'symbol',
 			'source-layer': 'street_labels',
@@ -5277,7 +5276,7 @@ const style: StyleSpecification = {
 			minzoom: 14
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-street-primary',
 			type: 'symbol',
 			'source-layer': 'street_labels',
@@ -5302,7 +5301,7 @@ const style: StyleSpecification = {
 			minzoom: 14
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-street-trunk',
 			type: 'symbol',
 			'source-layer': 'street_labels',
@@ -5327,7 +5326,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-place-neighbourhood',
 			type: 'symbol',
 			'source-layer': 'place_labels',
@@ -5347,7 +5346,7 @@ const style: StyleSpecification = {
 			minzoom: 14
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-place-quarter',
 			type: 'symbol',
 			'source-layer': 'place_labels',
@@ -5367,7 +5366,7 @@ const style: StyleSpecification = {
 			minzoom: 14
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-place-suburb',
 			type: 'symbol',
 			'source-layer': 'place_labels',
@@ -5390,7 +5389,7 @@ const style: StyleSpecification = {
 			minzoom: 11
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-place-hamlet',
 			type: 'symbol',
 			'source-layer': 'place_labels',
@@ -5414,7 +5413,7 @@ const style: StyleSpecification = {
 			minzoom: 13
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-place-village',
 			type: 'symbol',
 			'source-layer': 'place_labels',
@@ -5438,7 +5437,7 @@ const style: StyleSpecification = {
 			minzoom: 11
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-place-town-large',
 			type: 'symbol',
 			'source-layer': 'place_labels',
@@ -5461,7 +5460,7 @@ const style: StyleSpecification = {
 			minzoom: 8
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-place-town',
 			type: 'symbol',
 			'source-layer': 'place_labels',
@@ -5485,7 +5484,7 @@ const style: StyleSpecification = {
 		},
 
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-place-city',
 			type: 'symbol',
 			'source-layer': 'place_labels',
@@ -5509,7 +5508,7 @@ const style: StyleSpecification = {
 			maxzoom: 11
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-place-statecapital',
 			type: 'symbol',
 			'source-layer': 'place_labels',
@@ -5537,7 +5536,7 @@ const style: StyleSpecification = {
 			maxzoom: 12
 		},
 		{
-			source: 'versatiles-shortbread',
+			source: 'versatiles-osm',
 			id: 'label-place-capital',
 			type: 'symbol',
 			'source-layer': 'place_labels',

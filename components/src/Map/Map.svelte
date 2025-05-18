@@ -1,6 +1,6 @@
 <script lang="ts">
-	import maplibre, { type StyleSpecification, type Map } from 'maplibre-gl';
-	import { setContext, onMount, onDestroy, type Snippet } from 'svelte';
+	import maplibre, { type StyleSpecification } from 'maplibre-gl';
+	import { onMount, onDestroy, type Snippet } from 'svelte';
 	import { createMapContext } from './context.svelte';
 	import { SWRDataBaseLight } from '../MapStyle';
 

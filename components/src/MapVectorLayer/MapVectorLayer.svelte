@@ -4,10 +4,13 @@
 		FillLayoutProps,
 		FillPaintProps,
 		LineLayoutProps,
-		LinePaintProps
+		LinePaintProps,
+		MapGeoJSONFeature,
+		MapLayerMouseEvent
 	} from 'maplibre-gl';
 	import { getMapContext } from '../Map/context.svelte.ts';
 	import { onDestroy } from 'svelte';
+	import { resetLayerEventListener } from '../Map/utils';
 
 	interface MapVectorLayerProps {
 		id: string;
@@ -20,6 +23,11 @@
 		maxZoom?: number;
 		paint?: LinePaintProps | FillPaintProps;
 		layout?: LineLayoutProps | FillLayoutProps;
+		hovered?: MapGeoJSONFeature | undefined;
+
+		onclick: (e: MapLayerMouseEvent) => any;
+		onmousemove: (e: MapLayerMouseEvent) => any;
+		onmouseleave: (e: MapLayerMouseEvent) => any;
 	}
 	const {
 		id,
@@ -30,12 +38,18 @@
 		type,
 		paint,
 		layout,
+		hovered = $bindable(),
 		minZoom = 0,
-		maxZoom = 24
+		maxZoom = 24,
+		onclick,
+		onmousemove,
+		onmouseleave
 	}: MapVectorLayerProps = $props();
 
 	const { map, styleLoaded } = $derived(getMapContext());
 	let beforeId: string | undefined = $state();
+	let prevSelected: string | number | undefined = $state();
+	let prevHovered: string | number | undefined = $state();
 
 	const layerSpec = {
 		id,
@@ -56,10 +70,40 @@
 			})?.id;
 		}
 	});
+
 	$effect(() => {
 		if (map && styleLoaded && beforeId) {
 			console.log(`Rendering layer ${id}`);
 			map.addLayer(layerSpec, beforeId);
+		}
+	});
+
+	$effect(() => resetLayerEventListener(map, 'click', id, onclick));
+	$effect(() => resetLayerEventListener(map, 'mousemove', id, onmousemove));
+	$effect(() => resetLayerEventListener(map, 'mouseleave', id, onmouseleave));
+
+	$effect(() => {
+		if (styleLoaded) {
+			if (hovered) {
+				if (prevHovered) {
+					map?.setFeatureState(
+						{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
+						{ hovered: false }
+					);
+				}
+				map?.setFeatureState(
+					{ source: sourceId, sourceLayer: sourceLayer, id: hovered.id },
+					{ hovered: true }
+				);
+				prevHovered = hovered.id;
+			} else {
+				if (prevHovered) {
+					map?.setFeatureState(
+						{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
+						{ hovered: false }
+					);
+				}
+			}
 		}
 	});
 

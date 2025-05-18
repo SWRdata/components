@@ -5,7 +5,7 @@ type AdminLevel = 1 | 2 | 3 | 4
 
 export default function buildAdmin(levels: AdminLevel[]): Layer[] {
     const layers = [{
-        source: 'versatiles-shortbread',
+        source: 'versatiles-osm',
         id: 'boundary-country:outline',
         type: 'line',
         'source-layer': 'boundaries',
@@ -34,7 +34,7 @@ export default function buildAdmin(levels: AdminLevel[]): Layer[] {
         }
     },
     {
-        source: 'versatiles-shortbread',
+        source: 'versatiles-osm',
         id: 'boundary-country-disputed:outline',
         type: 'line',
         'source-layer': 'boundaries',
@@ -58,7 +58,7 @@ export default function buildAdmin(levels: AdminLevel[]): Layer[] {
         }
     },
     {
-        source: 'versatiles-shortbread',
+        source: 'versatiles-osm',
         id: 'boundary-state:outline',
         type: 'line',
         'source-layer': 'boundaries',
@@ -87,7 +87,7 @@ export default function buildAdmin(levels: AdminLevel[]): Layer[] {
         }
     },
     {
-        source: 'versatiles-shortbread',
+        source: 'versatiles-osm',
         id: 'boundary-country',
         type: 'line',
         'source-layer': 'boundaries',
@@ -121,7 +121,7 @@ export default function buildAdmin(levels: AdminLevel[]): Layer[] {
         }
     },
     {
-        source: 'versatiles-shortbread',
+        source: 'versatiles-osm',
         id: 'boundary-country-disputed',
         type: 'line',
         'source-layer': 'boundaries',
@@ -148,7 +148,7 @@ export default function buildAdmin(levels: AdminLevel[]): Layer[] {
         }
     },
     {
-        source: 'versatiles-shortbread',
+        source: 'versatiles-osm',
         id: 'boundary-state',
         type: 'line',
         'source-layer': 'boundaries',
