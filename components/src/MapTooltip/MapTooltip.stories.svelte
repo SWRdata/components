@@ -13,8 +13,6 @@
 		component: MapTooltip
 	});
 
-	const url =
-		'https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}';
 	let hovered = $state() as MapGeoJSONFeature | undefined;
 	let mouseCoords = $state([0, 0]) as LngLatLike;
 </script>
@@ -23,7 +21,10 @@
 	<DesignTokens>
 		<div class="container">
 			<Map showDebug={true} initialLocation={{ lat: 51, lng: 10, zoom: 8 }}>
-				<VectorTileSource id="ev-infra-source" {url} />
+				<VectorTileSource
+					id="ev-infra-source"
+					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}
+				/>
 				<MapVectorLayer
 					sourceId="ev-infra-source"
 					type="fill"

@@ -10,15 +10,16 @@
 		title: 'Map/MapVectorLayer',
 		component: MapVectorLayer
 	});
-	const url =
-		'https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}';
 </script>
 
 <Story asChild name="Basic">
 	<DesignTokens>
 		<div class="container">
 			<Map showDebug={true}>
-				<VectorTileSource id="ev-infra-source" {url} />
+				<VectorTileSource
+					id="ev-infra-source"
+					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}
+				/>
 				<MapVectorLayer
 					sourceId="ev-infra-source"
 					type="fill"
