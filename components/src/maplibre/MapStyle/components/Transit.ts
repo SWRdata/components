@@ -59,8 +59,6 @@ export default function makeTransit() {
             }
         }, {
             id: 'airport-taxiway:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['==', 'kind', 'taxiway'],
             paint: {
                 'line-color': 'hsl(36,0%,80%)',
@@ -81,8 +79,6 @@ export default function makeTransit() {
         },
         {
             id: 'airport-runway:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['==', 'kind', 'runway'],
             paint: {
                 'line-color': 'hsl(36,0%,80%)',
@@ -106,8 +102,6 @@ export default function makeTransit() {
         },
         {
             id: 'airport-taxiway',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['==', 'kind', 'taxiway'],
             paint: {
                 'line-color': 'hsl(0,0%,100%)',
@@ -134,8 +128,6 @@ export default function makeTransit() {
         },
         {
             id: 'airport-runway',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['==', 'kind', 'runway'],
             paint: {
                 'line-color': 'hsl(0,0%,100%)',
@@ -163,14 +155,17 @@ export default function makeTransit() {
                 'line-join': 'round'
             }
         }].map(el => {
-            return { source: "versatiles-osm", ...el } as Layer
+            return {
+                type: 'line',
+                'source-layer': 'streets',
+                source: 'versatiles-osm',
+                ...el
+            } as Layer
         })
 
     const transitBridges = [
         {
             id: 'bridge-transport-monorail:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'monorail'], ['!has', 'service'], ['==', 'bridge', true]],
             minzoom: 15,
             paint: {
@@ -180,8 +175,6 @@ export default function makeTransit() {
         },
         {
             id: 'bridge-transport-funicular:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'funicular'], ['!has', 'service'], ['==', 'bridge', true]],
             minzoom: 15,
             paint: {
@@ -191,8 +184,6 @@ export default function makeTransit() {
         },
         {
             id: 'bridge-transport-tram:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'tram'], ['!has', 'service'], ['==', 'bridge', true]],
             minzoom: 15,
             paint: {
@@ -202,8 +193,6 @@ export default function makeTransit() {
         },
         {
             id: 'bridge-transport-narrowgauge:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'narrow_gauge'], ['!has', 'service'], ['==', 'bridge', true]],
             minzoom: 15,
             paint: {
@@ -213,8 +202,6 @@ export default function makeTransit() {
         },
         {
             id: 'bridge-transport-lightrail:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'light_rail'], ['!has', 'service'], ['==', 'bridge', true]],
             paint: {
                 'line-color': rail_outline.line_color,
@@ -224,8 +211,6 @@ export default function makeTransit() {
         },
         {
             id: 'bridge-transport-rail:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'rail'], ['!has', 'service'], ['==', 'bridge', true]],
             paint: {
                 'line-color': rail_outline.line_color,
@@ -235,8 +220,6 @@ export default function makeTransit() {
         },
         {
             id: 'bridge-transport-monorail',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'monorail'], ['!has', 'service'], ['==', 'bridge', true]],
             minzoom: 13,
             paint: {
@@ -246,8 +229,6 @@ export default function makeTransit() {
         },
         {
             id: 'bridge-transport-funicular',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'funicular'], ['!has', 'service'], ['==', 'bridge', true]],
             minzoom: 13,
             paint: {
@@ -257,8 +238,6 @@ export default function makeTransit() {
         },
         {
             id: 'bridge-transport-tram',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'tram'], ['!has', 'service'], ['==', 'bridge', true]],
             minzoom: 13,
             paint: {
@@ -268,8 +247,6 @@ export default function makeTransit() {
         },
         {
             id: 'bridge-transport-narrowgauge',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'narrow_gauge'], ['!has', 'service'], ['==', 'bridge', true]],
             minzoom: 13,
             paint: {
@@ -279,8 +256,6 @@ export default function makeTransit() {
         },
         {
             id: 'bridge-transport-lightrail',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'light_rail'], ['!has', 'service'], ['==', 'bridge', true]],
             paint: {
                 'line-color': rail.line_color,
@@ -290,8 +265,6 @@ export default function makeTransit() {
         },
         {
             id: 'bridge-transport-rail',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'rail'], ['!has', 'service'], ['==', 'bridge', true]],
             paint: {
                 'line-color': rail.line_color,
@@ -300,14 +273,17 @@ export default function makeTransit() {
             }
         }
     ].map(el => {
-        return { source: "versatiles-osm", ...el } as Layer
+
+        return {
+            type: 'line',
+            'source-layer': 'streets',
+            source: 'versatiles-osm', ...el
+        } as Layer
     })
 
     const transitTunnels: Layer[] = [
         {
             id: 'tunnel-transport-monorail',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'monorail'], ['!has', 'service'], ['==', 'tunnel', true]],
             minzoom: 13,
             paint: {
@@ -317,8 +293,6 @@ export default function makeTransit() {
         },
         {
             id: 'tunnel-transport-funicular',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'funicular'], ['!has', 'service'], ['==', 'tunnel', true]],
             minzoom: 13,
             paint: {
@@ -328,8 +302,6 @@ export default function makeTransit() {
         },
         {
             id: 'tunnel-transport-tram',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'tram'], ['!has', 'service'], ['==', 'tunnel', true]],
             minzoom: 13,
             paint: {
@@ -339,8 +311,6 @@ export default function makeTransit() {
         },
         {
             id: 'tunnel-transport-narrowgauge',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'narrow_gauge'], ['!has', 'service'], ['==', 'tunnel', true]],
             minzoom: 13,
             paint: {
@@ -350,8 +320,6 @@ export default function makeTransit() {
         },
         {
             id: 'tunnel-transport-lightrail',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'light_rail'], ['!has', 'service'], ['==', 'tunnel', true]],
             paint: {
                 'line-color': rail.line_color,
@@ -361,8 +329,6 @@ export default function makeTransit() {
         },
         {
             id: 'tunnel-transport-rail',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['in', 'kind', 'rail'], ['!has', 'service'], ['==', 'tunnel', true]],
             paint: {
                 'line-color': rail.line_color,
@@ -371,13 +337,15 @@ export default function makeTransit() {
             }
         }
     ].map(el => {
-        return { source: "versatiles-osm", ...el } as Layer
+        return {
+            type: 'line',
+            'source-layer': 'streets',
+            source: 'versatiles-osm', ...el
+        } as Layer
     })
     const transitSurface: Layer[] = [
         {
             id: 'transport-rail:dashes',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['in', 'kind', 'rail'],
@@ -394,8 +362,6 @@ export default function makeTransit() {
         },
         {
             id: 'transport-monorail',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['in', 'kind', 'monorail'],
@@ -419,8 +385,6 @@ export default function makeTransit() {
         },
         {
             id: 'transport-funicular',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['in', 'kind', 'funicular'],
@@ -444,8 +408,6 @@ export default function makeTransit() {
         },
         {
             id: 'transport-tram',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['in', 'kind', 'tram'],
@@ -461,8 +423,6 @@ export default function makeTransit() {
         },
         {
             id: 'transport-narrowgauge',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['in', 'kind', 'narrow_gauge'],
@@ -478,8 +438,6 @@ export default function makeTransit() {
         },
         {
             id: 'transport-lightrail',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['in', 'kind', 'light_rail'],
@@ -500,8 +458,6 @@ export default function makeTransit() {
         },
         {
             id: 'transport-rail',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['in', 'kind', 'rail'],
@@ -517,8 +473,6 @@ export default function makeTransit() {
         },
         {
             id: 'transport-ferry',
-            type: 'line',
-            'source-layer': 'ferries',
             minzoom: 10,
             paint: {
                 'line-color': 'rgb(184, 189, 207)',
@@ -538,7 +492,12 @@ export default function makeTransit() {
             }
         },
     ].map(el => {
-        return { source: "versatiles-osm", ...el } as Layer
+        return {
+            type: 'line',
+            'source-layer': 'streets',
+            source: "versatiles-osm",
+            ...el
+        } as Layer
     })
 
     return { airports, transitBridges, transitSurface, transitTunnels }

@@ -954,8 +954,6 @@ export default function makeWalking(): any {
     const walkingBridges: Layer[] = [
         {
             id: 'bridge-way-footway:bridge',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'footway']],
             layout: {
                 'line-cap': 'butt',
@@ -978,8 +976,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-way-steps:bridge',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'steps']],
             layout: {
                 'line-cap': 'butt',
@@ -1002,8 +998,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-way-path:bridge',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'path']],
             layout: {
                 'line-cap': 'butt',
@@ -1026,8 +1020,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-way-cycleway:bridge',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'cycleway']],
             layout: {
                 'line-cap': 'butt',
@@ -1050,8 +1042,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-track:bridge',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'kind', 'track'], ['==', 'bridge', true]],
             layout: {
                 'line-cap': 'butt',
@@ -1078,8 +1068,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-pedestrian:bridge',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'kind', 'pedestrian'], ['==', 'bridge', true]],
             layout: {
                 'line-cap': 'butt',
@@ -1122,8 +1110,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-way-footway:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'footway']],
             minzoom: 15,
             layout: {
@@ -1144,8 +1130,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-way-steps:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'steps']],
             minzoom: 15,
             layout: {
@@ -1166,8 +1150,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-way-path:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'path']],
             layout: {
                 'line-cap': 'butt'
@@ -1188,8 +1170,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-way-cycleway:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'cycleway']],
             layout: {
                 'line-cap': 'butt'
@@ -1210,8 +1190,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-track:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'kind', 'track'], ['==', 'bridge', true]],
             paint: {
                 'line-color': 'rgb(217,217,217)',
@@ -1235,8 +1213,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-pedestrian:outline',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'kind', 'pedestrian'], ['==', 'bridge', true]],
             paint: {
                 'line-color': 'rgb(217,217,217)',
@@ -1261,8 +1237,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-way-footway',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'footway']],
             layout: {
                 'line-cap': 'butt'
@@ -1283,8 +1257,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-way-steps',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'steps']],
             layout: {
                 'line-cap': 'butt'
@@ -1305,8 +1277,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-way-path',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'path']],
             layout: {
                 'line-cap': 'butt'
@@ -1327,8 +1297,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-way-cycleway',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'cycleway']],
             layout: {
                 'line-cap': 'butt'
@@ -1349,8 +1317,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-track',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'kind', 'track'], ['==', 'bridge', true]],
             paint: {
                 'line-color': 'hsl(0,0%,100%)',
@@ -1374,8 +1340,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-pedestrian',
-            type: 'line',
-            'source-layer': 'streets',
             filter: ['all', ['==', 'kind', 'pedestrian'], ['==', 'bridge', true]],
             paint: {
                 'line-color': 'hsl(0,0%,100%)',
@@ -1400,8 +1364,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-track-bicycle',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['==', 'kind', 'track'],
@@ -1415,8 +1377,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-pedestrian-bicycle',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['==', 'kind', 'pedestrian'],
@@ -1446,8 +1406,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-service-bicycle',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['==', 'kind', 'service'],
@@ -1462,8 +1420,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-livingstreet-bicycle',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['==', 'kind', 'living_street'],
@@ -1493,8 +1449,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-residential-bicycle',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['==', 'kind', 'residential'],
@@ -1510,8 +1464,6 @@ export default function makeWalking(): any {
         },
         {
             id: 'bridge-street-unclassified-bicycle',
-            type: 'line',
-            'source-layer': 'streets',
             filter: [
                 'all',
                 ['==', 'kind', 'unclassified'],
@@ -1540,7 +1492,12 @@ export default function makeWalking(): any {
             layout: street_layout
         },
     ].map(el => {
-        return { 'source': 'versatiles-osm', ...el } as Layer
+        return {
+            type: 'line',
+            'source-layer': 'streets',
+            'source': 'versatiles-osm',
+            ...el
+        } as Layer
     })
 
     const walkingLabels: SymbolLayerSpecification[] = [{

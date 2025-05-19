@@ -2,7 +2,6 @@ import tokens from "../tokens"
 import { type Layer } from "./types"
 
 export default function makeAdmin(): any {
-
     const admin: Layer[] = [{
         id: 'boundary-country:outline',
         filter: [
