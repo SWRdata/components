@@ -84,6 +84,7 @@ const street_primary_outline = {
     line_width: {
         stops: [
             [11, 0],
+            [12, 2],
             [14, 5],
             [16, 12],
             [18, 36],
@@ -280,6 +281,7 @@ export default function makeRoads() {
             minzoom: 14,
             layout: {
                 'text-field': '{name_de}',
+                'text-letter-spacing': .025,
                 'text-font': tokens.sans_regular,
                 'symbol-placement': 'line',
                 'text-anchor': 'center',
@@ -291,7 +293,7 @@ export default function makeRoads() {
                 }
             },
             paint: {
-                'text-color': tokens.label_primary,
+                'text-color': tokens.label_secondary,
                 'text-halo-color': 'hsla(0,0%,100%,0.8)',
                 'text-halo-width': 2
             }
@@ -1328,16 +1330,7 @@ export default function makeRoads() {
             paint: {
                 'line-color': 'rgb(180,180,180)',
                 'line-dasharray': [1, 0.3],
-                'line-width': {
-                    stops: [
-                        [11, 2],
-                        [14, 5],
-                        [16, 8],
-                        [18, 30],
-                        [19, 68],
-                        [20, 138]
-                    ]
-                },
+                'line-width': street_secondary_outline.line_width,
                 'line-opacity': {
                     stops: [
                         [11, 0],
@@ -1357,23 +1350,12 @@ export default function makeRoads() {
             filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'primary'], ['!=', 'link', true]],
             paint: {
                 'line-color': tokens.street_primary_outline,
-                'line-dasharray': [1, 0.3],
-                'line-width': {
-                    stops: [
-                        [8, 0],
-                        [9, 1],
-                        [10, 4],
-                        [14, 6],
-                        [16, 12],
-                        [18, 36],
-                        [19, 74],
-                        [20, 144]
-                    ]
-                }
+                'line-width': street_primary_outline.line_width,
+                'line-dasharray': [1, .3],
             },
             layout: {
                 'line-join': 'round',
-                'line-cap': 'round'
+                'line-cap': 'square'
             }
         },
         {
