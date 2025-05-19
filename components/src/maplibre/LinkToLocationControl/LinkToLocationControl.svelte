@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { MaptilerGeocoderAPI } from '../GeocoderControl/GeocoderAPIsPIs';
+	import { MaptilerGeocoderAPI } from '../GeocoderControl/GeocoderAPIs';
 	import { getMapContext } from '../context.svelte';
 
 	import type {
