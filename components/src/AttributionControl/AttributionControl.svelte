@@ -8,7 +8,13 @@
 	const { position = 'bottom-right', customAttribution }: AttributionControlProps = $props();
 </script>
 
-<MapControl control={new AttributionControl({ customAttribution })} {position} />
+<MapControl
+	{position}
+	control={new AttributionControl({
+		customAttribution,
+		compact: false
+	})}
+/>
 
 <style>
 	:global {
@@ -18,9 +24,11 @@
 			word-spacing: 0.005em;
 			font-family: var(--swr-sans);
 		}
-		.maplibregl-ctrl-attrib.maplibregl-compact .maplibregl-ctrl-attrib-button,
 		.maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner {
 			display: block;
+		}
+		.maplibregl-ctrl-attrib-button {
+			display: none;
 		}
 
 		.maplibregl-ctrl-attrib a {

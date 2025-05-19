@@ -230,11 +230,6 @@
 			width: 100%;
 		}
 
-		.maplibregl-ctrl-attrib-button:focus,
-		.maplibregl-ctrl-group button:focus {
-			box-shadow: 0 0 2px 2px #0096ff;
-		}
-
 		.maplibregl-ctrl button:disabled {
 			cursor: not-allowed;
 		}
