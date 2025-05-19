@@ -10,8 +10,17 @@
 	interface GeocoderControlProps {
 		key: string;
 		service: 'maptiler';
-		limit?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+		/**
+		 * Maximum number of suggestions to display
+		 */
+		limit?: number;
+		/**
+		 * Limit search to one or more countries (tends to improve results)
+		 */
 		countries?: Country[] | Country;
+		/**
+		 * Limit search to one or more languages. The UI is localised to the first language specified if [available](https://github.com/maplibre/maplibre-gl-geocoder/blob/main/lib/localization.ts).
+		 */
 		languages?: Language[] | Language;
 	}
 
