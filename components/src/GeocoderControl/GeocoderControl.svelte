@@ -15,7 +15,7 @@
 		 */
 		limit?: number;
 		/**
-		 * Limit search to one or more countries (tends to improve results)
+		 * Limit search to one or more countries
 		 */
 		countries?: Country[] | Country;
 		/**
