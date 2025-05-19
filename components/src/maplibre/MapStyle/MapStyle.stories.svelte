@@ -30,7 +30,6 @@
 		display: grid;
 		grid-template-columns: repeat(1, 1fr);
 		grid-template-rows: auto;
-		border: 1px solid red;
 		height: 700px;
 	}
 	.container {

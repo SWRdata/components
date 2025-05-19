@@ -1,4 +1,3 @@
-import { type Layer } from "./types"
 import tokens from "../tokens"
 import type { SymbolLayerSpecification } from "maplibre-gl"
 
@@ -33,7 +32,7 @@ export default function makePlaceLabels() {
                 }
             },
             paint: {
-                'text-color': 'rgb(57,57,57)',
+                'text-color': tokens.label_secondary,
                 'text-halo-color': tokens.background,
                 'text-halo-width': 2
             },
@@ -53,7 +52,7 @@ export default function makePlaceLabels() {
                 }
             },
             paint: {
-                'text-color': 'rgb(57,57,57)',
+                'text-color': tokens.label_secondary,
                 'text-halo-color': tokens.background,
                 'text-halo-width': 1.5
             },
@@ -73,8 +72,8 @@ export default function makePlaceLabels() {
                 }
             },
             paint: {
-                'text-color': 'rgb(57,57,57)',
-                'text-halo-color': 'hsla(0,0%,100%,0.8)',
+                'text-color': tokens.label_secondary,
+                'text-halo-color': tokens.background,
                 'text-halo-width': 2
             },
         },
@@ -93,38 +92,20 @@ export default function makePlaceLabels() {
                 }
             },
             paint: {
-                'text-color': 'rgb(57,57,57)',
+                'text-color': tokens.label_secondary,
                 'text-halo-color': tokens.background,
                 'text-halo-width': 2
             },
         },
-        {
-            id: 'label-place-town-large',
-            filter: ['all', ['==', 'kind', 'town'], ['>', 'population', 30000]],
-            minzoom: 8,
-            layout: {
-                'text-field': '{name_de}',
-                'text-font': tokens.sans_regular,
-                'text-size': {
-                    stops: [
-                        [8, 13],
-                        [12, 16]
-                    ]
-                }
-            },
-            paint: {
-                'text-color': tokens.label_primary,
-                'text-halo-color': tokens.background,
-                'text-halo-width': 2
-            },
-        },
+
         {
             id: 'label-place-town',
-            filter: ['all', ['==', 'kind', 'town'], ['<', 'population', 30000]],
+            filter: ['==', 'kind', 'town'],
             minzoom: 9,
             layout: {
                 'text-field': '{name_de}',
                 'text-font': tokens.sans_regular,
+                'text-letter-spacing': .015,
                 'text-size': {
                     stops: [
                         [8, 13],
@@ -162,11 +143,7 @@ export default function makePlaceLabels() {
         },
         {
             id: 'label-place-statecapital',
-            filter: [
-                'all',
-                ['==', 'kind', 'state_capital'],
-                ['in', 'name_de', 'Hannover', 'München', 'Stuttgart', 'Hamburg', 'Köln', 'Essen', 'Mainz']
-            ],
+            filter: ['==', 'kind', 'state_capital'],
             minzoom: 5,
             maxzoom: 12,
             layout: {
