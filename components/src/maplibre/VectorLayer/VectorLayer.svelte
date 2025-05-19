@@ -13,7 +13,7 @@
 	import { onDestroy } from 'svelte';
 	import { resetLayerEventListener } from '../utils.ts';
 
-	interface MapVectorLayerProps {
+	interface VectorLayerProps {
 		id: string;
 		sourceId: string;
 		sourceLayer: string;
@@ -45,7 +45,7 @@
 		onclick,
 		onmousemove,
 		onmouseleave
-	}: MapVectorLayerProps = $props();
+	}: VectorLayerProps = $props();
 
 	const { map, styleLoaded } = $derived(getMapContext());
 	let beforeId: string | undefined = $state();

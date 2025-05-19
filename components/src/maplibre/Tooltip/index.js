@@ -1,2 +1,2 @@
-import MapTooltip from './MapTooltip.svelte';
-export default MapTooltip;
+import Tooltip from './Tooltip.svelte';
+export default Tooltip;

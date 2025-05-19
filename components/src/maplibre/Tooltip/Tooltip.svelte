@@ -3,7 +3,7 @@
 	import { type LngLatLike, Popup } from 'maplibre-gl';
 	import { getMapContext } from '../context.svelte.ts';
 
-	interface MapTooltipProps {
+	interface TooltipProps {
 		position: LngLatLike | undefined;
 		children?: Snippet;
 		maxWidth?: number;
@@ -30,7 +30,7 @@
 		showCloseButton = false,
 		closeOnClick = true,
 		mouseEvents = false
-	}: MapTooltipProps = $props();
+	}: TooltipProps = $props();
 
 	const { map } = $derived(getMapContext());
 

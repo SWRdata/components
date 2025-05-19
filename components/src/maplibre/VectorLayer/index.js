@@ -1,2 +1,2 @@
-import MapVectorLayer from './MapVectorLayer.svelte';
-export default MapVectorLayer;
+import VectorLayer from './VectorLayer.svelte';
+export default VectorLayer;

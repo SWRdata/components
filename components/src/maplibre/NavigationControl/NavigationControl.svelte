@@ -4,6 +4,9 @@
 
 	interface NavigationControlProps {
 		showCompass?: boolean;
+		/**
+		 * Show 3d tilt in the compass control. Requires `showCompass` to be `true`
+		 */
 		visualizePitch?: boolean;
 		position?: ControlPosition;
 	}

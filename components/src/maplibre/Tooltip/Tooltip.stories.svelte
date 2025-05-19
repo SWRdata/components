@@ -5,13 +5,13 @@
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import Map from '../Map/Map.svelte';
 	import VectorTileSource from '../VectorTileSource/VectorTileSource.svelte';
-	import MapVectorLayer from '../VectorLayer/MapVectorLayer.svelte';
+	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
-	import MapTooltip from './MapTooltip.svelte';
+	import Tooltip from './Tooltip.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Map/MapTooltip',
-		component: MapTooltip
+		title: 'Map/Tooltip',
+		component: Tooltip
 	});
 
 	let hovered = $state() as MapGeoJSONFeature | undefined;
@@ -26,7 +26,7 @@
 					id="ev-infra-source"
 					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}
 				/>
-				<MapVectorLayer
+				<VectorLayer
 					sourceId="ev-infra-source"
 					type="fill"
 					id="coverage-fill"
@@ -48,8 +48,8 @@
 							'lightgreen'
 						]
 					}}
-				></MapVectorLayer>
-				<MapVectorLayer
+				/>
+				<VectorLayer
 					{hovered}
 					sourceId="ev-infra-source"
 					sourceLayer="coverage"
@@ -68,11 +68,11 @@
 					}}
 				/>
 				{#if hovered}
-					<MapTooltip position={mouseCoords} mouseEvents={false} showCloseButton={false}>
+					<Tooltip position={mouseCoords} mouseEvents={false} showCloseButton={false}>
 						<pre>{Object.entries(hovered.properties)
 								.map(([key, val]) => `${key}: ${val}`)
 								.join('\n')}</pre>
-					</MapTooltip>
+					</Tooltip>
 				{/if}
 				<AttributionControl />
 			</Map>

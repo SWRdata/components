@@ -1,14 +1,14 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import MapVectorLayer from './MapVectorLayer.svelte';
+	import VectorLayer from './VectorLayer.svelte';
 	import Map from '../Map/Map.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import VectorTileSource from '../VectorTileSource/VectorTileSource.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Map/MapVectorLayer',
-		component: MapVectorLayer
+		title: 'Map/VectorLayer',
+		component: VectorLayer
 	});
 </script>
 
@@ -20,7 +20,7 @@
 					id="ev-infra-source"
 					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}
 				/>
-				<MapVectorLayer
+				<VectorLayer
 					sourceId="ev-infra-source"
 					type="fill"
 					id="coverage-fill"
@@ -37,8 +37,8 @@
 							'lightgreen'
 						]
 					}}
-				></MapVectorLayer>
-				<MapVectorLayer
+				/>
+				<VectorLayer
 					sourceId="ev-infra-source"
 					sourceLayer="coverage"
 					id="ev-infra-outline"
