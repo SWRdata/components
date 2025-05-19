@@ -424,7 +424,6 @@ export default function makeLanduse(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'site-university',
             type: 'fill',
             'source-layer': 'sites',
@@ -435,7 +434,6 @@ export default function makeLanduse(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'site-college',
             type: 'fill',
             'source-layer': 'sites',
@@ -446,7 +444,6 @@ export default function makeLanduse(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'site-school',
             type: 'fill',
             'source-layer': 'sites',
@@ -457,7 +454,6 @@ export default function makeLanduse(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'site-hospital',
             type: 'fill',
             'source-layer': 'sites',
@@ -468,7 +464,6 @@ export default function makeLanduse(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'site-prison',
             type: 'fill',
             'source-layer': 'sites',
@@ -479,7 +474,6 @@ export default function makeLanduse(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'site-parking',
             type: 'fill',
             'source-layer': 'sites',
@@ -489,7 +483,6 @@ export default function makeLanduse(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'site-bicycleparking',
             type: 'fill',
             'source-layer': 'sites',
@@ -499,7 +492,6 @@ export default function makeLanduse(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'site-construction',
             type: 'fill',
             'source-layer': 'sites',
@@ -508,24 +500,11 @@ export default function makeLanduse(): any {
                 'fill-color': 'hsl(0,0%,66%)',
                 'fill-opacity': 0.1
             }
-        },
-        {
-            source: 'versatiles-osm',
-            id: 'airport-area',
-            type: 'fill',
-            'source-layer': 'street_polygons',
-            filter: ['in', 'kind', 'runway', 'taxiway'],
-            paint: {
-                'fill-color': 'hsl(0,0%,100%)',
-                'fill-opacity': 0.5
-            }
         }
-    ]
-
-    // Set common properties
-    landuse.forEach((_, i) => {
-        landuse[i]["source"] = "versatiles-osm"
+    ].map(el => {
+        return { "source": "versatiles-osm", ...el } as Layer
     })
+
 
     return { landuse }
 }

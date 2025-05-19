@@ -47,120 +47,127 @@ const rail_outline = {
 };
 
 export default function makeTransit() {
-    const airports = [{
-        source: 'versatiles-osm',
-        id: 'airport-taxiway:outline',
-        type: 'line',
-        'source-layer': 'streets',
-        filter: ['==', 'kind', 'taxiway'],
-        paint: {
-            'line-color': 'hsl(36,0%,80%)',
-            'line-width': {
-                stops: [
-                    [13, 0],
-                    [14, 2],
-                    [15, 10],
-                    [16, 14],
-                    [18, 20],
-                    [20, 40]
-                ]
+    const airports = [
+        {
+            id: 'airport-area',
+            type: 'fill',
+            'source-layer': 'street_polygons',
+            filter: ['in', 'kind', 'runway', 'taxiway'],
+            paint: {
+                'fill-color': 'hsl(0,0%,100%)',
+                'fill-opacity': 0.5
             }
-        },
-        layout: {
-            'line-join': 'round'
-        }
-    },
-    {
-        source: 'versatiles-osm',
-        id: 'airport-runway:outline',
-        type: 'line',
-        'source-layer': 'streets',
-        filter: ['==', 'kind', 'runway'],
-        paint: {
-            'line-color': 'hsl(36,0%,80%)',
-            'line-width': {
-                stops: [
-                    [11, 0],
-                    [12, 6],
-                    [13, 9],
-                    [14, 16],
-                    [15, 24],
-                    [16, 40],
-                    [17, 100],
-                    [18, 160],
-                    [20, 300]
-                ]
-            }
-        },
-        layout: {
-            'line-join': 'round'
-        }
-    },
-    {
-        source: 'versatiles-osm',
-        id: 'airport-taxiway',
-        type: 'line',
-        'source-layer': 'streets',
-        filter: ['==', 'kind', 'taxiway'],
-        paint: {
-            'line-color': 'hsl(0,0%,100%)',
-            'line-width': {
-                stops: [
-                    [13, 0],
-                    [14, 1],
-                    [15, 8],
-                    [16, 12],
-                    [18, 18],
-                    [20, 36]
-                ]
+        }, {
+            id: 'airport-taxiway:outline',
+            type: 'line',
+            'source-layer': 'streets',
+            filter: ['==', 'kind', 'taxiway'],
+            paint: {
+                'line-color': 'hsl(36,0%,80%)',
+                'line-width': {
+                    stops: [
+                        [13, 0],
+                        [14, 2],
+                        [15, 10],
+                        [16, 14],
+                        [18, 20],
+                        [20, 40]
+                    ]
+                }
             },
-            'line-opacity': {
-                stops: [
-                    [13, 0],
-                    [14, 1]
-                ]
+            layout: {
+                'line-join': 'round'
             }
         },
-        layout: {
-            'line-join': 'round'
-        }
-    },
-    {
-        source: 'versatiles-osm',
-        id: 'airport-runway',
-        type: 'line',
-        'source-layer': 'streets',
-        filter: ['==', 'kind', 'runway'],
-        paint: {
-            'line-color': 'hsl(0,0%,100%)',
-            'line-width': {
-                stops: [
-                    [11, 0],
-                    [12, 5],
-                    [13, 8],
-                    [14, 14],
-                    [15, 22],
-                    [16, 38],
-                    [17, 98],
-                    [18, 158],
-                    [20, 298]
-                ]
+        {
+            id: 'airport-runway:outline',
+            type: 'line',
+            'source-layer': 'streets',
+            filter: ['==', 'kind', 'runway'],
+            paint: {
+                'line-color': 'hsl(36,0%,80%)',
+                'line-width': {
+                    stops: [
+                        [11, 0],
+                        [12, 6],
+                        [13, 9],
+                        [14, 16],
+                        [15, 24],
+                        [16, 40],
+                        [17, 100],
+                        [18, 160],
+                        [20, 300]
+                    ]
+                }
             },
-            'line-opacity': {
-                stops: [
-                    [11, 0],
-                    [12, 1]
-                ]
+            layout: {
+                'line-join': 'round'
             }
         },
-        layout: {
-            'line-join': 'round'
-        }
-    }]
+        {
+            id: 'airport-taxiway',
+            type: 'line',
+            'source-layer': 'streets',
+            filter: ['==', 'kind', 'taxiway'],
+            paint: {
+                'line-color': 'hsl(0,0%,100%)',
+                'line-width': {
+                    stops: [
+                        [13, 0],
+                        [14, 1],
+                        [15, 8],
+                        [16, 12],
+                        [18, 18],
+                        [20, 36]
+                    ]
+                },
+                'line-opacity': {
+                    stops: [
+                        [13, 0],
+                        [14, 1]
+                    ]
+                }
+            },
+            layout: {
+                'line-join': 'round'
+            }
+        },
+        {
+            id: 'airport-runway',
+            type: 'line',
+            'source-layer': 'streets',
+            filter: ['==', 'kind', 'runway'],
+            paint: {
+                'line-color': 'hsl(0,0%,100%)',
+                'line-width': {
+                    stops: [
+                        [11, 0],
+                        [12, 5],
+                        [13, 8],
+                        [14, 14],
+                        [15, 22],
+                        [16, 38],
+                        [17, 98],
+                        [18, 158],
+                        [20, 298]
+                    ]
+                },
+                'line-opacity': {
+                    stops: [
+                        [11, 0],
+                        [12, 1]
+                    ]
+                }
+            },
+            layout: {
+                'line-join': 'round'
+            }
+        }].map(el => {
+            return { source: "versatiles-osm", ...el } as Layer
+        })
 
     const transitBridges = [
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-monorail:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -172,7 +179,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-funicular:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -184,7 +190,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-tram:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -196,7 +201,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-narrowgauge:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -208,7 +212,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-lightrail:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -220,7 +223,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-rail:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -232,7 +234,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-monorail',
             type: 'line',
             'source-layer': 'streets',
@@ -244,7 +245,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-funicular',
             type: 'line',
             'source-layer': 'streets',
@@ -256,7 +256,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-tram',
             type: 'line',
             'source-layer': 'streets',
@@ -268,7 +267,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-narrowgauge',
             type: 'line',
             'source-layer': 'streets',
@@ -280,7 +278,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-lightrail',
             type: 'line',
             'source-layer': 'streets',
@@ -292,7 +289,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-transport-rail',
             type: 'line',
             'source-layer': 'streets',
@@ -303,11 +299,12 @@ export default function makeTransit() {
                 'line-opacity': rail.line_opacity
             }
         }
-    ]
+    ].map(el => {
+        return { source: "versatiles-osm", ...el } as Layer
+    })
 
     const transitTunnels: Layer[] = [
         {
-            source: 'versatiles-osm',
             id: 'tunnel-transport-monorail',
             type: 'line',
             'source-layer': 'streets',
@@ -319,7 +316,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'tunnel-transport-funicular',
             type: 'line',
             'source-layer': 'streets',
@@ -331,7 +327,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'tunnel-transport-tram',
             type: 'line',
             'source-layer': 'streets',
@@ -343,7 +338,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'tunnel-transport-narrowgauge',
             type: 'line',
             'source-layer': 'streets',
@@ -355,7 +349,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'tunnel-transport-lightrail',
             type: 'line',
             'source-layer': 'streets',
@@ -367,7 +360,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'tunnel-transport-rail',
             type: 'line',
             'source-layer': 'streets',
@@ -378,10 +370,11 @@ export default function makeTransit() {
                 'line-opacity': rail.line_opacity
             }
         }
-    ]
+    ].map(el => {
+        return { source: "versatiles-osm", ...el } as Layer
+    })
     const transitSurface: Layer[] = [
         {
-            source: 'versatiles-osm',
             id: 'transport-rail:dashes',
             type: 'line',
             'source-layer': 'streets',
@@ -400,7 +393,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'transport-monorail',
             type: 'line',
             'source-layer': 'streets',
@@ -426,7 +418,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'transport-funicular',
             type: 'line',
             'source-layer': 'streets',
@@ -452,7 +443,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'transport-tram',
             type: 'line',
             'source-layer': 'streets',
@@ -470,7 +460,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'transport-narrowgauge',
             type: 'line',
             'source-layer': 'streets',
@@ -488,7 +477,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'transport-lightrail',
             type: 'line',
             'source-layer': 'streets',
@@ -511,7 +499,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'transport-rail',
             type: 'line',
             'source-layer': 'streets',
@@ -529,7 +516,6 @@ export default function makeTransit() {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'transport-ferry',
             type: 'line',
             'source-layer': 'ferries',
@@ -551,7 +537,9 @@ export default function makeTransit() {
                 'line-dasharray': [1, 1]
             }
         },
-    ]
+    ].map(el => {
+        return { source: "versatiles-osm", ...el } as Layer
+    })
 
     return { airports, transitBridges, transitSurface, transitTunnels }
 }

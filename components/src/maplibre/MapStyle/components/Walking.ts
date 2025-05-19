@@ -1,5 +1,6 @@
 import { type Layer } from "./types"
 import tokens from "../tokens";
+import type { SymbolLayerSpecification } from "maplibre-gl";
 
 const street_layout = {
     'line-join': 'round',
@@ -16,22 +17,6 @@ const street_residential = {
             [18, 24],
             [19, 60],
             [20, 120]
-        ]
-    },
-    line_opacity: {
-        stops: [
-            [12, 0],
-            [13, 1]
-        ]
-    }
-};
-
-const street_residential_outline = {
-    line_color: tokens.street_tertiary_outline,
-    line_width: {
-        stops: [
-            [14, 0],
-            [15, 4]
         ]
     },
     line_opacity: {
@@ -351,7 +336,6 @@ export default function makeWalking(): any {
             'line-cap': 'round'
         }
     }, {
-        source: 'versatiles-osm',
         id: 'tunnel-street-livingstreet-bicycle',
         type: 'line',
         'source-layer': 'streets',
@@ -383,7 +367,6 @@ export default function makeWalking(): any {
         layout: street_layout
     },
     {
-        source: 'versatiles-osm',
         id: 'tunnel-street-residential-bicycle',
         type: 'line',
         'source-layer': 'streets',
@@ -431,7 +414,6 @@ export default function makeWalking(): any {
         },
         layout: street_layout
     }, {
-        source: 'versatiles-osm',
         id: 'tunnel-street-track-bicycle',
         type: 'line',
         'source-layer': 'streets',
@@ -450,7 +432,6 @@ export default function makeWalking(): any {
         }
     },
     {
-        source: 'versatiles-osm',
         id: 'tunnel-street-pedestrian-bicycle',
         type: 'line',
         'source-layer': 'streets',
@@ -482,7 +463,6 @@ export default function makeWalking(): any {
         layout: street_layout
     },
     {
-        source: 'versatiles-osm',
         id: 'tunnel-street-service-bicycle',
         type: 'line',
         'source-layer': 'streets',
@@ -500,15 +480,13 @@ export default function makeWalking(): any {
             'line-join': 'round',
             'line-cap': 'round'
         }
-    },]
-
-    walkingTunnels.forEach((_, index) => {
-        walkingTunnels[index]["source"] = "versatiles-osm"
+    }].map(el => {
+        return { 'source': 'versatiles-osm', ...el } as Layer
     })
+
 
     const walkingSurface: Layer[] = [
         {
-            source: 'versatiles-osm',
             id: 'street-pedestrian-zone',
             type: 'fill',
             'source-layer': 'street_polygons',
@@ -526,7 +504,6 @@ export default function makeWalking(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'way-footway:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -549,11 +526,11 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'way-steps:outline',
             type: 'line',
             'source-layer': 'streets',
             filter: ['all', ['!=', 'bridge', true], ['!=', 'tunnel', true], ['in', 'kind', 'steps']],
+            minzoom: 15,
             layout: {
                 'line-cap': 'round'
             },
@@ -569,14 +546,13 @@ export default function makeWalking(): any {
                 },
                 'line-color': 'rgb(220,220,220)'
             },
-            minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'way-path:outline',
             type: 'line',
             'source-layer': 'streets',
             filter: ['all', ['!=', 'bridge', true], ['!=', 'tunnel', true], ['in', 'kind', 'path']],
+            minzoom: 15,
             layout: {
                 'line-cap': 'round'
             },
@@ -591,11 +567,9 @@ export default function makeWalking(): any {
                     ]
                 },
                 'line-color': 'rgb(220,220,220)'
-            },
-            minzoom: 15
+            }
         },
         {
-            source: 'versatiles-osm',
             id: 'way-cycleway:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -618,7 +592,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'street-track:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -647,7 +620,6 @@ export default function makeWalking(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'street-pedestrian:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -677,7 +649,6 @@ export default function makeWalking(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'way-footway',
             type: 'line',
             'source-layer': 'streets',
@@ -700,7 +671,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'way-steps',
             type: 'line',
             'source-layer': 'streets',
@@ -723,7 +693,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'way-path',
             type: 'line',
             'source-layer': 'streets',
@@ -746,7 +715,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'way-cycleway',
             type: 'line',
             'source-layer': 'streets',
@@ -769,7 +737,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'street-track',
             type: 'line',
             'source-layer': 'streets',
@@ -798,7 +765,6 @@ export default function makeWalking(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'street-pedestrian',
             type: 'line',
             'source-layer': 'streets',
@@ -829,7 +795,6 @@ export default function makeWalking(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'street-track-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -849,7 +814,6 @@ export default function makeWalking(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'street-pedestrian-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -882,7 +846,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'street-service-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -903,7 +866,6 @@ export default function makeWalking(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'street-livingstreet-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -936,7 +898,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'street-residential-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -955,7 +916,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'street-unclassified-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -987,10 +947,12 @@ export default function makeWalking(): any {
             },
             layout: street_layout
         }
-    ]
+    ].map(el => {
+        return { 'source': 'versatiles-osm', ...el } as Layer
+    })
+
     const walkingBridges: Layer[] = [
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-footway:bridge',
             type: 'line',
             'source-layer': 'streets',
@@ -1015,7 +977,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-steps:bridge',
             type: 'line',
             'source-layer': 'streets',
@@ -1040,7 +1001,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-path:bridge',
             type: 'line',
             'source-layer': 'streets',
@@ -1065,7 +1025,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-cycleway:bridge',
             type: 'line',
             'source-layer': 'streets',
@@ -1090,7 +1049,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-track:bridge',
             type: 'line',
             'source-layer': 'streets',
@@ -1119,7 +1077,6 @@ export default function makeWalking(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-pedestrian:bridge',
             type: 'line',
             'source-layer': 'streets',
@@ -1149,7 +1106,6 @@ export default function makeWalking(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-pedestrian-zone',
             type: 'fill',
             'source-layer': 'street_polygons',
@@ -1165,11 +1121,11 @@ export default function makeWalking(): any {
             }
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-footway:outline',
             type: 'line',
             'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'footway']],
+            minzoom: 15,
             layout: {
                 'line-cap': 'butt'
             },
@@ -1185,14 +1141,13 @@ export default function makeWalking(): any {
                 },
                 'line-color': 'rgb(220,220,220)'
             },
-            minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-steps:outline',
             type: 'line',
             'source-layer': 'streets',
             filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'steps']],
+            minzoom: 15,
             layout: {
                 'line-cap': 'butt'
             },
@@ -1208,10 +1163,8 @@ export default function makeWalking(): any {
                 },
                 'line-color': 'rgb(220,220,220)'
             },
-            minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-path:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -1234,7 +1187,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-cycleway:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -1257,7 +1209,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-track:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -1283,7 +1234,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-pedestrian:outline',
             type: 'line',
             'source-layer': 'streets',
@@ -1310,7 +1260,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-footway',
             type: 'line',
             'source-layer': 'streets',
@@ -1333,7 +1282,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-steps',
             type: 'line',
             'source-layer': 'streets',
@@ -1356,7 +1304,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-path',
             type: 'line',
             'source-layer': 'streets',
@@ -1379,7 +1326,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-way-cycleway',
             type: 'line',
             'source-layer': 'streets',
@@ -1402,7 +1348,6 @@ export default function makeWalking(): any {
             minzoom: 15
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-track',
             type: 'line',
             'source-layer': 'streets',
@@ -1428,7 +1373,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-pedestrian',
             type: 'line',
             'source-layer': 'streets',
@@ -1455,7 +1399,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-track-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -1471,7 +1414,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-pedestrian-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -1503,7 +1445,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-service-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -1520,7 +1461,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-livingstreet-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -1552,7 +1492,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-residential-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -1570,7 +1509,6 @@ export default function makeWalking(): any {
             layout: street_layout
         },
         {
-            source: 'versatiles-osm',
             id: 'bridge-street-unclassified-bicycle',
             type: 'line',
             'source-layer': 'streets',
@@ -1601,14 +1539,17 @@ export default function makeWalking(): any {
             },
             layout: street_layout
         },
-    ]
+    ].map(el => {
+        return { 'source': 'versatiles-osm', ...el } as Layer
+    })
 
-    const walkingLabels: Layer[] = [{
+    const walkingLabels: SymbolLayerSpecification[] = [{
         source: 'versatiles-osm',
         id: 'label-street-pedestrian',
         type: 'symbol',
         'source-layer': 'street_labels',
         filter: ['==', 'kind', 'pedestrian'],
+        minzoom: 14,
         layout: {
             'text-field': '{name_de}',
             'text-font': tokens.sans_regular,
@@ -1626,9 +1567,8 @@ export default function makeWalking(): any {
             'text-halo-color': 'hsla(0,0%,100%,0.8)',
             'text-halo-width': 2,
             'text-halo-blur': 1
-        },
-        minzoom: 14
-    },]
+        }
+    }]
 
     return { walkingTunnels, walkingSurface, walkingBridges, walkingLabels }
 }

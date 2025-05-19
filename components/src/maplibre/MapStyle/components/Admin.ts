@@ -2,9 +2,9 @@ import tokens from "../tokens"
 import { type Layer } from "./types"
 
 export default function makeAdmin(): any {
+
     const admin: Layer[] = [{
         id: 'boundary-country:outline',
-        type: 'line',
         filter: [
             'all',
             ['==', 'admin_level', 2],
@@ -31,7 +31,6 @@ export default function makeAdmin(): any {
     },
     {
         id: 'boundary-country-disputed:outline',
-        type: 'line',
         filter: [
             'all',
             ['==', 'admin_level', 2],
@@ -53,7 +52,6 @@ export default function makeAdmin(): any {
     },
     {
         id: 'boundary-state:outline',
-        type: 'line',
         filter: [
             'all',
             ['==', 'admin_level', 4],
@@ -80,7 +78,6 @@ export default function makeAdmin(): any {
     },
     {
         id: 'boundary-country',
-        type: 'line',
         filter: [
             'all',
             ['==', 'admin_level', 2],
@@ -112,7 +109,6 @@ export default function makeAdmin(): any {
     },
     {
         id: 'boundary-country-disputed',
-        type: 'line',
         filter: [
             'all',
             ['==', 'admin_level', 2],
@@ -137,7 +133,6 @@ export default function makeAdmin(): any {
     },
     {
         id: 'boundary-state',
-        type: 'line',
         filter: [
             'all',
             ['==', 'admin_level', 4],
@@ -164,12 +159,13 @@ export default function makeAdmin(): any {
             'line-cap': 'round',
             'line-join': 'round'
         }
-    }]
-
-    // Set common properties
-    admin.forEach((_, i) => {
-        admin[i]["source"] = "versatiles-osm"
-        admin[i]["source-layer"] = "boundaries"
+    }].map(el => {
+        return {
+            "source": "versatiles-osm",
+            "source-layer": "boundaries",
+            "type": "line",
+            ...el
+        } as Layer
     })
 
     return { admin }

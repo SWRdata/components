@@ -1,12 +1,13 @@
 import { type Layer } from "./types"
 import tokens from "../tokens"
+import type { SymbolLayerSpecification } from "maplibre-gl"
 
 export default function makePlaceLabels() {
     const placeLabels: Layer[] = [
         {
             id: 'label-place-neighbourhood',
-            'source-layer': 'place_labels',
             filter: ['==', 'kind', 'neighbourhood'],
+            minzoom: 14,
             layout: {
                 'text-field': '{name_de}',
                 'text-font': tokens.sans_regular,
@@ -19,12 +20,11 @@ export default function makePlaceLabels() {
                 'text-halo-color': tokens.background,
                 'text-halo-width': 2
             },
-            minzoom: 14
         },
         {
             id: 'label-place-quarter',
-            'source-layer': 'place_labels',
             filter: ['==', 'kind', 'quarter'],
+            minzoom: 14,
             layout: {
                 'text-field': '{name_de}',
                 'text-font': tokens.sans_regular,
@@ -37,12 +37,11 @@ export default function makePlaceLabels() {
                 'text-halo-color': tokens.background,
                 'text-halo-width': 2
             },
-            minzoom: 14
         },
         {
             id: 'label-place-suburb',
-            'source-layer': 'place_labels',
             filter: ['==', 'kind', 'suburb'],
+            minzoom: 11,
             layout: {
                 'text-field': '{name_de}',
                 'text-font': tokens.sans_regular,
@@ -58,12 +57,11 @@ export default function makePlaceLabels() {
                 'text-halo-color': tokens.background,
                 'text-halo-width': 1.5
             },
-            minzoom: 11
         },
         {
             id: 'label-place-hamlet',
-            'source-layer': 'place_labels',
             filter: ['==', 'kind', 'hamlet'],
+            minzoom: 13,
             layout: {
                 'text-field': '{name_de}',
                 'text-font': tokens.sans_regular,
@@ -79,12 +77,11 @@ export default function makePlaceLabels() {
                 'text-halo-color': 'hsla(0,0%,100%,0.8)',
                 'text-halo-width': 2
             },
-            minzoom: 13
         },
         {
             id: 'label-place-village',
-            'source-layer': 'place_labels',
             filter: ['==', 'kind', 'village'],
+            minzoom: 11,
             layout: {
                 'text-field': '{name_de}',
                 'text-font': tokens.sans_regular,
@@ -100,12 +97,11 @@ export default function makePlaceLabels() {
                 'text-halo-color': tokens.background,
                 'text-halo-width': 2
             },
-            minzoom: 11
         },
         {
             id: 'label-place-town-large',
-            'source-layer': 'place_labels',
             filter: ['all', ['==', 'kind', 'town'], ['>', 'population', 30000]],
+            minzoom: 8,
             layout: {
                 'text-field': '{name_de}',
                 'text-font': tokens.sans_regular,
@@ -121,12 +117,11 @@ export default function makePlaceLabels() {
                 'text-halo-color': tokens.background,
                 'text-halo-width': 2
             },
-            minzoom: 8
         },
         {
             id: 'label-place-town',
-            'source-layer': 'place_labels',
             filter: ['all', ['==', 'kind', 'town'], ['<', 'population', 30000]],
+            minzoom: 9,
             layout: {
                 'text-field': '{name_de}',
                 'text-font': tokens.sans_regular,
@@ -142,13 +137,13 @@ export default function makePlaceLabels() {
                 'text-halo-color': tokens.background,
                 'text-halo-width': 2
             },
-            minzoom: 9
         },
 
         {
             id: 'label-place-city',
-            'source-layer': 'place_labels',
             filter: ['==', 'kind', 'city'],
+            minzoom: 6,
+            maxzoom: 11,
             layout: {
                 'text-field': '{name_de}',
                 'text-font': tokens.sans_medium,
@@ -164,17 +159,16 @@ export default function makePlaceLabels() {
                 'text-halo-color': tokens.background,
                 'text-halo-width': 2
             },
-            minzoom: 6,
-            maxzoom: 11
         },
         {
             id: 'label-place-statecapital',
-            'source-layer': 'place_labels',
             filter: [
                 'all',
                 ['==', 'kind', 'state_capital'],
                 ['in', 'name_de', 'Hannover', 'München', 'Stuttgart', 'Hamburg', 'Köln', 'Essen', 'Mainz']
             ],
+            minzoom: 5,
+            maxzoom: 12,
             layout: {
                 'text-field': '{name_de}',
                 'text-font': tokens.sans_regular,
@@ -190,13 +184,12 @@ export default function makePlaceLabels() {
                 'text-halo-color': tokens.background,
                 'text-halo-width': 2
             },
-            minzoom: 5,
-            maxzoom: 12
         },
         {
             id: 'label-place-capital',
-            'source-layer': 'place_labels',
             filter: ['all', ['==', 'kind', 'capital'], ['==', 'name_de', 'Berlin']],
+            minzoom: 5,
+            maxzoom: 12,
             layout: {
                 'text-field': '{name_de}',
                 'text-font': tokens.sans_medium,
@@ -212,15 +205,14 @@ export default function makePlaceLabels() {
                 'text-halo-color': tokens.background,
                 'text-halo-width': 2
             },
-            minzoom: 5,
-            maxzoom: 12
         }
-    ]
-
-    // Set common properties
-    placeLabels.forEach((_, i) => {
-        placeLabels[i]["type"] = "symbol"
-        placeLabels[i]["source"] = "versatiles-osm"
+    ].map(el => {
+        return {
+            'type': 'symbol',
+            'source': 'versatiles-osm',
+            'source-layer': 'place_labels',
+            ...el
+        } as SymbolLayerSpecification
     })
 
     return { placeLabels }

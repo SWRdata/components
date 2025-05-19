@@ -4,6 +4,8 @@ export default function makeBuildings(): any {
     const buildings: Layer[] = [{
         id: 'building-fill',
         type: 'fill',
+        'source': 'versatiles-osm',
+        'source-layer': 'buildings',
         paint: {
             'fill-color': 'hsl(240, 4%, 95%)',
             'fill-opacity': {
@@ -14,12 +16,6 @@ export default function makeBuildings(): any {
             }
         }
     }]
-
-    // Set common properties
-    buildings.forEach(l => {
-        l["source"] = "versatiles-osm"
-        l["source-layer"] = "buildings"
-    })
 
     return { buildings }
 }
