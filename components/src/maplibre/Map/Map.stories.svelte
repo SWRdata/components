@@ -57,7 +57,7 @@
 		<DesignTokens>
 			<Map>
 				<ScaleControl />
-				<NavigationControl />
+				<NavigationControl showCompass />
 				<AttributionControl />
 				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 			</Map>

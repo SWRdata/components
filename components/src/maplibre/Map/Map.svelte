@@ -171,7 +171,7 @@
 			z-index: 2;
 			display: flex;
 			flex-flow: column;
-			gap: 0.5em;
+			gap: 0.75em;
 			align-items: flex-start;
 		}
 
@@ -203,7 +203,7 @@
 		.maplibregl-ctrl-group {
 			background: #fff;
 			border-radius: var(--br-small);
-			border: 1px solid var(--gray-dark-2);
+			border: 1px solid var(--violet-dark-5);
 		}
 
 		.maplibregl-ctrl-group button {
@@ -219,7 +219,7 @@
 		}
 
 		.maplibregl-ctrl-group button + button {
-			border-top: 1px solid lightgray;
+			border-top: 1px solid rgba(0, 0, 0, 0.35);
 		}
 
 		.maplibregl-ctrl button .maplibregl-ctrl-icon {

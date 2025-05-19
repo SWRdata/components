@@ -1,3 +1,5 @@
+// Source: https://github.com/MIERUNE/svelte-maplibre-gl/blob/main/src/lib/maplibre/utils.ts
+
 import type { Evented, Listener, Map, MapLayerEventType } from "maplibre-gl";
 
 export function resetEventListener(
