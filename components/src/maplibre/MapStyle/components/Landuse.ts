@@ -72,7 +72,7 @@ export default function makeLanduse(): any {
             'source-layer': 'land',
             filter: ['all', ['in', 'kind', 'landfill']],
             paint: {
-                'fill-color': 'hsl(50,0%,80%)',
+                'fill-color': 'hsl(50,0%,95%)',
                 'fill-opacity': {
                     stops: [
                         [10, 0],
@@ -141,7 +141,7 @@ export default function makeLanduse(): any {
             'source-layer': 'land',
             filter: ['all', ['in', 'kind', 'bare_rock', 'scree', 'shingle']],
             paint: {
-                'fill-color': 'hsl(192,0%,89%)'
+                'fill-color': 'hsl(192,0%,90%)'
             }
         },
         {
