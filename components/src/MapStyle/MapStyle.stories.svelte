@@ -12,10 +12,12 @@
 <Story asChild name="Basic">
 	<DesignTokens>
 		<div class="grid">
-			<div class="container"><Map /></div>
-			<div class="container"><Map /></div>
-			<div class="container"><Map /></div>
-			<div class="container"><Map /></div>
+			<div class="container">
+				<Map
+					initialLocation={{ lng: 8.239451072800875, lat: 48.75692609731408, zoom: 14.99 }}
+					showDebug
+				/>
+			</div>
 		</div>
 	</DesignTokens>
 </Story>
@@ -23,13 +25,12 @@
 <style>
 	.grid {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(1, 1fr);
 		grid-template-rows: auto;
 		border: 1px solid red;
-		height: 90vh;
+		height: 700px;
 	}
 	.container {
-		border: 1px solid red;
 		overflow: hidden;
 	}
 </style>

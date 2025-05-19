@@ -1,14 +1,10 @@
-import type { FillLayerSpecification, LineLayerSpecification } from "maplibre-gl"
-import tokens from "./tokens"
-type Layer = LineLayerSpecification | FillLayerSpecification
-type AdminLevel = 1 | 2 | 3 | 4
+import tokens from "../tokens"
+import { type Layer } from "./types"
 
-export default function buildAdmin(levels: AdminLevel[]): Layer[] {
-    const layers = [{
-        source: 'versatiles-osm',
+export default function makeAdmin(): any {
+    const admin: Layer[] = [{
         id: 'boundary-country:outline',
         type: 'line',
-        'source-layer': 'boundaries',
         filter: [
             'all',
             ['==', 'admin_level', 2],
@@ -34,10 +30,8 @@ export default function buildAdmin(levels: AdminLevel[]): Layer[] {
         }
     },
     {
-        source: 'versatiles-osm',
         id: 'boundary-country-disputed:outline',
         type: 'line',
-        'source-layer': 'boundaries',
         filter: [
             'all',
             ['==', 'admin_level', 2],
@@ -58,10 +52,8 @@ export default function buildAdmin(levels: AdminLevel[]): Layer[] {
         }
     },
     {
-        source: 'versatiles-osm',
         id: 'boundary-state:outline',
         type: 'line',
-        'source-layer': 'boundaries',
         filter: [
             'all',
             ['==', 'admin_level', 4],
@@ -87,10 +79,8 @@ export default function buildAdmin(levels: AdminLevel[]): Layer[] {
         }
     },
     {
-        source: 'versatiles-osm',
         id: 'boundary-country',
         type: 'line',
-        'source-layer': 'boundaries',
         filter: [
             'all',
             ['==', 'admin_level', 2],
@@ -121,10 +111,8 @@ export default function buildAdmin(levels: AdminLevel[]): Layer[] {
         }
     },
     {
-        source: 'versatiles-osm',
         id: 'boundary-country-disputed',
         type: 'line',
-        'source-layer': 'boundaries',
         filter: [
             'all',
             ['==', 'admin_level', 2],
@@ -148,10 +136,8 @@ export default function buildAdmin(levels: AdminLevel[]): Layer[] {
         }
     },
     {
-        source: 'versatiles-osm',
         id: 'boundary-state',
         type: 'line',
-        'source-layer': 'boundaries',
         filter: [
             'all',
             ['==', 'admin_level', 4],
@@ -179,5 +165,12 @@ export default function buildAdmin(levels: AdminLevel[]): Layer[] {
             'line-join': 'round'
         }
     }]
-    return layers
+
+    // Set common properties
+    admin.forEach((_, i) => {
+        admin[i]["source"] = "versatiles-osm"
+        admin[i]["source-layer"] = "boundaries"
+    })
+
+    return { admin }
 }

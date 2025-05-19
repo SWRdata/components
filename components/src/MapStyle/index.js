@@ -1,2 +1,2 @@
-import SWRDataBaseLight from './MapStyle';
+import SWRDataBaseLight from './SWRDataLight';
 export { SWRDataBaseLight };
