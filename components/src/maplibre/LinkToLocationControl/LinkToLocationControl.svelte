@@ -49,9 +49,8 @@
 				limit: 1
 			};
 			const res = await geocoder.forwardGeocode(config);
-			console.log(res.features[0]);
 			if (res.features[0].bbox && res.features[0].geometry.type === 'Point') {
-				map.jumpTo({
+				map?.jumpTo({
 					center: [
 						res.features[0].geometry.coordinates[0],
 						res.features[0].geometry.coordinates[1]

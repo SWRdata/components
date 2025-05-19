@@ -59,17 +59,17 @@
 		});
 
 		mapContext.map.on('load', () => {
-			zoom = mapContext.map.getZoom();
-			center = mapContext.map.getCenter();
-			pitch = mapContext.map.getPitch();
-			bearing = mapContext.map.getBearing();
+			zoom = mapContext.map?.getZoom();
+			center = mapContext.map?.getCenter();
+			pitch = mapContext.map?.getPitch();
+			bearing = mapContext.map?.getBearing();
 		});
 
 		mapContext.map.on('moveend', () => {
-			zoom = mapContext.map.getZoom();
-			center = mapContext.map.getCenter();
-			pitch = mapContext.map.getPitch();
-			bearing = mapContext.map.getBearing();
+			zoom = mapContext.map?.getZoom();
+			center = mapContext.map?.getCenter();
+			pitch = mapContext.map?.getPitch();
+			bearing = mapContext.map?.getBearing();
 		});
 	});
 
@@ -83,9 +83,9 @@
 
 	$effect(() => {
 		if (allowRotation) {
-			mapContext.map.touchZoomRotate.enableRotation();
+			mapContext.map?.touchZoomRotate.enableRotation();
 		} else {
-			mapContext.map.touchZoomRotate.disableRotation();
+			mapContext.map?.touchZoomRotate.disableRotation();
 		}
 	});
 </script>

@@ -3,7 +3,7 @@ import tokens from "../tokens"
 import type { SymbolLayerSpecification } from "maplibre-gl"
 
 export default function makePlaceLabels() {
-    const placeLabels: Layer[] = [
+    const placeLabels: SymbolLayerSpecification[] = [
         {
             id: 'label-place-neighbourhood',
             filter: ['==', 'kind', 'neighbourhood'],
