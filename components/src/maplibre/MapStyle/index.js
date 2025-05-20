@@ -1,2 +1,2 @@
-import SWRDataBaseLight from './SWRDataLight';
-export { SWRDataBaseLight };
+import SWRDataLight from './SWRDataLight';
+export { SWRDataLight };

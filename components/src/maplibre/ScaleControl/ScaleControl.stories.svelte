@@ -5,7 +5,7 @@
 	import ScaleControl from './ScaleControl.svelte';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import Map from '../Map/Map.svelte';
-	import { SWRDataBaseLight } from '../MapStyle';
+	import { SWRDataLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
 		title: 'Map/Control/ScaleControl',
@@ -31,7 +31,7 @@
 >
 	<DesignTokens>
 		<div class="container">
-			<Map style={SWRDataBaseLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
+			<Map style={SWRDataLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<ScaleControl />
 			</Map>
 		</div>
@@ -56,7 +56,7 @@
 >
 	<DesignTokens>
 		<div class="container">
-			<Map style={SWRDataBaseLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
+			<Map style={SWRDataLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<ScaleControl unit="imperial" />
 			</Map>
 		</div>

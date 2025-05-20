@@ -6,7 +6,7 @@
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import VectorTileSource from '../VectorTileSource/VectorTileSource.svelte';
 
-	import { SWRDataBaseLight } from '../MapStyle';
+	import { SWRDataLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
 		title: 'Map/VectorLayer',
@@ -17,7 +17,7 @@
 <Story asChild name="Default">
 	<DesignTokens>
 		<div class="container">
-			<Map showDebug={true} style={SWRDataBaseLight}>
+			<Map showDebug={true} style={SWRDataLight}>
 				<VectorTileSource
 					id="ev-infra-source"
 					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}

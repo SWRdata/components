@@ -3,7 +3,7 @@
 	import Map from '../Map/Map.svelte';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
-	import { SWRDataBaseLight } from './index';
+	import { SWRDataLight } from './index';
 	const { Story } = defineMeta({
 		title: 'Map/Style/SWR Data Lab Light',
 		component: Map
@@ -15,7 +15,7 @@
 		<div class="grid">
 			<div class="container">
 				<Map
-					style={SWRDataBaseLight}
+					style={SWRDataLight}
 					initialLocation={{ lng: 8.239451072800875, lat: 48.75692609731408, zoom: 14.99 }}
 					showDebug
 				>

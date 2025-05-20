@@ -8,7 +8,7 @@
 	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import Tooltip from './Tooltip.svelte';
-	import { SWRDataBaseLight } from '../MapStyle';
+	import { SWRDataLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
 		title: 'Map/Tooltip',
@@ -22,11 +22,7 @@
 <Story asChild name="Default">
 	<DesignTokens>
 		<div class="container">
-			<Map
-				showDebug={true}
-				style={SWRDataBaseLight}
-				initialLocation={{ lat: 51, lng: 10, zoom: 8 }}
-			>
+			<Map showDebug={true} style={SWRDataLight} initialLocation={{ lat: 51, lng: 10, zoom: 8 }}>
 				<VectorTileSource
 					id="ev-infra-source"
 					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}
