@@ -10,7 +10,7 @@
 	});
 </script>
 
-<Story asChild name="Basic">
+<Story asChild name="Default">
 	<DesignTokens>
 		<div class="grid">
 			<div class="container">

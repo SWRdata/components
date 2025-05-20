@@ -51,7 +51,7 @@ export class SourceContext {
 	maxzoom = $state(24);
 
 	get source() {
-		console.log('gettign source');
+		console.log('getting source');
 		return this._source;
 	}
 }

@@ -52,7 +52,7 @@
 			style,
 			minZoom,
 			maxZoom,
-			attributionControl: false, // We have a component for it, so we disable it here
+			attributionControl: false, // Added via component
 			center: [initialLocation.lng, initialLocation.lat],
 			zoom: initialLocation.zoom,
 			...options

@@ -5,52 +5,34 @@ import * as MapStories from './Map.stories.svelte';
 
 # Map
 
-<Stories />
-<Controls />
-
 Svelte components and modular basemaps for rendering custom slippy maps using the [versatiles](https://docs.versatiles.org/) stack. Based on [prior work](https://github.com/SWRdata/frontend_svelte_p012_spritpreise/blob/main/src/lib/components/Map/Map.svelte) from [Jakob Bauer](https://github.com/AgricolaJKB), [dimfield](https://github.com/dimfeld/svelte-maplibre) and [MIRUNE](https://github.com/MIERUNE/svelte-maplibre-gl).
+
+<Story story={MapStories.Default} />
+<Controls />
 
 ## Sources
 
-### VectorTileSource
-
-Loads a vector tile source
+- **VectorTileSource**: Loads a vector tile source
 
 ## Layers
 
-### VectorLayer
-
-Renders a layer from a vector tile source.
+- **VectorLayer**: Renders a layer from a vector tile source.
 
 ## Controls
 
-### ScaleControl
-
-Renders a dynamic scalebar.
-
-### NavigationControl
-
-Renders zoom buttons
-
-### GeocoderControl
-
-Renders a search input using [maplibre-gl-geocoder](https://github.com/maplibre/maplibre-gl-geocoder) and any supported forward geocoding service. Currently only [maptiler](https://www.maptiler.com/) is supported.
-
-### AttributionControl
-
-Renders maplibre's default attribution control.
-
-### LinkToLocationControl
-
-Allows you to forward-geocode and move the map to a location specified by the `location` URL parameter
-
-### Custom controls
+- **[ScaleControl](?path=/docs/map-control-scalecontrol--docs)**: Renders a dynamic scalebar
+- **[NavigationControl](?path=/docs/map-control-navigationcontrol--docs)**: Renders zoom buttons and optional compass
+- **[GeocoderControl](?path=/docs/map-control-geocodercontrol--docs)**: Renders a search input using [maplibre-gl-geocoder](https://github.com/maplibre/maplibre-gl-geocoder) and any supported forward geocoding service (currently [maptiler](https://www.maptiler.com/) only)
+- **[AttributionControl](?path=/docs/map-control-attributioncontrol--docs)**: Renders maplibre's default attribution control.
+- **LinkToLocationControl**: Allows you to forward-geocode and move the map to a location specified by the `?location` URL parameter
+- **Custom controls**
 
 ## Tooltips
 
 ## Styles
 
-### SWR Data Light
+- SWR Data Light
+- Any [versatiles style](https://github.com/versatiles-org/versatiles-style) (see [demo](?path=/story/map-map--alternate-style))
 
 ## Known issues
 

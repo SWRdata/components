@@ -9,7 +9,12 @@
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import GeocoderControl from '../GeocoderControl/GeocoderControl.svelte';
 
-
+	import { eclipse } from '@versatiles/style';
+	const alternateStyle = eclipse({
+		language: 'de',
+		baseUrl: 'https://tiles.versatiles.org',
+		glyphs: 'https://static.datenhub.net/maps/fonts/{fontstack}/{range}.pbf'
+	});
 	const { Story } = defineMeta({
 		title: 'Map/Map',
 		component: Map
@@ -67,9 +72,25 @@
 	</div>
 </Story>
 
+<Story asChild name="Alternate Style">
+	<div class="container dark">
+		<DesignTokens>
+			<Map style={alternateStyle}>
+				<ScaleControl />
+				<AttributionControl />
+				<NavigationControl showCompass visualizePitch />
+				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
+			</Map>
+		</DesignTokens>
+	</div>
+</Story>
+
 <style>
 	.container {
 		width: 100%;
 		height: 600px;
+	}
+	.dark {
+		color: white;
 	}
 </style>

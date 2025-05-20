@@ -15,9 +15,8 @@
 <style>
 	:global {
 		.maplibregl-ctrl-scale {
-			color: black;
-			border-bottom: 1px solid black;
-			box-sizing: border-box;
+			color: inherit;
+			border-bottom: 1px solid currentColor;
 			font-weight: 400;
 			font-size: var(--fs-small-3);
 			font-family: var(--swr-text);
