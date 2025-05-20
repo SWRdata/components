@@ -26,7 +26,7 @@
 
 <Story
 	asChild
-	name="Basic"
+	name="Default"
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const containerEl = canvas.getByTestId('map-container');

@@ -19,7 +19,7 @@
 	let mouseCoords = $state([0, 0]) as LngLatLike;
 </script>
 
-<Story asChild name="Basic">
+<Story asChild name="Default">
 	<DesignTokens>
 		<div class="container">
 			<Map

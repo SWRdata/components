@@ -9,7 +9,7 @@
 	});
 </script>
 
-<Story asChild name="Basic">
+<Story asChild name="Default">
 	<Map>
 		<VectorTileSource
 			id="ev-infra-source"
