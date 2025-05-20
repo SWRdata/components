@@ -10,6 +10,7 @@
 	import GeocoderControl from '../GeocoderControl/GeocoderControl.svelte';
 
 	import { SWRDataBaseLight } from '../MapStyle';
+
 	import { eclipse } from '@versatiles/style';
 	const alternateStyle = eclipse({
 		language: 'de',
