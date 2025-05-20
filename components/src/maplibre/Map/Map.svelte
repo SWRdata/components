@@ -2,7 +2,7 @@
 	import maplibre, { type StyleSpecification } from 'maplibre-gl';
 	import { onMount, onDestroy, type Snippet } from 'svelte';
 	import { createMapContext } from '../context.svelte';
-	import { SWRDataBaseLight } from '../MapStyle';
+	import FallbackStyle from './FallbackStyle';
 
 	interface Location {
 		lat: number;
@@ -29,7 +29,7 @@
 	let {
 		children,
 		options,
-		style = SWRDataBaseLight,
+		style = FallbackStyle,
 		minZoom = 0,
 		maxZoom = 14.99,
 		zoom = $bindable(),

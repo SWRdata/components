@@ -9,12 +9,14 @@
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import GeocoderControl from '../GeocoderControl/GeocoderControl.svelte';
 
+	import { SWRDataBaseLight } from '../MapStyle';
 	import { eclipse } from '@versatiles/style';
 	const alternateStyle = eclipse({
 		language: 'de',
 		baseUrl: 'https://tiles.versatiles.org',
 		glyphs: 'https://static.datenhub.net/maps/fonts/{fontstack}/{range}.pbf'
 	});
+
 	const { Story } = defineMeta({
 		title: 'Map/Map',
 		component: Map
@@ -62,7 +64,7 @@
 >
 	<div class="container">
 		<DesignTokens>
-			<Map>
+			<Map style={SWRDataBaseLight}>
 				<ScaleControl />
 				<AttributionControl />
 				<NavigationControl showCompass visualizePitch />
@@ -91,6 +93,6 @@
 		height: 600px;
 	}
 	.dark {
-		color: white;
+		color: rgb(230, 230, 230);
 	}
 </style>
