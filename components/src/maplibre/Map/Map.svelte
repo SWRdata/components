@@ -14,6 +14,7 @@
 		style?: StyleSpecification | string;
 		initialLocation?: Location;
 		allowRotation?: boolean;
+		allowZoom?: boolean;
 		minZoom?: number;
 		maxZoom?: number;
 		zoom?: number;
@@ -38,6 +39,7 @@
 		bearing = $bindable(),
 		loading = $bindable(true),
 		allowRotation = false,
+		allowZoom = true,
 		showDebug = false,
 		initialLocation = { lat: 51.3, lng: 10.2, zoom: 5 }
 	}: MapProps = $props();
@@ -82,10 +84,10 @@
 	});
 
 	$effect(() => {
-		if (allowRotation) {
-			mapContext.map?.touchZoomRotate.enableRotation();
+		if (allowZoom === false) {
+			mapContext.map?.scrollZoom.disable();
 		} else {
-			mapContext.map?.touchZoomRotate.disableRotation();
+			mapContext.map?.scrollZoom.enable();
 		}
 	});
 </script>
@@ -98,7 +100,7 @@
 	{/if}
 	{#if showDebug}
 		<div class="debug">
-			{JSON.stringify({ ...center, zoom })}
+			{JSON.stringify({ ...center, zoom, allowZoom, allowRotation })}
 		</div>
 	{/if}
 </div>

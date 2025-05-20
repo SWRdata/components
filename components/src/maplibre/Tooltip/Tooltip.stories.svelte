@@ -22,7 +22,12 @@
 <Story asChild name="Default">
 	<DesignTokens>
 		<div class="container">
-			<Map showDebug={true} style={SWRDataLight} initialLocation={{ lat: 51, lng: 10, zoom: 8 }}>
+			<Map
+				showDebug={true}
+				style={SWRDataLight}
+				initialLocation={{ lat: 51, lng: 10, zoom: 8 }}
+				allowZoom={false}
+			>
 				<VectorTileSource
 					id="ev-infra-source"
 					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}
