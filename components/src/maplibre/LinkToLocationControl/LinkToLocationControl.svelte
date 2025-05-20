@@ -13,7 +13,7 @@
 
 	interface LinkToLocationControlProps {
 		key: string;
-		urlParameter: string;
+		urlParameter?: string;
 		service?: 'maptiler';
 		countries?: Country[] | Country;
 		languages?: Language[] | Language;

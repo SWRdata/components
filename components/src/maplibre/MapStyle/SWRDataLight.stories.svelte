@@ -17,9 +17,8 @@
 				<Map
 					style={SWRDataLight}
 					initialLocation={{ lng: 8.239451072800875, lat: 48.75692609731408, zoom: 14.99 }}
-					showDebug
 				>
-					<AttributionControl />
+					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>
 		</div>
