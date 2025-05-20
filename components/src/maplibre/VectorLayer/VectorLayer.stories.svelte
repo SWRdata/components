@@ -9,7 +9,7 @@
 	import { SWRDataLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
-		title: 'Map/VectorLayer',
+		title: 'Map/Layer/VectorLayer',
 		component: VectorLayer
 	});
 </script>
