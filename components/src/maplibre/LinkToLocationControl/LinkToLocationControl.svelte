@@ -13,6 +13,7 @@
 
 	interface LinkToLocationControlProps {
 		key: string;
+		urlParameter: string;
 		service?: 'maptiler';
 		countries?: Country[] | Country;
 		languages?: Language[] | Language;
@@ -20,6 +21,7 @@
 
 	const {
 		key,
+		urlParameter = 'location',
 		service = 'maptiler',
 		countries = 'de',
 		languages = 'de'
@@ -40,12 +42,12 @@
 
 	onMount(async () => {
 		const params = new URLSearchParams(window.location.search);
-		if (params.has('location')) {
-			console.log(params.get('location'));
+		if (params.has(urlParameter)) {
+			console.log(params.get(urlParameter));
 			const config: MaplibreGeocoderApiConfig = {
 				countries: countriesArr.join(','),
 				language: languagesArr.join(','),
-				query: params.get('location')?.toString(),
+				query: params.get(urlParameter)?.toString(),
 				limit: 1
 			};
 			const res = await geocoder.forwardGeocode(config);
