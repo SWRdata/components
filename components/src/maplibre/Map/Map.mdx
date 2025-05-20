@@ -1,37 +1,57 @@
-import { Story,  Meta, Primary, Controls, Stories} from '@storybook/addon-docs/blocks';
+import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
 import * as MapStories from './Map.stories.svelte';
 
-<Meta of={MapStories}/>
+<Meta of={MapStories} />
 
 # Map
 
-<Stories/>
-<Controls/>
-
+<Stories />
+<Controls />
 
 Svelte components and modular basemaps for rendering custom slippy maps using the [versatiles](https://docs.versatiles.org/) stack. Based on [prior work](https://github.com/SWRdata/frontend_svelte_p012_spritpreise/blob/main/src/lib/components/Map/Map.svelte) from [Jakob Bauer](https://github.com/AgricolaJKB), [dimfield](https://github.com/dimfeld/svelte-maplibre) and [MIRUNE](https://github.com/MIERUNE/svelte-maplibre-gl).
 
 ## Sources
+
 ### VectorTileSource
+
 Loads a vector tile source
+
 ## Layers
+
 ### VectorLayer
+
 Renders a layer from a vector tile source.
+
 ## Controls
+
 ### ScaleControl
+
 Renders a dynamic scalebar.
+
 ### NavigationControl
+
 Renders zoom buttons
+
 ### GeocoderControl
+
 Renders a search input using [maplibre-gl-geocoder](https://github.com/maplibre/maplibre-gl-geocoder) and any supported forward geocoding service. Currently only [maptiler](https://www.maptiler.com/) is supported.
+
 ### AttributionControl
+
 Renders maplibre's default attribution control.
+
 ### LinkToLocationControl
-Allows you to forward-geocode and move the map to a location specified by the `location` URL parameter 
+
+Allows you to forward-geocode and move the map to a location specified by the `location` URL parameter
+
 ### Custom controls
+
 ## Tooltips
+
 ## Styles
+
 ### SWR Data Light
+
 ## Known issues
 
 - Firefox throws warning `WebGL warning: texImage: Alpha-premult and y-flip are deprecated for non-DOM-Element uploads`: Known [upstream mapligre-gl issue](https://github.com/maplibre/maplibre-gl-js/issues/2030).

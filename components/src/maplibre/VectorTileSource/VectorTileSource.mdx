@@ -1,8 +1,8 @@
-import { Story,  Meta, Primary, Controls, Stories} from '@storybook/addon-docs/blocks';
+import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
 
 import * as VectorTileSourceStories from './VectorTileSource.stories.svelte';
 
-<Meta of={VectorTileSourceStories}/>
+<Meta of={VectorTileSourceStories} />
 
 # VectorTileSource
 
@@ -10,11 +10,10 @@ Loads tiled vector data from a tileserver. Any mablibre-supported tileserver wil
 
 ```jsx
 <Map>
-    <VectorTileSource
-        url="https://static.datenhub.net/rent_merged.versatiles?tiles/{z}/{x}/{y}"
-        id="chargers"
-    />
-    <VectorLayer sourceId="chargers"/>
+	<VectorTileSource
+		url="https://static.datenhub.net/rent_merged.versatiles?tiles/{z}/{x}/{y}"
+		id="chargers"
+	/>
+	<VectorLayer sourceId="chargers" />
 </Map>
 ```
-

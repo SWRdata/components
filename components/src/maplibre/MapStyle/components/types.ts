@@ -1,3 +1,3 @@
-import type { BackgroundLayerSpecification, FillLayerSpecification, LineLayerSpecification, SymbolLayerSpecification } from "maplibre-gl"
+import type { FillLayerSpecification, LineLayerSpecification } from 'maplibre-gl';
 
-export type Layer = LineLayerSpecification | FillLayerSpecification
+export type Layer = LineLayerSpecification | FillLayerSpecification;
