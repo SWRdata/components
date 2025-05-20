@@ -1,14 +1,9 @@
 <script lang="ts">
 	import maplibre, { type StyleSpecification } from 'maplibre-gl';
-	import { onMount, onDestroy, type Snippet } from 'svelte';
+	import { onMount, onDestroy, type Snippet, getContext, hasContext } from 'svelte';
 	import { createMapContext } from '../context.svelte';
+	import { type Location } from '../types';
 	import FallbackStyle from './FallbackStyle';
-
-	interface Location {
-		lat: number;
-		lng: number;
-		zoom: number;
-	}
 
 	interface MapProps {
 		style?: StyleSpecification | string;
@@ -22,8 +17,8 @@
 		pitch?: number;
 		bearing?: number;
 		loading?: boolean;
-		options?: any;
 		showDebug?: boolean;
+		options?: any;
 		children?: Snippet;
 	}
 
@@ -47,6 +42,9 @@
 	let container: HTMLElement;
 
 	const mapContext = createMapContext();
+	if (getContext('initialLocation') !== undefined && getContext('initialLocation') !== false) {
+		initialLocation = getContext('initialLocation');
+	}
 
 	onMount(() => {
 		mapContext.map = new maplibre.Map({

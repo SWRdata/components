@@ -1,27 +1,22 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import LinkToLocationControl from './LinkToLocationControl.svelte';
+	import WithLinkLocation from './WithLinkLocation.svelte';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import Map from '../Map/Map.svelte';
 	import { SWRDataLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
-		title: 'Maplibre/Control/LinkToLocationControl',
-		component: LinkToLocationControl
+		title: 'Maplibre/Extras/WithLinkLocation',
+		component: WithLinkLocation
 	});
 </script>
 
 <Story asChild name="Default">
 	<DesignTokens>
 		<div class="container">
-			<Map style={SWRDataLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
-				<LinkToLocationControl
-					countries="de"
-					languages="de"
-					service="maptiler"
-					key="V32kPHZjMa0Mkn6YvSzA"
-				/>
-			</Map>
+			<WithLinkLocation countries="de" languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA">
+				<Map style={SWRDataLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}></Map>
+			</WithLinkLocation>
 		</div>
 	</DesignTokens>
 </Story>

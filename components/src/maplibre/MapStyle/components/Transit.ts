@@ -1,5 +1,5 @@
 import tokens from '../tokens';
-import type { Layer } from './types';
+import type { Layer } from '../../types';
 
 const rail = {
 	line_color: '#d3d3d3',

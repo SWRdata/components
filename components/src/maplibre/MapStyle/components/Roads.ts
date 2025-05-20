@@ -1,4 +1,4 @@
-import { type Layer } from './types';
+import { type Layer } from '../../types';
 import tokens from '../tokens';
 import type { SymbolLayerSpecification } from 'maplibre-gl';
 

@@ -1,4 +1,4 @@
-import { type Layer } from './types';
+import { type Layer } from '../../types';
 
 export default function makeBuildings(): any {
 	const buildings: Layer[] = [

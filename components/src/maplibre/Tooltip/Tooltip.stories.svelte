@@ -11,7 +11,7 @@
 	import { SWRDataLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
-		title: 'Maplibre/Tooltip',
+		title: 'Maplibre/Extras/Tooltip',
 		component: Tooltip
 	});
 
