@@ -12,16 +12,16 @@ const preview: Preview = {
 					'Display',
 					'Chart',
 					['ChartHeader'],
-					'Map',
+					'Maplibre',
 					[
 						'Map',
 						'MapStyle',
-						'MapSource',
-						'VectorTileSource',
-						'VectorLayer',
-						'Tooltip',
+						'Source',
+						'Layer',
 						'Control',
-						['MapControl', 'ScaleControl', 'NavigationControl']
+						['MapControl', 'ScaleControl', 'NavigationControl'],
+						'Style',
+						'Tooltip'
 					],
 					'Form',
 					'Deprecated'

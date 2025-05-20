@@ -19,7 +19,7 @@
 	});
 
 	const { Story } = defineMeta({
-		title: 'Map/Map',
+		title: 'Maplibre/Map',
 		component: Map
 	});
 </script>

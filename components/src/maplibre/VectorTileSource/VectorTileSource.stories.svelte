@@ -8,7 +8,7 @@
 	import AttributionControl from '../AttributionControl';
 
 	const { Story } = defineMeta({
-		title: 'Map/Source/VectorTileSource',
+		title: 'Maplibre/Source/VectorTileSource',
 		component: VectorTileSource
 	});
 </script>

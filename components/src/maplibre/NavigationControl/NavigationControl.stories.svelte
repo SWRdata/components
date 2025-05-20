@@ -6,7 +6,7 @@
 	import Map from '../Map/Map.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Map/Control/NavigationControl',
+		title: 'Maplibre/Control/NavigationControl',
 		component: NavigationControl
 	});
 </script>

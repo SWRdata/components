@@ -3,7 +3,7 @@
 	import MapControl from './MapControl.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Map/Control/MapControl',
+		title: 'Maplibre/Control/MapControl',
 		component: MapControl
 	});
 </script>

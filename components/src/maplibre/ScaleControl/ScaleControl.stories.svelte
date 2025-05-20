@@ -8,7 +8,7 @@
 	import { SWRDataLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
-		title: 'Map/Control/ScaleControl',
+		title: 'Maplibre/Control/ScaleControl',
 		component: ScaleControl
 	});
 </script>

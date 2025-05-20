@@ -6,7 +6,7 @@
 	import { SWRDataLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
-		title: 'Map/Control/AttributionControl',
+		title: 'Maplibre/Control/AttributionControl',
 		component: AttributionControl
 	});
 </script>

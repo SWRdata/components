@@ -3,7 +3,7 @@
 	import LinkToLocationControl from './LinkToLocationControl.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Map/Control/LinkToLocationControl',
+		title: 'Maplibre/Control/LinkToLocationControl',
 		component: LinkToLocationControl
 	});
 </script>

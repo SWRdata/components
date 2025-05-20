@@ -5,7 +5,7 @@
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import { SWRDataLight } from './index';
 	const { Story } = defineMeta({
-		title: 'Map/Style/SWR Data Lab Light',
+		title: 'Maplibre/Style/SWR Data Lab Light',
 		component: Map
 	});
 </script>
