@@ -28,16 +28,6 @@ export default function makeLanduse(): any {
 			}
 		},
 		{
-			id: 'land-industrial',
-			type: 'fill',
-			'source-layer': 'land',
-			filter: ['all', ['in', 'kind', 'industrial', 'quarry', 'railway']],
-			paint: {
-				'fill-color': tokens.background,
-				'fill-opacity': ['interpolate', ['linear'], ['zoom'], 10, 0, 11, 1]
-			}
-		},
-		{
 			id: 'land-agriculture',
 			type: 'fill',
 			'source-layer': 'land',

@@ -37,7 +37,6 @@ const style: StyleSpecification = {
 		// 1. Landuse
 		...landuse,
 		...airports,
-		...buildings,
 
 		// 2. Tunnels
 		...walkingTunnels,
@@ -54,10 +53,13 @@ const style: StyleSpecification = {
 		...roadBridges,
 		...transitBridges,
 
-		// 5. Admin boundaries
+		// 5. Buildings
+		...buildings,
+
+		// 6. Admin boundaries
 		...admin,
 
-		// 6. Labels
+		// 7. Labels
 		...walkingLabels,
 		...roadLabels,
 		...placeLabels
