@@ -1803,7 +1803,7 @@ export default function makeRoads() {
 			},
 			layout: {
 				'line-join': 'round',
-				'line-cap': 'round'
+				'line-cap': 'butt'
 			}
 		},
 		{
@@ -1837,7 +1837,7 @@ export default function makeRoads() {
 			},
 			layout: {
 				'line-join': 'round',
-				'line-cap': 'round'
+				'line-cap': 'butt'
 			}
 		},
 		{

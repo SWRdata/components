@@ -270,5 +270,14 @@
 		.maplibregl-ctrl-group button:focus:only-child {
 			border-radius: inherit;
 		}
+		.maplibregl-marker {
+			left: 0;
+			top: 0;
+			position: absolute;
+			will-change: transform;
+		}
+		.maplibregl-marker path {
+			fill: var(--violet-dark-5);
+		}
 	}
 </style>

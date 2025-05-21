@@ -56,16 +56,13 @@
 		.maplibregl-ctrl-geocoder {
 			background-color: #fff;
 			position: relative;
-			min-width: 250px;
 			width: 100%;
 			z-index: 1;
 			font-family: var(--swr-sans);
 			font-size: var(--fs-small-1);
 			border-radius: var(--br-small);
-			border: 1px solid var(--violet-dark-5);
-			transition:
-				width 0.25s,
-				min-width 0.25s;
+			border: 1px solid rgba(0, 0, 0, 0.75);
+			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 		}
 
 		.maplibre-gl-geocoder--error {
@@ -80,10 +77,10 @@
 			font-family: inherit;
 			font-size: inherit;
 			background-color: transparent;
-			color: black;
+			color: var(--gray-dark-5);
 			border: 0;
 			height: 2em;
-			padding: 0 2em;
+			padding: 0 1.85em;
 			padding-top: 0.1em;
 			text-overflow: ellipsis;
 			white-space: nowrap;
@@ -108,7 +105,8 @@
 		/* Suggestions */
 		.maplibregl-ctrl-geocoder .suggestions {
 			background: white;
-			border: 1px solid var(--violet-dark-5);
+			border: 1px solid rgba(0, 0, 0, 0.75);
+			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 			border-radius: var(--br-small);
 			left: 0;
 			list-style: none;
@@ -128,10 +126,10 @@
 		.maplibregl-ctrl-geocoder .suggestions > li > a {
 			cursor: default;
 			display: block;
-			padding: 0.75em 0.85em;
-			color: var(--violet-dark-5);
-			padding-bottom: 0.7em;
-			border-bottom: 1px solid var(--gray-light-2);
+			padding: 0.5em 0.75em;
+			color: var(--gray-dark-5);
+			padding-bottom: 0.5em;
+			border-bottom: 1px solid var(--gray-light-3);
 		}
 		.maplibregl-ctrl-geocoder .suggestions > li:last-child > a {
 			border-bottom: 0;
@@ -139,9 +137,13 @@
 
 		.maplibregl-ctrl-geocoder .suggestions > .active > a,
 		.maplibregl-ctrl-geocoder .suggestions > li > a:hover {
+			background: var(--gray-light-5);
 			text-decoration: none;
 			cursor: pointer;
-			background: var(--gray-light-3);
+		}
+		.maplibregl-ctrl-geocoder .suggestions > .active .maplibregl-ctrl-geocoder--result-title,
+		.maplibregl-ctrl-geocoder .suggestions > li > a:hover .maplibregl-ctrl-geocoder--result-title {
+			text-decoration: underline;
 		}
 
 		.maplibregl-ctrl-geocoder--suggestion {
@@ -171,10 +173,12 @@
 			display: none;
 		}
 		.maplibregl-ctrl-geocoder--result-title {
-			font-weight: 700;
+			font-weight: 600;
+			letter-spacing: 0;
 		}
 		.maplibregl-ctrl-geocoder--result-address {
 			font-size: var(--fs-small-2);
+			color: var(--gray-dark-2);
 			line-height: 1.3;
 		}
 
