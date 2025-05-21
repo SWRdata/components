@@ -12,7 +12,7 @@ export { default as Middot } from './Middot/Middot.svelte';
 export { default as FormLabel } from './FormLabel/FormLabel.svelte';
 export { default as Map } from './maplibre/Map/Map.svelte';
 export { default as MapControl } from './maplibre/MapControl/MapControl.svelte';
-export { SWRDataLight } from './maplibre/MapStyle';
+export { SWRDataLabLight } from './maplibre/MapStyle';
 export { default as NavigationControl } from './maplibre/NavigationControl/NavigationControl.svelte';
 export { default as ScaleControl } from './maplibre/ScaleControl/ScaleControl.svelte';
 export { default as Source } from './maplibre/Source/Source.svelte';

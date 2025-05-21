@@ -9,7 +9,7 @@
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import GeocoderControl from '../GeocoderControl/GeocoderControl.svelte';
 
-	import { SWRDataLight } from '../MapStyle';
+	import { SWRDataLabLight } from '../MapStyle';
 
 	import { eclipse } from '@versatiles/style';
 	const alternateStyle = eclipse({
@@ -65,7 +65,7 @@
 >
 	<div class="container">
 		<DesignTokens>
-			<Map style={SWRDataLight}>
+			<Map style={SWRDataLabLight}>
 				<ScaleControl />
 				<AttributionControl />
 				<NavigationControl showCompass visualizePitch />

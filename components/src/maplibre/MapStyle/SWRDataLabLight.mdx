@@ -1,7 +1,7 @@
 import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
 import Mermaid from '../../../.storybook/blocks/Mermaid';
-import SWRDataLight from './SWRDataLight';
-import * as MapStyleStories from './SWRDataLight.stories.svelte';
+import SWRDataLabLight from './SWRDataLabLight';
+import * as MapStyleStories from './SWRDataLabLight.stories.svelte';
 
 <Meta of={MapStyleStories} />
 
@@ -13,7 +13,7 @@ Light-themed general-purpose basemap using SWR colours and typefaces based on
 - Data sources
   - Vector data: [versatiles-osm](https://download.versatiles.org/) in the [Shortbread schema](https://shortbread-tiles.org/) served from `tiles.versatiles.org`
   - Typefaces: SWR Sans served from `https://static.datenhub.net/maps/fonts/`.
-- Layer count: {SWRDataLight.layers.length}
+- Layer count: {SWRDataLabLight.layers.length}
 
 <Story of={MapStyleStories.Default} />
 

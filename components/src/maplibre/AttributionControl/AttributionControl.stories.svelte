@@ -3,7 +3,7 @@
 	import AttributionControl from './AttributionControl.svelte';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import Map from '../Map/Map.svelte';
-	import { SWRDataLight } from '../MapStyle';
+	import { SWRDataLabLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Control/AttributionControl',
@@ -14,7 +14,7 @@
 <Story asChild name="Default">
 	<DesignTokens>
 		<div class="container">
-			<Map style={SWRDataLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
+			<Map style={SWRDataLabLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<AttributionControl customAttribution="SWR Data Lab" position="bottom-left" />
 			</Map>
 		</div>

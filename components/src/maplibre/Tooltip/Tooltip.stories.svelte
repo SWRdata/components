@@ -8,7 +8,7 @@
 	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import Tooltip from './Tooltip.svelte';
-	import { SWRDataLight } from '../MapStyle';
+	import { SWRDataLabLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Extras/Tooltip',
@@ -25,7 +25,7 @@
 		<div class="container">
 			<Map
 				showDebug={true}
-				style={SWRDataLight}
+				style={SWRDataLabLight}
 				initialLocation={{ lat: 51, lng: 10, zoom: 8 }}
 				allowZoom={false}
 			>
@@ -92,7 +92,7 @@
 		<div class="container">
 			<Map
 				showDebug={true}
-				style={SWRDataLight}
+				style={SWRDataLabLight}
 				initialLocation={{ lat: 51, lng: 10, zoom: 8 }}
 				allowZoom={false}
 			>

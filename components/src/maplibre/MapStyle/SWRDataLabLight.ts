@@ -38,23 +38,23 @@ const style: StyleSpecification = {
 		...landuse,
 		...airports,
 
-		// 2. Tunnels
+		// 2. Buildings
+		...buildings,
+
+		// 3. Tunnels
 		...walkingTunnels,
 		...roadTunnels,
 		...transitTunnels,
 
-		// 3. Surface ways
+		// 4. Surface ways
 		...walkingSurface,
 		...roadSurface,
 		...transitSurface,
 
-		// 4. Bridges ways
+		// 5. Bridges ways
 		...walkingBridges,
 		...roadBridges,
 		...transitBridges,
-
-		// 5. Buildings
-		...buildings,
 
 		// 6. Admin boundaries
 		...admin,
