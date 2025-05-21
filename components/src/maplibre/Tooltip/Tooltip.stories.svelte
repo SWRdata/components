@@ -47,15 +47,7 @@
 					}}
 					onmouseleave={() => (hovered = undefined)}
 					paint={{
-						'fill-color': [
-							'step',
-							['get', 'coverage_2025'],
-							'white',
-							1,
-							'lightgray',
-							1.3,
-							'lightgreen'
-						]
+						'fill-color': ['step', ['get', 'coverage_2025'], 'white', 1, '#ffcfcc', 1.3, '#FF4D20']
 					}}
 				/>
 				<VectorLayer
@@ -63,19 +55,28 @@
 					sourceId="ev-infra-source"
 					sourceLayer="coverage"
 					id="ev-infra-outline"
+					placeBelow="label-place-city"
 					type="line"
-					,
+					layout={{
+						'line-join': 'round'
+					}}
 					paint={{
 						'line-width': [
 							'case',
 							['any', ['boolean', ['feature-state', 'hovered'], false]],
-							2,
+							1.5,
 							0.5
 						],
-						'line-color': '#1D0B40',
+						'line-color': [
+							'case',
+							['any', ['boolean', ['feature-state', 'hovered'], false]],
+							'#000',
+							'#555'
+						],
 						'line-opacity': 1
 					}}
 				/>
+
 				{#if hovered}
 					<Tooltip
 						position={hoverCoords}
@@ -121,15 +122,7 @@
 					}}
 					onmouseleave={() => (hovered2 = undefined)}
 					paint={{
-						'fill-color': [
-							'step',
-							['get', 'coverage_2025'],
-							'white',
-							1,
-							'lightgray',
-							1.3,
-							'lightgreen'
-						]
+						'fill-color': ['step', ['get', 'coverage_2025'], 'white', 1, '#CCDCFF', 1.3, '#6280E5']
 					}}
 				/>
 				<VectorLayer
@@ -138,7 +131,11 @@
 					sourceId="ev-infra-source"
 					sourceLayer="coverage"
 					id="ev-infra-outline"
+					placeBelow="label-place-city"
 					type="line"
+					layout={{
+						'line-join': 'round'
+					}}
 					paint={{
 						'line-width': [
 							'case',
@@ -150,7 +147,16 @@
 							2,
 							0.5
 						],
-						'line-color': '#1D0B40',
+						'line-color': [
+							'case',
+							[
+								'any',
+								['boolean', ['feature-state', 'hovered'], false],
+								['boolean', ['feature-state', 'selected'], false]
+							],
+							'#000',
+							'#555'
+						],
 						'line-opacity': 1
 					}}
 				/>

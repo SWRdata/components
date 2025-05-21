@@ -158,7 +158,7 @@
 		}
 
 		.maplibregl-popup-close-button:hover,
-		.maplibregl-popup-close-button:focus-visible {
+		.maplibregl-popup-close-button:focus {
 			background: rgb(245, 245, 245);
 		}
 

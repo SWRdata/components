@@ -139,7 +139,7 @@ export default function makePlaceLabels() {
 			paint: {
 				'text-color': tokens.label_secondary,
 				'text-halo-color': tokens.background,
-				'text-halo-width': 1
+				'text-halo-width': 2
 			}
 		},
 		{
