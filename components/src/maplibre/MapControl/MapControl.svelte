@@ -4,8 +4,8 @@
 	import { getMapContext } from '../context.svelte.ts';
 
 	interface MapControlProps {
-		control: IControl;
 		position: ControlPosition;
+		control?: IControl;
 		className?: string;
 		children?: Snippet;
 	}
@@ -34,7 +34,7 @@
 	});
 </script>
 
-<div bind:this={el} class={`maplibregl-ctrl`}>
+<div bind:this={el} class={`maplibregl-ctrl ${className}`}>
 	{#if children}
 		{@render children()}
 	{/if}
