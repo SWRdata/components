@@ -1,5 +1,7 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
+	import { within, expect } from 'storybook/test';
+
 	import GeocoderControl from './GeocoderControl.svelte';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import Map from '../Map/Map.svelte';
@@ -12,11 +14,57 @@
 	});
 </script>
 
-<Story asChild name="Default">
+<Story
+	asChild
+	name="Default"
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const containerEl = canvas.getByTestId('map-container');
+
+		await step('Geocoder control renders', async () => {
+			const el = containerEl.querySelector('.maplibregl-ctrl-geocoder');
+			expect(el).toBeTruthy();
+		});
+		await step('Localised placeholder text renders', async () => {
+			const el = containerEl.querySelector('.maplibregl-ctrl-geocoder input');
+			expect(el).toHaveAttribute('placeholder', 'Suche');
+		});
+	}}
+>
 	<DesignTokens>
 		<div class="container">
 			<Map style={SWRDataLabLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+<Story
+	asChild
+	name="Alternate Placeholder"
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const containerEl = canvas.getByTestId('map-container');
+
+		await step('Geocoder control renders', async () => {
+			const el = containerEl.querySelector('.maplibregl-ctrl-geocoder');
+			expect(el).toBeTruthy();
+		});
+		await step('Custom placeholder text renders', async () => {
+			const el = containerEl.querySelector('.maplibregl-ctrl-geocoder input');
+			expect(el).toHaveAttribute('placeholder', 'My placeholder text');
+		});
+	}}
+>
+	<DesignTokens>
+		<div class="container">
+			<Map style={SWRDataLabLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
+				<GeocoderControl
+					placeholder="My placeholder text"
+					languages="de"
+					service="maptiler"
+					key="V32kPHZjMa0Mkn6YvSzA"
+				/>
 			</Map>
 		</div>
 	</DesignTokens>

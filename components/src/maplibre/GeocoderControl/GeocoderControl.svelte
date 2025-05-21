@@ -23,6 +23,10 @@
 		 * Limit search to one or more languages. The UI is localised to the first language specified if [available](https://github.com/maplibre/maplibre-gl-geocoder/blob/main/lib/localization.ts).
 		 */
 		languages?: GeocodingLanguage | GeocodingLanguage[];
+		/**
+		 * Overwrite the default input placeholder text
+		 */
+		placeholder?: string;
 	}
 
 	const {
@@ -30,6 +34,7 @@
 		service = 'maptiler',
 		countries = 'de',
 		languages = 'en',
+		placeholder,
 		limit = 3
 	}: GeocoderControlProps = $props();
 
@@ -45,6 +50,7 @@
 		countries: countriesArr.join(','),
 		showResultsWhileTyping: true,
 		showResultMarkers: false,
+		placeholder,
 		limit
 	});
 </script>
