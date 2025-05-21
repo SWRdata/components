@@ -33,6 +33,9 @@ const style: StyleSpecification = {
 			maxzoom: 14
 		}
 	},
+	sky: {
+		'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 0.1, 5, 0.1, 7, 0]
+	},
 	layers: [
 		// 1. Landuse
 		...landuse,

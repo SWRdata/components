@@ -75,6 +75,25 @@
 	</div>
 </Story>
 
+<Story asChild name="Globe Projection">
+	<div class="container dark">
+		<DesignTokens>
+			<Map
+				style={SWRDataLabLight}
+				showDebug
+				projection={{ type: 'globe' }}
+				pitch={52}
+				initialLocation={{ lat: 51.3, lng: 10.2, zoom: 3.5 }}
+			>
+				<ScaleControl />
+				<AttributionControl />
+				<NavigationControl showCompass visualizePitch />
+				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
+			</Map>
+		</DesignTokens>
+	</div>
+</Story>
+
 <Story asChild name="Alternate Style">
 	<div class="container dark">
 		<DesignTokens>

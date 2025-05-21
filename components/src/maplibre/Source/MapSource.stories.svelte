@@ -3,7 +3,7 @@
 	import MapSource from './MapSource.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Map/MapSource',
+		title: 'Maplibre/MapSource',
 		component: MapSource
 	});
 </script>

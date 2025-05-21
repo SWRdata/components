@@ -1,5 +1,5 @@
 <script lang="ts">
-	import maplibre, { type StyleSpecification } from 'maplibre-gl';
+	import maplibre, { type ProjectionSpecification, type StyleSpecification } from 'maplibre-gl';
 	import { onMount, onDestroy, type Snippet, getContext, hasContext } from 'svelte';
 	import { createMapContext } from '../context.svelte';
 	import { type Location } from '../types';
@@ -17,6 +17,7 @@
 		pitch?: number;
 		bearing?: number;
 		loading?: boolean;
+		projection?: ProjectionSpecification;
 		showDebug?: boolean;
 		options?: any;
 		children?: Snippet;
@@ -30,9 +31,10 @@
 		maxZoom = 14.99,
 		zoom = $bindable(),
 		center = $bindable(),
-		pitch = $bindable(),
-		bearing = $bindable(),
+		pitch = $bindable(0),
+		bearing = $bindable(0),
 		loading = $bindable(true),
+		projection = { type: 'mercator' },
 		allowRotation = false,
 		allowZoom = true,
 		showDebug = false,
@@ -52,6 +54,8 @@
 			style,
 			minZoom,
 			maxZoom,
+			pitch,
+			bearing,
 			attributionControl: false, // Added via component
 			center: [initialLocation.lng, initialLocation.lat],
 			zoom: initialLocation.zoom,
@@ -79,6 +83,11 @@
 
 	$effect(() => {
 		if (mapContext.map) mapContext.map.setStyle(style);
+	});
+	$effect(() => {
+		if (mapContext.styleLoaded) {
+			mapContext.map?.setProjection(projection);
+		}
 	});
 
 	$effect(() => {
