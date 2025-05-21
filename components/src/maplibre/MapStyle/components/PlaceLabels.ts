@@ -130,7 +130,7 @@ export default function makePlaceLabels() {
 				'text-font': tokens.sans_medium,
 				'text-size': {
 					stops: [
-						[8, 11],
+						[8, 12],
 						[10, 14]
 					]
 				}
@@ -149,17 +149,18 @@ export default function makePlaceLabels() {
 			layout: {
 				'text-field': '{name_de}',
 				'text-font': tokens.sans_regular,
+				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
-						[5, 12],
+						[5, 13],
 						[14, 20]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_primary,
+				'text-color': tokens.label_secondary,
 				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-halo-width': 1
 			}
 		},
 		{
@@ -169,11 +170,12 @@ export default function makePlaceLabels() {
 			maxzoom: 12,
 			layout: {
 				'text-field': '{name_de}',
+				'text-letter-spacing': 0.015,
 				'text-font': tokens.sans_medium,
 				'text-size': {
 					stops: [
-						[7, 14],
-						[10, 20]
+						[5, 15],
+						[14, 20]
 					]
 				}
 			},
