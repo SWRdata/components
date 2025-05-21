@@ -51,7 +51,6 @@ export class SourceContext {
 	maxzoom = $state(24);
 
 	get source() {
-		console.log('getting source');
 		return this._source;
 	}
 }
@@ -68,7 +67,6 @@ export function getPopupTarget(): Box<Marker | string> | undefined {
 }
 
 export function createMapContext(): MapContext {
-	console.log('Setting map context');
 	return setContext(MAP_CONTEXT_KEY, new MapContext());
 }
 export function getMapContext(): MapContext {

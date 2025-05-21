@@ -76,7 +76,6 @@
 
 	$effect(() => {
 		if (map && styleLoaded && beforeId) {
-			console.log(`Rendering layer ${id}`);
 			map.addLayer(layerSpec, beforeId);
 		}
 	});

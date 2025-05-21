@@ -36,7 +36,6 @@
 	// 2. Do extra stuff with the source object
 	$effect(() => {
 		if (source) {
-			console.log(`Got source object for ${id}`);
 		}
 	});
 
