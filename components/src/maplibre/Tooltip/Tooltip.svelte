@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onDestroy, type Snippet } from 'svelte';
-	import { type LngLatLike, Popup } from 'maplibre-gl';
+	import { type Listener, type LngLatLike, Popup } from 'maplibre-gl';
 	import { getMapContext } from '../context.svelte.ts';
+	import { resetPopupEventListener } from '../utils';
 
 	interface TooltipProps {
 		position: LngLatLike | undefined;
@@ -20,6 +21,8 @@
 		 * Toggle mouse events on the tooltip element. Should be false if the tooltip appears on hover to avoid flickering.
 		 */
 		mouseEvents?: boolean;
+		onClose?: Listener | undefined;
+		onOpen?: Listener | undefined;
 	}
 
 	let {
@@ -29,7 +32,9 @@
 		maxWidth = 360,
 		showCloseButton = false,
 		closeOnClick = true,
-		mouseEvents = false
+		mouseEvents = false,
+		onClose,
+		onOpen
 	}: TooltipProps = $props();
 
 	const { map } = $derived(getMapContext());
@@ -50,6 +55,11 @@
 			tooltip.remove();
 		}
 	});
+
+	// Bind events
+	$effect(() => resetPopupEventListener(tooltip, 'open', onOpen));
+	$effect(() => resetPopupEventListener(tooltip, 'close', onClose));
+
 	onDestroy(() => tooltip.remove());
 </script>
 
@@ -60,10 +70,13 @@
 <style>
 	.container {
 		background: white;
-		padding: 0.5em;
-		border: 1px solid black;
+		padding: 0.65em;
+		border-radius: 2px;
+		border: 1px solid rgba(0, 0, 0, 0.75);
+		filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.1));
 		pointer-events: none;
 	}
+
 	.mouseEvents {
 		pointer-events: all;
 	}
@@ -130,30 +143,33 @@
 			border: 0;
 			cursor: pointer;
 			position: absolute;
-			top: 0.5em;
-			right: 0.5em;
+			top: 0.45em;
+			right: 0.45em;
 			display: flex;
+			border-radius: var(--br-small);
 			justify-content: center;
 			align-items: center;
 			padding-bottom: 0.1em;
-			border: 1px solid black;
+			border: 1px solid var(--violet-dark-5);
 			font-size: 1.2rem;
-			width: 1.25em;
-			height: 1.25em;
+			width: 1em;
+			height: 1em;
 			z-index: 100;
 		}
 
-		.maplibregl-popup-close-button:hover {
+		.maplibregl-popup-close-button:hover,
+		.maplibregl-popup-close-button:focus-visible {
 			background: rgb(245, 245, 245);
 		}
 
 		.maplibregl-popup-tip {
-			width: 0.65rem;
-			height: 0.65rem;
+			width: 0.6rem;
+			height: 0.6rem;
 			background: white;
 			position: absolute;
-			border-right: 1px solid black;
-			border-bottom: 1px solid black;
+			border-right: 1px solid rgba(0, 0, 0, 0.75);
+			border-bottom: 1px solid rgba(0, 0, 0, 0.75);
+			z-index: 10;
 		}
 	}
 </style>

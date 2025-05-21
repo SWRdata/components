@@ -1,6 +1,6 @@
 // Source: https://github.com/MIERUNE/svelte-maplibre-gl/blob/main/src/lib/maplibre/utils.ts
 
-import type { Evented, Listener, Map, MapLayerEventType } from 'maplibre-gl';
+import type { Evented, Listener, Map, MapLayerEventType, Popup } from 'maplibre-gl';
 
 export function resetEventListener(
 	evented: Evented | null | undefined,
@@ -31,6 +31,22 @@ export function resetLayerEventListener(
 	return () => {
 		if (prevListener) {
 			map?.off(type, layer, prevListener);
+		}
+	};
+}
+
+export function resetPopupEventListener(
+	popup: Popup | null,
+	type: 'open' | 'close',
+	listener: Listener | undefined
+) {
+	if (listener) {
+		popup?.on(type, listener);
+	}
+	const prevListener = listener;
+	return () => {
+		if (prevListener) {
+			popup?.off(type, prevListener);
 		}
 	};
 }

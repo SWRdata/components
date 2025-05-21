@@ -127,18 +127,19 @@ export default function makePlaceLabels() {
 			maxzoom: 11,
 			layout: {
 				'text-field': '{name_de}',
-				'text-font': tokens.sans_medium,
+				'text-font': tokens.sans_regular,
+				'text-letter-spacing': 0.015,
 				'text-size': {
 					stops: [
-						[8, 12],
+						[8, 14],
 						[10, 14]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_primary,
+				'text-color': tokens.label_secondary,
 				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-halo-width': 1
 			}
 		},
 		{

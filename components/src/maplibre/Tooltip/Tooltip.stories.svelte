@@ -16,15 +16,17 @@
 	});
 
 	let hovered = $state() as MapGeoJSONFeature | undefined;
+	let hovered2 = $state() as MapGeoJSONFeature | undefined;
+	let hoverCoords = $state([0, 0]) as LngLatLike;
+
 	let selected = $state() as MapGeoJSONFeature | undefined;
-	let mouseCoords = $state([0, 0]) as LngLatLike;
+	let selectCoords = $state([0, 0]) as LngLatLike;
 </script>
 
 <Story asChild name="Default">
 	<DesignTokens>
 		<div class="container">
 			<Map
-				showDebug={true}
 				style={SWRDataLabLight}
 				initialLocation={{ lat: 51, lng: 10, zoom: 8 }}
 				allowZoom={false}
@@ -39,9 +41,9 @@
 					id="coverage-fill"
 					sourceLayer="coverage"
 					placeBelow="street-residential"
-					onmousemove={(ev) => {
-						hovered = ev.features?.[0];
-						mouseCoords = ev.lngLat;
+					onmousemove={(e) => {
+						hovered = e.features?.[0];
+						hoverCoords = e.lngLat;
 					}}
 					onmouseleave={() => (hovered = undefined)}
 					paint={{
@@ -75,13 +77,18 @@
 					}}
 				/>
 				{#if hovered}
-					<Tooltip position={mouseCoords} mouseEvents={false} showCloseButton={false}>
+					<Tooltip
+						position={hoverCoords}
+						mouseEvents={false}
+						showCloseButton={false}
+						closeOnClick={false}
+					>
 						<pre>{Object.entries(hovered.properties)
 								.map(([key, val]) => `${key}: ${val}`)
 								.join('\n')}</pre>
 					</Tooltip>
 				{/if}
-				<AttributionControl />
+				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>
 	</DesignTokens>
@@ -91,7 +98,6 @@
 	<DesignTokens>
 		<div class="container">
 			<Map
-				showDebug={true}
 				style={SWRDataLabLight}
 				initialLocation={{ lat: 51, lng: 10, zoom: 8 }}
 				allowZoom={false}
@@ -106,11 +112,14 @@
 					id="coverage-fill"
 					sourceLayer="coverage"
 					placeBelow="street-residential"
-					onmousemove={(ev) => {
-						hovered = ev.features?.[0];
-						mouseCoords = ev.lngLat;
+					onmousemove={(e) => {
+						hovered2 = e.features?.[0];
 					}}
-					onmouseleave={() => (hovered = undefined)}
+					onclick={(e) => {
+						selected = e.features?.[0];
+						selectCoords = e.lngLat;
+					}}
+					onmouseleave={() => (hovered2 = undefined)}
 					paint={{
 						'fill-color': [
 							'step',
@@ -124,16 +133,20 @@
 					}}
 				/>
 				<VectorLayer
-					{hovered}
+					hovered={hovered2}
+					{selected}
 					sourceId="ev-infra-source"
 					sourceLayer="coverage"
 					id="ev-infra-outline"
 					type="line"
-					,
 					paint={{
 						'line-width': [
 							'case',
-							['any', ['boolean', ['feature-state', 'hovered'], false]],
+							[
+								'any',
+								['boolean', ['feature-state', 'hovered'], false],
+								['boolean', ['feature-state', 'selected'], false]
+							],
 							2,
 							0.5
 						],
@@ -141,14 +154,21 @@
 						'line-opacity': 1
 					}}
 				/>
-				{#if hovered}
-					<Tooltip position={mouseCoords} mouseEvents={true} showCloseButton={true}>
-						<pre>{Object.entries(hovered.properties)
+				{#if selected}
+					<Tooltip
+						position={selectCoords}
+						mouseEvents={true}
+						showCloseButton={true}
+						onClose={() => {
+							selected = undefined;
+						}}
+					>
+						<pre class="padRight">{Object.entries(selected.properties)
 								.map(([key, val]) => `${key}: ${val}`)
 								.join('\n')}</pre>
 					</Tooltip>
 				{/if}
-				<AttributionControl />
+				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>
 	</DesignTokens>
@@ -158,5 +178,9 @@
 	.container {
 		width: 100%;
 		height: 600px;
+	}
+
+	.padRight {
+		padding-right: 2.5em;
 	}
 </style>

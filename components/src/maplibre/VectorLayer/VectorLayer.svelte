@@ -25,6 +25,7 @@
 		paint?: LinePaintProps | FillPaintProps;
 		layout?: LineLayoutProps | FillLayoutProps;
 		hovered?: MapGeoJSONFeature | undefined;
+		selected?: MapGeoJSONFeature | undefined;
 
 		onclick: (e: MapLayerMouseEvent) => any;
 		onmousemove: (e: MapLayerMouseEvent) => any;
@@ -40,6 +41,7 @@
 		paint,
 		layout,
 		hovered = $bindable(),
+		selected = $bindable(),
 		minZoom = 0,
 		maxZoom = 24,
 		onclick,
@@ -83,6 +85,7 @@
 	$effect(() => resetLayerEventListener(map, 'mousemove', id, onmousemove));
 	$effect(() => resetLayerEventListener(map, 'mouseleave', id, onmouseleave));
 
+	// Set hovered feature state
 	$effect(() => {
 		if (styleLoaded) {
 			if (hovered) {
@@ -102,6 +105,32 @@
 					map?.setFeatureState(
 						{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
 						{ hovered: false }
+					);
+				}
+			}
+		}
+	});
+
+	// Set selected feature state
+	$effect(() => {
+		if (styleLoaded) {
+			if (selected) {
+				if (prevSelected) {
+					map?.setFeatureState(
+						{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
+						{ selected: false }
+					);
+				}
+				map?.setFeatureState(
+					{ source: sourceId, sourceLayer: sourceLayer, id: selected.id },
+					{ selected: true }
+				);
+				prevSelected = selected.id;
+			} else {
+				if (prevSelected) {
+					map?.setFeatureState(
+						{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
+						{ selected: false }
 					);
 				}
 			}
