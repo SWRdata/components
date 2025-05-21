@@ -1,4 +1,5 @@
 import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import Mermaid from '../../../.storybook/blocks/Mermaid';
 import SWRDataLight from './SWRDataLight';
 
 import * as MapStyleStories from './SWRDataLight.stories.svelte';
@@ -7,24 +8,93 @@ import * as MapStyleStories from './SWRDataLight.stories.svelte';
 
 # SWR Data Lab Light
 
-Light-themed basemap using SWR colours and the SWR-Sans typeface.
+Light-themed basemap using SWR colours and typefaces based on [versatiles-greybeard](https://github.com/versatiles-org/versatiles-style).
 
-Uses `versatiles-osm` vector tiles in the `versatiles-shortbread` schema served from `tiles.versatiles.org`, typefaces come from `https://static.datenhub.net/maps/fonts/`.
+- Data sources
+  - Vector data: [versatiles-osm](https://download.versatiles.org/) in the [Shortbread schema](https://shortbread-tiles.org/) served from `tiles.versatiles.org`
+  - Typefaces: SWR Sans served from `https://static.datenhub.net/maps/fonts/`.
+- Layer count: {SWRDataLight.layers.length}
 
 <Story of={MapStyleStories.Default} />
 
-<code>{SWRDataLight.layers.length}</code> layers
+<br />
 
-### Semantic Components
+### Design Notes
 
-1. Land + Water
-2. Natural Features
-3. Roads
-4. Transit
-5. Walking + Cycling
-6. Buildings
-7. Admin
+We take a two-step design approach:
 
-The actual layering order needs to be more sophisticated
+1. Sort the geographic data we want to present into semantic groups like "Admin Boundaries", "Roads" or "Transit" (inspired by Mapbox's [Style Components](https://docs.mapbox.com/studio-manual/guides/components/))
+2. Derive physical layers (ie. `MapLayerSpecification`) from these groups and interleave them to produce a convincing image
 
-- https://shortbread-tiles.org/
+<Mermaid chart={`
+block-beta
+columns 10
+
+classDef admin fill:#d4c5ee;
+classDef buildings fill:#F4A101;
+classDef roads fill:#FF7957;
+classDef transit fill:#8CC4A3;
+classDef walking fill:#97AEF2;
+classDef landuse fill:#4768DF;
+
+block:semantic:7
+columns 1
+columns 1
+s_admin["Admin"]
+s_buildings["Buildings"]
+s_roads["Roads"]
+s_transit["Transit"]
+s_walking["Walking + Cycling"]
+s_landuse["Landuse"]
+end
+space:1
+block:actual:10
+columns 1
+a_admin_labels["Admin Labels"]
+a_roads_labels["Roads (Labels)"]
+a_admin0["Admin 0"]
+a_admin1["Admin 1"]
+a_admin2["Admin 2"]
+a_buildings["Buildings"]
+a_walking_bridge["Walking (Bridge)"]
+a_transit_bridge["Transit (Bridge)"]
+a_roads_bridge["Roads (Bridge)"]
+a_walking_surface["Walking (Surface)"]
+a_transit_surface["Transit (Surface)"]
+a_roads_surface["Roads (Surface)"]
+a_walking_tunnel["Walking (Tunnel)"]
+a_transit_tunnel["Transit (Tunnel)"]
+a_roads_tunnel["Roads (Tunnel)"]
+a_land["Land"]
+a_ocean["Ocean"]
+end
+
+s_admin --> a_admin_labels
+s_admin --> a_admin0
+s_admin --> a_admin1
+s_admin --> a_admin2
+s_buildings --> a_buildings
+s_roads --> a_roads_surface
+s_roads --> a_roads_bridge
+s_roads --> a_roads_tunnel
+s_roads --> a_roads_labels
+s_transit --> a_transit_surface
+s_transit --> a_transit_bridge
+s_transit --> a_transit_tunnel
+s_walking --> a_walking_surface
+s_walking --> a_walking_bridge
+s_walking --> a_walking_tunnel
+s_landuse --> a_land
+s_landuse --> a_ocean
+
+class s_admin,a_admin0,a_admin1,a_admin2,a_admin_labels admin
+class s_buildings,a_buildings buildings
+class s_roads,a_roads_bridge,a_roads_surface,a_roads_tunnel,a_roads_labels roads
+class s_transit,a_transit_bridge,a_transit_surface,a_transit_tunnel,a_transit_labels transit
+class s_walking,a_walking_bridge,a_walking_surface,a_walking_tunnel,a_walking_labels walking
+class s_landuse,a_land,a_ocean landuse
+`}/>
+
+### References
+
+- [Foundational Map Design | BUILD with Mapbox ](https://www.youtube.com/watch?v=QDfj9oGVZmE)

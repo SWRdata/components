@@ -22,11 +22,11 @@ There are three parts to this repository:
 
 ## Notes
 
--   Steps 2 - 5 in the proposed workflow above should (?) be automated
--   The **[pjax hydration bug](https://github.com/SWRdata/pjax-sveltekit/issues/3)** is solved in `mock-sveltekit` using a [server hook](https://github.com/SWRdata/components/blob/main/mock-sveltekit/src/hooks.server.js), as [suggested here](https://github.com/sveltejs/kit/issues/10411).
--   **Style encapsulation** between our news apps and the SWR.de website is implemented using SvelteKit's [Custom Elements API](https://svelte.dev/docs/custom-elements-api) following the pattern [developed here](https://github.com/SWRdata/pjax-sveltekit/issues/1). This doesn't support [declarative shadow DOM](https://web.dev/articles/declarative-shadow-dom), which means our apps will in effect be client-side rendered, but this...
-    -   is an acceptable tradeoff
-    -   may [change in Svelte 5](https://github.com/sveltejs/svelte/pull/10721)
+- Steps 2 - 5 in the proposed workflow above should (?) be automated
+- The **[pjax hydration bug](https://github.com/SWRdata/pjax-sveltekit/issues/3)** is solved in `mock-sveltekit` using a [server hook](https://github.com/SWRdata/components/blob/main/mock-sveltekit/src/hooks.server.js), as [suggested here](https://github.com/sveltejs/kit/issues/10411).
+- **Style encapsulation** between our news apps and the SWR.de website is implemented using SvelteKit's [Custom Elements API](https://svelte.dev/docs/custom-elements-api) following the pattern [developed here](https://github.com/SWRdata/pjax-sveltekit/issues/1). This doesn't support [declarative shadow DOM](https://web.dev/articles/declarative-shadow-dom), which means our apps will in effect be client-side rendered, but this...
+  - is an acceptable tradeoff
+  - may [change in Svelte 5](https://github.com/sveltejs/svelte/pull/10721)
 
 ## NPM Release Workflow
 
@@ -40,15 +40,15 @@ Merges into the main branch are protected and require a pull request review.
 
 [Semantic Release](https://github.com/semantic-release/) automatically:
 
--   analyzes commits and bumps the version (major, minor, or patch).
--   publishes the package to the [NPM registry](https://www.npmjs.com/package/@swr-data-lab/components).
--   pushes the release to GitHub with a tag reflecting the NPM package version.
+- analyzes commits and bumps the version (major, minor, or patch).
+- publishes the package to the [NPM registry](https://www.npmjs.com/package/@swr-data-lab/components).
+- pushes the release to GitHub with a tag reflecting the NPM package version.
 
 Only merges following [conventional commits](https://www.conventionalcommits.org/) will trigger a new release. Summary:
 
--   PATCH version bump: Commit message "fix: ..."
--   MINOR version bump: Commit message "feat: ..."
--   MAJOR version bump: Commit message "<type>!: ..." or include "BREAKING CHANGE: ..." in the footer
+- PATCH version bump: Commit message "fix: ..."
+- MINOR version bump: Commit message "feat: ..."
+- MAJOR version bump: Commit message "<type>!: ..." or include "BREAKING CHANGE: ..." in the footer
 
 For further questions, refer to the [Semantic Release Docs (FAQ)](https://semantic-release.gitbook.io/semantic-release/support/faq).
 
