@@ -1,21 +1,29 @@
 <script lang="ts">
 	import { onMount, setContext, type Snippet } from 'svelte';
 	import { MaptilerGeocoderAPI } from '../GeocoderControl/GeocoderAPIs';
-	import { type Location } from '../types';
+	import {
+		type GeocodingCountry,
+		type GeocodingLanguage,
+		type GeocodingService,
+		type Location
+	} from '../types';
 
 	import type {
 		MaplibreGeocoderApi,
 		MaplibreGeocoderApiConfig
 	} from '@maplibre/maplibre-gl-geocoder';
 
-	type Language = 'de' | 'en';
-	type Country = 'de' | 'at';
-
 	interface WithLinkLocationProps {
+		service?: GeocodingService;
+		/**
+		 * API key for selected geocoding `service`
+		 */
 		key: string;
-		service?: 'maptiler';
-		countries?: Country[] | Country;
-		languages?: Language[] | Language;
+		/**
+		 * Limit search to one or more countries
+		 */
+		countries?: GeocodingLanguage | GeocodingCountry[];
+		languages?: GeocodingLanguage | GeocodingLanguage[];
 		urlParameter?: string;
 		children: Snippet;
 	}

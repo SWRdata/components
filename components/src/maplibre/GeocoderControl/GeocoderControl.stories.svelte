@@ -4,7 +4,7 @@
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import Map from '../Map/Map.svelte';
 
-	import { SWRDataLight } from '../MapStyle';
+	import { SWRDataLabLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Control/GeoCoderControl',
@@ -15,7 +15,7 @@
 <Story asChild name="Default">
 	<DesignTokens>
 		<div class="container">
-			<Map style={SWRDataLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
+			<Map style={SWRDataLabLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 			</Map>
 		</div>

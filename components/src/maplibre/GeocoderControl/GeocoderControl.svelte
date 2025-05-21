@@ -3,13 +3,14 @@
 	import MaplibreGeocoder, { type MaplibreGeocoderApi } from '@maplibre/maplibre-gl-geocoder';
 	import { MaptilerGeocoderAPI } from './GeocoderAPIs';
 	import MapControl from '../MapControl/MapControl.svelte';
-
-	type Language = 'de' | 'en';
-	type Country = 'de' | 'at';
+	import { type GeocodingCountry, type GeocodingLanguage, type GeocodingService } from '../types';
 
 	interface GeocoderControlProps {
+		service: GeocodingService;
+		/**
+		 * API key for selected geocoding `service`
+		 */
 		key: string;
-		service: 'maptiler';
 		/**
 		 * Maximum number of suggestions to display
 		 */
@@ -17,11 +18,11 @@
 		/**
 		 * Limit search to one or more countries
 		 */
-		countries?: Country[] | Country;
+		countries?: GeocodingCountry | GeocodingCountry[];
 		/**
 		 * Limit search to one or more languages. The UI is localised to the first language specified if [available](https://github.com/maplibre/maplibre-gl-geocoder/blob/main/lib/localization.ts).
 		 */
-		languages?: Language[] | Language;
+		languages?: GeocodingLanguage | GeocodingLanguage[];
 	}
 
 	const {
