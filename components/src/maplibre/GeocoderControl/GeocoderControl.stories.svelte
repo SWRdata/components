@@ -41,7 +41,7 @@
 </Story>
 <Story
 	asChild
-	name="Alternate Placeholder"
+	name="Custom placeholder text"
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const containerEl = canvas.getByTestId('map-container');
