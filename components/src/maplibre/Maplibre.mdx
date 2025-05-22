@@ -19,7 +19,7 @@ Based on [prior work](https://github.com/SWRdata/frontend_svelte_p012_spritpreis
 
 This example initialises a map using the SWRDataLabLight style, adds an additional vector tile source and renders it as a vector layer.
 
-```html
+```jsx
 <script>
   import {
     Map,
@@ -43,7 +43,7 @@ This example initialises a map using the SWRDataLabLight style, adds an addition
         sourceLayer='coverage'
         id='ev-infra-outline'
         type='line'
-        paint={{'line-width': 1, 'line-color': 'red'}}
+        paint={{'line-width': 1, 'line-color': 'red'}}>
       </VectorLayer>
       <AttributionControl />
     </Map>
