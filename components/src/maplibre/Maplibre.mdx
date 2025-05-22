@@ -15,15 +15,60 @@ Based on [prior work](https://github.com/SWRdata/frontend_svelte_p012_spritpreis
 
 <br />
 
-## Sources
+## Usage
+
+This example initialises a map using the SWRDataLabLight style, adds an additional vector tile source and renders it as a vector layer.
+
+```html
+<script>
+  import {
+    Map,
+    VectorLayer,
+    AttributionControl,
+    VectorTileSource,
+    SWRDataLabLight,
+    DesignTokens
+  } from '@swr-data-lab/components';
+</script>
+
+<DesignTokens>
+  <div class='container'>
+    <Map style={SWRDataLabLight}>
+      <VectorTileSource
+        id='ev-infra-source'
+        url='https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}'>
+      </VectorTileSource>
+      <VectorLayer
+        sourceId='ev-infra-source'
+        sourceLayer='coverage'
+        id='ev-infra-outline'
+        type='line'
+        paint={{'line-width': 1, 'line-color': 'red'}}
+      </VectorLayer>
+      <AttributionControl />
+    </Map>
+  </div>
+</DesignTokens>
+
+<style>
+  .container {
+    width: 100%;
+    height: 600px;
+  }
+</style>
+```
+
+## Available components
+
+### Sources
 
 - **[VectorTileSource](?path=/docs/maplibre-source-vectortilesource--docs)**: Loads a vector tile source supplied by a tileserver
 
-## Layers
+### Layers
 
 - **[VectorLayer](?path=/docs/maplibre-layer-vectorlayer--docs)**: Renders a layer from a vector tile source.
 
-## Controls
+### Controls
 
 - **[ScaleControl](?path=/docs/maplibre-control-scalecontrol--docs)**: Renders a dynamic scalebar
 - **[NavigationControl](?path=/docs/maplibre-control-navigationcontrol--docs)**: Renders zoom buttons and optional compass
@@ -31,12 +76,12 @@ Based on [prior work](https://github.com/SWRdata/frontend_svelte_p012_spritpreis
 - **[AttributionControl](?path=/docs/maplibre-control-attributioncontrol--docs)**: Renders maplibre's default attribution control
 - **[Custom controls](?path=/docs/maplibre-control-mapcontrol--docs)**: Renders arbitrary HTML inside maplibre's layout
 
-## Misc
+### Misc
 
 - **[Tooltip](?path=/docs/maplibre-extras-tooltip--docs)**
-- **[WithLinkLocation](?path=/docs/maplibre-extras-withlinklocation--docs)**: Derive the maps initial location from a URL parameter (includes forward geocoding)
+- **[WithLinkLocation](?path=/docs/maplibre-extras-withlinklocation--docs)**: Derive the maps `initialLocation` from a URL parameter via forward geocoding
 
-## Styles
+### Styles
 
 - **[SWR Data Lab Light](?path=/docs/maplibre-style-swr-data-lab-light--docs)**: Light-themed basemap using SWR colours and typefaces
 - Any valid MapLibre style specification, such as [versatiles-style](https://github.com/versatiles-org/versatiles-style) (see [demo](?path=/story/map-map--alternate-style))

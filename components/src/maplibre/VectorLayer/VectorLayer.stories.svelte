@@ -1,9 +1,9 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import VectorLayer from './VectorLayer.svelte';
 	import Map from '../Map/Map.svelte';
-	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
+	import VectorLayer from './VectorLayer.svelte';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
+	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import VectorTileSource from '../VectorTileSource/VectorTileSource.svelte';
 
 	import { SWRDataLabLight } from '../MapStyle';
