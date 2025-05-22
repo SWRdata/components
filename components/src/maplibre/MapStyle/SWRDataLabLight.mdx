@@ -1,0 +1,86 @@
+import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import Mermaid from '../../../.storybook/blocks/Mermaid';
+import SWRDataLabLight from './SWRDataLabLight';
+import * as MapStyleStories from './SWRDataLabLight.stories.svelte';
+
+<Meta of={MapStyleStories} />
+
+# SWR Data Lab Light
+
+Light-themed general-purpose basemap using SWR colours and typefaces based on
+[versatiles-greybeard](https://github.com/versatiles-org/versatiles-style).
+
+- Data sources
+  - Vector data: [versatiles-osm](https://download.versatiles.org/) in the [Shortbread schema](https://shortbread-tiles.org/) served from `tiles.versatiles.org`
+  - Typefaces: SWR Sans served from `https://static.datenhub.net/maps/fonts/`.
+- Layer count: {SWRDataLabLight.layers.length}
+
+<Story of={MapStyleStories.Default} />
+
+<br />
+
+### Design Notes
+
+We take a two-step design approach:
+
+1. Sort the geographic data we want to present into semantic groups like "Admin Boundaries", "Roads" or "Transit" (inspired by Mapbox's [Style Components](https://docs.mapbox.com/studio-manual/guides/components/)).
+2. Derive physical layers (ie. `MapLayerSpecification`) from these groups and interleave them to produce a convincing image
+3. Use shared design tokens to style each physical layer
+
+<Mermaid chart={`
+block-beta
+columns 10
+
+classDef admin fill:#e5dbf5;
+classDef buildings fill:#FFBA35;
+classDef roads fill:#FFD584;
+classDef transit fill:#C5F0B1;
+classDef walking fill:#65D62B;
+classDef landuse fill:#eee;
+
+block:semantic:6
+columns 1
+columns 1
+s_admin["Admin"]
+s_buildings["Buildings"]
+s_roads["Roads"]
+s_transit["Transit"]
+s_walking["Walking + Cycling"]
+s_landuse["Landuse"]
+end
+
+block:actual:10
+columns 1
+a_admin_labels["Admin Labels"]
+a_walking_labels["Walking (Labels)"]
+a_transit_labels["Transit (Labels)"]
+a_roads_labels["Roads (Labels)"]
+a_admin0["Admin 0 (Countries)"]
+a_admin1["Admin 1 (States/Provinces)"]
+a_admin2["Admin 2 (Districts)"]
+a_buildings["Buildings"]
+a_walking_bridge["Walking (Bridge)"]
+a_transit_bridge["Transit (Bridge)"]
+a_roads_bridge["Roads (Bridge)"]
+a_walking_surface["Walking (Surface)"]
+a_transit_surface["Transit (Surface)"]
+a_roads_surface["Roads (Surface)"]
+a_walking_tunnel["Walking (Tunnel)"]
+a_transit_tunnel["Transit (Tunnel)"]
+a_roads_tunnel["Roads (Tunnel)"]
+a_land["Land"]
+a_ocean["Ocean"]
+a_background["Background"]
+end
+
+class s_admin,a_admin0,a_admin1,a_admin2,a_admin_labels admin
+class s_buildings,a_buildings buildings
+class s_roads,a_roads_bridge,a_roads_surface,a_roads_tunnel,a_roads_labels roads
+class s_transit,a_transit_bridge,a_transit_surface,a_transit_tunnel,a_transit_labels transit
+class s_walking,a_walking_bridge,a_walking_surface,a_walking_tunnel,a_walking_labels walking
+class s_landuse,a_land,a_ocean,a_background landuse
+`}/>
+
+### References
+
+- [Foundational Map Design | BUILD with Mapbox ](https://www.youtube.com/watch?v=QDfj9oGVZmE)

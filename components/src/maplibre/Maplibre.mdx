@@ -1,0 +1,91 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Story, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as MapStories from './Map/Map.stories.svelte';
+import * as MapStyleStories from './MapStyle/SWRDataLabLight.stories.svelte';
+
+<Meta title="Maplibre" />
+
+# Maplibre
+
+Lightweight svelte components and basemaps for rendering custom slippy maps using the [versatiles](https://docs.versatiles.org/) stack.
+
+Based on [prior work](https://github.com/SWRdata/frontend_svelte_p012_spritpreise/blob/main/src/lib/components/Map/Map.svelte) from [Jakob Bauer](https://github.com/AgricolaJKB), [dimfield](https://github.com/dimfeld/svelte-maplibre) and [MIRUNE](https://github.com/MIERUNE/svelte-maplibre-gl).
+
+<Story of={MapStyleStories.Default} />
+
+<br />
+
+## Usage
+
+This example initialises a map using the SWRDataLabLight style, adds an additional vector tile source and renders it as a vector layer.
+
+```jsx
+<script>
+  import {
+    Map,
+    VectorLayer,
+    AttributionControl,
+    VectorTileSource,
+    SWRDataLabLight,
+    DesignTokens
+  } from '@swr-data-lab/components';
+</script>
+
+<DesignTokens>
+  <div class='container'>
+    <Map style={SWRDataLabLight}>
+      <VectorTileSource
+        id='ev-infra-source'
+        url='https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}'>
+      </VectorTileSource>
+      <VectorLayer
+        sourceId='ev-infra-source'
+        sourceLayer='coverage'
+        id='ev-infra-outline'
+        type='line'
+        paint={{'line-width': 1, 'line-color': 'red'}}>
+      </VectorLayer>
+      <AttributionControl />
+    </Map>
+  </div>
+</DesignTokens>
+
+<style>
+  .container {
+    width: 100%;
+    height: 600px;
+  }
+</style>
+```
+
+## Available components
+
+### Sources
+
+- **[VectorTileSource](?path=/docs/maplibre-source-vectortilesource--docs)**: Loads a vector tile source supplied by a tileserver
+
+### Layers
+
+- **[VectorLayer](?path=/docs/maplibre-layer-vectorlayer--docs)**: Renders a layer from a vector tile source.
+
+### Controls
+
+- **[ScaleControl](?path=/docs/maplibre-control-scalecontrol--docs)**: Renders a dynamic scalebar
+- **[NavigationControl](?path=/docs/maplibre-control-navigationcontrol--docs)**: Renders zoom buttons and optional compass
+- **[GeocoderControl](?path=/docs/maplibre-control-geocodercontrol--docs)**: Renders a search input using [maplibre-gl-geocoder](https://github.com/maplibre/maplibre-gl-geocoder) and any supported forward geocoding service (currently [maptiler](https://www.maptiler.com/) only)
+- **[AttributionControl](?path=/docs/maplibre-control-attributioncontrol--docs)**: Renders maplibre's default attribution control
+- **[Custom controls](?path=/docs/maplibre-control-mapcontrol--docs)**: Renders arbitrary HTML inside maplibre's layout
+
+### Misc
+
+- **[Tooltip](?path=/docs/maplibre-extras-tooltip--docs)**
+- **[WithLinkLocation](?path=/docs/maplibre-extras-withlinklocation--docs)**: Derive the maps `initialLocation` from a URL parameter via forward geocoding
+
+### Styles
+
+- **[SWR Data Lab Light](?path=/docs/maplibre-style-swr-data-lab-light--docs)**: Light-themed basemap using SWR colours and typefaces
+- Any valid MapLibre style specification, such as [versatiles-style](https://github.com/versatiles-org/versatiles-style) (see [demo](?path=/story/map-map--alternate-style))
+
+## Known issues
+
+- Firefox throws warning `WebGL warning: texImage: Alpha-premult and y-flip are deprecated for non-DOM-Element uploads`: Known [upstream mapligre-gl issue](https://github.com/maplibre/maplibre-gl-js/issues/2030) (safe to ignore)

@@ -136,17 +136,17 @@
 			expect(canvas.getByTestId('custom-item-title').innerText).toEqual('Journalismus');
 			expect(canvas.getByTestId('custom-item-addon').innerText).toContain('Redakteur/in');
 			await userEvent.type(select, '{enter}');
-			expect(selectedItem.details.title).toEqual('Journalismus');
+			expect(selectedItem?.details.title).toEqual('Journalismus');
 		});
 
 		await step('Entering an item\'s "title" selects that item', async () => {
 			await userEvent.type(select, 'Tierpflege{enter}');
-			expect(selectedItem.details.title).toEqual('Tierpflege');
+			expect(selectedItem?.details.title).toEqual('Tierpflege');
 		});
 
 		await step('Entering an item\'s "addon" selects that item', async () => {
 			await userEvent.type(select, 'Zirkuskünstler{enter}');
-			expect(selectedItem.details.title).toEqual('Schauspiel und Tanz');
+			expect(selectedItem?.details.title).toEqual('Schauspiel und Tanz');
 		});
 	}}
 >

@@ -2,10 +2,10 @@ interface ColourMap {
 	[index: string]: ColourPalette | ColourList;
 }
 interface ColourPalette {
-	[index: string]: string
+	[index: string]: string;
 }
 interface ColourList {
-	[index: number]: string
+	[index: number]: string;
 }
 
 const shades: ColourMap = {
@@ -142,9 +142,13 @@ const shades: ColourMap = {
 		dark5: '#1D0B40'
 	},
 	gray: {
+		light5: 'hsl(225, 2%, 95%)',
 		light3: 'hsl(225, 2%, 77%)',
 		base: 'hsl(227, 2%, 50%)',
-		dark3: 'hsl(236, 2%, 34%)'
+		dark2: 'hsl(236, 2%, 38%)',
+		dark3: 'hsl(236, 2%, 32%)',
+		dark4: 'hsl(236, 2%, 22%)',
+		dark5: 'hsl(236, 2%, 5%)'
 	}
 };
 
@@ -164,18 +168,17 @@ const scales: ColourMap = {
 	forest_plum: [...Object.values(shades.forest).reverse(), ...Object.values(shades.plum)]
 };
 
-
 const typography = {
 	wide: {
 		sizes: {
-			"fs-small-3": "0.75rem",
-			"fs-small-2": "0.875rem",
-			"fs-small-1": "1rem",
-			"fs-base": "1.25rem",
-			"fs-large-1": "1.5rem",
-			"fs-large-2": "2rem",
-			"fs-large-3": "2.5rem",
-			"fs-large-4": "3.5rem"
+			'fs-small-3': '0.75rem',
+			'fs-small-2': '0.875rem',
+			'fs-small-1': '1rem',
+			'fs-base': '1.25rem',
+			'fs-large-1': '1.5rem',
+			'fs-large-2': '2rem',
+			'fs-large-3': '2.5rem',
+			'fs-large-4': '3.5rem'
 		}
 	}
 };

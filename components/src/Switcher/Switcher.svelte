@@ -60,6 +60,7 @@
 		padding: 0;
 		margin: 0;
 		border: 1px solid currentColor;
+		background: white;
 		border-radius: var(--br-small);
 
 		@media (min-width: base.$bp-s) {
