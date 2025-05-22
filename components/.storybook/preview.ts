@@ -19,7 +19,13 @@ const preview: Preview = {
 						'Source',
 						'Layer',
 						'Control',
-						['MapControl', 'ScaleControl', 'NavigationControl'],
+						[
+							'ScaleControl',
+							'GeoCoderControl',
+							'AttributionControl',
+							'NavigationControl',
+							'MapControl'
+						],
 						'Style',
 						'Tooltip'
 					],
