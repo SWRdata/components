@@ -247,8 +247,8 @@ export default function makeRoads() {
 				}
 			},
 			paint: {
-				'text-color': 'hsl(240,0%,23%)',
-				'text-halo-color': 'hsla(0,0%,100%,0.8)',
+				'text-color': tokens.label_secondary,
+				'text-halo-color': tokens.background,
 				'text-halo-width': 2,
 				'text-halo-blur': 1
 			}
@@ -294,7 +294,7 @@ export default function makeRoads() {
 			},
 			paint: {
 				'text-color': tokens.label_secondary,
-				'text-halo-color': 'hsla(0,0%,100%,0.8)',
+				'text-halo-color': tokens.background,
 				'text-halo-width': 2
 			}
 		},
@@ -732,16 +732,8 @@ export default function makeRoads() {
 			id: 'bridge-street-secondary-link:outline',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'secondary'], ['==', 'link', true]],
 			paint: {
-				'line-color': 'hsl(28,0%,69%)',
-				'line-width': {
-					stops: [
-						[12, 2],
-						[14, 3],
-						[16, 7],
-						[18, 14],
-						[20, 40]
-					]
-				}
+				'line-color': tokens.street_secondary_outline,
+				'line-width': street_secondary_outline.line_width
 			},
 			layout: street_layout,
 			minzoom: 13
@@ -805,17 +797,8 @@ export default function makeRoads() {
 			id: 'bridge-street-secondary:outline',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'secondary'], ['!=', 'link', true]],
 			paint: {
-				'line-color': 'hsl(28,0%,69%)',
-				'line-width': {
-					stops: [
-						[11, 2],
-						[14, 5],
-						[16, 8],
-						[18, 30],
-						[19, 68],
-						[20, 138]
-					]
-				},
+				'line-color': tokens.street_secondary_outline,
+				'line-width': street_secondary_outline.line_width,
 				'line-opacity': {
 					stops: [
 						[11, 0],
@@ -967,16 +950,8 @@ export default function makeRoads() {
 			id: 'bridge-street-secondary-link',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'secondary'], ['==', 'link', true]],
 			paint: {
-				'line-color': 'hsl(48,0%,83%)',
-				'line-width': {
-					stops: [
-						[12, 1],
-						[14, 2],
-						[16, 5],
-						[18, 12],
-						[20, 38]
-					]
-				}
+				'line-color': tokens.street_secondary,
+				'line-width': street_secondary.line_width
 			},
 			layout: street_layout,
 			minzoom: 13
@@ -1233,21 +1208,13 @@ export default function makeRoads() {
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'secondary'], ['==', 'link', true]],
 			paint: {
-				'line-color': 'rgb(180,180,180)',
+				'line-color': tokens.street_secondary_outline,
 				'line-dasharray': [1, 0.3],
-				'line-width': {
-					stops: [
-						[12, 2],
-						[14, 3],
-						[16, 7],
-						[18, 14],
-						[20, 40]
-					]
-				}
+				'line-width': street_secondary.line_width
 			},
 			layout: {
 				'line-join': 'round',
-				'line-cap': 'round'
+				'line-cap': 'butt'
 			},
 			minzoom: 13
 		},
@@ -1333,7 +1300,7 @@ export default function makeRoads() {
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'secondary'], ['!=', 'link', true]],
 			paint: {
-				'line-color': 'rgb(180,180,180)',
+				'line-color': tokens.street_secondary_outline,
 				'line-dasharray': [1, 0.3],
 				'line-width': street_secondary_outline.line_width,
 				'line-opacity': {
@@ -1345,7 +1312,7 @@ export default function makeRoads() {
 			},
 			layout: {
 				'line-join': 'round',
-				'line-cap': 'round'
+				'line-cap': 'butt'
 			}
 		},
 		{
@@ -1617,17 +1584,8 @@ export default function makeRoads() {
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'secondary'], ['!=', 'link', true]],
 			paint: {
-				'line-color': 'rgb(217,217,217)',
-				'line-width': {
-					stops: [
-						[11, 1],
-						[14, 4],
-						[16, 6],
-						[18, 28],
-						[19, 64],
-						[20, 130]
-					]
-				},
+				'line-color': tokens.street_secondary,
+				'line-width': street_secondary.line_width,
 				'line-opacity': {
 					stops: [
 						[11, 0],
@@ -1965,17 +1923,8 @@ export default function makeRoads() {
 				['!=', 'link', true]
 			],
 			paint: {
-				'line-color': 'hsl(28,0%,69%)',
-				'line-width': {
-					stops: [
-						[11, 2],
-						[14, 5],
-						[16, 8],
-						[18, 30],
-						[19, 68],
-						[20, 138]
-					]
-				},
+				'line-color': tokens.street_secondary_outline,
+				'line-width': street_secondary_outline.line_width,
 				'line-opacity': {
 					stops: [
 						[11, 0],
@@ -1985,7 +1934,7 @@ export default function makeRoads() {
 			},
 			layout: {
 				'line-join': 'round',
-				'line-cap': 'round'
+				'line-cap': 'butt'
 			}
 		},
 		{
