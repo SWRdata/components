@@ -11,13 +11,13 @@
 
 	import { getMapContext } from '../context.svelte.js';
 	import { onDestroy } from 'svelte';
-	import { resetLayerEventListener } from '../utils.ts';
+	import { resetLayerEventListener } from '../utils.js';
 
 	interface VectorLayerProps {
 		id: string;
 		sourceId: string;
 		sourceLayer: string;
-		type: 'line' | 'fill';
+		type: 'line' | 'fill' | 'circle' | 'symbol';
 		placeBelow: string;
 		visible?: boolean;
 		minZoom?: number;
