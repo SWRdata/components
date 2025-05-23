@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, type Snippet } from 'svelte';
 	import { type Map, type SourceSpecification } from 'maplibre-gl';
-	import { getMapContext, createSourceContext } from '../context.svelte.ts';
+	import { getMapContext, createSourceContext } from '../context.svelte.js';
 
 	type Source = maplibregl.VectorTileSource;
 

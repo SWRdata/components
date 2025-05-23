@@ -9,7 +9,7 @@
 		MapLayerMouseEvent
 	} from 'maplibre-gl';
 
-	import { getMapContext } from '../context.svelte.ts';
+	import { getMapContext } from '../context.svelte.js';
 	import { onDestroy } from 'svelte';
 	import { resetLayerEventListener } from '../utils.ts';
 

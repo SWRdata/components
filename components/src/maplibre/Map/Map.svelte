@@ -1,7 +1,7 @@
 <script lang="ts">
 	import maplibre, { type ProjectionSpecification, type StyleSpecification } from 'maplibre-gl';
 	import { onMount, onDestroy, type Snippet, getContext, hasContext } from 'svelte';
-	import { createMapContext } from '../context.svelte';
+	import { createMapContext } from '../context.svelte.js';
 	import { type Location } from '../types';
 	import FallbackStyle from './FallbackStyle';
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, type Snippet } from 'svelte';
-	import { type Listener, type LngLatLike, Popup } from 'maplibre-gl';
-	import { getMapContext } from '../context.svelte.ts';
+	import maplibre, { type Listener, type LngLatLike } from 'maplibre-gl';
+	import { getMapContext } from '../context.svelte.js';
 	import { resetPopupEventListener } from '../utils';
 
 	interface TooltipProps {
@@ -39,7 +39,7 @@
 
 	const { map } = $derived(getMapContext());
 
-	let tooltip = new Popup({
+	let tooltip = new maplibre.Popup({
 		closeButton: showCloseButton,
 		closeOnClick: closeOnClick,
 		maxWidth: `${maxWidth}px`,

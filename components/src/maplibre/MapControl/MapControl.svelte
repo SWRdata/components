@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
 	import { type ControlPosition, type IControl } from 'maplibre-gl';
-	import { getMapContext } from '../context.svelte.ts';
+	import { getMapContext } from '../context.svelte.js';
 
 	interface MapControlProps {
 		position: ControlPosition;
