@@ -15,7 +15,7 @@ export { default as Map } from './maplibre/Map/Map.svelte';
 export { SWRDataLabLight } from './maplibre/MapStyle';
 export { default as MapControl } from './maplibre/MapControl/MapControl.svelte';
 export { default as AttributionControl } from './maplibre/AttributionControl/AttributionControl.svelte';
-export { default as GeoCoderControl } from './maplibre/GeoCoderControl/GeoCoderControl.svelte';
+export { default as GeocoderControl } from './maplibre/GeocoderControl/GeocoderControl.svelte';
 export { default as NavigationControl } from './maplibre/NavigationControl/NavigationControl.svelte';
 export { default as ScaleControl } from './maplibre/ScaleControl/ScaleControl.svelte';
 export { default as VectorLayer } from './maplibre/VectorLayer/VectorLayer.svelte';

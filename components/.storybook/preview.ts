@@ -21,7 +21,7 @@ const preview: Preview = {
 						'Control',
 						[
 							'ScaleControl',
-							'GeoCoderControl',
+							'GeocoderControl',
 							'AttributionControl',
 							'NavigationControl',
 							'MapControl'

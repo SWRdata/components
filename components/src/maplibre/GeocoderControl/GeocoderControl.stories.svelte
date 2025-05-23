@@ -9,7 +9,7 @@
 	import { SWRDataLabLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
-		title: 'Maplibre/Control/GeoCoderControl',
+		title: 'Maplibre/Control/GeocoderControl',
 		component: GeocoderControl
 	});
 </script>
