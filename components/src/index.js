@@ -1,16 +1,23 @@
-export { default as Card } from './Card/Card.svelte';
-export { default as Autocomplete } from './Autocomplete/Autocomplete.svelte';
-export { default as Switcher } from './Switcher/Switcher.svelte';
-export { default as Input } from './Input/Input.svelte';
-export { default as Button } from './Button/Button.svelte';
-export { default as Select } from './Select/Select.svelte';
+// Design Tokens
 export { default as DesignTokens } from './DesignTokens/DesignTokens.svelte';
 export { tokens as tokens } from './DesignTokens/index.js';
+
+// Typography
+export { default as Headline } from './Headline/Headline.svelte';
+export { default as Copy } from './Copy/Copy.svelte';
+export { default as Caption } from './Caption/Caption.svelte';
+export { default as Note } from './Note/Note.svelte';
+
+// Display
+export { default as Card } from './Card/Card.svelte';
+
+// Chart
 export { default as ChartHeader } from './ChartHeader/ChartHeader.svelte';
 export { default as ChartFooter } from './ChartFooter/ChartFooter.svelte';
+export { default as Logotype } from './Logotype/Logotype.svelte';
 export { default as Middot } from './Middot/Middot.svelte';
-export { default as FormLabel } from './FormLabel/FormLabel.svelte';
 
+// Maplibre
 export { default as Map } from './maplibre/Map/Map.svelte';
 export { SWRDataLabLight } from './maplibre/MapStyle';
 export { default as MapControl } from './maplibre/MapControl/MapControl.svelte';
@@ -22,3 +29,13 @@ export { default as VectorLayer } from './maplibre/VectorLayer/VectorLayer.svelt
 export { default as VectorTileSource } from './maplibre/VectorTileSource/VectorTileSource.svelte';
 export { default as Tooltip } from './maplibre/Tooltip/Tooltip.svelte';
 export { default as WithLinkLocation } from './maplibre/WithLinkLocation/WithLinkLocation.svelte';
+
+// Form
+export { default as FormLabel } from './FormLabel/FormLabel.svelte';
+export { default as Switcher } from './Switcher/Switcher.svelte';
+export { default as Input } from './Input/Input.svelte';
+export { default as Button } from './Button/Button.svelte';
+export { default as Select } from './Select/Select.svelte';
+
+// Deprecated
+export { default as Autocomplete } from './Autocomplete/Autocomplete.svelte';
