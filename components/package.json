@@ -13,7 +13,7 @@
 	},
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && npm run package",
+		"build": "vite build",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package -i src && publint",
 		"prepublishOnly": "npm run package",
@@ -80,8 +80,8 @@
 		]
 	},
 	"files": [
-		"dist",
-		"!dist/**/*.test.*"
+		"./dist",
+		"!./dist/**/*.test.*"
 	],
 	"exports": {
 		".": {

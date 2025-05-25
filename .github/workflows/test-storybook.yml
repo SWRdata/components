@@ -1,4 +1,4 @@
-name: "Run Storybook Tests"
+name: 'Run Storybook Tests'
 on:
   workflow_dispatch:
   push:
@@ -20,4 +20,5 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npx playwright install --with-deps
+      - run: npm run build
       - run: npm run test-storybook:ci
