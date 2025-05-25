@@ -84,6 +84,9 @@
 		"!./dist/**/*.test.*",
 		"!./dist/**/*.stories.*"
 	],
+	"sideEffects": [
+		"**/*.css"
+	],
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
