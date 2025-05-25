@@ -3,47 +3,43 @@
 name: Release to NPM
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 permissions:
-    contents: read # for checkout
+  contents: read # for checkout
 
 jobs:
-    release:
-        name: Release
-        runs-on: ubuntu-latest
+  release:
+    name: Release
+    runs-on: ubuntu-latest
 
-        defaults:
-            run:
-                working-directory: ./components
+    defaults:
+      run:
+        working-directory: ./components
 
-        permissions:
-            contents: write # to publish a GitHub release
-            issues: write # to comment on released issues
-            pull-requests: write # to comment on released pull requests
-            id-token: write # to enable use of OIDC for npm provenance
+    permissions:
+      contents: write # to publish a GitHub release
+      issues: write # to comment on released issues
+      pull-requests: write # to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
 
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "lts/*"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
 
-            - name: Install dependencies
-              run: npm clean-install
+      - run: npm ci
 
-            - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-              run: npm audit signatures
+      - run: npm audit signatures
 
-            - name: Release
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-              run: npx semantic-release
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
