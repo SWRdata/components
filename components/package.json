@@ -81,7 +81,8 @@
 	},
 	"files": [
 		"./dist",
-		"!./dist/**/*.test.*"
+		"!./dist/**/*.test.*",
+		"!./dist/**/*.stories.*"
 	],
 	"exports": {
 		".": {
