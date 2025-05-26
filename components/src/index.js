@@ -39,3 +39,6 @@ export { default as Select } from './Select/Select.svelte';
 
 // Deprecated
 export { default as Autocomplete } from './Autocomplete/Autocomplete.svelte';
+
+// Meta
+export { default as ChartList } from './ChartList/ChartList.svelte';
