@@ -4,6 +4,10 @@
 		FillLayoutProps,
 		FillPaintProps,
 		LineLayoutProps,
+		CircleLayoutProps,
+		CirclePaintProps,
+		SymbolPaintProps,
+		SymbolLayoutProps,
 		LinePaintProps,
 		MapGeoJSONFeature,
 		MapLayerMouseEvent
@@ -22,8 +26,8 @@
 		visible?: boolean;
 		minZoom?: number;
 		maxZoom?: number;
-		paint?: LinePaintProps | FillPaintProps;
-		layout?: LineLayoutProps | FillLayoutProps;
+		paint?: LinePaintProps | FillPaintProps | CirclePaintProps | SymbolPaintProps;
+		layout?: LineLayoutProps | FillLayoutProps | CircleLayoutProps | SymbolLayoutProps;
 		hovered?: MapGeoJSONFeature | undefined;
 		selected?: MapGeoJSONFeature | undefined;
 
