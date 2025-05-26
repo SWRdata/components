@@ -49,12 +49,6 @@
 </main>
 
 <style>
-	:global(*) {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-		color: inherit;
-	}
 	main {
 		display: flex;
 		justify-content: center;

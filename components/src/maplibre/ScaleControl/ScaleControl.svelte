@@ -12,7 +12,7 @@
 
 <MapControl control={new maplibre.ScaleControl({ maxWidth, unit })} {position} />
 
-<style>
+<style lang="scss">
 	:global {
 		.maplibregl-ctrl-scale {
 			color: inherit;

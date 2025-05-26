@@ -19,7 +19,7 @@
 
 <MapControl control={new maplibre.NavigationControl({ showCompass, visualizePitch })} {position} />
 
-<style>
+<style lang="scss">
 	:global {
 		button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon {
 			background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%23333'%3E%3Cpath d='M10 13c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h9c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-9z'/%3E%3C/svg%3E");

@@ -57,7 +57,7 @@
 
 <MapControl control={geocoder} position="top-left" />
 
-<style>
+<style lang="scss">
 	:global {
 		.maplibregl-ctrl-geocoder {
 			background-color: #fff;
