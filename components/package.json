@@ -81,9 +81,7 @@
 		]
 	},
 	"files": [
-		"./dist",
-		"!./dist/**/*.test.*",
-		"!./dist/**/*.stories.*"
+		"dist/"
 	],
 	"sideEffects": [
 		"**/*.css"
