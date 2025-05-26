@@ -1,12 +1,16 @@
 <script lang="ts">
 	import type {
 		AddLayerObject,
+		CircleLayoutProps,
+		CirclePaintProps,
 		FillLayoutProps,
 		FillPaintProps,
 		LineLayoutProps,
 		LinePaintProps,
 		MapGeoJSONFeature,
-		MapLayerMouseEvent
+		MapLayerMouseEvent,
+		SymbolLayoutProps,
+		SymbolPaintProps
 	} from 'maplibre-gl';
 
 	import { getMapContext } from '../context.svelte.js';
@@ -22,8 +26,8 @@
 		visible?: boolean;
 		minZoom?: number;
 		maxZoom?: number;
-		paint?: LinePaintProps | FillPaintProps;
-		layout?: LineLayoutProps | FillLayoutProps;
+		paint?: LinePaintProps | FillPaintProps | CirclePaintProps | SymbolPaintProps;
+		layout?: LineLayoutProps | FillLayoutProps | CircleLayoutProps | SymbolLayoutProps;
 		hovered?: MapGeoJSONFeature | undefined;
 		selected?: MapGeoJSONFeature | undefined;
 
