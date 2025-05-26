@@ -70,9 +70,10 @@
 <style>
 	.container {
 		background: white;
-		padding: 0.65em;
+		padding: 0.75em;
 		border-radius: 2px;
 		border: 1px solid rgba(0, 0, 0, 0.75);
+		border-radius: var(--br-small);
 		filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.1));
 		pointer-events: none;
 	}

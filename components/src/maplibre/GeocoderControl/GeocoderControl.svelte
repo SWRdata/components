@@ -68,7 +68,7 @@
 			font-size: var(--fs-small-1);
 			border-radius: var(--br-small);
 			border: 1px solid rgba(0, 0, 0, 0.75);
-			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.075);
 		}
 
 		.maplibre-gl-geocoder--error {
@@ -85,7 +85,7 @@
 			background-color: transparent;
 			color: var(--gray-dark-5);
 			border: 0;
-			height: 2em;
+			height: 1.85em;
 			padding: 0 1.85em;
 			padding-top: 0.1em;
 			text-overflow: ellipsis;
@@ -93,8 +93,12 @@
 			overflow: hidden;
 		}
 
+		.maplibregl-ctrl-geocoder--input::placeholder {
+			opacity: 1;
+			color: var(--gray-dark-2);
+		}
 		.maplibregl-ctrl-geocoder--input:focus {
-			color: rgba(0, 0, 0, 0.75);
+			color: var(--gray-dark-5);
 			outline: 0;
 		}
 

@@ -210,9 +210,11 @@
 		}
 
 		.maplibregl-ctrl-group {
-			background: #fff;
+			background: white;
+			border: 1px solid rgba(0, 0, 0, 0.75);
+			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.075);
 			border-radius: var(--br-small);
-			border: 1px solid var(--violet-dark-5);
+			overflow: hidden;
 		}
 
 		.maplibregl-ctrl-group button {
@@ -244,11 +246,11 @@
 		}
 
 		.maplibregl-ctrl button:disabled .maplibregl-ctrl-icon {
-			opacity: 0.25;
+			opacity: 0.5;
 		}
 
 		.maplibregl-ctrl button:not(:disabled):hover {
-			background-color: rgb(0 0 0/5%);
+			background-color: var(--gray-light-5);
 		}
 
 		.maplibregl-ctrl-group button:focus:focus-visible {
