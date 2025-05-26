@@ -106,9 +106,10 @@
 		{/if}
 	{/if}
 	{#if showDebug}
-		<div class="debug">
-			{JSON.stringify({ ...center, zoom, allowZoom, allowRotation })}
-		</div>
+		<pre class="debug">
+{Object.entries({ ...center, zoom, allowZoom, allowRotation })
+				.map(([key, val]) => `${key}: ${val}`)
+				.join('\n')}</pre>
 	{/if}
 </div>
 
@@ -122,9 +123,10 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-		background: black;
+		background: rgba(0, 0, 0, 0.9);
 		color: white;
 		z-index: 1000;
+		padding: 2px;
 		font-family: monospace;
 	}
 	:global {
