@@ -67,7 +67,7 @@
 	{@render children?.()}
 </div>
 
-<style>
+<style lang="scss">
 	.container {
 		background: white;
 		padding: 0.75em;

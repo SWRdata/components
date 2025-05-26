@@ -17,7 +17,7 @@
 	})}
 />
 
-<style>
+<style lang="scss">
 	:global {
 		.maplibregl-ctrl.maplibregl-ctrl-attrib {
 			font-size: var(--fs-small-3);
