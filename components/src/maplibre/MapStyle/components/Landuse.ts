@@ -15,7 +15,7 @@ export default function makeLanduse(): any {
 			type: 'fill',
 			'source-layer': 'ocean',
 			paint: {
-				'fill-color': 'hsl(219, 56%, 93%)'
+				'fill-color': 'hsl(220, 30%, 96%)'
 			}
 		},
 		{
