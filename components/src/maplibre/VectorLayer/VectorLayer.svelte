@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type {
 		AddLayerObject,
+		CircleLayoutProps,
+		CirclePaintProps,
 		FillLayoutProps,
 		FillPaintProps,
 		LineLayoutProps,
@@ -10,7 +12,9 @@
 		SymbolLayoutProps,
 		LinePaintProps,
 		MapGeoJSONFeature,
-		MapLayerMouseEvent
+		MapLayerMouseEvent,
+		SymbolLayoutProps,
+		SymbolPaintProps
 	} from 'maplibre-gl';
 
 	import { getMapContext } from '../context.svelte.js';
