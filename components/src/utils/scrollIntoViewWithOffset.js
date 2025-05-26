@@ -6,9 +6,9 @@ const OFFSET = -50;
  * @param {number} offset
  */
 const scrollIntoViewWithOffset = (ref, offset) => {
-  const yOffset = offset !== 'undefined' ? offset : OFFSET;
-  const y = ref.getBoundingClientRect().top + window.pageYOffset + yOffset;
-  window.scrollTo({ top: y, behavior: 'smooth' });
+	const yOffset = offset !== 'undefined' ? offset : OFFSET;
+	const y = ref.getBoundingClientRect().top + window.pageYOffset + yOffset;
+	window.scrollTo({ top: y, behavior: 'smooth' });
 };
 
 export default scrollIntoViewWithOffset;

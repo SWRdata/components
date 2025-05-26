@@ -7,7 +7,7 @@ import { SvelteComponent } from 'svelte';
  */
 
 const isSvelteComponent = (component) => {
-  return SvelteComponent.isPrototypeOf(component) || typeof component === 'function';
+	return SvelteComponent.isPrototypeOf(component) || typeof component === 'function';
 };
 
 export default isSvelteComponent;

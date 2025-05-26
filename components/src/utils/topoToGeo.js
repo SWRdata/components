@@ -6,8 +6,8 @@ import { feature } from 'topojson-client';
  * @returns {object} geojson
  */
 const topoToGeo = (topojson) => {
-  const key = Object.keys(topojson.objects)[0];
-  return feature(topojson, topojson.objects[key]);
+	const key = Object.keys(topojson.objects)[0];
+	return feature(topojson, topojson.objects[key]);
 };
 
 export default topoToGeo;
