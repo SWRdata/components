@@ -48,7 +48,7 @@
 	</div>
 </main>
 
-<style>
+<style lang='scss'>
 	main {
 		display: flex;
 		justify-content: center;
