@@ -70,6 +70,21 @@
 	</DesignTokens>
 </Story>
 
+<Story asChild name="Long input">
+	<DesignTokens>
+		<div class="container">
+			<Map style={SWRDataLabLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
+				<GeocoderControl
+					placeholder="This is an input with a very long placeholder text"
+					languages="de"
+					service="maptiler"
+					key="V32kPHZjMa0Mkn6YvSzA"
+				/>
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
 <style>
 	.container {
 		width: 500px;
