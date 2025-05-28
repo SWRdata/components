@@ -12,7 +12,7 @@
 		 */
 		key: string;
 		/**
-		 * Maximum number of suggestions to display
+		 * Limit the number of returned suggestions
 		 */
 		limit?: number;
 		/**
@@ -24,7 +24,7 @@
 		 */
 		languages?: GeocodingLanguage | GeocodingLanguage[];
 		/**
-		 * Overwrite the default input placeholder text
+		 * Overwrite the default input placeholder
 		 */
 		placeholder?: string;
 	}
@@ -50,6 +50,7 @@
 		countries: countriesArr.join(','),
 		showResultsWhileTyping: true,
 		showResultMarkers: false,
+		debounceSearch: 25,
 		placeholder,
 		limit
 	});
@@ -78,7 +79,7 @@
 		}
 
 		.maplibregl-ctrl-geocoder--input {
-			width: 100%;
+			width: calc(100% - 3.7em);
 			height: 100%;
 			font-family: inherit;
 			font-size: inherit;
@@ -165,10 +166,6 @@
 		.maplibregl-ctrl-geocoder--suggestion-info {
 			display: flex;
 			flex-direction: column;
-		}
-
-		.maplibregl-ctrl-geocoder--suggestion-match {
-			font-weight: bold;
 		}
 
 		.maplibregl-ctrl-geocoder--suggestion-title,
