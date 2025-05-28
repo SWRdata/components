@@ -30,6 +30,7 @@ const preview: Preview = {
 						'Tooltip'
 					],
 					'Form',
+					'Meta',
 					'Deprecated'
 				]
 			}
