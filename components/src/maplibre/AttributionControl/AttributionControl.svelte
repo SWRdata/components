@@ -1,6 +1,7 @@
 <script lang="ts">
 	import maplibre, { type ControlPosition } from 'maplibre-gl';
 	import MapControl from '../MapControl/MapControl.svelte';
+	import './AttributionControl.css';
 
 	interface AttributionControlProps {
 		position?: ControlPosition;
@@ -16,30 +17,3 @@
 		compact: false
 	})}
 />
-
-<style lang="scss">
-	:global {
-		.maplibregl-ctrl.maplibregl-ctrl-attrib {
-			font-size: var(--fs-small-3);
-			letter-spacing: 0.005em;
-			word-spacing: 0.005em;
-			font-family: var(--swr-sans);
-		}
-		.maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner {
-			display: block;
-		}
-		.maplibregl-ctrl-attrib-button {
-			display: none;
-		}
-
-		.maplibregl-ctrl-attrib a {
-			color: inherit;
-			text-decoration: none;
-			text-underline-offset: 0.2em;
-		}
-		.maplibregl-ctrl-attrib a:hover {
-			color: inherit;
-			text-decoration: underline;
-		}
-	}
-</style>
