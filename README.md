@@ -6,14 +6,14 @@ Experimental component library for SWR Data interactives.
 
 ## Usage
 
-`swr-data-lab/components` is a private npm package, so installing it takes some extra steps:
+[`swr-data-lab/components`](https://www.npmjs.com/package/@swr-data-lab/components) is a private npm package, so installing it takes some extra steps:
 
 - Ensure you're a member of the `swr-data-lab` organisation on [npm](https://www.npmjs.com/).
 - Log into npm and generate an [access token](https://docs.npmjs.com/about-access-tokens) of type `automation`..
-- For local development, add the token as an environment variable:
+- For local development, add the token as an environment variable using the command line:
   - MacOS/Linux: `export NPM_TOKEN=[your-npm-token]` (test with `echo $NPM_TOKEN`)
   - Windows: `set NPM_TOKEN=[your-npm-token]` (test with `echo %NPM_TOKEN%`)
-- For continuous deployment, set the token as a repository secret (Settings > Security > Secrets and variables > Actions).
+- For usage with Github Actions, add the token as a [repository secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions) called `NPM_TOKEN`.
 - Add the following `.npmrc` file to your project:
 
 ```
