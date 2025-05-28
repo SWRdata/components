@@ -499,16 +499,7 @@ export default function makeRoads() {
 			},
 			paint: {
 				'line-color': motorway.line_color,
-				'line-opacity': 0.5,
-				'line-width': {
-					stops: [
-						[12, 3],
-						[14, 4],
-						[16, 10],
-						[18, 20],
-						[20, 56]
-					]
-				}
+				'line-width': motorway.line_width
 			},
 			minzoom: 13
 		},
@@ -754,7 +745,7 @@ export default function makeRoads() {
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'trunk'], ['==', 'link', true]],
 			paint: {
 				'line-color': motorway_outline.line_color,
-				'line-width': motorway_outline.line_width
+				'line-width': motorway_link_outline.line_width
 			},
 			layout: street_layout,
 			minzoom: 13
