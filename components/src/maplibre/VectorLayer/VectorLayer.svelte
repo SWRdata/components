@@ -6,15 +6,11 @@
 		FillLayoutProps,
 		FillPaintProps,
 		LineLayoutProps,
-		CircleLayoutProps,
-		CirclePaintProps,
 		SymbolPaintProps,
 		SymbolLayoutProps,
 		LinePaintProps,
 		MapGeoJSONFeature,
 		MapLayerMouseEvent,
-		SymbolLayoutProps,
-		SymbolPaintProps
 	} from 'maplibre-gl';
 
 	import { getMapContext } from '../context.svelte.js';
