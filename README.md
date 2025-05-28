@@ -23,7 +23,7 @@ registry=https://registry.npmjs.org/
 //registry.npmjs.org/:_authToken=${NPM_TOKEN}
 ```
 
-- Run `npm i @swr-data-lab/components` to install the package.
+- Run `npm install --save @swr-data-lab/components` to install the package.
 
 See also this [sample repository](https://github.com/SWRdata/components-usage-example).
 
