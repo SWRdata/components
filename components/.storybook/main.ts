@@ -19,7 +19,6 @@ const config: StorybookConfig = {
 			}
 		},
 		getAbsolutePath('@storybook/addon-links'),
-		getAbsolutePath('@chromatic-com/storybook'),
 		getAbsolutePath('@storybook/addon-vitest'),
 		getAbsolutePath('@storybook/addon-docs')
 	],
