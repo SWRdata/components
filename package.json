@@ -10,8 +10,7 @@
 		"components",
 		"sophora-components",
 		"mock-sophora",
-		"mock-sveltekit",
-		"data"
+		"mock-sveltekit"
 	],
 	"overrides": {
 		"svelte-select": {
