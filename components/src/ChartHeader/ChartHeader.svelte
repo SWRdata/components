@@ -7,12 +7,13 @@
 	interface ChartHeaderProps {
 		title: string;
 		subtitle?: string;
+		align?: 'left' | 'center';
 		children?: Snippet;
 	}
-	let { title, subtitle, children }: ChartHeaderProps = $props();
+	let { title, subtitle, align = 'left', children }: ChartHeaderProps = $props();
 </script>
 
-<header class="container" id={slugify(title)}>
+<header class={`container align-${align}`} id={slugify(title)}>
 	<Headline>{title}</Headline>
 	{#if subtitle}
 		<Copy><p class="subtitle">{subtitle}</p></Copy>
@@ -28,6 +29,12 @@
 	.container {
 		color: var(--violet-blue);
 		font-family: var(--swr-sans);
+		display: flex;
+		flex-flow: column;
+		gap: 0.125rem;
+	}
+	.align-center {
+		text-align: center;
 	}
 	.subtitle {
 		text-wrap: balance;
