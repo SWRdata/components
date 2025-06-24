@@ -4,14 +4,15 @@
 	import Note from '../Note/Note.svelte';
 
 	interface ChartFooterProps {
-		layout: 'one-up' | 'two-up';
+		layout?: 'one-up' | 'two-up';
+		alignment?: 'left' | 'center';
 		children?: Snippet;
 	}
 
-	let { layout = 'one-up', children }: ChartFooterProps = $props();
+	let { layout = 'one-up', alignment = 'left', children }: ChartFooterProps = $props();
 </script>
 
-<footer class={`container ${layout}`}>
+<footer class={`container ${layout} align-${alignment}`}>
 	{#if children}
 		<Note>
 			{@render children()}
@@ -33,6 +34,11 @@
 		display: flex;
 		flex-flow: column;
 		align-items: flex-start;
+		&.align-center {
+			align-items: center;
+			text-align: center;
+			text-wrap: balance;
+		}
 	}
 	.two-up {
 		display: grid;
