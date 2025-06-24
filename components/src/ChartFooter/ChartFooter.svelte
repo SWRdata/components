@@ -5,14 +5,14 @@
 
 	interface ChartFooterProps {
 		layout?: 'one-up' | 'two-up';
-		alignment?: 'left' | 'center';
+		align?: 'left' | 'center';
 		children?: Snippet;
 	}
 
-	let { layout = 'one-up', alignment = 'left', children }: ChartFooterProps = $props();
+	let { layout = 'one-up', align = 'left', children }: ChartFooterProps = $props();
 </script>
 
-<footer class={`container ${layout} align-${alignment}`}>
+<footer class={`container ${layout} align-${align}`}>
 	{#if children}
 		<Note>
 			{@render children()}

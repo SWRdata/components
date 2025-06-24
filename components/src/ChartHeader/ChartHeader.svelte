@@ -7,13 +7,13 @@
 	interface ChartHeaderProps {
 		title: string;
 		subtitle?: string;
-		alignment?: 'left' | 'center';
+		align?: 'left' | 'center';
 		children?: Snippet;
 	}
-	let { title, subtitle, alignment = 'left', children }: ChartHeaderProps = $props();
+	let { title, subtitle, align = 'left', children }: ChartHeaderProps = $props();
 </script>
 
-<header class={`container align-${alignment}`} id={slugify(title)}>
+<header class={`container align-${align}`} id={slugify(title)}>
 	<Headline>{title}</Headline>
 	{#if subtitle}
 		<Copy><p class="subtitle">{subtitle}</p></Copy>

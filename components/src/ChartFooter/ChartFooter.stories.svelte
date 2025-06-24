@@ -24,7 +24,7 @@
 
 <Story name="One-up Centered" asChild>
 	<DesignTokens>
-		<ChartFooter layout="one-up" alignment="center">
+		<ChartFooter layout="one-up" align="center">
 			Daten: <a href="#1">Zensus 2022</a>
 			(Durchschnittsmieten und Einwohnerzahlen),
 			<a href="#1">OpenStreetMap</a> (Kartenmaterial) <Middot /> In unserer Darstellung wurde das Zensusgitter
