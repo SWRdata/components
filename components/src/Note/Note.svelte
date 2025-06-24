@@ -29,6 +29,7 @@
 		}
 		:global(a),
 		:global(summary) {
+			text-underline-offset: 0.15em;
 			&:hover,
 			&:focus-visible {
 				color: var(--gray-dark-3);

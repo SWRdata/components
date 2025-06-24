@@ -144,6 +144,7 @@ const shades: ColourMap = {
 	gray: {
 		light5: 'hsl(225, 2%, 95%)',
 		light3: 'hsl(225, 2%, 77%)',
+		light1: 'hsl(225, 2%, 62%)',
 		base: 'hsl(227, 2%, 50%)',
 		dark2: 'hsl(236, 2%, 38%)',
 		dark3: 'hsl(236, 2%, 32%)',

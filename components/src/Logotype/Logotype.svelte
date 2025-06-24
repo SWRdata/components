@@ -39,9 +39,9 @@
 	svg {
 		display: block;
 		width: auto;
-		height: calc(var(--fs-small-2) * 0.9);
+		height: calc(var(--fs-small-2) * 0.8);
 	}
 	path {
-		fill: var(--violet-dark-5);
+		fill: var(--gray-light-1);
 	}
 </style>
