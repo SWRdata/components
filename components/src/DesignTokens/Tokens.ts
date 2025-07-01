@@ -142,14 +142,17 @@ const shades: ColourMap = {
 		dark5: '#1D0B40'
 	},
 	gray: {
-		light5: 'hsl(225, 2%, 95%)',
-		light3: 'hsl(225, 2%, 77%)',
-		light1: 'hsl(225, 2%, 62%)',
-		base: 'hsl(227, 2%, 50%)',
-		dark2: 'hsl(236, 2%, 38%)',
-		dark3: 'hsl(236, 2%, 32%)',
-		dark4: 'hsl(236, 2%, 22%)',
-		dark5: 'hsl(236, 2%, 5%)'
+		light5: '#f2f2f3',
+		light4: '#e2e3e4',
+		light3: '#cacbce',
+		light2: '#b1b2b4',
+		light1: '#97989b',
+		base: '#7d7e82',
+		dark1: '#646568',
+		dark2: '#4b4b4e',
+		dark3: '#323234',
+		dark4: '#19191a',
+		dark5: '#0d0d0d'
 	}
 };
 

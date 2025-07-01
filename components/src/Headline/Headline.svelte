@@ -17,7 +17,7 @@
 	.container {
 		font-family: var(--swr-text);
 		font-size: var(--fs-large-1);
-		font-weight: 550;
+		font-weight: 680;
 		letter-spacing: 0.005em;
 	}
 </style>
