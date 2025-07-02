@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
-
 	type ProjectPrefix = 'p' | 't';
 	type ProjectIdentifier = `${ProjectPrefix}${number}: ${string}`;
 
@@ -18,7 +16,7 @@
 
 <main>
 	<div class="inner">
-		<h1 data-testid="chartlist-project-title">Grafiken für {project}</h1>
+		<h1 data-testid="chartlist-project-title">Grafiken für <em>{project}</em></h1>
 		{#if charts}
 			<table>
 				<thead>
@@ -33,7 +31,7 @@
 					{#each charts as chart}
 						<tr>
 							<td>
-								<a href="./{chart.slug}{dev ? '' : '.html'}">{chart.title}</a>
+								<a href="./{chart.slug}">{chart.title}</a>
 							</td>
 							{#if baseUrl}
 								<td>
@@ -46,29 +44,40 @@
 			</table>
 		{/if}
 	</div>
+	<p class="notes">Nutze die "Embed URL" um Grafiken in Sophora einzubinden.</p>
 </main>
 
-<style lang='scss'>
+<style lang="scss">
 	main {
 		display: flex;
 		justify-content: center;
-		align-items: center;
+		align-items: flex-start;
 		flex-flow: column;
 		font-family: var(--swr-sans);
 		font-size: var(--fs-small-1);
-		max-width: 60rem;
+		max-width: 40rem;
 		margin: 0 auto;
+		height: 90vh;
+		* {
+			margin: 0;
+			padding: 0;
+		}
 	}
 	.inner {
 		width: 100%;
 		border: 1px solid rgb(0, 0, 0);
 	}
 	h1 {
-		font-size: var(--fs-small-1);
-		width: 100%;
+		font-size: var(--fs-base);
 		border-bottom: 1px solid black;
 		padding-bottom: 0.2em;
-		background-color: rgb(233, 238, 245);
+		background-color: rgb(255, 255, 255);
+		em {
+			background: rgb(234, 239, 184);
+			font-style: normal;
+			padding: 0 0.3em;
+			border-radius: 2px;
+		}
 	}
 	table {
 		border-collapse: collapse;
@@ -77,6 +86,7 @@
 	}
 	a {
 		display: block;
+		color: inherit;
 		text-decoration: none;
 	}
 	th,
@@ -89,7 +99,7 @@
 		border-bottom: 1px solid black;
 	}
 	tr {
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid rgb(150, 150, 150);
 		&:last-child {
 			border-bottom: 0;
 		}
@@ -97,8 +107,10 @@
 
 	input {
 		display: block;
-		width: 100%;
-		padding: 0.1em 0.3em;
+		font-family: monospace;
+		width: calc(100% - 0.6em);
+		padding: 0.1em 0.2em;
+		font-size: inherit;
 	}
 
 	a:hover,
@@ -107,5 +119,9 @@
 	}
 	a:last-child {
 		border-bottom: 0;
+	}
+	.notes {
+		margin-top: 0.5em;
+		font-size: var(--fs-small-2);
 	}
 </style>
