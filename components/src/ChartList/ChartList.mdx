@@ -4,9 +4,20 @@ import * as ChartListStories from './ChartList.stories.svelte';
 
 <Meta of={ChartListStories} />
 
-# Chart List
+# ChartList
 
-Utility component for displaying a list of charts with associated embed URLs during development (typically on the `/` route of your Svelte project).
+Utility component for displaying a list of charts with associated embed URLs during development, typically at the `/` route of your Svelte project.
+
+- `charts` is a list of `ChartSpec` objects of the following shape:
+
+  ```ts
+  interface ChartSpec {
+  	title: string;
+  	slug: string;
+  }
+  ```
+
+- `project` is a string of the shape `<Project Number>: <Project Title>`.
 
 <Stories />
 
