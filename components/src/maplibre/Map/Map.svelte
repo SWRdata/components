@@ -20,6 +20,7 @@
 		projection?: ProjectionSpecification;
 		showDebug?: boolean;
 		options?: any;
+		enableBuildingExtrusions?: boolean;
 		children?: Snippet;
 	}
 
@@ -38,10 +39,21 @@
 		allowRotation = false,
 		allowZoom = true,
 		showDebug = false,
-		initialLocation = { lat: 51.3, lng: 10.2, zoom: 5 }
+		enableBuildingExtrusions = false,
+		initialLocation: receivedInitialLocation
 	}: MapProps = $props();
 
 	let container: HTMLElement;
+
+	// Merge initial location with default object so individual
+	// properties (like pitch) can be omitted by the caller
+	let initialLocation = {
+		lat: 51.3,
+		lng: 10.2,
+		zoom: 5,
+		pitch: 0,
+		...receivedInitialLocation
+	};
 
 	const mapContext = createMapContext();
 	if (getContext('initialLocation') !== undefined && getContext('initialLocation') !== false) {
@@ -54,11 +66,11 @@
 			style,
 			minZoom,
 			maxZoom,
-			pitch,
 			bearing,
 			attributionControl: false, // Added via component
 			center: [initialLocation.lng, initialLocation.lat],
 			zoom: initialLocation.zoom,
+			pitch: initialLocation.pitch,
 			...options
 		});
 
@@ -107,7 +119,7 @@
 	{/if}
 	{#if showDebug}
 		<pre class="debug">
-{Object.entries({ ...center, zoom, allowZoom, allowRotation })
+{Object.entries({ ...center, zoom, pitch, allowZoom, allowRotation })
 				.map(([key, val]) => `${key}: ${val}`)
 				.join('\n')}</pre>
 	{/if}

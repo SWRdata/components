@@ -12,8 +12,9 @@ Light-themed general-purpose basemap using SWR colours and typefaces based on
 
 - Data sources
   - Vector data: [versatiles-osm](https://download.versatiles.org/) in the [Shortbread schema](https://shortbread-tiles.org/) served from `tiles.versatiles.org`
+  - Building footprints with heights: [basemap-de](https://basemap.de/produkte-und-dienste/web-vektor/) vector tiles served from `sgx.geodatenzentrum.de`
   - Typefaces: SWR Sans served from `https://static.datenhub.net/maps/fonts/`.
-- Layer count: {SWRDataLabLight.layers.length}
+- Layer count: {SWRDataLabLight({enableBuildingExtrusions: true}).layers.length} (including building extrusions)
 
 <Story of={MapStyleStories.Default} />
 
