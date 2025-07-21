@@ -24,7 +24,7 @@
 	});
 
 	const themes: ThemeMap = {
-		'SWRDL Light': SWRDataLabLight,
+		'SWRDL Light': SWRDataLabLight(),
 		Eclipse: eclipseStyle
 	};
 

@@ -27,7 +27,7 @@
 	<DesignTokens>
 		<div class="container">
 			<Map
-				style={SWRDataLabLight}
+				style={SWRDataLabLight()}
 				initialLocation={{ lat: 51, lng: 10, zoom: 8 }}
 				allowZoom={false}
 			>
@@ -99,7 +99,7 @@
 	<DesignTokens>
 		<div class="container">
 			<Map
-				style={SWRDataLabLight}
+				style={SWRDataLabLight()}
 				initialLocation={{ lat: 51, lng: 10, zoom: 8 }}
 				allowZoom={false}
 			>

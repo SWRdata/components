@@ -31,7 +31,7 @@
 >
 	<DesignTokens>
 		<div class="container">
-			<Map style={SWRDataLabLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
+			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<ScaleControl />
 			</Map>
 		</div>
@@ -56,7 +56,7 @@
 >
 	<DesignTokens>
 		<div class="container">
-			<Map style={SWRDataLabLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
+			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<ScaleControl unit="imperial" />
 			</Map>
 		</div>

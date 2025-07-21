@@ -15,7 +15,7 @@
 	<DesignTokens>
 		<div class="container">
 			<WithLinkLocation countries="de" languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA">
-				<Map style={SWRDataLabLight} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}></Map>
+				<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}></Map>
 			</WithLinkLocation>
 		</div>
 	</DesignTokens>
