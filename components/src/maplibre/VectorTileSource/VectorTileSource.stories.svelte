@@ -16,7 +16,7 @@
 <Story asChild name="Default">
 	<DesignTokens>
 		<div class="container">
-			<Map showDebug={true} style={SWRDataLabLight}>
+			<Map showDebug={true} style={SWRDataLabLight()}>
 				<VectorTileSource
 					id="ev-infra-source"
 					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}

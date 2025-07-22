@@ -65,7 +65,7 @@
 >
 	<div class="container">
 		<DesignTokens>
-			<Map style={SWRDataLabLight}>
+			<Map style={SWRDataLabLight()}>
 				<ScaleControl />
 				<AttributionControl />
 				<NavigationControl showCompass visualizePitch />
@@ -79,7 +79,7 @@
 	<div class="container dark">
 		<DesignTokens>
 			<Map
-				style={SWRDataLabLight}
+				style={SWRDataLabLight()}
 				showDebug
 				projection={{ type: 'globe' }}
 				pitch={52}
