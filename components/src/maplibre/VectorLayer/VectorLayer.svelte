@@ -10,7 +10,7 @@
 		SymbolLayoutProps,
 		LinePaintProps,
 		MapGeoJSONFeature,
-		MapLayerMouseEvent,
+		MapLayerMouseEvent
 	} from 'maplibre-gl';
 
 	import { getMapContext } from '../context.svelte.js';
@@ -20,7 +20,7 @@
 	interface VectorLayerProps {
 		id: string;
 		sourceId: string;
-		sourceLayer: string;
+		sourceLayer?: string;
 		type: 'line' | 'fill' | 'circle' | 'symbol';
 		placeBelow: string;
 		visible?: boolean;
@@ -62,7 +62,7 @@
 		id,
 		type,
 		source: sourceId,
-		'source-layer': sourceLayer,
+		'source-layer': sourceLayer || '',
 		layout: $state.snapshot(layout) ?? {},
 		paint: $state.snapshot(paint) ?? {},
 		minzoom: minZoom,
