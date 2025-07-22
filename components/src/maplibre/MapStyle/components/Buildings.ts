@@ -1,6 +1,18 @@
 import { type Layer } from '../../types';
 import tokens from '../tokens';
 
+const extrusionLayer = {
+	source: 'basemap-de',
+	type: 'fill-extrusion',
+	minzoom: 14,
+	maxzoom: 20,
+	paint: {
+		'fill-extrusion-color': tokens.building,
+		'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 14.5, 0, 15, 1],
+		'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 14.5, 0, 15, ['get', 'hoehe']]
+	}
+};
+
 export default function makeBuildings(): any {
 	const buildingFootprints: Layer = {
 		id: 'building-footprints',
@@ -17,19 +29,17 @@ export default function makeBuildings(): any {
 			}
 		}
 	};
-	const buildingExtrusions: Layer = {
-		id: 'building-extrusions',
-		source: 'basemap-de',
-		'source-layer': 'Gebaeudeflaeche',
-		type: 'fill-extrusion',
-		minzoom: 14,
-		maxzoom: 20,
-		paint: {
-			'fill-extrusion-color': tokens.building,
-			'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 14.5, 0, 15, 1],
-			'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 14.5, 0, 15, ['get', 'hoehe']]
-		}
-	};
+	const structureExtrusions = {
+		id: 'building-extrusions-structures',
+		'source-layer': 'Bauwerksflaeche',
+		...extrusionLayer
+	} as Layer;
 
-	return { buildingFootprints, buildingExtrusions };
+	const buildingExtrusions = {
+		id: 'building-extrusions-buildings',
+		'source-layer': 'Gebaeudeflaeche',
+		...extrusionLayer
+	} as Layer;
+
+	return { buildingFootprints, buildingExtrusions, structureExtrusions };
 }

@@ -16,7 +16,7 @@ const tokens = {
 	street_tertiary_outline: 'hsl(0, 0%, 50%)',
 	label_primary: 'rgb(10, 10, 11)',
 	label_secondary: 'hsl(240, 2%, 20%)',
-	building: '#ecebeb'
+	building: '#f3f2f1'
 };
 
 export default tokens;

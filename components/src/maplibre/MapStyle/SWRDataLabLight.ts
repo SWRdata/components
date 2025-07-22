@@ -8,7 +8,7 @@ import makePlaceLabels from './components/PlaceLabels';
 import makeWalking from './components/Walking';
 import makeRoads from './components/Roads';
 
-const { buildingFootprints, buildingExtrusions } = makeBuildings();
+const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings();
 const { landuse } = makeLanduse();
 const { placeLabels } = makePlaceLabels();
 const { admin } = makeAdmin();
@@ -63,14 +63,15 @@ const style: styleFunction = (opts) => {
 		sky: {
 			'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 0.1, 5, 0.1, 7, 0]
 		},
-		light: { anchor: 'viewport', color: 'white', intensity: 0.15 },
+		light: { anchor: 'viewport', color: 'white', intensity: 0.175 },
 		layers: [
 			// 1. Landuse
 			...landuse,
 			...airports,
 
-			// 2. Buildings
+			// 2. Building footprints + Structures (ie. bridges)
 			buildingFootprints,
+			...(options.enableBuildingExtrusions ? [structureExtrusions] : []),
 
 			// 3. Tunnels
 			...walkingTunnels,
@@ -94,9 +95,10 @@ const style: styleFunction = (opts) => {
 			...walkingLabels,
 			...roadLabels,
 
-			// Extrusions
+			// 8. Building extrusions
 			...(options.enableBuildingExtrusions ? [buildingExtrusions] : []),
 
+			// 8. Point labels
 			...placeLabels
 		]
 	};
