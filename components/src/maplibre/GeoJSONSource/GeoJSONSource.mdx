@@ -30,11 +30,11 @@ Loads vector data from a [GeoJSON](https://geojson.org/) object or file.
 </script>
 
 <Map>
-  <GeoJSONSource id="demo" data={demoData} attribution="Demo attribution" />
+  <GeoJSONSource id='demo' data={demoData} attribution='Demo attribution' />
   <VectorLayer
-    sourceId="demo"
-    id="demo-outline"
-    type="line"
+    sourceId='demo'
+    id='demo-outline'
+    type='line'
     paint={{'line-width': 15, 'line-color': 'red'}}
   />
   <AttributionControl />

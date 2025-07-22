@@ -5,7 +5,6 @@
 
 	interface GeoJSONSourceProps {
 		id: string;
-		maxZoom?: number;
 		/**
 		 * GeoJSON object or URL
 		 */
@@ -14,6 +13,7 @@
 		 * Attribution string for your data, usually rendered using an `<AttributionControl>`
 		 */
 		attribution?: string;
+		maxZoom?: number;
 	}
 
 	const { maxZoom = 24, id, data, attribution = '' }: GeoJSONSourceProps = $props();
