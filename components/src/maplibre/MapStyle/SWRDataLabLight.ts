@@ -1,4 +1,4 @@
-import type { Style, StyleSpecification } from 'maplibre-gl';
+import type { StyleSpecification } from 'maplibre-gl';
 
 import makeAdmin from './components/Admin';
 import makeBuildings from './components/Buildings';
@@ -70,7 +70,7 @@ const style: styleFunction = (opts) => {
 			...airports,
 
 			// 2. Building footprints + Structures (ie. bridges)
-			buildingFootprints,
+			...(!options.enableBuildingExtrusions ? [buildingFootprints] : []),
 			...(options.enableBuildingExtrusions ? [structureExtrusions] : []),
 
 			// 3. Tunnels
