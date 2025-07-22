@@ -16,7 +16,7 @@
 		attribution?: string;
 	}
 
-	const { maxZoom = 24, id, data, attribution }: GeoJSONSourceProps = $props();
+	const { maxZoom = 24, id, data, attribution = '' }: GeoJSONSourceProps = $props();
 
 	const sourceSpec: GeoJSONSourceSpecification = {
 		type: 'geojson',

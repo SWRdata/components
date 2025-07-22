@@ -13,7 +13,7 @@
 		attribution?: string;
 	}
 
-	const { minZoom = 0, maxZoom = 24, id, url, attribution }: VectorTileSourceProps = $props();
+	const { minZoom = 0, maxZoom = 24, id, url, attribution = '' }: VectorTileSourceProps = $props();
 
 	const sourceSpec: SourceSpecification = {
 		type: 'vector',
