@@ -20,7 +20,30 @@ Light-themed general-purpose basemap using SWR colours and typefaces based on
 
 <br />
 
-### Design Notes
+## Usage
+
+Call `SWRDataLabLight()` to construct a style document and pass the result to the `<Map>` component's `style` prop.
+
+```jsx
+<script>
+  import {
+    Map,
+    SWRDataLabLight,
+  } from '@swr-data-lab/components';
+</script>
+
+<Map style={SWRDataLabLight()}>...</Map>
+```
+
+`SWRDataLabLight()` takes an optional `options` parameter of the following shape:
+
+```ts
+interface StyleOptions {
+	enableBuildingExtrusions?: boolean;
+}
+```
+
+## Design Notes
 
 We take a two-step design approach:
 

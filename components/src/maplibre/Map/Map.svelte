@@ -20,7 +20,6 @@
 		projection?: ProjectionSpecification;
 		showDebug?: boolean;
 		options?: any;
-		enableBuildingExtrusions?: boolean;
 		children?: Snippet;
 	}
 
@@ -39,7 +38,6 @@
 		allowRotation = false,
 		allowZoom = true,
 		showDebug = false,
-		enableBuildingExtrusions = false,
 		initialLocation: receivedInitialLocation
 	}: MapProps = $props();
 
