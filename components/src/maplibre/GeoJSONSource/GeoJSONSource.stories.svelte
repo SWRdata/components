@@ -7,6 +7,7 @@
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 
 	import { SWRDataLabLight } from '../MapStyle';
+	import { tokens } from '../../DesignTokens';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Source/GeoJSONSource',
@@ -36,14 +37,14 @@
 	<DesignTokens>
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
-				<GeoJSONSource id="demo" data={geoJSON} attribution="test attribution" />
+				<GeoJSONSource id="demo" data={geoJSON} attribution="Demo attribution" />
 				<VectorLayer
 					sourceId="demo"
 					id="test-outline"
 					type="line"
 					paint={{
-						'line-width': 5,
-						'line-color': 'purple',
+						'line-width': 15,
+						'line-color': tokens.shades.red.dark1,
 						'line-opacity': 1
 					}}
 				/>

@@ -1,23 +1,27 @@
 <script lang="ts">
 	// See: https://maplibre.org/maplibre-gl-js/docs/API/classes/GeoJSONSource/
-	import { type Snippet } from 'svelte';
 	import { type GeoJSONSourceSpecification } from 'maplibre-gl';
 	import MapSource from '../Source/MapSource.svelte';
 
 	interface GeoJSONSourceProps {
 		id: string;
-		maxzoom?: number;
+		maxZoom?: number;
+		/**
+		 * GeoJSON object or URL
+		 */
 		data: GeoJSON.GeoJSON | string;
+		/**
+		 * Attribution string for your data, usually rendered using an `<AttributionControl>`
+		 */
 		attribution?: string;
-		children?: Snippet;
 	}
 
-	const { maxzoom = 24, id, data, attribution }: GeoJSONSourceProps = $props();
+	const { maxZoom = 24, id, data, attribution }: GeoJSONSourceProps = $props();
 
 	const sourceSpec: GeoJSONSourceSpecification = {
 		type: 'geojson',
 		data,
-		maxzoom,
+		maxzoom: maxZoom,
 		attribution
 	};
 </script>

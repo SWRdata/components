@@ -1,0 +1,44 @@
+import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+
+import * as GeoJSONSourceStories from './GeoJSONSource.stories.svelte';
+
+<Meta of={GeoJSONSourceStories} />
+
+# GeoJSONSource
+
+Loads vector data from a [GeoJSON](https://geojson.org/) object or file.
+
+```js
+<script lang="ts">
+  const demoData: GeoJSON.GeoJSON = {
+    type: 'GeometryCollection',
+    geometries: [
+      {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [7.99298752775212, 50.07410328331564],
+            [11.709726710536899, 50.07410328331564],
+            [11.709726710536899, 52.08770466696292],
+            [7.99298752775212, 52.08770466696292],
+            [7.99298752775212, 50.07410328331564]
+          ]
+        ]
+      }
+    ]
+  }
+</script>
+
+<Map>
+  <GeoJSONSource id="demo" data={demoData} attribution="Demo attribution" />
+  <VectorLayer
+    sourceId="demo"
+    id="demo-outline"
+    type="line"
+    paint={{'line-width': 15, 'line-color': 'red'}}
+  />
+  <AttributionControl />
+</Map>
+```
+
+<Controls />
