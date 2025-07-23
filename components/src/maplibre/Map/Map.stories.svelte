@@ -1,6 +1,6 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import { within, expect } from 'storybook/test';
+	import { within, expect, userEvent, fn } from 'storybook/test';
 
 	import Map from './Map.svelte';
 	import ScaleControl from '../ScaleControl/ScaleControl.svelte';
@@ -12,6 +12,8 @@
 	import { SWRDataLabLight } from '../MapStyle';
 
 	import { eclipse } from '@versatiles/style';
+	import { MapContext } from '../context.svelte';
+
 	const alternateStyle = eclipse({
 		language: 'de',
 		baseUrl: 'https://tiles.versatiles.org',
@@ -22,6 +24,9 @@
 		title: 'Maplibre/Map',
 		component: Map
 	});
+
+	let mapContext: MapContext;
+	const onMoveStart = fn();
 </script>
 
 <Story
@@ -75,8 +80,59 @@
 	</div>
 </Story>
 
+<Story
+	asChild
+	name="External Controls"
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const containerEl = canvas.getByTestId('map-container');
+		const flyToBerlinButton = canvas.getByTestId('flyto-berlin');
+
+		await step('map renders', async () => {
+			const mapEl = containerEl.querySelector('.maplibregl-canvas');
+			expect(mapEl).toBeTruthy();
+		});
+		await step('mapContext prop receives valid data', async () => {
+			expect(mapContext).toBeInstanceOf(MapContext);
+		});
+		await step('external trigger map events', async () => {
+			await userEvent.click(flyToBerlinButton);
+			expect(onMoveStart).toHaveBeenCalled();
+			// We'd like to expext.poll() for onMoveEnd.toHaveBeenCalled()
+			// here but that API doesn't exist in Storybook, see:
+			// https://github.com/storybookjs/storybook/issues/29060
+		});
+	}}
+>
+	<div class="container">
+		<DesignTokens>
+			<button
+				data-testid="flyto-berlin"
+				onclick={() => {
+					mapContext.map?.flyTo({ center: [13.3849, 52.5026], zoom: 9.8 });
+				}}>Fly to Berlin</button
+			>
+			<button
+				data-testid="flyto-origin"
+				onclick={() => {
+					mapContext.map?.flyTo({ center: [10.43, 50.88], zoom: 5 });
+				}}>Reset</button
+			>
+			<Map
+				style={SWRDataLabLight()}
+				initialLocation={{ lat: 50.88, lng: 10.43, zoom: 5 }}
+				showDebug
+				onmovestart={onMoveStart}
+				bind:mapContext
+			>
+				<AttributionControl />
+			</Map>
+		</DesignTokens>
+	</div>
+</Story>
+
 <Story asChild name="Globe Projection">
-	<div class="container dark">
+	<div class="container">
 		<DesignTokens>
 			<Map
 				style={SWRDataLabLight()}

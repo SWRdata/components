@@ -1,7 +1,11 @@
 <script lang="ts">
-	import maplibre, { type ProjectionSpecification, type StyleSpecification } from 'maplibre-gl';
+	import maplibre, {
+		type MapLibreEvent,
+		type ProjectionSpecification,
+		type StyleSpecification
+	} from 'maplibre-gl';
 	import { onMount, onDestroy, type Snippet, getContext, hasContext } from 'svelte';
-	import { createMapContext } from '../context.svelte.js';
+	import { createMapContext, MapContext } from '../context.svelte.js';
 	import { type Location } from '../types';
 	import FallbackStyle from './FallbackStyle';
 
@@ -20,6 +24,9 @@
 		projection?: ProjectionSpecification;
 		showDebug?: boolean;
 		options?: any;
+		mapContext?: MapContext;
+		onmovestart?: (e: MapLibreEvent) => null;
+		onmoveend?: (e: MapLibreEvent) => null;
 		children?: Snippet;
 	}
 
@@ -38,7 +45,12 @@
 		allowRotation = false,
 		allowZoom = true,
 		showDebug = false,
-		initialLocation: receivedInitialLocation
+		initialLocation: receivedInitialLocation,
+		// Future: This should become bindable.readonly when that becomes
+		// available, see: https://github.com/sveltejs/svelte/issues/7712
+		mapContext = $bindable(),
+		onmoveend,
+		onmovestart
 	}: MapProps = $props();
 
 	let container: HTMLElement;
@@ -53,7 +65,7 @@
 		...receivedInitialLocation
 	};
 
-	const mapContext = createMapContext();
+	mapContext = createMapContext();
 	if (getContext('initialLocation') !== undefined && getContext('initialLocation') !== false) {
 		initialLocation = getContext('initialLocation');
 	}
@@ -85,6 +97,13 @@
 			pitch = mapContext.map?.getPitch();
 			bearing = mapContext.map?.getBearing();
 		});
+
+		if (onmoveend) {
+			mapContext.map.on('moveend', onmoveend);
+		}
+		if (onmovestart) {
+			mapContext.map.on('movestart', onmovestart);
+		}
 	});
 
 	onDestroy(async () => {
@@ -94,6 +113,7 @@
 	$effect(() => {
 		if (mapContext.map) mapContext.map.setStyle(style);
 	});
+
 	$effect(() => {
 		if (mapContext.styleLoaded) {
 			mapContext.map?.setProjection(projection);
