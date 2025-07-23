@@ -34,7 +34,6 @@
 				<Map
 					showDebug
 					style={SWRDataLabLight({ enableBuildingExtrusions: true })}
-					enableBuildingExtrusions
 					maxZoom={20}
 					initialLocation={{
 						lng: 9.180503103314436,

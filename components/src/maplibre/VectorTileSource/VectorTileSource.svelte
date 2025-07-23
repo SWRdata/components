@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { type Snippet } from 'svelte';
 	import { type SourceSpecification } from 'maplibre-gl';
 	import MapSource from '../Source/MapSource.svelte';
 
@@ -8,16 +7,20 @@
 		url: string;
 		minZoom?: number;
 		maxZoom?: number;
-		children?: Snippet;
+		/**
+		 * Attribution string for your data, usually rendered using an `<AttributionControl>`
+		 */
+		attribution?: string;
 	}
 
-	const { minZoom = 0, maxZoom = 24, id, url }: VectorTileSourceProps = $props();
+	const { minZoom = 0, maxZoom = 24, id, url, attribution = '' }: VectorTileSourceProps = $props();
 
 	const sourceSpec: SourceSpecification = {
 		type: 'vector',
 		tiles: [url],
 		maxzoom: maxZoom,
-		minzoom: minZoom
+		minzoom: minZoom,
+		attribution
 	};
 </script>
 
