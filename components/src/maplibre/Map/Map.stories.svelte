@@ -125,16 +125,14 @@
 				onmovestart={onMoveStart}
 				bind:mapContext
 			>
-				<ScaleControl />
 				<AttributionControl />
-				<NavigationControl />
 			</Map>
 		</DesignTokens>
 	</div>
 </Story>
 
 <Story asChild name="Globe Projection">
-	<div class="container dark">
+	<div class="container">
 		<DesignTokens>
 			<Map
 				style={SWRDataLabLight()}
