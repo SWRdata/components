@@ -5,6 +5,7 @@ const tokens = {
 	background: 'hsl(0, 0%, 100%)',
 	water: 'hsl(210, 41%, 87%)',
 	water_light: 'hsl(210, 41%, 90%)',
+	water_ocean: 'hsl(210, 25%, 96%)',
 	marsh: 'hsl(200, 14%, 97%)',
 	grass: 'hsl(149, 37%, 97%)',
 	grass_dark: 'hsl(149, 37%, 93%)',

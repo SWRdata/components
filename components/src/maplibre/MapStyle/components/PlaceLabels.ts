@@ -18,6 +18,7 @@ const majorCities = [
 ];
 const majorCountries = [
 	'Deutschland',
+	'Dänemark',
 	'Frankreich',
 	'Niederlande',
 	'Belgien',
