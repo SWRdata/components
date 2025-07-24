@@ -1,6 +1,35 @@
 import tokens from '../tokens';
 import type { SymbolLayerSpecification } from 'maplibre-gl';
 
+// Hand-authored list of German cities we want to show at low zoom levels
+// Ideally this would include Frankfurt and Leipzig, but they're not state
+// capitals so they're not available in the versatiles data until z6
+
+const majorCities = [
+	'Stuttgart',
+	'München',
+	'Mainz',
+	'Bremen',
+	'Düsseldorf',
+	'Hamburg',
+	'Bremen',
+	'Dresden',
+	'Erfurt'
+];
+const majorCountries = [
+	'Deutschland',
+	'Frankreich',
+	'Niederlande',
+	'Belgien',
+	'Schweiz',
+	'Polen',
+	'Österreich',
+	'Tschechien',
+	'Slowakei',
+	'Italien',
+	'Ungarn'
+];
+
 export default function makePlaceLabels() {
 	const placeLabels: SymbolLayerSpecification[] = [
 		{
@@ -8,16 +37,12 @@ export default function makePlaceLabels() {
 			filter: ['==', 'kind', 'neighbourhood'],
 			minzoom: 14,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
 				'text-size': {
 					stops: [[14, 14]]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -25,16 +50,12 @@ export default function makePlaceLabels() {
 			filter: ['==', 'kind', 'quarter'],
 			minzoom: 14,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
 				'text-size': {
 					stops: [[10, 14]]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -42,8 +63,6 @@ export default function makePlaceLabels() {
 			filter: ['==', 'kind', 'suburb'],
 			minzoom: 11,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
 				'text-size': {
 					stops: [
 						[11, 13],
@@ -52,9 +71,7 @@ export default function makePlaceLabels() {
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 1.5
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -62,8 +79,6 @@ export default function makePlaceLabels() {
 			filter: ['==', 'kind', 'hamlet'],
 			minzoom: 13,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
 				'text-size': {
 					stops: [
 						[10, 11],
@@ -72,9 +87,7 @@ export default function makePlaceLabels() {
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -82,8 +95,6 @@ export default function makePlaceLabels() {
 			filter: ['==', 'kind', 'village'],
 			minzoom: 11,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
 				'text-size': {
 					stops: [
 						[9, 11],
@@ -92,9 +103,7 @@ export default function makePlaceLabels() {
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-color': tokens.label_secondary
 			}
 		},
 
@@ -103,8 +112,6 @@ export default function makePlaceLabels() {
 			filter: ['==', 'kind', 'town'],
 			minzoom: 9,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
 				'text-letter-spacing': 0.015,
 				'text-size': {
 					stops: [
@@ -114,9 +121,7 @@ export default function makePlaceLabels() {
 				}
 			},
 			paint: {
-				'text-color': tokens.label_primary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-color': tokens.label_primary
 			}
 		},
 
@@ -126,8 +131,6 @@ export default function makePlaceLabels() {
 			minzoom: 6,
 			maxzoom: 11,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
 				'text-letter-spacing': 0.015,
 				'text-size': {
 					stops: [
@@ -137,51 +140,108 @@ export default function makePlaceLabels() {
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
-			id: 'label-place-statecapital',
-			filter: ['==', 'kind', 'state_capital'],
-			minzoom: 5,
+			id: 'label-place-state-capital',
+			filter: [
+				'all',
+				['==', 'kind', 'state_capital'],
+				['<', 'population', 500000],
+				['!in', 'name_de', ...majorCities]
+			],
+			minzoom: 7,
 			maxzoom: 12,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
 				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
-						[5, 13],
+						[6, 13],
 						[14, 20]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 1
+				'text-color': tokens.label_secondary
+			}
+		},
+		{
+			id: 'label-place-major-city',
+			filter: ['all', ['in', 'name_de', ...majorCities]],
+			minzoom: 5,
+			maxzoom: 12,
+			layout: {
+				'text-letter-spacing': 0.025,
+				'text-size': {
+					stops: [
+						[7, 13],
+						[14, 20]
+					]
+				}
+			},
+			paint: {
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
 			id: 'label-place-capital',
-			filter: ['all', ['==', 'kind', 'capital'], ['==', 'name_de', 'Berlin']],
+			filter: ['all', ['==', 'kind', 'capital'], ['>', 'population', 1000000]],
 			minzoom: 5,
 			maxzoom: 12,
 			layout: {
-				'text-field': '{name_de}',
-				'text-letter-spacing': 0.015,
-				'text-font': tokens.sans_medium,
+				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
-						[5, 15],
+						[5, 14],
 						[14, 20]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_primary,
+				'text-color': tokens.label_primary
+			}
+		}
+	].map((el) => {
+		return {
+			...el,
+			type: 'symbol',
+			source: 'versatiles-osm',
+			'source-layer': 'place_labels',
+			layout: {
+				'text-font': tokens.sans_regular,
+				'text-field': '{name_de}',
+				...el.layout
+			},
+
+			paint: {
+				'text-halo-color': tokens.background,
+				'text-halo-width': 1,
+				...el.paint
+			}
+		} as SymbolLayerSpecification;
+	});
+
+	const boundaryLabels = [
+		{
+			id: 'label-boundary-country',
+			filter: ['all', ['==', 'admin_level', 2], ['in', 'name_de', ...majorCountries]],
+			minzoom: 5,
+			maxzoom: 7,
+			layout: {
+				'text-field': '{name_de}',
+				'text-letter-spacing': 0.085,
+				'text-font': tokens.sans_regular,
+				'text-transform': 'uppercase',
+				'text-size': {
+					stops: [
+						[5, 12],
+						[14, 20]
+					]
+				}
+			},
+			paint: {
+				'text-color': tokens.label_tertiary,
 				'text-halo-color': tokens.background,
 				'text-halo-width': 2
 			}
@@ -190,10 +250,10 @@ export default function makePlaceLabels() {
 		return {
 			type: 'symbol',
 			source: 'versatiles-osm',
-			'source-layer': 'place_labels',
+			'source-layer': 'boundary_labels',
 			...el
 		} as SymbolLayerSpecification;
 	});
 
-	return { placeLabels };
+	return { placeLabels, boundaryLabels };
 }

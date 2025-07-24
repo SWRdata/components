@@ -10,16 +10,18 @@
 		title: 'Maplibre/Style/SWR Data Lab Light',
 		component: Map
 	});
+
+	const locations = {
+		germany: { lng: 10.962488768573053, lat: 50.958636214954396, zoom: 5 },
+		badenBaden: { lng: 8.239451072800875, lat: 48.75692609731408, zoom: 14.99 }
+	};
 </script>
 
 <Story asChild name="Default">
 	<DesignTokens>
 		<div class="grid">
 			<div class="container">
-				<Map
-					style={SWRDataLabLight()}
-					initialLocation={{ lng: 8.239451072800875, lat: 48.75692609731408, zoom: 14.99 }}
-				>
+				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.germany}>
 					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 					<AttributionControl position="bottom-left" />
 				</Map>
