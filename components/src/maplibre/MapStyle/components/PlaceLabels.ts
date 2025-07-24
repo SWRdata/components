@@ -1,9 +1,9 @@
 import tokens from '../tokens';
 import type { SymbolLayerSpecification } from 'maplibre-gl';
 
-// Hand-authored list of German cities we want to show at low zoom levels
-// Ideally this would include Frankfurt and Leipzig, but they're not state
-// capitals so they're not available in the versatiles data until z6
+// Hand-authored list of place labes we want to show at low zoom levels
+// Ideally majorCities  would include Frankfurt and Leipzig, but they're not
+// state capitals so they're not available in the versatiles data until z6
 
 const majorCities = [
 	'Stuttgart',
@@ -43,7 +43,7 @@ export default function makePlaceLabels() {
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary
+				'text-color': tokens.label_tertiary
 			}
 		},
 		{
@@ -80,9 +80,6 @@ export default function makePlaceLabels() {
 						[12, 15]
 					]
 				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary
 			}
 		},
 
@@ -104,9 +101,6 @@ export default function makePlaceLabels() {
 						[12, 16]
 					]
 				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary
 			}
 		},
 
@@ -129,9 +123,6 @@ export default function makePlaceLabels() {
 						[10, 15]
 					]
 				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -153,9 +144,6 @@ export default function makePlaceLabels() {
 						[14, 22]
 					]
 				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -171,9 +159,6 @@ export default function makePlaceLabels() {
 						[14, 22]
 					]
 				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -207,6 +192,7 @@ export default function makePlaceLabels() {
 			},
 
 			paint: {
+				'text-color': tokens.label_secondary,
 				'text-halo-color': tokens.background,
 				'text-halo-width': 1,
 				...el.paint
