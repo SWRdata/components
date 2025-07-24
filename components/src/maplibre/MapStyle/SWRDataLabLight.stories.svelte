@@ -16,7 +16,8 @@
 		stugge: { lng: 9.17985, lat: 48.7763, zoom: 10.3418 },
 		berlin: { lng: 13.399, lat: 52.5159, zoom: 12.1977 },
 		frankfurt: { lng: 8.68834, lat: 50.1082, zoom: 11.7923 },
-		badenBaden: { lng: 8.23986, lat: 48.7595, zoom: 14.99, pitch: 0 }
+		badenBaden: { lng: 8.23986, lat: 48.7595, zoom: 14.99, pitch: 0 },
+		bodensee: { lng: 9.299862991860664, lat: 47.6693427120762, zoom: 9.098834549261177, pitch: 0 }
 	};
 </script>
 
@@ -32,11 +33,12 @@
 		</div>
 	</DesignTokens>
 </Story>
-<Story asChild name="Berlin z12">
+
+<Story asChild name="Bodensee z9">
 	<DesignTokens>
 		<div class="grid">
 			<div class="container">
-				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.berlin}>
+				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.bodensee}>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>
@@ -52,6 +54,17 @@
 					style={SWRDataLabLight({ enableBuildingExtrusions: true })}
 					initialLocation={locations.frankfurt}
 				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="Berlin z12">
+	<DesignTokens>
+		<div class="grid">
+			<div class="container">
+				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.berlin}>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>

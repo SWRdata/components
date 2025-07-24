@@ -148,7 +148,7 @@ export default function makePlaceLabels() {
 				'text-size': {
 					stops: [
 						[7, 14],
-						[14, 21]
+						[15, 20]
 					]
 				}
 			},
@@ -165,7 +165,7 @@ export default function makePlaceLabels() {
 				'text-size': {
 					stops: [
 						[7, 14],
-						[14, 21]
+						[15, 20]
 					]
 				}
 			},
