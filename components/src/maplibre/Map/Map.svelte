@@ -139,6 +139,12 @@
 			navigator.clipboard.writeText(s);
 		}
 	};
+	const handleDebugCopyLocationClick = (e: MouseEvent) => {
+		if (e.target) {
+			const s = JSON.stringify({ lng: center?.lng, lat: center?.lat, zoom, pitch });
+			navigator.clipboard.writeText(s);
+		}
+	};
 </script>
 
 <div bind:this={container} class="container" data-testid="map-container">
@@ -157,6 +163,7 @@
 					>
 				</li>
 			{/each}
+			<li><button onclick={handleDebugCopyLocationClick}>[Copy as Location]</button></li>
 		</ul>
 	{/if}
 </div>

@@ -16,7 +16,7 @@
 		stugge: { lng: 9.17985, lat: 48.7763, zoom: 10.3418 },
 		berlin: { lng: 13.399, lat: 52.5159, zoom: 12.1977 },
 		frankfurt: { lng: 8.68834, lat: 50.1082, zoom: 11.7923 },
-		badenBaden: { lng: 8.239451072800875, lat: 48.75692609731408, zoom: 14.99 }
+		badenBaden: { lng: 8.23986, lat: 48.7595, zoom: 14.99, pitch: 0 }
 	};
 </script>
 
@@ -51,6 +51,21 @@
 					showDebug
 					style={SWRDataLabLight({ enableBuildingExtrusions: true })}
 					initialLocation={locations.frankfurt}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="Baden-Baden z15">
+	<DesignTokens>
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabLight({ enableBuildingExtrusions: false })}
+					initialLocation={locations.badenBaden}
 				>
 					<AttributionControl position="bottom-left" />
 				</Map>
