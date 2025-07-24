@@ -45,7 +45,7 @@ export default function makeWalking(): any {
 			}
 		},
 		{
-			id: 'tunnel-way-footway:outline',
+			id: 'tunnel-way-footway:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'footway']],
@@ -67,7 +67,7 @@ export default function makeWalking(): any {
 			minzoom: 15
 		},
 		{
-			id: 'tunnel-way-steps:outline',
+			id: 'tunnel-way-steps:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'steps']],
@@ -89,7 +89,7 @@ export default function makeWalking(): any {
 			minzoom: 15
 		},
 		{
-			id: 'tunnel-way-path:outline',
+			id: 'tunnel-way-path:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'path']],
@@ -111,7 +111,7 @@ export default function makeWalking(): any {
 			minzoom: 15
 		},
 		{
-			id: 'tunnel-way-cycleway:outline',
+			id: 'tunnel-way-cycleway:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'cycleway']],
@@ -134,7 +134,7 @@ export default function makeWalking(): any {
 		},
 		{
 			// See: https://wiki.openstreetmap.org/wiki/Tag:highway%3Dtrack
-			id: 'tunnel-street-track:outline',
+			id: 'tunnel-street-track:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'track'], ['==', 'tunnel', true]],
@@ -162,7 +162,7 @@ export default function makeWalking(): any {
 			}
 		},
 		{
-			id: 'tunnel-street-pedestrian:outline',
+			id: 'tunnel-street-pedestrian:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'pedestrian'], ['==', 'tunnel', true]],
@@ -509,7 +509,7 @@ export default function makeWalking(): any {
 			}
 		},
 		{
-			id: 'way-footway:outline',
+			id: 'way-footway:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['!=', 'bridge', true], ['!=', 'tunnel', true], ['in', 'kind', 'footway']],
@@ -531,7 +531,7 @@ export default function makeWalking(): any {
 			minzoom: 15
 		},
 		{
-			id: 'way-steps:outline',
+			id: 'way-steps:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['!=', 'bridge', true], ['!=', 'tunnel', true], ['in', 'kind', 'steps']],
@@ -553,7 +553,7 @@ export default function makeWalking(): any {
 			}
 		},
 		{
-			id: 'way-path:outline',
+			id: 'way-path:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['!=', 'bridge', true], ['!=', 'tunnel', true], ['in', 'kind', 'path']],
@@ -575,7 +575,7 @@ export default function makeWalking(): any {
 			}
 		},
 		{
-			id: 'way-cycleway:outline',
+			id: 'way-cycleway:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['!=', 'bridge', true], ['!=', 'tunnel', true], ['in', 'kind', 'cycleway']],
@@ -597,7 +597,7 @@ export default function makeWalking(): any {
 			minzoom: 15
 		},
 		{
-			id: 'street-track:outline',
+			id: 'street-track:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'track'], ['!=', 'bridge', true], ['!=', 'tunnel', true]],
@@ -625,7 +625,7 @@ export default function makeWalking(): any {
 			}
 		},
 		{
-			id: 'street-pedestrian:outline',
+			id: 'street-pedestrian:case',
 			type: 'line',
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'pedestrian'], ['!=', 'bridge', true], ['!=', 'tunnel', true]],
@@ -958,147 +958,6 @@ export default function makeWalking(): any {
 
 	const walkingBridges: Layer[] = [
 		{
-			id: 'bridge-way-footway:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'footway']],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': 0.5,
-				'line-width': {
-					stops: [
-						[15, 0],
-						[16, 7],
-						[18, 10],
-						[19, 17],
-						[20, 31]
-					]
-				}
-			},
-			minzoom: 15
-		},
-		{
-			id: 'bridge-way-steps:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'steps']],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': 0.5,
-				'line-width': {
-					stops: [
-						[15, 0],
-						[16, 7],
-						[18, 10],
-						[19, 17],
-						[20, 31]
-					]
-				}
-			},
-			minzoom: 15
-		},
-		{
-			id: 'bridge-way-path:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'path']],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': 0.5,
-				'line-width': {
-					stops: [
-						[15, 0],
-						[16, 7],
-						[18, 10],
-						[19, 17],
-						[20, 31]
-					]
-				}
-			},
-			minzoom: 15
-		},
-		{
-			id: 'bridge-way-cycleway:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'cycleway']],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': 0.5,
-				'line-width': {
-					stops: [
-						[15, 0],
-						[16, 7],
-						[18, 10],
-						[19, 17],
-						[20, 31]
-					]
-				}
-			},
-			minzoom: 15
-		},
-		{
-			id: 'bridge-street-track:bridge',
-			filter: ['all', ['==', 'kind', 'track'], ['==', 'bridge', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': {
-					stops: [
-						[14, 0],
-						[15, 1]
-					]
-				},
-				'line-width': {
-					stops: [
-						[14, 3],
-						[16, 6],
-						[18, 25],
-						[19, 67],
-						[20, 134]
-					]
-				}
-			}
-		},
-		{
-			id: 'bridge-street-pedestrian:bridge',
-			filter: ['all', ['==', 'kind', 'pedestrian'], ['==', 'bridge', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				},
-				'line-width': {
-					stops: [
-						[12, 3],
-						[14, 4],
-						[16, 8],
-						[18, 36],
-						[19, 90],
-						[20, 179]
-					]
-				}
-			}
-		},
-		{
 			id: 'bridge-street-pedestrian-zone',
 			type: 'fill',
 			'source-layer': 'street_polygons',
@@ -1114,7 +973,7 @@ export default function makeWalking(): any {
 			}
 		},
 		{
-			id: 'bridge-way-footway:outline',
+			id: 'bridge-way-footway:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'footway']],
 			minzoom: 15,
 			layout: {
@@ -1134,7 +993,7 @@ export default function makeWalking(): any {
 			}
 		},
 		{
-			id: 'bridge-way-steps:outline',
+			id: 'bridge-way-steps:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'steps']],
 			minzoom: 15,
 			layout: {
@@ -1154,7 +1013,7 @@ export default function makeWalking(): any {
 			}
 		},
 		{
-			id: 'bridge-way-path:outline',
+			id: 'bridge-way-path:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'path']],
 			layout: {
 				'line-cap': 'butt'
@@ -1174,7 +1033,7 @@ export default function makeWalking(): any {
 			minzoom: 15
 		},
 		{
-			id: 'bridge-way-cycleway:outline',
+			id: 'bridge-way-cycleway:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'cycleway']],
 			layout: {
 				'line-cap': 'butt'
@@ -1194,7 +1053,7 @@ export default function makeWalking(): any {
 			minzoom: 15
 		},
 		{
-			id: 'bridge-street-track:outline',
+			id: 'bridge-street-track:case',
 			filter: ['all', ['==', 'kind', 'track'], ['==', 'bridge', true]],
 			paint: {
 				'line-color': 'rgb(217,217,217)',
@@ -1217,7 +1076,7 @@ export default function makeWalking(): any {
 			layout: street_layout
 		},
 		{
-			id: 'bridge-street-pedestrian:outline',
+			id: 'bridge-street-pedestrian:case',
 			filter: ['all', ['==', 'kind', 'pedestrian'], ['==', 'bridge', true]],
 			paint: {
 				'line-color': 'rgb(217,217,217)',
