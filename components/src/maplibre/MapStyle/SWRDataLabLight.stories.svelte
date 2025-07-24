@@ -12,8 +12,9 @@
 	});
 
 	const locations = {
-		germany: { lng: 10.962488768573053, lat: 50.958636214954396, zoom: 11 },
+		germany: { lng: 10.962488768573053, lat: 50.958636214954396, zoom: 6 },
 		stugge: { lng: 9.17985, lat: 48.7763, zoom: 10.3418 },
+		berlin: { lng: 13.399, lat: 52.5159, zoom: 12.1977 },
 		badenBaden: { lng: 8.239451072800875, lat: 48.75692609731408, zoom: 14.99 }
 	};
 </script>
@@ -22,8 +23,19 @@
 	<DesignTokens>
 		<div class="grid">
 			<div class="container">
-				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.stugge}>
+				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.germany}>
 					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="Berlin z12">
+	<DesignTokens>
+		<div class="grid">
+			<div class="container">
+				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.berlin}>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>

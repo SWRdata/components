@@ -31,15 +31,23 @@ const majorCountries = [
 	'Ungarn'
 ];
 
+// For smaller cities we use the population field to derive our hierarchy,
+// though that's limited by the fact that versatiles hard-codes population
+// values for "city" and anything below.
+// See: https://github.com/versatiles-org/shortbread-tilemaker/blob/69e5d4c586a1d2726b746a24829bfb05d4dbeb91/process.lua#L198-L242
+
 export default function makePlaceLabels() {
 	const placeLabels: SymbolLayerSpecification[] = [
 		{
 			id: 'label-place-quarter',
-			filter: ['in', 'kind', 'quarter', 'neighbourhood'],
-			minzoom: 13,
+			filter: ['all', ['in', 'kind', 'neighbourhood']],
+			minzoom: 12,
 			layout: {
 				'text-size': {
-					stops: [[10, 14]]
+					stops: [
+						[10, 13],
+						[15, 16]
+					]
 				}
 			},
 			paint: {
@@ -56,11 +64,10 @@ export default function makePlaceLabels() {
 			],
 			minzoom: 11.5,
 			layout: {
-				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
 						[11, 13],
-						[13, 15]
+						[15, 15]
 					]
 				}
 			},
@@ -78,7 +85,6 @@ export default function makePlaceLabels() {
 			],
 			minzoom: 10,
 			layout: {
-				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
 						[10, 14],
@@ -99,7 +105,6 @@ export default function makePlaceLabels() {
 			],
 			minzoom: 8.5,
 			layout: {
-				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
 						[8, 14],
@@ -121,7 +126,6 @@ export default function makePlaceLabels() {
 			minzoom: 7,
 			maxzoom: 11,
 			layout: {
-				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
 						[7, 13],
@@ -142,7 +146,6 @@ export default function makePlaceLabels() {
 			minzoom: 7,
 			maxzoom: 12,
 			layout: {
-				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
 						[7, 13],
@@ -160,10 +163,9 @@ export default function makePlaceLabels() {
 			minzoom: 5,
 			maxzoom: 12,
 			layout: {
-				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
-						[7, 13],
+						[7, 14],
 						[14, 22]
 					]
 				}
@@ -178,11 +180,10 @@ export default function makePlaceLabels() {
 			minzoom: 5,
 			maxzoom: 12,
 			layout: {
-				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
-						[7, 13],
-						[14, 22]
+						[7, 15],
+						[14, 24]
 					]
 				}
 			},
@@ -198,6 +199,7 @@ export default function makePlaceLabels() {
 			'source-layer': 'place_labels',
 			layout: {
 				'text-font': tokens.sans_regular,
+				'text-letter-spacing': 0.025,
 				'text-field': '{name_de}',
 				...el.layout
 			},
