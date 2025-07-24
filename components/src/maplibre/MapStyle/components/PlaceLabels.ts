@@ -100,7 +100,7 @@ export default function makePlaceLabels() {
 				'all',
 				['in', 'kind', 'city', 'town'],
 				['>', 'population', 50_000],
-				['<', 'population', 200_000],
+				['<', 'population', 100_000],
 				['!in', 'name_de', ...majorCities]
 			],
 			minzoom: 8.5,
@@ -119,17 +119,17 @@ export default function makePlaceLabels() {
 			filter: [
 				'all',
 				['in', 'kind', 'city', 'town'],
-				['>', 'population', 200_000],
-				['<', 'population', 500_000],
+				['>', 'population', 100_000],
+				['<', 'population', 400_000],
 				['!in', 'name_de', ...majorCities]
 			],
 			minzoom: 7,
-			maxzoom: 11,
+			maxzoom: 13,
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 13],
-						[14, 20]
+						[7, 12],
+						[13, 17]
 					]
 				}
 			}
@@ -138,9 +138,8 @@ export default function makePlaceLabels() {
 			id: 'label-place-big-city',
 			filter: [
 				'all',
-				['in', 'kind', 'state_capital'],
-				['>', 'population', 200_000],
-				['<', 'population', 500_000],
+				['in', 'kind', 'city', 'town', 'state_capital'],
+				['>', 'population', 400_000],
 				['!in', 'name_de', ...majorCities]
 			],
 			minzoom: 7,
@@ -148,8 +147,8 @@ export default function makePlaceLabels() {
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 13],
-						[14, 22]
+						[7, 14],
+						[14, 21]
 					]
 				}
 			},
@@ -166,7 +165,7 @@ export default function makePlaceLabels() {
 				'text-size': {
 					stops: [
 						[7, 14],
-						[14, 22]
+						[14, 21]
 					]
 				}
 			},
@@ -183,7 +182,7 @@ export default function makePlaceLabels() {
 				'text-size': {
 					stops: [
 						[7, 15],
-						[14, 24]
+						[14, 23]
 					]
 				}
 			},
