@@ -1,4 +1,4 @@
-import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Story, Meta, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
 import Mermaid from '../../../.storybook/blocks/Mermaid';
 import SWRDataLabLight from './SWRDataLabLight';
 import * as MapStyleStories from './SWRDataLabLight.stories.svelte';
@@ -38,9 +38,9 @@ Light-themed general-purpose basemap using SWR colours and typefaces based on
 
 </table>
 
-- Layer count: **{SWRDataLabLight({enableBuildingExtrusions: true}).layers.length}** (including building extrusions)
+Layer count: **{SWRDataLabLight({enableBuildingExtrusions: true}).layers.length}** (including building extrusions)
 
-<Story of={MapStyleStories.Default} />
+<Story of={MapStyleStories.BadenBadenZ15} />
 
 <br />
 

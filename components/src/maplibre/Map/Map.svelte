@@ -163,7 +163,7 @@
 					>
 				</li>
 			{/each}
-			<li><button onclick={handleDebugCopyLocationClick}>[Copy as Location]</button></li>
+			<li><button onclick={handleDebugCopyLocationClick}>[Copy Location]</button></li>
 		</ul>
 	{/if}
 </div>
