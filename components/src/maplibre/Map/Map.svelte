@@ -8,6 +8,7 @@
 	import { createMapContext, MapContext } from '../context.svelte.js';
 	import { type Location } from '../types';
 	import FallbackStyle from './FallbackStyle';
+	import { derived } from 'svelte/store';
 
 	interface MapProps {
 		style?: StyleSpecification | string;
@@ -127,6 +128,17 @@
 			mapContext.map?.scrollZoom.enable();
 		}
 	});
+
+	const debugValues = $derived(
+		Object.entries({ ...center, zoom, pitch, allowZoom, allowRotation })
+	);
+	const handleDebugValueClick = (e: MouseEvent) => {
+		if (e.target) {
+			const t = e.target as HTMLElement;
+			const s = t.innerText;
+			navigator.clipboard.writeText(s);
+		}
+	};
 </script>
 
 <div bind:this={container} class="container" data-testid="map-container">
@@ -136,10 +148,16 @@
 		{/if}
 	{/if}
 	{#if showDebug}
-		<pre class="debug">
-{Object.entries({ ...center, zoom, pitch, allowZoom, allowRotation })
-				.map(([key, val]) => `${key}: ${val}`)
-				.join('\n')}</pre>
+		<ul class="debug">
+			{#each debugValues as [key, value]}
+				<li>
+					{key}:
+					<button onclick={handleDebugValueClick}
+						>{value?.toLocaleString('en', { maximumSignificantDigits: 6 })}</button
+					>
+				</li>
+			{/each}
+		</ul>
 	{/if}
 </div>
 
@@ -158,6 +176,18 @@
 		z-index: 1000;
 		padding: 2px;
 		font-family: monospace;
+		button {
+			appearance: none;
+			background: transparent;
+			font-family: inherit;
+			color: inherit;
+			border: 0;
+			cursor: pointer;
+			&:hover,
+			&:focus-visible {
+				text-decoration: underline;
+			}
+		}
 	}
 	:global {
 		.maplibregl-map {

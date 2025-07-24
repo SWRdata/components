@@ -13,7 +13,7 @@
 
 	const locations = {
 		germany: { lng: 10.962488768573053, lat: 50.958636214954396, zoom: 11 },
-		stugge: { lng: 9.179598027434395, lat: 48.75882857752845, zoom: 11 },
+		stugge: { lng: 9.17985, lat: 48.7763, zoom: 14.2153 },
 		badenBaden: { lng: 8.239451072800875, lat: 48.75692609731408, zoom: 14.99 }
 	};
 </script>

@@ -3,7 +3,7 @@ const tokens = {
 	sans_medium: ['SWR Sans Medium'],
 	sans_bold: ['SWR Sans Bold'],
 	background: 'hsl(0, 0%, 100%)',
-	water: 'hsl(210, 41%, 87%)',
+	water: 'hsl(210, 41%, 89%)',
 	water_light: 'hsl(210, 41%, 90%)',
 	water_ocean: 'hsl(210, 25%, 96%)',
 	marsh: 'hsl(200, 14%, 97%)',

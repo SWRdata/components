@@ -163,94 +163,29 @@ const street_residential_outline = {
 export default function makeRoads() {
 	const roadLabels: SymbolLayerSpecification[] = [
 		{
-			id: 'label-street-livingstreet',
-			filter: ['==', 'kind', 'living_street'],
-			minzoom: 14,
-			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 13]
-					]
-				}
-			},
-			paint: {
-				'text-color': 'hsl(240,0%,23%)',
-				'text-halo-color': 'hsla(0,0%,100%,0.8)',
-				'text-halo-width': 2,
-				'text-halo-blur': 1
-			}
-		},
-		{
-			id: 'label-street-residential',
-			filter: ['==', 'kind', 'residential'],
+			id: 'label-street-misc',
+			filter: ['in', 'kind', 'residential', 'livingstreet', 'unclassified'],
 			minzoom: 15,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
 				'text-size': {
 					stops: [
 						[12, 10],
 						[15, 13]
 					]
 				}
-			},
-			paint: {
-				'text-color': 'hsl(240,0%,23%)',
-				'text-halo-color': 'hsla(0,0%,100%,0.8)',
-				'text-halo-width': 2,
-				'text-halo-blur': 1
-			}
-		},
-		{
-			id: 'label-street-unclassified',
-			filter: ['==', 'kind', 'unclassified'],
-			minzoom: 14,
-			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 13]
-					]
-				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
 			}
 		},
 		{
 			id: 'label-street-tertiary',
 			filter: ['==', 'kind', 'tertiary'],
-			minzoom: 14,
+			minzoom: 15,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
 				'text-size': {
 					stops: [
 						[12, 10],
 						[15, 13]
 					]
 				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2,
-				'text-halo-blur': 1
 			}
 		},
 		{
@@ -258,21 +193,13 @@ export default function makeRoads() {
 			filter: ['==', 'kind', 'secondary'],
 			minzoom: 14,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
+				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
 						[12, 10],
-						[15, 13]
+						[15, 14]
 					]
 				}
-			},
-			paint: {
-				'text-color': tokens.label_primary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
 			}
 		},
 		{
@@ -280,22 +207,16 @@ export default function makeRoads() {
 			filter: ['==', 'kind', 'primary'],
 			minzoom: 14,
 			layout: {
-				'text-field': '{name_de}',
 				'text-letter-spacing': 0.025,
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
 				'text-size': {
 					stops: [
 						[12, 10],
-						[15, 13]
+						[15, 14]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-color': tokens.label_primary
 			}
 		},
 		{
@@ -303,10 +224,6 @@ export default function makeRoads() {
 			filter: ['==', 'kind', 'trunk'],
 			minzoom: 13,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
 				'text-size': {
 					stops: [
 						[12, 10],
@@ -315,9 +232,7 @@ export default function makeRoads() {
 				}
 			},
 			paint: {
-				'text-color': tokens.label_primary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-color': tokens.label_primary
 			}
 		}
 	].map((el) => {
@@ -325,7 +240,21 @@ export default function makeRoads() {
 			type: 'symbol',
 			source: 'versatiles-osm',
 			'source-layer': 'street_labels',
-			...el
+			...el,
+			layout: {
+				'text-field': '{name_de}',
+				'text-font': tokens.sans_regular,
+				'symbol-placement': 'line',
+				'text-anchor': 'center',
+
+				...el.layout
+			},
+			paint: {
+				'text-color': tokens.label_secondary,
+				'text-halo-color': tokens.background,
+				'text-halo-width': 1.5,
+				...el.paint
+			}
 		} as SymbolLayerSpecification;
 	});
 
