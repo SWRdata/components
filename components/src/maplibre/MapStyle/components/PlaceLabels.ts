@@ -48,8 +48,13 @@ export default function makePlaceLabels() {
 		},
 		{
 			id: 'label-place-suburb',
-			filter: ['all', ['==', 'kind', 'suburb'], ['>', 'population', 1000]],
-			minzoom: 11,
+			filter: [
+				'all',
+				['in', 'kind', 'suburb', 'village', 'hamlet', 'town'],
+				['>', 'population', 1000],
+				['<', 'population', 15_000]
+			],
+			minzoom: 11.5,
 			layout: {
 				'text-letter-spacing': 0.025,
 				'text-size': {
@@ -68,8 +73,8 @@ export default function makePlaceLabels() {
 			filter: [
 				'all',
 				['in', 'kind', 'village', 'hamlet', 'town'],
-				['<', 'population', 40_000],
-				['>', 'population', 5_000]
+				['<', 'population', 50_000],
+				['>', 'population', 15_000]
 			],
 			minzoom: 10,
 			layout: {
@@ -92,7 +97,7 @@ export default function makePlaceLabels() {
 				['<', 'population', 200_000],
 				['!in', 'name_de', ...majorCities]
 			],
-			minzoom: 8,
+			minzoom: 8.5,
 			layout: {
 				'text-letter-spacing': 0.025,
 				'text-size': {
@@ -119,8 +124,8 @@ export default function makePlaceLabels() {
 				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
-						[8, 13],
-						[10, 15]
+						[7, 13],
+						[14, 20]
 					]
 				}
 			}
@@ -140,10 +145,13 @@ export default function makePlaceLabels() {
 				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
-						[6, 13],
+						[7, 13],
 						[14, 22]
 					]
 				}
+			},
+			paint: {
+				'text-color': tokens.label_primary
 			}
 		},
 		{
@@ -159,6 +167,9 @@ export default function makePlaceLabels() {
 						[14, 22]
 					]
 				}
+			},
+			paint: {
+				'text-color': tokens.label_primary
 			}
 		},
 		{
@@ -170,8 +181,8 @@ export default function makePlaceLabels() {
 				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
-						[5, 14],
-						[14, 20]
+						[7, 13],
+						[14, 22]
 					]
 				}
 			},
