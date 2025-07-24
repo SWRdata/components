@@ -17,7 +17,7 @@ const tokens = {
 	street_tertiary_outline: 'hsl(0, 0%, 50%)',
 	label_primary: 'hsl(240, 5%, 10%)',
 	label_secondary: 'hsl(240, 2%, 30%)',
-	label_tertiary: 'hsl(240, 2%, 60%)',
+	label_tertiary: 'hsl(240, 2%, 50%)',
 	building: '#f3f2f1'
 };
 

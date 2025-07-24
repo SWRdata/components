@@ -34,22 +34,9 @@ const majorCountries = [
 export default function makePlaceLabels() {
 	const placeLabels: SymbolLayerSpecification[] = [
 		{
-			id: 'label-place-neighbourhood',
-			filter: ['==', 'kind', 'neighbourhood'],
-			minzoom: 14,
-			layout: {
-				'text-size': {
-					stops: [[14, 14]]
-				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary
-			}
-		},
-		{
 			id: 'label-place-quarter',
-			filter: ['==', 'kind', 'quarter'],
-			minzoom: 14,
+			filter: ['in', 'kind', 'quarter', 'neighbourhood'],
+			minzoom: 13,
 			layout: {
 				'text-size': {
 					stops: [[10, 14]]
@@ -61,9 +48,10 @@ export default function makePlaceLabels() {
 		},
 		{
 			id: 'label-place-suburb',
-			filter: ['==', 'kind', 'suburb'],
+			filter: ['all', ['==', 'kind', 'suburb'], ['>', 'population', 1000]],
 			minzoom: 11,
 			layout: {
+				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
 						[11, 13],
@@ -72,34 +60,24 @@ export default function makePlaceLabels() {
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary
+				'text-color': tokens.label_tertiary
 			}
 		},
 		{
-			id: 'label-place-hamlet',
-			filter: ['==', 'kind', 'hamlet'],
-			minzoom: 13,
+			id: 'label-place-town',
+			filter: [
+				'all',
+				['in', 'kind', 'village', 'hamlet', 'town'],
+				['<', 'population', 40_000],
+				['>', 'population', 5_000]
+			],
+			minzoom: 10,
 			layout: {
+				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
-						[10, 11],
-						[12, 14]
-					]
-				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary
-			}
-		},
-		{
-			id: 'label-place-village',
-			filter: ['==', 'kind', 'village'],
-			minzoom: 11,
-			layout: {
-				'text-size': {
-					stops: [
-						[9, 11],
-						[12, 14]
+						[10, 14],
+						[12, 15]
 					]
 				}
 			},
@@ -109,34 +87,46 @@ export default function makePlaceLabels() {
 		},
 
 		{
-			id: 'label-place-town',
-			filter: ['==', 'kind', 'town'],
-			minzoom: 9,
+			id: 'label-small-city',
+			filter: [
+				'all',
+				['in', 'kind', 'city', 'town'],
+				['>', 'population', 50_000],
+				['<', 'population', 200_000],
+				['!in', 'name_de', ...majorCities]
+			],
+			minzoom: 8,
 			layout: {
-				'text-letter-spacing': 0.015,
+				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
-						[8, 13],
+						[8, 14],
 						[12, 16]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_primary
+				'text-color': tokens.label_secondary
 			}
 		},
 
 		{
-			id: 'label-place-city',
-			filter: ['==', 'kind', 'city'],
-			minzoom: 6,
+			id: 'label-place-medium-city',
+			filter: [
+				'all',
+				['in', 'kind', 'city', 'town'],
+				['>', 'population', 200_000],
+				['<', 'population', 500_000],
+				['!in', 'name_de', ...majorCities]
+			],
+			minzoom: 7,
 			maxzoom: 11,
 			layout: {
-				'text-letter-spacing': 0.015,
+				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
-						[8, 14],
-						[10, 14]
+						[8, 13],
+						[10, 15]
 					]
 				}
 			},
@@ -145,11 +135,12 @@ export default function makePlaceLabels() {
 			}
 		},
 		{
-			id: 'label-place-state-capital',
+			id: 'label-place-big-city',
 			filter: [
 				'all',
-				['==', 'kind', 'state_capital'],
-				['<', 'population', 500000],
+				['in', 'kind', 'state_capital'],
+				['>', 'population', 200_000],
+				['<', 'population', 500_000],
 				['!in', 'name_de', ...majorCities]
 			],
 			minzoom: 7,
@@ -159,7 +150,7 @@ export default function makePlaceLabels() {
 				'text-size': {
 					stops: [
 						[6, 13],
-						[14, 20]
+						[14, 22]
 					]
 				}
 			},
@@ -177,7 +168,7 @@ export default function makePlaceLabels() {
 				'text-size': {
 					stops: [
 						[7, 13],
-						[14, 20]
+						[14, 22]
 					]
 				}
 			},
@@ -227,24 +218,24 @@ export default function makePlaceLabels() {
 		{
 			id: 'label-boundary-country',
 			filter: ['all', ['==', 'admin_level', 2], ['in', 'name_de', ...majorCountries]],
-			minzoom: 5,
-			maxzoom: 7,
+			minzoom: 4,
+			maxzoom: 8,
 			layout: {
 				'text-field': '{name_de}',
-				'text-letter-spacing': 0.085,
+				'text-letter-spacing': 0.0825,
 				'text-font': tokens.sans_regular,
 				'text-transform': 'uppercase',
 				'text-size': {
 					stops: [
-						[5, 12],
-						[14, 20]
+						[4, 10],
+						[7, 17]
 					]
 				}
 			},
 			paint: {
 				'text-color': tokens.label_tertiary,
 				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-halo-width': 1
 			}
 		}
 	].map((el) => {

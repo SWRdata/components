@@ -45,6 +45,8 @@ interface StyleOptions {
 
 ## Design Notes
 
+### Semantic groups -> physical layers
+
 We take a two-step design approach:
 
 1. Sort the geographic data we want to present into semantic groups like "Admin Boundaries", "Roads" or "Transit" (inspired by Mapbox's [Style Components](https://docs.mapbox.com/studio-manual/guides/components/)).
@@ -104,6 +106,10 @@ class s_transit,a_transit_bridge,a_transit_surface,a_transit_tunnel,a_transit_la
 class s_walking,a_walking_bridge,a_walking_surface,a_walking_tunnel,a_walking_labels walking
 class s_landuse,a_land,a_ocean,a_background landuse
 `}/>
+
+### Cities
+
+Versatiles' default styles use administrative categories (`capital`, `state-capital`, etc.) to establish city hierarchy, but I think `population` + a hand-written list of major cities for large zoom levels produces more legible results.
 
 ### References
 
