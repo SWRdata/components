@@ -4,7 +4,7 @@ import { type Layer } from '../../types';
 export default function makeAdmin(): any {
 	const admin: Layer[] = [
 		{
-			id: 'boundary-country:outline',
+			id: 'boundary-country:case',
 			filter: [
 				'all',
 				['==', 'admin_level', 2],
@@ -23,14 +23,10 @@ export default function makeAdmin(): any {
 					]
 				},
 				'line-opacity': 0.75
-			},
-			layout: {
-				'line-cap': 'round',
-				'line-join': 'round'
 			}
 		},
 		{
-			id: 'boundary-country-disputed:outline',
+			id: 'boundary-country-disputed:case',
 			filter: [
 				'all',
 				['==', 'admin_level', 2],
@@ -51,7 +47,7 @@ export default function makeAdmin(): any {
 			}
 		},
 		{
-			id: 'boundary-state:outline',
+			id: 'boundary-state:case',
 			filter: [
 				'all',
 				['==', 'admin_level', 4],
@@ -70,10 +66,6 @@ export default function makeAdmin(): any {
 					]
 				},
 				'line-opacity': 0.75
-			},
-			layout: {
-				'line-cap': 'round',
-				'line-join': 'round'
 			}
 		},
 		{
@@ -89,7 +81,7 @@ export default function makeAdmin(): any {
 				'line-color': {
 					stops: [
 						[7, '#cecdcd'],
-						[10, 'black']
+						[10, '#161616']
 					]
 				},
 
@@ -101,10 +93,6 @@ export default function makeAdmin(): any {
 						[12, 3]
 					]
 				}
-			},
-			layout: {
-				'line-cap': 'round',
-				'line-join': 'round'
 			}
 		},
 		{
@@ -126,9 +114,6 @@ export default function makeAdmin(): any {
 				},
 				'line-color': 'hsl(246,0%,77%)',
 				'line-dasharray': [2, 1]
-			},
-			layout: {
-				'line-cap': 'square'
 			}
 		},
 		{
@@ -154,10 +139,6 @@ export default function makeAdmin(): any {
 						[8, 1]
 					]
 				}
-			},
-			layout: {
-				'line-cap': 'round',
-				'line-join': 'round'
 			}
 		}
 	].map((el) => {
@@ -165,7 +146,11 @@ export default function makeAdmin(): any {
 			source: 'versatiles-osm',
 			'source-layer': 'boundaries',
 			type: 'line',
-			...el
+			...el,
+			layout: {
+				'line-cap': 'round',
+				'line-join': 'round'
+			}
 		} as Layer;
 	});
 

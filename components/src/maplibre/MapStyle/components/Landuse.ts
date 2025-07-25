@@ -15,7 +15,7 @@ export default function makeLanduse(): any {
 			type: 'fill',
 			'source-layer': 'ocean',
 			paint: {
-				'fill-color': 'hsl(220, 30%, 96%)'
+				'fill-color': tokens.water_ocean
 			}
 		},
 		{
@@ -301,11 +301,11 @@ export default function makeLanduse(): any {
 			'source-layer': 'water_polygons',
 			filter: ['==', 'kind', 'water'],
 			paint: {
-				'fill-color': tokens.water_light,
+				'fill-color': tokens.water_ocean,
 				'fill-opacity': {
 					stops: [
-						[4, 0],
-						[6, 1]
+						[3, 0],
+						[4, 1]
 					]
 				}
 			}

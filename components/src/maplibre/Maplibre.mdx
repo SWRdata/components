@@ -9,9 +9,7 @@ import * as MapStyleStories from './MapStyle/SWRDataLabLight.stories.svelte';
 
 Lightweight Svelte components and basemaps for rendering custom slippy maps using the [versatiles](https://docs.versatiles.org/) stack.
 
-Based on [prior work](https://github.com/SWRdata/frontend_svelte_p012_spritpreise/blob/main/src/lib/components/Map/Map.svelte) from [Michael Kreil](https://github.com/MichaelKreil), [Jakob Bauer](https://github.com/AgricolaJKB), [dimfield](https://github.com/dimfeld/svelte-maplibre) and [MIRUNE](https://github.com/MIERUNE/svelte-maplibre-gl).
-
-<Story of={MapStyleStories.Default} />
+<Story of={MapStyleStories.BuildingExtrusions} />
 
 <br />
 
@@ -65,11 +63,11 @@ This example initialises a map using the SWRDataLabLight style, adds an addition
 ### Sources
 
 - **[VectorTileSource](?path=/docs/maplibre-source-vectortilesource--docs)**: Loads vector tile data supplied by a tileserver
-- **[GeoJSONSource](?path=/docs/maplibre-source-geojsonsource--docs)**: Loads a vector data from a GeoJSON object or file
+- **[GeoJSONSource](?path=/docs/maplibre-source-geojsonsource--docs)**: Loads a vector data from a GeoJSON object or remote file
 
 ### Layers
 
-- **[VectorLayer](?path=/docs/maplibre-layer-vectorlayer--docs)**: Renders a layer from a vector tile source.
+- **[VectorLayer](?path=/docs/maplibre-layer-vectorlayer--docs)**: Renders vector data from `<VectorTileSource>` or `<GeoJSONSource>`.
 
 ### Controls
 
@@ -79,7 +77,7 @@ This example initialises a map using the SWRDataLabLight style, adds an addition
 - **[AttributionControl](?path=/docs/maplibre-control-attributioncontrol--docs)**: Renders maplibre's default attribution control
 - **[Custom controls](?path=/docs/maplibre-control-mapcontrol--docs)**: Renders arbitrary HTML inside maplibre's layout
 
-### Misc
+### Extras
 
 - **[Tooltip](?path=/docs/maplibre-extras-tooltip--docs)**
 - **[WithLinkLocation](?path=/docs/maplibre-extras-withlinklocation--docs)**: Derive the maps `initialLocation` from a URL parameter via forward geocoding
@@ -92,3 +90,7 @@ This example initialises a map using the SWRDataLabLight style, adds an addition
 ## Known issues
 
 - Firefox throws warning `WebGL warning: texImage: Alpha-premult and y-flip are deprecated for non-DOM-Element uploads`: Known [upstream mapligre-gl issue](https://github.com/maplibre/maplibre-gl-js/issues/2030) (safe to ignore)
+
+## Prior work
+
+Based on [prior work](https://github.com/SWRdata/frontend_svelte_p012_spritpreise/blob/main/src/lib/components/Map/Map.svelte) from [Michael Kreil](https://github.com/MichaelKreil), [Jakob Bauer](https://github.com/AgricolaJKB), [dimfield](https://github.com/dimfeld/svelte-maplibre) and [MIRUNE](https://github.com/MIERUNE/svelte-maplibre-gl).

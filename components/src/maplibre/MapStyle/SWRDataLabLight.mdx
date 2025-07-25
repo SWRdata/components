@@ -1,4 +1,4 @@
-import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Story, Meta, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
 import Mermaid from '../../../.storybook/blocks/Mermaid';
 import SWRDataLabLight from './SWRDataLabLight';
 import * as MapStyleStories from './SWRDataLabLight.stories.svelte';
@@ -10,13 +10,37 @@ import * as MapStyleStories from './SWRDataLabLight.stories.svelte';
 Light-themed general-purpose basemap using SWR colours and typefaces based on
 [versatiles-greybeard](https://github.com/versatiles-org/versatiles-style).
 
-- Data sources
-  - Vector data: [versatiles-osm](https://download.versatiles.org/) in the [Shortbread schema](https://shortbread-tiles.org/) served from `tiles.versatiles.org` ([License](https://docs.versatiles.org/basics/tilesets.html#license--attribution))
-  - Building footprints with heights: [basemap-de](https://basemap.de/produkte-und-dienste/web-vektor/) vector tiles served from `sgx.geodatenzentrum.de` ([License](https://sgx.geodatenzentrum.de/web_public/gdz/lizenz/deu/Nutzungsbedingungen_basemapde.pdf))
-  - Typefaces: SWR Sans served from `https://static.datenhub.net/maps/fonts/`.
-- Layer count: {SWRDataLabLight({enableBuildingExtrusions: true}).layers.length} (including building extrusions)
+### Data sources
 
-<Story of={MapStyleStories.Default} />
+<table>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Source</th>
+			<th>License</th>
+		</tr>
+	</thead>
+	<tr>
+		<td>Base Vectors</td>
+		<td>[versatiles-osm](https://download.versatiles.org/) vector tiles in the [Shortbread schema](https://shortbread-tiles.org/) served from `tiles.versatiles.org`</td>
+    <td>[License](https://docs.versatiles.org/basics/tilesets.html#license--attribution)</td>
+    </tr>
+    <tr>
+    	<td>Building footprints + heights</td>
+    	<td>[basemap-de](https://basemap.de/produkte-und-dienste/web-vektor/) vector tiles served from `sgx.geodatenzentrum.de`</td>
+    	<td>[License](https://sgx.geodatenzentrum.de/web_public/gdz/lizenz/deu/Nutzungsbedingungen_basemapde.pdf)</td>
+    </tr>
+    <tr>
+    	<td>SWR Sans Typeface</td>
+    	<td>served from `https://static.datenhub.net/maps/fonts`</td>
+    	<td>n/a</td>
+    </tr>
+
+</table>
+
+Layer count: **{SWRDataLabLight({enableBuildingExtrusions: true}).layers.length}** (including building extrusions)
+
+<Story of={MapStyleStories.BadenBadenZ15} />
 
 <br />
 
@@ -44,6 +68,8 @@ interface StyleOptions {
 ```
 
 ## Design Notes
+
+### Semantic groups -> physical layers
 
 We take a two-step design approach:
 
@@ -104,6 +130,10 @@ class s_transit,a_transit_bridge,a_transit_surface,a_transit_tunnel,a_transit_la
 class s_walking,a_walking_bridge,a_walking_surface,a_walking_tunnel,a_walking_labels walking
 class s_landuse,a_land,a_ocean,a_background landuse
 `}/>
+
+### Cities
+
+Versatiles' default styles use administrative categories (`capital`, `state-capital`, etc.) to establish city hierarchy, but I think `population` + a hand-written list of major cities for large zoom levels produces more legible results.
 
 ### References
 
