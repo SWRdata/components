@@ -1,63 +1,64 @@
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 :root {
-  --header-height: 3rem;
+	--header-height: 3rem;
 }
 
 body {
-  font-family: sans-serif;
-  padding-top: var(--header-height);
+	font-family: sans-serif;
+	padding-top: var(--header-height);
 }
 
 .site__header {
-  display: flex;
-  gap: 2rem;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  padding: 0 1rem;
+	display: flex;
+	gap: 2rem;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	padding: 0 1rem;
 
-  height: var(--header-height);
-  border-bottom: 1px solid black;
-  z-index: 1000;
-  background: rgb(243, 233, 194);
-  align-items: center;
+	height: var(--header-height);
+	border-bottom: 1px solid black;
+	z-index: 1000;
+	background: rgb(243, 233, 194);
+	align-items: center;
 }
 
 header h1 {
-  font-size: 1.2rem;
+	font-size: 1.2rem;
 }
 
 nav {
-  display: flex;
-  gap: 1rem;
+	display: flex;
+	gap: 1rem;
 }
 
 nav a {
-  display: block;
+	display: block;
 }
 
 .page__header {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  background: rgb(249, 249, 236);
-  line-height: 1.4;
-  border-bottom: 1px solid black;
+	margin-bottom: 1rem;
+	padding: 1rem;
+	background: rgb(249, 249, 236);
+	line-height: 1.4;
+	border-bottom: 1px solid black;
 }
 
 .page__header h1 {
-  font-size: 2rem;
+	font-size: 2rem;
 }
 
 .site__content {
-  padding: 1rem;
+	max-width: 813px;
+	margin: 0 auto;
 }
 
 .site__content p {
-  color: red;
+	color: red;
 }
