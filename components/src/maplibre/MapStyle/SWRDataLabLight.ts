@@ -10,7 +10,7 @@ import makeRoads from './components/Roads';
 
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings();
 const { landuse } = makeLanduse();
-const { placeLabels } = makePlaceLabels();
+const { placeLabels, boundaryLabels } = makePlaceLabels();
 const { admin } = makeAdmin();
 const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit();
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking();
@@ -99,7 +99,8 @@ const style: styleFunction = (opts) => {
 			...(options.enableBuildingExtrusions ? [buildingExtrusions] : []),
 
 			// 8. Point labels
-			...placeLabels
+			...placeLabels,
+			...boundaryLabels
 		]
 	};
 };

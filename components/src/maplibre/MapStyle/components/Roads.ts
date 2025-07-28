@@ -4,6 +4,10 @@ import type { SymbolLayerSpecification } from 'maplibre-gl';
 
 const street_layout = {
 	'line-join': 'round',
+	'line-cap': 'round'
+};
+const case_layout = {
+	'line-join': 'round',
 	'line-cap': 'butt'
 };
 
@@ -25,8 +29,8 @@ const motorway = {
 	}
 };
 
-const motorway_outline = {
-	line_color: tokens.street_primary_outline,
+const motorway_case = {
+	line_color: tokens.street_primary_case,
 	line_width: {
 		stops: [
 			[10, 0],
@@ -47,7 +51,7 @@ const motorway_link = {
 	}
 };
 
-const motorway_link_outline = {
+const motorway_link_case = {
 	line_width: {
 		stops: [
 			[6, 0],
@@ -79,8 +83,8 @@ const street_primary = {
 		]
 	}
 };
-const street_primary_outline = {
-	line_color: tokens.street_primary_outline,
+const street_primary_case = {
+	line_color: tokens.street_primary_case,
 	line_width: {
 		stops: [
 			[11, 0],
@@ -112,7 +116,7 @@ const street_secondary = {
 		]
 	}
 };
-const street_secondary_outline = {
+const street_secondary_case = {
 	line_width: {
 		stops: [
 			[12, 2],
@@ -144,8 +148,8 @@ const street_residential = {
 	}
 };
 
-const street_residential_outline = {
-	line_color: tokens.street_tertiary_outline,
+const street_residential_case = {
+	line_color: tokens.street_tertiary_case,
 	line_width: {
 		stops: [
 			[14, 0],
@@ -163,94 +167,29 @@ const street_residential_outline = {
 export default function makeRoads() {
 	const roadLabels: SymbolLayerSpecification[] = [
 		{
-			id: 'label-street-livingstreet',
-			filter: ['==', 'kind', 'living_street'],
-			minzoom: 14,
-			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 13]
-					]
-				}
-			},
-			paint: {
-				'text-color': 'hsl(240,0%,23%)',
-				'text-halo-color': 'hsla(0,0%,100%,0.8)',
-				'text-halo-width': 2,
-				'text-halo-blur': 1
-			}
-		},
-		{
-			id: 'label-street-residential',
-			filter: ['==', 'kind', 'residential'],
+			id: 'label-street-misc',
+			filter: ['in', 'kind', 'residential', 'livingstreet', 'unclassified'],
 			minzoom: 15,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
 				'text-size': {
 					stops: [
 						[12, 10],
 						[15, 13]
 					]
 				}
-			},
-			paint: {
-				'text-color': 'hsl(240,0%,23%)',
-				'text-halo-color': 'hsla(0,0%,100%,0.8)',
-				'text-halo-width': 2,
-				'text-halo-blur': 1
-			}
-		},
-		{
-			id: 'label-street-unclassified',
-			filter: ['==', 'kind', 'unclassified'],
-			minzoom: 14,
-			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 13]
-					]
-				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
 			}
 		},
 		{
 			id: 'label-street-tertiary',
 			filter: ['==', 'kind', 'tertiary'],
-			minzoom: 14,
+			minzoom: 15,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
 				'text-size': {
 					stops: [
 						[12, 10],
 						[15, 13]
 					]
 				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2,
-				'text-halo-blur': 1
 			}
 		},
 		{
@@ -258,21 +197,13 @@ export default function makeRoads() {
 			filter: ['==', 'kind', 'secondary'],
 			minzoom: 14,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
+				'text-letter-spacing': 0.025,
 				'text-size': {
 					stops: [
 						[12, 10],
-						[15, 13]
+						[15, 14]
 					]
 				}
-			},
-			paint: {
-				'text-color': tokens.label_primary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
 			}
 		},
 		{
@@ -280,22 +211,16 @@ export default function makeRoads() {
 			filter: ['==', 'kind', 'primary'],
 			minzoom: 14,
 			layout: {
-				'text-field': '{name_de}',
 				'text-letter-spacing': 0.025,
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
 				'text-size': {
 					stops: [
 						[12, 10],
-						[15, 13]
+						[15, 14]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-color': tokens.label_primary
 			}
 		},
 		{
@@ -303,10 +228,6 @@ export default function makeRoads() {
 			filter: ['==', 'kind', 'trunk'],
 			minzoom: 13,
 			layout: {
-				'text-field': '{name_de}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
 				'text-size': {
 					stops: [
 						[12, 10],
@@ -315,9 +236,7 @@ export default function makeRoads() {
 				}
 			},
 			paint: {
-				'text-color': tokens.label_primary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2
+				'text-color': tokens.label_primary
 			}
 		}
 	].map((el) => {
@@ -325,292 +244,27 @@ export default function makeRoads() {
 			type: 'symbol',
 			source: 'versatiles-osm',
 			'source-layer': 'street_labels',
-			...el
+			...el,
+			layout: {
+				'text-field': '{name_de}',
+				'text-font': tokens.sans_regular,
+				'symbol-placement': 'line',
+				'text-anchor': 'center',
+
+				...el.layout
+			},
+			paint: {
+				'text-color': tokens.label_secondary,
+				'text-halo-color': tokens.background,
+				'text-halo-width': 1.5,
+				...el.paint
+			}
 		} as SymbolLayerSpecification;
 	});
 
 	const roadBridges: Layer[] = [
 		{
-			id: 'bridge-street-service:bridge',
-			filter: [
-				'all',
-				['==', 'kind', 'service'],
-				['==', 'bridge', true],
-				['!=', 'service', 'driveway']
-			],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': {
-					stops: [
-						[14, 0],
-						[15, 1]
-					]
-				},
-				'line-width': {
-					stops: [
-						[14, 3],
-						[16, 6],
-						[18, 25],
-						[19, 67],
-						[20, 134]
-					]
-				}
-			}
-		},
-		{
-			id: 'bridge-street-livingstreet:bridge',
-			filter: ['all', ['==', 'kind', 'living_street'], ['==', 'bridge', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				},
-				'line-width': {
-					stops: [
-						[12, 3],
-						[14, 4],
-						[16, 8],
-						[18, 36],
-						[19, 90],
-						[20, 179]
-					]
-				}
-			}
-		},
-		{
-			id: 'bridge-street-residential:bridge',
-			filter: ['all', ['==', 'kind', 'residential'], ['==', 'bridge', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': street_residential.line_color,
-				'line-opacity': street_residential.line_opacity,
-				'line-width': street_residential.line_opacity
-			}
-		},
-		{
-			id: 'bridge-street-unclassified:bridge',
-			filter: ['all', ['==', 'kind', 'unclassified'], ['==', 'bridge', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				},
-				'line-width': {
-					stops: [
-						[12, 3],
-						[14, 4],
-						[16, 8],
-						[18, 36],
-						[19, 90],
-						[20, 179]
-					]
-				}
-			}
-		},
-		{
-			id: 'bridge-street-tertiary-link:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'tertiary'], ['==', 'link', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				},
-				'line-width': {
-					stops: [
-						[12, 3],
-						[14, 4],
-						[16, 8],
-						[18, 36],
-						[19, 90],
-						[20, 179]
-					]
-				}
-			}
-		},
-		{
-			id: 'bridge-street-secondary-link:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'secondary'], ['==', 'link', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': 0.5,
-				'line-width': {
-					stops: [
-						[12, 3],
-						[14, 4],
-						[16, 10],
-						[18, 20],
-						[20, 56]
-					]
-				}
-			},
-			minzoom: 13
-		},
-		{
-			id: 'bridge-street-primary-link:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'primary'], ['==', 'link', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': street_primary.line_color,
-				'line-width': street_primary.line_width
-			},
-			minzoom: 13
-		},
-		{
-			id: 'bridge-street-trunk-link:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'trunk'], ['==', 'link', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': motorway.line_color,
-				'line-width': motorway.line_width
-			},
-			minzoom: 13
-		},
-		{
-			id: 'bridge-street-motorway-link:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'motorway'], ['==', 'link', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': tokens.street_primary,
-				'line-width': motorway_link.line_width,
-				'line-opacity': motorway.line_opacity
-			},
-			minzoom: 12
-		},
-		{
-			id: 'bridge-street-tertiary:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'tertiary'], ['!=', 'link', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				},
-				'line-width': {
-					stops: [
-						[12, 3],
-						[14, 4],
-						[16, 8],
-						[18, 36],
-						[19, 90],
-						[20, 179]
-					]
-				}
-			}
-		},
-		{
-			id: 'bridge-street-secondary:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'secondary'], ['!=', 'link', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': 'rgb(239,239,239)',
-				'line-opacity': {
-					stops: [
-						[11, 0],
-						[12, 1]
-					]
-				},
-				'line-width': {
-					stops: [
-						[11, 3],
-						[14, 7],
-						[16, 11],
-						[18, 42],
-						[19, 95],
-						[20, 193]
-					]
-				}
-			}
-		},
-		{
-			id: 'bridge-street-primary:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'primary'], ['!=', 'link', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': street_primary.line_color,
-				'line-width': street_primary.line_width
-			}
-		},
-		{
-			id: 'bridge-street-trunk:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'trunk'], ['!=', 'link', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': motorway.line_color,
-				'line-width': motorway.line_width,
-				'line-opacity': motorway.line_opacity
-			}
-		},
-		{
-			id: 'bridge-street-motorway:bridge',
-			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'motorway'], ['!=', 'link', true]],
-			layout: {
-				'line-cap': 'butt',
-				'line-join': 'round'
-			},
-			paint: {
-				'line-color': tokens.street_primary,
-				'line-width': motorway.line_width,
-				'line-opacity': motorway.line_opacity
-			}
-		},
-		{
-			id: 'bridge-street-service:outline',
+			id: 'bridge-street-service:case',
 			filter: [
 				'all',
 				['==', 'kind', 'service'],
@@ -635,10 +289,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: street_layout
+			layout: case_layout
 		},
 		{
-			id: 'bridge-street-livingstreet:outline',
+			id: 'bridge-street-livingstreet:case',
 			filter: ['all', ['==', 'kind', 'living_street'], ['==', 'bridge', true]],
 			paint: {
 				'line-color': 'rgb(217,217,217)',
@@ -662,17 +316,17 @@ export default function makeRoads() {
 			layout: street_layout
 		},
 		{
-			id: 'bridge-street-residential:outline',
+			id: 'bridge-street-residential:case',
 			filter: ['all', ['==', 'kind', 'residential'], ['==', 'bridge', true]],
 			paint: {
-				'line-color': street_residential_outline.line_color,
-				'line-width': street_residential_outline.line_width,
-				'line-opacity': street_residential_outline.line_opacity
+				'line-color': street_residential_case.line_color,
+				'line-width': street_residential_case.line_width,
+				'line-opacity': street_residential_case.line_opacity
 			},
-			layout: street_layout
+			layout: case_layout
 		},
 		{
-			id: 'bridge-street-unclassified:outline',
+			id: 'bridge-street-unclassified:case',
 			filter: ['all', ['==', 'kind', 'unclassified'], ['==', 'bridge', true]],
 			paint: {
 				'line-color': 'rgb(217,217,217)',
@@ -693,10 +347,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: street_layout
+			layout: case_layout
 		},
 		{
-			id: 'bridge-street-tertiary-link:outline',
+			id: 'bridge-street-tertiary-link:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'tertiary'], ['==', 'link', true]],
 			paint: {
 				'line-color': 'rgb(217,217,217)',
@@ -717,51 +371,51 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: street_layout
+			layout: case_layout
 		},
 		{
-			id: 'bridge-street-secondary-link:outline',
+			id: 'bridge-street-secondary-link:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'secondary'], ['==', 'link', true]],
 			paint: {
-				'line-color': tokens.street_secondary_outline,
-				'line-width': street_secondary_outline.line_width
+				'line-color': tokens.street_secondary_case,
+				'line-width': street_secondary_case.line_width
 			},
-			layout: street_layout,
+			layout: case_layout,
 			minzoom: 13
 		},
 		{
-			id: 'bridge-street-primary-link:outline',
+			id: 'bridge-street-primary-link:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'primary'], ['==', 'link', true]],
 			paint: {
 				'line-color': street_primary.line_color,
 				'line-width': street_primary.line_width
 			},
-			layout: street_layout,
+			layout: case_layout,
 			minzoom: 13
 		},
 		{
-			id: 'bridge-street-trunk-link:outline',
+			id: 'bridge-street-trunk-link:case',
 
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'trunk'], ['==', 'link', true]],
 			paint: {
-				'line-color': motorway_outline.line_color,
-				'line-width': motorway_link_outline.line_width
+				'line-color': motorway_case.line_color,
+				'line-width': motorway_link_case.line_width
 			},
-			layout: street_layout,
+			layout: case_layout,
 			minzoom: 13
 		},
 		{
-			id: 'bridge-street-motorway-link:outline',
+			id: 'bridge-street-motorway-link:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'motorway'], ['==', 'link', true]],
 			paint: {
-				'line-color': motorway_outline.line_color,
-				'line-width': motorway_link_outline.line_width
+				'line-color': motorway_case.line_color,
+				'line-width': motorway_link_case.line_width
 			},
-			layout: street_layout,
+			layout: case_layout,
 			minzoom: 12
 		},
 		{
-			id: 'bridge-street-tertiary:outline',
+			id: 'bridge-street-tertiary:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'tertiary'], ['!=', 'link', true]],
 			paint: {
 				'line-color': 'rgb(217,217,217)',
@@ -782,14 +436,14 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: street_layout
+			layout: case_layout
 		},
 		{
-			id: 'bridge-street-secondary:outline',
+			id: 'bridge-street-secondary:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'secondary'], ['!=', 'link', true]],
 			paint: {
-				'line-color': tokens.street_secondary_outline,
-				'line-width': street_secondary_outline.line_width,
+				'line-color': tokens.street_secondary_case,
+				'line-width': street_secondary_case.line_width,
 				'line-opacity': {
 					stops: [
 						[11, 0],
@@ -797,35 +451,35 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: street_layout
+			layout: case_layout
 		},
 		{
-			id: 'bridge-street-primary:outline',
+			id: 'bridge-street-primary:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'primary'], ['!=', 'link', true]],
 			paint: {
-				'line-color': street_primary_outline.line_color,
-				'line-width': street_primary_outline.line_width
+				'line-color': street_primary_case.line_color,
+				'line-width': street_primary_case.line_width
 			},
-			layout: street_layout
+			layout: case_layout
 		},
 		{
-			id: 'bridge-street-trunk:outline',
+			id: 'bridge-street-trunk:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'trunk'], ['!=', 'link', true]],
 			paint: {
-				'line-color': motorway_outline.line_color,
-				'line-width': motorway_outline.line_width
+				'line-color': motorway_case.line_color,
+				'line-width': motorway_case.line_width
 			},
-			layout: street_layout
+			layout: case_layout
 		},
 		{
-			id: 'bridge-street-motorway:outline',
+			id: 'bridge-street-motorway:case',
 
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'motorway'], ['!=', 'link', true]],
 			paint: {
-				'line-color': motorway_outline.line_color,
-				'line-width': motorway_outline.line_width
+				'line-color': motorway_case.line_color,
+				'line-width': motorway_case.line_width
 			},
-			layout: street_layout
+			layout: case_layout
 		},
 		{
 			id: 'bridge-street-service',
@@ -1059,9 +713,7 @@ export default function makeRoads() {
 
 	const roadTunnels: Layer[] = [
 		{
-			id: 'tunnel-street-service:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-service:case',
 			filter: [
 				'all',
 				['==', 'kind', 'service'],
@@ -1086,15 +738,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'tunnel-street-livingstreet:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-livingstreet:case',
 			filter: ['all', ['==', 'kind', 'living_street'], ['==', 'tunnel', true]],
 			paint: {
 				'line-color': 'rgb(222,222,222)',
@@ -1115,30 +762,20 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'tunnel-street-residential:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-residential:case',
 			filter: ['all', ['==', 'kind', 'residential'], ['==', 'tunnel', true]],
 			paint: {
-				'line-color': street_residential_outline.line_color,
-				'line-width': street_residential_outline.line_width,
-				'line-opacity': street_residential_outline.line_opacity
+				'line-color': street_residential_case.line_color,
+				'line-width': street_residential_case.line_width,
+				'line-opacity': street_residential_case.line_opacity
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'tunnel-street-unclassified:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-unclassified:case',
 			filter: ['all', ['==', 'kind', 'unclassified'], ['==', 'tunnel', true]],
 			paint: {
 				'line-color': 'rgb(222,222,222)',
@@ -1159,15 +796,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'tunnel-street-tertiary-link:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-tertiary-link:case',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'tertiary'], ['==', 'link', true]],
 			paint: {
 				'line-color': 'rgb(222,222,222)',
@@ -1188,78 +820,54 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'tunnel-street-secondary-link:outline',
+			id: 'tunnel-street-secondary-link:case',
 			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'secondary'], ['==', 'link', true]],
 			paint: {
-				'line-color': tokens.street_secondary_outline,
+				'line-color': tokens.street_secondary_case,
 				'line-dasharray': [1, 0.3],
 				'line-width': street_secondary.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			},
+			layout: case_layout,
 			minzoom: 13
 		},
 		{
-			id: 'tunnel-street-primary-link:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-primary-link:case',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'primary'], ['==', 'link', true]],
 			paint: {
-				'line-color': street_primary_outline.line_color,
+				'line-color': street_primary_case.line_color,
 				'line-dasharray': [1, 0.3],
-				'line-width': street_primary_outline.line_width
+				'line-width': street_primary_case.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			},
+			layout: case_layout,
 			minzoom: 13
 		},
 		{
-			id: 'tunnel-street-trunk-link:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-trunk-link:case',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'trunk'], ['==', 'link', true]],
 			paint: {
-				'line-color': motorway_outline.line_color,
-				'line-width': motorway_outline.line_width
+				'line-color': motorway_case.line_color,
+				'line-width': motorway_case.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			},
+			layout: case_layout,
 			minzoom: 13
 		},
 		{
-			id: 'tunnel-street-motorway-link:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-motorway-link:case',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'motorway'], ['==', 'link', true]],
 			paint: {
-				'line-color': motorway_outline.line_color,
-				'line-width': motorway_link_outline.line_width,
+				'line-color': motorway_case.line_color,
+				'line-width': motorway_link_case.line_width,
 				'line-dasharray': [1, 0.3]
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			},
+			layout: case_layout,
 			minzoom: 12
 		},
 		{
-			id: 'tunnel-street-tertiary:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-tertiary:case',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'tertiary'], ['!=', 'link', true]],
 			paint: {
 				'line-color': 'rgb(222,222,222)',
@@ -1280,20 +888,15 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'tunnel-street-secondary:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-secondary:case',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'secondary'], ['!=', 'link', true]],
 			paint: {
-				'line-color': tokens.street_secondary_outline,
+				'line-color': tokens.street_secondary_case,
 				'line-dasharray': [1, 0.3],
-				'line-width': street_secondary_outline.line_width,
+				'line-width': street_secondary_case.line_width,
 				'line-opacity': {
 					stops: [
 						[11, 0],
@@ -1301,60 +904,40 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'tunnel-street-primary:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-primary:case',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'primary'], ['!=', 'link', true]],
 			paint: {
-				'line-color': tokens.street_primary_outline,
-				'line-width': street_primary_outline.line_width,
+				'line-color': tokens.street_primary_case,
+				'line-width': street_primary_case.line_width,
 				'line-dasharray': [1, 0.3]
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'square'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'tunnel-street-trunk:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-trunk:case',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'trunk'], ['!=', 'link', true]],
 			paint: {
-				'line-color': motorway_outline.line_color,
+				'line-color': motorway_case.line_color,
 				'line-dasharray': [1, 0.3],
-				'line-width': motorway_outline.line_width
+				'line-width': motorway_case.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'tunnel-street-motorway:outline',
-			type: 'line',
-			'source-layer': 'streets',
+			id: 'tunnel-street-motorway:case',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'motorway'], ['!=', 'link', true]],
 			paint: {
-				'line-color': motorway_outline.line_color,
-				'line-width': motorway_outline.line_width,
+				'line-color': motorway_case.line_color,
+				'line-width': motorway_case.line_width,
 				'line-dasharray': [1, 0.3]
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: case_layout
 		},
 		{
 			id: 'tunnel-street-service',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: [
 				'all',
 				['==', 'kind', 'service'],
@@ -1379,15 +962,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'tunnel-street-livingstreet',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'living_street'], ['==', 'tunnel', true]],
 			paint: {
 				'line-color': 'rgb(247,247,247)',
@@ -1408,15 +986,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'tunnel-street-residential',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'residential'], ['==', 'tunnel', true]],
 			paint: {
 				'line-color': street_residential.line_color,
@@ -1428,15 +1001,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'tunnel-street-unclassified',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'unclassified'], ['==', 'tunnel', true]],
 			paint: {
 				'line-color': 'rgb(247,247,247)',
@@ -1457,15 +1025,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'tunnel-street-tertiary-link',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'tertiary'], ['==', 'link', true]],
 			paint: {
 				'line-color': 'rgb(247,247,247)',
@@ -1486,15 +1049,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'tunnel-street-secondary-link',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'secondary'], ['==', 'link', true]],
 			paint: {
 				'line-color': tokens.street_secondary,
@@ -1505,8 +1063,6 @@ export default function makeRoads() {
 		},
 		{
 			id: 'tunnel-street-primary-link',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'primary'], ['==', 'link', true]],
 			paint: {
 				'line-color': street_primary.line_color,
@@ -1517,8 +1073,6 @@ export default function makeRoads() {
 		},
 		{
 			id: 'tunnel-street-trunk-link',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'trunk'], ['==', 'link', true]],
 			paint: {
 				'line-color': tokens.street_primary,
@@ -1529,8 +1083,6 @@ export default function makeRoads() {
 		},
 		{
 			id: 'tunnel-street-motorway-link',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'motorway'], ['==', 'link', true]],
 			paint: {
 				'line-color': tokens.street_primary,
@@ -1542,8 +1094,6 @@ export default function makeRoads() {
 		},
 		{
 			id: 'tunnel-street-tertiary',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'tertiary'], ['!=', 'link', true]],
 			paint: {
 				'line-color': 'rgb(247,247,247)',
@@ -1564,15 +1114,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'tunnel-street-secondary',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'secondary'], ['!=', 'link', true]],
 			paint: {
 				'line-color': tokens.street_secondary,
@@ -1588,8 +1133,6 @@ export default function makeRoads() {
 		},
 		{
 			id: 'tunnel-street-primary',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'primary'], ['!=', 'link', true]],
 			paint: {
 				'line-color': street_primary.line_color,
@@ -1605,8 +1148,6 @@ export default function makeRoads() {
 		},
 		{
 			id: 'tunnel-street-trunk',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'trunk'], ['!=', 'link', true]],
 			paint: {
 				'line-color': tokens.street_primary,
@@ -1622,8 +1163,6 @@ export default function makeRoads() {
 		},
 		{
 			id: 'tunnel-street-motorway',
-			type: 'line',
-			'source-layer': 'streets',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'motorway'], ['!=', 'link', true]],
 			paint: {
 				'line-color': tokens.street_primary,
@@ -1633,13 +1172,12 @@ export default function makeRoads() {
 			layout: street_layout
 		}
 	].map((el) => {
-		return { source: 'versatiles-osm', ...el } as Layer;
+		return { source: 'versatiles-osm', type: 'line', 'source-layer': 'streets', ...el } as Layer;
 	});
 
 	const roadSurface: Layer[] = [
 		{
-			id: 'street-service:outline', // See: https://wiki.openstreetmap.org/wiki/Tag:highway%3Dservice
-			type: 'line',
+			id: 'street-service:case', // See: https://wiki.openstreetmap.org/wiki/Tag:highway%3Dservice
 			filter: [
 				'all',
 				['==', 'kind', 'service'],
@@ -1665,14 +1203,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'street-livingstreet:outline',
-			type: 'line',
+			id: 'street-livingstreet:case',
 			filter: [
 				'all',
 				['==', 'kind', 'living_street'],
@@ -1698,14 +1232,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'street-residential:outline',
-			type: 'line',
+			id: 'street-residential:case',
 			filter: [
 				'all',
 				['==', 'kind', 'residential'],
@@ -1713,18 +1243,14 @@ export default function makeRoads() {
 				['!=', 'tunnel', true]
 			],
 			paint: {
-				'line-color': street_residential_outline.line_color,
-				'line-width': street_residential_outline.line_width,
-				'line-opacity': street_residential_outline.line_opacity
+				'line-color': street_residential_case.line_color,
+				'line-width': street_residential_case.line_width,
+				'line-opacity': street_residential_case.line_opacity
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'street-unclassified:outline',
-			type: 'line',
+			id: 'street-unclassified:case',
 			filter: [
 				'all',
 				['==', 'kind', 'unclassified'],
@@ -1750,14 +1276,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'street-tertiary-link:outline',
-			type: 'line',
+			id: 'street-tertiary-link:case',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -1784,14 +1306,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'street-secondary-link:outline',
-			type: 'line',
+			id: 'street-secondary-link:case',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -1800,18 +1318,14 @@ export default function makeRoads() {
 				['==', 'link', true]
 			],
 			paint: {
-				'line-color': tokens.street_secondary_outline,
-				'line-width': street_secondary_outline.line_width
+				'line-color': tokens.street_secondary_case,
+				'line-width': street_secondary_case.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			},
+			layout: case_layout,
 			minzoom: 13
 		},
 		{
-			id: 'street-primary-link:outline',
-			type: 'line',
+			id: 'street-primary-link:case',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -1820,18 +1334,14 @@ export default function makeRoads() {
 				['==', 'link', true]
 			],
 			paint: {
-				'line-color': tokens.street_primary_outline,
-				'line-width': street_primary_outline.line_width
+				'line-color': tokens.street_primary_case,
+				'line-width': street_primary_case.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			},
+			layout: case_layout,
 			minzoom: 13
 		},
 		{
-			id: 'street-trunk-link:outline',
-			type: 'line',
+			id: 'street-trunk-link:case',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -1840,18 +1350,14 @@ export default function makeRoads() {
 				['==', 'link', true]
 			],
 			paint: {
-				'line-color': motorway_outline.line_color,
-				'line-width': motorway_link_outline.line_width
+				'line-color': motorway_case.line_color,
+				'line-width': motorway_link_case.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			},
+			layout: case_layout,
 			minzoom: 13
 		},
 		{
-			id: 'street-motorway-link:outline',
-			type: 'line',
+			id: 'street-motorway-link:case',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -1860,18 +1366,14 @@ export default function makeRoads() {
 				['==', 'link', true]
 			],
 			paint: {
-				'line-color': motorway_outline.line_color,
-				'line-width': motorway_link_outline.line_width
+				'line-color': motorway_case.line_color,
+				'line-width': motorway_link_case.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			},
+			layout: case_layout,
 			minzoom: 12
 		},
 		{
-			id: 'street-tertiary:outline',
-			type: 'line',
+			id: 'street-tertiary:case',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -1898,14 +1400,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'street-secondary:outline',
-			type: 'line',
+			id: 'street-secondary:case',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -1914,8 +1412,8 @@ export default function makeRoads() {
 				['!=', 'link', true]
 			],
 			paint: {
-				'line-color': tokens.street_secondary_outline,
-				'line-width': street_secondary_outline.line_width,
+				'line-color': tokens.street_secondary_case,
+				'line-width': street_secondary_case.line_width,
 				'line-opacity': {
 					stops: [
 						[11, 0],
@@ -1923,14 +1421,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'street-primary:outline',
-			type: 'line',
+			id: 'street-primary:case',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -1939,17 +1433,13 @@ export default function makeRoads() {
 				['!=', 'link', true]
 			],
 			paint: {
-				'line-color': street_primary_outline.line_color,
-				'line-width': street_primary_outline.line_width
+				'line-color': street_primary_case.line_color,
+				'line-width': street_primary_case.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'street-trunk:outline',
-			type: 'line',
+			id: 'street-trunk:case',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -1958,17 +1448,13 @@ export default function makeRoads() {
 				['!=', 'link', true]
 			],
 			paint: {
-				'line-color': motorway_outline.line_color,
-				'line-width': motorway_outline.line_width
+				'line-color': motorway_case.line_color,
+				'line-width': motorway_case.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			}
+			layout: case_layout
 		},
 		{
-			id: 'street-motorway:outline',
-			type: 'line',
+			id: 'street-motorway:case',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -1977,17 +1463,13 @@ export default function makeRoads() {
 				['!=', 'link', true]
 			],
 			paint: {
-				'line-color': motorway_outline.line_color,
-				'line-width': motorway_outline.line_width
+				'line-color': motorway_case.line_color,
+				'line-width': motorway_case.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'butt'
-			}
+			layout: case_layout
 		},
 		{
 			id: 'street-service',
-			type: 'line',
 			filter: [
 				'all',
 				['==', 'kind', 'service'],
@@ -2013,14 +1495,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-livingstreet',
-			type: 'line',
 			filter: [
 				'all',
 				['==', 'kind', 'living_street'],
@@ -2032,14 +1510,10 @@ export default function makeRoads() {
 				'line-width': street_residential.line_width,
 				'line-opacity': street_residential.line_opacity
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-residential',
-			type: 'line',
 			filter: [
 				'all',
 				['==', 'kind', 'residential'],
@@ -2051,14 +1525,10 @@ export default function makeRoads() {
 				'line-width': street_residential.line_width,
 				'line-opacity': street_residential.line_opacity
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-unclassified',
-			type: 'line',
 			filter: [
 				'all',
 				['==', 'kind', 'unclassified'],
@@ -2084,14 +1554,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-tertiary-link',
-			type: 'line',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -2118,14 +1584,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-secondary-link',
-			type: 'line',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -2137,15 +1599,11 @@ export default function makeRoads() {
 				'line-color': tokens.street_secondary,
 				'line-width': street_secondary.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			},
+			layout: street_layout,
 			minzoom: 13
 		},
 		{
 			id: 'street-primary-link',
-			type: 'line',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -2157,15 +1615,11 @@ export default function makeRoads() {
 				'line-color': street_primary.line_color,
 				'line-width': street_primary.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			},
+			layout: street_layout,
 			minzoom: 13
 		},
 		{
 			id: 'street-trunk-link',
-			type: 'line',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -2177,15 +1631,11 @@ export default function makeRoads() {
 				'line-color': tokens.street_primary,
 				'line-width': motorway_link.line_width
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			},
+			layout: street_layout,
 			minzoom: 13
 		},
 		{
 			id: 'street-motorway-link',
-			type: 'line',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -2198,15 +1648,11 @@ export default function makeRoads() {
 				'line-width': motorway_link.line_width,
 				'line-opacity': motorway.line_opacity
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			},
+			layout: street_layout,
 			minzoom: 12
 		},
 		{
 			id: 'street-tertiary',
-			type: 'line',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -2233,14 +1679,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-secondary',
-			type: 'line',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -2258,14 +1700,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-primary',
-			type: 'line',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -2283,14 +1721,10 @@ export default function makeRoads() {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-trunk',
-			type: 'line',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -2303,14 +1737,10 @@ export default function makeRoads() {
 				'line-width': motorway.line_width,
 				'line-opacity': motorway.line_opacity
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-motorway',
-			type: 'line',
 			filter: [
 				'all',
 				['!=', 'bridge', true],
@@ -2323,13 +1753,10 @@ export default function makeRoads() {
 				'line-width': motorway.line_width,
 				'line-opacity': motorway.line_opacity
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		}
 	].map((el) => {
-		return { source: 'versatiles-osm', 'source-layer': 'streets', ...el } as Layer;
+		return { source: 'versatiles-osm', type: 'line', 'source-layer': 'streets', ...el } as Layer;
 	});
 
 	return { roadLabels, roadBridges, roadSurface, roadTunnels };

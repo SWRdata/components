@@ -30,7 +30,7 @@ const rail_overlay = {
 	line_dasharray: [0.125, 6]
 };
 
-const rail_outline = {
+const rail_case = {
 	line_color: tokens.background,
 	line_width: {
 		stops: [
@@ -59,7 +59,7 @@ export default function makeTransit() {
 			}
 		},
 		{
-			id: 'airport-taxiway:outline',
+			id: 'airport-taxiway:case',
 			filter: ['==', 'kind', 'taxiway'],
 			paint: {
 				'line-color': 'hsl(36,0%,80%)',
@@ -79,7 +79,7 @@ export default function makeTransit() {
 			}
 		},
 		{
-			id: 'airport-runway:outline',
+			id: 'airport-runway:case',
 			filter: ['==', 'kind', 'runway'],
 			paint: {
 				'line-color': 'hsl(36,0%,80%)',
@@ -167,57 +167,57 @@ export default function makeTransit() {
 
 	const transitBridges = [
 		{
-			id: 'bridge-transport-monorail:outline',
+			id: 'bridge-transport-monorail:case',
 			filter: ['all', ['in', 'kind', 'monorail'], ['!has', 'service'], ['==', 'bridge', true]],
 			minzoom: 15,
 			paint: {
-				'line-color': rail_outline.line_color,
-				'line-width': rail_outline.line_width
+				'line-color': rail_case.line_color,
+				'line-width': rail_case.line_width
 			}
 		},
 		{
-			id: 'bridge-transport-funicular:outline',
+			id: 'bridge-transport-funicular:case',
 			filter: ['all', ['in', 'kind', 'funicular'], ['!has', 'service'], ['==', 'bridge', true]],
 			minzoom: 15,
 			paint: {
-				'line-color': rail_outline.line_color,
-				'line-width': rail_outline.line_width
+				'line-color': rail_case.line_color,
+				'line-width': rail_case.line_width
 			}
 		},
 		{
-			id: 'bridge-transport-tram:outline',
+			id: 'bridge-transport-tram:case',
 			filter: ['all', ['in', 'kind', 'tram'], ['!has', 'service'], ['==', 'bridge', true]],
 			minzoom: 15,
 			paint: {
-				'line-color': rail_outline.line_color,
-				'line-width': rail_outline.line_width
+				'line-color': rail_case.line_color,
+				'line-width': rail_case.line_width
 			}
 		},
 		{
-			id: 'bridge-transport-narrowgauge:outline',
+			id: 'bridge-transport-narrowgauge:case',
 			filter: ['all', ['in', 'kind', 'narrow_gauge'], ['!has', 'service'], ['==', 'bridge', true]],
 			minzoom: 15,
 			paint: {
-				'line-color': rail_outline.line_color,
-				'line-width': rail_outline.line_width
+				'line-color': rail_case.line_color,
+				'line-width': rail_case.line_width
 			}
 		},
 		{
-			id: 'bridge-transport-lightrail:outline',
+			id: 'bridge-transport-lightrail:case',
 			filter: ['all', ['in', 'kind', 'light_rail'], ['!has', 'service'], ['==', 'bridge', true]],
 			paint: {
-				'line-color': rail_outline.line_color,
-				'line-width': rail_outline.line_width,
-				'line-opacity': rail_outline.line_opacity
+				'line-color': rail_case.line_color,
+				'line-width': rail_case.line_width,
+				'line-opacity': rail_case.line_opacity
 			}
 		},
 		{
-			id: 'bridge-transport-rail:outline',
+			id: 'bridge-transport-rail:case',
 			filter: ['all', ['in', 'kind', 'rail'], ['!has', 'service'], ['==', 'bridge', true]],
 			paint: {
-				'line-color': rail_outline.line_color,
-				'line-width': rail_outline.line_width,
-				'line-opacity': rail_outline.line_opacity
+				'line-color': rail_case.line_color,
+				'line-width': rail_case.line_width,
+				'line-opacity': rail_case.line_opacity
 			}
 		},
 		{
