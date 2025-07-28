@@ -8,16 +8,25 @@ const svelteOutputPath = process.argv[2] || '../mock-sveltekit/build';
 const outputPath = '.';
 
 console.log('Copying Sveltekit output to mock-sophora...');
+const routes = ['encapsulation-test', 'hero-scrolly'];
 
-// Copy the index.html file...
-const inputHTML = fs.readFileSync(`${svelteOutputPath}/index.html`, { encoding: 'utf8' });
-const inputBody = inputHTML.match(/(?:<body>)([\s\d.\S]+)(?:<\/body>)/);
-
-const indexHTML = inputBody[1];
-fs.writeFileSync(`${outputPath}/_includes/test/sveltekit-component.html`, indexHTML);
+routes.forEach((r) => {
+	// Copy the index.html file...
+	const inputHTML = fs.readFileSync(`${svelteOutputPath}/${r}/index.html`, { encoding: 'utf8' });
+	const inputBody = inputHTML.match(/(?:<body>)([\s\d.\S]+)(?:<\/body>)/);
+	const indexHTML = inputBody[1];
+	const op = `${outputPath}/_includes/test/${r}.html`;
+	fs.writeFileSync(op, indexHTML);
+	console.log(`Wrote ${op}`);
+});
 
 // Copy the _app folder...
-fs.emptyDirSync(`${outputPath}/_app`);
-fs.copySync(`${svelteOutputPath}/_app/`, `${outputPath}/_app`);
+const folders = ['_app'];
+folders.forEach((f) => {
+	const op = `${outputPath}/${f}`;
+	fs.emptyDirSync(op);
+	fs.copySync(`${svelteOutputPath}/${f}`, op);
+	console.log(`Wrote ${op}`);
+});
 
 console.log('Done.');
