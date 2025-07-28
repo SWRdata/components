@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { dev } from '$app/environment';
+	import { assets } from '$app/paths';
+
 	type ProjectPrefix = 'p' | 't';
 	type ProjectIdentifier = `${ProjectPrefix}${number}: ${string}`;
 
@@ -11,7 +14,8 @@
 		charts?: ChartSpec[];
 		baseUrl?: string;
 	}
-	let { project, charts, baseUrl }: ChartListProps = $props();
+	let { project, charts, baseUrl = assets }: ChartListProps = $props();
+	const pathPostfix = dev ? '' : '.html';
 </script>
 
 <main>
@@ -29,13 +33,14 @@
 				</thead>
 				<tbody>
 					{#each charts as chart}
+						{@const fullUrl = `${baseUrl}/${chart.slug}${pathPostfix}`}
 						<tr>
 							<td>
-								<a href="./{chart.slug}">{chart.title}</a>
+								<a href={fullUrl}>{chart.title}</a>
 							</td>
 							{#if baseUrl}
 								<td>
-									<input type="text" value={`${baseUrl}/${chart.slug}.html`} />
+									<input type="text" value={fullUrl} />
 								</td>
 							{/if}
 						</tr>

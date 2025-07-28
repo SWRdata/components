@@ -30,9 +30,21 @@
 			expect(titleEl).toHaveTextContent('Grafiken für p110: Wie sieht der Wald von morgen aus?');
 		});
 
-		await step('All chart list items render', async () => {
+		await step('All chart list items render as links', async () => {
 			testCharts.forEach((c) => {
 				const el = canvas.getByText(c.title);
+				expect(el).toBeTruthy();
+				expect(el.getAttribute('href')).toBe(
+					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}`
+				);
+			});
+		});
+
+		await step('Embed URLs render', async () => {
+			testCharts.forEach((c) => {
+				const el = canvas.getByDisplayValue(
+					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}`
+				);
 				expect(el).toBeTruthy();
 			});
 		});
