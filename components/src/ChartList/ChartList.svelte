@@ -38,11 +38,9 @@
 							<td>
 								<a href={fullUrl}>{chart.title}</a>
 							</td>
-							{#if baseUrl}
-								<td>
-									<input type="text" value={fullUrl} />
-								</td>
-							{/if}
+							<td>
+								<input type="text" value={fullUrl} />
+							</td>
 						</tr>
 					{/each}
 				</tbody>

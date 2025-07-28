@@ -1,6 +1,7 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import { within, expect } from 'storybook/test';
+	import { assets } from '$app/paths';
 
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
@@ -20,7 +21,7 @@
 </script>
 
 <Story
-	name="Default"
+	name="Custom base path"
 	asChild
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
@@ -56,5 +57,32 @@
 			charts={testCharts}
 			project="p110: Wie sieht der Wald von morgen aus?"
 		/>
+	</DesignTokens>
+</Story>
+
+<Story
+	name="Default base path (omitting basePath)"
+	asChild
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+
+		await step('All chart list items render as links using project-relative URLs', async () => {
+			testCharts.forEach((c) => {
+				const el = canvas.getByText(c.title);
+				expect(el).toBeTruthy();
+				expect(el.getAttribute('href')).toBe(`${assets}/${c.slug}`);
+			});
+		});
+
+		await step('Embed paths render using project-relative URLs', async () => {
+			testCharts.forEach((c) => {
+				const el = canvas.getByDisplayValue(`${assets}/${c.slug}`);
+				expect(el).toBeTruthy();
+			});
+		});
+	}}
+>
+	<DesignTokens>
+		<ChartList charts={testCharts} project="p110: Wie sieht der Wald von morgen aus?" />
 	</DesignTokens>
 </Story>
