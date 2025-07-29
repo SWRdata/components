@@ -31,11 +31,11 @@
 			expect(titleEl).toHaveTextContent('Grafiken für p110: Wie sieht der Wald von morgen aus?');
 		});
 
-		await step('All chart list items render as links', async () => {
+		await step('All chart list items render as links using project-relative URLs', async () => {
 			testCharts.forEach((c) => {
 				const el = canvas.getByText(c.title);
 				expect(el).toBeInstanceOf(HTMLAnchorElement);
-				expect(el.getAttribute('href')).toBe(c.slug);
+				expect(el.getAttribute('href')).toBe(asset(c.slug));
 			});
 		});
 
@@ -67,7 +67,7 @@
 		await step('All chart list items render as links using project-relative URLs', async () => {
 			testCharts.forEach((c) => {
 				const el = canvas.getByText(c.title);
-				expect(el).toBeTruthy();
+				expect(el).toBeInstanceOf(HTMLAnchorElement);
 				expect(el.getAttribute('href')).toBe(asset(c.slug));
 			});
 		});
