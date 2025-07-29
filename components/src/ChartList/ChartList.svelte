@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { dev } from '$app/environment';
+	import { asset } from '$app/paths';
+
 	type ProjectPrefix = 'p' | 't';
 	type ProjectIdentifier = `${ProjectPrefix}${number}: ${string}`;
 
@@ -22,22 +25,20 @@
 				<thead>
 					<tr>
 						<th>Title</th>
-						{#if baseUrl}
-							<th>Embed URL</th>
-						{/if}
+						<th>Embed URL</th>
 					</tr>
 				</thead>
 				<tbody>
 					{#each charts as chart}
+						{@const url = baseUrl ? `${baseUrl}/${chart.slug}` : asset(chart.slug)}
+						{@const urlPostfixed = `${url}${dev ? '' : '.html'}`}
 						<tr>
 							<td>
-								<a href="./{chart.slug}">{chart.title}</a>
+								<a href={urlPostfixed}>{chart.title}</a>
 							</td>
-							{#if baseUrl}
-								<td>
-									<input type="text" value={`${baseUrl}/${chart.slug}.html`} />
-								</td>
-							{/if}
+							<td>
+								<input type="text" value={urlPostfixed} />
+							</td>
 						</tr>
 					{/each}
 				</tbody>

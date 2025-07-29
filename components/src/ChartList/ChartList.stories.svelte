@@ -1,6 +1,7 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import { within, expect } from 'storybook/test';
+	import { asset } from '$app/paths';
 
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
@@ -20,7 +21,7 @@
 </script>
 
 <Story
-	name="Default"
+	name="Custom base path"
 	asChild
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
@@ -30,9 +31,21 @@
 			expect(titleEl).toHaveTextContent('Grafiken für p110: Wie sieht der Wald von morgen aus?');
 		});
 
-		await step('All chart list items render', async () => {
+		await step('All chart list items render as links', async () => {
 			testCharts.forEach((c) => {
 				const el = canvas.getByText(c.title);
+				expect(el).toBeTruthy();
+				expect(el.getAttribute('href')).toBe(
+					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}`
+				);
+			});
+		});
+
+		await step('Embed URLs render', async () => {
+			testCharts.forEach((c) => {
+				const el = canvas.getByDisplayValue(
+					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}`
+				);
 				expect(el).toBeTruthy();
 			});
 		});
@@ -44,5 +57,32 @@
 			charts={testCharts}
 			project="p110: Wie sieht der Wald von morgen aus?"
 		/>
+	</DesignTokens>
+</Story>
+
+<Story
+	name="Default base path (omitting basePath)"
+	asChild
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+
+		await step('All chart list items render as links using project-relative URLs', async () => {
+			testCharts.forEach((c) => {
+				const el = canvas.getByText(c.title);
+				expect(el).toBeTruthy();
+				expect(el.getAttribute('href')).toBe(asset(c.slug));
+			});
+		});
+
+		await step('Embed paths render using project-relative URLs', async () => {
+			testCharts.forEach((c) => {
+				const el = canvas.getByDisplayValue(asset(c.slug));
+				expect(el).toBeTruthy();
+			});
+		});
+	}}
+>
+	<DesignTokens>
+		<ChartList charts={testCharts} project="p110: Wie sieht der Wald von morgen aus?" />
 	</DesignTokens>
 </Story>
