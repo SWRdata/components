@@ -34,10 +34,8 @@
 		await step('All chart list items render as links', async () => {
 			testCharts.forEach((c) => {
 				const el = canvas.getByText(c.title);
-				expect(el).toBeTruthy();
-				expect(el.getAttribute('href')).toBe(
-					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}`
-				);
+				expect(el).toBeInstanceOf(HTMLAnchorElement);
+				expect(el.getAttribute('href')).toBe(c.slug);
 			});
 		});
 
