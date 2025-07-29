@@ -30,14 +30,13 @@
 				</thead>
 				<tbody>
 					{#each charts as chart}
-						{@const url = baseUrl ? `${baseUrl}/${chart.slug}` : asset(chart.slug)}
-						{@const postfix = dev ? '' : '.html'}
+						{@const fullUrl = baseUrl ? `${baseUrl}/${chart.slug}.html` : asset(chart.slug)}
 						<tr>
 							<td>
-								<a href="{asset(chart.slug)}{postfix}">{chart.title}</a>
+								<a href="{asset(chart.slug)}{dev ? '' : '.html'}">{chart.title}</a>
 							</td>
 							<td>
-								<input type="text" value="{url}{postfix}" />
+								<input type="text" value={fullUrl} />
 							</td>
 						</tr>
 					{/each}

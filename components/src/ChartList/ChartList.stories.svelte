@@ -42,7 +42,7 @@
 		await step('Embed URLs render', async () => {
 			testCharts.forEach((c) => {
 				const el = canvas.getByDisplayValue(
-					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}`
+					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}.html`
 				);
 				expect(el).toBeTruthy();
 			});
