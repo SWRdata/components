@@ -492,23 +492,6 @@ export default function makeWalking(): any {
 
 	const walkingSurface: Layer[] = [
 		{
-			id: 'street-pedestrian-zone',
-			type: 'fill',
-			'source-layer': 'street_polygons',
-			filter: ['all', ['!=', 'bridge', true], ['!=', 'tunnel', true], ['==', 'kind', 'pedestrian']],
-			paint: {
-				'fill-color': 'rgba(245,245,245,0.25)',
-				'fill-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1],
-						[14, 0],
-						[15, 1]
-					]
-				}
-			}
-		},
-		{
 			id: 'way-footway:case',
 			type: 'line',
 			'source-layer': 'streets',
@@ -630,7 +613,7 @@ export default function makeWalking(): any {
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'pedestrian'], ['!=', 'bridge', true], ['!=', 'tunnel', true]],
 			paint: {
-				'line-color': 'hsl(36,0%,80%)',
+				'line-color': tokens.street_tertiary_case,
 				'line-width': {
 					stops: [
 						[12, 2],
@@ -643,15 +626,12 @@ export default function makeWalking(): any {
 				},
 				'line-opacity': {
 					stops: [
-						[12, 0],
-						[13, 1]
+						[14, 0],
+						[15, 1]
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'way-footway',
@@ -764,10 +744,7 @@ export default function makeWalking(): any {
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-pedestrian',
@@ -788,16 +765,12 @@ export default function makeWalking(): any {
 				},
 				'line-opacity': {
 					stops: [
-						[12, 0],
 						[13, 0],
 						[14, 1]
 					]
 				}
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-track-bicycle',
@@ -813,10 +786,7 @@ export default function makeWalking(): any {
 			paint: {
 				'line-color': 'hsl(0,0%,100%)'
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-pedestrian-bicycle',
@@ -865,10 +835,7 @@ export default function makeWalking(): any {
 			paint: {
 				'line-color': 'hsl(0,0%,100%)'
 			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			}
+			layout: street_layout
 		},
 		{
 			id: 'street-livingstreet-bicycle',

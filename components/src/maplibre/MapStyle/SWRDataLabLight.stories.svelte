@@ -13,7 +13,7 @@
 
 	const locations = {
 		germany: { lng: 10.962488768573053, lat: 50.958636214954396, zoom: 6 },
-		stugge: { lng: 9.17985, lat: 48.7763, zoom: 10.3418 },
+		stugge: { lng: 9.181, lat: 48.772, zoom: 13.5 },
 		berlin: { lng: 13.399, lat: 52.5159, zoom: 12.1977 },
 		frankfurt: { lng: 8.68834, lat: 50.1082, zoom: 11.7923 },
 		badenBaden: { lng: 8.23986, lat: 48.7595, zoom: 14.99, pitch: 0 },
@@ -71,6 +71,17 @@
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.berlin}>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="Stuttgart z13">
+	<DesignTokens>
+		<div class="grid">
+			<div class="container">
+				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.stugge}>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>

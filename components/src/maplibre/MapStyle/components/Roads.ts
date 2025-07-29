@@ -67,9 +67,8 @@ const street_primary = {
 	line_width: {
 		stops: [
 			[8, 0],
-			[10, 1],
-			[12, 2],
-			[14, 3],
+			[13, 1],
+			[15, 2],
 			[16, 10],
 			[18, 34],
 			[19, 70],
@@ -87,9 +86,9 @@ const street_primary_case = {
 	line_color: tokens.street_primary_case,
 	line_width: {
 		stops: [
-			[11, 0],
-			[12, 2],
-			[14, 5],
+			[8, 0],
+			[13, 2],
+			[15, 4],
 			[16, 12],
 			[18, 36],
 			[19, 74],
@@ -105,11 +104,12 @@ const street_primary_case = {
 };
 
 const street_secondary = {
+	line_color: tokens.street_secondary,
 	line_width: {
 		stops: [
-			[11, 1],
-			[14, 4],
-			[16, 6],
+			[12, 1],
+			[14, 2],
+			[16, 8],
 			[18, 28],
 			[19, 64],
 			[20, 130]
@@ -119,10 +119,11 @@ const street_secondary = {
 const street_secondary_case = {
 	line_width: {
 		stops: [
-			[12, 2],
-			[14, 5],
-			[16, 7],
-			[18, 14],
+			[12, 0],
+			[14, 3],
+			[16, 10],
+			[18, 30],
+			[19, 66],
 			[20, 40]
 		]
 	}
@@ -1227,8 +1228,8 @@ export default function makeRoads() {
 				},
 				'line-opacity': {
 					stops: [
-						[12, 0],
-						[13, 1]
+						[13, 0],
+						[14, 1]
 					]
 				}
 			},
@@ -1271,8 +1272,8 @@ export default function makeRoads() {
 				},
 				'line-opacity': {
 					stops: [
-						[12, 0],
-						[13, 1]
+						[13, 0],
+						[14, 1]
 					]
 				}
 			},
@@ -1478,7 +1479,7 @@ export default function makeRoads() {
 				['!=', 'service', 'driveway']
 			],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': street_residential.line_color,
 				'line-width': {
 					stops: [
 						[14, 1],
@@ -1536,7 +1537,7 @@ export default function makeRoads() {
 				['!=', 'tunnel', true]
 			],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': street_secondary.line_color,
 				'line-width': {
 					stops: [
 						[12, 1],
