@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { asset } from '$app/paths';
+	import { resolve } from '$app/paths';
+	import type { RouteId } from '$app/types';
 
 	type ProjectPrefix = 'p' | 't';
 	type ProjectIdentifier = `${ProjectPrefix}${number}: ${string}`;
@@ -30,14 +31,14 @@
 				</thead>
 				<tbody>
 					{#each charts as chart}
-						{@const url = baseUrl ? `${baseUrl}/${chart.slug}` : asset(chart.slug)}
-						{@const urlPostfixed = `${url}${dev ? '' : '.html'}`}
+						{@const route = `/${chart.slug}/` as RouteId}
+						{@const fullUrl = baseUrl ? `${baseUrl}/${chart.slug}.html` : resolve(route)}
 						<tr>
 							<td>
-								<a href={urlPostfixed}>{chart.title}</a>
+								<a href={dev ? resolve(route) : fullUrl}>{chart.title}</a>
 							</td>
 							<td>
-								<input type="text" value={urlPostfixed} />
+								<input type="text" value={fullUrl} />
 							</td>
 						</tr>
 					{/each}

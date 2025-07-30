@@ -1,7 +1,7 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import { within, expect } from 'storybook/test';
-	import { asset } from '$app/paths';
+	import { resolve } from '$app/paths';
 
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
@@ -31,20 +31,18 @@
 			expect(titleEl).toHaveTextContent('Grafiken für p110: Wie sieht der Wald von morgen aus?');
 		});
 
-		await step('All chart list items render as links', async () => {
+		await step('All chart list items render as links using project-relative URLs', async () => {
 			testCharts.forEach((c) => {
 				const el = canvas.getByText(c.title);
-				expect(el).toBeTruthy();
-				expect(el.getAttribute('href')).toBe(
-					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}`
-				);
+				expect(el).toBeInstanceOf(HTMLAnchorElement);
+				expect(el.getAttribute('href')).toBe(resolve('/' + c.slug));
 			});
 		});
 
 		await step('Embed URLs render', async () => {
 			testCharts.forEach((c) => {
 				const el = canvas.getByDisplayValue(
-					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}`
+					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}.html`
 				);
 				expect(el).toBeTruthy();
 			});
@@ -69,14 +67,14 @@
 		await step('All chart list items render as links using project-relative URLs', async () => {
 			testCharts.forEach((c) => {
 				const el = canvas.getByText(c.title);
-				expect(el).toBeTruthy();
-				expect(el.getAttribute('href')).toBe(asset(c.slug));
+				expect(el).toBeInstanceOf(HTMLAnchorElement);
+				expect(el.getAttribute('href')).toBe(resolve('/' + c.slug));
 			});
 		});
 
 		await step('Embed paths render using project-relative URLs', async () => {
 			testCharts.forEach((c) => {
-				const el = canvas.getByDisplayValue(asset(c.slug));
+				const el = canvas.getByDisplayValue(resolve('/' + c.slug));
 				expect(el).toBeTruthy();
 			});
 		});
