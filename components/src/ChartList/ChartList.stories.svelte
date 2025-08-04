@@ -34,7 +34,7 @@
 			testCharts.forEach((c) => {
 				const el = canvas.getByText(c.title);
 				expect(el).toBeInstanceOf(HTMLAnchorElement);
-				expect(el.getAttribute('href')).toBe(resolve('/' + c.slug));
+				expect(el.getAttribute('href')).toBe('/' + c.slug);
 			});
 		});
 
