@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { resolve } from '$app/paths';
 	import type { RouteId } from '$app/types';
 
 	type ProjectPrefix = 'p' | 't';
@@ -31,14 +30,15 @@
 				</thead>
 				<tbody>
 					{#each charts as chart}
-						{@const route = `/${chart.slug}/` as RouteId}
-						{@const fullUrl = baseUrl ? `${baseUrl}/${chart.slug}.html` : resolve(route)}
+						{@const route = `/${chart.slug}` as RouteId}
 						<tr>
 							<td>
-								<a href={dev ? resolve(route) : fullUrl}>{chart.title}</a>
+								<a rel="external" href={dev ? route : `./${chart.slug}.html`}>
+									{chart.title}
+								</a>
 							</td>
 							<td>
-								<input type="text" value={fullUrl} />
+								<input type="text" value={`${baseUrl ?? ''}${route}.html`} />
 							</td>
 						</tr>
 					{/each}

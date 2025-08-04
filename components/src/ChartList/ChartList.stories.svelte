@@ -1,7 +1,6 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import { within, expect } from 'storybook/test';
-	import { resolve } from '$app/paths';
 
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
@@ -68,13 +67,13 @@
 			testCharts.forEach((c) => {
 				const el = canvas.getByText(c.title);
 				expect(el).toBeInstanceOf(HTMLAnchorElement);
-				expect(el.getAttribute('href')).toBe(resolve('/' + c.slug));
+				expect(el.getAttribute('href')).toBe(`/${c.slug}`);
 			});
 		});
 
-		await step('Embed paths render using project-relative URLs', async () => {
+		await step('Embed paths render with .html prefix', async () => {
 			testCharts.forEach((c) => {
-				const el = canvas.getByDisplayValue(resolve('/' + c.slug));
+				const el = canvas.getByDisplayValue(`/${c.slug}.html`);
 				expect(el).toBeTruthy();
 			});
 		});
