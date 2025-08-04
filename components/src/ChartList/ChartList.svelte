@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import type { RouteId } from '$app/types';
 
 	type ProjectPrefix = 'p' | 't';
 	type ProjectIdentifier = `${ProjectPrefix}${number}: ${string}`;
@@ -30,7 +29,7 @@
 				</thead>
 				<tbody>
 					{#each charts as chart}
-						{@const route = `/${chart.slug}` as RouteId}
+						{@const route = `/${chart.slug}`}
 						<tr>
 							<td>
 								<a rel="external" href={dev ? route : `./${chart.slug}.html`}>
