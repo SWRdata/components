@@ -128,6 +128,28 @@ const street_secondary_case = {
 		]
 	}
 };
+const street_tertiary_case = {
+	paint: {
+		'line-color': tokens.street_tertiary_case,
+		'line-width': {
+			stops: [
+				[12, 2],
+				[14, 3],
+				[16, 6],
+				[18, 26],
+				[19, 64],
+				[20, 128]
+			]
+		},
+		'line-opacity': {
+			stops: [
+				[12, 0],
+				[13, 1]
+			]
+		}
+	},
+	layout: case_layout
+};
 
 const street_residential = {
 	line_color: tokens.street_tertiary,
@@ -353,26 +375,7 @@ export default function makeRoads() {
 		{
 			id: 'bridge-street-tertiary-link:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'tertiary'], ['==', 'link', true]],
-			paint: {
-				'line-color': 'rgb(217,217,217)',
-				'line-width': {
-					stops: [
-						[12, 2],
-						[14, 3],
-						[16, 6],
-						[18, 26],
-						[19, 64],
-						[20, 128]
-					]
-				},
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
-			},
-			layout: case_layout
+			...street_tertiary_case
 		},
 		{
 			id: 'bridge-street-secondary-link:case',
@@ -418,26 +421,7 @@ export default function makeRoads() {
 		{
 			id: 'bridge-street-tertiary:case',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'tertiary'], ['!=', 'link', true]],
-			paint: {
-				'line-color': 'rgb(217,217,217)',
-				'line-width': {
-					stops: [
-						[12, 2],
-						[14, 3],
-						[16, 6],
-						[18, 26],
-						[19, 64],
-						[20, 128]
-					]
-				},
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
-			},
-			layout: case_layout
+			...street_tertiary_case
 		},
 		{
 			id: 'bridge-street-secondary:case',
@@ -802,26 +786,7 @@ export default function makeRoads() {
 		{
 			id: 'tunnel-street-tertiary-link:case',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'tertiary'], ['==', 'link', true]],
-			paint: {
-				'line-color': 'rgb(222,222,222)',
-				'line-width': {
-					stops: [
-						[12, 2],
-						[14, 3],
-						[16, 6],
-						[18, 26],
-						[19, 64],
-						[20, 128]
-					]
-				},
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
-			},
-			layout: case_layout
+			...street_tertiary_case
 		},
 		{
 			id: 'tunnel-street-secondary-link:case',
@@ -870,26 +835,7 @@ export default function makeRoads() {
 		{
 			id: 'tunnel-street-tertiary:case',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'tertiary'], ['!=', 'link', true]],
-			paint: {
-				'line-color': 'rgb(222,222,222)',
-				'line-width': {
-					stops: [
-						[12, 2],
-						[14, 3],
-						[16, 6],
-						[18, 26],
-						[19, 64],
-						[20, 128]
-					]
-				},
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
-			},
-			layout: case_layout
+			...street_tertiary_case
 		},
 		{
 			id: 'tunnel-street-secondary:case',
@@ -1288,26 +1234,7 @@ export default function makeRoads() {
 				['in', 'kind', 'tertiary'],
 				['==', 'link', true]
 			],
-			paint: {
-				'line-color': 'hsl(36,0%,80%)',
-				'line-width': {
-					stops: [
-						[12, 2],
-						[14, 3],
-						[16, 6],
-						[18, 26],
-						[19, 64],
-						[20, 128]
-					]
-				},
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
-			},
-			layout: case_layout
+			...street_tertiary_case
 		},
 		{
 			id: 'street-secondary-link:case',
@@ -1382,26 +1309,7 @@ export default function makeRoads() {
 				['in', 'kind', 'tertiary'],
 				['!=', 'link', true]
 			],
-			paint: {
-				'line-color': 'hsl(36,0%,80%)',
-				'line-width': {
-					stops: [
-						[12, 2],
-						[14, 3],
-						[16, 6],
-						[18, 26],
-						[19, 64],
-						[20, 128]
-					]
-				},
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
-			},
-			layout: case_layout
+			...street_tertiary_case
 		},
 		{
 			id: 'street-secondary:case',
