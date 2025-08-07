@@ -12,7 +12,7 @@ const tokens = {
 	street_primary: 'hsl(0, 0%, 96%)',
 	street_primary_case: 'hsl(0, 0%, 75%)',
 	street_secondary: 'hsl(0, 0%, 95%)',
-	street_secondary_case: 'hsl(0, 0%, 50%)',
+	street_secondary_case: 'hsl(0, 0%, 75%)',
 	street_tertiary: 'hsl(0, 0%, 95%)',
 	street_tertiary_case: 'hsl(0, 0%, 70%)',
 	label_primary: 'hsl(240, 5%, 10%)',
