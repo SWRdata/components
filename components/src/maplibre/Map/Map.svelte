@@ -182,6 +182,9 @@
 		z-index: 1000;
 		padding: 2px;
 		font-family: monospace;
+		li {
+			list-style: none;
+		}
 		button {
 			appearance: none;
 			background: transparent;
