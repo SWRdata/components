@@ -40,6 +40,26 @@
 	</DesignTokens>
 </Story>
 
+<Story asChild name="fix/115">
+	<DesignTokens>
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabLight()}
+					initialLocation={{
+						lng: 10.923994803290498,
+						lat: 52.28235776595122,
+						zoom: 14.99,
+						pitch: 0
+					}}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
 <Story asChild name="Bodensee z9">
 	<DesignTokens>
 		<div class="grid">
