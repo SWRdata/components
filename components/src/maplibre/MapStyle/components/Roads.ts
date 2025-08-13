@@ -18,13 +18,17 @@ const motorway = {
 			[6, 1],
 			[7, 1.5],
 			[11, 2],
-			[14, 10]
+			[12, 3],
+			[13, 5],
+			[14, 9]
 		]
 	},
 	line_opacity: {
 		stops: [
 			[6, 0],
-			[7, 1]
+			[7, 0.8],
+			[11, 0.8],
+			[12, 1]
 		]
 	}
 };
@@ -35,7 +39,9 @@ const motorway_case = {
 		stops: [
 			[10, 0],
 			[11, 2],
-			[14, 12]
+			[12, 5],
+			[13, 7],
+			[14, 11]
 		]
 	}
 };
@@ -43,14 +49,7 @@ const motorway_case = {
 const motorway_link = {
 	paint: {
 		'line-color': tokens.street_primary,
-		'line-width': {
-			stops: [
-				[6, 1],
-				[7, 1.5],
-				[11, 2],
-				[14, 10]
-			]
-		},
+		'line-width': motorway.line_width,
 		'line-opacity': {
 			stops: [
 				[6, 0],
@@ -64,13 +63,7 @@ const motorway_link = {
 const motorway_link_case = {
 	paint: {
 		'line-color': tokens.street_primary_case,
-		'line-width': {
-			stops: [
-				[10, 0],
-				[11, 2],
-				[14, 12]
-			]
-		}
+		'line-width': motorway_case.line_width
 	},
 	layout: case_layout
 };
@@ -78,14 +71,7 @@ const motorway_link_case = {
 const street_primary = {
 	paint: {
 		'line-color': tokens.street_primary,
-		'line-width': {
-			stops: [
-				[6, 1],
-				[7, 1.5],
-				[11, 2],
-				[14, 10]
-			]
-		},
+		'line-width': motorway.line_width,
 		'line-opacity': {
 			stops: [
 				[8, 0],
@@ -95,16 +81,11 @@ const street_primary = {
 	},
 	layout: street_layout
 };
+
 const street_primary_case = {
 	paint: {
 		'line-color': tokens.street_primary_case,
-		'line-width': {
-			stops: [
-				[10, 0],
-				[11, 2],
-				[14, 12]
-			]
-		},
+		'line-width': motorway_case.line_width,
 		'line-opacity': {
 			stops: [
 				[8, 0],

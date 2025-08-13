@@ -10,7 +10,7 @@ const tokens = {
 	grass: 'hsl(140, 27%, 96%)',
 	grass_dark: 'hsl(148, 52%, 94%)',
 	street_primary: 'hsl(0, 0%, 96%)',
-	street_primary_case: 'hsl(0, 0%, 75%)',
+	street_primary_case: 'hsl(0, 0%, 70%)',
 	street_secondary: 'hsl(0, 0%, 95%)',
 	street_secondary_case: 'hsl(0, 0%, 75%)',
 	street_tertiary: 'hsl(0, 0%, 95%)',
