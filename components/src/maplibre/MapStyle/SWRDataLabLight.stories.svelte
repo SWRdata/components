@@ -69,9 +69,9 @@
 					maxZoom={18}
 					style={SWRDataLabLight()}
 					initialLocation={{
-						lng: 10.528542454303079,
-						lat: 52.238797922413795,
-						zoom: 15,
+						lng: 10.512936006544805,
+						lat: 52.281289163372406,
+						zoom: 14.99,
 						pitch: 0
 					}}
 				>
