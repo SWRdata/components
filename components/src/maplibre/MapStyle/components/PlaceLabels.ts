@@ -41,7 +41,7 @@ export default function makePlaceLabels() {
 		{
 			id: 'label-place-quarter',
 			filter: ['all', ['in', 'kind', 'neighbourhood']],
-			minzoom: 12,
+			minzoom: 13,
 			layout: {
 				'text-size': {
 					stops: [
