@@ -1,20 +1,20 @@
 {
-  "name": "swr-components",
-  "version": "1.0.0",
-  "description": "Experimental component library for SWR Data interactives.",
-  "main": "index.js",
-  "scripts": {},
-  "author": "",
-  "license": "UNLICENSED",
-  "workspaces": [
-    "components",
-    "sophora-components",
-    "mock-sophora",
-    "mock-sveltekit"
-  ],
-  "overrides": {
-    "svelte-select": {
-      "svelte-floating-ui": "1.5.9"
-    }
-  }
+	"name": "swr-components",
+	"version": "1.0.0",
+	"description": "Experimental component library for SWR Data interactives.",
+	"main": "index.js",
+	"scripts": {},
+	"author": "",
+	"license": "UNLICENSED",
+	"workspaces": [
+		"components",
+		"sophora-components",
+		"mock-sophora",
+		"mock-sveltekit"
+	],
+	"overrides": {
+		"svelte-select": {
+			"svelte-floating-ui": "1.5.9"
+		}
+	}
 }
