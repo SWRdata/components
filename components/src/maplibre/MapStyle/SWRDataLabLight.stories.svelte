@@ -1,11 +1,15 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Map from '../Map/Map.svelte';
+	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
+	import VectorTileSource from '../VectorTileSource/VectorTileSource.svelte';
+
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import GeocoderControl from '../GeocoderControl/GeocoderControl.svelte';
 
 	import { SWRDataLabLight } from './index';
+	import { tokens } from '../../DesignTokens';
 	const { Story } = defineMeta({
 		title: 'Maplibre/Style/SWR Data Lab Light',
 		component: Map
@@ -40,6 +44,54 @@
 	</DesignTokens>
 </Story>
 
+<Story asChild name="fix/118">
+	<DesignTokens>
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabLight()}
+					initialLocation={{
+						lng: 8.737015142933274,
+						lat: 50.11657281132233,
+						zoom: 11.678885493931666,
+						pitch: 0
+					}}
+				>
+					<VectorTileSource
+						id="ev-infra-source"
+						url={`https://static.datenhub.net/data/p109_besser_wohnen/rent_merged_3.versatiles?tiles/{z}/{x}/{y}`}
+						attribution="Demo attribution"
+					/>
+
+					<VectorLayer
+						sourceId="ev-infra-source"
+						sourceLayer="rent_10km"
+						placeBelow="street-residential"
+						id="ev-infra-fill"
+						type="fill"
+						paint={{
+							'fill-color': tokens.shades.blue.base,
+							'fill-opacity': 1
+						}}
+					/>
+					<VectorLayer
+						sourceId="ev-infra-source"
+						sourceLayer="rent_10km"
+						placeBelow="street-residential"
+						id="ev-infra-outline"
+						type="line"
+						paint={{
+							'line-width': 0.5,
+							'line-color': 'black',
+							'line-opacity': 1
+						}}
+					/>
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
 <Story asChild name="fix/115">
 	<DesignTokens>
 		<div class="grid">
