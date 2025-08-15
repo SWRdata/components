@@ -21,13 +21,7 @@
 		berlin: { lng: 13.399, lat: 52.5159, zoom: 12.1977 },
 		frankfurt: { lng: 8.68834, lat: 50.1082, zoom: 11.7923 },
 		badenBaden: { lng: 8.23986, lat: 48.7595, zoom: 14.99, pitch: 0 },
-		bodensee: { lng: 9.299862991860664, lat: 47.6693427120762, zoom: 9.098834549261177, pitch: 0 },
-		interchange: {
-			lng: 13.557043617975637,
-			lat: 52.31981845532215,
-			zoom: 14.215291362684706,
-			pitch: 0
-		}
+		bodensee: { lng: 9.299862991860664, lat: 47.6693427120762, zoom: 9.098834549261177, pitch: 0 }
 	};
 </script>
 
@@ -52,9 +46,9 @@
 					showDebug
 					style={SWRDataLabLight()}
 					initialLocation={{
-						lng: 8.737015142933274,
-						lat: 50.11657281132233,
-						zoom: 11.678885493931666,
+						lng: 11.045722841668066,
+						lat: 49.45491731359226,
+						zoom: 11.714963360667731,
 						pitch: 0
 					}}
 				>
@@ -65,26 +59,37 @@
 					/>
 
 					<VectorLayer
-						sourceId="ev-infra-source"
-						sourceLayer="rent_10km"
-						placeBelow="street-residential"
-						id="ev-infra-fill"
 						type="fill"
+						id="rent-fill-1km"
+						sourceId="ev-infra-source"
+						sourceLayer="rent_100m"
+						placeBelow="street-residential"
+						minZoom={5}
 						paint={{
-							'fill-color': tokens.shades.blue.base,
+							'fill-color': [
+								'step',
+								['get', 'durchschnMieteQM'],
+								'#f3eefa',
+								7,
+								'#FFB9A8',
+								9,
+								'#E92F02',
+								11,
+								'#5F1A0B'
+							],
 							'fill-opacity': 1
 						}}
 					/>
 					<VectorLayer
 						sourceId="ev-infra-source"
-						sourceLayer="rent_10km"
+						sourceLayer="rent_1km"
 						placeBelow="street-residential"
-						id="ev-infra-outline"
+						id="rent-outline-1km"
 						type="line"
 						paint={{
 							'line-width': 0.5,
 							'line-color': 'black',
-							'line-opacity': 1
+							'line-opacity': 0.5
 						}}
 					/>
 				</Map>
@@ -200,7 +205,16 @@
 	<DesignTokens>
 		<div class="grid">
 			<div class="container">
-				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.interchange}>
+				<Map
+					showDebug
+					style={SWRDataLabLight()}
+					initialLocation={{
+						lng: 13.557043617975637,
+						lat: 52.31981845532215,
+						zoom: 14.215291362684706,
+						pitch: 0
+					}}
+				>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>
