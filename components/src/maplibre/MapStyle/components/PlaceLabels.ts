@@ -41,7 +41,7 @@ export default function makePlaceLabels() {
 		{
 			id: 'label-place-quarter',
 			filter: ['all', ['in', 'kind', 'neighbourhood']],
-			minzoom: 12,
+			minzoom: 13,
 			layout: {
 				'text-size': {
 					stops: [
@@ -51,7 +51,7 @@ export default function makePlaceLabels() {
 				}
 			},
 			paint: {
-				'text-color': tokens.label_tertiary
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -62,17 +62,17 @@ export default function makePlaceLabels() {
 				['>', 'population', 1000],
 				['<', 'population', 15_000]
 			],
-			minzoom: 11.5,
+			minzoom: 12,
 			layout: {
 				'text-size': {
 					stops: [
-						[11, 13],
-						[15, 15]
+						[11, 14],
+						[15, 16]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_tertiary
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -198,7 +198,7 @@ export default function makePlaceLabels() {
 			'source-layer': 'place_labels',
 			layout: {
 				'text-font': tokens.sans_regular,
-				'text-letter-spacing': 0.025,
+				'text-letter-spacing': 0.035,
 				'text-field': '{name_de}',
 				...el.layout
 			},
@@ -206,7 +206,8 @@ export default function makePlaceLabels() {
 			paint: {
 				'text-color': tokens.label_secondary,
 				'text-halo-color': tokens.background,
-				'text-halo-width': 1,
+				'text-halo-width': 2.5,
+				'text-halo-blur': 0,
 				...el.paint
 			}
 		} as SymbolLayerSpecification;
@@ -233,7 +234,8 @@ export default function makePlaceLabels() {
 			paint: {
 				'text-color': tokens.label_tertiary,
 				'text-halo-color': tokens.background,
-				'text-halo-width': 1
+				'text-halo-width': 2,
+				'text-halo-blur': 0
 			}
 		}
 	].map((el) => {

@@ -15,9 +15,9 @@ const tokens = {
 	street_secondary_case: 'hsl(0, 0%, 75%)',
 	street_tertiary: 'hsl(0, 0%, 95%)',
 	street_tertiary_case: 'hsl(0, 0%, 70%)',
-	label_primary: 'hsl(240, 5%, 10%)',
-	label_secondary: 'hsl(240, 2%, 30%)',
-	label_tertiary: 'hsl(240, 2%, 50%)',
+	label_primary: 'hsl(240, 10%, 2%)',
+	label_secondary: 'hsl(240, 2%, 15%)',
+	label_tertiary: 'hsl(240, 2%, 40%)',
 	building: '#f3f2f1'
 };
 

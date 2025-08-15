@@ -1,11 +1,15 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Map from '../Map/Map.svelte';
+	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
+	import VectorTileSource from '../VectorTileSource/VectorTileSource.svelte';
+
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import GeocoderControl from '../GeocoderControl/GeocoderControl.svelte';
 
 	import { SWRDataLabLight } from './index';
+	import { tokens } from '../../DesignTokens';
 	const { Story } = defineMeta({
 		title: 'Maplibre/Style/SWR Data Lab Light',
 		component: Map
@@ -17,13 +21,7 @@
 		berlin: { lng: 13.399, lat: 52.5159, zoom: 12.1977 },
 		frankfurt: { lng: 8.68834, lat: 50.1082, zoom: 11.7923 },
 		badenBaden: { lng: 8.23986, lat: 48.7595, zoom: 14.99, pitch: 0 },
-		bodensee: { lng: 9.299862991860664, lat: 47.6693427120762, zoom: 9.098834549261177, pitch: 0 },
-		interchange: {
-			lng: 13.557043617975637,
-			lat: 52.31981845532215,
-			zoom: 14.215291362684706,
-			pitch: 0
-		}
+		bodensee: { lng: 9.299862991860664, lat: 47.6693427120762, zoom: 9.098834549261177, pitch: 0 }
 	};
 </script>
 
@@ -40,6 +38,66 @@
 	</DesignTokens>
 </Story>
 
+<Story asChild name="fix/118">
+	<DesignTokens>
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabLight()}
+					initialLocation={{
+						lng: 9.94171339962918,
+						lat: 51.53361336607753,
+						zoom: 12.246154061876666,
+						pitch: 0
+					}}
+				>
+					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
+					<VectorTileSource
+						id="ev-infra-source"
+						url={`https://static.datenhub.net/data/p109_besser_wohnen/rent_merged_3.versatiles?tiles/{z}/{x}/{y}`}
+						attribution="Demo attribution"
+					/>
+
+					<VectorLayer
+						type="fill"
+						id="rent-fill-1km"
+						sourceId="ev-infra-source"
+						sourceLayer="rent_100m"
+						placeBelow="street-residential"
+						minZoom={5}
+						paint={{
+							'fill-color': [
+								'step',
+								['get', 'durchschnMieteQM'],
+								'#f3eefa',
+								7,
+								'#FFB9A8',
+								9,
+								'#E92F02',
+								11,
+								'#5F1A0B'
+							],
+							'fill-opacity': 1
+						}}
+					/>
+					<VectorLayer
+						sourceId="ev-infra-source"
+						sourceLayer="rent_1km"
+						placeBelow="street-residential"
+						id="rent-outline-1km"
+						type="line"
+						paint={{
+							'line-width': 0.5,
+							'line-color': 'black',
+							'line-opacity': 0.5
+						}}
+					/>
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
 <Story asChild name="fix/115">
 	<DesignTokens>
 		<div class="grid">
@@ -148,7 +206,16 @@
 	<DesignTokens>
 		<div class="grid">
 			<div class="container">
-				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.interchange}>
+				<Map
+					showDebug
+					style={SWRDataLabLight()}
+					initialLocation={{
+						lng: 13.557043617975637,
+						lat: 52.31981845532215,
+						zoom: 14.215291362684706,
+						pitch: 0
+					}}
+				>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>
