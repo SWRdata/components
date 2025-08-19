@@ -164,13 +164,13 @@ export default function makePlaceLabels() {
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 14],
-						[15, 20]
+						[7, 15],
+						[15, 21]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_primary
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -182,12 +182,12 @@ export default function makePlaceLabels() {
 				'text-size': {
 					stops: [
 						[7, 15],
-						[14, 23]
+						[15, 21]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_primary
+				'text-color': tokens.label_secondary
 			}
 		}
 	].map((el) => {
@@ -198,7 +198,7 @@ export default function makePlaceLabels() {
 			'source-layer': 'place_labels',
 			layout: {
 				'text-font': tokens.sans_regular,
-				'text-letter-spacing': 0.035,
+				'text-letter-spacing': 0.05,
 				'text-field': '{name_de}',
 				...el.layout
 			},
@@ -206,8 +206,8 @@ export default function makePlaceLabels() {
 			paint: {
 				'text-color': tokens.label_secondary,
 				'text-halo-color': tokens.background,
-				'text-halo-width': 2.5,
-				'text-halo-blur': 0,
+				'text-halo-width': 2,
+				'text-halo-blur': 0.5,
 				...el.paint
 			}
 		} as SymbolLayerSpecification;
@@ -221,21 +221,21 @@ export default function makePlaceLabels() {
 			maxzoom: 8,
 			layout: {
 				'text-field': '{name_de}',
-				'text-letter-spacing': 0.0825,
+				'text-letter-spacing': 0.085,
 				'text-font': tokens.sans_regular,
 				'text-transform': 'uppercase',
 				'text-size': {
 					stops: [
-						[4, 10],
-						[7, 17]
+						[4, 11],
+						[7, 18]
 					]
 				}
 			},
 			paint: {
 				'text-color': tokens.label_tertiary,
 				'text-halo-color': tokens.background,
-				'text-halo-width': 2,
-				'text-halo-blur': 0
+				'text-halo-width': 2.5,
+				'text-halo-blur': 0.5
 			}
 		}
 	].map((el) => {
