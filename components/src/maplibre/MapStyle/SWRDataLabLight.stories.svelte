@@ -37,7 +37,53 @@
 		</div>
 	</DesignTokens>
 </Story>
+<Story asChild name="fix/122">
+	<DesignTokens>
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabLight()}
+					initialLocation={{ lng: 10.941447898724618, lat: 50.84067324785988, zoom: 5.5, pitch: 0 }}
+				>
+					<VectorTileSource
+						id="demo-source"
+						url={`https://static.datenhub.net/data/p118_correctiv_waermewende/heating_merged.versatiles?tiles/{z}/{x}/{y}`}
+						attribution="Demo attribution"
+					/>
 
+					<VectorLayer
+						type="fill"
+						id="demo-10km"
+						sourceId="demo-source"
+						sourceLayer="heating_10km_squares"
+						placeBelow="street-residential"
+						minZoom={5}
+						paint={{
+							'fill-color': [
+								'match',
+								['get', 'dominant_source'],
+								'Gas',
+								'#CCDCFF',
+								'Heizoel',
+								'#5BCFE1',
+								'Holz_Holzpellets',
+								'#499F73',
+								'Fernwaerme',
+								'#A86C07',
+								'Strom',
+								'#FFD584',
+								'gray'
+							],
+							'fill-opacity': 1
+						}}
+					/>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
 <Story asChild name="fix/118">
 	<DesignTokens>
 		<div class="grid">
