@@ -6,6 +6,7 @@ import type { SymbolLayerSpecification } from 'maplibre-gl';
 // state capitals so they're not available in the versatiles data until z6
 
 const majorCities = [
+	'Berlin',
 	'Stuttgart',
 	'München',
 	'Mainz',
@@ -164,24 +165,7 @@ export default function makePlaceLabels() {
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 15],
-						[15, 21]
-					]
-				}
-			},
-			paint: {
-				'text-color': tokens.label_secondary
-			}
-		},
-		{
-			id: 'label-place-capital',
-			filter: ['all', ['==', 'kind', 'capital'], ['>', 'population', 1000000]],
-			minzoom: 5,
-			maxzoom: 12,
-			layout: {
-				'text-size': {
-					stops: [
-						[7, 15],
+						[7, 13],
 						[15, 21]
 					]
 				}

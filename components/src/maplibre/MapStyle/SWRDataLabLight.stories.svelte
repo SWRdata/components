@@ -16,7 +16,7 @@
 	});
 
 	const locations = {
-		germany: { lng: 10.962488768573053, lat: 50.958636214954396, zoom: 6 },
+		germany: { lng: 10.962488768573053, lat: 50.958636214954396, zoom: 5 },
 		stugge: { lng: 9.181, lat: 48.772, zoom: 13.5 },
 		berlin: { lng: 13.399, lat: 52.5159, zoom: 12.1977 },
 		frankfurt: { lng: 8.68834, lat: 50.1082, zoom: 11.7923 },
