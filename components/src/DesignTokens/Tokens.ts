@@ -49,11 +49,11 @@ const shades: ColourMap = {
 		dark5: '#005163'
 	},
 	yellow: {
-		light1: '#FFFDB2',
-		light2: '#FEF67C',
+		light5: '#FFFDB2',
+		light4: '#FEF67C',
 		light3: '#FDEF3E',
-		light4: '#FAE617',
-		light5: '#F5DF13',
+		light2: '#FAE617',
+		light1: '#F5DF13',
 		base: '#EFD710',
 		dark1: '#E3CA0D',
 		dark2: '#DCC10A',

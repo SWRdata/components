@@ -85,13 +85,12 @@ Type sizes and paragraph styles are designed to match the typography on [swr.de]
 ## Colours
 ### Shades
 <ColorPalette>
-{["violet", "plum", "pink", "red", "orange", "yellow", "apple" , "forest","teal",    "blue", "gray"].map((el, i) => {
+{["violet", "plum", "pink", "red", "orange", "yellow", "apple" , "forest", "teal", "blue", "gray"].map((el, i) => {
 	return(
 		<ColorItem
 		title={`${el.split("")[0].toUpperCase()}${el.slice(1)}`}
 		colors={shades[el]}
-	/>
-			) 
+	/>) 
 })}
 </ColorPalette>
 
