@@ -6,10 +6,11 @@
 	interface ChartFooterProps {
 		layout?: 'one-up' | 'two-up';
 		align?: 'left' | 'center';
+		showLogo?: boolean;
 		children?: Snippet;
 	}
 
-	let { layout = 'one-up', align = 'left', children }: ChartFooterProps = $props();
+	let { layout = 'one-up', align = 'left', showLogo = true, children }: ChartFooterProps = $props();
 </script>
 
 <footer class={`container ${layout} align-${align}`}>
@@ -18,7 +19,9 @@
 			{@render children()}
 		</Note>
 	{/if}
-	<Logotype />
+	{#if showLogo}
+		<Logotype />
+	{/if}
 </footer>
 
 <style lang="scss">
