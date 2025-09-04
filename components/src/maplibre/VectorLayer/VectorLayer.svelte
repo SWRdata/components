@@ -22,7 +22,7 @@
 		sourceId: string;
 		sourceLayer?: string;
 		type: 'line' | 'fill' | 'circle' | 'symbol';
-		placeBelow: string;
+		placeBelow?: string;
 		visible?: boolean;
 		minZoom?: number;
 		maxZoom?: number;
@@ -31,16 +31,16 @@
 		hovered?: MapGeoJSONFeature | undefined;
 		selected?: MapGeoJSONFeature | undefined;
 
-		onclick: (e: MapLayerMouseEvent) => any;
-		onmousemove: (e: MapLayerMouseEvent) => any;
-		onmouseleave: (e: MapLayerMouseEvent) => any;
+		onclick?: (e: MapLayerMouseEvent) => any;
+		onmousemove?: (e: MapLayerMouseEvent) => any;
+		onmouseleave?: (e: MapLayerMouseEvent) => any;
 	}
 	const {
 		id,
 		sourceId,
 		sourceLayer,
 		visible = true,
-		placeBelow = 'label-place-capital',
+		placeBelow = 'label-place-major-city',
 		type,
 		paint,
 		layout,

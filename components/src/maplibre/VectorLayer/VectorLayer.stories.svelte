@@ -24,9 +24,9 @@
 				/>
 				<VectorLayer
 					sourceId="ev-infra-source"
+					sourceLayer="coverage"
 					type="fill"
 					id="coverage-fill"
-					sourceLayer="coverage"
 					placeBelow="street-residential"
 					paint={{
 						'fill-color': [

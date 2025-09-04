@@ -3,7 +3,7 @@
 	import { type Map, type SourceSpecification } from 'maplibre-gl';
 	import { getMapContext, createSourceContext } from '../context.svelte.js';
 
-	type Source = maplibregl.VectorTileSource;
+	type Source = maplibregl.VectorTileSource | maplibregl.GeoJSONSource;
 
 	interface MapSourceProps {
 		id: string;
@@ -35,7 +35,10 @@
 
 	// 2. Do extra stuff with the source object
 	$effect(() => {
-		if (source) {
+		if (source && sourceSpec.type === 'geojson') {
+			if (!firstRun) {
+				source.setData(sourceSpec.data);
+			}
 		}
 	});
 
