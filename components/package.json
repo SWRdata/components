@@ -56,7 +56,7 @@
 		"concurrently": "^9.2.0",
 		"http-server": "^14.1.1",
 		"mdx-mermaid": "^2.0.3",
-		"playwright": "^1.54.2",
+		"playwright": "^1.55.0",
 		"publint": "^0.3.12",
 		"sass": "^1.91.0",
 		"sass-embedded": "^1.89.2",
