@@ -40,6 +40,7 @@
 				<GeoJSONSource id="demo" data={geoJSON} attribution="Demo attribution" />
 				<VectorLayer
 					sourceId="demo"
+					placeBelow="street-residential"
 					id="test-outline"
 					type="line"
 					paint={{

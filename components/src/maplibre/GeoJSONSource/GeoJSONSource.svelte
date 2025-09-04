@@ -20,9 +20,9 @@
 
 	const sourceSpec: GeoJSONSourceSpecification = {
 		type: 'geojson',
-		data,
 		maxzoom: maxZoom,
-		attribution
+		attribution,
+		data
 	};
 </script>
 
