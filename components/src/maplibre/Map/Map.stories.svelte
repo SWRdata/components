@@ -149,6 +149,24 @@
 		</DesignTokens>
 	</div>
 </Story>
+<Story asChild name="Cooperative Gestures">
+	<div class="container">
+		<DesignTokens>
+			<div class="placeholder">Placeholder</div>
+			<Map
+				cooperativeGestures
+				style={SWRDataLabLight()}
+				showDebug
+				initialLocation={{ lat: 51.3, lng: 10.2, zoom: 5 }}
+			>
+				<ScaleControl />
+				<AttributionControl />
+				<NavigationControl />
+			</Map>
+			<div class="placeholder">Placeholder</div>
+		</DesignTokens>
+	</div>
+</Story>
 
 <Story asChild name="Alternate Style">
 	<div class="container dark">
@@ -170,5 +188,15 @@
 	}
 	.dark {
 		color: rgb(230, 230, 230);
+	}
+	.placeholder {
+		height: 500px;
+		background: var(--gray-light-5);
+		margin: 1em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-family: var(--swr-sans);
+		color: var(--gray-base);
 	}
 </style>
