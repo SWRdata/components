@@ -26,6 +26,9 @@
 		showDebug?: boolean;
 		options?: any;
 		mapContext?: MapContext;
+		/**
+		 * "Use Ctrl + scroll to zoom"
+		 */
 		cooperativeGestures?: boolean;
 		onmovestart?: (e: MapLibreEvent) => null;
 		onmoveend?: (e: MapLibreEvent) => null;
@@ -51,7 +54,7 @@
 		// Future: This should become bindable.readonly when that becomes
 		// available, see: https://github.com/sveltejs/svelte/issues/7712
 		mapContext = $bindable(),
-		cooperativeGestures = true,
+		cooperativeGestures = false,
 		onmoveend,
 		onmovestart
 	}: MapProps = $props();
