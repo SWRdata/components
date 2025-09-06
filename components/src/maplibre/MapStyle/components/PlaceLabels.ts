@@ -9,13 +9,9 @@ const majorCities = [
 	'Berlin',
 	'Stuttgart',
 	'München',
-	'Mainz',
-	'Bremen',
-	'Düsseldorf',
+	'Frankfurt',
 	'Hamburg',
-	'Bremen',
-	'Dresden',
-	'Erfurt'
+	'Mainz'
 ];
 const majorCountries = [
 	'Deutschland',
@@ -159,7 +155,7 @@ export default function makePlaceLabels() {
 		},
 		{
 			id: 'label-place-major-city',
-			filter: ['all', ['in', 'name_de', ...majorCities]],
+			filter: ['in', 'name_de', ...majorCities],
 			minzoom: 5,
 			maxzoom: 12,
 			layout: {
