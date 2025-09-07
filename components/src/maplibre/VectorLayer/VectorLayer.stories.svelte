@@ -5,6 +5,8 @@
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import VectorTileSource from '../VectorTileSource/VectorTileSource.svelte';
+	import GeoJsonSource from '../GeoJSONSource/GeoJSONSource.svelte';
+	import SamplePoints from './sample-points.json';
 
 	import { SWRDataLabLight } from '../MapStyle';
 
@@ -50,6 +52,27 @@
 						'line-color': 'purple',
 						'line-opacity': 1
 					}}
+				/>
+				<AttributionControl />
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
+<Story asChild name="Symbol">
+	<DesignTokens>
+		<div class="container">
+			<Map showDebug={true} style={SWRDataLabLight()}>
+				<GeoJsonSource id="demo" data={SamplePoints} attribution="Demo attribution" />
+				<VectorLayer
+					sourceId="demo"
+					id="symbols"
+					type="symbol"
+					layout={{
+						'symbol-placement': 'point',
+						'icon-image': ['image', 'bank_11']
+					}}
+					paint={{}}
 				/>
 				<AttributionControl />
 			</Map>
