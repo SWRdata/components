@@ -19,5 +19,6 @@
 		font-size: var(--fs-large-1);
 		font-weight: 680;
 		letter-spacing: 0.005em;
+		line-height: 1.35;
 	}
 </style>

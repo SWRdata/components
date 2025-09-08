@@ -30,6 +30,17 @@
 	</DesignTokens>
 </Story>
 
+<Story name="Long title" asChild>
+	<DesignTokens>
+		<ChartHeader
+			title="Wärmepumpe dominiert bei Neubauten in den meisten Landkreisen in Baden-Württemberg"
+			subtitle="Neue Wohngebäude nach Heizenergieträger, 2024"
+			align="left"
+		>
+			Arbitrary HTML content can go here
+		</ChartHeader>
+	</DesignTokens>
+</Story>
 <Story name="Centered" asChild>
 	<DesignTokens>
 		<ChartHeader
