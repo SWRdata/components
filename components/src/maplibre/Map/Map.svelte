@@ -8,6 +8,7 @@
 	import { createMapContext, MapContext } from '../context.svelte.js';
 	import { type Location } from '../types';
 	import FallbackStyle from './FallbackStyle';
+	import { de } from './locale.ts';
 
 	interface MapProps {
 		style?: StyleSpecification | string;
@@ -25,6 +26,10 @@
 		showDebug?: boolean;
 		options?: any;
 		mapContext?: MapContext;
+		/**
+		 * "Use Ctrl + scroll to zoom"
+		 */
+		cooperativeGestures?: boolean;
 		onmovestart?: (e: MapLibreEvent) => null;
 		onmoveend?: (e: MapLibreEvent) => null;
 		children?: Snippet;
@@ -49,6 +54,7 @@
 		// Future: This should become bindable.readonly when that becomes
 		// available, see: https://github.com/sveltejs/svelte/issues/7712
 		mapContext = $bindable(),
+		cooperativeGestures = false,
 		onmoveend,
 		onmovestart
 	}: MapProps = $props();
@@ -81,6 +87,8 @@
 			center: [initialLocation.lng, initialLocation.lat],
 			zoom: initialLocation.zoom,
 			pitch: initialLocation.pitch,
+			cooperativeGestures,
+			locale: de,
 			...options
 		});
 
@@ -351,6 +359,40 @@
 		}
 		.maplibregl-marker path {
 			fill: var(--violet-dark-5);
+		}
+		.maplibregl-cooperative-gesture-screen {
+			align-items: center;
+			font-family: var(--swr-sans);
+			background: rgba(10, 10, 10, 0.4);
+			text-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+			color: #fff;
+			font-size: var(--fs-base);
+			font-weight: 400;
+			display: flex;
+			inset: 0;
+			justify-content: center;
+			line-height: 1.2;
+			opacity: 0;
+			padding: 1rem;
+			pointer-events: none;
+			position: absolute;
+			transition: opacity 1s ease 1s;
+			z-index: 9999;
+		}
+		.maplibregl-cooperative-gesture-screen.maplibregl-show {
+			opacity: 1;
+			transition: opacity 100ms;
+		}
+		.maplibregl-cooperative-gesture-screen .maplibregl-mobile-message {
+			display: none;
+		}
+		@media (hover: none), (pointer: coarse) {
+			.maplibregl-cooperative-gesture-screen .maplibregl-desktop-message {
+				display: none;
+			}
+			.maplibregl-cooperative-gesture-screen .maplibregl-mobile-message {
+				display: block;
+			}
 		}
 	}
 </style>
