@@ -8,7 +8,7 @@
 	import { createMapContext, MapContext } from '../context.svelte.js';
 	import { type Location } from '../types';
 	import FallbackStyle from './FallbackStyle';
-	import { de } from './locale.ts';
+	import { de } from './locale';
 
 	interface MapProps {
 		style?: StyleSpecification | string;
