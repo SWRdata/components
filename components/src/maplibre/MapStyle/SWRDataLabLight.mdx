@@ -1,6 +1,19 @@
-import { Story, Meta, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import {
+	Story,
+	Meta,
+	Primary,
+	Controls,
+	Stories,
+	Source,
+	IconGallery,
+	IconItem
+} from '@storybook/addon-docs/blocks';
 import Mermaid from '../../../.storybook/blocks/Mermaid';
 import SWRDataLabLight from './SWRDataLabLight';
+import SpriteImage from './SpriteImage.jsx';
+
+import SpriteData from './sprite/sprite.json';
+
 import * as MapStyleStories from './SWRDataLabLight.stories.svelte';
 
 <Meta of={MapStyleStories} />
@@ -28,12 +41,17 @@ Light-themed general-purpose basemap using SWR colours and typefaces based on
     <tr>
     	<td>Building footprints + heights</td>
     	<td>[basemap-de](https://basemap.de/produkte-und-dienste/web-vektor/) vector tiles served from `sgx.geodatenzentrum.de`</td>
-    	<td>[License](https://sgx.geodatenzentrum.de/web_public/gdz/lizenz/deu/Nutzungsbedingungen_basemapde.pdf)</td>
+    	<td>[CC BY 4.0](https://sgx.geodatenzentrum.de/web_public/gdz/lizenz/deu/Nutzungsbedingungen_basemapde.pdf)</td>
     </tr>
     <tr>
     	<td>SWR Sans Typeface</td>
     	<td>served from `https://static.datenhub.net/maps/fonts`</td>
     	<td>n/a</td>
+    </tr>
+    <tr>
+    	<td>Icons</td>
+    	<td>[Osmic](https://github.com/gmgeo/osmic) + own work ([Figma](https://www.figma.com/design/2MbVC3SYyyahO2UPuy3z0S/Map-Icons?node-id=0-1&t=IJuwwIj86FGIjRGa-1))</td>
+    	<td>[CC0](https://github.com/gmgeo/osmic?tab=CC0-1.0-1-ov-file)</td>
     </tr>
 
 </table>
@@ -66,6 +84,56 @@ interface StyleOptions {
 	enableBuildingExtrusions?: boolean;
 }
 ```
+
+## Icons
+
+SWRDataLabLight includes [Osmic](https://github.com/gmgeo/osmic), a public-domain set of map icons, and some custom icons ({Object.keys(SpriteData).length} overall). Custom icons live in [this Figma file](https://www.figma.com/design/2MbVC3SYyyahO2UPuy3z0S/Map-Icons?node-id=0-1&t=IJuwwIj86FGIjRGa-1). See `VectorLayer` for usage.
+
+export const customIcons = ['pin-14'];
+
+### Osmic
+
+<IconGallery>
+	{Object.entries(SpriteData)
+		.filter((row) => {
+			return !customIcons.includes(row[0]);
+		})
+		.map(([key, value]) => {
+			return (
+				<IconItem name={key}>
+					<SpriteImage
+						data={SpriteData}
+						width={value.width}
+						height={value.height}
+						x={value.x}
+						y={value.y}
+					/>
+				</IconItem>
+			);
+		})}
+</IconGallery>
+
+### Custom icons
+
+<IconGallery>
+	{Object.entries(SpriteData)
+		.filter((row) => {
+			return customIcons.includes(row[0]);
+		})
+		.map(([key, value]) => {
+			return (
+				<IconItem name={key}>
+					<SpriteImage
+						data={SpriteData}
+						width={value.width}
+						height={value.height}
+						x={value.x}
+						y={value.y}
+					/>
+				</IconItem>
+			);
+		})}
+</IconGallery>
 
 ## Design Notes
 
