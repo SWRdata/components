@@ -87,9 +87,15 @@ interface StyleOptions {
 
 ## Icons
 
-SWRDataLabLight includes [Osmic](https://github.com/gmgeo/osmic), a public-domain set of map icons, and some custom icons ({Object.keys(SpriteData).length} overall). Custom icons live in [this Figma file](https://www.figma.com/design/2MbVC3SYyyahO2UPuy3z0S/Map-Icons?node-id=0-1&t=IJuwwIj86FGIjRGa-1). See `VectorLayer` for usage.
-
 export const customIcons = ['pin-14'];
+export const osmicIconsCount = Object.entries(SpriteData).filter((row) => {
+	return !customIcons.includes(row[0]);
+}).length;
+export const customIconsCount = Object.entries(SpriteData).filter((row) => {
+	return customIcons.includes(row[0]);
+}).length;
+
+SWRDataLabLight includes {osmicIconsCount} icons from [Osmic](https://github.com/gmgeo/osmic), a public-domain set of map icons, and {customIconsCount} custom icon{customIconsCount > 1 ? "s": ""} ({Object.keys(SpriteData).length} overall). Custom icons live in [this Figma file](https://www.figma.com/design/2MbVC3SYyyahO2UPuy3z0S/Map-Icons?node-id=0-1&t=IJuwwIj86FGIjRGa-1). See `VectorLayer` for usage.
 
 ### Osmic
 
