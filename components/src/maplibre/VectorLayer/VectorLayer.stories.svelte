@@ -7,6 +7,7 @@
 	import VectorTileSource from '../VectorTileSource/VectorTileSource.svelte';
 	import GeoJsonSource from '../GeoJSONSource/GeoJSONSource.svelte';
 	import SamplePoints from './sample-points.json';
+	import type { GeoJSON } from 'geojson';
 
 	import { SWRDataLabLight } from '../MapStyle';
 
@@ -63,14 +64,14 @@
 	<DesignTokens>
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
-				<GeoJsonSource id="demo" data={SamplePoints} attribution="Demo attribution" />
+				<GeoJsonSource id="demo" data={SamplePoints as GeoJSON} attribution="Demo attribution" />
 				<VectorLayer
 					sourceId="demo"
 					id="symbols"
 					type="symbol"
 					layout={{
 						'symbol-placement': 'point',
-						'icon-image': ['image', 'bank_11']
+						'icon-image': ['image', 'pin']
 					}}
 					paint={{}}
 				/>

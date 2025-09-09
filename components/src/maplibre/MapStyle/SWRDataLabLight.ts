@@ -35,7 +35,7 @@ const style: styleFunction = (opts) => {
 		name: 'swr-datalab-light',
 		metadata: { license: 'https://creativecommons.org/publicdomain/zero/1.0/' },
 		glyphs: 'https://static.datenhub.net/maps/fonts/{fontstack}/{range}.pbf',
-		sprite: 'https://demotiles.maplibre.org/styles/osm-bright-gl-style/sprite',
+		sprite: 'https://static.datenhub.net/maps/styles/swr-datalab-light/sprite/sprite',
 		sources: {
 			'versatiles-osm': {
 				attribution:
