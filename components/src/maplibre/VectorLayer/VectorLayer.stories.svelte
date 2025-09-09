@@ -71,7 +71,9 @@
 					type="symbol"
 					layout={{
 						'symbol-placement': 'point',
-						'icon-image': ['image', 'pin']
+						'icon-size': 2,
+						'icon-overlap': 'always',
+						'icon-image': ['image', 'pin-14']
 					}}
 					paint={{}}
 				/>
