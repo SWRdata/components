@@ -75,7 +75,6 @@
 						'icon-overlap': 'always',
 						'icon-image': ['image', 'pin-14']
 					}}
-					paint={{}}
 				/>
 				<AttributionControl />
 			</Map>

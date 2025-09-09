@@ -1,6 +1,19 @@
-import { Story, Meta, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
+import {
+	Story,
+	Meta,
+	Primary,
+	Controls,
+	Stories,
+	Source,
+	IconGallery,
+	IconItem
+} from '@storybook/addon-docs/blocks';
 import Mermaid from '../../../.storybook/blocks/Mermaid';
 import SWRDataLabLight from './SWRDataLabLight';
+import SpriteImage from './SpriteImage.jsx';
+
+import SpriteData from './sprite/sprite.json';
+
 import * as MapStyleStories from './SWRDataLabLight.stories.svelte';
 
 <Meta of={MapStyleStories} />
@@ -66,6 +79,28 @@ interface StyleOptions {
 	enableBuildingExtrusions?: boolean;
 }
 ```
+
+## Icons
+
+SWRDataLabLight includes [Osmic](https://github.com/gmgeo/osmic), a public-domain set of map icons, and some custom icons ({Object.keys(SpriteData).length} overall):
+
+<IconGallery>
+	{Object.entries(SpriteData).map(([key, value]) => {
+		return (
+			<IconItem name={key}>
+				<SpriteImage
+					data={SpriteData}
+					width={value.width}
+					height={value.height}
+					x={value.x}
+					y={value.y}
+				/>
+			</IconItem>
+		);
+	})}
+</IconGallery>
+
+Custom icons: `pin-14`
 
 ## Design Notes
 
