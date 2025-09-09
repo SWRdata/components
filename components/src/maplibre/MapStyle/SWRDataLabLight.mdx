@@ -89,23 +89,51 @@ interface StyleOptions {
 
 SWRDataLabLight includes [Osmic](https://github.com/gmgeo/osmic), a public-domain set of map icons, and some custom icons ({Object.keys(SpriteData).length} overall). Custom icons live in [this Figma file](https://www.figma.com/design/2MbVC3SYyyahO2UPuy3z0S/Map-Icons?node-id=0-1&t=IJuwwIj86FGIjRGa-1). See `VectorLayer` for usage.
 
+export const customIcons = ['pin-14'];
+
+### Osmic
+
 <IconGallery>
-	{Object.entries(SpriteData).map(([key, value]) => {
-		return (
-			<IconItem name={key}>
-				<SpriteImage
-					data={SpriteData}
-					width={value.width}
-					height={value.height}
-					x={value.x}
-					y={value.y}
-				/>
-			</IconItem>
-		);
-	})}
+	{Object.entries(SpriteData)
+		.filter((row) => {
+			return !customIcons.includes(row[0]);
+		})
+		.map(([key, value]) => {
+			return (
+				<IconItem name={key}>
+					<SpriteImage
+						data={SpriteData}
+						width={value.width}
+						height={value.height}
+						x={value.x}
+						y={value.y}
+					/>
+				</IconItem>
+			);
+		})}
 </IconGallery>
 
-Custom icons: `pin-14`
+### Custom icons
+
+<IconGallery>
+	{Object.entries(SpriteData)
+		.filter((row) => {
+			return customIcons.includes(row[0]);
+		})
+		.map(([key, value]) => {
+			return (
+				<IconItem name={key}>
+					<SpriteImage
+						data={SpriteData}
+						width={value.width}
+						height={value.height}
+						x={value.x}
+						y={value.y}
+					/>
+				</IconItem>
+			);
+		})}
+</IconGallery>
 
 ## Design Notes
 
