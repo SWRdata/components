@@ -5,28 +5,7 @@ import type { SymbolLayerSpecification } from 'maplibre-gl';
 // Ideally majorCities  would include Frankfurt and Leipzig, but they're not
 // state capitals so they're not available in the versatiles data until z6
 
-const majorCities = [
-	'Berlin',
-	'Stuttgart',
-	'München',
-	'Frankfurt',
-	'Hamburg',
-	'Mainz'
-];
-const majorCountries = [
-	'Deutschland',
-	'Dänemark',
-	'Frankreich',
-	'Niederlande',
-	'Belgien',
-	'Schweiz',
-	'Polen',
-	'Österreich',
-	'Tschechien',
-	'Slowakei',
-	'Italien',
-	'Ungarn'
-];
+const majorCities = ['Berlin', 'Stuttgart', 'München', 'Frankfurt', 'Hamburg', 'Mainz'];
 
 // For smaller cities we use the population field to derive our hierarchy,
 // though that's limited by the fact that versatiles hard-codes population
@@ -156,7 +135,7 @@ export default function makePlaceLabels() {
 		{
 			id: 'label-place-major-city',
 			filter: ['in', 'name_de', ...majorCities],
-			minzoom: 5,
+			minzoom: 5.5,
 			maxzoom: 12,
 			layout: {
 				'text-size': {
@@ -196,25 +175,28 @@ export default function makePlaceLabels() {
 	const boundaryLabels = [
 		{
 			id: 'label-boundary-country',
-			filter: ['all', ['==', 'admin_level', 2], ['in', 'name_de', ...majorCountries]],
+			filter: [
+				'all',
+				['==', 'admin_level', 2],
+				['!in', 'name_de', 'Jersey', 'Guernsey', 'Insel Man']
+			],
 			minzoom: 4,
 			maxzoom: 8,
 			layout: {
 				'text-field': '{name_de}',
-				'text-letter-spacing': 0.085,
+				'text-letter-spacing': 0.02,
 				'text-font': tokens.sans_regular,
-				'text-transform': 'uppercase',
 				'text-size': {
 					stops: [
-						[4, 11],
+						[4, 13],
 						[7, 18]
 					]
 				}
 			},
 			paint: {
 				'text-color': tokens.label_tertiary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2.5,
+				'text-halo-color': 'white',
+				'text-halo-width': 2,
 				'text-halo-blur': 0.5
 			}
 		}

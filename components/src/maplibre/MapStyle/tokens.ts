@@ -2,14 +2,14 @@ const tokens = {
 	sans_regular: ['SWR Sans Regular'],
 	sans_medium: ['SWR Sans Medium'],
 	sans_bold: ['SWR Sans Bold'],
-	background: 'hsl(0, 0%, 100%)',
-	water: 'hsl(210, 41%, 89%)',
+	background: 'hsl(24, 29%, 98%)',
+	water: 'hsl(210, 71%, 83%)',
 	water_light: 'hsl(210, 41%, 90%)',
-	water_ocean: 'hsl(210, 25%, 96%)',
+	water_ocean: 'hsl(209, 57%, 84%)',
 	marsh: 'hsl(200, 14%, 97%)',
 	grass: 'hsl(140, 17%, 97%)',
 	grass_dark: 'hsl(148, 32%, 95%)',
-	street_primary: 'hsl(0, 0%, 96%)',
+	street_primary: 'hsl(0, 4%, 93.5%)',
 	street_primary_case: 'hsl(240, 1%, 79%)',
 	street_secondary: 'hsl(0, 0%, 95%)',
 	street_secondary_case: 'hsl(0, 0%, 75%)',
@@ -17,7 +17,7 @@ const tokens = {
 	street_tertiary_case: 'hsl(0, 0%, 70%)',
 	label_primary: 'hsl(240, 10%, 2%)',
 	label_secondary: 'hsl(240, 2%, 15%)',
-	label_tertiary: 'hsl(240, 2%, 40%)',
+	label_tertiary: 'hsl(60, 1%, 50%)',
 	building: '#f3f2f1'
 };
 

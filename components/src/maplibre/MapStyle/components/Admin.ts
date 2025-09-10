@@ -13,16 +13,16 @@ export default function makeAdmin(): any {
 				['!=', 'coastline', true]
 			],
 			paint: {
-				'line-color': tokens.background,
+				'line-color': '#ffffff',
 				'line-blur': 1,
 				'line-width': {
 					stops: [
 						[2, 0],
-						[3, 2],
+						[3, 6],
 						[10, 8]
 					]
 				},
-				'line-opacity': 0.75
+				'line-opacity': 0.95
 			}
 		},
 		{
@@ -56,13 +56,13 @@ export default function makeAdmin(): any {
 				['!=', 'coastline', true]
 			],
 			paint: {
-				'line-color': tokens.background,
+				'line-color': 'white',
 				'line-blur': 1,
 				'line-width': {
 					stops: [
 						[7, 0],
-						[8, 2],
-						[10, 4]
+						[8, 5],
+						[10, 6]
 					]
 				},
 				'line-opacity': 0.75
@@ -80,7 +80,7 @@ export default function makeAdmin(): any {
 			paint: {
 				'line-color': {
 					stops: [
-						[7, '#dedede'],
+						[7, '#b3b3b3'],
 						[10, '#161616']
 					]
 				},
@@ -89,7 +89,7 @@ export default function makeAdmin(): any {
 					stops: [
 						[2, 0],
 						[5, 1],
-						[8, 1],
+						[7, 1.5],
 						[12, 3]
 					]
 				}
@@ -126,7 +126,7 @@ export default function makeAdmin(): any {
 				['!=', 'coastline', true]
 			],
 			paint: {
-				'line-color': 'hsl(37, 34%, 79%)',
+				'line-color': 'hsl(37, 10%, 75%)',
 				'line-width': {
 					stops: [
 						[7, 1],
@@ -136,7 +136,7 @@ export default function makeAdmin(): any {
 				'line-opacity': {
 					stops: [
 						[7, 0],
-						[8, 1]
+						[7.5, 1]
 					]
 				}
 			}
