@@ -123,13 +123,13 @@ export default function makePlaceLabels() {
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 14],
+						[7, 16],
 						[15, 20]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_primary
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -140,13 +140,13 @@ export default function makePlaceLabels() {
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 13],
-						[15, 21]
+						[7, 14],
+						[15, 25]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary
+				'text-color': tokens.label_tertiary
 			}
 		}
 	].map((el) => {
