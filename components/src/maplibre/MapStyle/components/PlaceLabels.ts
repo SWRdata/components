@@ -157,7 +157,7 @@ export default function makePlaceLabels() {
 			'source-layer': 'place_labels',
 			layout: {
 				'text-font': tokens.sans_regular,
-				'text-letter-spacing': 0.05,
+				'text-letter-spacing': 0.01,
 				'text-field': '{name_de}',
 				...el.layout
 			},
