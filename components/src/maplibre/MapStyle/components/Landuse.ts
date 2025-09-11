@@ -7,7 +7,12 @@ export default function makeLanduse(): any {
 			id: 'background',
 			type: 'background',
 			paint: {
-				'background-color': tokens.background
+				'background-color': {
+					stops: [
+						[8, tokens.background],
+						[10, 'white']
+					]
+				}
 			}
 		},
 		{

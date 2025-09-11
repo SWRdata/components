@@ -19,7 +19,7 @@ export default function makeAdmin(): any {
 					stops: [
 						[2, 0],
 						[3, 6],
-						[10, 8]
+						[10, 7]
 					]
 				},
 				'line-opacity': 0.95
@@ -81,7 +81,7 @@ export default function makeAdmin(): any {
 				'line-color': {
 					stops: [
 						[7, '#a5a5a5'],
-						[10, '#161616']
+						[10, '#3f3b39']
 					]
 				},
 
