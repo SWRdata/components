@@ -12,10 +12,10 @@ export default function SpriteImage({ x, y, width, height, data }) {
 	return (
 		<div
 			style={{
+				backgroundSize: `auto`,
 				backgroundImage: `url(${img})`,
 				width: `${width}px`,
 				height: `${height}px`,
-				backgroundSize: `${w}px auto`,
 				backgroundPosition: `${-x}px ${-y}px`
 			}}
 		></div>
