@@ -23,8 +23,8 @@ export default function makeBuildings(): any {
 			'fill-color': tokens.building,
 			'fill-opacity': {
 				stops: [
-					[14, 0],
-					[15, 1]
+					[15, 0],
+					[16, 1]
 				]
 			}
 		}

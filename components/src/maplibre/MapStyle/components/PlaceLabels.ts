@@ -5,28 +5,7 @@ import type { SymbolLayerSpecification } from 'maplibre-gl';
 // Ideally majorCities  would include Frankfurt and Leipzig, but they're not
 // state capitals so they're not available in the versatiles data until z6
 
-const majorCities = [
-	'Berlin',
-	'Stuttgart',
-	'München',
-	'Frankfurt',
-	'Hamburg',
-	'Mainz'
-];
-const majorCountries = [
-	'Deutschland',
-	'Dänemark',
-	'Frankreich',
-	'Niederlande',
-	'Belgien',
-	'Schweiz',
-	'Polen',
-	'Österreich',
-	'Tschechien',
-	'Slowakei',
-	'Italien',
-	'Ungarn'
-];
+const majorCities = ['Berlin', 'Stuttgart', 'München', 'Frankfurt', 'Hamburg', 'Mainz'];
 
 // For smaller cities we use the population field to derive our hierarchy,
 // though that's limited by the fact that versatiles hard-codes population
@@ -144,30 +123,30 @@ export default function makePlaceLabels() {
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 14],
+						[7, 16],
 						[15, 20]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_primary
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
 			id: 'label-place-major-city',
 			filter: ['in', 'name_de', ...majorCities],
-			minzoom: 5,
+			minzoom: 5.5,
 			maxzoom: 12,
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 13],
-						[15, 21]
+						[7, 14],
+						[15, 25]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary
+				'text-color': tokens.label_tertiary
 			}
 		}
 	].map((el) => {
@@ -178,7 +157,7 @@ export default function makePlaceLabels() {
 			'source-layer': 'place_labels',
 			layout: {
 				'text-font': tokens.sans_regular,
-				'text-letter-spacing': 0.05,
+				'text-letter-spacing': 0.01,
 				'text-field': '{name_de}',
 				...el.layout
 			},
@@ -196,25 +175,28 @@ export default function makePlaceLabels() {
 	const boundaryLabels = [
 		{
 			id: 'label-boundary-country',
-			filter: ['all', ['==', 'admin_level', 2], ['in', 'name_de', ...majorCountries]],
+			filter: [
+				'all',
+				['==', 'admin_level', 2],
+				['!in', 'name_de', 'Jersey', 'Guernsey', 'Insel Man']
+			],
 			minzoom: 4,
 			maxzoom: 8,
 			layout: {
 				'text-field': '{name_de}',
-				'text-letter-spacing': 0.085,
+				'text-letter-spacing': 0.02,
 				'text-font': tokens.sans_regular,
-				'text-transform': 'uppercase',
 				'text-size': {
 					stops: [
-						[4, 11],
+						[4, 13],
 						[7, 18]
 					]
 				}
 			},
 			paint: {
 				'text-color': tokens.label_tertiary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 2.5,
+				'text-halo-color': 'white',
+				'text-halo-width': 2,
 				'text-halo-blur': 0.5
 			}
 		}
