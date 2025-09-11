@@ -80,7 +80,7 @@ export default function makeAdmin(): any {
 			paint: {
 				'line-color': {
 					stops: [
-						[7, '#b3b3b3'],
+						[7, '#a5a5a5'],
 						[10, '#161616']
 					]
 				},

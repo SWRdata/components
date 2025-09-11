@@ -102,25 +102,13 @@ export default function makeLanduse(): any {
 			}
 		},
 		{
-			id: 'land-burial',
-			type: 'fill',
-			'source-layer': 'land',
-			filter: ['all', ['in', 'kind', 'cemetery', 'grave_yard']],
-			paint: {
-				'fill-color': tokens.grass,
-				'fill-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
-			}
-		},
-		{
 			id: 'land-leisure',
 			type: 'fill',
 			'source-layer': 'land',
-			filter: ['all', ['in', 'kind', 'miniature_golf', 'playground', 'golf_course']],
+			filter: [
+				'all',
+				['in', 'kind', 'cemetery', 'grave_yard', 'miniature_golf', 'playground', 'golf_course']
+			],
 			paint: {
 				'fill-color': tokens.grass_dark
 			}
@@ -153,7 +141,10 @@ export default function makeLanduse(): any {
 			id: 'land-grass',
 			type: 'fill',
 			'source-layer': 'land',
-			filter: ['all', ['in', 'kind', 'grass', 'grassland', 'meadow', 'wet_meadow']],
+			filter: [
+				'all',
+				['in', 'kind', 'heath', 'scrub', 'grass', 'grassland', 'meadow', 'wet_meadow']
+			],
 			paint: {
 				'fill-color': tokens.grass,
 				'fill-opacity': {
@@ -164,21 +155,7 @@ export default function makeLanduse(): any {
 				}
 			}
 		},
-		{
-			id: 'land-vegetation',
-			type: 'fill',
-			'source-layer': 'land',
-			filter: ['all', ['in', 'kind', 'heath', 'scrub']],
-			paint: {
-				'fill-color': tokens.grass,
-				'fill-opacity': {
-					stops: [
-						[11, 0],
-						[12, 1]
-					]
-				}
-			}
-		},
+
 		{
 			id: 'land-sand',
 			type: 'fill',
@@ -403,91 +380,11 @@ export default function makeLanduse(): any {
 			}
 		},
 		{
-			id: 'site-dangerarea',
+			id: 'site-any',
 			type: 'fill',
 			'source-layer': 'sites',
-			filter: ['in', 'kind', 'danger_area'],
 			paint: {
-				'fill-color': 'hsl(0,0%,50%)',
-				'fill-outline-color': 'hsl(0,0%,50%)',
-				'fill-opacity': 0.3
-			}
-		},
-		{
-			id: 'site-university',
-			type: 'fill',
-			'source-layer': 'sites',
-			filter: ['in', 'kind', 'university'],
-			paint: {
-				'fill-color': 'hsl(60,0%,75%)',
-				'fill-opacity': 0.1
-			}
-		},
-		{
-			id: 'site-college',
-			type: 'fill',
-			'source-layer': 'sites',
-			filter: ['in', 'kind', 'college'],
-			paint: {
-				'fill-color': 'hsl(60,0%,75%)',
-				'fill-opacity': 0.1
-			}
-		},
-		{
-			id: 'site-school',
-			type: 'fill',
-			'source-layer': 'sites',
-			filter: ['in', 'kind', 'school'],
-			paint: {
-				'fill-color': 'hsl(60,0%,75%)',
-				'fill-opacity': 0.1
-			}
-		},
-		{
-			id: 'site-hospital',
-			type: 'fill',
-			'source-layer': 'sites',
-			filter: ['in', 'kind', 'hospital'],
-			paint: {
-				'fill-color': 'hsl(0,0%,70%)',
-				'fill-opacity': 0.1
-			}
-		},
-		{
-			id: 'site-prison',
-			type: 'fill',
-			'source-layer': 'sites',
-			filter: ['in', 'kind', 'prison'],
-			paint: {
-				'fill-color': 'hsl(305,0%,97%)',
-				'fill-opacity': 0.1
-			}
-		},
-		{
-			id: 'site-parking',
-			type: 'fill',
-			'source-layer': 'sites',
-			filter: ['in', 'kind', 'parking'],
-			paint: {
-				'fill-color': 'hsl(24,0%,95%)'
-			}
-		},
-		{
-			id: 'site-bicycleparking',
-			type: 'fill',
-			'source-layer': 'sites',
-			filter: ['in', 'kind', 'bicycle_parking'],
-			paint: {
-				'fill-color': 'hsl(24,0%,95%)'
-			}
-		},
-		{
-			id: 'site-construction',
-			type: 'fill',
-			'source-layer': 'sites',
-			filter: ['in', 'kind', 'construction'],
-			paint: {
-				'fill-color': 'hsl(0,0%,66%)',
+				'fill-color': tokens.street_tertiary,
 				'fill-opacity': 0.1
 			}
 		}
