@@ -40,7 +40,6 @@
 					type="fill"
 					id="coverage-fill"
 					sourceLayer="coverage"
-					placeBelow="street-residential"
 					onmousemove={(e) => {
 						hovered = e.features?.[0];
 						hoverCoords = e.lngLat;
@@ -55,7 +54,6 @@
 					sourceId="ev-infra-source"
 					sourceLayer="coverage"
 					id="ev-infra-outline"
-					placeBelow="label-place-city"
 					type="line"
 					layout={{
 						'line-join': 'round'
@@ -116,11 +114,11 @@
 					onmousemove={(e) => {
 						hovered2 = e.features?.[0];
 					}}
+					onmouseleave={() => (hovered2 = undefined)}
 					onclick={(e) => {
 						selected = e.features?.[0];
 						selectCoords = e.lngLat;
 					}}
-					onmouseleave={() => (hovered2 = undefined)}
 					paint={{
 						'fill-color': ['step', ['get', 'coverage_2025'], 'white', 1, '#CCDCFF', 1.3, '#6280E5']
 					}}
@@ -131,7 +129,6 @@
 					sourceId="ev-infra-source"
 					sourceLayer="coverage"
 					id="ev-infra-outline"
-					placeBelow="label-place-city"
 					type="line"
 					layout={{
 						'line-join': 'round'
