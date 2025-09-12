@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Map from '../Map/Map.svelte';
 	import VectorLayer from './VectorLayer.svelte';
@@ -15,17 +15,27 @@
 		title: 'Maplibre/Layer/VectorLayer',
 		component: VectorLayer
 	});
+
+	let hovered: any = $state();
+	const handleMouseMove = (e) => {
+		hovered = e.features?.[0];
+	};
+	const handleMouseLeave = () => {
+		hovered = null;
+	};
 </script>
 
 <Story asChild name="Default">
 	<DesignTokens>
 		<div class="container">
-			<Map showDebug={true} style={SWRDataLabLight()}>
+			<Map showDebug={true} style={SWRDataLabLight()} cursor={hovered ? 'pointer' : ''}>
 				<VectorTileSource
 					id="ev-infra-source"
 					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}
 				/>
 				<VectorLayer
+					onmousemove={handleMouseMove}
+					onmouseleave={handleMouseLeave}
 					sourceId="ev-infra-source"
 					sourceLayer="coverage"
 					type="fill"
@@ -44,12 +54,22 @@
 					}}
 				/>
 				<VectorLayer
+					bind:hovered
 					sourceId="ev-infra-source"
 					sourceLayer="coverage"
 					id="ev-infra-outline"
 					type="line"
 					paint={{
-						'line-width': 0.5,
+						'line-width': [
+							'case',
+							[
+								'any',
+								['boolean', ['feature-state', 'hovered'], false],
+								['boolean', ['feature-state', 'selected'], false]
+							],
+							2,
+							0.5
+						],
 						'line-color': 'purple',
 						'line-opacity': 1
 					}}

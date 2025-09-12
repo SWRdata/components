@@ -25,9 +25,13 @@
 		projection?: ProjectionSpecification;
 		showDebug?: boolean;
 		options?: any;
+		/**
+		 * Set the mouse cursor. `""` (empty string) restores Maplibre's default behaviour. See VectorLayer/Default for a common usage example
+		 */
+		cursor?: string;
 		mapContext?: MapContext;
 		/**
-		 * "Use Ctrl + scroll to zoom"
+		 * Show "Use Ctrl + scroll to zoom" overlay
 		 */
 		cooperativeGestures?: boolean;
 		onmovestart?: (e: MapLibreEvent) => null;
@@ -50,6 +54,7 @@
 		allowRotation = false,
 		allowZoom = true,
 		showDebug = false,
+		cursor,
 		initialLocation: receivedInitialLocation,
 		// Future: This should become bindable.readonly when that becomes
 		// available, see: https://github.com/sveltejs/svelte/issues/7712
@@ -120,6 +125,12 @@
 
 	$effect(() => {
 		if (mapContext.map) mapContext.map.setStyle(style);
+	});
+
+	$effect(() => {
+		if (mapContext.map) {
+			mapContext.map.getCanvas().style.cursor = cursor ?? '';
+		}
 	});
 
 	$effect(() => {
