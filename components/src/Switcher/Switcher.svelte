@@ -15,12 +15,22 @@
 		 */
 		size?: 'default' | 'small';
 		/**
-		 * The currently-selected option
+		 * The currently-selected option (bindable)
 		 */
 		value: string | null;
+		/**
+		 * Fired when the selected value changes (Prefer `value` if possible)
+		 */
+		onchange?: (e: Event) => void;
 	}
 
-	let { label, options, size = 'default', value = $bindable(null) }: SwitcherProps = $props();
+	let {
+		label,
+		options,
+		size = 'default',
+		value = $bindable(null),
+		onchange
+	}: SwitcherProps = $props();
 
 	const groupId = $props.id();
 	const groupName = 'select-' + groupId;
@@ -38,7 +48,14 @@
 				<label for={optionToID(o)}>
 					{o}
 				</label>
-				<input id={optionToID(o)} name={groupName} value={o} type="radio" bind:group={value} />
+				<input
+					id={optionToID(o)}
+					name={groupName}
+					value={o}
+					type="radio"
+					bind:group={value}
+					{onchange}
+				/>
 			</li>
 		{/each}
 	</ul>
