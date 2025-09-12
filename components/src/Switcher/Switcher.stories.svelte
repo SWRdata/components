@@ -1,13 +1,15 @@
-<script context="module">
+<script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Switcher from './Switcher.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
-	import { userEvent, within, expect } from 'storybook/test';
+	import { userEvent, within, expect, fn } from 'storybook/test';
 
 	const { Story } = defineMeta({
 		title: 'Form/Switcher',
 		component: Switcher
 	});
+
+	const onChangeSpy = fn();
 </script>
 
 <Story name="Two Options" asChild>
@@ -39,6 +41,32 @@
 			value="Oranges"
 			label="Label"
 			size="small"
+		/>
+	</DesignTokens>
+</Story>
+
+<Story
+	name="onchange event"
+	asChild
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		await step('onchange handler is called', async () => {
+			const optionA = canvas.getByLabelText('Option A');
+			const optionB = canvas.getByLabelText('Option B');
+			await userEvent.click(optionB);
+			expect(onChangeSpy).toHaveBeenCalledTimes(1);
+			await userEvent.click(optionA);
+			expect(onChangeSpy).toHaveBeenCalledTimes(2);
+		});
+	}}
+>
+	<DesignTokens>
+		<Switcher
+			options={['Option A', 'Option B']}
+			value="Option A"
+			size="default"
+			label="Label"
+			onchange={onChangeSpy}
 		/>
 	</DesignTokens>
 </Story>
