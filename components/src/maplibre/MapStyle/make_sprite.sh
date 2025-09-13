@@ -1,5 +1,5 @@
 #!/bin/sh
-# Sprite: 'https://static.datenhub.net/maps/styles/swr-datalab-light/sprite/sprite
 
 mkdir -p sprite
-spreet -m --retina --unique icons sprite/sprite
+spreet -m -r 2 --unique icons sprite/sprite
+spreet -m -r 4 --unique icons sprite/sprite@2x
