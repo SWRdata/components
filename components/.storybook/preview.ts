@@ -1,13 +1,12 @@
 import type { Preview } from '@storybook/sveltekit';
 import { themes } from 'storybook/theming';
-import darkModeDecorator from './darkModeDecorator';
 
 const preview: Preview = {
 	parameters: {
 		backgrounds: {
 			options: [
-				{ name: 'dark', value: '#0C0C0C' },
-				{ name: 'light', value: '#fff' }
+				{ name: 'dark', value: '#0C0C0C' }, // tokens.pageFill.dark
+				{ name: 'light', value: '#fff' } // tokens.pageFill.light
 			]
 		},
 		initialGlobals: {
