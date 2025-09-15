@@ -1,20 +1,21 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { shades } from './Tokens';
+	import { shades, semantics } from './Tokens';
 
 	interface DesignTokensProps {
 		children?: Snippet;
 	}
 	let { children }: DesignTokensProps = $props();
 
+	const colours = { ...shades, ...semantics };
 	const rules = [
-		...Object.keys(shades).map((key) => {
-			return Object.entries(shades[key])
+		...Object.keys(colours).map((key) => {
+			return Object.entries(colours[key])
 				.map(([shade, value]) => {
 					const [ldb, index] = shade.split(/(\d+)/);
 					return ldb === 'base'
 						? `--${key}-${ldb}: ${value}`
-						: `--${key}-${ldb}-${index}: ${value}`;
+						: `--${key}-${ldb}${index ? `-${index}` : ''}: ${value}`;
 				})
 				.join(';');
 		})
@@ -43,11 +44,17 @@
 		--br-large: 8px;
 		--br-small: 4px;
 		--input-height: 2.5rem;
+
+		--colour-copyPrimary: var(--copyPrimary-light);
+		--colour-logoFill: var(--logoFill-light);
+		@media (prefers-color-scheme: dark) {
+			--colour-logoFill: var(--logoFill-dark);
+		}
+
 		--swr-text: 'SWR-VAR-Text', sans-serif;
 		--swr-sans: 'SWR-VAR-Sans', sans-serif;
 
 		// Type scale copied 1:1 from swr.de
-
 		--fs-small-3: 0.75rem;
 		--fs-small-2: 0.875rem;
 		--fs-small-1: 1rem;

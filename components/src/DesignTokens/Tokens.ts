@@ -156,6 +156,17 @@ const shades: ColourMap = {
 	}
 };
 
+const semantics: ColourMap = {
+	copyPrimary: {
+		light: shades.gray.dark5,
+		dark: shades.gray.light3
+	},
+	logoFill: {
+		light: shades.gray.light3,
+		dark: shades.gray.base
+	}
+};
+
 const scales: ColourMap = {
 	red_blue: [...Object.values(shades.red).reverse(), ...Object.values(shades.blue)],
 	red_violet: [...Object.values(shades.red).reverse(), ...Object.values(shades.violet)],
@@ -181,10 +192,10 @@ const typography = {
 			'fs-base': '1.25rem',
 			'fs-large-1': '1.5rem',
 			'fs-large-2': '2rem',
-			'fs-large-3': '2.5rem',
+			'fs-large-3': '3rem',
 			'fs-large-4': '3.5rem'
 		}
 	}
 };
 
-export { shades, scales, typography };
+export { shades, scales, typography, semantics };
