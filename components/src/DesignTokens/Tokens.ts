@@ -158,12 +158,24 @@ const shades: ColourMap = {
 
 const semantics: ColourMap = {
 	copyPrimary: {
-		light: shades.gray.dark5,
-		dark: shades.gray.light3
+		light: '#0c0c0c',
+		dark: '#f8f7f5'
+	},
+	copySecondary: {
+		light: shades.gray.base,
+		dark: '#a3a3a3'
+	},
+	copySecondaryHover: {
+		light: shades.gray.dark1,
+		dark: '#b4b4b4'
 	},
 	logoFill: {
 		light: shades.gray.light3,
 		dark: shades.gray.base
+	},
+	surfaceFill: {
+		dark: '#222325',
+		light: '#f1eeeb'
 	}
 };
 

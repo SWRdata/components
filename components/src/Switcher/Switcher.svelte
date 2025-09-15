@@ -76,8 +76,9 @@
 		overflow: hidden;
 		padding: 0;
 		margin: 0;
-		border: 1px solid currentColor;
-		background: white;
+		border: 1px solid var(--colour-copySecondary);
+		color: var(--colour-copyPrimary);
+		background: var(--colour-surfaceFill);
 		border-radius: var(--br-small);
 
 		@media (min-width: base.$bp-s) {
@@ -118,14 +119,12 @@
 		position: relative;
 		transition: var(--fast);
 		text-underline-offset: 0.2em;
-		border-bottom: 1px solid currentColor;
 		height: 2.25em;
 		@media (min-width: base.$bp-s) {
 			justify-content: center;
 			padding: 0 1em;
 			flex-basis: 0;
 			flex-grow: 1;
-			border-right: 1px solid currentColor;
 			border-bottom: 0;
 		}
 		@media (min-width: base.$bp-s) {
@@ -136,12 +135,8 @@
 			text-decoration: underline;
 		}
 		.is-selected & {
-			background: rgb(247, 247, 247);
-			font-weight: 600;
-			box-shadow: inset 5px 0px 0 0 var(--violet-dark-5);
-			@media (min-width: base.$bp-s) {
-				box-shadow: inset 0 -3px 0 0 var(--violet-dark-5);
-			}
+			background: var(--colour-copySecondary);
+			font-weight: 700;
 		}
 	}
 </style>

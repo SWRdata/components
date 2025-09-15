@@ -46,10 +46,16 @@
 		--input-height: 2.5rem;
 
 		--colour-copyPrimary: var(--copyPrimary-light);
+		--colour-copySecondary: var(--copySecondary-light);
+		--colour-copySecondaryHover: var(--copySecondaryHover-light);
 		--colour-logoFill: var(--logoFill-light);
+		--colour-surfaceFill: var(--surfaceFill-light);
 		@media (prefers-color-scheme: dark) {
 			--colour-logoFill: var(--logoFill-dark);
+			--colour-surfaceFill: var(--surfaceFill-dark);
 			--colour-copyPrimary: var(--copyPrimary-dark);
+			--colour-copySecondary: var(--copySecondary-dark);
+			--colour-copySecondaryHover: var(--copySecondaryHover-dark);
 		}
 
 		--swr-text: 'SWR-VAR-Text', sans-serif;

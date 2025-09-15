@@ -11,7 +11,7 @@ const preview: Preview = {
 			]
 		},
 		initialGlobals: {
-			backgrounds: { value: 'light' }
+			backgrounds: { value: 'dark' }
 		},
 		options: {
 			storySort: {
