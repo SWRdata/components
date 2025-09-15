@@ -49,6 +49,7 @@
 		--colour-logoFill: var(--logoFill-light);
 		@media (prefers-color-scheme: dark) {
 			--colour-logoFill: var(--logoFill-dark);
+			--colour-copyPrimary: var(--copyPrimary-dark);
 		}
 
 		--swr-text: 'SWR-VAR-Text', sans-serif;
