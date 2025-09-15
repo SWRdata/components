@@ -68,17 +68,17 @@
 		--fs-base: 1.125rem;
 		--fs-large-1: 1.25rem;
 		--fs-large-2: 1.5rem;
-		--fs-large-3: 1.75rem;
+		--fs-large-3: 2rem;
 		--fs-large-4: 2.25rem;
 
-		@media (min-width: base.$bp-m) {
+		@media (min-width: 1024px) {
 			--fs-small-3: 0.75rem;
 			--fs-small-2: 0.875rem;
 			--fs-small-1: 1rem;
 			--fs-base: 1.25rem;
 			--fs-large-1: 1.5rem;
 			--fs-large-2: 2rem;
-			--fs-large-3: 2.5rem;
+			--fs-large-3: 3rem;
 			--fs-large-4: 3.5rem;
 		}
 	}
