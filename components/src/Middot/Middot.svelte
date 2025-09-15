@@ -2,9 +2,9 @@
 
 <style>
 	.middot {
-		background: currentColor;
-		width: 0.65em;
-		height: 0.65em;
+		background: var(--colour-copySecondary);
+		width: 0.6em;
+		height: 0.6em;
 		display: inline-block;
 		border-radius: 1000px;
 		opacity: 0.65;

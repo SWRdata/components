@@ -27,7 +27,7 @@
 
 <style>
 	.container {
-		color: var(--gray-dark-5);
+		color: var(--colour-copyPrimary);
 		font-family: var(--swr-sans);
 		display: flex;
 		flex-flow: column;

@@ -16,10 +16,10 @@
 <style lang="scss">
 	.container {
 		font-family: var(--swr-sans);
-		font-size: var(--fs-small-2);
+		font-size: calc(var(--fs-small-2) * 0.9);
 		line-height: 1.4;
-		letter-spacing: 0.001em;
-		color: var(--gray-base);
+		letter-spacing: 0.0015em;
+		color: var(--colour-copySecondary);
 
 		:global(*) {
 			color: inherit;
@@ -32,7 +32,7 @@
 			text-underline-offset: 0.15em;
 			&:hover,
 			&:focus-visible {
-				color: var(--gray-dark-3);
+				color: var(--colour-copySecondaryHover);
 			}
 		}
 	}
