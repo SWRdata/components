@@ -12,6 +12,14 @@
 
 <Story name="Default" asChild>
 	<DesignTokens>
-		<Headline>Baden-Württemberg heizt überdurchschnittlich viel mit Wärmepumpe</Headline>
+		<div class="container">
+			<Headline>Baden-Württemberg heizt überdurchschnittlich viel mit Wärmepumpe</Headline>
+		</div>
 	</DesignTokens>
 </Story>
+
+<style>
+	.container {
+		color: var(--colour-copyPrimary);
+	}
+</style>

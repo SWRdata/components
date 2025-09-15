@@ -20,6 +20,7 @@
 		font-size: var(--fs-base);
 		letter-spacing: 0.005em;
 		line-height: 1.475;
+		color: var(--colour-copyPrimary);
 	}
 
 	.bold {

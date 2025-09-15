@@ -12,13 +12,24 @@
 
 <Story name="Default" asChild>
 	<DesignTokens>
-		<Caption>Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen)</Caption>
+		<div class="container">
+			<Caption>Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen)</Caption>
+		</div>
 	</DesignTokens>
 </Story>
+
 <Story name="Bold" asChild>
 	<DesignTokens>
-		<Caption weight="bold">
-			Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen)
-		</Caption>
+		<div class="container">
+			<Caption weight="bold">
+				Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen)
+			</Caption>
+		</div>
 	</DesignTokens>
 </Story>
+
+<style>
+	.container {
+		color: var(--colour-copyPrimary);
+	}
+</style>
