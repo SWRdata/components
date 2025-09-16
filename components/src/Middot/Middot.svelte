@@ -2,7 +2,7 @@
 
 <style>
 	.middot {
-		background: var(--colour-copySecondary);
+		background: var(--color-textSecondary);
 		width: 0.6em;
 		height: 0.6em;
 		display: inline-block;

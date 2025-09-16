@@ -157,15 +157,15 @@ const shades: ColourMap = {
 };
 
 const semantics: ColourMap = {
-	copyPrimary: {
+	textPrimary: {
 		light: '#0c0c0c',
 		dark: '#f8f7f5'
 	},
-	copySecondary: {
+	textSecondary: {
 		light: shades.gray.base,
 		dark: '#a3a3a3'
 	},
-	copySecondaryHover: {
+	textSecondaryHover: {
 		light: shades.gray.dark1,
 		dark: '#b4b4b4'
 	},

@@ -19,7 +19,7 @@
 		font-size: calc(var(--fs-small-2) * 0.9);
 		line-height: 1.4;
 		letter-spacing: 0.0015em;
-		color: var(--colour-copySecondary);
+		color: var(--color-textSecondary);
 
 		:global(*) {
 			color: inherit;
@@ -32,7 +32,7 @@
 			text-underline-offset: 0.15em;
 			&:hover,
 			&:focus-visible {
-				color: var(--colour-copySecondaryHover);
+				color: var(--color-textSecondaryHover);
 			}
 		}
 	}

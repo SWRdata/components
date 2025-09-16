@@ -12,21 +12,33 @@
 
 <Story name="Default" asChild>
 	<DesignTokens>
-		<Copy>
-			Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen), bedient derzeit
-			größtenteils Allergiegeplagte: "Wir gehen nahtlos von der Erkältungssaison in die Pollensaison
-			hinein. Wir merken definitiv eine Veränderung über die letzten Jahre: Die Pollensaison wird
-			länger, die Grippesaison wird länger und dadurch überlappt sich das Ganze."
-		</Copy>
+		<div class="container">
+			<Copy>
+				Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen), bedient derzeit
+				größtenteils Allergiegeplagte: "Wir gehen nahtlos von der Erkältungssaison in die
+				Pollensaison hinein. Wir merken definitiv eine Veränderung über die letzten Jahre: Die
+				Pollensaison wird länger, die Grippesaison wird länger und dadurch überlappt sich das
+				Ganze."
+			</Copy>
+		</div>
 	</DesignTokens>
 </Story>
 <Story name="Bold" asChild>
 	<DesignTokens>
-		<Copy weight="bold">
-			Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen), bedient derzeit
-			größtenteils Allergiegeplagte: "Wir gehen nahtlos von der Erkältungssaison in die Pollensaison
-			hinein. Wir merken definitiv eine Veränderung über die letzten Jahre: Die Pollensaison wird
-			länger, die Grippesaison wird länger und dadurch überlappt sich das Ganze."
-		</Copy>
+		<div class="container">
+			<Copy weight="bold">
+				Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen), bedient derzeit
+				größtenteils Allergiegeplagte: "Wir gehen nahtlos von der Erkältungssaison in die
+				Pollensaison hinein. Wir merken definitiv eine Veränderung über die letzten Jahre: Die
+				Pollensaison wird länger, die Grippesaison wird länger und dadurch überlappt sich das
+				Ganze."
+			</Copy>
+		</div>
 	</DesignTokens>
 </Story>
+
+<style>
+	.container {
+		color: var(--color-textPrimary);
+	}
+</style>

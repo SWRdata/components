@@ -7,7 +7,7 @@ import {
 	Typeset,
 	Canvas
 } from '@storybook/addon-docs/blocks';
-import { shades, scales, typography } from './Tokens';
+import { shades, scales, typography, semantics } from './Tokens';
 
 import * as HeadlineStories from '../Headline/Headline.stories.svelte';
 import * as CopyStories from '../Copy/Copy.stories.svelte';
@@ -49,8 +49,7 @@ The `<DesignTokens>` component makes colours, type sizes and other design tokens
 
 <style>
 	p {
-		color: var(--violet-dark-1); // this works
-
+	  color: var(--violet-dark-1); // this works
 	}
 </style>
 ```
@@ -96,13 +95,35 @@ Type sizes and paragraph styles are designed to match the typography on [swr.de]
 	fontFamily="SWR-VAR-Text"
 	sampleText="Pollenflug in BW: Was Heuschnupfengeplagte jetzt wissen sollten"
 	fontSizes={Object.entries(typography.wide.sizes)
-		.map(([key, size]) => {
+		.map(([_, size]) => {
 			return size;
 		})
 		.reverse()}
 />
 
 ## Colours
+
+### Semantics
+
+Light / Dark
+
+<ColorPalette>
+	{[
+		'textPrimary',
+		'textSecondary',
+		'textSecondaryHover',
+		'logoFill',
+		'surfaceFill',
+		'pageFill'
+	].map((el, i) => {
+		return (
+			<ColorItem
+				title={`${el.split('')[0].toUpperCase()}${el.slice(1)}`}
+				colors={[semantics[el]['light'], semantics[el]['dark']]}
+			/>
+		);
+	})}
+</ColorPalette>
 
 ### Shades
 
@@ -122,43 +143,6 @@ Type sizes and paragraph styles are designed to match the typography on [swr.de]
 	].map((el, i) => {
 		return (
 			<ColorItem title={`${el.split('')[0].toUpperCase()}${el.slice(1)}`} colors={shades[el]} />
-		);
-	})}
-</ColorPalette>
-
-### Linear Scales
-
-### Categorical Scales
-
-### Divergent Scales
-
-<ColorPalette>
-	{[
-		'red_blue',
-		'red_violet',
-		'red_forest',
-		'red_apple',
-		'red_teal',
-		'violet_teal',
-		'violet_orange',
-		'blue_pink',
-		'teal_pink',
-		'forest_plum',
-		'apple_plum',
-		'orange_blue',
-		'orange_teal'
-	].map((el, _) => {
-		return (
-			<ColorItem
-				title={`${el
-					.split('_')
-					.map((c) => {
-						return c[0].toUpperCase() + c.slice(1);
-					})
-					.join('/')}`}
-				subtitle={el}
-				colors={scales[el]}
-			/>
 		);
 	})}
 </ColorPalette>
