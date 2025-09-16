@@ -30,6 +30,6 @@
 
 <style>
 	.container {
-		color: var(--colour-copyPrimary);
+		color: var(--color-textPrimary);
 	}
 </style>

@@ -76,9 +76,9 @@
 		overflow: hidden;
 		padding: 0;
 		margin: 0;
-		border: 1px solid var(--colour-copySecondary);
-		color: var(--colour-copyPrimary);
-		background: var(--colour-surfaceFill);
+		border: 1px solid var(--color-textSecondary);
+		color: var(--color-textPrimary);
+		background: var(--color-surfaceFill);
 		border-radius: var(--br-small);
 
 		@media (min-width: base.$bp-s) {
@@ -135,7 +135,7 @@
 			text-decoration: underline;
 		}
 		.is-selected & {
-			background: var(--colour-copySecondary);
+			background: var(--color-textSecondary);
 			font-weight: 700;
 		}
 	}

@@ -42,6 +42,6 @@
 		height: calc(var(--fs-small-2) * 0.8);
 	}
 	path {
-		fill: var(--colour-logoFill);
+		fill: var(--color-logoFill);
 	}
 </style>
