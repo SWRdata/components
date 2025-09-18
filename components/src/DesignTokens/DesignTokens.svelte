@@ -49,9 +49,11 @@
 		--color-textSecondary: var(--textSecondary-light);
 		--color-textSecondaryHover: var(--textSecondaryHover-light);
 		--color-logoFill: var(--logoFill-light);
+		--color-pageFill: var(--pageFill-light);
 		--color-surfaceFill: var(--surfaceFill-light);
 		@media (prefers-color-scheme: dark) {
 			--color-logoFill: var(--logoFill-dark);
+			--color-pageFill: var(--pageFill-dark);
 			--color-surfaceFill: var(--surfaceFill-dark);
 			--color-textPrimary: var(--textPrimary-dark);
 			--color-textSecondary: var(--textSecondary-dark);
