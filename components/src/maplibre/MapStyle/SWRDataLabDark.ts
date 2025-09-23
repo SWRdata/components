@@ -12,32 +12,41 @@ const tokens = {
 	sans_regular: ['SWR Sans Regular'],
 	sans_medium: ['SWR Sans Medium'],
 	sans_bold: ['SWR Sans Bold'],
-	background: 'hsl(220, 9%, 14%)',
-	water: 'hsl(210, 31%, 15%)',
-	water_light: 'hsl(210, 31%, 12%)',
-	water_ocean: 'hsl(210, 12%, 10%)',
-	marsh: 'hsl(200, 14%, 97%)',
-	grass: 'hsl(133, 36%, 95%)',
-	grass_dark: 'hsl(127, 49%, 93%)',
-	street_primary: 'hsl(220, 5%, 25%)',
-	street_primary_case: 'hsl(240, 1%, 84%)',
-	street_secondary: 'hsl(0, 0%, 95%)',
-	street_secondary_case: 'hsl(0, 0%, 75%)',
-	street_tertiary: 'hsl(0, 0%, 95%)',
-	street_tertiary_case: 'hsl(0, 0%, 70%)',
+	background: {
+		stops: [
+			[8, 'hsl(210, 9%, 13%)'],
+			[10, '#1e1f22']
+		]
+	},
+	water: 'hsl(210, 12%, 8%)',
+	water_light: 'hsl(210, 12%, 8%)',
+	water_ocean: 'hsl(210, 12%, 8%)',
+	marsh: 'hsl(180, 3%, 35%)',
+	grass: 'hsl(170, 22%, 15%)',
+	grass_dark: 'hsl(170, 18%, 15%)',
+	street_primary: 'hsl(220, 3%, 20%)',
+	street_primary_case: 'hsl(0, 11%, 7%)',
+	street_secondary: 'hsl(0, 0%, 22%)',
+	street_secondary_case: 'hsl(0, 0%, 0%)',
+	street_tertiary: 'hsl(0, 0%, 32%)',
+	street_tertiary_case: 'hsl(0, 0%, 44%)',
 	label_primary: 'hsl(240, 5%, 82%)',
 	label_secondary: 'hsl(0, 2%, 72%)',
-	label_tertiary: 'hsl(0, 0%, 64%)',
-	building: '#f3f2f1'
+	label_tertiary: 'hsl(0, 1%, 55%)',
+	boundary_country: '#6e6f71',
+	boundary_country_case: '#181818',
+	rail: '#a8a8a8',
+	sand: 'hsl(0, 0%, 16%)',
+	building: '#59595e'
 };
 
 const { landuse } = makeLanduse(tokens);
-const { placeLabels, boundaryLabels } = makePlaceLabels();
-const { admin } = makeAdmin();
-const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit();
-const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking();
+const { placeLabels, boundaryLabels } = makePlaceLabels(tokens);
+const { admin } = makeAdmin(tokens);
+const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit(tokens);
+const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
 const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
-const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings();
+const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
 
 interface StyleOptions {
 	enableBuildingExtrusions?: boolean;

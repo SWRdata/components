@@ -176,8 +176,7 @@
 			</li>
 			{#each debugValues as [key, value]}
 				<li>
-					{key}:
-					<button onclick={handleDebugValueClick}
+					{key}=<button onclick={handleDebugValueClick}
 						>{value?.toLocaleString('en', { maximumSignificantDigits: 6 })}</button
 					>
 				</li>
@@ -197,10 +196,10 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-		background: rgba(0, 0, 0, 0.9);
+		background: rgba(0, 0, 0, 0.75);
 		color: white;
 		z-index: 1000;
-		padding: 5px;
+		padding: 2px;
 		font-size: 10px;
 		font-family: monospace;
 		display: flex;
@@ -215,6 +214,7 @@
 			color: inherit;
 			font-size: inherit;
 			border: 0;
+			text-transform: uppercase;
 			cursor: pointer;
 			&:hover,
 			&:focus-visible {
@@ -374,7 +374,7 @@
 			will-change: transform;
 		}
 		.maplibregl-marker path {
-			fill: var(--violet-dark-5);
+			fill: var(--color-textPrimary);
 		}
 		.maplibregl-cooperative-gesture-screen {
 			align-items: center;

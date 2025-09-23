@@ -68,8 +68,12 @@
 			font-family: var(--swr-sans);
 			font-size: var(--fs-small-1);
 			border-radius: var(--br-small);
-			border: 1px solid var(--color-textSecondary);
-			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.075);
+			border: 1px solid var(--color-surfaceBorder);
+			box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.075);
+
+			button {
+				cursor: pointer;
+			}
 		}
 
 		.maplibre-gl-geocoder--error {
@@ -86,8 +90,8 @@
 			background-color: transparent;
 			color: var(--color-textPrimary);
 			border: 0;
-			height: 1.85em;
-			padding: 0 1.85em;
+			height: 1.95em;
+			padding: 0 1.95em;
 			padding-top: 0.1em;
 			text-overflow: ellipsis;
 			white-space: nowrap;
@@ -140,7 +144,7 @@
 			padding: 0.5em 0.75em;
 			color: var(--gray-dark-5);
 			padding-bottom: 0.5em;
-			border-bottom: 1px solid var(--gray-light-3);
+			border-bottom: 1px solid var(--color-surfaceBorder);
 		}
 		.maplibregl-ctrl-geocoder .suggestions > li:last-child > a {
 			border-bottom: 0;
@@ -148,7 +152,7 @@
 
 		.maplibregl-ctrl-geocoder .suggestions > .active > a,
 		.maplibregl-ctrl-geocoder .suggestions > li > a:hover {
-			background: var(--gray-light-5);
+			background: var(--color-surfaceHover);
 			text-decoration: none;
 			cursor: pointer;
 		}
@@ -180,6 +184,7 @@
 			display: none;
 		}
 		.maplibregl-ctrl-geocoder--result-title {
+			color: var(--color-textPrimary);
 			font-weight: 600;
 			letter-spacing: 0;
 		}

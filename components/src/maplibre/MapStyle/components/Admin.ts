@@ -1,7 +1,6 @@
-import tokens from '../tokens';
 import { type Layer } from '../../types';
 
-export default function makeAdmin(): any {
+export default function makeAdmin(tokens): any {
 	const admin: Layer[] = [
 		{
 			id: 'boundary-country:case',
@@ -13,7 +12,7 @@ export default function makeAdmin(): any {
 				['!=', 'coastline', true]
 			],
 			paint: {
-				'line-color': '#ffffff',
+				'line-color': tokens.boundary_country_case,
 				'line-blur': 1,
 				'line-width': {
 					stops: [
@@ -56,7 +55,7 @@ export default function makeAdmin(): any {
 				['!=', 'coastline', true]
 			],
 			paint: {
-				'line-color': 'white',
+				'line-color': tokens.boundary_country_case,
 				'line-blur': 1,
 				'line-width': {
 					stops: [
@@ -78,13 +77,7 @@ export default function makeAdmin(): any {
 				['!=', 'coastline', true]
 			],
 			paint: {
-				'line-color': {
-					stops: [
-						[7, '#a5a5a5'],
-						[10, '#3f3b39']
-					]
-				},
-
+				'line-color': tokens.boundary_country,
 				'line-width': {
 					stops: [
 						[2, 0],

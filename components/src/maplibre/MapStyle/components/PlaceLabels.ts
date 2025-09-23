@@ -1,4 +1,3 @@
-import tokens from '../tokens';
 import type { SymbolLayerSpecification } from 'maplibre-gl';
 
 // Hand-authored list of place labes we want to show at low zoom levels
@@ -12,7 +11,7 @@ const majorCities = ['Berlin', 'Stuttgart', 'München', 'Frankfurt', 'Hamburg', 
 // values for "city" and anything below.
 // See: https://github.com/versatiles-org/shortbread-tilemaker/blob/69e5d4c586a1d2726b746a24829bfb05d4dbeb91/process.lua#L198-L242
 
-export default function makePlaceLabels() {
+export default function makePlaceLabels(tokens) {
 	const placeLabels: SymbolLayerSpecification[] = [
 		{
 			id: 'label-place-quarter',
@@ -195,7 +194,7 @@ export default function makePlaceLabels() {
 			},
 			paint: {
 				'text-color': tokens.label_tertiary,
-				'text-halo-color': 'white',
+				'text-halo-color': tokens.background,
 				'text-halo-width': 2,
 				'text-halo-blur': 0.5
 			}

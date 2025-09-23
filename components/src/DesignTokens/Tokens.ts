@@ -177,6 +177,10 @@ const semantics: ColourMap = {
 		dark: '#222325',
 		light: '#f1eeeb'
 	},
+	surfaceBorder: {
+		dark: '#4e4e4f',
+		light: '#f1eeeb'
+	},
 	pageFill: {
 		dark: '#0C0C0C',
 		light: '#fff'

@@ -1,52 +1,50 @@
-import tokens from '../tokens';
 import type { Layer } from '../../types';
 
-const rail = {
-	line_color: '#d3d3d3',
-	line_dasharray: [2, 2],
-	line_width: {
-		stops: [
-			[8, 1],
-			[13, 1],
-			[20, 2]
-		]
-	},
-	line_opacity: {
-		stops: [
-			[12, 0],
-			[13, 1]
-		]
-	}
-};
+export default function makeTransit(tokens) {
+	const rail = {
+		line_color: tokens.rail,
+		line_dasharray: [2, 2],
+		line_width: {
+			stops: [
+				[8, 1],
+				[13, 1],
+				[20, 2]
+			]
+		},
+		line_opacity: {
+			stops: [
+				[12, 0],
+				[13, 1]
+			]
+		}
+	};
 
-const rail_overlay = {
-	line_width: {
-		stops: [
-			[8, 1],
-			[13, 6],
-			[20, 12]
-		]
-	},
-	line_dasharray: [0.125, 6]
-};
+	const rail_overlay = {
+		line_width: {
+			stops: [
+				[8, 1],
+				[13, 6],
+				[20, 12]
+			]
+		},
+		line_dasharray: [0.125, 6]
+	};
 
-const rail_case = {
-	line_color: tokens.background,
-	line_width: {
-		stops: [
-			[13, 2],
-			[20, 4]
-		]
-	},
-	line_opacity: {
-		stops: [
-			[12, 0],
-			[13, 1]
-		]
-	}
-};
-
-export default function makeTransit() {
+	const rail_case = {
+		line_color: tokens.background,
+		line_width: {
+			stops: [
+				[13, 2],
+				[20, 4]
+			]
+		},
+		line_opacity: {
+			stops: [
+				[12, 0],
+				[13, 1]
+			]
+		}
+	};
 	const airports = [
 		{
 			id: 'airport-area',

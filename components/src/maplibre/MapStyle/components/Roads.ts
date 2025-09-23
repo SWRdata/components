@@ -297,7 +297,7 @@ export default function makeRoads(tokens) {
 				['!=', 'service', 'driveway']
 			],
 			paint: {
-				'line-color': 'rgb(217,217,217)',
+				'line-color': tokens.street_tertiary_case,
 				'line-width': {
 					stops: [
 						[14, 2],
@@ -320,23 +320,9 @@ export default function makeRoads(tokens) {
 			id: 'bridge-street-livingstreet:case',
 			filter: ['all', ['==', 'kind', 'living_street'], ['==', 'bridge', true]],
 			paint: {
-				'line-color': 'rgb(217,217,217)',
-				'line-width': {
-					stops: [
-						[12, 2],
-						[14, 3],
-						[16, 6],
-						[18, 26],
-						[19, 64],
-						[20, 128]
-					]
-				},
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
+				'line-color': street_residential_case.line_color,
+				'line-width': street_residential_case.line_width,
+				'line-opacity': street_residential_case.line_opacity
 			},
 			layout: street_layout
 		},
@@ -354,23 +340,9 @@ export default function makeRoads(tokens) {
 			id: 'bridge-street-unclassified:case',
 			filter: ['all', ['==', 'kind', 'unclassified'], ['==', 'bridge', true]],
 			paint: {
-				'line-color': 'rgb(217,217,217)',
-				'line-width': {
-					stops: [
-						[12, 2],
-						[14, 3],
-						[16, 6],
-						[18, 26],
-						[19, 64],
-						[20, 128]
-					]
-				},
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
+				'line-color': street_residential_case.line_color,
+				'line-width': street_residential_case.line_width,
+				'line-opacity': street_residential_case.line_opacity
 			},
 			layout: case_layout
 		},
@@ -445,7 +417,7 @@ export default function makeRoads(tokens) {
 				['!=', 'service', 'driveway']
 			],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[14, 1],
@@ -468,7 +440,7 @@ export default function makeRoads(tokens) {
 			id: 'bridge-street-livingstreet',
 			filter: ['all', ['==', 'kind', 'living_street'], ['==', 'bridge', true]],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -502,7 +474,7 @@ export default function makeRoads(tokens) {
 			id: 'bridge-street-unclassified',
 			filter: ['all', ['==', 'kind', 'unclassified'], ['==', 'bridge', true]],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -526,7 +498,7 @@ export default function makeRoads(tokens) {
 			id: 'bridge-street-tertiary-link',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'tertiary'], ['==', 'link', true]],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -578,7 +550,7 @@ export default function makeRoads(tokens) {
 			id: 'bridge-street-tertiary',
 			filter: ['all', ['==', 'bridge', true], ['in', 'kind', 'tertiary'], ['!=', 'link', true]],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -647,7 +619,7 @@ export default function makeRoads(tokens) {
 				['!=', 'service', 'driveway']
 			],
 			paint: {
-				'line-color': 'rgb(222,222,222)',
+				'line-color': tokens.street_tertiary_case,
 				'line-width': {
 					stops: [
 						[14, 2],
@@ -670,7 +642,7 @@ export default function makeRoads(tokens) {
 			id: 'tunnel-street-livingstreet:case',
 			filter: ['all', ['==', 'kind', 'living_street'], ['==', 'tunnel', true]],
 			paint: {
-				'line-color': 'rgb(222,222,222)',
+				'line-color': tokens.street_tertiary_case,
 				'line-width': {
 					stops: [
 						[12, 2],
@@ -704,7 +676,7 @@ export default function makeRoads(tokens) {
 			id: 'tunnel-street-unclassified:case',
 			filter: ['all', ['==', 'kind', 'unclassified'], ['==', 'tunnel', true]],
 			paint: {
-				'line-color': 'rgb(222,222,222)',
+				'line-color': tokens.street_tertiary_case,
 				'line-width': {
 					stops: [
 						[12, 2],
@@ -818,7 +790,7 @@ export default function makeRoads(tokens) {
 				['!=', 'service', 'driveway']
 			],
 			paint: {
-				'line-color': 'rgb(247,247,247)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[14, 1],
@@ -841,7 +813,7 @@ export default function makeRoads(tokens) {
 			id: 'tunnel-street-livingstreet',
 			filter: ['all', ['==', 'kind', 'living_street'], ['==', 'tunnel', true]],
 			paint: {
-				'line-color': 'rgb(247,247,247)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -880,7 +852,7 @@ export default function makeRoads(tokens) {
 			id: 'tunnel-street-unclassified',
 			filter: ['all', ['==', 'kind', 'unclassified'], ['==', 'tunnel', true]],
 			paint: {
-				'line-color': 'rgb(247,247,247)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -904,7 +876,7 @@ export default function makeRoads(tokens) {
 			id: 'tunnel-street-tertiary-link',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'tertiary'], ['==', 'link', true]],
 			paint: {
-				'line-color': 'rgb(247,247,247)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -959,7 +931,7 @@ export default function makeRoads(tokens) {
 			id: 'tunnel-street-tertiary',
 			filter: ['all', ['==', 'tunnel', true], ['in', 'kind', 'tertiary'], ['!=', 'link', true]],
 			paint: {
-				'line-color': 'rgb(247,247,247)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -1039,7 +1011,7 @@ export default function makeRoads(tokens) {
 				['!=', 'service', 'driveway']
 			],
 			paint: {
-				'line-color': 'hsl(36,0%,80%)',
+				'line-color': tokens.street_tertiary_case,
 				'line-width': {
 					stops: [
 						[14, 2],
@@ -1067,7 +1039,7 @@ export default function makeRoads(tokens) {
 				['!=', 'tunnel', true]
 			],
 			paint: {
-				'line-color': 'hsl(36,0%,80%)',
+				'line-color': tokens.street_tertiary_case,
 				'line-width': {
 					stops: [
 						[12, 2],
@@ -1111,7 +1083,7 @@ export default function makeRoads(tokens) {
 				['!=', 'tunnel', true]
 			],
 			paint: {
-				'line-color': 'hsl(36,0%,80%)',
+				'line-color': tokens.street_tertiary_case,
 				'line-width': {
 					stops: [
 						[12, 2],
@@ -1350,7 +1322,7 @@ export default function makeRoads(tokens) {
 				['==', 'link', true]
 			],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -1432,7 +1404,7 @@ export default function makeRoads(tokens) {
 				['!=', 'link', true]
 			],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],

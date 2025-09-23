@@ -12,7 +12,12 @@ const tokens = {
 	sans_regular: ['SWR Sans Regular'],
 	sans_medium: ['SWR Sans Medium'],
 	sans_bold: ['SWR Sans Bold'],
-	background: 'hsl(24, 29%, 98.5%)',
+	background: {
+		stops: [
+			[8, 'hsl(24, 29%, 98.5%)'],
+			[10, 'white']
+		]
+	},
 	water: 'hsl(210, 71%, 83%)',
 	water_light: 'hsl(210, 41%, 90%)',
 	water_ocean: 'hsl(209, 57%, 84%)',
@@ -28,16 +33,20 @@ const tokens = {
 	label_primary: 'hsl(240, 10%, 2%)',
 	label_secondary: 'hsl(0, 0%, 18%)',
 	label_tertiary: 'hsl(60, 1%, 50%)',
-	building: '#f3f2f1'
+	building: '#f3f2f1',
+	rail: '#d3d3d3',
+	sand: 'hsl(60,0%,95%)',
+	boundary_country: '#8b8a89',
+	boundary_country_case: 'white'
 };
 
-const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings();
 const { landuse } = makeLanduse(tokens);
-const { placeLabels, boundaryLabels } = makePlaceLabels();
-const { admin } = makeAdmin();
-const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit();
-const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking();
+const { placeLabels, boundaryLabels } = makePlaceLabels(tokens);
+const { admin } = makeAdmin(tokens);
+const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit(tokens);
+const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
 const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
+const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
 
 interface StyleOptions {
 	enableBuildingExtrusions?: boolean;
