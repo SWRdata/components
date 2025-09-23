@@ -71,10 +71,8 @@
 	.container {
 		background: white;
 		padding: 0.75em;
-		border-radius: 2px;
 		border: 1px solid rgba(0, 0, 0, 0.75);
-		border-radius: var(--br-small);
-		filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.1));
+		filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.1));
 		pointer-events: none;
 	}
 
@@ -148,24 +146,25 @@
 
 		.maplibregl-popup-close-button {
 			position: absolute;
-			top: 0.5em;
-			right: 0.5em;
+			top: 0.35em;
+			right: 0.35em;
 			cursor: pointer;
 			border-radius: 2px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			padding-bottom: 0.15em;
-			font-size: 1.25rem;
+			font-size: 1.2rem;
 			width: 1.1em;
 			height: 1.1em;
 			z-index: 100;
 			background: white;
+			color: var(--gray-dark-5);
 			border: 1px solid var(--gray-dark-5);
 		}
 
 		.maplibregl-popup-close-button:hover,
-		.maplibregl-popup-close-button:focus {
+		.maplibregl-popup-close-button:focus-visible {
 			background: var(--gray-light-5);
 		}
 
@@ -174,8 +173,8 @@
 			height: 0.65rem;
 			background: white;
 			position: absolute;
-			border-right: 1px solid rgba(0, 0, 0, 0.75);
-			border-bottom: 1px solid rgba(0, 0, 0, 0.75);
+			border-right: 1px solid var(--gray-dark-5);
+			border-bottom: 1px solid var(--gray-dark-5);
 			z-index: 10;
 		}
 	}
