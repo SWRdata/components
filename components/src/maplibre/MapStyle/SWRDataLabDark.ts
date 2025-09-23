@@ -22,8 +22,8 @@ const tokens = {
 	water_light: 'hsl(210, 12%, 8%)',
 	water_ocean: 'hsl(210, 12%, 8%)',
 	marsh: 'hsl(180, 3%, 35%)',
-	grass: 'hsl(170, 22%, 15%)',
-	grass_dark: 'hsl(170, 18%, 15%)',
+	grass: 'hsl(170, 20%, 14%)',
+	grass_dark: 'hsl(170, 16%, 12%)',
 	street_primary: 'hsl(220, 3%, 20%)',
 	street_primary_case: 'hsl(0, 11%, 7%)',
 	street_secondary: 'hsl(0, 0%, 22%)',
@@ -36,7 +36,7 @@ const tokens = {
 	boundary_country: '#6e6f71',
 	boundary_country_case: '#181818',
 	boundary_state: 'hsl(218, 4%, 37%)',
-	rail: '#a8a8a8',
+	rail: 'hsl(0, 0%, 33%)',
 	sand: 'hsl(0, 0%, 16%)',
 	building: '#232325'
 };
