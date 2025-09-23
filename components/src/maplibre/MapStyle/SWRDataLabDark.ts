@@ -12,32 +12,32 @@ const tokens = {
 	sans_regular: ['SWR Sans Regular'],
 	sans_medium: ['SWR Sans Medium'],
 	sans_bold: ['SWR Sans Bold'],
-	background: 'hsl(24, 29%, 98.5%)',
-	water: 'hsl(210, 71%, 83%)',
-	water_light: 'hsl(210, 41%, 90%)',
-	water_ocean: 'hsl(209, 57%, 84%)',
+	background: 'hsl(220, 9%, 14%)',
+	water: 'hsl(210, 31%, 15%)',
+	water_light: 'hsl(210, 31%, 12%)',
+	water_ocean: 'hsl(210, 12%, 10%)',
 	marsh: 'hsl(200, 14%, 97%)',
 	grass: 'hsl(133, 36%, 95%)',
 	grass_dark: 'hsl(127, 49%, 93%)',
-	street_primary: 'hsl(0, 4%, 95%)',
+	street_primary: 'hsl(220, 5%, 25%)',
 	street_primary_case: 'hsl(240, 1%, 84%)',
 	street_secondary: 'hsl(0, 0%, 95%)',
 	street_secondary_case: 'hsl(0, 0%, 75%)',
 	street_tertiary: 'hsl(0, 0%, 95%)',
 	street_tertiary_case: 'hsl(0, 0%, 70%)',
-	label_primary: 'hsl(240, 10%, 2%)',
-	label_secondary: 'hsl(0, 0%, 18%)',
-	label_tertiary: 'hsl(60, 1%, 50%)',
+	label_primary: 'hsl(240, 5%, 82%)',
+	label_secondary: 'hsl(0, 2%, 72%)',
+	label_tertiary: 'hsl(0, 0%, 64%)',
 	building: '#f3f2f1'
 };
 
-const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings();
 const { landuse } = makeLanduse(tokens);
 const { placeLabels, boundaryLabels } = makePlaceLabels();
 const { admin } = makeAdmin();
 const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit();
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking();
 const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
+const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings();
 
 interface StyleOptions {
 	enableBuildingExtrusions?: boolean;
@@ -55,7 +55,7 @@ const style: styleFunction = (opts) => {
 
 	return {
 		version: 8,
-		name: 'swr-datalab-light',
+		name: 'swr-datalab-dark',
 		metadata: { license: 'https://creativecommons.org/publicdomain/zero/1.0/' },
 		glyphs: 'https://static.datenhub.net/maps/fonts/{fontstack}/{range}.pbf',
 		sprite: 'https://static.datenhub.net/maps/styles/swr-datalab-light/sprite/sprite',

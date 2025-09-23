@@ -147,9 +147,7 @@
 		}
 	});
 
-	const debugValues = $derived(
-		Object.entries({ ...center, zoom, pitch, allowZoom, allowRotation })
-	);
+	const debugValues = $derived(Object.entries({ zoom, pitch, allowZoom, allowRotation }));
 	const handleDebugValueClick = (e: MouseEvent) => {
 		if (e.target) {
 			const t = e.target as HTMLElement;
@@ -173,6 +171,9 @@
 	{/if}
 	{#if showDebug}
 		<ul class="debug">
+			<li>
+				[{center?.lat.toFixed(2)}, {center?.lng.toFixed(2)}]
+			</li>
 			{#each debugValues as [key, value]}
 				<li>
 					{key}:
@@ -199,8 +200,11 @@
 		background: rgba(0, 0, 0, 0.9);
 		color: white;
 		z-index: 1000;
-		padding: 2px;
+		padding: 5px;
+		font-size: 10px;
 		font-family: monospace;
+		display: flex;
+		gap: 1em;
 		li {
 			list-style: none;
 		}
@@ -209,6 +213,7 @@
 			background: transparent;
 			font-family: inherit;
 			color: inherit;
+			font-size: inherit;
 			border: 0;
 			cursor: pointer;
 			&:hover,
