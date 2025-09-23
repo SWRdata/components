@@ -305,8 +305,8 @@
 		}
 
 		.maplibregl-ctrl-group {
-			background: white;
-			border: 1px solid rgba(0, 0, 0, 0.75);
+			background: var(--color-surfaceFill);
+			border: 1px solid var(--color-surfaceBorder);
 			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.075);
 			border-radius: var(--br-small);
 			overflow: hidden;
@@ -314,6 +314,7 @@
 
 		.maplibregl-ctrl-group button {
 			background-color: transparent;
+			color: var(--color-textPrimary);
 			border: 0;
 			box-sizing: border-box;
 			cursor: pointer;
@@ -345,7 +346,7 @@
 		}
 
 		.maplibregl-ctrl button:not(:disabled):hover {
-			background-color: var(--gray-light-5);
+			background-color: var(--color-surfaceHover);
 		}
 
 		.maplibregl-ctrl-group button:focus:focus-visible {

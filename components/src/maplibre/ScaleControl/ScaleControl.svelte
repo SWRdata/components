@@ -16,6 +16,7 @@
 	:global {
 		.maplibregl-ctrl-scale {
 			color: inherit;
+			color: var(--color-textPrimary);
 			border-bottom: 1px solid currentColor;
 			font-weight: 400;
 			font-size: var(--fs-small-3);
