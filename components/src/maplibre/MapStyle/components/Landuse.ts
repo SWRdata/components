@@ -52,7 +52,7 @@ export default function makeLanduse(tokens): any {
 			'source-layer': 'land',
 			filter: ['all', ['in', 'kind', 'landfill']],
 			paint: {
-				'fill-color': 'hsl(50,0%,95%)',
+				'fill-color': tokens.sand,
 				'fill-opacity': {
 					stops: [
 						[10, 0],

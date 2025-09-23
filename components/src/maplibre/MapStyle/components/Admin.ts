@@ -105,7 +105,7 @@ export default function makeAdmin(tokens): any {
 						[10, 4]
 					]
 				},
-				'line-color': 'hsl(246,0%,77%)',
+				'line-color': tokens.boundary_country,
 				'line-dasharray': [2, 1]
 			}
 		},
@@ -119,7 +119,7 @@ export default function makeAdmin(tokens): any {
 				['!=', 'coastline', true]
 			],
 			paint: {
-				'line-color': 'hsl(37, 10%, 75%)',
+				'line-color': tokens.boundary_state,
 				'line-width': {
 					stops: [
 						[7, 1],

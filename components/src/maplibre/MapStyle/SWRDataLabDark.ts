@@ -28,16 +28,17 @@ const tokens = {
 	street_primary_case: 'hsl(0, 11%, 7%)',
 	street_secondary: 'hsl(0, 0%, 22%)',
 	street_secondary_case: 'hsl(0, 0%, 0%)',
-	street_tertiary: 'hsl(0, 0%, 32%)',
-	street_tertiary_case: 'hsl(0, 0%, 44%)',
+	street_tertiary: 'hsl(0, 0%, 20%)',
+	street_tertiary_case: 'hsl(0, 0%, 14%)',
 	label_primary: 'hsl(240, 5%, 82%)',
 	label_secondary: 'hsl(0, 2%, 72%)',
 	label_tertiary: 'hsl(0, 1%, 55%)',
 	boundary_country: '#6e6f71',
 	boundary_country_case: '#181818',
+	boundary_state: 'hsl(218, 4%, 37%)',
 	rail: '#a8a8a8',
 	sand: 'hsl(0, 0%, 16%)',
-	building: '#59595e'
+	building: '#232325'
 };
 
 const { landuse } = makeLanduse(tokens);
@@ -96,7 +97,7 @@ const style: styleFunction = (opts) => {
 		sky: {
 			'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 0.1, 5, 0.1, 7, 0]
 		},
-		light: { anchor: 'viewport', color: 'white', intensity: 0.175 },
+		light: { anchor: 'viewport', color: 'white', intensity: 0.5 },
 		layers: [
 			// 1. Landuse
 			...landuse,

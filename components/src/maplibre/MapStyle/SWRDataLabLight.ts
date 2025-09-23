@@ -37,6 +37,7 @@ const tokens = {
 	rail: '#d3d3d3',
 	sand: 'hsl(60,0%,95%)',
 	boundary_country: '#8b8a89',
+	boundary_state: 'hsl(37, 10%, 75%)',
 	boundary_country_case: 'white'
 };
 
