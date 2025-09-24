@@ -69,7 +69,7 @@
 	}}
 >
 	<div class="container">
-		<DesignTokens>
+		<DesignTokens theme="light">
 			<Map style={SWRDataLabLight()}>
 				<ScaleControl />
 				<AttributionControl />
@@ -105,7 +105,7 @@
 	}}
 >
 	<div class="container">
-		<DesignTokens>
+		<DesignTokens theme="light">
 			<button
 				data-testid="flyto-berlin"
 				onclick={() => {
@@ -133,7 +133,7 @@
 
 <Story asChild name="Globe Projection">
 	<div class="container">
-		<DesignTokens>
+		<DesignTokens theme="light">
 			<Map
 				style={SWRDataLabLight()}
 				showDebug
@@ -151,12 +151,12 @@
 </Story>
 <Story asChild name="Cooperative Gestures">
 	<div class="container">
-		<DesignTokens>
+		<DesignTokens theme="light">
 			<div class="placeholder">Placeholder</div>
 			<Map
+				showDebug
 				cooperativeGestures
 				style={SWRDataLabLight()}
-				showDebug
 				initialLocation={{ lat: 51.3, lng: 10.2, zoom: 5 }}
 			>
 				<ScaleControl />
@@ -170,7 +170,7 @@
 
 <Story asChild name="Alternate Style">
 	<div class="container dark">
-		<DesignTokens>
+		<DesignTokens theme="dark">
 			<Map style={alternateStyle}>
 				<ScaleControl />
 				<AttributionControl />
