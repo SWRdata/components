@@ -1,6 +1,7 @@
 // Design Tokens
 export { default as DesignTokens } from './DesignTokens/DesignTokens.svelte';
 export { tokens as tokens } from './DesignTokens/index.js';
+export { default as isDarkMode } from './isDarkMode/isDarkMode.svelte';
 
 // Typography
 export { default as Headline } from './Headline/Headline.svelte';
