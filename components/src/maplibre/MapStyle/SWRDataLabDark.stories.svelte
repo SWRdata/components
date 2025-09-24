@@ -8,6 +8,7 @@
 
 	import { SWRDataLabDark } from './index';
 	import locations from './storyLocations';
+	import NavigationControl from '../NavigationControl/NavigationControl.svelte';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Style/SWR Data Lab Dark',
@@ -22,6 +23,7 @@
 				<Map showDebug style={SWRDataLabDark()} initialLocation={locations.germany}>
 					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 					<AttributionControl position="bottom-left" />
+					<NavigationControl />
 				</Map>
 			</div>
 		</div>

@@ -326,7 +326,7 @@
 		}
 
 		.maplibregl-ctrl-group button + button {
-			border-top: 1px solid rgba(0, 0, 0, 0.35);
+			border-top: 1px solid var(--color-surfaceBorder);
 		}
 
 		.maplibregl-ctrl button .maplibregl-ctrl-icon {
@@ -358,11 +358,11 @@
 		}
 
 		.maplibregl-ctrl-group button:focus:first-child {
-			border-radius: 4px 4px 0 0;
+			border-radius: 2px 2px 0 0;
 		}
 
 		.maplibregl-ctrl-group button:focus:last-child {
-			border-radius: 0 0 4px 4px;
+			border-radius: 0 0 2px 2px;
 		}
 
 		.maplibregl-ctrl-group button:focus:only-child {
