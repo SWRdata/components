@@ -31,7 +31,7 @@
 		});
 	}}
 >
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
@@ -56,7 +56,7 @@
 		});
 	}}
 >
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<GeocoderControl
@@ -71,7 +71,7 @@
 </Story>
 
 <Story asChild name="Long input">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<GeocoderControl

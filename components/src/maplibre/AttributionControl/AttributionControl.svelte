@@ -24,6 +24,7 @@
 			letter-spacing: 0.005em;
 			word-spacing: 0.005em;
 			font-family: var(--swr-sans);
+			color: var(--color-textSecondary);
 		}
 		.maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner {
 			display: block;

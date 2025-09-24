@@ -1,18 +1,12 @@
-import tokens from '../tokens';
 import { type Layer } from '../../types';
 
-export default function makeLanduse(): any {
+export default function makeLanduse(tokens): any {
 	const landuse: Layer[] = [
 		{
 			id: 'background',
 			type: 'background',
 			paint: {
-				'background-color': {
-					stops: [
-						[8, tokens.background],
-						[10, 'white']
-					]
-				}
+				'background-color': tokens.background
 			}
 		},
 		{
@@ -21,15 +15,6 @@ export default function makeLanduse(): any {
 			'source-layer': 'ocean',
 			paint: {
 				'fill-color': tokens.water_ocean
-			}
-		},
-		{
-			id: 'land-glacier',
-			type: 'fill',
-			'source-layer': 'water_polygons',
-			filter: ['all', ['==', 'kind', 'glacier']],
-			paint: {
-				'fill-color': 'hsl(0,0%,100%)'
 			}
 		},
 		{
@@ -67,7 +52,7 @@ export default function makeLanduse(): any {
 			'source-layer': 'land',
 			filter: ['all', ['in', 'kind', 'landfill']],
 			paint: {
-				'fill-color': 'hsl(50,0%,95%)',
+				'fill-color': tokens.sand,
 				'fill-opacity': {
 					stops: [
 						[10, 0],
@@ -165,9 +150,9 @@ export default function makeLanduse(): any {
 			id: 'land-sand',
 			type: 'fill',
 			'source-layer': 'land',
-			filter: ['all', ['in', 'kind', 'beach', 'sand']],
+			filter: ['all', ['in', 'kind', 'beach', 'sand', 'scree']],
 			paint: {
-				'fill-color': 'hsl(60,0%,95%)'
+				'fill-color': tokens.sand
 			}
 		},
 		{

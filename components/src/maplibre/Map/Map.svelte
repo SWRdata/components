@@ -147,9 +147,7 @@
 		}
 	});
 
-	const debugValues = $derived(
-		Object.entries({ ...center, zoom, pitch, allowZoom, allowRotation })
-	);
+	const debugValues = $derived(Object.entries({ zoom, pitch, allowZoom, allowRotation }));
 	const handleDebugValueClick = (e: MouseEvent) => {
 		if (e.target) {
 			const t = e.target as HTMLElement;
@@ -173,10 +171,12 @@
 	{/if}
 	{#if showDebug}
 		<ul class="debug">
+			<li>
+				[{center?.lat.toFixed(2)}, {center?.lng.toFixed(2)}]
+			</li>
 			{#each debugValues as [key, value]}
 				<li>
-					{key}:
-					<button onclick={handleDebugValueClick}
+					{key}=<button onclick={handleDebugValueClick}
 						>{value?.toLocaleString('en', { maximumSignificantDigits: 6 })}</button
 					>
 				</li>
@@ -196,11 +196,14 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-		background: rgba(0, 0, 0, 0.9);
+		background: rgba(0, 0, 0, 0.75);
 		color: white;
 		z-index: 1000;
 		padding: 2px;
+		font-size: 10px;
 		font-family: monospace;
+		display: flex;
+		gap: 1em;
 		li {
 			list-style: none;
 		}
@@ -209,7 +212,9 @@
 			background: transparent;
 			font-family: inherit;
 			color: inherit;
+			font-size: inherit;
 			border: 0;
+			text-transform: uppercase;
 			cursor: pointer;
 			&:hover,
 			&:focus-visible {
@@ -300,8 +305,8 @@
 		}
 
 		.maplibregl-ctrl-group {
-			background: white;
-			border: 1px solid rgba(0, 0, 0, 0.75);
+			background: var(--color-surfaceFill);
+			border: 1px solid var(--color-surfaceBorder);
 			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.075);
 			border-radius: var(--br-small);
 			overflow: hidden;
@@ -309,6 +314,7 @@
 
 		.maplibregl-ctrl-group button {
 			background-color: transparent;
+			color: var(--color-textPrimary);
 			border: 0;
 			box-sizing: border-box;
 			cursor: pointer;
@@ -320,7 +326,7 @@
 		}
 
 		.maplibregl-ctrl-group button + button {
-			border-top: 1px solid rgba(0, 0, 0, 0.35);
+			border-top: 1px solid var(--color-surfaceBorder);
 		}
 
 		.maplibregl-ctrl button .maplibregl-ctrl-icon {
@@ -340,7 +346,7 @@
 		}
 
 		.maplibregl-ctrl button:not(:disabled):hover {
-			background-color: var(--gray-light-5);
+			background-color: var(--color-surfaceHover);
 		}
 
 		.maplibregl-ctrl-group button:focus:focus-visible {
@@ -352,11 +358,11 @@
 		}
 
 		.maplibregl-ctrl-group button:focus:first-child {
-			border-radius: 4px 4px 0 0;
+			border-radius: 2px 2px 0 0;
 		}
 
 		.maplibregl-ctrl-group button:focus:last-child {
-			border-radius: 0 0 4px 4px;
+			border-radius: 0 0 2px 2px;
 		}
 
 		.maplibregl-ctrl-group button:focus:only-child {
@@ -369,7 +375,7 @@
 			will-change: transform;
 		}
 		.maplibregl-marker path {
-			fill: var(--violet-dark-5);
+			fill: var(--color-textPrimary);
 		}
 		.maplibregl-cooperative-gesture-screen {
 			align-items: center;

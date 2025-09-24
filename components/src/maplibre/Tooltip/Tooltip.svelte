@@ -69,7 +69,8 @@
 
 <style lang="scss">
 	.container {
-		background: white;
+		background: var(--color-surfaceFill);
+		color: var(--color-textPrimary);
 		padding: 0.75em;
 		border: 1px solid rgba(0, 0, 0, 0.75);
 		filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.1));
@@ -171,7 +172,7 @@
 		.maplibregl-popup-tip {
 			width: 0.65rem;
 			height: 0.65rem;
-			background: white;
+			background: var(--color-surfaceFill);
 			position: absolute;
 			border-right: 1px solid var(--gray-dark-5);
 			border-bottom: 1px solid var(--gray-dark-5);

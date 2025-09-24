@@ -1,5 +1,4 @@
 import { type Layer } from '../../types';
-import tokens from '../tokens';
 import type { SymbolLayerSpecification } from 'maplibre-gl';
 
 const street_layout = {
@@ -7,27 +6,27 @@ const street_layout = {
 	'line-cap': 'butt'
 };
 
-const street_residential = {
-	line_color: tokens.street_tertiary,
-	line_width: {
-		stops: [
-			[13, 1],
-			[14, 2],
-			[16, 5],
-			[18, 24],
-			[19, 60],
-			[20, 120]
-		]
-	},
-	line_opacity: {
-		stops: [
-			[12, 0],
-			[13, 1]
-		]
-	}
-};
+export default function makeWalking(tokens): any {
+	const street_residential = {
+		line_color: tokens.street_tertiary,
+		line_width: {
+			stops: [
+				[13, 1],
+				[14, 2],
+				[16, 5],
+				[18, 24],
+				[19, 60],
+				[20, 120]
+			]
+		},
+		line_opacity: {
+			stops: [
+				[12, 0],
+				[13, 1]
+			]
+		}
+	};
 
-export default function makeWalking(): any {
 	const walkingTunnels: Layer[] = [
 		{
 			id: 'tunnel-street-pedestrian-zone',
@@ -35,7 +34,7 @@ export default function makeWalking(): any {
 			'source-layer': 'street_polygons',
 			filter: ['all', ['==', 'tunnel', true], ['==', 'kind', 'pedestrian']],
 			paint: {
-				'fill-color': 'rgb(247,247,247)',
+				'fill-color': tokens.street_tertiary,
 				'fill-opacity': {
 					stops: [
 						[12, 0],
@@ -62,7 +61,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'hsl(0,0%,86%)'
+				'line-color': tokens.street_tertiary_case
 			},
 			minzoom: 15
 		},
@@ -84,7 +83,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'hsl(0,0%,86%)'
+				'line-color': tokens.street_tertiary_case
 			},
 			minzoom: 15
 		},
@@ -106,7 +105,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'hsl(0,0%,86%)'
+				'line-color': tokens.street_tertiary_case
 			},
 			minzoom: 15
 		},
@@ -128,7 +127,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'hsl(0,0%,87%)'
+				'line-color': tokens.street_tertiary_case
 			},
 			minzoom: 15
 		},
@@ -139,7 +138,7 @@ export default function makeWalking(): any {
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'track'], ['==', 'tunnel', true]],
 			paint: {
-				'line-color': 'rgb(222,222,222)',
+				'line-color': tokens.street_secondary_case,
 				'line-width': {
 					stops: [
 						[14, 2],
@@ -167,7 +166,7 @@ export default function makeWalking(): any {
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'pedestrian'], ['==', 'tunnel', true]],
 			paint: {
-				'line-color': 'rgb(222,222,222)',
+				'line-color': tokens.street_tertiary_case,
 				'line-width': {
 					stops: [
 						[12, 2],
@@ -208,7 +207,7 @@ export default function makeWalking(): any {
 						[20, 20]
 					]
 				},
-				'line-color': 'hsl(0,0%,94%)',
+				'line-color': tokens.street_tertiary,
 				'line-dasharray': [1, 0.2]
 			},
 			minzoom: 15
@@ -231,7 +230,7 @@ export default function makeWalking(): any {
 						[20, 20]
 					]
 				},
-				'line-color': 'hsl(0,0%,94%)',
+				'line-color': tokens.street_tertiary,
 				'line-dasharray': [1, 0.2]
 			},
 			minzoom: 15
@@ -254,7 +253,7 @@ export default function makeWalking(): any {
 						[20, 20]
 					]
 				},
-				'line-color': 'hsl(0,0%,94%)',
+				'line-color': tokens.street_tertiary,
 				'line-dasharray': [1, 0.2]
 			},
 			minzoom: 15
@@ -277,7 +276,7 @@ export default function makeWalking(): any {
 						[20, 20]
 					]
 				},
-				'line-color': 'hsl(0,0%,95%)',
+				'line-color': tokens.street_tertiary,
 				'line-dasharray': [1, 0.2]
 			},
 			minzoom: 15
@@ -288,7 +287,7 @@ export default function makeWalking(): any {
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'track'], ['==', 'tunnel', true]],
 			paint: {
-				'line-color': 'rgb(247,247,247)',
+				'line-color': tokens.street_secondary,
 				'line-width': {
 					stops: [
 						[14, 1],
@@ -316,7 +315,7 @@ export default function makeWalking(): any {
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'pedestrian'], ['==', 'tunnel', true]],
 			paint: {
-				'line-color': 'rgb(247,247,247)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -350,7 +349,7 @@ export default function makeWalking(): any {
 				['==', 'tunnel', true]
 			],
 			paint: {
-				'line-color': 'hsl(203,0%,97%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -398,7 +397,7 @@ export default function makeWalking(): any {
 				['==', 'tunnel', true]
 			],
 			paint: {
-				'line-color': 'hsl(203,0%,97%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -429,7 +428,7 @@ export default function makeWalking(): any {
 				['==', 'tunnel', true]
 			],
 			paint: {
-				'line-color': 'rgb(247,247,247)'
+				'line-color': tokens.street_tertiary
 			},
 			layout: {
 				'line-join': 'round',
@@ -447,7 +446,7 @@ export default function makeWalking(): any {
 				['==', 'tunnel', true]
 			],
 			paint: {
-				'line-color': 'hsl(203,0%,97%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -479,7 +478,7 @@ export default function makeWalking(): any {
 				['!=', 'service', 'driveway']
 			],
 			paint: {
-				'line-color': 'rgb(247,247,247)'
+				'line-color': tokens.street_tertiary
 			},
 			layout: {
 				'line-join': 'round',
@@ -509,7 +508,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'rgb(220,220,220)'
+				'line-color': tokens.street_tertiary
 			},
 			minzoom: 15
 		},
@@ -532,7 +531,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'rgb(220,220,220)'
+				'line-color': tokens.street_tertiary_case
 			}
 		},
 		{
@@ -554,7 +553,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'rgb(220,220,220)'
+				'line-color': tokens.street_tertiary_case
 			}
 		},
 		{
@@ -575,7 +574,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'rgb(222,222,222)'
+				'line-color': tokens.street_tertiary
 			},
 			minzoom: 15
 		},
@@ -585,7 +584,7 @@ export default function makeWalking(): any {
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'track'], ['!=', 'bridge', true], ['!=', 'tunnel', true]],
 			paint: {
-				'line-color': 'hsl(36,0%,80%)',
+				'line-color': tokens.street_secondary_case,
 				'line-width': {
 					stops: [
 						[14, 2],
@@ -651,7 +650,7 @@ export default function makeWalking(): any {
 						[20, 20]
 					]
 				},
-				'line-color': 'rgb(245,245,245)'
+				'line-color': tokens.street_tertiary
 			},
 			minzoom: 15
 		},
@@ -673,7 +672,7 @@ export default function makeWalking(): any {
 						[20, 20]
 					]
 				},
-				'line-color': 'rgb(245,245,245)'
+				'line-color': tokens.street_tertiary
 			},
 			minzoom: 15
 		},
@@ -695,7 +694,7 @@ export default function makeWalking(): any {
 						[20, 20]
 					]
 				},
-				'line-color': 'rgb(245,245,245)'
+				'line-color': tokens.street_tertiary
 			},
 			minzoom: 15
 		},
@@ -717,7 +716,7 @@ export default function makeWalking(): any {
 						[20, 20]
 					]
 				},
-				'line-color': 'hsl(203,0%,97%)'
+				'line-color': tokens.street_tertiary
 			},
 			minzoom: 15
 		},
@@ -727,7 +726,7 @@ export default function makeWalking(): any {
 			'source-layer': 'streets',
 			filter: ['all', ['==', 'kind', 'track'], ['!=', 'bridge', true], ['!=', 'tunnel', true]],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[14, 1],
@@ -771,153 +770,6 @@ export default function makeWalking(): any {
 				}
 			},
 			layout: street_layout
-		},
-		{
-			id: 'street-track-bicycle',
-			type: 'line',
-			'source-layer': 'streets',
-			filter: [
-				'all',
-				['==', 'kind', 'track'],
-				['==', 'bicycle', 'designated'],
-				['!=', 'bridge', true],
-				['!=', 'tunnel', true]
-			],
-			paint: {
-				'line-color': 'hsl(0,0%,100%)'
-			},
-			layout: street_layout
-		},
-		{
-			id: 'street-pedestrian-bicycle',
-			type: 'line',
-			'source-layer': 'streets',
-			filter: [
-				'all',
-				['==', 'kind', 'pedestrian'],
-				['==', 'bicycle', 'designated'],
-				['!=', 'bridge', true],
-				['!=', 'tunnel', true]
-			],
-			paint: {
-				'line-color': 'hsl(203,0%,97%)',
-				'line-width': {
-					stops: [
-						[12, 1],
-						[14, 2],
-						[16, 5],
-						[18, 24],
-						[19, 60],
-						[20, 120]
-					]
-				},
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
-			},
-			layout: street_layout
-		},
-		{
-			id: 'street-service-bicycle',
-			type: 'line',
-			'source-layer': 'streets',
-			filter: [
-				'all',
-				['==', 'kind', 'service'],
-				['==', 'bicycle', 'designated'],
-				['!=', 'bridge', true],
-				['!=', 'tunnel', true],
-				['!=', 'service', 'driveway']
-			],
-			paint: {
-				'line-color': 'hsl(0,0%,100%)'
-			},
-			layout: street_layout
-		},
-		{
-			id: 'street-livingstreet-bicycle',
-			type: 'line',
-			'source-layer': 'streets',
-			filter: [
-				'all',
-				['==', 'kind', 'living_street'],
-				['==', 'bicycle', 'designated'],
-				['!=', 'bridge', true],
-				['!=', 'tunnel', true]
-			],
-			paint: {
-				'line-color': 'hsl(203,0%,97%)',
-				'line-width': {
-					stops: [
-						[12, 1],
-						[14, 2],
-						[16, 5],
-						[18, 24],
-						[19, 60],
-						[20, 120]
-					]
-				},
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
-			},
-			layout: street_layout
-		},
-		{
-			id: 'street-residential-bicycle',
-			type: 'line',
-			'source-layer': 'streets',
-			filter: [
-				'all',
-				['==', 'kind', 'residential'],
-				['==', 'bicycle', 'designated'],
-				['!=', 'bridge', true],
-				['!=', 'tunnel', true]
-			],
-			paint: {
-				'line-color': street_residential.line_color,
-				'line-width': street_residential.line_width,
-				'line-opacity': street_residential.line_opacity
-			},
-			layout: street_layout
-		},
-		{
-			id: 'street-unclassified-bicycle',
-			type: 'line',
-			'source-layer': 'streets',
-			filter: [
-				'all',
-				['==', 'kind', 'unclassified'],
-				['==', 'bicycle', 'designated'],
-				['!=', 'bridge', true],
-				['!=', 'tunnel', true]
-			],
-			paint: {
-				'line-color': 'hsl(203,0%,97%)',
-				'line-width': {
-					stops: [
-						[12, 1],
-						[14, 2],
-						[16, 5],
-						[18, 24],
-						[19, 60],
-						[20, 120]
-					]
-				},
-				'line-opacity': {
-					stops: [
-						[12, 0],
-						[13, 1]
-					]
-				}
-			},
-			layout: street_layout
 		}
 	].map((el) => {
 		return { source: 'versatiles-osm', ...el } as Layer;
@@ -930,7 +782,7 @@ export default function makeWalking(): any {
 			'source-layer': 'street_polygons',
 			filter: ['all', ['==', 'bridge', true], ['==', 'kind', 'pedestrian']],
 			paint: {
-				'fill-color': 'hsl(0,0%,100%)',
+				'fill-color': tokens.street_tertiary,
 				'fill-opacity': {
 					stops: [
 						[12, 0],
@@ -956,7 +808,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'rgb(220,220,220)'
+				'line-color': tokens.street_tertiary_case
 			}
 		},
 		{
@@ -976,7 +828,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'rgb(220,220,220)'
+				'line-color': tokens.street_tertiary_case
 			}
 		},
 		{
@@ -995,7 +847,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'rgb(220,220,220)'
+				'line-color': tokens.street_tertiary_case
 			},
 			minzoom: 15
 		},
@@ -1015,7 +867,7 @@ export default function makeWalking(): any {
 						[20, 22]
 					]
 				},
-				'line-color': 'rgb(222,222,222)'
+				'line-color': tokens.street_tertiary_case
 			},
 			minzoom: 15
 		},
@@ -1023,7 +875,7 @@ export default function makeWalking(): any {
 			id: 'bridge-street-track:case',
 			filter: ['all', ['==', 'kind', 'track'], ['==', 'bridge', true]],
 			paint: {
-				'line-color': 'rgb(217,217,217)',
+				'line-color': tokens.street_tertiary_case,
 				'line-width': {
 					stops: [
 						[14, 2],
@@ -1046,7 +898,7 @@ export default function makeWalking(): any {
 			id: 'bridge-street-pedestrian:case',
 			filter: ['all', ['==', 'kind', 'pedestrian'], ['==', 'bridge', true]],
 			paint: {
-				'line-color': 'rgb(217,217,217)',
+				'line-color': tokens.street_tertiary_case,
 				'line-width': {
 					stops: [
 						[12, 2],
@@ -1173,7 +1025,7 @@ export default function makeWalking(): any {
 			id: 'bridge-street-pedestrian',
 			filter: ['all', ['==', 'kind', 'pedestrian'], ['==', 'bridge', true]],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -1245,7 +1097,7 @@ export default function makeWalking(): any {
 				['!=', 'service', 'driveway']
 			],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)'
+				'line-color': tokens.street_tertiary
 			},
 			layout: street_layout
 		},
@@ -1258,7 +1110,7 @@ export default function makeWalking(): any {
 				['==', 'bridge', true]
 			],
 			paint: {
-				'line-color': 'hsl(203,0%,97%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -1302,7 +1154,7 @@ export default function makeWalking(): any {
 				['==', 'bridge', true]
 			],
 			paint: {
-				'line-color': 'hsl(203,0%,97%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[12, 1],
@@ -1352,8 +1204,8 @@ export default function makeWalking(): any {
 				}
 			},
 			paint: {
-				'text-color': 'hsl(240,0%,23%)',
-				'text-halo-color': 'hsla(0,0%,100%,0.8)',
+				'text-color': tokens.label_secondary,
+				'text-halo-color': tokens.background,
 				'text-halo-width': 2,
 				'text-halo-blur': 1
 			}

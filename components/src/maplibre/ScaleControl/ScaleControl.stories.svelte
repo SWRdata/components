@@ -5,7 +5,7 @@
 	import ScaleControl from './ScaleControl.svelte';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import Map from '../Map/Map.svelte';
-	import { SWRDataLabLight } from '../MapStyle';
+	import { SWRDataLabLight, SWRDataLabDark } from '../MapStyle';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Control/ScaleControl',
@@ -29,7 +29,7 @@
 		});
 	}}
 >
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<ScaleControl />
@@ -54,7 +54,7 @@
 		});
 	}}
 >
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<ScaleControl unit="imperial" />

@@ -9,24 +9,16 @@
 	import GeocoderControl from '../GeocoderControl/GeocoderControl.svelte';
 
 	import { SWRDataLabLight } from './index';
-	import { tokens } from '../../DesignTokens';
+	import locations from './storyLocations';
+
 	const { Story } = defineMeta({
 		title: 'Maplibre/Style/SWR Data Lab Light',
 		component: Map
 	});
-
-	const locations = {
-		germany: { lng: 10.962488768573053, lat: 50.958636214954396, zoom: 5 },
-		stugge: { lng: 9.181, lat: 48.772, zoom: 13.5 },
-		berlin: { lng: 13.399, lat: 52.5159, zoom: 12.1977 },
-		frankfurt: { lng: 8.68834, lat: 50.1082, zoom: 11.7923 },
-		badenBaden: { lng: 8.23986, lat: 48.7595, zoom: 14.99, pitch: 0 },
-		bodensee: { lng: 9.299862991860664, lat: 47.6693427120762, zoom: 9.098834549261177, pitch: 0 }
-	};
 </script>
 
 <Story asChild name="Default">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.germany}>
@@ -38,7 +30,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="fix/122">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -85,7 +77,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="fix/118">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -145,7 +137,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="fix/115">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -165,7 +157,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="fix/114">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -186,7 +178,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Bodensee z9">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.bodensee}>
@@ -197,7 +189,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Frankfurt z11">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -212,7 +204,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Berlin z12">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.berlin}>
@@ -223,7 +215,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Stuttgart z13">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.stugge}>
@@ -234,7 +226,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Baden-Baden z15">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -249,19 +241,10 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Motorway Interchange z14">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
-				<Map
-					showDebug
-					style={SWRDataLabLight()}
-					initialLocation={{
-						lng: 13.557043617975637,
-						lat: 52.31981845532215,
-						zoom: 14.215291362684706,
-						pitch: 0
-					}}
-				>
+				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.motorwayz14}>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>
@@ -269,19 +252,14 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Building Extrusions">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
 					showDebug
 					style={SWRDataLabLight({ enableBuildingExtrusions: true })}
 					maxZoom={20}
-					initialLocation={{
-						lng: 9.180503103314436,
-						lat: 48.77521391139953,
-						zoom: 16,
-						pitch: 45
-					}}
+					initialLocation={locations.buildings}
 				>
 					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 					<AttributionControl position="bottom-left" />

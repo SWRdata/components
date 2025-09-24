@@ -24,7 +24,7 @@
 </script>
 
 <Story asChild name="Default">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map
 				style={SWRDataLabLight()}
@@ -94,7 +94,7 @@
 </Story>
 
 <Story asChild name="Show on Click">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map
 				style={SWRDataLabLight()}
