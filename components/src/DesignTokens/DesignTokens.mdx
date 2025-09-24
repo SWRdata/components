@@ -36,20 +36,20 @@ import * as NoteStories from '../Note/Note.stories.svelte';
 
 ### Web
 
-The `<DesignTokens>` component makes colours, type sizes and other design tokens available to its children as CSS variables.
+The `<DesignTokens>` component makes colours, type sizes and other design tokens available to its children as CSS variables. Set the `theme` prop to `light` or `dark` to yield light and dark semantic colours or `auto` to follow the user's preference.
 
 ```html
 <script>
 	import DesignTokens from '@swr-data-lab/components';
 </script>
 
-<DesignTokens>
+<DesignTokens theme="auto">
 	<p>I'm a sample paragraph</p>
 </DesignTokens>
 
 <style>
 	p {
-	  color: var(--violet-dark-1); // this works
+	  color: var(--colours-textPrimary); // this works
 	}
 </style>
 ```
