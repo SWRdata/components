@@ -14,7 +14,7 @@
 </script>
 
 <Story asChild name="Default">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
 				<VectorTileSource
@@ -33,7 +33,7 @@
 						'line-opacity': 1
 					}}
 				/>
-				<AttributionControl />
+				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>
 	</DesignTokens>

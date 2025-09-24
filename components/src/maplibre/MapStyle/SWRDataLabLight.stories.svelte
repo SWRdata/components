@@ -18,7 +18,7 @@
 </script>
 
 <Story asChild name="Default">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.germany}>
@@ -30,7 +30,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="fix/122">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -77,7 +77,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="fix/118">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -137,7 +137,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="fix/115">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -157,7 +157,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="fix/114">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -178,7 +178,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Bodensee z9">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.bodensee}>
@@ -189,7 +189,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Frankfurt z11">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -204,7 +204,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Berlin z12">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.berlin}>
@@ -215,7 +215,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Stuttgart z13">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.stugge}>
@@ -226,7 +226,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Baden-Baden z15">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -241,7 +241,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Motorway Interchange z14">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.motorwayz14}>
@@ -252,7 +252,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Building Extrusions">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
 				<Map

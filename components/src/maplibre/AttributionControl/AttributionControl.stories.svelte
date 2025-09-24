@@ -12,7 +12,7 @@
 </script>
 
 <Story asChild name="Default">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<AttributionControl customAttribution="SWR Data Lab" position="bottom-left" />

@@ -26,7 +26,7 @@
 </script>
 
 <Story asChild name="Default">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()} cursor={hovered ? 'pointer' : ''}>
 				<VectorTileSource
@@ -74,14 +74,14 @@
 						'line-opacity': 1
 					}}
 				/>
-				<AttributionControl />
+				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>
 	</DesignTokens>
 </Story>
 
 <Story asChild name="Symbol">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
 				<GeoJsonSource id="demo" data={SamplePoints as GeoJSON} attribution="Demo attribution" />
@@ -96,7 +96,7 @@
 						'icon-image': ['image', 'pin-14']
 					}}
 				/>
-				<AttributionControl />
+				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>
 	</DesignTokens>

@@ -34,13 +34,13 @@
 </script>
 
 <Story asChild name="Default">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
 				<GeoJSONSource id="demo" data={geoJSON} attribution="Demo attribution" />
 				<VectorLayer
 					sourceId="demo"
-					placeBelow="street-residential"
+					placeBelow="boundary-country"
 					id="test-outline"
 					type="line"
 					paint={{

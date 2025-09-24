@@ -17,7 +17,7 @@
 </script>
 
 <Story asChild name="Default">
-	<DesignTokens>
+	<DesignTokens theme="dark">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabDark()} initialLocation={locations.germany}>
@@ -31,7 +31,7 @@
 </Story>
 
 <Story asChild name="Bodensee z9">
-	<DesignTokens>
+	<DesignTokens theme="dark">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabDark()} initialLocation={locations.bodensee}>
@@ -42,7 +42,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Frankfurt z11">
-	<DesignTokens>
+	<DesignTokens theme="dark">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -57,7 +57,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Berlin z12">
-	<DesignTokens>
+	<DesignTokens theme="dark">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabDark()} initialLocation={locations.berlin}>
@@ -68,7 +68,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Stuttgart z13">
-	<DesignTokens>
+	<DesignTokens theme="dark">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabDark()} initialLocation={locations.stugge}>
@@ -79,7 +79,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Baden-Baden z15">
-	<DesignTokens>
+	<DesignTokens theme="dark">
 		<div class="grid">
 			<div class="container">
 				<Map
@@ -94,7 +94,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Motorway Interchange z14">
-	<DesignTokens>
+	<DesignTokens theme="dark">
 		<div class="grid">
 			<div class="container">
 				<Map showDebug style={SWRDataLabDark()} initialLocation={locations.motorwayz14}>
@@ -105,7 +105,7 @@
 	</DesignTokens>
 </Story>
 <Story asChild name="Building Extrusions">
-	<DesignTokens>
+	<DesignTokens theme="dark">
 		<div class="grid">
 			<div class="container">
 				<Map
