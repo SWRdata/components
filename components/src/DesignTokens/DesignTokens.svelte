@@ -1,11 +1,16 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { shades, semantics } from './Tokens';
+	import isDarkMode from '../isDarkMode';
 
 	interface DesignTokensProps {
+		theme?: 'light' | 'dark' | 'auto';
 		children?: Snippet;
 	}
-	let { children }: DesignTokensProps = $props();
+
+	let { theme = 'auto', children }: DesignTokensProps = $props();
+
+	let computedTheme = $derived(theme === 'auto' ? ($isDarkMode ? 'dark' : 'light') : theme);
 
 	const colours = { ...shades, ...semantics };
 	const rules = [
@@ -22,7 +27,7 @@
 	];
 </script>
 
-<div class="container" style={rules.join(';')}>
+<div class="container" style={rules.join(';')} data-theme={computedTheme}>
 	{#if children}
 		{@render children()}
 	{/if}
@@ -51,7 +56,8 @@
 		--color-logoFill: var(--logoFill-light);
 		--color-pageFill: var(--pageFill-light);
 		--color-surfaceFill: var(--surfaceFill-light);
-		@media (prefers-color-scheme: dark) {
+
+		&[data-theme='dark'] {
 			--color-logoFill: var(--logoFill-dark);
 			--color-pageFill: var(--pageFill-dark);
 			--color-surfaceFill: var(--surfaceFill-dark);
