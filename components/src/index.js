@@ -20,7 +20,7 @@ export { default as Middot } from './Middot/Middot.svelte';
 
 // Maplibre
 export { default as Map } from './maplibre/Map/Map.svelte';
-export { SWRDataLabLight } from './maplibre/MapStyle';
+export { SWRDataLabLight, SWRDataLabDark } from './maplibre/MapStyle';
 export { default as MapControl } from './maplibre/MapControl/MapControl.svelte';
 export { default as AttributionControl } from './maplibre/AttributionControl/AttributionControl.svelte';
 export { default as GeocoderControl } from './maplibre/GeocoderControl/GeocoderControl.svelte';
