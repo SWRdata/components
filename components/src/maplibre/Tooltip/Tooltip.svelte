@@ -72,9 +72,9 @@
 		background: var(--color-surfaceFill);
 		color: var(--color-textPrimary);
 		padding: 0.75em;
-		border: 1px solid rgba(0, 0, 0, 0.75);
-		filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.1));
+		border: 1px solid var(--color-surfaceBorder);
 		pointer-events: none;
+		filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.1));
 	}
 
 	.mouseEvents {
@@ -147,26 +147,25 @@
 
 		.maplibregl-popup-close-button {
 			position: absolute;
-			top: 0.35em;
-			right: 0.35em;
+			top: 0.4em;
+			right: 0.4em;
 			cursor: pointer;
-			border-radius: 2px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			padding-bottom: 0.15em;
 			font-size: 1.2rem;
-			width: 1.1em;
-			height: 1.1em;
+			width: 1.15em;
+			height: 1.15em;
 			z-index: 100;
-			background: white;
-			color: var(--gray-dark-5);
-			border: 1px solid var(--gray-dark-5);
+			background: var(--color-surfaceFill);
+			color: var(--color-textPrimary);
+			border: 1px solid var(--color-textSecondary);
 		}
 
 		.maplibregl-popup-close-button:hover,
 		.maplibregl-popup-close-button:focus-visible {
-			background: var(--gray-light-5);
+			background: var(--color-surfaceFill);
 		}
 
 		.maplibregl-popup-tip {
@@ -174,8 +173,8 @@
 			height: 0.65rem;
 			background: var(--color-surfaceFill);
 			position: absolute;
-			border-right: 1px solid var(--gray-dark-5);
-			border-bottom: 1px solid var(--gray-dark-5);
+			border-right: 1px solid var(--color-surfaceBorder);
+			border-bottom: 1px solid var(--color-surfaceBorder);
 			z-index: 10;
 		}
 	}

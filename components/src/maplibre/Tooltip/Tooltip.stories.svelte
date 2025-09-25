@@ -8,7 +8,7 @@
 	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import Tooltip from './Tooltip.svelte';
-	import { SWRDataLabLight } from '../MapStyle';
+	import { SWRDataLabDark, SWRDataLabLight } from '../MapStyle';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Extras/Tooltip',
@@ -153,6 +153,98 @@
 							],
 							'#000',
 							'#555'
+						],
+						'line-opacity': 1
+					}}
+				/>
+				{#if selected}
+					<Tooltip
+						position={selectCoords}
+						mouseEvents={true}
+						showCloseButton={true}
+						onClose={() => {
+							selected = undefined;
+						}}
+					>
+						<pre class="padRight">{Object.entries(selected.properties)
+								.map(([key, val]) => `${key}: ${val}`)
+								.join('\n')}</pre>
+					</Tooltip>
+				{/if}
+				<AttributionControl position="bottom-left" />
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
+<Story asChild name="fix/172">
+	<DesignTokens theme="dark">
+		<div class="container">
+			<Map
+				style={SWRDataLabDark()}
+				initialLocation={{ lat: 51, lng: 10, zoom: 8 }}
+				allowZoom={false}
+			>
+				<VectorTileSource
+					id="ev-infra-source"
+					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}
+				/>
+				<VectorLayer
+					sourceId="ev-infra-source"
+					type="fill"
+					id="coverage-fill"
+					sourceLayer="coverage"
+					placeBelow="street-residential"
+					onmousemove={(e) => {
+						hovered2 = e.features?.[0];
+					}}
+					onmouseleave={() => (hovered2 = undefined)}
+					onclick={(e) => {
+						selected = e.features?.[0];
+						selectCoords = e.lngLat;
+					}}
+					paint={{
+						'fill-color': [
+							'step',
+							['get', 'coverage_2025'],
+							'#393636',
+							1,
+							'#262b38',
+							1.3,
+							'#6d4a77'
+						]
+					}}
+				/>
+				<VectorLayer
+					hovered={hovered2}
+					{selected}
+					sourceId="ev-infra-source"
+					sourceLayer="coverage"
+					id="ev-infra-outline"
+					type="line"
+					layout={{
+						'line-join': 'round'
+					}}
+					paint={{
+						'line-width': [
+							'case',
+							[
+								'any',
+								['boolean', ['feature-state', 'hovered'], false],
+								['boolean', ['feature-state', 'selected'], false]
+							],
+							2,
+							0.5
+						],
+						'line-color': [
+							'case',
+							[
+								'any',
+								['boolean', ['feature-state', 'hovered'], false],
+								['boolean', ['feature-state', 'selected'], false]
+							],
+							'#dfdbdb',
+							'#6d6d6d'
 						],
 						'line-opacity': 1
 					}}
