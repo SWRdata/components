@@ -30,7 +30,7 @@ const tokens = {
 	street_secondary_case: 'hsl(0, 0%, 0%)',
 	street_tertiary: 'hsl(0, 0%, 20%)',
 	street_tertiary_case: 'hsl(0, 0%, 14%)',
-	label_primary: 'hsl(240, 5%, 82%)',
+	label_primary: 'hsl(240, 5%, 80%)',
 	label_secondary: 'hsl(0, 2%, 72%)',
 	label_tertiary: 'hsl(0, 1%, 55%)',
 	boundary_country: '#6e6f71',
