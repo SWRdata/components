@@ -30,6 +30,18 @@
 	</DesignTokens>
 </Story>
 
+<Story asChild name="fix/173">
+	<DesignTokens theme="dark">
+		<div class="grid">
+			<div class="container">
+				<Map showDebug style={SWRDataLabDark()} initialLocation={{ ...locations.berlin, zoom: 11 }}>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+
 <Story asChild name="Bodensee z9">
 	<DesignTokens theme="dark">
 		<div class="grid">
@@ -41,6 +53,7 @@
 		</div>
 	</DesignTokens>
 </Story>
+
 <Story asChild name="Frankfurt z11">
 	<DesignTokens theme="dark">
 		<div class="grid">

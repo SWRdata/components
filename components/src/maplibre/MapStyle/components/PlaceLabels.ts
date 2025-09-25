@@ -103,7 +103,7 @@ export default function makePlaceLabels(tokens) {
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 12],
+						[7, 13],
 						[13, 17]
 					]
 				}
@@ -122,13 +122,18 @@ export default function makePlaceLabels(tokens) {
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 16],
+						[7, 14],
 						[15, 20]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary
+				'text-color': {
+					stops: [
+						[7, tokens.label_tertiary],
+						[9, tokens.label_secondary]
+					]
+				}
 			}
 		},
 		{
@@ -145,7 +150,12 @@ export default function makePlaceLabels(tokens) {
 				}
 			},
 			paint: {
-				'text-color': tokens.label_tertiary
+				'text-color': {
+					stops: [
+						[7, tokens.label_tertiary],
+						[9, tokens.label_secondary]
+					]
+				}
 			}
 		}
 	].map((el) => {

@@ -306,7 +306,7 @@
 
 		.maplibregl-ctrl-group {
 			background: var(--color-surfaceFill);
-			border: 1px solid var(--color-surfaceBorder);
+			border: 1px solid var(--color-textSecondary);
 			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.075);
 			border-radius: var(--br-small);
 			overflow: hidden;
