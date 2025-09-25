@@ -68,7 +68,7 @@
 			font-family: var(--swr-sans);
 			font-size: var(--fs-small-1);
 			border-radius: var(--br-small);
-			border: 1px solid var(--color-surfaceBorder);
+			border: 1px solid var(--color-textSecondary);
 			box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.075);
 
 			button {

@@ -20,7 +20,7 @@ const tokens = {
 	},
 	water: 'hsl(210, 12%, 8%)',
 	water_light: 'hsl(210, 12%, 8%)',
-	water_ocean: 'hsl(210, 12%, 8%)',
+	water_ocean: 'hsl(214, 17%, 8%)',
 	marsh: 'hsl(180, 3%, 35%)',
 	grass: 'hsl(170, 20%, 14%)',
 	grass_dark: 'hsl(170, 16%, 12%)',
