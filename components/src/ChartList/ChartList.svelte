@@ -56,6 +56,7 @@
 		flex-flow: column;
 		font-family: var(--swr-sans);
 		font-size: var(--fs-small-1);
+		color: var(--color-textPrimary);
 		max-width: 40rem;
 		margin: 0 auto;
 		height: 90vh;
@@ -66,15 +67,16 @@
 	}
 	.inner {
 		width: 100%;
-		border: 1px solid rgb(0, 0, 0);
+		background: var(--color-surfaceFill);
+		border: 1px solid var(--color-surfaceBorder);
 	}
 	h1 {
 		font-size: var(--fs-base);
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid var(--color-textSecondary);
 		padding-bottom: 0.2em;
-		background-color: rgb(255, 255, 255);
+		background-color: rgba(black, 0.2);
 		em {
-			background: rgb(234, 239, 184);
+			background: rgba(134, 139, 84, 0.4);
 			font-style: normal;
 			padding: 0 0.3em;
 			border-radius: 2px;
@@ -97,10 +99,10 @@
 		text-align: left;
 	}
 	th {
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid var(--color-textSecondary);
 	}
 	tr {
-		border-bottom: 1px solid rgb(150, 150, 150);
+		border-bottom: 1px solid var(--color-surfaceBorder);
 		&:last-child {
 			border-bottom: 0;
 		}
@@ -110,8 +112,11 @@
 		display: block;
 		font-family: monospace;
 		width: calc(100% - 0.6em);
-		padding: 0.1em 0.2em;
-		font-size: inherit;
+		padding: 0.2em 0.4em;
+		font-size: 0.9rem;
+		background: var(--color-pageFill);
+		border: 1px solid var(--color-surfaceBorder);
+		color: var(--color-textSecondary);
 	}
 
 	a:hover,
@@ -123,6 +128,7 @@
 	}
 	.notes {
 		margin-top: 0.5em;
+		color: var(--color-textSecondary);
 		font-size: var(--fs-small-2);
 	}
 </style>
