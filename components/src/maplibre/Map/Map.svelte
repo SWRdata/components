@@ -88,7 +88,7 @@
 			minZoom,
 			maxZoom,
 			bearing,
-			attributionControl: false, // Added via component
+			attributionControl: false,
 			center: [initialLocation.lng, initialLocation.lat],
 			zoom: initialLocation.zoom,
 			pitch: initialLocation.pitch,
