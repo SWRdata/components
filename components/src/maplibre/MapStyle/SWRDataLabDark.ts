@@ -18,9 +18,9 @@ const tokens = {
 			[10, '#1e1f22']
 		]
 	},
-	water: 'hsl(210, 12%, 8%)',
+	water: 'hsl(210, 12%, 7%)',
 	water_light: 'hsl(210, 12%, 8%)',
-	water_ocean: 'hsl(214, 17%, 8%)',
+	water_ocean: 'hsl(214, 25%, 7%)',
 	marsh: 'hsl(180, 3%, 35%)',
 	grass: 'hsl(170, 20%, 14%)',
 	grass_dark: 'hsl(170, 16%, 12%)',
