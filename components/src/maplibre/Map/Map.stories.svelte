@@ -167,6 +167,16 @@
 		</DesignTokens>
 	</div>
 </Story>
+<Story asChild name="initialBounds">
+	<div class="container">
+		<DesignTokens theme="light">
+			<Map showDebug style={SWRDataLabLight()} initialBounds={[5.87, 47.27, 15.04, 55.06]}>
+				<ScaleControl />
+				<AttributionControl />
+			</Map>
+		</DesignTokens>
+	</div>
+</Story>
 
 <Story asChild name="Alternate Style">
 	<div class="container dark">
