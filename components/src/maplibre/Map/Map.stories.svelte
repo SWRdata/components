@@ -73,7 +73,6 @@
 			<Map style={SWRDataLabLight()}>
 				<ScaleControl />
 				<AttributionControl />
-				<NavigationControl showCompass visualizePitch />
 				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 			</Map>
 		</DesignTokens>
@@ -161,7 +160,6 @@
 			>
 				<ScaleControl />
 				<AttributionControl />
-				<NavigationControl />
 			</Map>
 			<div class="placeholder">Placeholder</div>
 		</DesignTokens>
@@ -179,12 +177,11 @@
 </Story>
 
 <Story asChild name="Alternate Style">
-	<div class="container dark">
+	<div class="container">
 		<DesignTokens theme="dark">
 			<Map style={alternateStyle} initialBounds={[5.87, 47.27, 15.04, 55.06]}>
 				<ScaleControl />
 				<AttributionControl />
-				<NavigationControl showCompass visualizePitch />
 				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 			</Map>
 		</DesignTokens>
@@ -195,9 +192,6 @@
 	.container {
 		width: 100%;
 		height: 600px;
-	}
-	.dark {
-		color: rgb(230, 230, 230);
 	}
 	.placeholder {
 		height: 500px;
