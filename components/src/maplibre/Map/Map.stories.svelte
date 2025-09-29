@@ -170,7 +170,7 @@
 <Story asChild name="initialBounds">
 	<div class="container">
 		<DesignTokens theme="light">
-			<Map showDebug style={SWRDataLabLight()} initialBounds={[5.87, 47.27, 15.04, 55.06]}>
+			<Map showDebug style={SWRDataLabLight()} initialBounds={[5.87, 47.1, 15.04, 55.1]}>
 				<ScaleControl />
 				<AttributionControl />
 			</Map>
@@ -181,7 +181,7 @@
 <Story asChild name="Alternate Style">
 	<div class="container dark">
 		<DesignTokens theme="dark">
-			<Map style={alternateStyle}>
+			<Map style={alternateStyle} initialBounds={[5.87, 47.27, 15.04, 55.06]}>
 				<ScaleControl />
 				<AttributionControl />
 				<NavigationControl showCompass visualizePitch />
