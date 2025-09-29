@@ -1,5 +1,6 @@
 <script lang="ts">
 	import maplibre, {
+		type LngLatBoundsLike,
 		type MapLibreEvent,
 		type ProjectionSpecification,
 		type StyleSpecification
@@ -12,6 +13,11 @@
 
 	interface MapProps {
 		style?: StyleSpecification | string;
+		/**
+		 * The initial bounds of the map. If specified, it overrides initialLocation.
+		 */
+		initialBounds?: LngLatBoundsLike;
+		maxBounds?: LngLatBoundsLike;
 		initialLocation?: Location;
 		allowRotation?: boolean;
 		allowZoom?: boolean;
@@ -55,6 +61,8 @@
 		allowZoom = true,
 		showDebug = false,
 		cursor,
+		initialBounds,
+		maxBounds,
 		initialLocation: receivedInitialLocation,
 		// Future: This should become bindable.readonly when that becomes
 		// available, see: https://github.com/sveltejs/svelte/issues/7712
@@ -88,8 +96,10 @@
 			minZoom,
 			maxZoom,
 			bearing,
-			attributionControl: false, // Added via component
+			attributionControl: false,
 			center: [initialLocation.lng, initialLocation.lat],
+			bounds: initialBounds || null,
+			maxBounds: maxBounds || null,
 			zoom: initialLocation.zoom,
 			pitch: initialLocation.pitch,
 			cooperativeGestures,
