@@ -1,6 +1,11 @@
 name: 'Build and deploy map icons'
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - components/src/maplibre/MapStyle/sprite/**
+    branches:
+      - main
 
 jobs:
   build-deploy:
@@ -20,4 +25,5 @@ jobs:
         with:
           path: '../components/components/src/maplibre/MapStyle/sprite'
           parent: false
+          process_gcloudignore: false
           destination: 'datenhub-net-static/maps/styles/swr-datalab-light/sprite'
