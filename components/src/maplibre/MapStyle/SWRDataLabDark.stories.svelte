@@ -30,6 +30,21 @@
 	</DesignTokens>
 </Story>
 
+<Story asChild name="Disable road labels (#190)">
+	<DesignTokens theme="dark">
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabDark({ roads: { showLabels: false } })}
+					initialLocation={{ ...locations.berlin, zoom: 15 }}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
 <Story asChild name="fix/173">
 	<DesignTokens theme="dark">
 		<div class="grid">

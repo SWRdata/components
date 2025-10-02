@@ -7,6 +7,7 @@ import makeTransit from './components/Transit';
 import makePlaceLabels from './components/PlaceLabels';
 import makeWalking from './components/Walking';
 import makeRoads from './components/Roads';
+import type { StyleOptions } from './types';
 
 const tokens = {
 	sans_regular: ['SWR Sans Regular'],
@@ -49,10 +50,6 @@ const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWa
 const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
 
-interface StyleOptions {
-	enableBuildingExtrusions?: boolean;
-}
-
 interface styleFunction {
 	(options?: StyleOptions): StyleSpecification;
 }
@@ -60,6 +57,9 @@ interface styleFunction {
 const style: styleFunction = (opts) => {
 	const options = {
 		enableBuildingExtrusions: false,
+		roads: {
+			showLabels: true
+		},
 		...opts
 	} as StyleOptions;
 
@@ -127,7 +127,7 @@ const style: styleFunction = (opts) => {
 
 			// 7. Labels
 			...walkingLabels,
-			...roadLabels,
+			...(options.roads?.showLabels ? roadLabels : []),
 
 			// 8. Building extrusions
 			...(options.enableBuildingExtrusions ? [buildingExtrusions] : []),
