@@ -23,7 +23,7 @@
 
 <style>
 	.container {
-		width: 700px;
-		height: 500px;
+		width: 500px;
+		height: 200px;
 	}
 </style>
