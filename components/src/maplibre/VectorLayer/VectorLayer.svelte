@@ -54,6 +54,7 @@
 	}: VectorLayerProps = $props();
 
 	const { map, styleLoaded } = $derived(getMapContext());
+
 	let beforeId: string | undefined = $state();
 	let prevSelected: string | number | undefined = $state();
 	let prevHovered: string | number | undefined = $state();
@@ -92,7 +93,7 @@
 	$effect(() => {
 		if (styleLoaded) {
 			if (hovered) {
-				if (prevHovered) {
+				if (prevHovered || prevHovered === 0) {
 					map?.setFeatureState(
 						{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
 						{ hovered: false }
@@ -104,7 +105,7 @@
 				);
 				prevHovered = hovered.id;
 			} else {
-				if (prevHovered) {
+				if (prevHovered || prevHovered === 0) {
 					map?.setFeatureState(
 						{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
 						{ hovered: false }
@@ -118,7 +119,7 @@
 	$effect(() => {
 		if (styleLoaded) {
 			if (selected) {
-				if (prevSelected) {
+				if (prevSelected || prevSelected === 0) {
 					map?.setFeatureState(
 						{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
 						{ selected: false }
@@ -130,7 +131,7 @@
 				);
 				prevSelected = selected.id;
 			} else {
-				if (prevSelected) {
+				if (prevSelected || prevSelected === 0) {
 					map?.setFeatureState(
 						{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
 						{ selected: false }

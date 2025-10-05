@@ -8,36 +8,32 @@
 
 	import { SWRDataLabLight } from '../MapStyle';
 	import { tokens } from '../../DesignTokens';
+	import squareGeo from './test/square.json';
+	import stuttgartGeo from './test/stuttgart-waermenetze.json';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Source/GeoJSONSource',
 		component: GeoJSONSource
 	});
 
-	const geoJSON = {
-		type: 'GeometryCollection',
-		geometries: [
-			{
-				type: 'Polygon',
-				coordinates: [
-					[
-						[7.99298752775212, 50.07410328331564],
-						[11.709726710536899, 50.07410328331564],
-						[11.709726710536899, 52.08770466696292],
-						[7.99298752775212, 52.08770466696292],
-						[7.99298752775212, 50.07410328331564]
-					]
-				]
-			}
-		]
-	} as GeoJSON.GeoJSON;
+	let hovered: any = $state();
+	const handleMouseMove = (e) => {
+		hovered = e.features?.[0];
+	};
+	const handleMouseLeave = () => {
+		hovered = null;
+	};
 </script>
 
 <Story asChild name="Default">
 	<DesignTokens theme="light">
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
-				<GeoJSONSource id="demo" data={geoJSON} attribution="Demo attribution" />
+				<GeoJSONSource
+					id="demo"
+					data={squareGeo as GeoJSON.GeoJSON}
+					attribution="Demo attribution"
+				/>
 				<VectorLayer
 					sourceId="demo"
 					placeBelow="boundary-country"
@@ -47,6 +43,44 @@
 						'line-width': 15,
 						'line-color': tokens.shades.red.dark1,
 						'line-opacity': 1
+					}}
+				/>
+				<AttributionControl />
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
+<Story asChild name="ID Promotion">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map
+				showDebug={true}
+				style={SWRDataLabLight()}
+				cursor={hovered ? 'pointer' : ''}
+				initialLocation={{
+					lng: 9.223869970354485,
+					lat: 48.798414513866504,
+					zoom: 11.462711766264558
+				}}
+			>
+				<GeoJSONSource
+					id="demo"
+					data={stuttgartGeo as GeoJSON.GeoJSON}
+					attribution="Demo attribution"
+					promoteId="id"
+				/>
+				<VectorLayer
+					bind:hovered
+					onmousemove={handleMouseMove}
+					onmouseleave={handleMouseLeave}
+					sourceId="demo"
+					placeBelow="boundary-country"
+					id="test"
+					type="fill"
+					paint={{
+						'fill-color': tokens.shades.red.dark1,
+						'fill-opacity': ['case', ['boolean', ['feature-state', 'hovered'], false], 1, 0.1]
 					}}
 				/>
 				<AttributionControl />

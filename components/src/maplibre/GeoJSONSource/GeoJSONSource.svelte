@@ -14,14 +14,31 @@
 		 */
 		attribution?: string;
 		maxZoom?: number;
+		/**
+		 * Use a field from the feature data for IDs. Must coerce to integer.
+		 */
+		promoteId?: string;
+		/**
+		 * Use the feature index for IDs. Overrides `promoteId`.
+		 */
+		generateId?: boolean;
 	}
 
-	const { maxZoom = 24, id, data, attribution = '' }: GeoJSONSourceProps = $props();
+	const {
+		maxZoom = 24,
+		id,
+		data,
+		attribution = '',
+		promoteId,
+		generateId = false
+	}: GeoJSONSourceProps = $props();
 
 	const sourceSpec: GeoJSONSourceSpecification = {
 		type: 'geojson',
 		maxzoom: maxZoom,
 		attribution,
+		promoteId,
+		generateId,
 		data
 	};
 </script>
