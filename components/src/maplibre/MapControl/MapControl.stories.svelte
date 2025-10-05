@@ -1,4 +1,5 @@
 <script module lang="ts">
+	import type { StyleSpecification } from 'maplibre-gl';
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import MapControl from './MapControl.svelte';
 	import { SWRDataLabLight } from '../MapStyle';
@@ -11,7 +12,6 @@
 	};
 
 	import { eclipse } from '@versatiles/style';
-	import type { StyleSpecification } from 'maplibre-gl';
 	const eclipseStyle = eclipse({
 		language: 'de',
 		baseUrl: 'https://tiles.versatiles.org',

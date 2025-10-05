@@ -32,6 +32,7 @@
 	},
 	"dependencies": {
 		"@maplibre/maplibre-gl-geocoder": "^1.9.1",
+		"@maplibre/maplibre-gl-inspect": "^1.7.1",
 		"maplibre-gl": "^5.7.0",
 		"svelte-select": "^5.8.3"
 	},
