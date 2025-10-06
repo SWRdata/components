@@ -7,6 +7,7 @@ import makeTransit from './components/Transit';
 import makePlaceLabels from './components/PlaceLabels';
 import makeWalking from './components/Walking';
 import makeRoads from './components/Roads';
+import type { StyleOptions } from './types';
 
 const tokens = {
 	sans_regular: ['SWR Sans Regular'],
@@ -48,10 +49,6 @@ const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
 const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
-
-interface StyleOptions {
-	enableBuildingExtrusions?: boolean;
-}
 
 interface styleFunction {
 	(options?: StyleOptions): StyleSpecification;
