@@ -21,6 +21,10 @@
 		id: string;
 		sourceId: string;
 		sourceLayer?: string;
+		/**
+		 * Maplibre [filter expression](https://maplibre.org/maplibre-style-spec/layers/#filter)
+		 */
+		filter?: any[];
 		type: 'line' | 'fill' | 'circle' | 'symbol';
 		placeBelow?: string;
 		visible?: boolean;
@@ -30,7 +34,6 @@
 		layout?: LineLayoutProps | FillLayoutProps | CircleLayoutProps | SymbolLayoutProps;
 		hovered?: MapGeoJSONFeature | undefined;
 		selected?: MapGeoJSONFeature | undefined;
-		filter?;
 
 		onclick?: (e: MapLayerMouseEvent) => any;
 		onmousemove?: (e: MapLayerMouseEvent) => any;
@@ -40,12 +43,12 @@
 		id,
 		sourceId,
 		sourceLayer,
+		filter,
 		visible = true,
 		placeBelow = 'label-place-major-city',
 		type,
 		paint,
 		layout,
-		filter,
 		hovered = $bindable(),
 		selected = $bindable(),
 		minZoom = 0,
