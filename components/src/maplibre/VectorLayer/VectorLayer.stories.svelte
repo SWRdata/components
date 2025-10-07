@@ -102,6 +102,30 @@
 	</DesignTokens>
 </Story>
 
+<Story asChild name="Filter">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map showDebug={true} style={SWRDataLabLight()}>
+				<VectorTileSource
+					id="ev-infra-source"
+					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}
+				/>
+				<VectorLayer
+					sourceId="ev-infra-source"
+					sourceLayer="coverage"
+					type="fill"
+					id="coverage-fill"
+					filter={['<', 'coverage_2025', 1]}
+					paint={{
+						'fill-color': '#ce541c'
+					}}
+				/>
+				<AttributionControl position="bottom-left" />
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
 <style>
 	.container {
 		width: 100%;

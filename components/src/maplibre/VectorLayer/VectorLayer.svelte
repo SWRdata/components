@@ -1,16 +1,16 @@
 <script lang="ts">
-	import type {
-		AddLayerObject,
-		CircleLayoutProps,
-		CirclePaintProps,
-		FillLayoutProps,
-		FillPaintProps,
-		LineLayoutProps,
-		SymbolPaintProps,
-		SymbolLayoutProps,
-		LinePaintProps,
-		MapGeoJSONFeature,
-		MapLayerMouseEvent
+	import {
+		type AddLayerObject,
+		type CircleLayoutProps,
+		type CirclePaintProps,
+		type FillLayoutProps,
+		type FillPaintProps,
+		type LineLayoutProps,
+		type SymbolPaintProps,
+		type SymbolLayoutProps,
+		type LinePaintProps,
+		type MapGeoJSONFeature,
+		type MapLayerMouseEvent
 	} from 'maplibre-gl';
 
 	import { getMapContext } from '../context.svelte.js';
@@ -30,6 +30,7 @@
 		layout?: LineLayoutProps | FillLayoutProps | CircleLayoutProps | SymbolLayoutProps;
 		hovered?: MapGeoJSONFeature | undefined;
 		selected?: MapGeoJSONFeature | undefined;
+		filter?;
 
 		onclick?: (e: MapLayerMouseEvent) => any;
 		onmousemove?: (e: MapLayerMouseEvent) => any;
@@ -44,6 +45,7 @@
 		type,
 		paint,
 		layout,
+		filter,
 		hovered = $bindable(),
 		selected = $bindable(),
 		minZoom = 0,
@@ -62,6 +64,7 @@
 	const layerSpec = {
 		id,
 		type,
+		...(filter ? { filter } : {}),
 		source: sourceId,
 		'source-layer': sourceLayer || '',
 		layout: $state.snapshot(layout) ?? {},
