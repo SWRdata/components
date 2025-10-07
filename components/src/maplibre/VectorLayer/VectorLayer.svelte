@@ -1,16 +1,16 @@
 <script lang="ts">
-	import type {
-		AddLayerObject,
-		CircleLayoutProps,
-		CirclePaintProps,
-		FillLayoutProps,
-		FillPaintProps,
-		LineLayoutProps,
-		SymbolPaintProps,
-		SymbolLayoutProps,
-		LinePaintProps,
-		MapGeoJSONFeature,
-		MapLayerMouseEvent
+	import {
+		type AddLayerObject,
+		type CircleLayoutProps,
+		type CirclePaintProps,
+		type FillLayoutProps,
+		type FillPaintProps,
+		type LineLayoutProps,
+		type SymbolPaintProps,
+		type SymbolLayoutProps,
+		type LinePaintProps,
+		type MapGeoJSONFeature,
+		type MapLayerMouseEvent
 	} from 'maplibre-gl';
 
 	import { getMapContext } from '../context.svelte.js';
@@ -21,6 +21,10 @@
 		id: string;
 		sourceId: string;
 		sourceLayer?: string;
+		/**
+		 * Maplibre [filter expression](https://maplibre.org/maplibre-style-spec/layers/#filter)
+		 */
+		filter?: any[];
 		type: 'line' | 'fill' | 'circle' | 'symbol';
 		placeBelow?: string;
 		visible?: boolean;
@@ -39,6 +43,7 @@
 		id,
 		sourceId,
 		sourceLayer,
+		filter,
 		visible = true,
 		placeBelow = 'label-place-major-city',
 		type,
@@ -62,6 +67,7 @@
 	const layerSpec = {
 		id,
 		type,
+		...(filter ? { filter } : {}),
 		source: sourceId,
 		'source-layer': sourceLayer || '',
 		layout: $state.snapshot(layout) ?? {},
