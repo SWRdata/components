@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	interface ScrollHandler {
 		(): void;
 	}
@@ -98,46 +98,60 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	// Configuration props
-	export let top: number = 0;
-	export let bottom: number = 1;
-	export let threshold: number = 0.5;
-	export let query: string = 'section';
-	export let parallax: boolean = false;
-
-	// Binding props
-	export let index: number = 0;
-	export let count: number = 0;
-	export let offset: number = 0;
-	export let progress: number = 0;
-	export let visible: boolean = false;
+	// Configuration props (read-only)
+	let {
+		top = 0,
+		bottom = 1,
+		threshold = 0.5,
+		query = 'section',
+		parallax = false,
+		// Binding props (two-way binding)
+		index = $bindable(0),
+		count = $bindable(0),
+		offset = $bindable(0),
+		progress = $bindable(0),
+		visible = $bindable(false)
+	}: {
+		top?: number;
+		bottom?: number;
+		threshold?: number;
+		query?: string;
+		parallax?: boolean;
+		index?: number;
+		count?: number;
+		offset?: number;
+		progress?: number;
+		visible?: boolean;
+	} = $props();
 
 	// Element bindings
-	let outer: HTMLElement;
-	let foreground: HTMLElement;
-	let background: HTMLElement;
+	let outer = $state<HTMLElement>();
+	let foreground = $state<HTMLElement>();
+	let background = $state<HTMLElement>();
 
 	// Internal state
-	let sections: NodeListOf<Element>;
-	let windowHeight: number = 0;
-	let offsetTop: number = 0;
-	let containerWidth: number = 1;
-	let containerLeft: number = 0;
+	let sections = $state<NodeListOf<Element>>();
+	let windowHeight = $state(0);
+	let offsetTop = $state(0);
+	let containerWidth = $state(1);
+	let containerLeft = $state(0);
 
 	// Computed values
-	$: topPx = Math.round(top * windowHeight);
-	$: bottomPx = Math.round(bottom * windowHeight);
-	$: thresholdPx = Math.round(threshold * windowHeight);
+	let topPx = $derived(Math.round(top * windowHeight));
+	let bottomPx = $derived(Math.round(bottom * windowHeight));
+	let thresholdPx = $derived(Math.round(threshold * windowHeight));
+
+	let backgroundStyle = $derived(`
+		top: ${offsetTop || topPx}px;
+		z-index: ${progress > 1 ? 3 : 1};
+	`);
 
 	// Reactive updates
-	$: if (top || bottom || threshold || parallax) {
-		update();
-	}
-
-	$: backgroundStyle = `
-        top: ${offsetTop || topPx}px;
-        z-index: ${progress > 1 ? 3 : 1};
-    `;
+	$effect(() => {
+		if (top || bottom || threshold || parallax) {
+			update();
+		}
+	});
 
 	onMount(() => {
 		if (!foreground) return;
