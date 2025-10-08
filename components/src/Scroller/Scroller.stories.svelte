@@ -4,8 +4,14 @@
 	import Scroller from './Scroller.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Scroller',
-		component: Scroller
+		title: 'Display/Scroller',
+		component: Scroller,
+		parameters: {
+			viewMode: 'docs',
+			previewTabs: {
+				canvas: { hidden: true }
+			}
+		}
 	});
 
 	let index = $state(0);
@@ -14,8 +20,10 @@
 </script>
 
 <Story name="Default" asChild>
-	<div style="height: 400px; overflow: scroll;">
-		Scroll down to see the scroller in action.
+	<div>
+		<h1>Scroller-Demo</h1>
+		<p>(Scroll down to see the scroller in action)</p>
+
 		<Scroller top={0.2} bottom={0.8} bind:index bind:offset bind:progress>
 			<div slot="background">
 				<p>
@@ -23,26 +31,12 @@
 					over the top.
 				</p>
 				<p>
-					<strong>Section {index + 1}</strong> is currently active .
+					<strong>Section {index + 1}</strong> is currently active.
 				</p>
 
-				<div>
-					<code>index</code>
-					<progress min="0" max="4" value={index}>{index}</progress>
-					<code>{index}</code>
-				</div>
-
-				<div>
-					<code>offset</code>
-					<progress min="0" max="1" value={offset}>{offset}</progress>
-					<code>{offset}</code>
-				</div>
-
-				<div>
-					<code>progress</code>
-					<progress min="0" max="1" value={progress}>{progress}</progress>
-					<code>{progress}</code>
-				</div>
+				<p><code>index</code> / {index}</p>
+				<p><code>offset</code> / {offset}</p>
+				<p><code>progress</code> / {progress}</p>
 			</div>
 			<div slot="foreground">
 				<section>This is the first section.</section>
@@ -57,11 +51,13 @@
 
 <style>
 	section {
-		height: 80vh;
-		border: 1px solid #ccc;
+		height: 25vh;
+		background: #cccc;
+		padding: 0.5rem;
+		margin-bottom: 50vh;
 	}
 
 	p {
-		margin: 0 0 1em;
+		padding: 0.5rem;
 	}
 </style>

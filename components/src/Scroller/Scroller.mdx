@@ -1,4 +1,4 @@
-import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+import { Controls, Meta } from '@storybook/addon-docs/blocks';
 
 import * as ScrollerStories from './Scroller.stories.svelte';
 
@@ -6,4 +6,8 @@ import * as ScrollerStories from './Scroller.stories.svelte';
 
 # Scroller
 
-A scroller component for Svelte apps.
+A scroller component for Svelte apps, based on svelte-scroller by Rich Harris (license) but using a different approach to positioning (`position: sticky`).
+
+## Properties
+
+<Controls of={ScrollerStories.Default} />

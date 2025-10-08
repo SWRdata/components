@@ -98,6 +98,76 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	/**
+	 * Props interface for the Scroller component
+	 */
+	interface ScrollerProps {
+		/**
+		 * The vertical position that the top of the foreground must scroll past before the background becomes fixed,
+		 * as a proportion of window height (0 = top of viewport, 1 = bottom of viewport)
+		 * @default 0
+		 */
+		top?: number;
+
+		/**
+		 * The inverse of top — once the bottom of the foreground passes this point, the background becomes unfixed.
+		 * As a proportion of window height (0 = top of viewport, 1 = bottom of viewport)
+		 * @default 1
+		 */
+		bottom?: number;
+
+		/**
+		 * Once a section crosses this point, it becomes 'active'.
+		 * As a proportion of window height (0 = top of viewport, 1 = bottom of viewport)
+		 * @default 0.5
+		 */
+		threshold?: number;
+
+		/**
+		 * A CSS selector that describes the individual sections of your foreground
+		 * @default 'section'
+		 */
+		query?: string;
+
+		/**
+		 * If true, the background will scroll such that the bottom edge reaches the bottom at the same time as the foreground.
+		 * This effect can be unpleasant for people with high motion sensitivity, so use it advisedly.
+		 * @default false
+		 */
+		parallax?: boolean;
+
+		/**
+		 * The index of the currently active section (bindable)
+		 * @default 0
+		 */
+		index?: number;
+
+		/**
+		 * The total number of sections (bindable)
+		 * @default 0
+		 */
+		count?: number;
+
+		/**
+		 * How far the section has scrolled past the threshold, as a value between 0 and 1 (bindable)
+		 * @default 0
+		 */
+		offset?: number;
+
+		/**
+		 * How far the foreground has travelled, where 0 is the top of the foreground crossing top,
+		 * and 1 is the bottom crossing bottom (bindable)
+		 * @default 0
+		 */
+		progress?: number;
+
+		/**
+		 * Whether the scroller is currently visible in the viewport (bindable)
+		 * @default false
+		 */
+		visible?: boolean;
+	}
+
 	// Configuration props (read-only)
 	let {
 		top = 0,
@@ -111,18 +181,7 @@
 		offset = $bindable(0),
 		progress = $bindable(0),
 		visible = $bindable(false)
-	}: {
-		top?: number;
-		bottom?: number;
-		threshold?: number;
-		query?: string;
-		parallax?: boolean;
-		index?: number;
-		count?: number;
-		offset?: number;
-		progress?: number;
-		visible?: boolean;
-	} = $props();
+	}: ScrollerProps = $props();
 
 	// Element bindings
 	let outer = $state<HTMLElement>();
