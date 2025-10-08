@@ -260,7 +260,7 @@
 	}
 
 	function updateActiveSection(): void {
-		if (!sections.length) return;
+		if (!sections?.length) return;
 
 		const foregroundRect = foreground.getBoundingClientRect();
 
