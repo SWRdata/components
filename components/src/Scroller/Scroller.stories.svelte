@@ -1,5 +1,6 @@
-<script context="module">
+<script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
+	import { expect } from 'storybook/test';
 
 	import Scroller from './Scroller.svelte';
 
@@ -19,11 +20,47 @@
 	let progress = $state(0);
 </script>
 
-<Story name="Default" asChild>
-	<div>
-		<h1>Scroller-Demo</h1>
-		<p>(Scroll down to see the scroller in action)</p>
+<Story
+	name="Default"
+	asChild
+	play={async ({ step, canvasElement }) => {
+		await step('Verify state values are set', async () => {
+			expect(index).toBeGreaterThanOrEqual(0);
+			expect(offset).toBeGreaterThanOrEqual(0);
+			expect(progress).toBeGreaterThanOrEqual(0);
+		});
 
+		await step('Foreground content is rendered', async () => {
+			const sections = canvasElement.querySelectorAll('[slot="foreground"] section');
+			expect(sections).toHaveLength(5);
+			expect(sections[0]).toHaveTextContent('This is the first section.');
+		});
+
+		await step('Background content is rendered', async () => {
+			const background = canvasElement.querySelector('[slot="background"]');
+			expect(background).toBeDefined();
+			expect(background).toHaveTextContent('This is the background content');
+		});
+
+		await step('Index is updated when scrolling', async () => {
+			// Store the event handler function separately
+			const scrollEndHandler = () => {
+				expect(index).toBe(3);
+				// Clean up the event listener after test has run
+				window.removeEventListener('scrollend', scrollEndHandler);
+				// Reset scroll position to top after test
+				window.scrollTo(0, 0);
+			};
+
+			// Add the event listener with the stored function reference
+			window.addEventListener('scrollend', scrollEndHandler);
+
+			const sections = canvasElement.querySelectorAll('[slot="foreground"] section');
+			sections[3].scrollIntoView();
+		});
+	}}
+>
+	<div>
 		<Scroller top={0.2} bottom={0.8} bind:index bind:offset bind:progress>
 			<div slot="background">
 				<p>
