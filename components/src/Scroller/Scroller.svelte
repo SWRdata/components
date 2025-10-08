@@ -1,28 +1,52 @@
-<script context="module">
-	const handlers = [];
-	let manager;
-
-	if (typeof window !== 'undefined') {
-		const run_all = () => handlers.forEach((fn) => fn());
-
-		window.addEventListener('scroll', run_all);
-		window.addEventListener('resize', run_all);
+<script context="module" lang="ts">
+	interface ScrollHandler {
+		(): void;
 	}
 
+	interface ScrollerInstance {
+		outer: HTMLElement;
+		update: ScrollHandler;
+	}
+
+	interface ScrollManager {
+		add(scroller: ScrollerInstance): void;
+		remove(scroller: ScrollerInstance): void;
+	}
+
+	const handlers: ScrollHandler[] = [];
+	let manager: ScrollManager;
+
+	// Global scroll and resize event handling
+	if (typeof window !== 'undefined') {
+		const runAllHandlers = (): void => {
+			handlers.forEach((handler) => handler());
+		};
+
+		window.addEventListener('scroll', runAllHandlers);
+		window.addEventListener('resize', runAllHandlers);
+	}
+
+	// Intersection Observer for performance optimization
 	if (typeof IntersectionObserver !== 'undefined') {
-		const map = new Map();
+		const handlerMap = new Map<Element, ScrollHandler>();
 
 		const observer = new IntersectionObserver(
-			(entries, observer) => {
+			(entries) => {
 				entries.forEach((entry) => {
-					const update = map.get(entry.target);
-					const index = handlers.indexOf(update);
+					const update = handlerMap.get(entry.target);
+					if (!update) return;
+
+					const handlerIndex = handlers.indexOf(update);
 
 					if (entry.isIntersecting) {
-						if (index === -1) handlers.push(update);
+						if (handlerIndex === -1) {
+							handlers.push(update);
+						}
 					} else {
 						update();
-						if (index !== -1) handlers.splice(index, 1);
+						if (handlerIndex !== -1) {
+							handlers.splice(handlerIndex, 1);
+						}
 					}
 				});
 			},
@@ -32,121 +56,154 @@
 		);
 
 		manager = {
-			add: ({ outer, update }) => {
+			add: ({ outer, update }: ScrollerInstance): void => {
 				const { top, bottom } = outer.getBoundingClientRect();
 
-				if (top < window.innerHeight && bottom > 0) handlers.push(update);
+				// Add handler if element is initially visible
+				if (top < window.innerHeight && bottom > 0) {
+					handlers.push(update);
+				}
 
-				map.set(outer, update);
+				handlerMap.set(outer, update);
 				observer.observe(outer);
 			},
 
-			remove: ({ outer, update }) => {
-				const index = handlers.indexOf(update);
-				if (index !== -1) handlers.splice(index, 1);
+			remove: ({ outer, update }: ScrollerInstance): void => {
+				const handlerIndex = handlers.indexOf(update);
+				if (handlerIndex !== -1) {
+					handlers.splice(handlerIndex, 1);
+				}
 
-				map.delete(outer);
+				handlerMap.delete(outer);
 				observer.unobserve(outer);
 			}
 		};
 	} else {
+		// Fallback for browsers without IntersectionObserver
 		manager = {
-			add: ({ update }) => {
+			add: ({ update }: ScrollerInstance): void => {
 				handlers.push(update);
 			},
 
-			remove: ({ update }) => {
-				const index = handlers.indexOf(update);
-				if (index !== -1) handlers.splice(index, 1);
+			remove: ({ update }: ScrollerInstance): void => {
+				const handlerIndex = handlers.indexOf(update);
+				if (handlerIndex !== -1) {
+					handlers.splice(handlerIndex, 1);
+				}
 			}
 		};
 	}
 </script>
 
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 
-	// config
-	export let top = 0;
-	export let bottom = 1;
-	export let threshold = 0.5;
-	export let query = 'section';
-	export let parallax = false;
+	// Configuration props
+	export let top: number = 0;
+	export let bottom: number = 1;
+	export let threshold: number = 0.5;
+	export let query: string = 'section';
+	export let parallax: boolean = false;
 
-	// bindings
-	export let index = 0;
-	export let count = 0;
-	export let offset = 0;
-	export let progress = 0;
-	export let visible = false;
+	// Binding props
+	export let index: number = 0;
+	export let count: number = 0;
+	export let offset: number = 0;
+	export let progress: number = 0;
+	export let visible: boolean = false;
 
-	let outer;
-	let foreground;
-	let background;
-	let left;
-	let sections;
-	let wh = 0;
-	let offset_top = 0;
-	let width = 1;
-	let height;
-	let inverted;
+	// Element bindings
+	let outer: HTMLElement;
+	let foreground: HTMLElement;
+	let background: HTMLElement;
 
-	$: top_px = Math.round(top * wh);
-	$: bottom_px = Math.round(bottom * wh);
-	$: threshold_px = Math.round(threshold * wh);
+	// Internal state
+	let sections: NodeListOf<Element>;
+	let windowHeight: number = 0;
+	let offsetTop: number = 0;
+	let containerWidth: number = 1;
+	let containerLeft: number = 0;
 
-	$: top, bottom, threshold, parallax, update();
+	// Computed values
+	$: topPx = Math.round(top * windowHeight);
+	$: bottomPx = Math.round(bottom * windowHeight);
+	$: thresholdPx = Math.round(threshold * windowHeight);
 
-	$: style = `
-		top: ${offset_top || top_px}px;
-		z-index: ${inverted ? 3 : 1};
-	`;
+	// Reactive updates
+	$: if (top || bottom || threshold || parallax) {
+		update();
+	}
+
+	$: backgroundStyle = `
+        top: ${offsetTop || topPx}px;
+        z-index: ${progress > 1 ? 3 : 1};
+    `;
 
 	onMount(() => {
+		if (!foreground) return;
+
 		sections = foreground.querySelectorAll(query);
 		count = sections.length;
 
 		update();
 
-		const scroller = { outer, update };
+		const scrollerInstance: ScrollerInstance = { outer, update };
+		manager.add(scrollerInstance);
 
-		manager.add(scroller);
-		return () => manager.remove(scroller);
+		return () => {
+			manager.remove(scrollerInstance);
+		};
 	});
 
-	function update() {
-		if (!foreground) return;
+	function update(): void {
+		if (!foreground || !background || !outer) return;
 
-		// re-measure outer container
-		const bcr = outer.getBoundingClientRect();
-		left = bcr.left;
-		width = bcr.right - left;
+		updateContainerMeasurements();
+		updateScrollProgress();
+		updateActiveSection();
+	}
 
-		// determine fix state
-		const fg = foreground.getBoundingClientRect();
-		const bg = background.getBoundingClientRect();
+	function updateContainerMeasurements(): void {
+		const outerRect = outer.getBoundingClientRect();
+		containerLeft = outerRect.left;
+		containerWidth = outerRect.right - outerRect.left;
+	}
 
-		visible = fg.top < wh && fg.bottom > 0;
+	function updateScrollProgress(): void {
+		const foregroundRect = foreground.getBoundingClientRect();
+		const backgroundRect = background.getBoundingClientRect();
 
-		const foreground_height = fg.bottom - fg.top;
-		const background_height = bg.bottom - bg.top;
+		visible = foregroundRect.top < windowHeight && foregroundRect.bottom > 0;
 
-		const available_space = bottom_px - top_px;
-		progress = (top_px - fg.top) / (foreground_height - available_space);
+		const foregroundHeight = foregroundRect.bottom - foregroundRect.top;
+		const backgroundHeight = backgroundRect.bottom - backgroundRect.top;
+		const availableSpace = bottomPx - topPx;
+
+		progress = (topPx - foregroundRect.top) / (foregroundHeight - availableSpace);
 
 		if (parallax) {
-			offset_top = Math.round(top_px - progress * (background_height - available_space));
+			offsetTop = Math.round(topPx - progress * (backgroundHeight - availableSpace));
 		}
+	}
+
+	function updateActiveSection(): void {
+		if (!sections.length) return;
+
+		const foregroundRect = foreground.getBoundingClientRect();
 
 		for (let i = 0; i < sections.length; i++) {
 			const section = sections[i];
-			const { top } = section.getBoundingClientRect();
+			const sectionRect = section.getBoundingClientRect();
+			const sectionTop = sectionRect.top;
 
-			const next = sections[i + 1];
-			const bottom = next ? next.getBoundingClientRect().top : fg.bottom;
+			const nextSection = sections[i + 1];
+			const sectionBottom = nextSection
+				? nextSection.getBoundingClientRect().top
+				: foregroundRect.bottom;
 
-			offset = (threshold_px - top) / (bottom - top);
-			if (bottom >= threshold_px) {
+			offset = (thresholdPx - sectionTop) / (sectionBottom - sectionTop);
+
+			if (sectionBottom >= thresholdPx) {
 				index = i;
 				break;
 			}
@@ -154,17 +211,17 @@
 	}
 </script>
 
-<svelte:window bind:innerHeight={wh} />
+<svelte:window bind:innerHeight={windowHeight} />
 
 <svelte-scroller-outer bind:this={outer}>
 	<svelte-scroller-background-container class="background-container">
-		<svelte-scroller-background bind:this={background} {style}>
-			<slot name="background"></slot>
+		<svelte-scroller-background bind:this={background} style={backgroundStyle}>
+			<slot name="background" {index} {count} {offset} {progress} {visible} />
 		</svelte-scroller-background>
 	</svelte-scroller-background-container>
 
 	<svelte-scroller-foreground bind:this={foreground}>
-		<slot name="foreground"></slot>
+		<slot name="foreground" {index} {count} {offset} {progress} {visible} />
 	</svelte-scroller-foreground>
 </svelte-scroller-outer>
 
@@ -188,7 +245,7 @@
 	}
 
 	svelte-scroller-foreground::after {
-		content: ' ';
+		content: '';
 		display: block;
 		clear: both;
 	}
@@ -201,12 +258,6 @@
 		height: 100%;
 		max-width: 100%;
 		pointer-events: none;
-		/* height: 100%; */
-
-		/* in theory this helps prevent jumping */
 		will-change: transform;
-		/* -webkit-transform: translate3d(0, 0, 0);
-		-moz-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0); */
 	}
 </style>
