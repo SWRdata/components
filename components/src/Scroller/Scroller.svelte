@@ -22,8 +22,8 @@
 			handlers.forEach((handler) => handler());
 		};
 
-		window.addEventListener('scroll', runAllHandlers);
-		window.addEventListener('resize', runAllHandlers);
+		window.addEventListener('scroll', runAllHandlers, { passive: true });
+		window.addEventListener('resize', runAllHandlers, { passive: true });
 	}
 
 	// Intersection Observer for performance optimization
