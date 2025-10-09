@@ -103,86 +103,87 @@
 	 */
 	interface ScrollerProps {
 		/**
+		 * The content to show in the foreground, to be set via `{#snippet foreground()}`. This should contain multiple sections, each matching the `query` selector.
+		 */
+		foreground?: Snippet;
+
+		/**
+		 * The content to show in the background, to be set via `{#snippet background()}`. This will be fixed in place while the foreground scrolls over it.
+		 */
+		background?: Snippet;
+
+		/**
 		 * The vertical position that the top of the foreground must scroll past before the background becomes fixed,
 		 * as a proportion of window height (0 = top of viewport, 1 = bottom of viewport)
-		 * @default 0
 		 */
 		top?: number;
 
 		/**
 		 * The inverse of top — once the bottom of the foreground passes this point, the background becomes unfixed.
 		 * As a proportion of window height (0 = top of viewport, 1 = bottom of viewport)
-		 * @default 1
 		 */
 		bottom?: number;
 
 		/**
 		 * Once a section crosses this point, it becomes 'active'.
 		 * As a proportion of window height (0 = top of viewport, 1 = bottom of viewport)
-		 * @default 0.5
 		 */
 		threshold?: number;
 
 		/**
 		 * A CSS selector that describes the individual sections of your foreground
-		 * @default 'section'
 		 */
 		query?: string;
 
 		/**
 		 * If true, the background will scroll such that the bottom edge reaches the bottom at the same time as the foreground.
 		 * This effect can be unpleasant for people with high motion sensitivity, so use it advisedly.
-		 * @default false
 		 */
 		parallax?: boolean;
 
 		/**
 		 * The index of the currently active section (bindable)
-		 * @default 0
 		 */
 		index?: number;
 
 		/**
 		 * The total number of sections (bindable)
-		 * @default 0
 		 */
 		count?: number;
 
 		/**
 		 * How far the section has scrolled past the threshold, as a value between 0 and 1 (bindable)
-		 * @default 0
 		 */
 		offset?: number;
 
 		/**
 		 * How far the foreground has travelled, where 0 is the top of the foreground crossing top,
 		 * and 1 is the bottom crossing bottom (bindable)
-		 * @default 0
 		 */
 		progress?: number;
 
 		/**
 		 * Whether the scroller is currently visible in the viewport (bindable)
-		 * @default false
 		 */
 		visible?: boolean;
 	}
 
-	// Configuration props (read-only)
 	let {
+		// Configuration props (read-only)
+		foreground = null,
+		background = null,
 		top = 0,
 		bottom = 1,
 		threshold = 0.5,
 		query = 'section',
 		parallax = false,
+
 		// Binding props (two-way binding)
 		index = $bindable(0),
 		count = $bindable(0),
 		offset = $bindable(0),
 		progress = $bindable(0),
-		visible = $bindable(false),
-		foreground = null,
-		background = null
+		visible = $bindable(false)
 	}: ScrollerProps = $props();
 
 	// Element bindings
