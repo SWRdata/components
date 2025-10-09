@@ -11,6 +11,7 @@ export { default as Note } from './Note/Note.svelte';
 
 // Display
 export { default as Card } from './Card/Card.svelte';
+export { default as Scroller } from './Scroller/Scroller.svelte';
 
 // Chart
 export { default as ChartHeader } from './ChartHeader/ChartHeader.svelte';
