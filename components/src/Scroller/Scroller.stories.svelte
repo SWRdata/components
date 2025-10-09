@@ -31,13 +31,13 @@
 		});
 
 		await step('Foreground content is rendered', async () => {
-			const sections = canvasElement.querySelectorAll('[slot="foreground"] section');
+			const sections = canvasElement.querySelectorAll('svelte-scroller-foreground section');
 			expect(sections).toHaveLength(5);
 			expect(sections[0]).toHaveTextContent('This is the first section.');
 		});
 
 		await step('Background content is rendered', async () => {
-			const background = canvasElement.querySelector('[slot="background"]');
+			const background = canvasElement.querySelector('svelte-scroller-background');
 			expect(background).toBeDefined();
 			expect(background).toHaveTextContent('This is the background content');
 		});
@@ -55,14 +55,14 @@
 			// Add the event listener with the stored function reference
 			window.addEventListener('scrollend', scrollEndHandler);
 
-			const sections = canvasElement.querySelectorAll('[slot="foreground"] section');
+			const sections = canvasElement.querySelectorAll('svelte-scroller-foreground section');
 			sections[3].scrollIntoView();
 		});
 	}}
 >
 	<div>
 		<Scroller top={0.2} bottom={0.8} bind:index bind:offset bind:progress>
-			<div slot="background">
+			{#snippet background()}
 				<p>
 					This is the background content. It will stay fixed in place while the foreground scrolls
 					over the top.
@@ -74,14 +74,15 @@
 				<p><code>index</code> / {index}</p>
 				<p><code>offset</code> / {offset}</p>
 				<p><code>progress</code> / {progress}</p>
-			</div>
-			<div slot="foreground">
+			{/snippet}
+
+			{#snippet foreground()}
 				<section>This is the first section.</section>
 				<section>This is the second section.</section>
 				<section>This is the third section.</section>
 				<section>This is the fourth section.</section>
 				<section>This is the fifth section.</section>
-			</div>
+			{/snippet}
 		</Scroller>
 	</div>
 </Story>

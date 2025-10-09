@@ -4,7 +4,7 @@
 	}
 
 	interface ScrollerInstance {
-		outer: HTMLElement;
+		outerWrapper: HTMLElement;
 		update: ScrollHandler;
 	}
 
@@ -56,26 +56,26 @@
 		);
 
 		manager = {
-			add: ({ outer, update }: ScrollerInstance): void => {
-				const { top, bottom } = outer.getBoundingClientRect();
+			add: ({ outerWrapper, update }: ScrollerInstance): void => {
+				const { top, bottom } = outerWrapper.getBoundingClientRect();
 
 				// Add handler if element is initially visible
 				if (top < window.innerHeight && bottom > 0) {
 					handlers.push(update);
 				}
 
-				handlerMap.set(outer, update);
-				observer.observe(outer);
+				handlerMap.set(outerWrapper, update);
+				observer.observe(outerWrapper);
 			},
 
-			remove: ({ outer, update }: ScrollerInstance): void => {
+			remove: ({ outerWrapper, update }: ScrollerInstance): void => {
 				const handlerIndex = handlers.indexOf(update);
 				if (handlerIndex !== -1) {
 					handlers.splice(handlerIndex, 1);
 				}
 
-				handlerMap.delete(outer);
-				observer.unobserve(outer);
+				handlerMap.delete(outerWrapper);
+				observer.unobserve(outerWrapper);
 			}
 		};
 	} else {
@@ -180,13 +180,15 @@
 		count = $bindable(0),
 		offset = $bindable(0),
 		progress = $bindable(0),
-		visible = $bindable(false)
+		visible = $bindable(false),
+		foreground = null,
+		background = null
 	}: ScrollerProps = $props();
 
 	// Element bindings
-	let outer = $state<HTMLElement>();
-	let foreground = $state<HTMLElement>();
-	let background = $state<HTMLElement>();
+	let outerWrapper = $state<HTMLElement>();
+	let foregroundWrapper = $state<HTMLElement>();
+	let backgroundWrapper = $state<HTMLElement>();
 
 	// Internal state
 	let sections = $state<NodeListOf<Element>>();
@@ -213,14 +215,14 @@
 	});
 
 	onMount(() => {
-		if (!foreground) return;
+		if (!foregroundWrapper) return;
 
-		sections = foreground.querySelectorAll(query);
+		sections = foregroundWrapper.querySelectorAll(query);
 		count = sections.length;
 
 		update();
 
-		const scrollerInstance: ScrollerInstance = { outer, update };
+		const scrollerInstance: ScrollerInstance = { outerWrapper, update };
 		manager.add(scrollerInstance);
 
 		return () => {
@@ -229,7 +231,7 @@
 	});
 
 	function update(): void {
-		if (!foreground || !background || !outer) return;
+		if (!foregroundWrapper || !backgroundWrapper || !outerWrapper) return;
 
 		updateContainerMeasurements();
 		updateScrollProgress();
@@ -237,14 +239,14 @@
 	}
 
 	function updateContainerMeasurements(): void {
-		const outerRect = outer.getBoundingClientRect();
+		const outerRect = outerWrapper.getBoundingClientRect();
 		containerLeft = outerRect.left;
 		containerWidth = outerRect.right - outerRect.left;
 	}
 
 	function updateScrollProgress(): void {
-		const foregroundRect = foreground.getBoundingClientRect();
-		const backgroundRect = background.getBoundingClientRect();
+		const foregroundRect = foregroundWrapper.getBoundingClientRect();
+		const backgroundRect = backgroundWrapper.getBoundingClientRect();
 
 		visible = foregroundRect.top < windowHeight && foregroundRect.bottom > 0;
 
@@ -262,7 +264,7 @@
 	function updateActiveSection(): void {
 		if (!sections?.length) return;
 
-		const foregroundRect = foreground.getBoundingClientRect();
+		const foregroundRect = foregroundWrapper.getBoundingClientRect();
 
 		for (let i = 0; i < sections.length; i++) {
 			const section = sections[i];
@@ -286,15 +288,15 @@
 
 <svelte:window bind:innerHeight={windowHeight} />
 
-<svelte-scroller-outer bind:this={outer}>
+<svelte-scroller-outer bind:this={outerWrapper}>
 	<svelte-scroller-background-container class="background-container">
-		<svelte-scroller-background bind:this={background} style={backgroundStyle}>
-			<slot name="background" {index} {count} {offset} {progress} {visible} />
+		<svelte-scroller-background bind:this={backgroundWrapper} style={backgroundStyle}>
+			{@render background()}
 		</svelte-scroller-background>
 	</svelte-scroller-background-container>
 
-	<svelte-scroller-foreground bind:this={foreground}>
-		<slot name="foreground" {index} {count} {offset} {progress} {visible} />
+	<svelte-scroller-foreground bind:this={foregroundWrapper}>
+		{@render foreground()}
 	</svelte-scroller-foreground>
 </svelte-scroller-outer>
 
