@@ -22,6 +22,7 @@
 		 * Use the feature index for IDs. Overrides `promoteId`.
 		 */
 		generateId?: boolean;
+		lineMetrics?: boolean;
 	}
 
 	const {
@@ -30,6 +31,7 @@
 		data,
 		attribution = '',
 		promoteId,
+		lineMetrics = false,
 		generateId = false
 	}: GeoJSONSourceProps = $props();
 
@@ -39,6 +41,7 @@
 		attribution,
 		promoteId,
 		generateId,
+		lineMetrics,
 		data
 	};
 </script>
