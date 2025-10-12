@@ -30,6 +30,8 @@ export { default as ScaleControl } from './maplibre/ScaleControl/ScaleControl.sv
 export { default as VectorLayer } from './maplibre/VectorLayer/VectorLayer.svelte';
 export { default as VectorTileSource } from './maplibre/VectorTileSource/VectorTileSource.svelte';
 export { default as GeoJSONSource } from './maplibre/GeoJSONSource/GeoJSONSource.svelte';
+export { default as ArrowSource } from './maplibre/ArrowSource/ArrowSource.svelte';
+export { default as MapSource } from './maplibre/Source/MapSource.svelte';
 export { default as Tooltip } from './maplibre/Tooltip/Tooltip.svelte';
 export { default as WithLinkLocation } from './maplibre/WithLinkLocation/WithLinkLocation.svelte';
 
