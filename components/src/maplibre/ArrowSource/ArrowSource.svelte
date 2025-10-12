@@ -1,10 +1,11 @@
 <script lang="ts">
-	// See: https://maplibre.org/maplibre-gl-js/docs/API/classes/GeoJSONSource/
 	import { type GeoJSONSourceSpecification } from 'maplibre-gl';
+	import { default as calcSdf } from 'bitmap-sdf';
+
 	import MapSource from '../Source/MapSource.svelte';
 	import { getMapContext } from '../context.svelte.js';
 	import { onDestroy } from 'svelte';
-	import { default as calcSdf } from 'bitmap-sdf';
+
 	const { map, styleLoaded } = $derived(getMapContext());
 
 	interface ArrowSpec {
@@ -22,11 +23,6 @@
 	}
 
 	const { id, arrows = [], attribution = '' }: ArrowSourceProps = $props();
-
-	interface JsonArrow {
-		width: number;
-		points: [number, number][];
-	}
 
 	const makeArrowHead = (width: number, height: number) => {
 		const canvas = document.createElement('canvas');
@@ -57,16 +53,21 @@
 		}
 	};
 
+	interface JsonArrow {
+		width: number;
+		points: [number, number][];
+	}
+
 	const arrowsToJson = (arrows: JsonArrow[] = []) => {
-		const tails = arrows.map((a) => {
+		const tails = arrows.map((a, i) => {
 			return {
 				type: 'Feature',
 				geometry: { type: 'LineString', coordinates: a.points },
-				properties: { width: a.width, kind: 'arrow-tail' }
+				properties: { width: a.width, kind: 'arrow-tail', id: i }
 			};
 		});
 
-		const heads = arrows.map((a) => {
+		const heads = arrows.map((a, i) => {
 			const bc = a.points[a.points.length - 1][0] - a.points[a.points.length - 2][0];
 			const ac = a.points[a.points.length - 1][1] - a.points[a.points.length - 2][1];
 			const ba = Math.sqrt(bc * bc + ac * ac);
@@ -77,7 +78,12 @@
 					type: 'Point',
 					coordinates: a.points[a.points.length - 1]
 				},
-				properties: { kind: 'arrow-head', angle, size: (a.width / 20) * 1.35 }
+				properties: {
+					kind: 'arrow-head',
+					angle,
+					size: (a.width / 20) * 1.35,
+					id: arrows.length + i
+				}
 			};
 		});
 
@@ -110,13 +116,13 @@
 	};
 	$effect(() => {
 		const s = 6.5;
-		const ah = makeArrowHead(10 * s, 10 * s * 0.75, 'black');
+		const ah = makeArrowHead(10 * s, 10 * s * 0.75);
 		if (map && styleLoaded && ah) {
 			map.addImage('arrow-head', ah, { sdf: true, pixelRatio: 2 });
 		}
 	});
 	onDestroy(() => {
-		if (map && styleLoaded) {
+		if (map) {
 			map.removeImage('arrow-head');
 		}
 	});
@@ -124,14 +130,13 @@
 		return { width: a.width || 10, points: quadraticToPoints(a.a, a.b, a.c, 20) };
 	});
 
-	const data = arrowsToJson(ar);
-
 	const sourceSpec: GeoJSONSourceSpecification = {
 		type: 'geojson',
-		lineMetrics: true,
 		maxzoom: 24,
 		attribution,
-		data
+		promoteId: 'id',
+		lineMetrics: true,
+		data: arrowsToJson(ar)
 	};
 </script>
 
