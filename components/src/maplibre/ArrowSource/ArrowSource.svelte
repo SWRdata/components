@@ -9,11 +9,10 @@
 	const { map, styleLoaded } = $derived(getMapContext());
 
 	interface ArrowSpec {
-		a: [number, number]; // p0
-		b: [number, number]; // p2
-		c: [number, number]; // p1
+		a: [number, number];
+		b: [number, number];
+		c: [number, number];
 		width?: number;
-		debug?: boolean;
 	}
 
 	interface ArrowSourceProps {
