@@ -123,7 +123,7 @@ const style: styleFunction = (opts) => {
 			...admin,
 
 			// 7. Labels
-			...walkingLabels,
+			...(options.roads?.showLabels ? walkingLabels : []),
 			...(options.roads?.showLabels ? roadLabels : []),
 
 			// 8. Building extrusions
