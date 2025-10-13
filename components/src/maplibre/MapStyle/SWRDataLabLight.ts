@@ -69,7 +69,7 @@ const style: styleFunction = (opts) => {
 		sources: {
 			'versatiles-osm': {
 				attribution:
-					'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+					'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
 				tiles: ['https://tiles.versatiles.org/tiles/osm/{z}/{x}/{y}'],
 				bounds: [-180, -85.0511287798066, 180, 85.0511287798066],
 				type: 'vector',
