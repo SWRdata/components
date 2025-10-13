@@ -257,7 +257,7 @@
 			<div class="container">
 				<Map
 					showDebug
-					style={SWRDataLabLight({ enableBuildingExtrusions: true })}
+					style={SWRDataLabLight({ enableBuildingExtrusions: true, roads: { showLabels: false } })}
 					maxZoom={20}
 					initialLocation={locations.buildings}
 				>
