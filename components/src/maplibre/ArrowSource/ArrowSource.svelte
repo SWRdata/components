@@ -66,22 +66,28 @@
 			};
 		});
 
-		const heads = arrows.map((a, i) => {
-			const bc = a.points[a.points.length - 1][0] - a.points[a.points.length - 2][0];
-			const ac = a.points[a.points.length - 1][1] - a.points[a.points.length - 2][1];
-			const ba = Math.sqrt(bc * bc + ac * ac);
-			const angle = Math.asin(bc / ba) * (180 / Math.PI) - 180;
+		const heads = arrows.map((arrow, i) => {
+			const a = arrow.points[arrow.points.length - 1];
+			const b = arrow.points[arrow.points.length - 2];
+			const c = [a[0], b[1]];
+
+			const ac = c[1] - a[1];
+			const bc = c[0] - b[0];
+			const ab = Math.sqrt(ac * ac + bc * bc);
+
+			const angle = Math.asin(bc / ab) * (180 / Math.PI) - 180;
+
 			return {
 				type: 'Feature',
 				geometry: {
 					type: 'Point',
-					coordinates: a.points[a.points.length - 1]
+					coordinates: a
 				},
 				properties: {
 					kind: 'arrow-head',
-					angle,
-					size: (a.width / 20) * 1.35,
-					id: arrows.length + i
+					size: (arrow.width / 20) * 1.35,
+					id: arrows.length + i,
+					angle
 				}
 			};
 		});
@@ -126,7 +132,7 @@
 		}
 	});
 	const ar = arrows.map((a) => {
-		return { width: a.width || 10, points: quadraticToPoints(a.a, a.b, a.c, 20) };
+		return { width: a.width || 10, points: quadraticToPoints(a.a, a.b, a.c, 15) };
 	});
 
 	const sourceSpec: GeoJSONSourceSpecification = {
