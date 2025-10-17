@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { type GeoJSONSourceSpecification } from 'maplibre-gl';
-	import { default as calcSdf } from 'bitmap-sdf';
 
 	import MapSource from '../Source/MapSource.svelte';
 	import { getMapContext } from '../context.svelte.js';
 	import { onDestroy } from 'svelte';
 
-	const { map, styleLoaded } = $derived(getMapContext());
+	const { map } = $derived(getMapContext());
 
 	interface ArrowSpec {
 		a: [number, number];
@@ -23,41 +22,18 @@
 
 	const { id, arrows = [], attribution = '' }: ArrowSourceProps = $props();
 
-	const makeArrowHead = (width: number, height: number) => {
-		const canvas = document.createElement('canvas');
-		const c = canvas.getContext('2d');
-		const w = Math.round(width);
-		const h = Math.round(height);
-		canvas.width = w;
-		canvas.height = h;
-		if (c) {
-			c.fillStyle = 'white';
-			c.beginPath();
-			c.moveTo(0, 0);
-			c.lineTo(w / 2, h);
-			c.lineTo(w, 0);
-			c.fill();
-
-			const sdf = calcSdf(canvas);
-			const data = new Uint8ClampedArray(w * h * 4);
-			for (let i = 0; i < w; i++) {
-				for (let j = 0; j < h; j++) {
-					data[j * w * 4 + i * 4 + 0] = sdf[j * w + i] * 255;
-					data[j * w * 4 + i * 4 + 1] = sdf[j * w + i] * 255;
-					data[j * w * 4 + i * 4 + 2] = sdf[j * w + i] * 255;
-					data[j * w * 4 + i * 4 + 3] = sdf[j * w + i] * 255;
-				}
-			}
-			return new ImageData(data, w, h);
-		}
-	};
-
 	interface JsonArrow {
 		width: number;
 		points: [number, number][];
 	}
 
 	const arrowsToJson = (arrows: JsonArrow[] = []) => {
+		if (!map)
+			return {
+				type: 'FeatureCollection',
+				features: []
+			} as GeoJSON.GeoJSON;
+
 		const tails = arrows.map((a, i) => {
 			return {
 				type: 'Feature',
@@ -67,28 +43,25 @@
 		});
 
 		const heads = arrows.map((arrow, i) => {
-			const a = arrow.points[arrow.points.length - 1];
-			const b = arrow.points[arrow.points.length - 2];
-			const c = [a[0], b[1]];
+			const a = Object.values(map.project(arrow.points[arrow.points.length - 1]));
+			const b = Object.values(map.project(arrow.points[arrow.points.length - 2]));
 
-			const ac = c[1] - a[1];
-			const bc = c[0] - b[0];
-			const ab = Math.sqrt(ac * ac + bc * bc);
+			const ab = [b[0] - a[0], b[1] - a[1]];
+			const d = Math.sqrt(ab[0] * ab[0] + ab[1] * ab[1]);
+			const t = [-ab[1] / d, ab[0] / d];
+			const s = arrow.width * 1.333;
 
-			const angle = Math.asin(bc / ab) * (180 / Math.PI) - 180;
+			const coordinates = [
+				map?.unproject(a).toArray(),
+				map?.unproject([a[0] + t[0] * s, a[1] + t[1] * s]).toArray(),
+				map?.unproject([a[0] - ab[0], a[1] - ab[1]]).toArray(),
+				map?.unproject([a[0] - t[0] * s, a[1] - t[1] * s]).toArray()
+			];
 
 			return {
 				type: 'Feature',
-				geometry: {
-					type: 'Point',
-					coordinates: a
-				},
-				properties: {
-					kind: 'arrow-head',
-					size: (arrow.width / 20) * 1.35,
-					id: arrows.length + i,
-					angle
-				}
+				geometry: { type: 'Polygon', coordinates: [coordinates] },
+				properties: { kind: 'arrow-head', id: arrows.length + i }
 			};
 		});
 
@@ -114,25 +87,19 @@
 			const t = n / pointCount;
 			const x = (1 - t) * ((1 - t) * a[0] + t * c[0]) + t * ((1 - t) * c[0] + t * b[0]);
 			const y = (1 - t) * ((1 - t) * a[1] + t * c[1]) + t * ((1 - t) * c[1] + t * b[1]);
-			points.push([x.toFixed(4), y.toFixed(4)]);
+			points.push([x, y]);
 		}
 
 		return [...points, b] as [number, number][];
 	};
-	$effect(() => {
-		const s = 6.5;
-		const ah = makeArrowHead(10 * s, 10 * s * 0.75);
-		if (map && styleLoaded && ah) {
-			map.addImage('arrow-head', ah, { sdf: true, pixelRatio: 2 });
-		}
-	});
+
 	onDestroy(() => {
 		if (map) {
 			map.removeImage('arrow-head');
 		}
 	});
 	const ar = arrows.map((a) => {
-		return { width: a.width || 10, points: quadraticToPoints(a.a, a.b, a.c, 15) };
+		return { width: a.width || 10, points: quadraticToPoints(a.a, a.b, a.c, 4) };
 	});
 
 	const sourceSpec: GeoJSONSourceSpecification = {

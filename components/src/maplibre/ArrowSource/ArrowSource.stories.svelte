@@ -104,7 +104,7 @@
 				<ArrowSource
 					id="arrows"
 					attribution=""
-					arrows={[{ a: [7.78, 47.55917], b: [7.667, 47.595], c: [7.69, 47.55], width: 30 }]}
+					arrows={[{ a: [7.79, 47.55917], b: [7.69, 47.595], c: [7.69, 47.55], width: 40 }]}
 				/>
 
 				<InspectControl />
@@ -114,6 +114,10 @@
 					id="arrow-tails"
 					filter={['==', 'kind', 'arrow-tail']}
 					type="line"
+					layout={{
+						'line-join': 'round',
+						'line-cap': 'square'
+					}}
 					paint={{
 						'line-gradient': [
 							'interpolate',
@@ -127,22 +131,15 @@
 						'line-width': ['get', 'width']
 					}}
 				/>
+
 				<VectorLayer
 					sourceId="arrows"
-					id="arrow-heads"
+					id="arrow-heads-2"
 					filter={['==', 'kind', 'arrow-head']}
-					type="symbol"
+					type="fill"
 					paint={{
-						'icon-color': tokens.shades.red.base
-					}}
-					layout={{
-						'icon-image': 'arrow-head',
-						'icon-rotation-alignment': 'map',
-						'icon-anchor': 'top',
-						'icon-offset': [0, 2],
-						'icon-rotate': ['get', 'angle'],
-						'icon-overlap': 'always',
-						'icon-size': ['get', 'size']
+						'fill-color': tokens.shades.blue.base,
+						'fill-opacity': 0.7
 					}}
 				/>
 			</Map>
