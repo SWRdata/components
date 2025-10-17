@@ -1,0 +1,20 @@
+import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+ 
+import * as SwrHeaderStories from './SwrHeader.stories.svelte';
+
+<Meta of={SwrHeaderStories}/>
+
+# SWR post header
+
+<Controls  />
+
+Bylines have the following shape:
+
+```ts
+interface Byline {
+    name: string;
+    image?: string;
+}
+```
+
+<Stories/>
