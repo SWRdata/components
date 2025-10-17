@@ -66,6 +66,7 @@
 </header>
 
 <style lang="scss">
+	// 14px baseline
 	.container {
 		color: var(--color-textPrimary);
 		font-family: var(--swr-sans);
@@ -80,21 +81,22 @@
 	}
 	.eyebrow {
 		font-size: var(--fs-small-1);
-		margin-bottom: 1em;
+		margin-bottom: 1.3em;
+		line-height: 1;
 		letter-spacing: 0.025em;
 	}
 	.title {
 		font-family: var(--swr-sans);
-		line-height: 1.2;
+		line-height: 1.175;
 		letter-spacing: 0.002em;
 		font-size: var(--fs-large-3);
 		font-weight: 700;
 		text-wrap: balance;
 	}
 	.subtitle {
-		margin-top: 1.25em;
+		margin-top: 1.15em;
 		font-family: var(--swr-sans);
-		line-height: 1.45;
+		line-height: 1.4;
 		font-size: var(--fs-base);
 		font-weight: 400;
 		text-shadow: none;
