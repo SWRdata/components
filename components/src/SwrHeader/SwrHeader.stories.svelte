@@ -5,16 +5,13 @@
 	import SwrHeader from './SwrHeader.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Chart/SwrHeader',
+		title: 'Display/SwrHeader',
 		component: SwrHeader
 	});
 
 	const imageModules = import.meta.glob('./test/**.jpg', {
 		eager: true,
-		query: {
-			enhanced: true,
-			w: 200
-		}
+		query: { enhanced: true, w: 200 }
 	});
 </script>
 

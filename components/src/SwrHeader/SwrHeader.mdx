@@ -4,7 +4,7 @@ import * as SwrHeaderStories from './SwrHeader.stories.svelte';
 
 <Meta of={SwrHeaderStories}/>
 
-# SWRHeader
+# SwrHeader
 
 This component replicates the [SWR.de](https://www.swr.de) standard article header. This is useful if we want to replace the original header with our own version, as we did [here](https://www.swr.de/swraktuell/baden-wuerttemberg/wie-staedte-klimaneutral-heizen-wollen-100.html).
 
@@ -17,6 +17,15 @@ interface Byline {
     name: string;
     image?: string;
 }
+```
+
+`imageModules` is generated in the application component with:
+
+```ts
+const imageModules = import.meta.glob('./test/**.jpg', {
+    eager: true,
+    query: { enhanced: true, w: 100 }
+});
 ```
 
 <Stories/>

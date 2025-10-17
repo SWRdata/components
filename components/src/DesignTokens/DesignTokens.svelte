@@ -41,6 +41,10 @@
 		padding: 0;
 	}
 
+	:global(a) {
+		color: inherit;
+	}
+
 	.container {
 		display: contents;
 		--fast: 150ms;
