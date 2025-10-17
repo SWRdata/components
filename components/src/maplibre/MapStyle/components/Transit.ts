@@ -52,58 +52,16 @@ export default function makeTransit(tokens) {
 			'source-layer': 'street_polygons',
 			filter: ['in', 'kind', 'runway', 'taxiway'],
 			paint: {
-				'fill-color': 'hsl(0,0%,100%)',
+				'fill-color': tokens.street_tertiary,
 				'fill-opacity': 0.5
 			}
 		},
-		{
-			id: 'airport-taxiway:case',
-			filter: ['==', 'kind', 'taxiway'],
-			paint: {
-				'line-color': 'hsl(36,0%,80%)',
-				'line-width': {
-					stops: [
-						[13, 0],
-						[14, 2],
-						[15, 10],
-						[16, 14],
-						[18, 20],
-						[20, 40]
-					]
-				}
-			},
-			layout: {
-				'line-join': 'round'
-			}
-		},
-		{
-			id: 'airport-runway:case',
-			filter: ['==', 'kind', 'runway'],
-			paint: {
-				'line-color': 'hsl(36,0%,80%)',
-				'line-width': {
-					stops: [
-						[11, 0],
-						[12, 6],
-						[13, 9],
-						[14, 16],
-						[15, 24],
-						[16, 40],
-						[17, 100],
-						[18, 160],
-						[20, 300]
-					]
-				}
-			},
-			layout: {
-				'line-join': 'round'
-			}
-		},
+
 		{
 			id: 'airport-taxiway',
 			filter: ['==', 'kind', 'taxiway'],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[13, 0],
@@ -129,7 +87,7 @@ export default function makeTransit(tokens) {
 			id: 'airport-runway',
 			filter: ['==', 'kind', 'runway'],
 			paint: {
-				'line-color': 'hsl(0,0%,100%)',
+				'line-color': tokens.street_tertiary,
 				'line-width': {
 					stops: [
 						[11, 0],
