@@ -30,7 +30,7 @@
 				}}
 			>
 				<ArrowSource
-					id="demo"
+					id="arrows"
 					attribution="Demo attribution"
 					arrows={[
 						{
@@ -50,7 +50,7 @@
 				<InspectControl />
 				<AttributionControl />
 				<VectorLayer
-					sourceId="demo"
+					sourceId="arrows"
 					id="arrow-tails"
 					filter={['==', 'kind', 'arrow-tail']}
 					type="line"
@@ -90,7 +90,7 @@
 				initialLocation={{
 					lng: 7.72,
 					lat: 47.59,
-					zoom: 10.9
+					zoom: 10
 				}}
 			>
 				<ArrowSource

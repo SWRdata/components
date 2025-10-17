@@ -29,6 +29,29 @@
 
 	const { id, arrows = [], attribution = '' }: ArrowSourceProps = $props();
 
+	const quadraticToPoints = (
+		a: [number, number],
+		b: [number, number],
+		c: [number, number],
+		pointCount = 10
+	) => {
+		// B(t) = (1-t)[(1-t)P0 + tP1] + t[(1-t)P1+tP2]
+		// See: https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves
+
+		// Below is a naive implementation but good enough for now
+		// https://bit-101.com/blog/posts/2024-09-29/evenly-placed-points-on-bezier-curves
+
+		let points = [];
+		for (let n = 0; n < pointCount; n++) {
+			const t = n / pointCount;
+			const x = (1 - t) * ((1 - t) * a[0] + t * c[0]) + t * ((1 - t) * c[0] + t * b[0]);
+			const y = (1 - t) * ((1 - t) * a[1] + t * c[1]) + t * ((1 - t) * c[1] + t * b[1]);
+			points.push([x, y]);
+		}
+
+		return [...points, b] as [number, number][];
+	};
+
 	const arrowsToJson = (arrows: JsonArrow[] = []) => {
 		if (!map) return { type: 'FeatureCollection', features: [] } as GeoJSON.GeoJSON;
 
@@ -47,13 +70,13 @@
 			const ab = [b[0] - a[0], b[1] - a[1]];
 			const d = Math.sqrt(ab[0] * ab[0] + ab[1] * ab[1]);
 			const t = [-ab[1] / d, ab[0] / d];
-			const s = arrow.width * 1.333;
+			const s = [arrow.width * 1.333, arrow.width * 1.5];
 
 			const coordinates = [
 				map?.unproject(a).toArray(),
-				map?.unproject([a[0] + t[0] * s, a[1] + t[1] * s]).toArray(),
-				map?.unproject([a[0] - ab[0], a[1] - ab[1]]).toArray(),
-				map?.unproject([a[0] - t[0] * s, a[1] - t[1] * s]).toArray()
+				map?.unproject([a[0] + t[0] * s[0], a[1] + t[1] * s[0]]).toArray(),
+				map?.unproject([a[0] - (ab[0] / d) * s[0], a[1] - (ab[1] / d) * s[1]]).toArray(),
+				map?.unproject([a[0] - t[0] * s[0], a[1] - t[1] * s[0]]).toArray()
 			];
 
 			return {
@@ -69,45 +92,32 @@
 		} as GeoJSON.GeoJSON;
 	};
 
-	const quadraticToPoints = (
-		a: [number, number],
-		b: [number, number],
-		c: [number, number],
-		pointCount = 10
-	) => {
-		// B(t) = (1-t)[(1-t)P0 + tP1] + t[(1-t)P1+tP2]
-		// This is a naive implementation but good enough for now
-		// See: https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves
-		// https://bit-101.com/blog/posts/2024-09-29/evenly-placed-points-on-bezier-curves
+	function d(arrows) {
+		return arrowsToJson(
+			arrows.map((a) => {
+				return { width: a.width || 10, points: quadraticToPoints(a.a, a.b, a.c, 10) };
+			})
+		);
+	}
 
-		let points = [];
-		for (let n = 0; n < pointCount; n++) {
-			const t = n / pointCount;
-			const x = (1 - t) * ((1 - t) * a[0] + t * c[0]) + t * ((1 - t) * c[0] + t * b[0]);
-			const y = (1 - t) * ((1 - t) * a[1] + t * c[1]) + t * ((1 - t) * c[1] + t * b[1]);
-			points.push([x, y]);
-		}
-
-		return [...points, b] as [number, number][];
-	};
-
-	onDestroy(() => {
-		if (map) {
-			map.removeImage('arrow-head');
-		}
-	});
-	const ar = arrows.map((a) => {
-		return { width: a.width || 10, points: quadraticToPoints(a.a, a.b, a.c, 4) };
-	});
-
-	const sourceSpec: GeoJSONSourceSpecification = {
+	let sourceSpec: GeoJSONSourceSpecification = $state({
 		type: 'geojson',
 		maxzoom: 24,
 		attribution,
 		promoteId: 'id',
 		lineMetrics: true,
-		data: arrowsToJson(ar)
+		data: d(arrows)
+	});
+
+	const onZoom = () => {
+		sourceSpec = { type: 'geojson', data: d(arrows) };
 	};
+	$effect(() => {
+		map?.on('zoom', onZoom);
+	});
+	onDestroy(() => {
+		map?.off('zoom', onZoom);
+	});
 </script>
 
 <MapSource {id} {sourceSpec} />

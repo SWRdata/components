@@ -25,26 +25,20 @@
 	// 1. Add the source to the map using the spec, then get the
 	// actual source object back from the map instance
 	$effect(() => {
-		if (map && styleLoaded) {
-			// See: https://svelte.dev/docs/svelte/$state#$state.snapshot
+		if (map && styleLoaded && firstRun) {
 			map.addSource(id, $state.snapshot(sourceSpec) as SourceSpecification);
 			source = map.getSource(id);
-			firstRun = true;
+			firstRun = false;
 		}
 	});
 
 	// 2. Do extra stuff with the source object
 	$effect(() => {
 		if (source && sourceSpec.type === 'geojson') {
-			if (!firstRun) {
+			if (firstRun === false) {
 				source.setData(sourceSpec.data);
 			}
 		}
-	});
-
-	$effect(() => {
-		source;
-		firstRun = false;
 	});
 
 	onDestroy(() => {
