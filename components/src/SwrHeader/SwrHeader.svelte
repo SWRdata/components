@@ -55,12 +55,12 @@
 					</ul>
 				{/if}
 				<Caption>
-					<p class="byline-names">{@html nameString}</p>
+					<p data-testid="byline-names" class="byline-names">{@html nameString}</p>
 				</Caption>
 			</div>
 		{/if}
 		{#if updated_on}
-			<p class="updated">Stand: {updated_on.toLocaleDateString('de-DE')}</p>
+			<p class="updated" data-testid="updated">Stand: {updated_on.toLocaleDateString('de-DE')}</p>
 		{/if}
 	</div>
 </header>
@@ -92,7 +92,7 @@
 		text-wrap: balance;
 	}
 	.subtitle {
-		margin-top: 1.35em;
+		margin-top: 1.25em;
 		font-family: var(--swr-sans);
 		line-height: 1.45;
 		font-size: var(--fs-base);
@@ -104,7 +104,6 @@
 		margin-top: 1.5em;
 		display: flex;
 		align-items: center;
-
 		column-gap: 2em;
 		flex-wrap: wrap;
 	}

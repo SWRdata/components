@@ -1,7 +1,7 @@
 <script context="module">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
-	import { expect } from 'storybook/test';
+	import { expect, within } from 'storybook/test';
 	import SwrHeader from './SwrHeader.svelte';
 
 	const { Story } = defineMeta({
@@ -21,10 +21,15 @@
 <Story
 	name="Default"
 	asChild
-	play={async ({ step }) => {
-		await step('Container has ID attribute derived from title prop', async () => {
-			const containerEl = document.querySelector('#mehr-uber-60-jahrige-in-allen-berufen');
-			expect(containerEl).toBeTruthy();
+	play={async ({ step, canvasElement }) => {
+		const canvas = within(canvasElement);
+		await step('Renders names list', async () => {
+			const containerEl = canvas.getByTestId('byline-names');
+			expect(containerEl.textContent).toBe('Von Katharina Forstmair, Tom Burggraf, SWR Data Lab');
+		});
+		await step('Renders date', async () => {
+			const containerEl = canvas.getByTestId('updated');
+			expect(containerEl.textContent).toBe('Stand: 10.1.2025');
 		});
 	}}
 >
