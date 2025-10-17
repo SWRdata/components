@@ -68,20 +68,12 @@
 					}}
 				/>
 				<VectorLayer
-					sourceId="demo"
+					sourceId="arrows"
 					id="arrow-heads"
 					filter={['==', 'kind', 'arrow-head']}
-					type="symbol"
+					type="fill"
 					paint={{
-						'icon-color': tokens.shades.red.base
-					}}
-					layout={{
-						'icon-image': 'arrow-head',
-						'icon-anchor': 'top',
-						'icon-offset': [0, -2],
-						'icon-rotate': ['get', 'angle'],
-						'icon-overlap': 'always',
-						'icon-size': ['get', 'size']
+						'fill-color': tokens.shades.red.base
 					}}
 				/>
 			</Map>
@@ -134,7 +126,7 @@
 
 				<VectorLayer
 					sourceId="arrows"
-					id="arrow-heads-2"
+					id="arrow-heads"
 					filter={['==', 'kind', 'arrow-head']}
 					type="fill"
 					paint={{

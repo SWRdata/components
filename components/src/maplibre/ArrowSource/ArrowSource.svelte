@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { type GeoJSONSourceSpecification } from 'maplibre-gl';
 
-	import MapSource from '../Source/MapSource.svelte';
+	import MapSource from '../Source';
 	import { getMapContext } from '../context.svelte.js';
 	import { onDestroy } from 'svelte';
 
 	const { map } = $derived(getMapContext());
 
+	type V2 = [number, number];
+
 	interface ArrowSpec {
-		a: [number, number];
-		b: [number, number];
-		c: [number, number];
+		a: V2;
+		b: V2;
+		c: V2;
 		width?: number;
 	}
 
@@ -20,19 +22,15 @@
 		arrows: ArrowSpec[];
 	}
 
-	const { id, arrows = [], attribution = '' }: ArrowSourceProps = $props();
-
 	interface JsonArrow {
 		width: number;
 		points: [number, number][];
 	}
 
+	const { id, arrows = [], attribution = '' }: ArrowSourceProps = $props();
+
 	const arrowsToJson = (arrows: JsonArrow[] = []) => {
-		if (!map)
-			return {
-				type: 'FeatureCollection',
-				features: []
-			} as GeoJSON.GeoJSON;
+		if (!map) return { type: 'FeatureCollection', features: [] } as GeoJSON.GeoJSON;
 
 		const tails = arrows.map((a, i) => {
 			return {
@@ -43,8 +41,8 @@
 		});
 
 		const heads = arrows.map((arrow, i) => {
-			const a = Object.values(map.project(arrow.points[arrow.points.length - 1]));
-			const b = Object.values(map.project(arrow.points[arrow.points.length - 2]));
+			const a = Object.values(map.project(arrow.points[arrow.points.length - 1])) as V2;
+			const b = Object.values(map.project(arrow.points[arrow.points.length - 2])) as V2;
 
 			const ab = [b[0] - a[0], b[1] - a[1]];
 			const d = Math.sqrt(ab[0] * ab[0] + ab[1] * ab[1]);
