@@ -3,7 +3,6 @@
 	import Map from '../Map/Map.svelte';
 	import ArrowSource from './ArrowSource.svelte';
 	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
-	import InspectControl from '../InspectControl/InspectControl.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 
 	import { SWRDataLabLight } from '../MapStyle';
@@ -47,7 +46,6 @@
 						}
 					]}
 				/>
-				<InspectControl />
 				<AttributionControl />
 				<VectorLayer
 					sourceId="arrows"
@@ -98,8 +96,6 @@
 					attribution=""
 					arrows={[{ a: [7.79, 47.55917], b: [7.69, 47.595], c: [7.69, 47.55], width: 40 }]}
 				/>
-
-				<InspectControl />
 				<AttributionControl />
 				<VectorLayer
 					sourceId="arrows"
