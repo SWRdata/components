@@ -7,4 +7,4 @@
 	});
 </script>
 
-<Story name="Basic" asChild>{JSON.stringify($isDarkMode)}</Story>
+<Story name="Basic" asChild>{JSON.stringify(isDarkMode())}</Story>
