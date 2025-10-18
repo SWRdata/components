@@ -3,23 +3,24 @@
 
 	import MapSource from '../Source';
 	import { getMapContext } from '../context.svelte.js';
+	import quadraticToPoints from './quadraticToPoints';
 	import { onDestroy } from 'svelte';
 
 	const { map } = $derived(getMapContext());
 
 	type V2 = [number, number];
 
+	interface ArrowSourceProps {
+		id: string;
+		attribution: string;
+		arrows: ArrowSpec[];
+	}
+
 	interface ArrowSpec {
 		a: V2;
 		b: V2;
 		c: V2;
 		width?: number;
-	}
-
-	interface ArrowSourceProps {
-		id: string;
-		attribution: string;
-		arrows: ArrowSpec[];
 	}
 
 	interface JsonArrow {
@@ -29,33 +30,14 @@
 
 	const { id, arrows = [], attribution = '' }: ArrowSourceProps = $props();
 
-	const quadraticToPoints = (
-		a: [number, number],
-		b: [number, number],
-		c: [number, number],
-		pointCount = 10
-	) => {
-		// B(t) = (1-t)[(1-t)P0 + tP1] + t[(1-t)P1+tP2]
-		// See: https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves
-
-		// Below is a naive implementation but good enough for now
-		// https://bit-101.com/blog/posts/2024-09-29/evenly-placed-points-on-bezier-curves
-
-		let points = [];
-		for (let n = 0; n < pointCount; n++) {
-			const t = n / pointCount;
-			const x = (1 - t) * ((1 - t) * a[0] + t * c[0]) + t * ((1 - t) * c[0] + t * b[0]);
-			const y = (1 - t) * ((1 - t) * a[1] + t * c[1]) + t * ((1 - t) * c[1] + t * b[1]);
-			points.push([x, y]);
-		}
-
-		return [...points, b] as [number, number][];
-	};
+	const ars: JsonArrow[] = arrows.map((a) => {
+		return { width: a.width || 10, points: quadraticToPoints(a.a, a.b, a.c, 10) };
+	});
 
 	const arrowsToJson = (arrows: JsonArrow[] = []) => {
 		if (!map) return { type: 'FeatureCollection', features: [] } as GeoJSON.GeoJSON;
 
-		const tails = arrows.map((a, i) => {
+		const tails = ars.map((a, i) => {
 			return {
 				type: 'Feature',
 				geometry: { type: 'LineString', coordinates: a.points },
@@ -63,7 +45,7 @@
 			};
 		});
 
-		const heads = arrows.map((arrow, i) => {
+		const heads = ars.map((arrow, i) => {
 			const a = Object.values(map.project(arrow.points[arrow.points.length - 1])) as V2;
 			const b = Object.values(map.project(arrow.points[arrow.points.length - 2])) as V2;
 
@@ -92,25 +74,16 @@
 		} as GeoJSON.GeoJSON;
 	};
 
-	function d(arrows) {
-		return arrowsToJson(
-			arrows.map((a) => {
-				return { width: a.width || 10, points: quadraticToPoints(a.a, a.b, a.c, 10) };
-			})
-		);
-	}
-
 	let sourceSpec: GeoJSONSourceSpecification = $state({
-		type: 'geojson',
-		maxzoom: 24,
 		attribution,
+		type: 'geojson',
 		promoteId: 'id',
 		lineMetrics: true,
-		data: d(arrows)
+		data: arrowsToJson(ars)
 	});
 
 	const onZoom = () => {
-		sourceSpec = { type: 'geojson', data: d(arrows) };
+		sourceSpec = { ...sourceSpec, data: arrowsToJson(ars) };
 	};
 	$effect(() => {
 		map?.on('zoom', onZoom);
