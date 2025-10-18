@@ -21,17 +21,23 @@
 		b: V2;
 		c: V2;
 		width?: number;
+		headScale?: V2;
 	}
 
 	interface JsonArrow {
 		width: number;
-		points: [number, number][];
+		points: V2[];
+		headScale?: V2;
 	}
 
 	const { id, arrows = [], attribution = '' }: ArrowSourceProps = $props();
 
 	const ars: JsonArrow[] = arrows.map((a) => {
-		return { width: a.width || 10, points: quadraticToPoints(a.a, a.b, a.c, 10) };
+		return {
+			width: a.width || 10,
+			points: quadraticToPoints(a.a, a.b, a.c, 10),
+			headScale: a.headScale
+		};
 	});
 
 	const arrowsToJson = (arrows: JsonArrow[] = []) => {
@@ -52,7 +58,9 @@
 			const ab = [b[0] - a[0], b[1] - a[1]];
 			const d = Math.sqrt(ab[0] * ab[0] + ab[1] * ab[1]);
 			const t = [-ab[1] / d, ab[0] / d];
-			const s = [arrow.width * 1.333, arrow.width * 1.5];
+			const s = arrow.headScale
+				? [arrow.width * arrow.headScale[0], arrow.width * arrow.headScale[1]]
+				: [arrow.width * 1.33, arrow.width * 1.5];
 
 			const coordinates = [
 				map?.unproject(a).toArray(),
