@@ -10,7 +10,7 @@
 
 	let { theme = 'auto', children }: DesignTokensProps = $props();
 
-	let computedTheme = $derived(theme === 'auto' ? ($isDarkMode ? 'dark' : 'light') : theme);
+	let computedTheme = $derived(theme === 'auto' ? (isDarkMode() ? 'dark' : 'light') : theme);
 
 	const colours = { ...shades, ...semantics };
 	const rules = [
