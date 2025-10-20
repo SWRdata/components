@@ -30,7 +30,7 @@
 		});
 	}}
 >
-	<DesignTokens theme="light">
+	<DesignTokens theme="dark">
 		<SwrHeader
 			{imageModules}
 			title="Große Pläne: Wie Städte klimaneutral heizen wollen"
