@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getContext, type Snippet } from 'svelte';
+	import { type Snippet } from 'svelte';
 
 	import Caption from '../Caption/Caption.svelte';
 
@@ -17,7 +17,6 @@
 		bylines?: Byline[];
 	}
 
-	let theme = getContext('theme');
 	const {
 		title,
 		subtitle,
@@ -30,7 +29,7 @@
 	const updated_on = updated ? (updated instanceof Date ? updated : new Date(updated)) : null;
 </script>
 
-<header class={`container theme-${theme}`}>
+<header class="container">
 	{#if eyebrow}
 		<p class="eyebrow">{eyebrow}</p>
 	{/if}
@@ -73,11 +72,7 @@
 		margin: 0 auto;
 		margin-bottom: 1rem;
 		max-width: 44rem;
-		text-shadow: 0 0 4px white;
-
-		&.theme-dark {
-			text-shadow: 0 0 8px rgba(black, 0.5);
-		}
+		text-shadow: 0 0 6px var(--color-pageFill);
 	}
 	.eyebrow {
 		font-size: var(--fs-small-1);
@@ -99,7 +94,6 @@
 		line-height: 1.4;
 		font-size: var(--fs-base);
 		font-weight: 400;
-		text-shadow: none;
 		hyphens: auto;
 	}
 	.meta {
