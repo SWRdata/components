@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { getContext, type Snippet } from 'svelte';
+	import { type Snippet } from 'svelte';
 
 	import Caption from '../Caption/Caption.svelte';
+	import isDarkMode from '../isDarkMode';
 
 	interface Byline {
 		name: string;
@@ -15,22 +16,24 @@
 		imageModules?: Record<string, any>;
 		updated?: Date | string;
 		bylines?: Byline[];
+		theme?: 'light' | 'dark' | 'auto';
 	}
 
-	let theme = getContext('theme');
 	const {
 		title,
 		subtitle,
 		eyebrow,
 		imageModules,
 		updated,
+		theme = 'auto',
 		bylines = []
 	}: SwrHeaderProps = $props();
 
+	let _theme = theme === 'auto' ? (isDarkMode() ? 'dark' : 'light') : theme;
 	const updated_on = updated ? (updated instanceof Date ? updated : new Date(updated)) : null;
 </script>
 
-<header class={`container theme-${theme}`}>
+<header class={`container theme-${_theme}`}>
 	{#if eyebrow}
 		<p class="eyebrow">{eyebrow}</p>
 	{/if}

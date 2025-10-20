@@ -36,6 +36,7 @@
 			title="Große Pläne: Wie Städte klimaneutral heizen wollen"
 			eyebrow="Wärmewende in Baden-Württemberg"
 			updated="01-10-2025"
+			theme="light"
 			bylines={[
 				{ name: 'Katharina Forstmair', image: './test/forstmair.jpg' },
 				{ name: 'Tom Burggraf', image: './test/burggraf.jpg' }
