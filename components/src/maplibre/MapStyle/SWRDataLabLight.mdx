@@ -81,17 +81,19 @@ Call `SWRDataLabLight()` to construct a style document and pass the result to th
 
 ```ts
 interface StyleOptions {
-	enableBuildingExtrusions?: boolean;
-	roads?: {
-		showLabels?: boolean
-	}
-
+  enableBuildingExtrusions?: boolean;
+    roads?: {
+      showLabels?: boolean
+    }
+    places?: {
+      showLabels?: boolean
+    }
 }
 ```
 
 ## Icons
 
-export const customIcons = ['pin-14'];
+export const customIcons = ['pin-14', 'pin-14-dark'];
 export const osmicIconsCount = Object.entries(SpriteData).filter((row) => {
 	return !customIcons.includes(row[0]);
 }).length;

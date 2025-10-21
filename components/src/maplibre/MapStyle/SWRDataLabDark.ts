@@ -1,4 +1,7 @@
+import type { StyleOptions } from './types';
 import type { StyleSpecification } from 'maplibre-gl';
+
+import defaultOptions from './defaultOptions';
 
 import makeAdmin from './components/Admin';
 import makeBuildings from './components/Buildings';
@@ -7,7 +10,6 @@ import makeTransit from './components/Transit';
 import makePlaceLabels from './components/PlaceLabels';
 import makeWalking from './components/Walking';
 import makeRoads from './components/Roads';
-import type { StyleOptions } from './types';
 
 const tokens = {
 	sans_regular: ['SWR Sans Regular'],
@@ -56,10 +58,7 @@ interface styleFunction {
 
 const style: styleFunction = (opts) => {
 	const options = {
-		enableBuildingExtrusions: false,
-		roads: {
-			showLabels: true
-		},
+		...defaultOptions,
 		...opts
 	} as StyleOptions;
 
@@ -133,7 +132,9 @@ const style: styleFunction = (opts) => {
 			...(options.enableBuildingExtrusions ? [buildingExtrusions] : []),
 
 			// 8. Point labels
-			...placeLabels,
+			...(options.places?.showLabels ? placeLabels : []),
+
+			// 9. Admin boundary labels
 			...boundaryLabels
 		]
 	};
