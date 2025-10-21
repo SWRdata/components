@@ -30,7 +30,7 @@
 	</DesignTokens>
 </Story>
 
-<Story asChild name="Toggle place labels (#211)">
+<Story asChild name="Toggle place labels (#221)">
 	<DesignTokens theme="dark">
 		<div class="grid">
 			<div class="container">
