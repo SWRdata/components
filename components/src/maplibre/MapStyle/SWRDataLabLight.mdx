@@ -81,11 +81,13 @@ Call `SWRDataLabLight()` to construct a style document and pass the result to th
 
 ```ts
 interface StyleOptions {
-	enableBuildingExtrusions?: boolean;
-	roads?: {
-		showLabels?: boolean
-	}
-
+  enableBuildingExtrusions?: boolean;
+    roads?: {
+      showLabels?: boolean
+    }
+    places?: {
+      showLabels?: boolean
+    }
 }
 ```
 
