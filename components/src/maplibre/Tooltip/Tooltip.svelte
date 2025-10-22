@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy, type Snippet } from 'svelte';
+	import { onDestroy, tick, type Snippet } from 'svelte';
 	import maplibre, { type Listener, type LngLatLike } from 'maplibre-gl';
 	import { getMapContext } from '../context.svelte.js';
 	import { resetPopupEventListener } from '../utils';
@@ -50,7 +50,11 @@
 
 	$effect(() => {
 		if (position && el && map) {
-			tooltip.setLngLat(position).setDOMContent(el).addTo(map);
+			tooltip.addTo(map).setDOMContent(el).setLngLat(position);
+			// Ensure tooltip doesn't extend beyond the map canvas, see #223
+			tick().then(() => {
+				tooltip._update();
+			});
 		} else {
 			tooltip.remove();
 		}
