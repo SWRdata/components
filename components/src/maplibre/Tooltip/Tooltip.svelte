@@ -50,7 +50,7 @@
 
 	$effect(() => {
 		if (position && el && map) {
-			tooltip.addTo(map).setDOMContent(el).setLngLat(position);
+			tooltip.setLngLat(position).setDOMContent(el).addTo(map);
 			// Ensure tooltip doesn't extend beyond the map canvas, see #223
 			tick().then(() => {
 				tooltip._update();
