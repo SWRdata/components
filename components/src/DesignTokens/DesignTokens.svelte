@@ -61,6 +61,7 @@
 		--color-pageFill: var(--pageFill-light);
 		--color-surfaceFill: var(--surfaceFill-light);
 		--color-surfaceBorder: var(--surfaceBorder-light);
+		--color-dropShadow: var(--dropShadow-light);
 
 		&[data-theme='dark'] {
 			--color-logoFill: var(--logoFill-dark);
@@ -70,6 +71,7 @@
 			--color-textPrimary: var(--textPrimary-dark);
 			--color-textSecondary: var(--textSecondary-dark);
 			--color-textSecondaryHover: var(--textSecondaryHover-dark);
+			--color-dropShadow: var(--dropShadow-dark);
 		}
 
 		--swr-text: 'SWR-VAR-Text', sans-serif;
