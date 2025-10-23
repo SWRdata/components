@@ -20,7 +20,7 @@
 		});
 	}}
 >
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<ChartHeader
 			title="Mehr über-60-Jährige in allen Berufen"
 			subtitle="Veränderung des Anteils der Beschäftigen über 60 Jahren in allen Berufsgruppen seit 2013 (Bundesweit)"
@@ -31,7 +31,7 @@
 </Story>
 
 <Story name="Long title" asChild>
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<ChartHeader
 			title="Wärmepumpe dominiert bei Neubauten in den meisten Landkreisen in Baden-Württemberg"
 			subtitle="Neue Wohngebäude nach Heizenergieträger, 2024"
@@ -42,7 +42,7 @@
 	</DesignTokens>
 </Story>
 <Story name="Centered" asChild>
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<ChartHeader
 			title="Mehr über-60-Jährige in allen Berufen"
 			subtitle="Veränderung des Anteils der Beschäftigen über 60 Jahren in allen Berufsgruppen seit 2013 (Bundesweit)"

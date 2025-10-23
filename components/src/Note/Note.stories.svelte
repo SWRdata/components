@@ -12,7 +12,7 @@
 </script>
 
 <Story name="Default" asChild>
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<Note>
 			Daten: <a href="#1">Zensus 2022</a>
 			(Durchschnittsmieten und Einwohnerzahlen),

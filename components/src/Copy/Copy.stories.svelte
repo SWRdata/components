@@ -11,7 +11,7 @@
 </script>
 
 <Story name="Default" asChild>
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Copy>
 				Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen), bedient derzeit

@@ -11,7 +11,7 @@
 </script>
 
 <Story name="Default" asChild>
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Headline>Baden-Württemberg heizt überdurchschnittlich viel mit Wärmepumpe</Headline>
 		</div>

@@ -5,7 +5,7 @@
 	import Scroller from './Scroller.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Display/Scroller',
+		title: 'Layout/Scroller',
 		component: Scroller,
 		parameters: {
 			viewMode: 'docs',
