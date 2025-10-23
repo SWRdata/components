@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import SwrLogo from './SwrLogo.svg.svelte';
+	import GridInspector from './GridInspector.svelte';
 
 	interface DevContainerProps {
 		showHeader?: boolean;
@@ -8,6 +9,8 @@
 		showPlayer?: boolean;
 		showArticleHeader?: boolean;
 		showBreadcrumbs?: boolean;
+		title: string;
+		intro: string;
 		children?: Snippet;
 	}
 	let {
@@ -15,11 +18,14 @@
 		showNav = true,
 		showArticleHeader = true,
 		showPlayer = true,
+		title = 'Baden-Württemberg heizt noch größtenteils fossil',
+		intro = 'Fast drei Viertel der privaten Heizungen in Baden-Württemberg liefen 2022 noch mit Öl und Gas. In Neubauten werden inzwischen überwiegend Wärmepumpen eingebaut, doch es gibt regionale Unterschiede. Eine Datenanalyse des SWR zeigt, wie es bei Ihnen vor Ort aussieht.',
 		showBreadcrumbs = true,
 		children
 	}: DevContainerProps = $props();
 
 	const date = new Date();
+	let articleEl: HTMLElement | undefined = $state();
 </script>
 
 <div class="container">
@@ -46,19 +52,16 @@
 			</div>
 		</div>
 	{/if}
-
-	<article>
+	<article bind:this={articleEl}>
+		<GridInspector target={articleEl}></GridInspector>
 		{#if showArticleHeader}
 			<div class="article-header">
 				<p class="article-eyebrow">Eyebrow</p>
-				<h1 class="article-title">Article title goes here</h1>
-				<p class="article-intro">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Non amet ipsum quasi similique,
-					praesentium minus voluptas doloremque aspernatur expedita magni.
-				</p>
+				<h1 class="article-title">{title}</h1>
+				<p class="article-intro">{intro}</p>
 				<div class="article-meta">
 					<p class="article-date">
-						<span> Stand </span>
+						<span>Stand </span>
 						{date.toLocaleDateString('de-DE')}
 					</p>
 					<div class="article-byline">
@@ -67,8 +70,11 @@
 							<i class="byline-image"></i>
 							<i class="byline-image"></i>
 						</div>
-						<p>Autor 1, Autor 2</p>
 					</div>
+				</div>
+				<div class="article-actions">
+					<i class="action-button"></i>
+					<i class="action-button"></i>
 				</div>
 			</div>
 		{/if}
@@ -83,8 +89,8 @@
 		box-sizing: border-box;
 	}
 	.container {
-		--blue: hsl(230, 100%, 50%);
-		--blue-light: hsl(230, 100%, 95%);
+		--blue: hsl(221, 75%, 46%);
+		--blue-light: hsl(221, 100%, 95%);
 		color: var(--blue);
 	}
 	header {
@@ -154,6 +160,7 @@
 	}
 	.article-header {
 		grid-column: 2 / 10;
+		margin-bottom: 24px;
 	}
 	.article-eyebrow {
 		font-size: 0.875rem;
@@ -169,8 +176,7 @@
 		display: flex;
 		font-size: 0.875rem;
 		align-items: center;
-		height: 48px;
-		margin-top: 16px;
+		height: 72px;
 		border-bottom: 1px solid var(--blue);
 	}
 	.article-date {
@@ -199,6 +205,20 @@
 		&:first-child {
 			margin-right: 0;
 		}
+	}
+	.article-actions {
+		border-bottom: 1px solid var(--blue);
+		height: 64px;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.action-button {
+		display: block;
+		border: 1px solid var(--blue);
+		border-radius: 4px;
+		width: 60px;
+		height: 32px;
 	}
 	.embed {
 		grid-column: 4 / 10;
