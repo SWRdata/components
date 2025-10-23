@@ -14,16 +14,30 @@
 </script>
 
 <Story name="Default" asChild>
-	<DevContainer showPlayer={false}>
+	<DevContainer showPlayer={false} showGrid showArticleHeader={false}>
 		<DesignTokens>
-			<div class="chart"></div>
+			<div class="demo">
+				<Breakout layout="medium">
+					<div class="chart">medium</div>
+				</Breakout>
+				<Breakout layout="large">
+					<div class="chart">large</div>
+				</Breakout>
+				<Breakout layout="bleed">
+					<div class="chart">bleed</div>
+				</Breakout>
+			</div>
 		</DesignTokens>
 	</DevContainer>
 </Story>
 
 <style>
+	.demo {
+		position: relative;
+		mix-blend-mode: multiply;
+	}
 	.chart {
-		height: 400px;
+		height: 200px;
 		font-family: var(--swr-sans);
 		background: hsl(15, 100%, 96%);
 		border: 1px solid hsl(15, 100%, 35%);
@@ -31,6 +45,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin-bottom: 2rem;
 		color: hsl(15, 100%, 35%);
 	}
 </style>

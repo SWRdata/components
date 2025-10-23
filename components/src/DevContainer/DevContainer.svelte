@@ -7,10 +7,12 @@
 		showHeader?: boolean;
 		showNav?: boolean;
 		showPlayer?: boolean;
+		showGrid?: boolean;
 		showArticleHeader?: boolean;
 		showBreadcrumbs?: boolean;
-		title: string;
-		intro: string;
+		title?: string;
+		eyebrow?: string;
+		intro?: string;
 		children?: Snippet;
 	}
 	let {
@@ -18,9 +20,11 @@
 		showNav = true,
 		showArticleHeader = true,
 		showPlayer = true,
+		eyebrow = 'Wärmewende in Ihrer Gemeinde',
 		title = 'Baden-Württemberg heizt noch größtenteils fossil',
 		intro = 'Fast drei Viertel der privaten Heizungen in Baden-Württemberg liefen 2022 noch mit Öl und Gas. In Neubauten werden inzwischen überwiegend Wärmepumpen eingebaut, doch es gibt regionale Unterschiede. Eine Datenanalyse des SWR zeigt, wie es bei Ihnen vor Ort aussieht.',
 		showBreadcrumbs = true,
+		showGrid = false,
 		children
 	}: DevContainerProps = $props();
 
@@ -31,12 +35,21 @@
 <div class="container">
 	{#if showHeader}
 		<header>
-			<SwrLogo />
+			<div class="header-inner">
+				<SwrLogo />
+			</div>
 		</header>
 	{/if}
 	{#if showNav}
 		<div class="nav">
-			<i class="circle"></i>
+			<div class="nav-inner grid">
+				<i class="circle"></i>
+				<ul>
+					<li>Nachrichten Übersicht</li>
+					<li>Baden-Württemberg</li>
+					<li>Rheinland-Pfalz</li>
+				</ul>
+			</div>
 		</div>
 	{/if}
 	{#if showBreadcrumbs}
@@ -52,11 +65,13 @@
 			</div>
 		</div>
 	{/if}
-	<article bind:this={articleEl}>
-		<GridInspector target={articleEl}></GridInspector>
+	<article bind:this={articleEl} class="grid">
+		{#if showGrid}
+			<GridInspector target={articleEl}></GridInspector>
+		{/if}
 		{#if showArticleHeader}
 			<div class="article-header">
-				<p class="article-eyebrow">Eyebrow</p>
+				<p class="article-eyebrow">{eyebrow}</p>
 				<h1 class="article-title">{title}</h1>
 				<p class="article-intro">{intro}</p>
 				<div class="article-meta">
@@ -88,10 +103,14 @@
 	* {
 		box-sizing: border-box;
 	}
+	:global(svg) {
+		display: block;
+	}
 	.container {
 		--blue: hsl(221, 75%, 46%);
 		--blue-light: hsl(221, 100%, 95%);
 		color: var(--blue);
+		font-family: 'SWR-VAR-Sans', sans-serif;
 	}
 	header {
 		display: flex;
@@ -101,13 +120,31 @@
 		background: var(--blue-light);
 		border-bottom: 1px solid var(--blue);
 	}
+	.header-inner {
+		width: 100%;
+		max-width: 1312px;
+		margin: 0 auto;
+	}
+	.nav {
+		border-bottom: 1px solid var(--blue);
+		.nav-inner {
+			width: 100%;
+		}
+		ul {
+			margin-left: -32px;
+			display: flex;
+			align-items: center;
+			gap: 2.1em;
+			grid-column: span 6;
+			list-style: none;
+		}
+	}
 	.nav,
 	.breadcrumbs {
 		height: 48px;
 		padding: 0 40px;
 		display: flex;
 		align-items: center;
-		border-bottom: 1px solid var(--blue);
 	}
 	.circle {
 		display: block;
@@ -143,34 +180,48 @@
 		column-gap: 8px;
 		display: flex;
 	}
-	article {
+	.grid {
 		display: grid;
-		font-family: 'SWR-VAR-Sans', sans-serif;
-		padding-top: 1rem;
 		grid-template-columns: repeat(12, 1fr);
 		column-gap: 16px;
-		width: 100%;
+		max-width: 1312px;
+		width: auto;
 		position: relative;
-		&:after {
-			content: '';
-		}
 		@media (min-width: 1440px) {
 			column-gap: 32px;
+			margin: 0 auto;
 		}
 	}
 	.article-header {
 		grid-column: 2 / 10;
 		margin-bottom: 24px;
+
+		@media (min-width: 1440px) {
+			grid-column: 4 / 10;
+		}
 	}
 	.article-eyebrow {
 		font-size: 0.875rem;
+		font-weight: 500;
+		@media (min-width: 1440px) {
+			font-size: 1.25rem;
+		}
 	}
 	.article-title {
 		font-size: 2rem;
+		line-height: 1.3;
+		@media (min-width: 1440px) {
+			font-size: 3rem;
+		}
 	}
 	.article-intro {
-		margin-top: 0.35em;
+		margin-top: 0.5em;
+		hyphens: auto;
 		font-size: 1.25rem;
+		line-height: 1.25;
+		@media (min-width: 1440px) {
+			font-size: 1.5rem;
+		}
 	}
 	.article-meta {
 		display: flex;

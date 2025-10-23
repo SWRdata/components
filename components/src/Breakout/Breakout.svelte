@@ -8,10 +8,8 @@
 	let { layout = 'medium', children }: BreakoutProps = $props();
 </script>
 
-<div class="container">
-	{#if children}
-		{@render children()}
-	{/if}
+<div class={`container ${layout}`}>
+	{@render children?.()}
 </div>
 
 <style lang="scss">
@@ -48,8 +46,6 @@
 		}
 	}
 	.large {
-		--w: calc(70vw);
-
 		@media (min-width: 1440px) {
 			width: calc(var(--column-width) * 12 + var(--column-gap) * 11);
 			transform: translateX(calc((var(--column-width) + var(--column-gap)) * -3));
