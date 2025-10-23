@@ -19,6 +19,13 @@
 		</DesignTokens>
 	</DevContainer>
 </Story>
+<Story name="No Player" asChild>
+	<DevContainer showPlayer={false}>
+		<DesignTokens>
+			<div class="chart">your chart here</div>
+		</DesignTokens>
+	</DevContainer>
+</Story>
 
 <style>
 	.chart {

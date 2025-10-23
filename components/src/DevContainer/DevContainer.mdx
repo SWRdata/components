@@ -1,20 +1,20 @@
 import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
 
-import * as DevContainer from './DevContainer.stories.svelte';
+import * as DevContainerStories from './DevContainer.stories.svelte';
 
-<Meta of={DevContainer} />
+<Meta of={DevContainerStories} />
 
 # DevContainer
 
-Development fixture to replicate the grid system and various UI features on [SWR.de](https://www.swr.de).
+Development fixture for simulating the grid system and various UI features on [SWR.de](https://www.swr.de). Particularly useful for developing charts using the [breakout component](?path=/docs/layout-breakout--docs). 
 
-Particularly useful in conjunction with `<Breakout/>`. 
+<Story of={DevContainerStories.NoPlayer} />
 
 <Controls />
 
 ## Usage
 
-```svelte
+```jsx
 <script lang='ts'>
   import { dev } from '$app/environment';
   import DevContainer from '@swr-data-lab/components';
@@ -29,5 +29,3 @@ Particularly useful in conjunction with `<Breakout/>`.
   <p123-your-custom-element></p123-your-custom-element>
 {/if}
 ```
-
-## Notes
