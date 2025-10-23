@@ -8,7 +8,10 @@
 
 	const { Story } = defineMeta({
 		title: 'Meta/ChartList',
-		component: ChartList
+		component: ChartList,
+		parameters: {
+			layout: 'fullscreen'
+		}
 	});
 
 	const testCharts = [

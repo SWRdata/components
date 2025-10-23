@@ -1,0 +1,33 @@
+import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+
+import * as DevContainer from './DevContainer.stories.svelte';
+
+<Meta of={DevContainer} />
+
+# DevContainer
+
+Development fixture to replicate the grid system and various UI features on [SWR.de](https://www.swr.de).
+
+Particularly useful in conjunction with `<Breakout/>`. 
+
+<Controls />
+
+## Usage
+
+```svelte
+<script lang='ts'>
+  import { dev } from '$app/environment';
+  import DevContainer from '@swr-data-lab/components';
+  import App from '$lib/App.svelte';
+</script>
+
+{#if dev}
+  <DevContainer>
+    <App />
+  </DevContainer>
+{:else}
+  <p123-your-custom-element></p123-your-custom-element>
+{/if}
+```
+
+## Notes
