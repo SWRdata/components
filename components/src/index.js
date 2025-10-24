@@ -1,7 +1,6 @@
 // Design Tokens
 export { default as DesignTokens } from './DesignTokens/DesignTokens.svelte';
 export { tokens as tokens } from './DesignTokens/index.js';
-export { default as isDarkMode } from './isDarkMode/isDarkMode.svelte';
 
 // Typography
 export { default as Headline } from './Headline/Headline.svelte';
@@ -53,3 +52,4 @@ export { default as Autocomplete } from './Autocomplete/Autocomplete.svelte';
 // Meta
 export { default as ChartList } from './ChartList/ChartList.svelte';
 export { default as DevContainer } from './DevContainer/DevContainer.svelte';
+export { default as isDarkMode } from './isDarkMode/isDarkMode.svelte';
