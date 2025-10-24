@@ -2,6 +2,8 @@
 	import type { Snippet } from 'svelte';
 	import SwrLogo from './SwrLogo.svg.svelte';
 	import GridInspector from './GridInspector.svelte';
+	import Copy from '../Copy/Copy.svelte';
+	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	interface DevContainerProps {
 		showHeader?: boolean;
@@ -10,6 +12,8 @@
 		showGrid?: boolean;
 		showArticleHeader?: boolean;
 		showBreadcrumbs?: boolean;
+		paragraphsAbove?: number;
+		paragraphsBelow?: number;
 		title?: string;
 		eyebrow?: string;
 		intro?: string;
@@ -22,9 +26,11 @@
 		showPlayer = true,
 		eyebrow = 'Wärmewende in Ihrer Gemeinde',
 		title = 'Baden-Württemberg heizt noch größtenteils fossil',
-		intro = 'Fast drei Viertel der privaten Heizungen in Baden-Württemberg liefen 2022 noch mit Öl und Gas. In Neubauten werden inzwischen überwiegend Wärmepumpen eingebaut, doch es gibt regionale Unterschiede. Eine Datenanalyse des SWR zeigt, wie es bei Ihnen vor Ort aussieht.',
+		intro = 'Fast drei Viertel der privaten Heizungen in Baden-Württemberg liefen 2022 noch mit Öl und Gas. In Neubauten werden inzwischen überwiegend Wärmepumpen eingebaut, doch es gibt regionale Unterschiede.',
 		showBreadcrumbs = true,
 		showGrid = false,
+		paragraphsAbove = 0,
+		paragraphsBelow = 0,
 		children
 	}: DevContainerProps = $props();
 
@@ -32,74 +38,98 @@
 	let articleEl: HTMLElement | undefined = $state();
 </script>
 
-<div class="container">
-	{#if showHeader}
-		<header>
-			<div class="header-inner">
-				<i class="logo">
-					<SwrLogo />
-				</i>
-			</div>
-		</header>
-	{/if}
-	{#if showNav}
-		<div class="nav">
-			<div class="nav-inner grid">
-				<i class="circle"></i>
-				<ul>
-					<li>Nachrichten Übersicht</li>
-					<li>Baden-Württemberg</li>
-					<li>Rheinland-Pfalz</li>
-				</ul>
-			</div>
-		</div>
-	{/if}
-	{#if showBreadcrumbs}
-		<div class="breadcrumbs"></div>
-	{/if}
-
-	{#if showPlayer}
-		<div class="player">
-			<i class="circle"></i>
-			<div class="player-buttons">
-				<i class="button"></i>
-				<i class="button"></i>
-			</div>
-		</div>
-	{/if}
-	<article bind:this={articleEl} class="grid">
-		{#if showGrid}
-			<GridInspector target={articleEl}></GridInspector>
+<DesignTokens>
+	<div class="container">
+		{#if showHeader}
+			<header>
+				<div class="header-inner">
+					<i class="logo">
+						<SwrLogo />
+					</i>
+				</div>
+			</header>
 		{/if}
-		{#if showArticleHeader}
-			<div class="article-header">
-				<p class="article-eyebrow">{eyebrow}</p>
-				<h1 class="article-title">{title}</h1>
-				<p class="article-intro">{intro}</p>
-				<div class="article-meta">
-					<p class="article-date">
-						<span>Stand </span>
-						{date.toLocaleDateString('de-DE')}
-					</p>
-					<div class="article-byline">
-						<div class="byline-images">
-							<i class="byline-image"></i>
-							<i class="byline-image"></i>
-							<i class="byline-image"></i>
+		{#if showNav}
+			<div class="nav">
+				<div class="nav-inner grid">
+					<i class="circle"></i>
+					<ul>
+						<li>Nachrichten Übersicht</li>
+						<li>Baden-Württemberg</li>
+						<li>Rheinland-Pfalz</li>
+					</ul>
+				</div>
+			</div>
+		{/if}
+		{#if showBreadcrumbs}
+			<div class="breadcrumbs"></div>
+		{/if}
+
+		{#if showPlayer}
+			<div class="player">
+				<i class="circle"></i>
+				<div class="player-buttons">
+					<i class="button"></i>
+					<i class="button"></i>
+				</div>
+			</div>
+		{/if}
+		<article bind:this={articleEl} class="grid article">
+			{#if showGrid}
+				<GridInspector target={articleEl}></GridInspector>
+			{/if}
+			{#if showArticleHeader}
+				<div class="article-header">
+					<span class="article-eyebrow">{eyebrow}</span>
+					<h1 class="article-title">{title}</h1>
+					<p class="article-intro">{intro}</p>
+					<div class="article-meta">
+						<p class="article-date">
+							<span>Stand </span>
+							{date.toLocaleDateString('de-DE')}
+						</p>
+						<div class="article-byline">
+							<div class="byline-images">
+								<i class="byline-image"></i>
+								<i class="byline-image"></i>
+								<i class="byline-image"></i>
+							</div>
 						</div>
 					</div>
+					<div class="article-actions">
+						<i class="action-button"></i>
+						<i class="action-button"></i>
+					</div>
 				</div>
-				<div class="article-actions">
-					<i class="action-button"></i>
-					<i class="action-button"></i>
+			{/if}
+			<div class="article-body">
+				{#if paragraphsAbove > 0}
+					{#each { length: paragraphsAbove }}
+						<Copy as="p">
+							Das SWR Data Lab hat Kaufpreise, Fahrzeugdaten und Betriebskosten von über 5.500
+							Neuwagenmodellen von 2024 bis April 2025 aus dem ADAC-Autokatalog untersucht. Die
+							Analyse zeigt, wie teuer ein Elektroauto, Diesel oder Benziner der unteren
+							Mittelklasse beim Kauf und Betrieb über viele Jahre im Mittel ist.
+						</Copy>
+					{/each}
+				{/if}
+				<div class="embed">
+					{@render children?.()}
 				</div>
+				{#if paragraphsBelow > 0}
+					{#each { length: paragraphsBelow }}
+						<Copy as="p">
+							Das SWR Data Lab hat Kaufpreise, Fahrzeugdaten und Betriebskosten von über 5.500
+							Neuwagenmodellen von 2024 bis April 2025 aus dem ADAC-Autokatalog untersucht. Die
+							Analyse zeigt, wie teuer ein Elektroauto, Diesel oder Benziner der unteren
+							Mittelklasse beim Kauf und Betrieb über viele Jahre im Mittel ist.
+						</Copy>
+					{/each}
+				{/if}
 			</div>
-		{/if}
-		<div class="embed">
-			{@render children?.()}
-		</div>
-	</article>
-</div>
+		</article>
+	</div>
+</DesignTokens>
 
 <style lang="scss">
 	* {
@@ -152,6 +182,8 @@
 			grid-column: 2 / -1;
 			list-style: none;
 			gap: 2.1em;
+			white-space: nowrap;
+			overflow: hidden;
 			@media (min-width: 1440px) {
 				margin-left: -32px;
 			}
@@ -213,10 +245,35 @@
 			margin: 0 auto;
 		}
 	}
+	.article {
+		margin: 0 16px;
+		@media (min-width: 640px) {
+			margin: 0 40px;
+		}
+		@media (min-width: 1440px) {
+			margin: 0 auto;
+		}
+	}
+	.article-body {
+		display: contents;
+		:global(p) {
+			margin-bottom: 1.5em;
+			grid-column: 1/13;
+			@media (min-width: 640px) {
+				grid-column: 2 / 12;
+			}
+			@media (min-width: 1440px) {
+				grid-column: 4/10;
+			}
+		}
+	}
 	.article-header {
-		grid-column: 2 / 10;
 		margin-bottom: 24px;
+		grid-column: 1 / 13;
 
+		@media (min-width: 640px) {
+			grid-column: 2 / 12;
+		}
 		@media (min-width: 1440px) {
 			grid-column: 4 / 10;
 		}
@@ -247,12 +304,25 @@
 	.article-meta {
 		display: flex;
 		font-size: 0.875rem;
-		align-items: center;
-		height: 72px;
 		border-bottom: 1px solid var(--blue);
+		flex-flow: column;
+		gap: 8px;
+		margin-top: 1rem;
+		padding-bottom: 1rem;
+		@media (min-width: 768px) {
+			gap: 0;
+			height: 72px;
+			margin-top: 0;
+			padding-bottom: 0;
+			align-items: center;
+			flex-flow: row;
+		}
 	}
 	.article-date {
-		flex-basis: 30%;
+		flex-basis: 35%;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
 		span {
 			display: block;
 		}
@@ -293,8 +363,13 @@
 		height: 32px;
 	}
 	.embed {
-		grid-column: 4 / 10;
-		// grid-column: 1 / 13;
 		width: 100%;
+		grid-column: 1/13;
+		@media (min-width: 640px) {
+			grid-column: 2 / 12;
+		}
+		@media (min-width: 1440px) {
+			grid-column: 4/10;
+		}
 	}
 </style>

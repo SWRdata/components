@@ -3,16 +3,15 @@
 
 	interface CopyProps {
 		weight?: 'regular' | 'bold';
+		as?: string;
 		children?: Snippet;
 	}
-	let { weight = 'regular', children }: CopyProps = $props();
+	let { as = 'div', weight = 'regular', children }: CopyProps = $props();
 </script>
 
-<div class={['container', weight]}>
-	{#if children}
-		{@render children()}
-	{/if}
-</div>
+<svelte:element this={as} class={['container', weight]}>
+	{@render children?.()}
+</svelte:element>
 
 <style lang="scss">
 	.container {

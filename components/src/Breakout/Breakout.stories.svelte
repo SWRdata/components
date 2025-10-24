@@ -14,7 +14,13 @@
 </script>
 
 <Story name="Default" asChild>
-	<DevContainer showPlayer={false} showGrid showArticleHeader={false}>
+	<DevContainer
+		title="Autokauf-Dilemma: Elektroautos teuer, Verbrenner bald auch"
+		showPlayer={false}
+		showGrid
+		showArticleHeader={true}
+		paragraphsAbove={1}
+	>
 		<DesignTokens>
 			<div class="demo">
 				<Breakout layout="medium">
