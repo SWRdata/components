@@ -5,7 +5,7 @@
 	import SwrHeader from './SwrHeader.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Display/SwrHeader',
+		title: 'Layout/SwrHeader',
 		component: SwrHeader
 	});
 

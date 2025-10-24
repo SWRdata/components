@@ -6,7 +6,7 @@
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Display/ScrollerSection',
+		title: 'Layout/ScrollerSection',
 		component: ScrollerSection,
 		parameters: {
 			viewMode: 'docs',

@@ -44,8 +44,8 @@
 				</tbody>
 			</table>
 		{/if}
+		<p class="notes">Nutze die "Embed URL" um Grafiken in Sophora einzubinden.</p>
 	</div>
-	<p class="notes">Nutze die "Embed URL" um Grafiken in Sophora einzubinden.</p>
 </main>
 
 <style lang="scss">
@@ -56,8 +56,8 @@
 		flex-flow: column;
 		font-family: var(--swr-sans);
 		font-size: var(--fs-small-1);
+		background: var(--color-pageFill);
 		color: var(--color-textPrimary);
-		max-width: 40rem;
 		margin: 0 auto;
 		height: 90vh;
 		* {
@@ -66,15 +66,13 @@
 		}
 	}
 	.inner {
+		margin: 0 auto;
 		width: 100%;
-		background: var(--color-surfaceFill);
-		border: 1px solid var(--color-surfaceBorder);
+		max-width: 40rem;
 	}
 	h1 {
 		font-size: var(--fs-base);
-		border-bottom: 1px solid var(--color-textSecondary);
-		padding-bottom: 0.2em;
-		background-color: rgba(black, 0.2);
+		margin-bottom: 0.2em;
 		em {
 			background: rgba(134, 139, 84, 0.4);
 			font-style: normal;
@@ -86,6 +84,7 @@
 		border-collapse: collapse;
 		border-spacing: 0;
 		width: 100%;
+		border: 1px solid var(--color-surfaceBorder);
 	}
 	a {
 		display: block;
@@ -93,8 +92,7 @@
 		text-decoration: none;
 	}
 	th,
-	td,
-	h1 {
+	td {
 		padding: 0.2em 0.4em;
 		text-align: left;
 	}

@@ -8,9 +8,7 @@
 </script>
 
 <h2 class="container">
-	{#if children}
-		{@render children()}
-	{/if}
+	{@render children?.()}
 </h2>
 
 <style>

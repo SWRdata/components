@@ -19,6 +19,7 @@ const preview: Preview = {
 					'Design Tokens',
 					'Typography',
 					['Headline', 'Copy', 'Caption'],
+					'Layout',
 					'Display',
 					'Chart',
 					['ChartHeader'],
