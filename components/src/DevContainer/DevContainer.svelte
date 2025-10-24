@@ -36,7 +36,9 @@
 	{#if showHeader}
 		<header>
 			<div class="header-inner">
-				<SwrLogo />
+				<i class="logo">
+					<SwrLogo />
+				</i>
 			</div>
 		</header>
 	{/if}
@@ -115,15 +117,29 @@
 	header {
 		display: flex;
 		align-items: center;
-		height: 64px;
-		padding: 0 32px;
 		background: var(--blue-light);
 		border-bottom: 1px solid var(--blue);
+		height: 48px;
+		padding: 0 16px;
+		@media (min-width: 640px) {
+			padding: 0 40px;
+			height: 64px;
+		}
 	}
 	.header-inner {
 		width: 100%;
 		max-width: 1312px;
 		margin: 0 auto;
+	}
+	.logo {
+		display: block;
+		height: 24px;
+		@media (min-width: 1440px) {
+			height: 28px;
+		}
+		:global(svg) {
+			height: 100%;
+		}
 	}
 	.nav {
 		border-bottom: 1px solid var(--blue);
@@ -131,20 +147,25 @@
 			width: 100%;
 		}
 		ul {
-			margin-left: -32px;
 			display: flex;
 			align-items: center;
-			gap: 2.1em;
-			grid-column: span 6;
+			grid-column: 2 / -1;
 			list-style: none;
+			gap: 2.1em;
+			@media (min-width: 1440px) {
+				margin-left: -32px;
+			}
 		}
 	}
 	.nav,
 	.breadcrumbs {
 		height: 48px;
-		padding: 0 40px;
 		display: flex;
 		align-items: center;
+		padding: 0 16px;
+		@media (min-width: 640px) {
+			padding: 0 40px;
+		}
 	}
 	.circle {
 		display: block;
