@@ -9,10 +9,14 @@ export { default as Copy } from './Copy/Copy.svelte';
 export { default as Caption } from './Caption/Caption.svelte';
 export { default as Note } from './Note/Note.svelte';
 
+// Layout
+export { default as ScrollerSection } from './ScrollerSection/ScrollerSection.svelte';
+export { default as Scroller } from './Scroller/Scroller.svelte';
+export { default as SwrHeader } from './SwrHeader/SwrHeader.svelte';
+export { default as Breakout } from './Breakout/Breakout.svelte';
+
 // Display
 export { default as Card } from './Card/Card.svelte';
-export { default as Scroller } from './Scroller/Scroller.svelte';
-export { default as Breakout } from './Breakout/Breakout.svelte';
 
 // Chart
 export { default as ChartHeader } from './ChartHeader/ChartHeader.svelte';

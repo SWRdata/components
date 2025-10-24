@@ -6,7 +6,7 @@ import * as ArrowSourceStories from './ArrowSource.stories.svelte';
 
 # ArrowSource
 
-Source component for creating smooth ([quadratic bezier](https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves)) vector arrows [like these](https://www.nytimes.com/interactive/2025/10/09/world/americas/drug-trafficking-venezuela.html?searchResultPosition=4).
+Source component for creating [quadratic bezier](https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves) vector arrows [like these](https://www.nytimes.com/interactive/2025/10/09/world/americas/drug-trafficking-venezuela.html).
 
 <Controls />
 
@@ -19,17 +19,18 @@ interface ArrowSpec {
   a: [number, number]; // Start point
   b: [number, number]; // End point
   c: [number, number]; // Control point
+  headScale?: [number, number];
   width?: number;
 }
 
 ```
 
-Use regular VectorLayers to render the arrows:
+Use regular [VectorLayers](?path=/docs/maplibre-layer-vectorlayer--docs) to render the arrows:
 
 ```jsx
 <Map>
   <ArrowSource
-    id="demo"
+    id="arrows"
     attribution="Demo attribution"
     arrows={[
       {width: 10, a: [-80.1, 11.3], b: [-84.783, 15.6], c: [-81, 14.6]},
@@ -38,29 +39,22 @@ Use regular VectorLayers to render the arrows:
   <VectorLayer
     id="arrow-tails"
     type="line"
-    sourceId="demo"
+    sourceId="arrows"
     filter={['==', 'kind', 'arrow-tail']}
     paint={{
-      'line-gradient': ['interpolate',['linear'],['line-progress'],0,'transparent',0.4"red"],
+      'line-gradient': ['interpolate', ['linear'], ['line-progress'], 0, 'transparent', 0.4, "red"],
       'line-width': ['get', 'width']
     }}/>
     <VectorLayer
+      sourceId="arrows"
       id="arrow-heads"
-      type="symbol"
-      sourceId="demo"
       filter={['==', 'kind', 'arrow-head']}
-      layout={{
-        'icon-image': 'arrow-head',
-        'icon-anchor': 'top',
-        'icon-offset': [0, -2],
-        'icon-rotate': ['get', 'angle'],
-        'icon-overlap': 'always',
-        'icon-size': ['get', 'size']
-      }}
-      paint={{'icon-color': "red"}}/>
+      type="fill"
+      paint={{
+        'fill-color': tokens.shades.red.base
+      }}/>
 </Map>
 ```
 
 ## Notes
-- [https://github.com/dy/bitmap-sdf](https://github.com/dy/bitmap-sdf)
 - [https://github.com/maplibre/maplibre-gl-js/issues/5037](https://github.com/maplibre/maplibre-gl-js/issues/5037)

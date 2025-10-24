@@ -3,12 +3,11 @@
 	import Map from '../Map/Map.svelte';
 	import ArrowSource from './ArrowSource.svelte';
 	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
-	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
-	import InspectControl from '../InspectControl/InspectControl.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 
 	import { SWRDataLabLight } from '../MapStyle';
 	import { tokens } from '../../DesignTokens';
+	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Source/ArrowSource',
@@ -30,7 +29,7 @@
 				}}
 			>
 				<ArrowSource
-					id="demo"
+					id="arrows"
 					attribution="Demo attribution"
 					arrows={[
 						{
@@ -47,10 +46,9 @@
 						}
 					]}
 				/>
-				<InspectControl />
 				<AttributionControl />
 				<VectorLayer
-					sourceId="demo"
+					sourceId="arrows"
 					id="arrow-tails"
 					filter={['==', 'kind', 'arrow-tail']}
 					type="line"
@@ -68,20 +66,68 @@
 					}}
 				/>
 				<VectorLayer
-					sourceId="demo"
+					sourceId="arrows"
 					id="arrow-heads"
 					filter={['==', 'kind', 'arrow-head']}
-					type="symbol"
+					type="fill"
 					paint={{
-						'icon-color': tokens.shades.red.base
+						'fill-color': tokens.shades.red.base
 					}}
+				/>
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
+<Story asChild name="fix/206">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map
+				showDebug={true}
+				style={SWRDataLabLight()}
+				initialLocation={{
+					lng: 7.72,
+					lat: 47.59,
+					zoom: 10
+				}}
+			>
+				<ArrowSource
+					id="arrows"
+					attribution=""
+					arrows={[{ a: [7.79, 47.55917], b: [7.69, 47.595], c: [7.69, 47.55], width: 40 }]}
+				/>
+				<AttributionControl />
+				<VectorLayer
+					sourceId="arrows"
+					id="arrow-tails"
+					filter={['==', 'kind', 'arrow-tail']}
+					type="line"
 					layout={{
-						'icon-image': 'arrow-head',
-						'icon-anchor': 'top',
-						'icon-offset': [0, -2],
-						'icon-rotate': ['get', 'angle'],
-						'icon-overlap': 'always',
-						'icon-size': ['get', 'size']
+						'line-join': 'round',
+						'line-cap': 'square'
+					}}
+					paint={{
+						'line-gradient': [
+							'interpolate',
+							['linear'],
+							['line-progress'],
+							0,
+							'transparent',
+							0.4,
+							tokens.shades.red.base
+						],
+						'line-width': ['get', 'width']
+					}}
+				/>
+
+				<VectorLayer
+					sourceId="arrows"
+					id="arrow-heads"
+					filter={['==', 'kind', 'arrow-head']}
+					type="fill"
+					paint={{
+						'fill-color': tokens.shades.blue.base,
+						'fill-opacity': 0.7
 					}}
 				/>
 			</Map>

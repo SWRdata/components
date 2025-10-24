@@ -182,12 +182,16 @@ const semantics: ColourMap = {
 		light: '#ffffff'
 	},
 	surfaceBorder: {
-		dark: 'hsl(0, 0%, 35%)',
-		light: shades.gray.base
+		dark: 'rgba(255,255,255,.15)',
+		light: shades.gray.light3
 	},
 	pageFill: {
 		dark: '#0C0C0C',
 		light: '#fff'
+	},
+	dropShadow: {
+		dark: 'rgba(0,0,0, 0.25)',
+		light: 'rgba(0,0,0, 0.0375)'
 	}
 };
 
