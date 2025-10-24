@@ -4,7 +4,9 @@
 	}
 
 	const { target }: GridInspectorProps = $props();
+	let w = $state(0);
 	let cols = $derived.by(() => {
+		w;
 		if (!target) return [];
 		return window.getComputedStyle(target).gridTemplateColumns.split(' ');
 	});
@@ -15,6 +17,8 @@
 		<i class="col" style:width={c}></i>
 	{/each}
 </div>
+
+<svelte:window bind:innerWidth={w} />
 
 <style>
 	.container {

@@ -50,6 +50,10 @@
 			width: calc(var(--column-width) * 12 + var(--column-gap) * 11);
 			margin-left: calc((var(--column-width) * -1 + var(--column-gap) * -1));
 		}
+		@media (min-width: 1024px) {
+			width: calc(var(--column-width) * 12 + var(--column-gap) * 11);
+			margin-left: calc((var(--column-width) * -2 + var(--column-gap) * -2));
+		}
 		@media (min-width: 1440px) {
 			width: calc(var(--column-width) * 10 + var(--column-gap) * 11);
 			margin-left: calc((var(--column-width) * -2 + var(--column-gap) * -3));
