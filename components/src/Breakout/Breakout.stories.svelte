@@ -18,8 +18,7 @@
 		title="Autokauf-Dilemma: Elektroautos teuer, Verbrenner bald auch"
 		showPlayer={false}
 		showGrid
-		showArticleHeader={true}
-		paragraphsAbove={1}
+		showArticleHeader={false}
 	>
 		<DesignTokens>
 			<div class="demo">
