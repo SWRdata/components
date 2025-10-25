@@ -5,10 +5,9 @@
 	import { getMapContext } from '../context.svelte.js';
 	import quadraticToPoints from './quadraticToPoints';
 	import { onDestroy } from 'svelte';
+	import type { V2 } from './types';
 
 	const { map } = $derived(getMapContext());
-
-	type V2 = [number, number];
 
 	interface ArrowSourceProps {
 		id: string;
