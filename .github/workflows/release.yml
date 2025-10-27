@@ -10,6 +10,10 @@ on:
 permissions:
   contents: read # for checkout
 
+concurrency:
+  group: components-release
+  cancel-in-progress: false
+
 jobs:
   release:
     name: Release
