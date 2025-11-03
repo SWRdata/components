@@ -7,19 +7,76 @@ Source: https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_cu
 
 Below is a naive implementation but good enough for now. For a better approach see:
 https://bit-101.com/blog/posts/2024-09-29/evenly-placed-points-on-bezier-curves
- */
+*/
 
 import type { V2 } from './types';
 
+const distance = (a: V2, b: V2) => {
+	return Math.sqrt((b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2);
+};
+
+const norm = (v: V2) => {
+	const d = distance([0, 0], v);
+	return [v[0] * d, v[1] * d];
+};
+
+const findSegment = (segments: number[], v: number) => {
+	let low = 0;
+	let high = segments.length;
+	while (low < high) {
+		let mid = (low + high) >>> 1; // * .5 but faster
+		if (segments[mid] < v) low = mid + 1;
+		else high = mid;
+	}
+	return low;
+};
+
+const interpolatePolyline = (points: V2[], n: number) => {
+	let res: V2[] = [];
+	let segments: number[] = [];
+
+	let totalLength = 0;
+	for (let i = 0; i < points.length - 1; i++) {
+		totalLength += distance(points[i], points[i + 1]);
+		segments.push(totalLength);
+	}
+
+	console.log(segments);
+	console.log(totalLength);
+
+	for (let i = 0; i < n; i++) {
+		const d: number = totalLength * (i / n);
+		const si: number = findSegment(segments, d);
+		console.log({ d, si });
+		const p0 = points[si];
+		const p1 = points[si + 1];
+
+		const sn = norm([p1[0] - p1[0], p0[1] - p1[1]]);
+		const segmentFraction = (d - segments[si]) / distance(p0, p1);
+
+		res.push([
+			points[si][0] + sn[0] * segmentFraction * distance(p0, p1),
+			points[si][1] + sn[1] * segmentFraction * distance(p0, p1)
+		]);
+	}
+
+	return res;
+};
+
 const quadraticToPoints = (a: V2, b: V2, c: V2, n = 10) => {
-	let points = [];
+	let points: V2[] = [];
+
 	for (let i = 0; i < n; i++) {
 		const t = i / n;
-		const x = (1 - t) * ((1 - t) * a[0] + t * c[0]) + t * ((1 - t) * c[0] + t * b[0]);
-		const y = (1 - t) * ((1 - t) * a[1] + t * c[1]) + t * ((1 - t) * c[1] + t * b[1]);
-		points.push([x, y]);
+		points.push([
+			(1 - t) * ((1 - t) * a[0] + t * c[0]) + t * ((1 - t) * c[0] + t * b[0]),
+			(1 - t) * ((1 - t) * a[1] + t * c[1]) + t * ((1 - t) * c[1] + t * b[1])
+		]);
 	}
-	return [...points, b] as V2[];
+
+	points = interpolatePolyline([...points, b], 10);
+
+	return points;
 };
 
 export default quadraticToPoints;

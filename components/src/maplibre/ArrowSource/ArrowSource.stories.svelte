@@ -22,9 +22,9 @@
 				showDebug={true}
 				style={SWRDataLabLight()}
 				initialLocation={{
-					lng: -84.783,
-					lat: 15.623,
-					zoom: 3.39,
+					lng: -78.40441556736909,
+					lat: 13.411905478643874,
+					zoom: 5.124074967275398,
 					pitch: 0
 				}}
 			>
@@ -72,6 +72,15 @@
 					type="fill"
 					paint={{
 						'fill-color': tokens.shades.red.base
+					}}
+				/>
+				<VectorLayer
+					sourceId="arrows"
+					id="arrow-debug"
+					filter={['==', 'kind', 'arrow-debug']}
+					type="circle"
+					paint={{
+						'circle-color': 'green'
 					}}
 				/>
 			</Map>
