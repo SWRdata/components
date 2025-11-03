@@ -4,7 +4,6 @@
 	import GeoJSONSource from './GeoJSONSource.svelte';
 	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
-	import InspectControl from '../InspectControl/InspectControl.svelte';
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 
 	import { SWRDataLabLight } from '../MapStyle';
@@ -46,7 +45,6 @@
 						'line-opacity': 1
 					}}
 				/>
-				<InspectControl />
 				<AttributionControl />
 			</Map>
 		</div>
