@@ -71,6 +71,7 @@
 		"typescript": "5.9.2",
 		"vite": "7.1.11",
 		"vitest": "4.0.6",
+		"@vitest/browser-playwright": "4.0.6",
 		"wait-on": "8.0.3"
 	},
 	"overrides": {
