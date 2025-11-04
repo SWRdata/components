@@ -13,7 +13,7 @@
 </script>
 
 <Story name="Default" asChild>
-	<DevContainer>
+	<DevContainer paragraphsAbove={2} paragraphsBelow={2}>
 		<DesignTokens>
 			<div class="chart">your chart here</div>
 		</DesignTokens>

@@ -4,6 +4,7 @@
 	import GridInspector from './GridInspector.svelte';
 	import Copy from '../Copy/Copy.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
+	import { text } from '@sveltejs/kit';
 
 	interface DevContainerProps {
 		showHeader?: boolean;
@@ -104,27 +105,31 @@
 			{/if}
 			<div class="article-body">
 				{#if paragraphsAbove > 0}
-					{#each { length: paragraphsAbove }}
-						<Copy as="p">
-							Das SWR Data Lab hat Kaufpreise, Fahrzeugdaten und Betriebskosten von über 5.500
-							Neuwagenmodellen von 2024 bis April 2025 aus dem ADAC-Autokatalog untersucht. Die
-							Analyse zeigt, wie teuer ein Elektroauto, Diesel oder Benziner der unteren
-							Mittelklasse beim Kauf und Betrieb über viele Jahre im Mittel ist.
-						</Copy>
-					{/each}
+					<div class="article-text above">
+						{#each { length: paragraphsAbove }}
+							<Copy as="p">
+								Das SWR Data Lab hat Kaufpreise, Fahrzeugdaten und Betriebskosten von über 5.500
+								Neuwagenmodellen von 2024 bis April 2025 aus dem ADAC-Autokatalog untersucht. Die
+								Analyse zeigt, wie teuer ein Elektroauto, Diesel oder Benziner der unteren
+								Mittelklasse beim Kauf und Betrieb über viele Jahre im Mittel ist.
+							</Copy>
+						{/each}
+					</div>
 				{/if}
 				<div class="embed">
 					{@render children?.()}
 				</div>
 				{#if paragraphsBelow > 0}
-					{#each { length: paragraphsBelow }}
-						<Copy as="p">
-							Das SWR Data Lab hat Kaufpreise, Fahrzeugdaten und Betriebskosten von über 5.500
-							Neuwagenmodellen von 2024 bis April 2025 aus dem ADAC-Autokatalog untersucht. Die
-							Analyse zeigt, wie teuer ein Elektroauto, Diesel oder Benziner der unteren
-							Mittelklasse beim Kauf und Betrieb über viele Jahre im Mittel ist.
-						</Copy>
-					{/each}
+					<div class="article-text below">
+						{#each { length: paragraphsBelow }}
+							<Copy as="p">
+								Das SWR Data Lab hat Kaufpreise, Fahrzeugdaten und Betriebskosten von über 5.500
+								Neuwagenmodellen von 2024 bis April 2025 aus dem ADAC-Autokatalog untersucht. Die
+								Analyse zeigt, wie teuer ein Elektroauto, Diesel oder Benziner der unteren
+								Mittelklasse beim Kauf und Betrieb über viele Jahre im Mittel ist.
+							</Copy>
+						{/each}
+					</div>
 				{/if}
 			</div>
 		</article>
@@ -259,18 +264,26 @@
 	}
 	.article-body {
 		display: contents;
-		:global(p) {
+	}
+	.article-text {
+		grid-column: 1/13;
+		display: flex;
+		flex-flow: column;
+		gap: 1em;
+		&.above {
 			margin-bottom: 1.5em;
-			grid-column: 1/13;
-			@media (min-width: 640px) {
-				grid-column: 2 / 12;
-			}
-			@media (min-width: 1024px) {
-				grid-column: 3 / 11;
-			}
-			@media (min-width: 1440px) {
-				grid-column: 4/10;
-			}
+		}
+		&.below {
+			margin-top: 1.5em;
+		}
+		@media (min-width: 640px) {
+			grid-column: 2 / 12;
+		}
+		@media (min-width: 1024px) {
+			grid-column: 3 / 11;
+		}
+		@media (min-width: 1440px) {
+			grid-column: 4/10;
 		}
 	}
 	.article-header {
