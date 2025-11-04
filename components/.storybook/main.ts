@@ -1,5 +1,9 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { createRequire } from "node:module";
 import { dirname, join } from 'path';
 import type { StorybookConfig } from '@storybook/sveltekit';
+
+const require = createRequire(import.meta.url);
 
 function getAbsolutePath(value: string): any {
 	if (process.platform.includes('win')) {

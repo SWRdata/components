@@ -1,7 +1,33 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import Logotype from './Logotype/Logotype.svelte';
 
 <Meta title="About" />
 
-# SWR Data Lab Components
+<header
+	class="header"
+	style={{
+		background: '#DBF5D7',
+		borderRadius: '.4rem',
+		padding: '1.5rem',
+		marginBottom: '1.5rem'
+	}}
+>
+	<h1>Chart Components</h1>
+	<div>
+		Svelte/kit component library for **[SWR Data
+		Lab](https://www.swr.de/home/swr-data-lab-team-100.html)** charts and interactives.
+	</div>
+	<a href="https://www.npmjs.com/package/@swr-data-lab/components">
+		<img src="https://img.shields.io/npm/v/%40swr-data-lab%2Fcomponents" />
+	</a>
+</header>
 
-Component library for SWR Data Lab interactives.
+## Usage
+
+```bash
+npm install --save @swr-data-lab/components
+```
+
+## Contributing
+
+See [Github](https://github.com/SWRdata/components) for license and contribution info.
