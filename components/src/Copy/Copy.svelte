@@ -6,10 +6,10 @@
 		as?: string;
 		children?: Snippet;
 	}
-	let { as = 'div', weight = 'regular', children }: CopyProps = $props();
+	let { as = 'div', weight = 'regular', children, ...rest }: CopyProps = $props();
 </script>
 
-<svelte:element this={as} class={['container', weight]}>
+<svelte:element this={as} class={['container', weight]} {...rest}>
 	{@render children?.()}
 </svelte:element>
 

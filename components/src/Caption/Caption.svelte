@@ -6,10 +6,10 @@
 		as?: string;
 		children?: Snippet;
 	}
-	let { weight = 'regular', as = 'div', children }: CaptionProps = $props();
+	let { weight = 'regular', as = 'div', children, ...rest }: CaptionProps = $props();
 </script>
 
-<svelte:element this={as} class={['container', weight]}>
+<svelte:element this={as} class={['container', weight]} {...rest}>
 	{@render children?.()}
 </svelte:element>
 
