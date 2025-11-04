@@ -60,11 +60,12 @@
 							0,
 							'transparent',
 							0.4,
-							tokens.shades.red.base
+							tokens.shades.orange.base
 						],
 						'line-width': ['get', 'width']
 					}}
 				/>
+
 				<VectorLayer
 					sourceId="arrows"
 					id="arrow-heads"
@@ -72,15 +73,6 @@
 					type="fill"
 					paint={{
 						'fill-color': tokens.shades.red.base
-					}}
-				/>
-				<VectorLayer
-					sourceId="arrows"
-					id="arrow-debug"
-					filter={['==', 'kind', 'arrow-debug']}
-					type="circle"
-					paint={{
-						'circle-color': 'green'
 					}}
 				/>
 			</Map>

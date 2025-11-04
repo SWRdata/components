@@ -24,7 +24,7 @@ const findSegment = (segments: number[], v: number) => {
 	let low = 0;
 	let high = segments.length;
 	while (low < high) {
-		let mid = (low + high) >>> 1; // * .5 but faster
+		let mid = (low + high) >>> 1; // === Math.round((low + high) * .5) but faster
 		if (segments[mid] < v) low = mid + 1;
 		else high = mid;
 	}
@@ -33,16 +33,16 @@ const findSegment = (segments: number[], v: number) => {
 
 const interpolatePolyline = (points: V2[], n: number) => {
 	let res: V2[] = [];
-	let segments: number[] = [];
+	let segments: number[] = [0];
 
 	let totalLength = 0;
-	for (let i = 0; i < points.length - 1; i++) {
+	for (let i = 0; i < points.length - 2; i++) {
 		totalLength += distance(points[i], points[i + 1]);
 		segments.push(totalLength);
 	}
 
 	console.log(segments);
-	console.log(totalLength);
+	console.log({ points, totalLength });
 
 	for (let i = 0; i < n; i++) {
 		const d: number = totalLength * (i / n);
@@ -51,19 +51,16 @@ const interpolatePolyline = (points: V2[], n: number) => {
 		const p0 = points[si];
 		const p1 = points[si + 1];
 
-		const sn = norm([p1[0] - p1[0], p0[1] - p1[1]]);
+		const sn = [p1[0] - p0[0], p1[1] - p0[1]];
 		const segmentFraction = (d - segments[si]) / distance(p0, p1);
 
-		res.push([
-			points[si][0] + sn[0] * segmentFraction * distance(p0, p1),
-			points[si][1] + sn[1] * segmentFraction * distance(p0, p1)
-		]);
+		res.push([p1[0] + sn[0] * segmentFraction, p1[1] + sn[1] * segmentFraction]);
 	}
 
 	return res;
 };
 
-const quadraticToPoints = (a: V2, b: V2, c: V2, n = 10) => {
+const quadraticToPoints = (a: V2, b: V2, c: V2, n = 30) => {
 	let points: V2[] = [];
 
 	for (let i = 0; i < n; i++) {
@@ -74,7 +71,7 @@ const quadraticToPoints = (a: V2, b: V2, c: V2, n = 10) => {
 		]);
 	}
 
-	points = interpolatePolyline([...points, b], 10);
+	points = interpolatePolyline([...points, b], n);
 
 	return points;
 };

@@ -34,7 +34,7 @@
 	const ars: JsonArrow[] = arrows.map((a) => {
 		return {
 			width: a.width || 10,
-			points: quadraticToPoints(a.a, a.b, a.c, 6),
+			points: quadraticToPoints(a.a, a.b, a.c),
 			headScale: a.headScale
 		};
 	});
@@ -47,13 +47,6 @@
 				type: 'Feature',
 				geometry: { type: 'LineString', coordinates: a.points },
 				properties: { width: a.width, kind: 'arrow-tail', id: i }
-			};
-		});
-		const debug = ars.map((a, i) => {
-			return {
-				type: 'Feature',
-				geometry: { type: 'MultiPoint', coordinates: a.points },
-				properties: { kind: 'arrow-debug', id: i }
 			};
 		});
 
@@ -84,7 +77,7 @@
 
 		return {
 			type: 'FeatureCollection',
-			features: [...tails, ...heads, ...debug]
+			features: [...tails, ...heads]
 		} as GeoJSON.GeoJSON;
 	};
 
