@@ -5,7 +5,8 @@
 	import MapSource from '../Source';
 	import { getMapContext } from '../context.svelte.js';
 	import quadraticToPoints from './quadraticToPoints';
-	import type { V2 } from './types';
+
+	import type { V2 } from '../types';
 
 	const { map } = $derived(getMapContext());
 

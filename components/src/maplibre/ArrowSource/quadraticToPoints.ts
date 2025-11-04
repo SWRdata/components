@@ -1,5 +1,4 @@
-import type { V2 } from './types';
-
+import type { V2 } from '../types';
 /**
  * Returns the euclidian distance between two points
  */

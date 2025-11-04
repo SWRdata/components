@@ -8,9 +8,12 @@ export type Layer =
 	| LineLayerSpecification
 	| FillLayerSpecification
 	| FillExtrusionLayerSpecification;
+
 export type GeocodingService = 'maptiler';
 export type GeocodingCountry = 'de' | 'at';
 export type GeocodingLanguage = 'de' | 'en';
+
+export type V2 = [number, number];
 
 export interface Location {
 	lat: number;
