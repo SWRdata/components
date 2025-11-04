@@ -3,13 +3,15 @@
 
 	interface HeadlineProps {
 		children?: Snippet;
+		as?: string;
 	}
-	let { children }: HeadlineProps = $props();
+
+	let { as = 'h2', children, ...rest }: HeadlineProps = $props();
 </script>
 
-<h2 class="container">
+<svelte:element this={as} class="container" {...rest}>
 	{@render children?.()}
-</h2>
+</svelte:element>
 
 <style>
 	.container {
