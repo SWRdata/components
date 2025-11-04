@@ -36,6 +36,23 @@
 	</DesignTokens>
 </Story>
 
+<Story
+	name="Render rest props"
+	asChild
+	play={async ({ canvasElement, step }) => {
+		const el = canvasElement.querySelector('h3');
+		await step('Renders the rest prop', async () => {
+			expect(el).toHaveAttribute('id', 'foo');
+		});
+	}}
+>
+	<DesignTokens theme="light">
+		<div class="container">
+			<Headline as="h3" id="foo">This should have an ID of "foo"</Headline>
+		</div>
+	</DesignTokens>
+</Story>
+
 <style>
 	.container {
 		color: var(--color-textPrimary);

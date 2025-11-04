@@ -6,10 +6,10 @@
 		as?: string;
 	}
 
-	let { as = 'h2', children }: HeadlineProps = $props();
+	let { as = 'h2', children, ...rest }: HeadlineProps = $props();
 </script>
 
-<svelte:element this={as} class="container">
+<svelte:element this={as} class="container" {...rest}>
 	{@render children?.()}
 </svelte:element>
 

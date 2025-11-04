@@ -5,10 +5,10 @@
 		children?: Snippet;
 		as?: string;
 	}
-	let { as = 'div', children }: NoteProps = $props();
+	let { as = 'div', children, ...rest }: NoteProps = $props();
 </script>
 
-<svelte:element this={as} class="container">
+<svelte:element this={as} class="container" {...rest}>
 	{@render children?.()}
 </svelte:element>
 
