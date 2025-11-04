@@ -3,16 +3,15 @@
 
 	interface CaptionProps {
 		weight?: 'regular' | 'bold';
+		as?: string;
 		children?: Snippet;
 	}
-	let { weight = 'regular', children }: CaptionProps = $props();
+	let { weight = 'regular', as = 'div', children }: CaptionProps = $props();
 </script>
 
-<div class={['container', weight]}>
-	{#if children}
-		{@render children()}
-	{/if}
-</div>
+<svelte:element this={as} class={['container', weight]}>
+	{@render children?.()}
+</svelte:element>
 
 <style lang="scss">
 	.container {

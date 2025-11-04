@@ -1,5 +1,6 @@
 <script context="module">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
+	import { expect } from 'storybook/test';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 
 	import Caption from './Caption.svelte';
@@ -28,8 +29,21 @@
 	</DesignTokens>
 </Story>
 
-<style>
-	.container {
-		color: var(--color-textPrimary);
-	}
-</style>
+<Story
+	name="Render as HTML element"
+	asChild
+	play={async ({ canvasElement, step }) => {
+		const el = canvasElement.querySelector('p');
+		await step('Renders as specified HTML element', async () => {
+			expect(el).toBeTruthy();
+		});
+	}}
+>
+	<DesignTokens theme="light">
+		<div class="container">
+			<Caption weight="bold" as="p">
+				Björn Schittenhelm, Apotheker aus Holzgerlingen (Kreis Böblingen)
+			</Caption>
+		</div>
+	</DesignTokens>
+</Story>

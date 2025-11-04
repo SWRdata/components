@@ -3,15 +3,14 @@
 
 	interface NoteProps {
 		children?: Snippet;
+		as?: string;
 	}
-	let { children }: NoteProps = $props();
+	let { as = 'div', children }: NoteProps = $props();
 </script>
 
-<div class="container">
-	{#if children}
-		{@render children()}
-	{/if}
-</div>
+<svelte:element this={as} class="container">
+	{@render children?.()}
+</svelte:element>
 
 <style lang="scss">
 	.container {
