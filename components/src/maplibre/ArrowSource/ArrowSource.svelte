@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { type GeoJSONSourceSpecification } from 'maplibre-gl';
+	import { onDestroy, onMount } from 'svelte';
 
 	import MapSource from '../Source';
 	import { getMapContext } from '../context.svelte.js';
 	import quadraticToPoints from './quadraticToPoints';
-	import { onDestroy } from 'svelte';
+
+	import type { V2 } from '../types';
 
 	const { map } = $derived(getMapContext());
-
-	type V2 = [number, number];
 
 	interface ArrowSourceProps {
 		id: string;
@@ -35,7 +35,7 @@
 	const ars: JsonArrow[] = arrows.map((a) => {
 		return {
 			width: a.width || 10,
-			points: quadraticToPoints(a.a, a.b, a.c, 10),
+			points: quadraticToPoints(a.a, a.b, a.c),
 			headScale: a.headScale
 		};
 	});
@@ -93,7 +93,7 @@
 	const onZoom = () => {
 		sourceSpec = { ...sourceSpec, data: arrowsToJson(ars) };
 	};
-	$effect(() => {
+	onMount(() => {
 		map?.on('zoom', onZoom);
 	});
 	onDestroy(() => {
