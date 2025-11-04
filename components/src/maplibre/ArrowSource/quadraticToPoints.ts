@@ -51,15 +51,15 @@ const interpolatePolyline = (points: V2[], n: number) => {
 };
 
 /**
-Given a quadratic bezier defined by points a, b and c,
-returns a series of n points on the curve
+ * Given a quadratic Bezier defined by points a, b and c
+ * returns a series of evenly-spaced points on the curve
+ *
+ * Sources:
+ * - https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves
+ * - https://bit-101.com/blog/posts/2024-09-29/evenly-placed-points-on-bezier-curves
+ */
 
-See:
-- https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves
-- https://bit-101.com/blog/posts/2024-09-29/evenly-placed-points-on-bezier-curves
-*/
-
-const quadraticToPoints = (a: V2, b: V2, c: V2, n = 30) => {
+const quadraticToPoints = (a: V2, b: V2, c: V2, n = 25) => {
 	let points: V2[] = [];
 
 	// 1. Interpolate the quadratic bezier function to obtain an uneven polyline
