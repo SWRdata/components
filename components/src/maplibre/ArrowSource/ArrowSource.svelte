@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { type GeoJSONSourceSpecification } from 'maplibre-gl';
+	import { onDestroy, onMount } from 'svelte';
 
 	import MapSource from '../Source';
 	import { getMapContext } from '../context.svelte.js';
 	import quadraticToPoints from './quadraticToPoints';
-	import { onDestroy } from 'svelte';
 	import type { V2 } from './types';
 
 	const { map } = $derived(getMapContext());
@@ -92,7 +92,7 @@
 	const onZoom = () => {
 		sourceSpec = { ...sourceSpec, data: arrowsToJson(ars) };
 	};
-	$effect(() => {
+	onMount(() => {
 		map?.on('zoom', onZoom);
 	});
 	onDestroy(() => {

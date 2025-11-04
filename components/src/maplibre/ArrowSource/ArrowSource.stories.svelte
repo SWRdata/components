@@ -6,8 +6,8 @@
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 
 	import { SWRDataLabLight } from '../MapStyle';
-	import { tokens } from '../../DesignTokens';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
+	import { tokens } from '../../DesignTokens';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Source/ArrowSource',
@@ -22,9 +22,9 @@
 				showDebug={true}
 				style={SWRDataLabLight()}
 				initialLocation={{
-					lng: -78.40441556736909,
-					lat: 13.411905478643874,
-					zoom: 5.124074967275398,
+					lng: -78.404,
+					lat: 13.411,
+					zoom: 5.124,
 					pitch: 0
 				}}
 			>
@@ -39,7 +39,7 @@
 							c: [-81, 14.6]
 						},
 						{
-							width: 15,
+							width: 25,
 							a: [-71.1, 11.3],
 							b: [-75.783, 15.6],
 							c: [-75, 12.6]
@@ -60,7 +60,7 @@
 							0,
 							'transparent',
 							0.4,
-							tokens.shades.orange.base
+							tokens.shades.violet.base
 						],
 						'line-width': ['get', 'width']
 					}}
@@ -72,7 +72,7 @@
 					filter={['==', 'kind', 'arrow-head']}
 					type="fill"
 					paint={{
-						'fill-color': tokens.shades.red.base
+						'fill-color': tokens.shades.violet.base
 					}}
 				/>
 			</Map>

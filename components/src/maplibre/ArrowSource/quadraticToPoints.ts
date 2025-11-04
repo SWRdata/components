@@ -9,13 +9,13 @@ const distance = (a: V2, b: V2) => {
 
 /**
  * Given a sorted array arr and a value, returns the index i of arr
- * such that arr[i] < value && arr[i + 1] > value
+ * such that arr[i] < value && arr[i + 1] > value using binary search
  */
 const getSortedIndex = (arr: number[], v: number) => {
 	let low = 0,
 		high = arr.length;
 	while (low < high) {
-		let mid = (low + high) >>> 1; // === Math.round((low + high) * .5) but faster
+		let mid = (low + high) >>> 1; // === Math.abs((low + high) * .5) but faster
 		if (arr[mid] < v) low = mid + 1;
 		else high = mid;
 	}
