@@ -1,6 +1,6 @@
-# SWRdata/components
+# Chart Components
 
-Component library for SWR Data Lab interactives.
+Svelte/kit component library for [SWR Data Lab](https://www.swr.de/home/swr-data-lab-team-100.html) charts and interactives.
 
 [![Package version](https://img.shields.io/npm/v/%40swr-data-lab%2Fcomponents)](https://www.npmjs.com/package/@swr-data-lab/components) [![Deploy Storybook](https://github.com/SWRdata/components/actions/workflows/deploy-storybook.yml/badge.svg)](https://github.com/SWRdata/components/actions/workflows/deploy-storybook.yml) [![Run Storybook Tests](https://github.com/SWRdata/components/actions/workflows/test-storybook.yml/badge.svg)](https://github.com/SWRdata/components/actions/workflows/test-storybook.yml) [![Release to NPM](https://github.com/SWRdata/components/actions/workflows/release.yml/badge.svg)](https://github.com/SWRdata/components/actions/workflows/release.yml)
 
