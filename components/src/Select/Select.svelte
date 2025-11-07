@@ -67,6 +67,7 @@
 <style lang="scss">
 	.container {
 		font-family: var(--swr-sans);
+		// See: https://github.com/rob-balfre/svelte-select/blob/master/docs/theming_variables.md
 		--background: var(--color-surfaceFill);
 		--list-background: var(--color-surfaceFill);
 		--selection-background: var(--color-surfaceFill);
