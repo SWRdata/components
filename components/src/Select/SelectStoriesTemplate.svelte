@@ -6,7 +6,7 @@
 	let { args = null, selectedItem = $bindable(), demoComponent = null } = $props();
 </script>
 
-<DesignTokens>
+<DesignTokens theme="light">
 	{#if demoComponent}
 		{@render demoComponent()}
 	{:else}
