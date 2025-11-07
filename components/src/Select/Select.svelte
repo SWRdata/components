@@ -65,12 +65,17 @@
 </div>
 
 <style lang="scss">
-	.item {
+	.container {
 		font-family: var(--swr-sans);
-		color: var(--violet-dark-5);
-	}
-	.selection {
-		font-family: var(--swr-sans);
-		color: var(--violet-dark-5);
+		// See: https://github.com/rob-balfre/svelte-select/blob/master/docs/theming_variables.md
+		--background: var(--color-surfaceFill);
+		--list-background: var(--color-surfaceFill);
+		--selection-background: var(--color-surfaceFill);
+		--item-is-active-bg: var(--color-surfaceBorder);
+		--item-is-active-color: var(--color-textPrimary);
+		--item-hover-bg: var(--color-surfaceBorder);
+		--item-color: var(--color-textPrimary);
+		--item-hover-color: var(--color-textPrimary);
+		--selected-item-color: var(--color-textPrimary);
 	}
 </style>

@@ -26,6 +26,7 @@
 
 <style>
 	.container {
+		color: var(--color-textPrimary);
 		font-family: var(--swr-text);
 		font-size: var(--fs-small-1);
 		font-weight: 400;
