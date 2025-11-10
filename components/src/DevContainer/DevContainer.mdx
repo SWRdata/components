@@ -6,7 +6,7 @@ import * as DevContainerStories from './DevContainer.stories.svelte';
 
 # DevContainer
 
-Development fixture for simulating the grid system and various UI features on [SWR.de](https://www.swr.de). Particularly useful for developing charts using the [breakout component](?path=/docs/layout-breakout--docs). 
+**Development-only** fixture for simulating the grid system and various UI features on [SWR.de](https://www.swr.de). Particularly useful for developing charts using the [breakout component](?path=/docs/layout-breakout--docs).
 
 <Story of={DevContainerStories.NoPlayer} />
 
@@ -14,15 +14,17 @@ Development fixture for simulating the grid system and various UI features on [S
 
 ## Usage
 
+In your `+page.svelte`:
+
 ```jsx
 <script lang='ts'>
   import { dev } from '$app/environment';
-  import DevContainer from '@swr-data-lab/components';
+  import { DevContainer } from '@swr-data-lab/components';
   import App from '$lib/App.svelte';
 </script>
 
 {#if dev}
-  <DevContainer>
+  <DevContainer theme="light" showGrid>
     <App />
   </DevContainer>
 {:else}

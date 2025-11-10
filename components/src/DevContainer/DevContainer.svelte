@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+
 	import SwrLogo from './SwrLogo.svg.svelte';
 	import GridInspector from './GridInspector.svelte';
-	import Copy from '../Copy/Copy.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
+	import Copy from '../Copy/Copy.svelte';
 
 	interface DevContainerProps {
 		theme: 'light' | 'dark' | 'auto';
