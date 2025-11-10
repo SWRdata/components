@@ -84,11 +84,6 @@
 		@media (min-width: base.$bp-s) {
 			flex-flow: row;
 		}
-
-		&:focus-within,
-		&:active {
-			outline: 2px solid var(--blue-light-2);
-		}
 	}
 	li {
 		display: contents;
@@ -103,7 +98,7 @@
 	}
 	.small label {
 		font-size: var(--fs-small-1);
-		height: 2.25em;
+		height: 2em;
 		padding: 0 0.65em;
 	}
 	label {
@@ -118,7 +113,8 @@
 		color: currentColor;
 		position: relative;
 		transition: var(--fast);
-		text-underline-offset: 0.2em;
+		text-underline-offset: 0.1em;
+		border-right: 1px solid var(--color-textSecondary);
 		height: 2.25em;
 		@media (min-width: base.$bp-s) {
 			justify-content: center;
@@ -133,9 +129,10 @@
 		&:hover,
 		&:focus-visible {
 			text-decoration: underline;
+			text-decoration-color: var(--color-textSecondary);
 		}
 		.is-selected & {
-			background: var(--color-textSecondary);
+			background: var(--color-surfaceHover);
 			font-weight: 700;
 		}
 	}

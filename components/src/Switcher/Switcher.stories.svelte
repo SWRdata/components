@@ -13,7 +13,7 @@
 </script>
 
 <Story name="Two Options" asChild>
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<Switcher options={['Option A', 'Option B']} value="Option A" size="default" label="Label" />
 	</DesignTokens>
 </Story>
@@ -35,7 +35,7 @@
 		});
 	}}
 >
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<Switcher
 			options={['Apples', 'Oranges', 'Bananas', 'Peaches']}
 			value="Oranges"
