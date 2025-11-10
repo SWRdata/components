@@ -20,7 +20,10 @@
 		</Note>
 	{/if}
 	{#if showLogo}
-		<Logotype />
+		<a href="https://www.swr.de/home/swr-data-lab-team-100.html" class="logo-link">
+			SWR Data Lab
+			<Logotype />
+		</a>
 	{/if}
 </footer>
 
@@ -33,6 +36,17 @@
 			width: 100%;
 		}
 	}
+
+	.logo-link {
+		font-size: 0;
+		&:hover,
+		&:focus-visible {
+			:global(path) {
+				fill: var(--color-logoFillHover);
+			}
+		}
+	}
+
 	.one-up {
 		display: flex;
 		flex-flow: column;

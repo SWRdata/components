@@ -170,8 +170,12 @@ const semantics: ColourMap = {
 		dark: '#b4b4b4'
 	},
 	logoFill: {
-		light: shades.gray.light3,
+		light: shades.gray.light1,
 		dark: shades.gray.base
+	},
+	logoFillHover: {
+		light: shades.gray.base,
+		dark: shades.gray.light1
 	},
 	surfaceFill: {
 		dark: '#222325',
