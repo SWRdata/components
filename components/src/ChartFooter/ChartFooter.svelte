@@ -21,7 +21,7 @@
 	{/if}
 	{#if showLogo}
 		<a href="https://www.swr.de/home/swr-data-lab-team-100.html" class="logo-link">
-			SWR Data Lab
+			<span class="sr-only"> SWR Data Lab </span>
 			<Logotype />
 		</a>
 	{/if}
@@ -38,13 +38,17 @@
 	}
 
 	.logo-link {
-		font-size: 0;
 		&:hover,
 		&:focus-visible {
 			:global(path) {
 				fill: var(--color-logoFillHover);
 			}
 		}
+	}
+	.sr-only {
+		font-size: 0;
+		position: absolute;
+		left: -9999px;
 	}
 
 	.one-up {
