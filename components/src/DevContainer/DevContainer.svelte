@@ -21,7 +21,7 @@
 		children?: Snippet;
 	}
 	let {
-		theme = 'auto',
+		theme = 'light',
 		showHeader = true,
 		showNav = true,
 		showArticleHeader = true,
