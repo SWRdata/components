@@ -1,12 +1,13 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+
 	import SwrLogo from './SwrLogo.svg.svelte';
 	import GridInspector from './GridInspector.svelte';
-	import Copy from '../Copy/Copy.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
-	import { text } from '@sveltejs/kit';
+	import Copy from '../Copy/Copy.svelte';
 
 	interface DevContainerProps {
+		theme: 'light' | 'dark' | 'auto';
 		showHeader?: boolean;
 		showNav?: boolean;
 		showPlayer?: boolean;
@@ -21,6 +22,7 @@
 		children?: Snippet;
 	}
 	let {
+		theme = 'light',
 		showHeader = true,
 		showNav = true,
 		showArticleHeader = true,
@@ -39,8 +41,13 @@
 	let articleEl: HTMLElement | undefined = $state();
 </script>
 
-<DesignTokens>
-	<div class="container">
+<DesignTokens {theme}>
+	<div
+		class="container"
+		style={theme === 'light'
+			? '--blue: hsl(221, 75%, 46%); --blue-light: hsl(221, 100%, 95%)'
+			: '--blue: hsl(220, 22%, 51%); --blue-light: hsl(219, 22%, 18%)'}
+	>
 		{#if showHeader}
 			<header>
 				<div class="header-inner">
@@ -144,9 +151,8 @@
 		display: block;
 	}
 	.container {
-		--blue: hsl(221, 75%, 46%);
-		--blue-light: hsl(221, 100%, 95%);
 		color: var(--blue);
+		background: var(--color-pageFill);
 		font-family: 'SWR-VAR-Sans', sans-serif;
 	}
 	header {
