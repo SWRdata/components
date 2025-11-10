@@ -17,7 +17,7 @@
 		<ChartFooter layout="one-up">
 			Daten: <a href="#1">Zensus 2022</a>
 			(Durchschnittsmieten und Einwohnerzahlen),
-			<a href="#1">OpenStreetMap</a> (Kartenmaterial) <Middot /> In unserer Darstellung wurde das Zensusgitter
+			<a href="#1">OpenStreetMap</a> (Karten) <Middot /> In unserer Darstellung wurde das Zensusgitter
 			auf bewohnte Gebiete begrenzt.
 		</ChartFooter>
 	</DesignTokens>
