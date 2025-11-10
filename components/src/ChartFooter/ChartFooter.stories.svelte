@@ -13,7 +13,7 @@
 </script>
 
 <Story name="One-up" asChild>
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<ChartFooter layout="one-up">
 			Daten: <a href="#1">Zensus 2022</a>
 			(Durchschnittsmieten und Einwohnerzahlen),
@@ -24,7 +24,7 @@
 </Story>
 
 <Story name="One-up Centered" asChild>
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<ChartFooter layout="one-up" align="center">
 			Daten: <a href="#1">Zensus 2022</a>
 			(Durchschnittsmieten und Einwohnerzahlen),
@@ -44,7 +44,7 @@
 		});
 	}}
 >
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<ChartFooter layout="one-up" align="center" showLogo={false}>
 			Daten: <a href="#1">Zensus 2022</a>
 			(Durchschnittsmieten und Einwohnerzahlen),

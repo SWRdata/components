@@ -58,6 +58,7 @@
 		--color-textSecondary: var(--textSecondary-light);
 		--color-textSecondaryHover: var(--textSecondaryHover-light);
 		--color-logoFill: var(--logoFill-light);
+		--color-logoFillHover: var(--logoFillHover-light);
 		--color-pageFill: var(--pageFill-light);
 		--color-surfaceFill: var(--surfaceFill-light);
 		--color-surfaceHover: var(--surfaceHover-light);
@@ -66,6 +67,7 @@
 
 		&[data-theme='dark'] {
 			--color-logoFill: var(--logoFill-dark);
+			--color-logoFillHover: var(--logoFillHover-dark);
 			--color-pageFill: var(--pageFill-dark);
 			--color-surfaceFill: var(--surfaceFill-dark);
 			--color-surfaceBorder: var(--surfaceBorder-dark);
