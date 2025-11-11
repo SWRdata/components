@@ -18,6 +18,18 @@
 	</DesignTokens>
 </Story>
 
+<Story name="Hidden Label" asChild>
+	<DesignTokens theme="light">
+		<Switcher
+			hideLabel
+			options={['Option A', 'Option B']}
+			value="Option A"
+			size="default"
+			label="Label"
+		/>
+	</DesignTokens>
+</Story>
+
 <Story
 	name="Four Options"
 	asChild
