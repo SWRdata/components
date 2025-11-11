@@ -14,6 +14,7 @@
 		 * Display size
 		 */
 		size?: 'default' | 'small';
+		hideLabel?: boolean;
 		/**
 		 * The currently-selected option (bindable)
 		 */
@@ -28,6 +29,7 @@
 		label,
 		options,
 		size = 'default',
+		hideLabel = false,
 		value = $bindable(null),
 		onchange
 	}: SwitcherProps = $props();
@@ -41,7 +43,9 @@
 </script>
 
 <fieldset class="container" class:small={size === 'small'}>
-	<FormLabel as="legend">{label}</FormLabel>
+	<div class="legend" class:hidden={hideLabel}>
+		<FormLabel as="legend">{label}</FormLabel>
+	</div>
 	<ul>
 		{#each options as o (o)}
 			<li class:is-selected={o === value}>
@@ -67,6 +71,13 @@
 	fieldset {
 		border: 0;
 		font-family: var(--swr-sans);
+	}
+
+	.legend {
+		&.hidden {
+			position: absolute;
+			left: -9999px;
+		}
 	}
 
 	ul {
