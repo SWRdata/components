@@ -105,7 +105,7 @@
 	}
 	input {
 		position: absolute;
-		left: -999px;
+		left: -9999px;
 	}
 	.small label {
 		font-size: var(--fs-small-1);
