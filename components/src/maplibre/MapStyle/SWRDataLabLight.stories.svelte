@@ -33,7 +33,11 @@
 	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
-				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.germany}>
+				<Map
+					showDebug
+					style={SWRDataLabLight({ enableHillshade: true })}
+					initialLocation={locations.alps}
+				>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>

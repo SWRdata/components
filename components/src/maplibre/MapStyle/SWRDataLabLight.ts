@@ -17,7 +17,7 @@ const tokens = {
 	sans_bold: ['SWR Sans Bold'],
 	background: {
 		stops: [
-			[8, 'hsl(24, 29%, 98.5%)'],
+			[8, 'hsl(24, 29%, 98%)'],
 			[10, 'white']
 		]
 	},
@@ -41,7 +41,9 @@ const tokens = {
 	sand: 'hsl(60,0%,95%)',
 	boundary_country: '#8b8a89',
 	boundary_state: 'hsl(37, 10%, 75%)',
-	boundary_country_case: 'white'
+	boundary_country_case: 'white',
+	hillshade_light: '#fff',
+	hillshade_dark: 'hsla(0, 0%, 53%, 0.15)'
 };
 
 const { landuse } = makeLanduse(tokens);
@@ -127,37 +129,38 @@ const style: styleFunction = (opts) => {
 			...(!options.enableBuildingExtrusions ? [buildingFootprints] : []),
 			...(options.enableBuildingExtrusions ? [structureExtrusions] : []),
 
+			// 3. Shaded relief
 			...(options.enableHillshade ? hillshade : []),
 
-			// 3. Tunnels
+			// 4. Tunnels
 			...walkingTunnels,
 			...roadTunnels,
 			...transitTunnels,
 
-			// 4. Surface ways
+			// 5. Surface ways
 			...walkingSurface,
 			...roadSurface,
 			...transitSurface,
 
-			// 5. Bridges ways
+			// 6. Bridges ways
 			...walkingBridges,
 			...roadBridges,
 			...transitBridges,
 
-			// 6. Admin boundaries
+			// 7. Admin boundaries
 			...admin,
 
-			// 7. Labels
+			// 8. Labels
 			...(options.roads?.showLabels ? walkingLabels : []),
 			...(options.roads?.showLabels ? roadLabels : []),
 
-			// 8. Building extrusions
+			// 9. Building extrusions
 			...(options.enableBuildingExtrusions ? [buildingExtrusions] : []),
 
-			// 8. Point labels
+			// 10. Point labels
 			...(options.places?.showLabels ? placeLabels : []),
 
-			// 9. Admin boundary labels
+			// 11. Admin boundary labels
 			...boundaryLabels
 		]
 	};

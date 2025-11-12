@@ -10,6 +10,7 @@ import makeTransit from './components/Transit';
 import makePlaceLabels from './components/PlaceLabels';
 import makeWalking from './components/Walking';
 import makeRoads from './components/Roads';
+import makeHillshade from './components/Hillshade';
 
 const tokens = {
 	sans_regular: ['SWR Sans Regular'],
@@ -41,7 +42,9 @@ const tokens = {
 	boundary_state: 'hsl(218, 4%, 37%)',
 	rail: 'hsl(0, 0%, 33%)',
 	sand: 'hsl(0, 0%, 16%)',
-	building: '#232325'
+	building: '#232325',
+	hillshade_light: 'hsla(0, 0%, 77%, 0.15)',
+	hillshade_dark: 'hsla(0, 0%, 0%, 0.65)'
 };
 
 const { landuse } = makeLanduse(tokens);
@@ -51,6 +54,7 @@ const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
 const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
+const { hillshade } = makeHillshade(tokens);
 
 interface styleFunction {
 	(options?: StyleOptions): StyleSpecification;
@@ -79,6 +83,26 @@ const style: styleFunction = (opts) => {
 				minzoom: 0,
 				maxzoom: 14
 			},
+			...(options.enableHillshade && {
+				'versatiles-hillshade': {
+					tilejson: '3.0.0',
+					name: 'VersaTiles Hillshade Vectors',
+					description: 'VersaTiles Hillshade Vectors based on Mapzen Jörð Terrain Tiles',
+					attribution:
+						'<a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles, DEM Sources</a>',
+					version: '1.0.0',
+					tiles: ['https://tiles-dev.datenhub.net/tiles/hillshade/{z}/{x}/{y}'],
+					type: 'vector',
+					scheme: 'xyz',
+					format: 'pbf',
+					bounds: [-180, -85.0511287798066, 180, 85.0511287798066],
+					minzoom: 0,
+					maxzoom: 12,
+					vector_layers: [
+						{ id: 'hillshade-vectors', fields: { shade: 'String' }, minzoom: 0, maxzoom: 12 }
+					]
+				}
+			}),
 			...(options.enableBuildingExtrusions && {
 				'basemap-de': {
 					attribution: 'GeoBasis-DE',
@@ -106,35 +130,38 @@ const style: styleFunction = (opts) => {
 			...(!options.enableBuildingExtrusions ? [buildingFootprints] : []),
 			...(options.enableBuildingExtrusions ? [structureExtrusions] : []),
 
-			// 3. Tunnels
+			// 3. Shaded relief
+			...(options.enableHillshade ? hillshade : []),
+
+			// 4. Tunnels
 			...walkingTunnels,
 			...roadTunnels,
 			...transitTunnels,
 
-			// 4. Surface ways
+			// 5. Surface ways
 			...walkingSurface,
 			...roadSurface,
 			...transitSurface,
 
-			// 5. Bridges ways
+			// 6. Bridges ways
 			...walkingBridges,
 			...roadBridges,
 			...transitBridges,
 
-			// 6. Admin boundaries
+			// 7. Admin boundaries
 			...admin,
 
-			// 7. Labels
+			// 8. Labels
 			...(options.roads?.showLabels ? walkingLabels : []),
 			...(options.roads?.showLabels ? roadLabels : []),
 
-			// 8. Building extrusions
+			// 9. Building extrusions
 			...(options.enableBuildingExtrusions ? [buildingExtrusions] : []),
 
-			// 8. Point labels
+			// 10. Point labels
 			...(options.places?.showLabels ? placeLabels : []),
 
-			// 9. Admin boundary labels
+			// 11. Admin boundary labels
 			...boundaryLabels
 		]
 	};

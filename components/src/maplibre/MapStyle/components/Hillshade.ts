@@ -6,14 +6,14 @@ export default function makeHillshade(tokens): any {
 			id: 'hillshade-light',
 			filter: ['all', ['==', 'shade', 'light']],
 			paint: {
-				'fill-color': '#ffffff',
-				'fill-opacity': 1,
+				'fill-color': tokens.hillshade_light,
 				'fill-opacity': {
 					stops: [
 						[0, 0],
-						[4, 0.2]
+						[4, 1]
 					]
 				},
+				'fill-outline-color': 'transparent',
 				'fill-antialias': true
 			}
 		},
@@ -21,14 +21,14 @@ export default function makeHillshade(tokens): any {
 			id: 'hillshade-dark',
 			filter: ['all', ['==', 'shade', 'dark']],
 			paint: {
-				'fill-color': '#000000',
-				'fill-opacity': 1,
+				'fill-color': tokens.hillshade_dark,
 				'fill-opacity': {
 					stops: [
 						[0, 0],
-						[4, 0.2]
+						[4, 1]
 					]
 				},
+				'fill-outline-color': 'transparent',
 				'fill-antialias': true
 			}
 		}
