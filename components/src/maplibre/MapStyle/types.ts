@@ -1,5 +1,6 @@
 interface StyleOptions {
 	enableBuildingExtrusions?: boolean;
+	enableHillshade?: boolean;
 	places?: {
 		showLabels?: boolean;
 	};

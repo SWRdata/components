@@ -29,6 +29,17 @@
 		</div>
 	</DesignTokens>
 </Story>
+<Story asChild name="Hillshade">
+	<DesignTokens theme="light">
+		<div class="grid">
+			<div class="container">
+				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.germany}>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
 <Story asChild name="fix/122">
 	<DesignTokens theme="light">
 		<div class="grid">

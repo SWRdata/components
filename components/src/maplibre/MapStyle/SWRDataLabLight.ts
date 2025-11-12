@@ -9,6 +9,7 @@ import makePlaceLabels from './components/PlaceLabels';
 import makeWalking from './components/Walking';
 import makeRoads from './components/Roads';
 import defaultOptions from './defaultOptions';
+import makeHillshade from './components/Hillshade';
 
 const tokens = {
 	sans_regular: ['SWR Sans Regular'],
@@ -50,6 +51,7 @@ const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
 const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
+const { hillshade } = makeHillshade(tokens);
 
 interface styleFunction {
 	(options?: StyleOptions): StyleSpecification;
@@ -71,13 +73,33 @@ const style: styleFunction = (opts) => {
 			'versatiles-osm': {
 				attribution:
 					'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
-				tiles: ['https://tiles.versatiles.org/tiles/osm/{z}/{x}/{y}'],
+				tiles: ['https://tiles-dev.datenhub.net/tiles/osm/{z}/{x}/{y}'],
 				bounds: [-180, -85.0511287798066, 180, 85.0511287798066],
 				type: 'vector',
 				scheme: 'xyz',
 				minzoom: 0,
 				maxzoom: 14
 			},
+			...(options.enableHillshade && {
+				'versatiles-hillshade': {
+					tilejson: '3.0.0',
+					name: 'VersaTiles Hillshade Vectors',
+					description: 'VersaTiles Hillshade Vectors based on Mapzen Jörð Terrain Tiles',
+					attribution:
+						'<a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles, DEM Sources</a>',
+					version: '1.0.0',
+					tiles: ['https://tiles-dev.datenhub.net/tiles/hillshade/{z}/{x}/{y}'],
+					type: 'vector',
+					scheme: 'xyz',
+					format: 'pbf',
+					bounds: [-180, -85.0511287798066, 180, 85.0511287798066],
+					minzoom: 0,
+					maxzoom: 12,
+					vector_layers: [
+						{ id: 'hillshade-vectors', fields: { shade: 'String' }, minzoom: 0, maxzoom: 12 }
+					]
+				}
+			}),
 			...(options.enableBuildingExtrusions && {
 				'basemap-de': {
 					attribution: 'GeoBasis-DE',
@@ -104,6 +126,8 @@ const style: styleFunction = (opts) => {
 			// 2. Building footprints + Structures (ie. bridges)
 			...(!options.enableBuildingExtrusions ? [buildingFootprints] : []),
 			...(options.enableBuildingExtrusions ? [structureExtrusions] : []),
+
+			...(options.enableHillshade ? hillshade : []),
 
 			// 3. Tunnels
 			...walkingTunnels,
