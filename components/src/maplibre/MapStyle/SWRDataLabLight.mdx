@@ -35,8 +35,13 @@ Light-themed general-purpose basemap using SWR colours and typefaces based on
 	</thead>
 	<tr>
 		<td>Base Vectors</td>
-		<td>[versatiles-osm](https://download.versatiles.org/) vector tiles in the [Shortbread schema](https://shortbread-tiles.org/) served from `tiles.versatiles.org`</td>
-    <td>[License](https://docs.versatiles.org/basics/tilesets.html#license--attribution)</td>
+		<td>[versatiles-osm](https://download.versatiles.org/) vector tiles in the [Shortbread schema](https://shortbread-tiles.org/) served from `tiles.datenhub.net`</td>
+    <td>[ODBL/CC-0](https://docs.versatiles.org/basics/tilesets.html#license--attribution)</td>
+    </tr>
+	<tr>
+		<td>Hillshading</td>
+		<td>[versatiles-hillshade](https://download.versatiles.org/) vector tiles based on Mapzen Jörð Terrain Tiles served from `tiles.datenhub.net`</td>
+    <td>[CC BY 4.0](https://docs.versatiles.org/basics/tilesets.html#license--attribution-1)</td>
     </tr>
     <tr>
     	<td>Building footprints + heights</td>
@@ -45,18 +50,18 @@ Light-themed general-purpose basemap using SWR colours and typefaces based on
     </tr>
     <tr>
     	<td>SWR Sans Typeface</td>
-    	<td>served from `https://static.datenhub.net/maps/fonts`</td>
+    	<td>Typefaces from [marken.swr.de](https://marken.swr.de/document/932#/typografie/typografie), converted to PBF with [Font Maker](https://maplibre.org/font-maker/), served from `static.datenhub.net/maps/fonts`</td>
     	<td>n/a</td>
     </tr>
     <tr>
     	<td>Icons</td>
-    	<td>[Osmic](https://github.com/gmgeo/osmic) + own work ([Figma](https://www.figma.com/design/2MbVC3SYyyahO2UPuy3z0S/Map-Icons?node-id=0-1&t=IJuwwIj86FGIjRGa-1))</td>
+    	<td>[Osmic](https://github.com/gmgeo/osmic) + own work ([Figma](https://www.figma.com/design/2MbVC3SYyyahO2UPuy3z0S/Map-Icons?node-id=0-1&t=IJuwwIj86FGIjRGa-1)) served from `static.datenhub.net/maps/styles/swr-datalab-light/sprite`</td>
     	<td>[CC0](https://github.com/gmgeo/osmic?tab=CC0-1.0-1-ov-file)</td>
     </tr>
 
 </table>
 
-Layer count: **{SWRDataLabLight({enableBuildingExtrusions: true}).layers.length}** (including building extrusions)
+Layer count: **{SWRDataLabLight({enableBuildingExtrusions: true, enableHillshade: true}).layers.length}** (including building extrusions + hillshading)
 
 <Story of={MapStyleStories.BadenBadenZ15} />
 
@@ -82,12 +87,13 @@ Call `SWRDataLabLight()` to construct a style document and pass the result to th
 ```ts
 interface StyleOptions {
   enableBuildingExtrusions?: boolean;
-    roads?: {
-      showLabels?: boolean
-    }
-    places?: {
-      showLabels?: boolean
-    }
+  enableHillshade?: boolean;
+  roads?: {
+    showLabels?: boolean
+  }
+  places?: {
+    showLabels?: boolean
+  }
 }
 ```
 

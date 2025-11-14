@@ -167,7 +167,7 @@
 			<div class="container">
 				<Map
 					showDebug
-					style={SWRDataLabDark({ enableBuildingExtrusions: false })}
+					style={SWRDataLabDark({ enableBuildingExtrusions: false, enableHillshade: true })}
 					initialLocation={locations.badenBaden}
 				>
 					<AttributionControl position="bottom-left" />
