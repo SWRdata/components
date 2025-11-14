@@ -14,7 +14,7 @@
 	import { eclipse } from '@versatiles/style';
 	const eclipseStyle = eclipse({
 		language: 'de',
-		baseUrl: 'https://tiles.versatiles.org',
+		baseUrl: 'https://tiles.datenhub.net',
 		glyphs: 'https://static.datenhub.net/maps/fonts/{fontstack}/{range}.pbf'
 	});
 
@@ -32,7 +32,7 @@
 </script>
 
 <Story asChild name="Custom HTML Control">
-	<DesignTokens>
+	<DesignTokens theme={currentTheme === 'SWRDL Light' ? 'light' : 'dark'}>
 		<div class="container">
 			<Map style={themes[currentTheme]} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<MapControl position="top-left">

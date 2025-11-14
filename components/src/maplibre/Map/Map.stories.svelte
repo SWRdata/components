@@ -16,7 +16,7 @@
 
 	const alternateStyle = eclipse({
 		language: 'de',
-		baseUrl: 'https://tiles.versatiles.org',
+		baseUrl: 'https://tiles.datenhub.net',
 		glyphs: 'https://static.datenhub.net/maps/fonts/{fontstack}/{range}.pbf'
 	});
 
