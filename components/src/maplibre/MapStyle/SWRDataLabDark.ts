@@ -76,7 +76,7 @@ const style: styleFunction = (opts) => {
 			'versatiles-osm': {
 				attribution:
 					'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
-				tiles: ['https://tiles.versatiles.org/tiles/osm/{z}/{x}/{y}'],
+				tiles: ['https://tiles.datenhub.net/tiles/osm/{z}/{x}/{y}'],
 				bounds: [-180, -85.0511287798066, 180, 85.0511287798066],
 				type: 'vector',
 				scheme: 'xyz',
@@ -91,7 +91,7 @@ const style: styleFunction = (opts) => {
 					attribution:
 						'<a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles, DEM Sources</a>',
 					version: '1.0.0',
-					tiles: ['https://tiles-dev.datenhub.net/tiles/hillshade/{z}/{x}/{y}'],
+					tiles: ['https://tiles.datenhub.net/tiles/hillshade/{z}/{x}/{y}'],
 					type: 'vector',
 					scheme: 'xyz',
 					format: 'pbf',
