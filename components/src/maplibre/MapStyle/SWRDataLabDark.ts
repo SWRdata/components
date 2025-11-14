@@ -28,6 +28,8 @@ const tokens = {
 	marsh: 'hsl(180, 3%, 35%)',
 	grass: 'hsl(170, 20%, 14%)',
 	grass_dark: 'hsl(170, 16%, 12%)',
+	sand: 'hsl(0, 0%, 16%)',
+	rock: 'hsl(0, 0%, 20%)',
 	street_primary: 'hsl(220, 3%, 20%)',
 	street_primary_case: 'hsl(0, 11%, 7%)',
 	street_secondary: 'hsl(0, 0%, 22%)',
@@ -41,7 +43,6 @@ const tokens = {
 	boundary_country_case: '#181818',
 	boundary_state: 'hsl(218, 4%, 37%)',
 	rail: 'hsl(0, 0%, 33%)',
-	sand: 'hsl(0, 0%, 16%)',
 	building: '#232325',
 	hillshade_light: 'hsla(0, 0%, 77%, 0.15)',
 	hillshade_dark: 'hsla(0, 0%, 0%, 0.65)'

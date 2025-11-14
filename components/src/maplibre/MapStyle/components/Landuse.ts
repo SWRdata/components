@@ -109,7 +109,7 @@ export default function makeLanduse(tokens): any {
 			'source-layer': 'land',
 			filter: ['all', ['in', 'kind', 'bare_rock', 'scree', 'shingle']],
 			paint: {
-				'fill-color': 'hsl(192,0%,90%)'
+				'fill-color': tokens.rock
 			}
 		},
 		{
