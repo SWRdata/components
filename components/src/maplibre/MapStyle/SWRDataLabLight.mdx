@@ -172,6 +172,7 @@ classDef buildings fill:#FFBA35;
 classDef roads fill:#FFD584;
 classDef transit fill:#C5F0B1;
 classDef walking fill:#65D62B;
+classDef hillshade fill:#BEDEE8;
 classDef landuse fill:#eee;
 
 block:semantic:6
@@ -182,6 +183,7 @@ s_buildings["Buildings"]
 s_roads["Roads"]
 s_transit["Transit"]
 s_walking["Walking + Cycling"]
+s_hillshade["Hillshade"]
 s_landuse["Landuse"]
 end
 
@@ -204,11 +206,14 @@ a_roads_surface["Roads (Surface)"]
 a_walking_tunnel["Walking (Tunnel)"]
 a_transit_tunnel["Transit (Tunnel)"]
 a_roads_tunnel["Roads (Tunnel)"]
+a_hillshade_light["Hillshade Light"]
+a_hillshade_dark["Hillshade Dark"]
 a_land["Land"]
 a_ocean["Ocean"]
 a_background["Background"]
 end
 
+class s_hillshade,a_hillshade_light,a_hillshade_dark hillshade
 class s_admin,a_admin0,a_admin1,a_admin2,a_admin_labels admin
 class s_buildings,a_buildings buildings
 class s_roads,a_roads_bridge,a_roads_surface,a_roads_tunnel,a_roads_labels roads
