@@ -29,6 +29,21 @@
 		</div>
 	</DesignTokens>
 </Story>
+<Story asChild name="Hillshade">
+	<DesignTokens theme="light">
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabLight({ enableHillshade: true })}
+					initialLocation={locations.alps}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
 <Story asChild name="fix/122">
 	<DesignTokens theme="light">
 		<div class="grid">
@@ -231,7 +246,7 @@
 			<div class="container">
 				<Map
 					showDebug
-					style={SWRDataLabLight({ enableBuildingExtrusions: false })}
+					style={SWRDataLabLight({ enableBuildingExtrusions: false, enableHillshade: true })}
 					initialLocation={locations.badenBaden}
 				>
 					<AttributionControl position="bottom-left" />

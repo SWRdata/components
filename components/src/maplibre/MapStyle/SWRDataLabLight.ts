@@ -9,6 +9,7 @@ import makePlaceLabels from './components/PlaceLabels';
 import makeWalking from './components/Walking';
 import makeRoads from './components/Roads';
 import defaultOptions from './defaultOptions';
+import makeHillshade from './components/Hillshade';
 
 const tokens = {
 	sans_regular: ['SWR Sans Regular'],
@@ -16,7 +17,7 @@ const tokens = {
 	sans_bold: ['SWR Sans Bold'],
 	background: {
 		stops: [
-			[8, 'hsl(24, 29%, 98.5%)'],
+			[8, 'hsl(24, 29%, 98%)'],
 			[10, 'white']
 		]
 	},
@@ -40,7 +41,9 @@ const tokens = {
 	sand: 'hsl(60,0%,95%)',
 	boundary_country: '#8b8a89',
 	boundary_state: 'hsl(37, 10%, 75%)',
-	boundary_country_case: 'white'
+	boundary_country_case: 'white',
+	hillshade_light: '#fff',
+	hillshade_dark: 'hsla(0, 0%, 53%, 0.15)'
 };
 
 const { landuse } = makeLanduse(tokens);
@@ -50,6 +53,7 @@ const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
 const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
+const { hillshade } = makeHillshade(tokens);
 
 interface styleFunction {
 	(options?: StyleOptions): StyleSpecification;
@@ -71,13 +75,33 @@ const style: styleFunction = (opts) => {
 			'versatiles-osm': {
 				attribution:
 					'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
-				tiles: ['https://tiles.versatiles.org/tiles/osm/{z}/{x}/{y}'],
+				tiles: ['https://tiles.datenhub.net/tiles/osm/{z}/{x}/{y}'],
 				bounds: [-180, -85.0511287798066, 180, 85.0511287798066],
 				type: 'vector',
 				scheme: 'xyz',
 				minzoom: 0,
 				maxzoom: 14
 			},
+			...(options.enableHillshade && {
+				'versatiles-hillshade': {
+					tilejson: '3.0.0',
+					name: 'VersaTiles Hillshade Vectors',
+					description: 'VersaTiles Hillshade Vectors based on Mapzen Jörð Terrain Tiles',
+					attribution:
+						'<a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles, DEM Sources</a>',
+					version: '1.0.0',
+					tiles: ['https://tiles.datenhub.net/tiles/hillshade/{z}/{x}/{y}'],
+					type: 'vector',
+					scheme: 'xyz',
+					format: 'pbf',
+					bounds: [-180, -85.0511287798066, 180, 85.0511287798066],
+					minzoom: 0,
+					maxzoom: 12,
+					vector_layers: [
+						{ id: 'hillshade-vectors', fields: { shade: 'String' }, minzoom: 0, maxzoom: 12 }
+					]
+				}
+			}),
 			...(options.enableBuildingExtrusions && {
 				'basemap-de': {
 					attribution: 'GeoBasis-DE',
@@ -105,35 +129,38 @@ const style: styleFunction = (opts) => {
 			...(!options.enableBuildingExtrusions ? [buildingFootprints] : []),
 			...(options.enableBuildingExtrusions ? [structureExtrusions] : []),
 
-			// 3. Tunnels
+			// 3. Shaded relief
+			...(options.enableHillshade ? hillshade : []),
+
+			// 4. Tunnels
 			...walkingTunnels,
 			...roadTunnels,
 			...transitTunnels,
 
-			// 4. Surface ways
+			// 5. Surface ways
 			...walkingSurface,
 			...roadSurface,
 			...transitSurface,
 
-			// 5. Bridges ways
+			// 6. Bridges ways
 			...walkingBridges,
 			...roadBridges,
 			...transitBridges,
 
-			// 6. Admin boundaries
+			// 7. Admin boundaries
 			...admin,
 
-			// 7. Labels
+			// 8. Labels
 			...(options.roads?.showLabels ? walkingLabels : []),
 			...(options.roads?.showLabels ? roadLabels : []),
 
-			// 8. Building extrusions
+			// 9. Building extrusions
 			...(options.enableBuildingExtrusions ? [buildingExtrusions] : []),
 
-			// 8. Point labels
+			// 10. Point labels
 			...(options.places?.showLabels ? placeLabels : []),
 
-			// 9. Admin boundary labels
+			// 11. Admin boundary labels
 			...boundaryLabels
 		]
 	};

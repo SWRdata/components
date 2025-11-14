@@ -16,6 +16,12 @@ const locations = {
 		lat: 48.77521391139953,
 		zoom: 16,
 		pitch: 45
+	},
+	alps: {
+		lng: 10.01,
+		lat: 47.87,
+		zoom: 6.54,
+		pitch: 0
 	}
 };
 

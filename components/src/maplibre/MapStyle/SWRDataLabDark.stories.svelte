@@ -29,7 +29,21 @@
 		</div>
 	</DesignTokens>
 </Story>
-
+<Story asChild name="Hillshade">
+	<DesignTokens theme="dark">
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabDark({ enableHillshade: true })}
+					initialLocation={locations.alps}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
 <Story asChild name="Toggle place labels (#221)">
 	<DesignTokens theme="dark">
 		<div class="grid">
@@ -153,7 +167,7 @@
 			<div class="container">
 				<Map
 					showDebug
-					style={SWRDataLabDark({ enableBuildingExtrusions: false })}
+					style={SWRDataLabDark({ enableBuildingExtrusions: false, enableHillshade: true })}
 					initialLocation={locations.badenBaden}
 				>
 					<AttributionControl position="bottom-left" />
