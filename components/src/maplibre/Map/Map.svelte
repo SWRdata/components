@@ -205,7 +205,6 @@
 	.debug {
 		position: absolute;
 		top: 0;
-		right: 0;
 		background: rgba(0, 0, 0, 0.75);
 		color: white;
 		z-index: 1000;
@@ -213,7 +212,12 @@
 		font-size: 10px;
 		font-family: monospace;
 		display: flex;
-		gap: 1em;
+		flex-flow: column;
+		@media (min-width: 600px) {
+			gap: 1em;
+			right: 0;
+			flex-flow: row;
+		}
 		li {
 			list-style: none;
 		}
