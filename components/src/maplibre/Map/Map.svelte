@@ -215,7 +215,6 @@
 		flex-flow: column;
 		@media (min-width: 600px) {
 			gap: 1em;
-			left: auto;
 			right: 0;
 			flex-flow: row;
 		}
