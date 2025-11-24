@@ -13,6 +13,7 @@
 
 	import { eclipse } from '@versatiles/style';
 	import { MapContext } from '../context.svelte';
+	import Copy from '../../Copy/Copy.svelte';
 
 	const alternateStyle = eclipse({
 		language: 'de',
@@ -183,6 +184,53 @@
 			<Map style={alternateStyle} initialBounds={[5.87, 47.27, 15.04, 55.06]}>
 				<ScaleControl />
 				<AttributionControl />
+				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
+			</Map>
+		</DesignTokens>
+	</div>
+</Story>
+<Story asChild name="Versatiles satellite images">
+	<div class="container">
+		<DesignTokens theme="dark">
+			<Copy as="p" style="margin-bottom: .5em"
+				>Tech preview only, not for productive use due to unclear licensing situation</Copy
+			>
+			<Map
+				showDebug
+				style={{
+					version: 8,
+					name: 'swr-datalab-light',
+					metadata: { license: 'https://creativecommons.org/publicdomain/zero/1.0/' },
+					glyphs: 'https://static.datenhub.net/maps/fonts/{fontstack}/{range}.pbf',
+					sprite: 'https://static.datenhub.net/maps/styles/swr-datalab-light/sprite/sprite',
+					sources: {
+						'versatiles-satellite': {
+							attribution:
+								'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
+							tiles: ['https://tiles-dev.datenhub.net/tiles/satellite/{z}/{x}/{y}'],
+							bounds: [-180, -85.0511287798066, 180, 85.0511287798066],
+							type: 'raster',
+							scheme: 'xyz',
+							minzoom: 0,
+							maxzoom: 14
+						}
+					},
+					layers: [
+						{
+							id: 'simple-tiles',
+							type: 'raster',
+							source: 'versatiles-satellite',
+							attribution: '© OpenStreetMap contributors'
+						}
+					]
+				}}
+				initialLocation={{
+					lng: 7.96475,
+					lat: 46.7674,
+					zoom: 3.53183
+				}}
+			>
+				<ScaleControl />
 				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 			</Map>
 		</DesignTokens>
