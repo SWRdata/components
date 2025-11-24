@@ -205,9 +205,8 @@
 					sprite: 'https://static.datenhub.net/maps/styles/swr-datalab-light/sprite/sprite',
 					sources: {
 						'versatiles-satellite': {
-							attribution:
-								'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
-							tiles: ['https://tiles-dev.datenhub.net/tiles/satellite/{z}/{x}/{y}'],
+							attribution: '',
+							tiles: ['https://tiles.datenhub.net/tiles/satellite/{z}/{x}/{y}'],
 							bounds: [-180, -85.0511287798066, 180, 85.0511287798066],
 							type: 'raster',
 							scheme: 'xyz',
@@ -219,8 +218,7 @@
 						{
 							id: 'simple-tiles',
 							type: 'raster',
-							source: 'versatiles-satellite',
-							attribution: '© OpenStreetMap contributors'
+							source: 'versatiles-satellite'
 						}
 					]
 				}}
