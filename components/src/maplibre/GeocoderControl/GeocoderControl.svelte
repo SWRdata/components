@@ -93,6 +93,10 @@
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
+			&::-webkit-search-cancel-button,
+			&::-webkit-search-decoration {
+				appearance: none;
+			}
 		}
 
 		.maplibregl-ctrl-geocoder--input::placeholder {
