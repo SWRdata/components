@@ -21,6 +21,7 @@
 			font-weight: 400;
 			font-size: var(--fs-small-3);
 			font-family: var(--swr-text);
+			margin-bottom: 0.2em;
 		}
 	}
 </style>

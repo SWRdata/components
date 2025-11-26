@@ -299,8 +299,8 @@
 		}
 
 		.maplibregl-ctrl-top-right {
-			right: 0;
-			top: 0;
+			right: 0.5em;
+			top: 0.5em;
 		}
 
 		.maplibregl-ctrl-bottom-left {
@@ -320,7 +320,7 @@
 		}
 
 		.maplibregl-ctrl-group {
-			background: var(--color-surfaceFill);
+			background: var(--color-pageFill);
 			border: 1px solid var(--color-textSecondary);
 			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.075);
 			overflow: hidden;
@@ -390,6 +390,9 @@
 		}
 		.maplibregl-marker path {
 			fill: var(--color-textPrimary);
+		}
+		.maplibregl-marker circle {
+			fill: var(--color-pageFill);
 		}
 		.maplibregl-cooperative-gesture-screen {
 			align-items: center;

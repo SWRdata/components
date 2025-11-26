@@ -61,13 +61,13 @@
 <style lang="scss">
 	:global {
 		.maplibregl-ctrl-geocoder {
-			background-color: var(--color-surfaceFill);
+			background-color: var(--color-pageFill);
 			position: relative;
 			width: 100%;
 			z-index: 1;
 			font-family: var(--swr-sans);
-			font-size: var(--fs-small-1);
-			border: 1px solid var(--color-textPrimary);
+			font-size: var(--fs-base);
+			border: 1px solid var(--color-textSecondary);
 
 			button {
 				cursor: pointer;
@@ -116,8 +116,8 @@
 
 		/* Suggestions */
 		.maplibregl-ctrl-geocoder .suggestions {
-			background: var(--color-surfaceFill);
-			border: 1px solid var(--color-textPrimary);
+			background: var(--color-pageFill);
+			border: 1px solid var(--color-textSecondary);
 			left: -1px;
 			list-style: none;
 			position: absolute;
@@ -136,9 +136,9 @@
 		.maplibregl-ctrl-geocoder .suggestions > li > a {
 			cursor: default;
 			display: block;
-			padding: 0.5em 0.75em;
-			color: var(--gray-dark-5);
-			padding-bottom: 0.5em;
+			font-size: var(--fs-small-1);
+			padding: 0.7em 0.75em;
+			padding-bottom: 0.65em;
 			border-bottom: 1px solid var(--color-surfaceBorder);
 		}
 		.maplibregl-ctrl-geocoder .suggestions > li:last-child > a {
