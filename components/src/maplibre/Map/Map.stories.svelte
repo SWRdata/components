@@ -9,7 +9,7 @@
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import GeocoderControl from '../GeocoderControl/GeocoderControl.svelte';
 
-	import { SWRDataLabLight } from '../MapStyle';
+	import { SWRDataLabLight, SWRDataLabDark } from '../MapStyle';
 
 	import { eclipse } from '@versatiles/style';
 	import { MapContext } from '../context.svelte';
@@ -74,7 +74,7 @@
 			<Map style={SWRDataLabLight()}>
 				<ScaleControl />
 				<AttributionControl />
-				<NavigationControl showCompass visualizePitch />
+				<NavigationControl showCompass visualizePitch position="bottom-left" />
 				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 			</Map>
 		</DesignTokens>
@@ -134,9 +134,9 @@
 
 <Story asChild name="Globe Projection">
 	<div class="container">
-		<DesignTokens theme="light">
+		<DesignTokens theme="dark">
 			<Map
-				style={SWRDataLabLight()}
+				style={SWRDataLabDark()}
 				showDebug
 				projection={{ type: 'globe' }}
 				pitch={52}
@@ -144,7 +144,7 @@
 			>
 				<ScaleControl />
 				<AttributionControl />
-				<NavigationControl showCompass visualizePitch />
+				<NavigationControl showCompass visualizePitch position="top-right" />
 				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 			</Map>
 		</DesignTokens>

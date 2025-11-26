@@ -35,7 +35,5 @@
 </script>
 
 <div bind:this={el} class={`maplibregl-ctrl ${className}`}>
-	{#if children}
-		{@render children()}
-	{/if}
+	{@render children?.()}
 </div>

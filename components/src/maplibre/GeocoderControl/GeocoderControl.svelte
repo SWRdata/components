@@ -61,15 +61,13 @@
 <style lang="scss">
 	:global {
 		.maplibregl-ctrl-geocoder {
-			background-color: var(--color-surfaceFill);
+			background-color: var(--color-pageFill);
 			position: relative;
 			width: 100%;
 			z-index: 1;
 			font-family: var(--swr-sans);
-			font-size: var(--fs-small-1);
-			border-radius: var(--br-small);
+			font-size: var(--fs-base);
 			border: 1px solid var(--color-textSecondary);
-			box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.075);
 
 			button {
 				cursor: pointer;
@@ -83,19 +81,21 @@
 		}
 
 		.maplibregl-ctrl-geocoder--input {
-			width: calc(100% - 3.7em);
 			height: 100%;
 			font-family: inherit;
 			font-size: inherit;
 			background-color: transparent;
 			color: var(--color-textPrimary);
 			border: 0;
-			height: 1.95em;
-			padding: 0 1.95em;
-			padding-top: 0.1em;
+			height: 2em;
+			padding: 0 1.85em;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
+			&::-webkit-search-cancel-button,
+			&::-webkit-search-decoration {
+				appearance: none;
+			}
 		}
 
 		.maplibregl-ctrl-geocoder--input::placeholder {
@@ -119,15 +119,13 @@
 
 		/* Suggestions */
 		.maplibregl-ctrl-geocoder .suggestions {
-			background: var(--color-surfaceFill);
-			border: 1px solid rgba(0, 0, 0, 0.75);
-			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-			border-radius: var(--br-small);
-			left: 0;
+			background: var(--color-pageFill);
+			border: 1px solid var(--color-textSecondary);
+			left: -1px;
 			list-style: none;
 			position: absolute;
 			width: 100%;
-			top: calc(100% + 0.5em);
+			top: 100%;
 			z-index: 1000;
 			overflow: hidden;
 		}
@@ -141,9 +139,9 @@
 		.maplibregl-ctrl-geocoder .suggestions > li > a {
 			cursor: default;
 			display: block;
-			padding: 0.5em 0.75em;
-			color: var(--gray-dark-5);
-			padding-bottom: 0.5em;
+			font-size: var(--fs-small-1);
+			padding: 0.7em 0.75em;
+			padding-bottom: 0.65em;
 			border-bottom: 1px solid var(--color-surfaceBorder);
 		}
 		.maplibregl-ctrl-geocoder .suggestions > li:last-child > a {
@@ -199,7 +197,6 @@
 			position: absolute;
 			top: 50%;
 			transform: translateY(-50%);
-			height: 1em;
 			path {
 				fill: var(--color-textPrimary);
 			}
@@ -207,10 +204,14 @@
 
 		.maplibregl-ctrl-geocoder--icon-close {
 			right: 0;
+			height: 1.15em;
+			opacity: 0.5;
 		}
 		.maplibregl-ctrl-geocoder--icon-search {
-			left: 0.5em;
-			height: 1.5em;
+			left: 0.4em;
+			height: 1.25em;
+			top: 51%; // optical correction
+			width: auto;
 		}
 	}
 </style>
