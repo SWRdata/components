@@ -34,6 +34,7 @@
 		service = 'maptiler',
 		countries = 'de',
 		languages = 'en',
+		size = 'default',
 		placeholder,
 		limit = 3
 	}: GeocoderControlProps = $props();
@@ -89,7 +90,6 @@
 			border: 0;
 			height: 2em;
 			padding: 0 1.85em;
-			padding-top: 0.1em;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
@@ -209,9 +209,9 @@
 			opacity: 0.5;
 		}
 		.maplibregl-ctrl-geocoder--icon-search {
-			left: 0.45em;
+			left: 0.4em;
 			height: 1.25em;
-			top: 52%; // optical correction
+			top: 51%; // optical correction
 			width: auto;
 		}
 	}
