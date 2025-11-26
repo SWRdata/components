@@ -34,7 +34,6 @@
 		service = 'maptiler',
 		countries = 'de',
 		languages = 'en',
-		size = 'default',
 		placeholder,
 		limit = 3
 	}: GeocoderControlProps = $props();
