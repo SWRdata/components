@@ -74,7 +74,7 @@
 			<Map style={SWRDataLabLight()}>
 				<ScaleControl />
 				<AttributionControl />
-				<NavigationControl showCompass visualizePitch />
+				<NavigationControl showCompass visualizePitch position="bottom-left" />
 				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 			</Map>
 		</DesignTokens>

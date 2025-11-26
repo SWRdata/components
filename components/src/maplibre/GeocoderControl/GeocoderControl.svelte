@@ -67,9 +67,7 @@
 			z-index: 1;
 			font-family: var(--swr-sans);
 			font-size: var(--fs-small-1);
-			border-radius: var(--br-small);
-			border: 1px solid var(--color-textSecondary);
-			box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.075);
+			border: 1px solid var(--color-textPrimary);
 
 			button {
 				cursor: pointer;
@@ -83,15 +81,14 @@
 		}
 
 		.maplibregl-ctrl-geocoder--input {
-			width: calc(100% - 3.7em);
 			height: 100%;
 			font-family: inherit;
 			font-size: inherit;
 			background-color: transparent;
 			color: var(--color-textPrimary);
 			border: 0;
-			height: 1.95em;
-			padding: 0 1.95em;
+			height: 2em;
+			padding: 0 1.85em;
 			padding-top: 0.1em;
 			text-overflow: ellipsis;
 			white-space: nowrap;
@@ -120,14 +117,12 @@
 		/* Suggestions */
 		.maplibregl-ctrl-geocoder .suggestions {
 			background: var(--color-surfaceFill);
-			border: 1px solid rgba(0, 0, 0, 0.75);
-			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-			border-radius: var(--br-small);
-			left: 0;
+			border: 1px solid var(--color-textPrimary);
+			left: -1px;
 			list-style: none;
 			position: absolute;
 			width: 100%;
-			top: calc(100% + 0.5em);
+			top: 100%;
 			z-index: 1000;
 			overflow: hidden;
 		}
@@ -199,7 +194,6 @@
 			position: absolute;
 			top: 50%;
 			transform: translateY(-50%);
-			height: 1em;
 			path {
 				fill: var(--color-textPrimary);
 			}
@@ -207,10 +201,13 @@
 
 		.maplibregl-ctrl-geocoder--icon-close {
 			right: 0;
+			height: 1.15em;
+			opacity: 0.5;
 		}
 		.maplibregl-ctrl-geocoder--icon-search {
 			left: 0.5em;
-			height: 1.5em;
+			height: 1.25em;
+			width: auto;
 		}
 	}
 </style>

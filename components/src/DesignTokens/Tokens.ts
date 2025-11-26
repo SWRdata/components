@@ -183,7 +183,7 @@ const semantics: ColourMap = {
 	},
 	surfaceHover: {
 		dark: '#0d0d0e',
-		light: '#ebebeb'
+		light: '#eee'
 	},
 	raisedSurfaceFill: {
 		dark: '#393a3b',
