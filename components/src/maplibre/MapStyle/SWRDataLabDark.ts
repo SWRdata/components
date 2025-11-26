@@ -18,13 +18,13 @@ const tokens = {
 	sans_bold: ['SWR Sans Bold'],
 	background: {
 		stops: [
-			[8, 'hsl(210, 9%, 13%)'],
+			[8, 'hsl(210, 3%, 10%)'],
 			[10, '#1e1f22']
 		]
 	},
 	water: 'hsl(210, 12%, 7%)',
 	water_light: 'hsl(210, 12%, 8%)',
-	water_ocean: 'hsl(214, 25%, 7%)',
+	water_ocean: 'hsl(214, 5%, 5%)',
 	marsh: 'hsl(180, 3%, 35%)',
 	grass: 'hsl(170, 20%, 14%)',
 	grass_dark: 'hsl(170, 16%, 12%)',
