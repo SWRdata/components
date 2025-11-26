@@ -209,8 +209,9 @@
 			opacity: 0.5;
 		}
 		.maplibregl-ctrl-geocoder--icon-search {
-			left: 0.5em;
+			left: 0.45em;
 			height: 1.25em;
+			top: 52%; // optical correction
 			width: auto;
 		}
 	}
