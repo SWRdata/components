@@ -19,15 +19,15 @@ const tokens = {
 	background: {
 		stops: [
 			[8, 'hsl(210, 3%, 10%)'],
-			[10, '#1e1f22']
+			[10, '#181818']
 		]
 	},
 	water: 'hsl(210, 12%, 7%)',
 	water_light: 'hsl(210, 12%, 8%)',
 	water_ocean: 'hsl(214, 5%, 5%)',
 	marsh: 'hsl(180, 3%, 35%)',
-	grass: 'hsl(170, 20%, 14%)',
-	grass_dark: 'hsl(170, 16%, 12%)',
+	grass: 'hsl(170, 15%, 12%)',
+	grass_dark: 'hsl(170, 12%, 10%)',
 	sand: 'hsl(0, 0%, 16%)',
 	rock: 'hsl(0, 0%, 20%)',
 	street_primary: 'hsl(220, 3%, 20%)',
@@ -36,9 +36,9 @@ const tokens = {
 	street_secondary_case: 'hsl(0, 0%, 0%)',
 	street_tertiary: 'hsl(0, 0%, 20%)',
 	street_tertiary_case: 'hsl(0, 0%, 14%)',
-	label_primary: 'hsl(240, 5%, 80%)',
-	label_secondary: 'hsl(0, 2%, 72%)',
-	label_tertiary: 'hsl(0, 1%, 55%)',
+	label_primary: 'hsl(240, 5%, 95%)',
+	label_secondary: 'hsl(0, 2%, 85%)',
+	label_tertiary: 'hsl(0, 1%, 75%)',
 	boundary_country: '#6e6f71',
 	boundary_country_case: '#181818',
 	boundary_state: 'hsl(218, 4%, 37%)',
