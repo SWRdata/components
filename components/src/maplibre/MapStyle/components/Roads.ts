@@ -12,10 +12,15 @@ const case_layout = {
 
 export default function makeRoads(tokens) {
 	const motorway = {
-		line_color: tokens.street_primary,
+		line_color: {
+			stops: [
+				[5, '#252525'],
+				[7, tokens.street_primary]
+			]
+		},
 		line_width: {
 			stops: [
-				[6, 1],
+				[5, 1],
 				[7, 1.5],
 				[11, 2],
 				[12, 3],
@@ -1482,7 +1487,7 @@ export default function makeRoads(tokens) {
 				['!=', 'link', true]
 			],
 			paint: {
-				'line-color': tokens.street_primary,
+				'line-color': motorway.line_color,
 				'line-width': motorway.line_width,
 				'line-opacity': motorway.line_opacity
 			},
