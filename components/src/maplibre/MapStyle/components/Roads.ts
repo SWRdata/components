@@ -14,7 +14,7 @@ export default function makeRoads(tokens) {
 	const motorway = {
 		line_color: {
 			stops: [
-				[5, '#252525'],
+				[5, tokens.street_primary_faded],
 				[7, tokens.street_primary]
 			]
 		},

@@ -30,6 +30,7 @@ const tokens = {
 	sand: 'hsl(60, 0%, 95%)',
 	rock: 'hsl(192, 0%, 90%)',
 	street_primary: 'hsl(0, 4%, 95%)',
+	street_primary_faded: 'hsl(0, 4%, 96%)',
 	street_primary_case: 'hsl(240, 1%, 84%)',
 	street_secondary: 'hsl(0, 0%, 95%)',
 	street_secondary_case: 'hsl(0, 0%, 75%)',
