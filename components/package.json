@@ -39,7 +39,7 @@
   "devDependencies": {
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
-    "@semantic-release/npm": "13.1.1",
+    "@semantic-release/npm": "13.1.2",
     "@storybook/addon-docs": "10.0.4",
     "@storybook/addon-links": "10.0.4",
     "@storybook/addon-svelte-csf": "^5.0.10",
@@ -63,7 +63,7 @@
     "publint": "0.3.12",
     "sass": "1.93.2",
     "sass-embedded": "1.93.2",
-    "semantic-release": "25.0.1",
+    "semantic-release": "25.0.2",
     "storybook": "10.0.4",
     "svelte": "5.33.6",
     "svelte-check": "4.3.2",
