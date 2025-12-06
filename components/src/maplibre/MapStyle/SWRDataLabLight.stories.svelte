@@ -55,7 +55,7 @@
 				>
 					<VectorTileSource
 						id="demo-source"
-						url={`https://static.datenhub.net/data/p118_correctiv_waermewende/heating_merged.versatiles?tiles/{z}/{x}/{y}`}
+						url={`https://static.datenhub.net/data/p118_correctiv_waermewende/heating_merged_2.versatiles?{z}/{x}/{y}`}
 						attribution="Demo attribution"
 					/>
 
@@ -108,7 +108,7 @@
 					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 					<VectorTileSource
 						id="ev-infra-source"
-						url={`https://static.datenhub.net/data/p109_besser_wohnen/rent_merged_3.versatiles?tiles/{z}/{x}/{y}`}
+						url={`https://static.datenhub.net/data/p109_besser_wohnen/rent_merged_4.versatiles?{z}/{x}/{y}`}
 						attribution="Demo attribution"
 					/>
 

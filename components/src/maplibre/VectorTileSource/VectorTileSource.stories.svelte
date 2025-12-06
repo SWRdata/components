@@ -19,7 +19,7 @@
 			<Map showDebug={true} style={SWRDataLabLight()}>
 				<VectorTileSource
 					id="ev-infra-source"
-					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?tiles/{z}/{x}/{y}`}
+					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`}
 					attribution="Demo attribution"
 				/>
 				<VectorLayer
