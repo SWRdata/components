@@ -12,9 +12,9 @@ import defaultOptions from './defaultOptions';
 import makeHillshade from './components/Hillshade';
 
 const tokens = {
-	sans_regular: ['SWR Sans Regular'],
-	sans_medium: ['SWR Sans Medium'],
-	sans_bold: ['SWR Sans Bold'],
+	sans_regular: ['swr_sans_regular'],
+	sans_medium: ['swr_sans_medium'],
+	sans_bold: ['swr_sans_bold'],
 	background: {
 		stops: [
 			[8, 'hsl(24, 29%, 98%)'],
