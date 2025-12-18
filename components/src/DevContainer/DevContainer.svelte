@@ -7,7 +7,7 @@
 	import Copy from '../Copy/Copy.svelte';
 
 	interface DevContainerProps {
-		theme: 'light' | 'dark' | 'auto';
+		theme?: 'light' | 'dark' | 'auto';
 		showHeader?: boolean;
 		showNav?: boolean;
 		showPlayer?: boolean;
@@ -370,7 +370,7 @@
 		border: 1px solid var(--blue);
 		border-radius: 100px;
 		width: 47px;
-		background: white;
+		background: var(--color-pageFill);
 		height: 47px;
 		margin-right: -10px;
 		&:first-child {
