@@ -13,14 +13,14 @@
 </script>
 
 <Story name="Default" asChild>
-	<DevContainer theme="auto" paragraphsAbove={2} paragraphsBelow={2}>
+	<DevContainer theme="light" paragraphsAbove={2} paragraphsBelow={2}>
 		<DesignTokens>
 			<div class="chart">your chart here</div>
 		</DesignTokens>
 	</DevContainer>
 </Story>
 <Story name="No Player" asChild>
-	<DevContainer theme="auto" showPlayer={false}>
+	<DevContainer theme="light" showPlayer={false}>
 		<DesignTokens>
 			<div class="chart">your chart here</div>
 		</DesignTokens>
