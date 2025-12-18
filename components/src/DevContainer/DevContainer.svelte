@@ -7,7 +7,7 @@
 	import Copy from '../Copy/Copy.svelte';
 
 	interface DevContainerProps {
-		theme: 'light' | 'dark' | 'auto';
+		theme?: 'light' | 'dark' | 'auto';
 		showHeader?: boolean;
 		showNav?: boolean;
 		showPlayer?: boolean;
