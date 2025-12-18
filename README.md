@@ -8,7 +8,7 @@ Svelte/kit component library for [SWR Data Lab](https://www.swr.de/home/swr-data
 
 Run `npm install --save @swr-data-lab/components` to install the package
 
-See also this [sample repository](https://github.com/SWRdata/components-usage-example). Refer to [Storybook](https://static.datenhub.net/apps/components/main/index.html?path=/docs/about--docs) for component-level usage examples and documentation.
+See [Storybook](https://static.datenhub.net/apps/components/main/index.html?path=/docs/about--docs) for component-level usage examples and documentation.
 
 ## Contributing
 
