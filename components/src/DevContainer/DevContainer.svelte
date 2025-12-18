@@ -370,7 +370,7 @@
 		border: 1px solid var(--blue);
 		border-radius: 100px;
 		width: 47px;
-		background: white;
+		background: var(--color-pageFill);
 		height: 47px;
 		margin-right: -10px;
 		&:first-child {
