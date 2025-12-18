@@ -14,7 +14,7 @@ jobs:
       run:
         working-directory: components/src/maplibre/MapStyle
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: cargo install spreet
       - run: sh make_sprite.sh
       - uses: google-github-actions/auth@v2
