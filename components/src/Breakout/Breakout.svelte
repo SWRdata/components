@@ -40,10 +40,6 @@
 			width: calc(var(--column-width) * 10 + var(--column-gap) * 9);
 			margin-left: calc((var(--column-width) * -1) + (var(--column-gap)) * -1);
 		}
-		@media (min-width: 1440px) {
-			width: calc(var(--column-width) * 8 + var(--column-gap) * 7);
-			margin-left: calc((var(--column-width) * -1) + (var(--column-gap)) * -1);
-		}
 	}
 	.large {
 		@media (min-width: 640px) {

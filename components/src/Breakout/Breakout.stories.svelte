@@ -15,6 +15,8 @@
 
 <Story name="Default" asChild>
 	<DevContainer
+		paragraphsAbove={1}
+		paragraphsBelow={1}
 		title="Autokauf-Dilemma: Elektroautos teuer, Verbrenner bald auch"
 		showPlayer={false}
 		showGrid
