@@ -13,7 +13,7 @@
 </script>
 
 <Story name="Default" asChild>
-	<DevContainer theme="light" paragraphsAbove={2} paragraphsBelow={2}>
+	<DevContainer theme="light" paragraphsAbove={2} paragraphsBelow={2} showGrid>
 		<DesignTokens>
 			<div class="chart">your chart here</div>
 		</DesignTokens>
