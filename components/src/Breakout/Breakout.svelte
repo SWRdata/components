@@ -50,10 +50,6 @@
 			width: calc(var(--column-width) * 12 + var(--column-gap) * 11);
 			margin-left: calc((var(--column-width) * -2 + var(--column-gap) * -2));
 		}
-		@media (min-width: 1440px) {
-			width: calc(var(--column-width) * 10 + var(--column-gap) * 11);
-			margin-left: calc((var(--column-width) * -2 + var(--column-gap) * -3));
-		}
 	}
 	.bleed {
 		width: 100vw;
@@ -67,9 +63,6 @@
 		}
 		@media (min-width: 1024px) {
 			margin-left: calc(var(--column-width) * -2 + (var(--column-gap)) * -2 - var(--margin) * 1);
-		}
-		@media (min-width: 1440px) {
-			margin-left: calc(var(--column-width) * -3 + (var(--column-gap)) * -3 - var(--margin) * 1);
 		}
 	}
 </style>

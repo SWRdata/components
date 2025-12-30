@@ -394,8 +394,5 @@
 		@media (min-width: 1024px) {
 			grid-column: 3 / 11;
 		}
-		@media (min-width: 1440px) {
-			grid-column: 4/10;
-		}
 	}
 </style>
