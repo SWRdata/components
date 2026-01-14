@@ -40,6 +40,7 @@ const preview: Preview = {
 						'Style',
 						'Tooltip'
 					],
+					'Layercake',
 					'Form',
 					'Meta',
 					'Deprecated'
