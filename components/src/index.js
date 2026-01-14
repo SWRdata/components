@@ -39,6 +39,9 @@ export { default as MapSource } from './maplibre/Source/MapSource.svelte';
 export { default as Tooltip } from './maplibre/Tooltip/Tooltip.svelte';
 export { default as WithLinkLocation } from './maplibre/WithLinkLocation/WithLinkLocation.svelte';
 
+// Layercake
+export { default as AnnotationLine } from './layercake/AnnotationLine/AnnotationLine.svelte';
+
 // Form
 export { default as FormLabel } from './FormLabel/FormLabel.svelte';
 export { default as Switcher } from './Switcher/Switcher.svelte';
