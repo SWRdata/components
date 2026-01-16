@@ -28,6 +28,8 @@
 
 	let mapContext: MapContext;
 	const onMoveStart = fn();
+
+	let mapOptions = $state({});
 </script>
 
 <Story
@@ -124,6 +126,43 @@
 				initialLocation={{ lat: 50.88, lng: 10.43, zoom: 5 }}
 				showDebug
 				onmovestart={onMoveStart}
+				bind:mapContext
+			>
+				<AttributionControl />
+			</Map>
+		</DesignTokens>
+	</div>
+</Story>
+
+<Story asChild name="Reactive map options" play={async ({ canvasElement, step }) => {}}>
+	<div class="container">
+		<DesignTokens theme="light">
+			<button
+				data-testid="toggle-zoom"
+				onclick={() => {
+					mapOptions.allowZoom = !mapOptions.allowZoom;
+				}}>Toggle Zoom</button
+			>
+			<button
+				data-testid="toggle-pan"
+				onclick={() => {
+					mapOptions.allowPan = !mapOptions.allowPan;
+				}}>Toggle Pan</button
+			>
+			<button
+				data-testid="toggle-rotation"
+				onclick={() => {
+					mapOptions.allowRotation = !mapOptions.allowRotation;
+				}}>Toggle Rotation</button
+			>
+			<Map
+				style={SWRDataLabLight()}
+				initialLocation={{ lat: 50.88, lng: 10.43, zoom: 5 }}
+				showDebug
+				onmovestart={onMoveStart}
+				allowZoom={mapOptions.allowZoom}
+				allowPan={mapOptions.allowPan}
+				allowRotation={mapOptions.allowRotation}
 				bind:mapContext
 			>
 				<AttributionControl />

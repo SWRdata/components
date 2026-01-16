@@ -19,6 +19,7 @@
 		initialBounds?: LngLatBoundsLike;
 		maxBounds?: LngLatBoundsLike;
 		initialLocation?: Location;
+		allowPan?: boolean;
 		allowRotation?: boolean;
 		allowZoom?: boolean;
 		minZoom?: number;
@@ -57,6 +58,7 @@
 		bearing = $bindable(0),
 		loading = $bindable(true),
 		projection = { type: 'mercator' },
+		allowPan = true,
 		allowRotation = false,
 		allowZoom = true,
 		showDebug = false,
@@ -157,7 +159,16 @@
 		}
 	});
 
-	const debugValues = $derived(Object.entries({ zoom, pitch, allowZoom, allowRotation }));
+	$effect(() => {
+		console.log('allowPan changed:', allowPan);
+		if (allowPan === false) {
+			mapContext.map?.dragPan.disable();
+		} else {
+			mapContext.map?.dragPan.enable();
+		}
+	});
+
+	const debugValues = $derived(Object.entries({ zoom, pitch, allowZoom, allowPan, allowRotation }));
 	const handleDebugValueClick = (e: MouseEvent) => {
 		if (e.target) {
 			const t = e.target as HTMLElement;
