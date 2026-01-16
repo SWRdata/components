@@ -29,7 +29,10 @@
 	let mapContext: MapContext;
 	const onMoveStart = fn();
 
-	let mapOptions = $state({});
+	let mapOptions = $state({
+		allowZoom: true,
+		allowPan: true
+	});
 </script>
 
 <Story
@@ -134,7 +137,36 @@
 	</div>
 </Story>
 
-<Story asChild name="Reactive map options" play={async ({ canvasElement, step }) => {}}>
+<Story
+	asChild
+	name="Toggle zoom and pan"
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const containerEl = canvas.getByTestId('map-container');
+		const toggleZoomButton = canvas.getByTestId('toggle-zoom');
+		const togglePanButton = canvas.getByTestId('toggle-pan');
+
+		await step('toggle zoom off', async () => {
+			await userEvent.click(toggleZoomButton);
+			expect(mapContext.map?.scrollZoom.isEnabled()).toBe(false);
+		});
+
+		await step('toggle zoom on', async () => {
+			await userEvent.click(toggleZoomButton);
+			expect(mapContext.map?.scrollZoom.isEnabled()).toBe(true);
+		});
+
+		await step('toggle pan off', async () => {
+			await userEvent.click(togglePanButton);
+			expect(mapContext.map?.dragPan.isEnabled()).toBe(false);
+		});
+
+		await step('toggle pan on', async () => {
+			await userEvent.click(togglePanButton);
+			expect(mapContext.map?.dragPan.isEnabled()).toBe(true);
+		});
+	}}
+>
 	<div class="container">
 		<DesignTokens theme="light">
 			<button
@@ -149,12 +181,6 @@
 					mapOptions.allowPan = !mapOptions.allowPan;
 				}}>Toggle Pan</button
 			>
-			<button
-				data-testid="toggle-rotation"
-				onclick={() => {
-					mapOptions.allowRotation = !mapOptions.allowRotation;
-				}}>Toggle Rotation</button
-			>
 			<Map
 				style={SWRDataLabLight()}
 				initialLocation={{ lat: 50.88, lng: 10.43, zoom: 5 }}
@@ -162,7 +188,6 @@
 				onmovestart={onMoveStart}
 				allowZoom={mapOptions.allowZoom}
 				allowPan={mapOptions.allowPan}
-				allowRotation={mapOptions.allowRotation}
 				bind:mapContext
 			>
 				<AttributionControl />
