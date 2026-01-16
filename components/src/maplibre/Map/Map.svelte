@@ -19,6 +19,7 @@
 		initialBounds?: LngLatBoundsLike;
 		maxBounds?: LngLatBoundsLike;
 		initialLocation?: Location;
+		allowPan?: boolean;
 		allowRotation?: boolean;
 		allowZoom?: boolean;
 		minZoom?: number;
@@ -57,6 +58,7 @@
 		bearing = $bindable(0),
 		loading = $bindable(true),
 		projection = { type: 'mercator' },
+		allowPan = true,
 		allowRotation = false,
 		allowZoom = true,
 		showDebug = false,
@@ -157,7 +159,15 @@
 		}
 	});
 
-	const debugValues = $derived(Object.entries({ zoom, pitch, allowZoom, allowRotation }));
+	$effect(() => {
+		if (allowPan === false) {
+			mapContext.map?.dragPan.disable();
+		} else {
+			mapContext.map?.dragPan.enable();
+		}
+	});
+
+	const debugValues = $derived(Object.entries({ zoom, pitch, allowZoom, allowPan, allowRotation }));
 	const handleDebugValueClick = (e: MouseEvent) => {
 		if (e.target) {
 			const t = e.target as HTMLElement;
@@ -253,17 +263,16 @@
 			width: 100%;
 		}
 
-		.maplibregl-canvas-container.maplibregl-interactive {
+		.maplibregl-canvas-container.maplibregl-touch-drag-pan {
 			cursor: grab;
 			user-select: none;
+		}
+		.maplibregl-canvas-container.maplibregl-touch-drag-pan:active {
+			cursor: grabbing;
 		}
 
 		.maplibregl-canvas-container.maplibregl-interactive.maplibregl-track-pointer {
 			cursor: pointer;
-		}
-
-		.maplibregl-canvas-container.maplibregl-interactive:active {
-			cursor: grabbing;
 		}
 
 		.maplibregl-canvas-container.maplibregl-touch-zoom-rotate,

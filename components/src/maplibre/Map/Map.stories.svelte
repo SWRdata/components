@@ -28,6 +28,11 @@
 
 	let mapContext: MapContext;
 	const onMoveStart = fn();
+
+	let mapOptions = $state({
+		allowZoom: true,
+		allowPan: true
+	});
 </script>
 
 <Story
@@ -124,6 +129,65 @@
 				initialLocation={{ lat: 50.88, lng: 10.43, zoom: 5 }}
 				showDebug
 				onmovestart={onMoveStart}
+				bind:mapContext
+			>
+				<AttributionControl />
+			</Map>
+		</DesignTokens>
+	</div>
+</Story>
+
+<Story
+	asChild
+	name="Toggle zoom and pan"
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const containerEl = canvas.getByTestId('map-container');
+		const toggleZoomButton = canvas.getByTestId('toggle-zoom');
+		const togglePanButton = canvas.getByTestId('toggle-pan');
+
+		await step('toggle zoom off', async () => {
+			await userEvent.click(toggleZoomButton);
+			expect(mapContext.map?.scrollZoom.isEnabled()).toBe(false);
+		});
+
+		await step('toggle zoom on', async () => {
+			await userEvent.click(toggleZoomButton);
+			expect(mapContext.map?.scrollZoom.isEnabled()).toBe(true);
+		});
+
+		await step('toggle pan off', async () => {
+			await userEvent.click(togglePanButton);
+			expect(mapContext.map?.dragPan.isEnabled()).toBe(false);
+		});
+
+		await step('toggle pan on', async () => {
+			await userEvent.click(togglePanButton);
+			expect(mapContext.map?.dragPan.isEnabled()).toBe(true);
+		});
+	}}
+>
+	<div class="container">
+		<DesignTokens theme="light">
+			<button
+				data-testid="toggle-zoom"
+				onclick={() => {
+					mapOptions.allowZoom = !mapOptions.allowZoom;
+				}}>Toggle Zoom</button
+			>
+			<button
+				data-testid="toggle-pan"
+				onclick={() => {
+					mapOptions.allowPan = !mapOptions.allowPan;
+				}}>Toggle Pan</button
+			>
+			<Map
+				style={SWRDataLabLight()}
+				initialLocation={{ lat: 50.88, lng: 10.43, zoom: 5 }}
+				showDebug
+				onmovestart={onMoveStart}
+				allowZoom={mapOptions.allowZoom}
+				allowPan={mapOptions.allowPan}
 				bind:mapContext
 			>
 				<AttributionControl />
