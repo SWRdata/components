@@ -264,17 +264,16 @@
 			width: 100%;
 		}
 
-		.maplibregl-canvas-container.maplibregl-interactive {
+		.maplibregl-canvas-container.maplibregl-touch-drag-pan {
 			cursor: grab;
 			user-select: none;
+		}
+		.maplibregl-canvas-container.maplibregl-touch-drag-pan:active {
+			cursor: grabbing;
 		}
 
 		.maplibregl-canvas-container.maplibregl-interactive.maplibregl-track-pointer {
 			cursor: pointer;
-		}
-
-		.maplibregl-canvas-container.maplibregl-interactive:active {
-			cursor: grabbing;
 		}
 
 		.maplibregl-canvas-container.maplibregl-touch-zoom-rotate,
