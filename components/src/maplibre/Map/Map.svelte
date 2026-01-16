@@ -160,7 +160,6 @@
 	});
 
 	$effect(() => {
-		console.log('allowPan changed:', allowPan);
 		if (allowPan === false) {
 			mapContext.map?.dragPan.disable();
 		} else {
