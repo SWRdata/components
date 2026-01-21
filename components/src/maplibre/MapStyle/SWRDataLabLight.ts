@@ -151,7 +151,7 @@ const style: styleFunction = (opts) => {
 			...transitBridges,
 
 			// 7. Admin boundaries
-			...(options.admin?.show ? admin : []),
+			...admin,
 
 			// 8. Labels
 			...(options.roads?.showLabels ? walkingLabels : []),
