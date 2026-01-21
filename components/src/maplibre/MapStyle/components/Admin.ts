@@ -1,6 +1,6 @@
 import { type Layer } from '../../types';
 
-export default function makeAdmin(tokens): any {
+export default function makeAdmin(tokens, options): any {
 	const admin: Layer[] = [
 		{
 			id: 'boundary-country:case',
@@ -134,18 +134,32 @@ export default function makeAdmin(tokens): any {
 				}
 			}
 		}
-	].map((el) => {
-		return {
-			source: 'versatiles-osm',
-			'source-layer': 'boundaries',
-			type: 'line',
-			...el,
-			layout: {
-				'line-cap': 'round',
-				'line-join': 'round'
+	]
+		.filter((el) => {
+			if (!options || options.show === true) {
+				return true;
+			} else if (options.show === false) {
+				return false;
+			} else {
+				return (
+					(el.id.includes('country') && options.show.includes(2)) ||
+					(el.id.includes('state') && options.show.includes(4))
+				);
 			}
-		} as Layer;
-	});
+			return false;
+		})
+		.map((el) => {
+			return {
+				source: 'versatiles-osm',
+				'source-layer': 'boundaries',
+				type: 'line',
+				...el,
+				layout: {
+					'line-cap': 'round',
+					'line-join': 'round'
+				}
+			} as Layer;
+		});
 
 	return { admin };
 }
