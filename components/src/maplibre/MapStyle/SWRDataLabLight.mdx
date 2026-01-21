@@ -94,8 +94,13 @@ interface StyleOptions {
   places?: {
     showLabels?: boolean
   }
+  admin?: {
+    show?: boolean | []AdminLevel
+  }
 }
 ```
+
+- `AdminLevel` is an integer representing an admin level; the relevant levels [for Germany](https://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative#Country_specific_values_of_the_key_admin_level=*) are country (`2`) and bundesland (`4`).
 
 ## Icons
 

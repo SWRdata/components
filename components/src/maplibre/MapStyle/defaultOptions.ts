@@ -7,6 +7,9 @@ const opts: StyleOptions = {
 	},
 	roads: {
 		showLabels: true
+	},
+	admin: {
+		show: true
 	}
 };
 

@@ -51,7 +51,6 @@ const tokens = {
 
 const { landuse } = makeLanduse(tokens);
 const { placeLabels, boundaryLabels } = makePlaceLabels(tokens);
-const { admin } = makeAdmin(tokens);
 const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit(tokens);
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
 const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
@@ -67,6 +66,8 @@ const style: styleFunction = (opts) => {
 		...defaultOptions,
 		...opts
 	} as StyleOptions;
+
+	const { admin } = makeAdmin(tokens, options?.admin);
 
 	return {
 		version: 8,
