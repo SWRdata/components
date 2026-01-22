@@ -64,6 +64,28 @@
 		</div>
 	</DesignTokens>
 </Story>
+<Story asChild name="Hide admin labels">
+	<DesignTokens theme="light">
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabLight({
+						admin: { show: true, showLabels: false }
+					})}
+					initialLocation={{
+						lng: 7.57,
+						lat: 49.3,
+						zoom: 7.66,
+						pitch: 0
+					}}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
 <Story asChild name="fix/122">
 	<DesignTokens theme="light">
 		<div class="grid">
