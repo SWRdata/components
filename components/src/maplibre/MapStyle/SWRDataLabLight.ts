@@ -164,7 +164,7 @@ const style: styleFunction = (opts) => {
 			...(options.places?.showLabels ? placeLabels : []),
 
 			// 11. Admin boundary labels
-			...boundaryLabels
+			...(options.admin?.showLabels ? boundaryLabels : [])
 		]
 	};
 };
