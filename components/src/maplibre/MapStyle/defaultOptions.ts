@@ -9,7 +9,8 @@ const opts: StyleOptions = {
 		showLabels: true
 	},
 	admin: {
-		show: true
+		show: true,
+		showLabels: true
 	}
 };
 

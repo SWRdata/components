@@ -10,6 +10,7 @@ interface StyleOptions {
 	};
 	admin?: {
 		show?: boolean | AdminLevel[];
+		showLabels?: boolean;
 	};
 	roads?: {
 		showLabels?: boolean;
