@@ -1,12 +1,15 @@
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
+	const routeID = event.route.id ? event.route.id.replace('/', '') : false;
+	const containerID = `swr-sophora-components${routeID ? '-' + routeID : ''}`;
 	const response = await resolve(event, {
 		transformPageChunk: ({ html }) =>
-			html.replace(
-				'document.currentScript.parentElement',
-				'document.querySelector("#svelte-container")'
-			)
+			html
+				.replace(`id="sophora-components-embed"`, `data-lab-components-embed="${containerID}"`)
+				.replace(
+					'document.currentScript.parentElement',
+					`document.querySelector("[data-lab-components-embed='${containerID}']")`
+				)
 	});
-
 	return response;
 }

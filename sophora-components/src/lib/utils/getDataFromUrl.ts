@@ -1,7 +1,9 @@
 export default function getData(target: HTMLElement): Record<string, string> {
 	let url: URL;
 	if (
+		// SvelteKit DEV mode, preview server, or static hosting:
 		import.meta.env.DEV ||
+		window.location.origin === 'http://localhost:4173' ||
 		window.location.origin === 'https://static.datenhub.net' ||
 		window.location.href.includes('apidata.googleusercontent.com') ||
 		window.location.href.includes('storage.googleapis.com')
