@@ -5,7 +5,7 @@ export async function handle({ event, resolve }) {
 	const response = await resolve(event, {
 		transformPageChunk: ({ html }) =>
 			html
-				.replace(`id="sophora-components-embed"`, `data-lab-components-embed="${containerID}"`)
+				.replace(`id="data-lab-components-embed"`, `data-lab-components-embed="${containerID}"`)
 				.replace(
 					'document.currentScript.parentElement',
 					`document.querySelector("[data-lab-components-embed='${containerID}']")`
