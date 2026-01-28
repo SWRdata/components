@@ -16,6 +16,7 @@ export { default as Breakout } from './Breakout/Breakout.svelte';
 
 // Display
 export { default as Card } from './Card/Card.svelte';
+export { default as HighlightCard } from './HighlightCard/HighlightCard.svelte';
 
 // Chart
 export { default as ChartHeader } from './ChartHeader/ChartHeader.svelte';
