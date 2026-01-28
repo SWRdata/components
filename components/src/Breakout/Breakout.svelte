@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 
 	interface BreakoutProps {
-		layout: 'thumbnail' | 'medium' | 'large' | 'bleed';
+		layout: 'small' | 'medium' | 'large' | 'bleed';
 		children?: Snippet;
 	}
 	let { layout = 'medium', children }: BreakoutProps = $props();
