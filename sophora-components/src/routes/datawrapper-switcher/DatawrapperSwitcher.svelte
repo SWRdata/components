@@ -1,7 +1,6 @@
 <script>
 	import getDataFromUrl from '$lib/utils/getDataFromUrl';
-	import Switcher from '@components/Switcher';
-	import { DesignTokens } from '@components/DesignTokens';
+	import { Switcher, DesignTokens } from '@swr-data-lab/components';
 	import { onMount } from 'svelte';
 
 	let activeIndex = 0;

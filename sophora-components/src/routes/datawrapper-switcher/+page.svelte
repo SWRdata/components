@@ -1,5 +1,5 @@
 <script>
-	import DevContainer from '@components/DevContainer';
+	import { DevContainer } from '@swr-data-lab/components';
 	import DatawrapperSwitcher from './DatawrapperSwitcher.svelte';
 	import { dev } from '$app/environment';
 </script>
