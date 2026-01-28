@@ -1,5 +1,6 @@
 <script>
-	import { ChartList, DesignTokens } from '@swr-data-lab/components';
+	import ChartList from '@components/ChartList';
+	import { DesignTokens } from '@components/DesignTokens';
 	const charts = [
 		{ title: 'Highlight Cards', slug: 'highlight-cards' },
 		{
