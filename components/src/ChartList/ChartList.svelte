@@ -74,7 +74,7 @@
 		font-size: var(--fs-base);
 		margin-bottom: 0.2em;
 		em {
-			background: rgba(134, 139, 84, 0.4);
+			background: rgba(134, 139, 84, 0.25);
 			font-style: normal;
 			padding: 0 0.3em;
 			border-radius: 2px;
@@ -93,10 +93,16 @@
 	}
 	th,
 	td {
-		padding: 0.2em 0.4em;
+		padding: 0 0.4em;
 		text-align: left;
+		border-right: 1px solid var(--color-surfaceBorder);
+		&:last-child {
+			border-right: 0;
+		}
 	}
 	th {
+		padding: 0.2em 0.4em;
+		border-right: 1px solid var(--color-textSecondary);
 		border-bottom: 1px solid var(--color-textSecondary);
 	}
 	tr {
@@ -109,12 +115,12 @@
 	input {
 		display: block;
 		font-family: monospace;
-		width: calc(100% - 0.6em);
-		padding: 0.2em 0.4em;
+		width: 100%;
+		padding: 0.35em 0;
 		font-size: 0.9rem;
 		background: var(--color-pageFill);
-		border: 1px solid var(--color-surfaceBorder);
 		color: var(--color-textSecondary);
+		border: 0;
 	}
 
 	a:hover,
