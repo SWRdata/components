@@ -1,4 +1,4 @@
-export default function getData(target: HTMLElement): Record<string, string> {
+export default function getDataFromUrl(target: HTMLElement): Record<string, string> {
 	let url: URL;
 	if (
 		// SvelteKit DEV mode, preview server, or static hosting:

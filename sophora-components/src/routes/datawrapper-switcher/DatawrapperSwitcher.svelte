@@ -3,12 +3,12 @@
 	import { Switcher, DesignTokens } from '@swr-data-lab/components';
 	import { onMount } from 'svelte';
 
-	let activeIndex = 0;
-	let root;
-	let labels = [];
-	let ids = [];
-	let fixedHeight = null;
-	let activeColor = null;
+	let activeIndex = $state(0);
+	let root = $state(null);
+	let labels = $state([]);
+	let ids = $state([]);
+	let fixedHeight = $state(null);
+	let activeColor = $state(null);
 
 	onMount(() => {
 		const entries = getDataFromUrl(root);
@@ -21,33 +21,35 @@
 	});
 </script>
 
-<DesignTokens theme="light">
-	<Switcher
-		options={labels}
-		size="small"
-		{activeIndex}
-		value={labels[activeIndex]}
-		onchange={({ currentTarget }) => {
-			activeIndex = labels.indexOf(currentTarget.value);
-		}}
-	/>
+<div class="datawrapper-switcher" bind:this={root}>
+	<DesignTokens theme="light">
+		<Switcher
+			options={labels}
+			size="small"
+			{activeIndex}
+			value={labels[activeIndex]}
+			onchange={({ currentTarget }) => {
+				activeIndex = labels.indexOf(currentTarget.value);
+			}}
+		/>
 
-	<div class="datawrapper-chart-container">
-		{#each ids as id, index}
-			<div
-				class="datawrapper-chart"
-				class:datawrapper-chart-active={index === activeIndex}
-				style:height={fixedHeight ? fixedHeight + 'px' : 'auto'}
-			>
-				<script
-					type="text/javascript"
-					src={`https://datawrapper.dwcdn.net/${id}/embed.js`}
-					charset="utf-8"
-				></script>
-			</div>
-		{/each}
-	</div>
-</DesignTokens>
+		<div class="datawrapper-chart-container">
+			{#each ids as id, index}
+				<div
+					class="datawrapper-chart"
+					class:datawrapper-chart-active={index === activeIndex}
+					style:height={fixedHeight ? fixedHeight + 'px' : 'auto'}
+				>
+					<script
+						type="text/javascript"
+						src={`https://datawrapper.dwcdn.net/${id}/embed.js`}
+						charset="utf-8"
+					></script>
+				</div>
+			{/each}
+		</div>
+	</DesignTokens>
+</div>
 
 <style>
 	.datawrapper-chart-container {

@@ -16,6 +16,3 @@
 {:else}
 	<DatawrapperSwitcher />
 {/if}
-
-<style>
-</style>
