@@ -63,6 +63,7 @@
 		opacity: 0;
 		z-index: -1;
 		width: 100%;
+		overflow: hidden;
 	}
 
 	.datawrapper-chart-active {
