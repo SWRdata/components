@@ -22,7 +22,7 @@
 </script>
 
 <div class="datawrapper-switcher" bind:this={root}>
-	<DesignTokens theme="light">
+	<DesignTokens theme="auto">
 		<Switcher
 			options={labels}
 			size="small"

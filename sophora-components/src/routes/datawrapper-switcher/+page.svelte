@@ -10,6 +10,7 @@
 		paragraphsBelow={1}
 		showPlayer={false}
 		showArticleHeader={false}
+		theme="auto"
 	>
 		<DatawrapperSwitcher />
 	</DevContainer>
