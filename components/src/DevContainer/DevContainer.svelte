@@ -2,6 +2,8 @@
 	import type { Snippet } from 'svelte';
 
 	import SwrLogo from './SwrLogo.svg.svelte';
+	import Home from './Home.svg.svelte';
+	import ArrowRight from './ArrowRight.svg.svelte';
 	import GridInspector from './GridInspector.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
 	import Copy from '../Copy/Copy.svelte';
@@ -70,7 +72,15 @@
 			</div>
 		{/if}
 		{#if showBreadcrumbs}
-			<div class="breadcrumbs"></div>
+			<div class="breadcrumbs">
+				<span class="home">
+					<Home />
+				</span>
+				<ArrowRight />
+				<span>SWR Aktuell</span>
+				<ArrowRight />
+				<span>Bundesland</span>
+			</div>
 		{/if}
 
 		{#if showPlayer}
@@ -102,6 +112,9 @@
 								<i class="byline-image"></i>
 								<i class="byline-image"></i>
 							</div>
+						</div>
+						<div class="article-byline-names">
+							Von Autor:in 1, Autor:in 2, Autor:in 3, SWR Data Lab
 						</div>
 					</div>
 					<div class="article-actions">
@@ -144,6 +157,12 @@
 </DesignTokens>
 
 <style lang="scss">
+	$bp-sm: 640px;
+	$bp-md: 768px;
+	$bp-lg: 1024px;
+	$bp-xl: 1280px;
+	$content-max-width: 1312px;
+
 	* {
 		box-sizing: border-box;
 	}
@@ -153,7 +172,27 @@
 	.container {
 		color: var(--blue);
 		background: var(--color-pageFill);
-		font-family: 'SWR-VAR-Sans', sans-serif;
+		font-family: var(--swr-sans);
+		width: 100%;
+		max-width: none;
+	}
+	header,
+	.nav,
+	.breadcrumbs {
+		width: 100%;
+		padding: 0 16px;
+		@media (min-width: $bp-sm) {
+			padding: 0 40px;
+		}
+		@media (min-width: $bp-md) {
+			padding: 0 32px;
+		}
+		@media (min-width: $bp-lg) {
+			padding: 0 max(48px, (100% - $content-max-width)/2);
+		}
+		@media (min-width: $bp-xl) {
+			padding: 0 max(64px, (100% - $content-max-width)/2);
+		}
 	}
 	header {
 		display: flex;
@@ -161,21 +200,18 @@
 		background: var(--blue-light);
 		border-bottom: 1px solid var(--blue);
 		height: 48px;
-		padding: 0 16px;
-		@media (min-width: 640px) {
-			padding: 0 40px;
+		@media (min-width: $bp-sm) {
 			height: 64px;
 		}
 	}
 	.header-inner {
 		width: 100%;
-		max-width: 1312px;
 		margin: 0 auto;
 	}
 	.logo {
 		display: block;
 		height: 24px;
-		@media (min-width: 1440px) {
+		@media (min-width: $bp-xl) {
 			height: 28px;
 		}
 		:global(svg) {
@@ -195,7 +231,7 @@
 			gap: 2.1em;
 			white-space: nowrap;
 			overflow: hidden;
-			@media (min-width: 1440px) {
+			@media (min-width: $bp-xl) {
 				margin-left: -32px;
 			}
 		}
@@ -205,9 +241,12 @@
 		height: 48px;
 		display: flex;
 		align-items: center;
-		padding: 0 16px;
-		@media (min-width: 640px) {
-			padding: 0 40px;
+	}
+	.breadcrumbs {
+		font-size: var(--fs-small-3);
+		gap: 12px;
+		.home {
+			padding: 0 8px;
 		}
 	}
 	.circle {
@@ -225,20 +264,26 @@
 		height: 40px;
 	}
 	.player {
-		width: 638px;
-		height: 58px;
-		bottom: 16px;
-		left: 50%;
-		border-radius: 4px;
+		position: fixed;
+		z-index: 100;
+		height: 56px;
+		bottom: 8px;
+		left: 8px;
+		right: 8px;
 		padding: 8px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		transform: translateX(-50%);
 		background: var(--blue-light);
 		border: 1px solid var(--blue);
-		z-index: 100;
-		position: fixed;
+		border-radius: 4px;
+		max-width: 640px;
+		margin: 0 auto;
+		@media (min-width: $bp-sm) {
+			left: 10.5px;
+			right: 10.5px;
+			bottom: 8px;
+		}
 	}
 	.player-buttons {
 		column-gap: 8px;
@@ -247,24 +292,14 @@
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
-		column-gap: 16px;
-		max-width: 1312px;
-		width: auto;
 		position: relative;
-		@media (min-width: 1440px) {
-			column-gap: 32px;
-			margin: 0 auto;
-		}
+		column-gap: 16px;
+		width: auto;
+		max-width: $content-max-width;
 	}
 	.article {
 		margin: 0 16px;
-		@media (min-width: 640px) {
-			margin: 0 40px;
-		}
-		@media (min-width: 1024px) {
-			margin: 0 48px;
-		}
-		@media (min-width: 1440px) {
+		@media (min-width: $bp-xl) {
 			margin: 0 auto;
 		}
 	}
@@ -282,10 +317,10 @@
 		&.below {
 			margin-top: 1.5em;
 		}
-		@media (min-width: 640px) {
+		@media (min-width: $bp-sm) {
 			grid-column: 2 / 12;
 		}
-		@media (min-width: 1024px) {
+		@media (min-width: $bp-lg) {
 			grid-column: 3 / 11;
 		}
 	}
@@ -293,36 +328,35 @@
 		margin-bottom: 24px;
 		grid-column: 1 / 13;
 
-		@media (min-width: 640px) {
+		@media (min-width: $bp-sm) {
 			grid-column: 2 / 12;
 		}
-		@media (min-width: 1024px) {
+		@media (min-width: $bp-lg) {
 			grid-column: 3 / 11;
 		}
 	}
 	.article-eyebrow {
 		font-size: 0.875rem;
 		font-weight: 500;
-		@media (min-width: 1024px) {
+		@media (min-width: $bp-lg) {
 			font-size: 1.25rem;
 		}
 	}
 	.article-title {
-		font-size: 2rem;
-		line-height: 1.3;
-		@media (min-width: 1024px) {
+		font-size: 1.75rem;
+		line-height: 1.25;
+		font-weight: 700;
+		@media (min-width: $bp-lg) {
 			line-height: 1.25;
-			font-size: 3rem;
+			font-size: 2.5rem;
 		}
 	}
 	.article-intro {
 		margin-top: 0.5em;
 		hyphens: auto;
-		font-size: 1.25rem;
+		font-size: 1.125rem;
 		line-height: 1.25;
-		@media (min-width: 1024px) {
-			font-size: 1.5rem;
-		}
+		font-weight: 500;
 	}
 	.article-meta {
 		display: flex;
@@ -332,7 +366,7 @@
 		gap: 8px;
 		margin-top: 1rem;
 		padding-bottom: 1rem;
-		@media (min-width: 768px) {
+		@media (min-width: $bp-md) {
 			gap: 0;
 			height: 72px;
 			margin-top: 0;
@@ -354,6 +388,10 @@
 		display: flex;
 		align-items: center;
 		gap: 10px;
+	}
+	.article-byline-names {
+		font-size: var(--fs-small-2);
+		font-weight: 700;
 	}
 	.byline-images {
 		display: flex;
@@ -388,10 +426,10 @@
 	.embed {
 		width: 100%;
 		grid-column: 1/13;
-		@media (min-width: 640px) {
+		@media (min-width: $bp-sm) {
 			grid-column: 2 / 12;
 		}
-		@media (min-width: 1024px) {
+		@media (min-width: $bp-lg) {
 			grid-column: 3 / 11;
 		}
 	}

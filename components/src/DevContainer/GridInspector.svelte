@@ -32,6 +32,7 @@
 		opacity: 0.1;
 		pointer-events: none;
 		z-index: 0;
+		max-width: none;
 	}
 	.col {
 		background: rgb(104, 120, 179);
