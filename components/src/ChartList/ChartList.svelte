@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
+	import Row from './Row.svelte';
 
 	type ProjectPrefix = 'p' | 't';
 	type ProjectIdentifier = `${ProjectPrefix}${number}: ${string}`;
@@ -7,13 +8,26 @@
 	interface ChartSpec {
 		title: string;
 		slug: string;
+		group?: string;
 	}
 	interface ChartListProps {
 		project?: ProjectIdentifier;
 		charts?: ChartSpec[];
 		baseUrl?: string;
 	}
-	let { project, charts, baseUrl }: ChartListProps = $props();
+	let { project, charts = [], baseUrl }: ChartListProps = $props();
+
+	const groups: string[] = $derived(
+		Array.from(new Set(charts.map((c) => c.group).filter((c) => typeof c === 'string')))
+	);
+
+	const groupedCharts = $derived.by(() => {
+		let res: { [key: string]: ChartSpec[] } = {};
+		groups.forEach((g) => (res[g] = charts.filter((el) => el.group === g)));
+		return res;
+	});
+
+	const ungroupedCharts = $derived(charts.filter((el) => !el.group));
 </script>
 
 <main>
@@ -23,23 +37,27 @@
 			<table>
 				<thead>
 					<tr>
+						{#if groups.length > 0}
+							<th>Group</th>
+						{/if}
 						<th>Title</th>
 						<th>Embed URL</th>
 					</tr>
 				</thead>
 				<tbody>
-					{#each charts as chart}
-						{@const route = `/${chart.slug}`}
-						<tr>
-							<td>
-								<a rel="external" href={dev ? route : `./${chart.slug}.html`}>
-									{chart.title}
-								</a>
-							</td>
-							<td>
-								<input type="text" value={`${baseUrl ?? ''}${route}.html`} />
-							</td>
-						</tr>
+					{#each Object.values(groupedCharts) as charts}
+						{#each charts as chart, i}
+							<Row {chart} group={i === 0} rowspan={groupedCharts[chart.group].length} {baseUrl}
+							></Row>
+						{/each}
+					{/each}
+					{#each ungroupedCharts as chart, i}
+						<Row
+							{chart}
+							{baseUrl}
+							group={groups.length > 0 && i === 0}
+							rowspan={ungroupedCharts.length === 1 ? 1 : 0}
+						></Row>
 					{/each}
 				</tbody>
 			</table>
@@ -81,55 +99,22 @@
 		}
 	}
 	table {
+		border: 1px solid var(--color-surfaceBorder);
 		border-collapse: collapse;
 		border-spacing: 0;
 		width: 100%;
-		border: 1px solid var(--color-surfaceBorder);
 	}
-	a {
-		display: block;
-		color: inherit;
-		text-decoration: none;
-	}
-	th,
-	td {
-		padding: 0 0.4em;
+
+	th {
 		text-align: left;
-		border-right: 1px solid var(--color-surfaceBorder);
+		padding: 0.2em 0.4em;
+		border-right: 1px solid var(--color-textSecondary);
+		border-bottom: 1px solid var(--color-textSecondary);
 		&:last-child {
 			border-right: 0;
 		}
 	}
-	th {
-		padding: 0.2em 0.4em;
-		border-right: 1px solid var(--color-textSecondary);
-		border-bottom: 1px solid var(--color-textSecondary);
-	}
-	tr {
-		border-bottom: 1px solid var(--color-surfaceBorder);
-		&:last-child {
-			border-bottom: 0;
-		}
-	}
 
-	input {
-		display: block;
-		font-family: monospace;
-		width: 100%;
-		padding: 0.35em 0;
-		font-size: 0.9rem;
-		background: var(--color-pageFill);
-		color: var(--color-textSecondary);
-		border: 0;
-	}
-
-	a:hover,
-	a:focus-visible {
-		text-decoration: underline;
-	}
-	a:last-child {
-		border-bottom: 0;
-	}
 	.notes {
 		margin-top: 0.5em;
 		color: var(--color-textSecondary);
