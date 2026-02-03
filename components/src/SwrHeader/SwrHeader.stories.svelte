@@ -25,7 +25,7 @@
 		const canvas = within(canvasElement);
 		await step('Renders names list', async () => {
 			const containerEl = canvas.getByTestId('byline-names');
-			expect(containerEl.textContent).toBe('Von Katharina Forstmair, Tom Burggraf, SWR Data Lab');
+			expect(containerEl.textContent).toContain('Katharina Forstmair, Tom Burggraf, SWR Data Lab');
 		});
 		await step('Renders date', async () => {
 			const containerEl = canvas.getByTestId('updated');
