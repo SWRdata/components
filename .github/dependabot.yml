@@ -18,4 +18,5 @@ updates:
           - 'semantic-release'
       vitest:
         patterns:
+          - 'vitest'
           - '@vitest*'
