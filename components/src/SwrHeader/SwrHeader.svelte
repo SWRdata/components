@@ -89,6 +89,12 @@
 	$bp-lg: 1024px;
 	$bp-xl: 1280px;
 	$content-max-width: 1312px;
+	$grid-columns: 12;
+
+	// Span of x columns including white-space in between
+	@function span($cols) {
+		@return calc(var(--column-width) * #{$cols} + var(--column-gap) * #{($cols - 1)});
+	}
 
 	// 14px baseline
 	.container {
@@ -107,22 +113,16 @@
 
 		--margin: 16px;
 		--column-gap: 16px;
-		--grid-width: calc(100vw - var(--margin) * 2);
-		--column-width: calc((var(--grid-width) - var(--column-gap) * 11) / 12);
+		--grid-width: min(calc(100vw - var(--margin) * 2), #{$content-max-width});
+		--column-width: calc(
+			(var(--grid-width) - var(--column-gap) * #{($grid-columns - 1)}) / #{$grid-columns}
+		);
 
 		@media (min-width: $bp-sm) {
-			--margin: 40px;
-			// 10 columns
-			max-width: calc(var(--column-width) * 10 + var(--column-gap) * 9);
+			max-width: span(10);
 		}
 		@media (min-width: $bp-lg) {
-			--margin: 48px;
-			--column-gap: 32px;
-			// 8 columns
-			max-width: calc(var(--column-width) * 8 + var(--column-gap) * 7);
-		}
-		@media (min-width: 1440px) {
-			--grid-width: $content-max-width;
+			max-width: span(8);
 		}
 	}
 	.eyebrow {
@@ -153,7 +153,7 @@
 		display: flex;
 		flex-flow: column;
 		gap: 0.75em;
-		@media (min-width: $bp-sm) {
+		@media (min-width: $bp-md) {
 			flex-flow: row;
 			gap: var(--column-gap);
 		}
@@ -167,10 +167,13 @@
 		dd {
 			margin: 0;
 			color: var(--color-textPrimary);
-			font-weight: 600;
+			font-weight: 700;
 		}
-		@media (min-width: $bp-sm) {
-			flex: 0 0 calc(var(--column-width) * 3 + var(--column-gap) * 2);
+		@media (min-width: $bp-md) {
+			flex: 0 0 span(3);
+		}
+		@media (min-width: 1200px) {
+			flex: 0 0 span(2);
 		}
 	}
 	.bylines {
@@ -201,7 +204,7 @@
 		}
 	}
 	.byline-names {
-		font-weight: 600;
+		font-weight: 700;
 		line-height: 1.25;
 	}
 	.byline-prefix {

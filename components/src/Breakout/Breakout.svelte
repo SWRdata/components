@@ -18,7 +18,6 @@
 	$bp-lg: 1024px;
 	$bp-xl: 1280px;
 	$content-max-width: 1312px;
-
 	$grid-columns: 12;
 
 	// Span of x columns including white-space in between
