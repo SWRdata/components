@@ -1,7 +1,7 @@
 {
 	"name": "@swr-data-lab/components",
 	"description": "SWR Data Lab component library",
-	"version": "1.0.7-preview.0",
+	"version": "1.0.6",
 	"author": "SWR Data Lab",
 	"license": "UNLICENSED",
 	"type": "module",
