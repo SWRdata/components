@@ -301,6 +301,7 @@
 		margin: 0 16px;
 		@media (min-width: $bp-xl) {
 			margin: 0 auto;
+			width: calc(100% - 2 * 16px);
 		}
 	}
 	.article-body {

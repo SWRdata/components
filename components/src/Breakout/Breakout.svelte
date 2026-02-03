@@ -32,7 +32,7 @@
 	}
 
 	// Bleed helper to calculate negative margin based on number of columns,
-	// adding fixed margin or optionally half of what's > content-max-width
+	// with special handling for XL screens
 	@function bleed($cols, $xl: false) {
 		@if $xl {
 			@return calc(
@@ -88,7 +88,7 @@
 
 	.bleed {
 		width: 100vw;
-		margin-left: calc(-1 * var(--margin));
+		margin-left: bleed(0);
 		@media (min-width: $bp-sm) {
 			margin-left: bleed(1);
 		}
@@ -96,7 +96,7 @@
 			margin-left: bleed(2);
 		}
 		@media (min-width: $bp-xl) {
-			margin-left: bleed(2, true); // wide screen version
+			margin-left: bleed(2, true);
 		}
 	}
 </style>
