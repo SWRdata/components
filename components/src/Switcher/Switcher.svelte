@@ -165,6 +165,10 @@
 		.is-selected & {
 			background: var(--color-surfaceHover);
 			font-weight: 700;
+
+			@media (prefers-color-scheme: dark) {
+				background: var(--gray-dark-2);
+			}
 		}
 		&:hover,
 		&:focus-visible {

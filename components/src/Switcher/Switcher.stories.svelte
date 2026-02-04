@@ -13,13 +13,13 @@
 </script>
 
 <Story name="Two Options" asChild>
-	<DesignTokens theme="light">
+	<DesignTokens theme="auto">
 		<Switcher options={['Option A', 'Option B']} value="Option A" size="default" label="Label" />
 	</DesignTokens>
 </Story>
 
 <Story name="Hidden Label" asChild>
-	<DesignTokens theme="light">
+	<DesignTokens theme="auto">
 		<Switcher
 			hideLabel
 			options={['Option A', 'Option B']}
@@ -47,7 +47,7 @@
 		});
 	}}
 >
-	<DesignTokens theme="light">
+	<DesignTokens theme="auto">
 		<Switcher
 			options={['Apples', 'Oranges', 'Bananas', 'Peaches']}
 			value="Oranges"
@@ -69,7 +69,7 @@
 		});
 	}}
 >
-	<DesignTokens theme="light">
+	<DesignTokens theme="auto">
 		<Switcher
 			options={['Do not wrap', 'on mobile']}
 			value="Do not wrap"
@@ -91,7 +91,7 @@
 		});
 	}}
 >
-	<DesignTokens theme="light">
+	<DesignTokens theme="auto">
 		<Switcher
 			options={['Always wrap', 'even on', 'large screens']}
 			value="Always wrap"
