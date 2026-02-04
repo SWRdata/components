@@ -14,7 +14,14 @@
 		 * Display size
 		 */
 		size?: 'default' | 'small';
+		/**
+		 * Hide the main label visually
+		 */
 		hideLabel?: boolean;
+		/**
+		 * Force the options to be displayed in a row (even on small screens)
+		 */
+		forceRow?: boolean;
 		/**
 		 * The currently-selected option (bindable)
 		 */
@@ -30,6 +37,7 @@
 		options,
 		size = 'default',
 		hideLabel = false,
+		forceRow = false,
 		value = $bindable(null),
 		onchange
 	}: SwitcherProps = $props();
@@ -46,7 +54,7 @@
 	<div class="legend" class:hidden={hideLabel}>
 		<FormLabel as="legend">{label}</FormLabel>
 	</div>
-	<ul>
+	<ul class:force-row={forceRow}>
 		{#each options as o (o)}
 			<li class:is-selected={o === value}>
 				<label for={optionToID(o)}>
@@ -95,6 +103,11 @@
 		@media (min-width: base.$bp-s) {
 			flex-flow: row;
 		}
+
+		&.force-row {
+			flex-flow: row;
+			overflow-x: auto;
+		}
 	}
 	li {
 		display: contents;
@@ -127,24 +140,33 @@
 		text-underline-offset: 0.1em;
 		border-right: 1px solid var(--color-textSecondary);
 		height: 2.25em;
-		@media (min-width: base.$bp-s) {
+
+		@mixin row-labels {
 			justify-content: center;
 			padding: 0 1em;
 			flex-basis: 0;
 			flex-grow: 1;
 			border-bottom: 0;
-		}
-		@media (min-width: base.$bp-s) {
 			height: 2.5em;
 		}
+
+		@media (min-width: base.$bp-s) {
+			@include row-labels;
+		}
+
+		.force-row & {
+			@include row-labels;
+		}
+
+		.is-selected & {
+			background: var(--color-surfaceHover);
+			font-weight: 700;
+		}
+
 		&:hover,
 		&:focus-visible {
 			text-decoration: underline;
 			text-decoration-color: var(--color-textSecondary);
-		}
-		.is-selected & {
-			background: var(--color-surfaceHover);
-			font-weight: 700;
 		}
 	}
 </style>
