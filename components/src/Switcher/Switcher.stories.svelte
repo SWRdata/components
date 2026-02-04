@@ -58,22 +58,48 @@
 </Story>
 
 <Story
-	name="Force row (inline) layout"
+	name="Force row layout"
 	asChild
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		console.log(canvas);
 		await step('Options are displayed in a row', async () => {
 			const list = canvas.getByRole('list');
-			expect(list.classList).toContain('force-row');
+			expect(list.classList).toContain('layout-row');
 		});
 	}}
 >
 	<DesignTokens theme="light">
-		<Switcher options={['Do not wrap', 'on mobile']} value="Do not wrap" label="Label" forceRow />
+		<Switcher
+			options={['Do not wrap', 'on mobile']}
+			value="Do not wrap"
+			label="Label"
+			layout="row"
+		/>
 	</DesignTokens>
 </Story>
 
+<Story
+	name="Force column layout"
+	asChild
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		console.log(canvas);
+		await step('Options are displayed in a row', async () => {
+			const list = canvas.getByRole('list');
+			expect(list.classList).toContain('layout-column');
+		});
+	}}
+>
+	<DesignTokens theme="light">
+		<Switcher
+			options={['Always wrap', 'even on', 'large screens']}
+			value="Always wrap"
+			label="Label"
+			layout="column"
+		/>
+	</DesignTokens>
+</Story>
 <Story
 	name="onchange event"
 	asChild

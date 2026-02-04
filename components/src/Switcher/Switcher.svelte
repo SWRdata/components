@@ -21,7 +21,7 @@
 		/**
 		 * Force the options to be displayed in a row (even on small screens)
 		 */
-		forceRow?: boolean;
+		layout?: 'row' | 'column' | 'auto' = 'auto';
 		/**
 		 * The currently-selected option (bindable)
 		 */
@@ -37,7 +37,7 @@
 		options,
 		size = 'default',
 		hideLabel = false,
-		forceRow = false,
+		layout = 'auto',
 		value = $bindable(null),
 		onchange
 	}: SwitcherProps = $props();
@@ -54,7 +54,12 @@
 	<div class="legend" class:hidden={hideLabel}>
 		<FormLabel as="legend">{label}</FormLabel>
 	</div>
-	<ul class:force-row={forceRow}>
+	<ul
+		class:layout-row={layout === 'row'}
+		class:layout-column={layout === 'column'}
+		class:layout-auto={layout === 'auto'}
+		role="list"
+	>
 		{#each options as o (o)}
 			<li class:is-selected={o === value}>
 				<label for={optionToID(o)}>
@@ -92,10 +97,11 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		overflow: hidden;
+		overflow-x: auto;
 		padding: 0;
 		margin: 0;
-		border: 1px solid var(--color-textSecondary);
+		border-top: 1px solid var(--color-textSecondary);
+		border-left: 1px solid var(--color-textSecondary);
 		color: var(--color-textPrimary);
 		background: var(--color-surfaceFill);
 		border-radius: var(--br-small);
@@ -103,17 +109,20 @@
 		@media (min-width: base.$bp-s) {
 			flex-flow: row;
 		}
-
-		&.force-row {
+		&.layout-row {
 			flex-flow: row;
-			overflow-x: auto;
+		}
+		&.layout-column {
+			flex-direction: column;
 		}
 	}
 	li {
 		display: contents;
 		&:last-child label {
-			border-right: 0;
-			border-bottom: 0;
+			border-bottom-right-radius: var(--br-small);
+		}
+		&:first-child label {
+			border-top-left-radius: var(--br-small);
 		}
 	}
 	input {
@@ -130,40 +139,33 @@
 		line-height: 1;
 		white-space: nowrap;
 		padding: 0 1em;
-		cursor: pointer;
 		margin: 0;
-		align-items: center;
+		cursor: pointer;
 		display: flex;
+		justify-content: center;
+		align-items: center;
 		color: currentColor;
 		position: relative;
 		transition: var(--fast);
 		text-underline-offset: 0.1em;
 		height: 2.25em;
+		border-right: 1px solid var(--color-textSecondary);
 		border-bottom: 1px solid var(--color-textSecondary);
-
-		@mixin row-labels {
-			justify-content: center;
-			padding: 0 1em;
-			flex-basis: 0;
-			flex-grow: 1;
-			border-right: 1px solid var(--color-textSecondary);
-			border-bottom: 0;
-			height: 2.5em;
-		}
+		flex-grow: 1;
 
 		@media (min-width: base.$bp-s) {
-			@include row-labels;
+			flex-basis: 0;
 		}
-
-		.force-row & {
-			@include row-labels;
+		.layout-row & {
+			flex-basis: 0;
 		}
-
+		.layout-column & {
+			flex-basis: auto;
+		}
 		.is-selected & {
 			background: var(--color-surfaceHover);
 			font-weight: 700;
 		}
-
 		&:hover,
 		&:focus-visible {
 			text-decoration: underline;
