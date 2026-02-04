@@ -30,25 +30,14 @@
 		@return calc((var(--column-width) + var(--column-gap)) * -#{$cols});
 	}
 
-	// Bleed helper to calculate negative margin based on number of columns,
-	// with special handling for XL screens
-	@function bleed($cols, $xl: false) {
-		@if $xl {
-			@return calc(
-				(var(--column-width) + var(--column-gap)) * -#{$cols} - max(
-						0px,
-						(100vw - #{$content-max-width}) / 2
-					)
-			);
-		} @else {
-			@return calc((var(--column-width) + var(--column-gap)) * -#{$cols} - var(--margin));
-		}
+	// Bleed helper to calculate negative margin based on number of columns
+	@function bleed($cols) {
+		@return calc((var(--column-width) + var(--column-gap)) * -#{$cols} - var(--margin));
 	}
 
 	.container {
-		--margin: 16px;
+		--margin: max(16px, calc((100vw - #{$content-max-width}) / 2));
 		--column-gap: 16px;
-
 		--grid-width: min(calc(100vw - var(--margin) * 2), #{$content-max-width});
 		--column-width: calc(
 			(var(--grid-width) - var(--column-gap) * #{($grid-columns - 1)}) / #{$grid-columns}
@@ -93,9 +82,6 @@
 		}
 		@media (min-width: $bp-lg) {
 			margin-left: bleed(2);
-		}
-		@media (min-width: $bp-xl) {
-			margin-left: bleed(2, true);
 		}
 	}
 </style>
