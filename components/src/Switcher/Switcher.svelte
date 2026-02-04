@@ -21,7 +21,7 @@
 		/**
 		 * Force the options to be displayed in a row (even on small screens)
 		 */
-		layout?: 'row' | 'column' | 'auto' = 'auto';
+		layout?: 'row' | 'column' | 'auto';
 		/**
 		 * The currently-selected option (bindable)
 		 */
