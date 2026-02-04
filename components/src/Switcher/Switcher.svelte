@@ -138,14 +138,15 @@
 		position: relative;
 		transition: var(--fast);
 		text-underline-offset: 0.1em;
-		border-right: 1px solid var(--color-textSecondary);
 		height: 2.25em;
+		border-bottom: 1px solid var(--color-textSecondary);
 
 		@mixin row-labels {
 			justify-content: center;
 			padding: 0 1em;
 			flex-basis: 0;
 			flex-grow: 1;
+			border-right: 1px solid var(--color-textSecondary);
 			border-bottom: 0;
 			height: 2.5em;
 		}
