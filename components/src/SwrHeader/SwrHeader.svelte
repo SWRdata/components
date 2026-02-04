@@ -2,10 +2,12 @@
 	import { type Snippet } from 'svelte';
 
 	import Caption from '../Caption/Caption.svelte';
+	import dataLabImage from '../assets/data_lab.jpg?enhanced&w=200';
 
 	interface Byline {
 		name: string;
 		image?: string;
+		url?: string;
 	}
 
 	interface SwrHeaderProps {
@@ -15,6 +17,7 @@
 		imageModules?: Record<string, any>;
 		updated?: Date | string;
 		bylines?: Byline[];
+		showTextShadow?: boolean;
 	}
 
 	const {
@@ -23,13 +26,14 @@
 		eyebrow,
 		imageModules,
 		updated,
-		bylines = []
+		bylines = [],
+		showTextShadow = false
 	}: SwrHeaderProps = $props();
 
 	const updated_on = updated ? (updated instanceof Date ? updated : new Date(updated)) : null;
 </script>
 
-<header class="container">
+<header class="container" class:show-text-shadow={showTextShadow}>
 	{#if eyebrow}
 		<p class="eyebrow">{eyebrow}</p>
 	{/if}
@@ -40,45 +44,93 @@
 		</p>
 	{/if}
 	<div class="meta">
+		{#if updated_on}
+			<dl class="date">
+				<dt>Stand:</dt>
+				<dd data-testid="updated">{updated_on.toLocaleDateString('de-DE')}</dd>
+			</dl>
+		{/if}
 		{#if bylines && bylines.length > 0}
-			{@const nameString = `Von ${bylines.map((el) => (el.url ? `<a href='${el.url}'>${el.name}</a>` : el.name)).join(', ')}, <a href="https://www.swr.de/home/swr-data-lab-team-100.html">SWR Data Lab</a>`}
 			<div class="bylines">
 				{#if imageModules}
 					<ul class="byline-images">
 						{#each bylines.filter((el) => el.image && el.image in imageModules) as b, i}
 							{@const src = imageModules[b.image].default}
-							<li class="byline-image" style:z-index={bylines.length - i}>
+							<li class="byline-image" style:z-index={bylines.length - i + 1}>
 								<enhanced:img {src} alt={b.name} />
 							</li>
 						{/each}
+						<li class="byline-image" style:z-index={0}>
+							<enhanced:img src={dataLabImage} alt="SWR Data Lab" />
+						</li>
 					</ul>
 				{/if}
 				<Caption>
-					<p data-testid="byline-names" class="byline-names">{@html nameString}</p>
+					<p data-testid="byline-names" class="byline-names">
+						<span class="byline-prefix">Von</span>
+						{#each bylines as byline, i}
+							{#if i > 0},{/if}
+							{#if byline.url}
+								<a href={byline.url}>{byline.name}</a>
+							{:else}
+								{byline.name}
+							{/if}
+						{/each}, <a href="https://www.swr.de/home/swr-data-lab-team-100.html">SWR Data Lab</a>
+					</p>
 				</Caption>
 			</div>
-		{/if}
-		{#if updated_on}
-			<p class="updated" data-testid="updated">Stand: {updated_on.toLocaleDateString('de-DE')}</p>
 		{/if}
 	</div>
 </header>
 
 <style lang="scss">
+	$bp-sm: 640px;
+	$bp-md: 768px;
+	$bp-lg: 1024px;
+	$bp-xl: 1280px;
+	$content-max-width: 1312px;
+	$grid-columns: 12;
+
+	// Span of x columns including white-space in between
+	@function span($cols) {
+		@return calc(var(--column-width) * #{$cols} + var(--column-gap) * #{($cols - 1)});
+	}
+
 	// 14px baseline
 	.container {
 		color: var(--color-textPrimary);
 		font-family: var(--swr-sans);
 		margin: 0 auto;
 		margin-bottom: 1rem;
-		max-width: 44rem;
-		text-shadow: 0 0 6px var(--color-pageFill);
+
+		&.show-text-shadow {
+			text-shadow: 0 0 6px color-mix(in srgb, var(--color-textPrimary) 50%, transparent);
+		}
+
+		:global([data-theme='dark']) &.show-text-shadow {
+			text-shadow: 0 0 6px color-mix(in srgb, var(--color-textPrimary) 70%, transparent);
+		}
+
+		--margin: 16px;
+		--column-gap: 16px;
+		--grid-width: min(calc(100vw - var(--margin) * 2), #{$content-max-width});
+		--column-width: calc(
+			(var(--grid-width) - var(--column-gap) * #{($grid-columns - 1)}) / #{$grid-columns}
+		);
+
+		@media (min-width: $bp-sm) {
+			max-width: span(10);
+		}
+		@media (min-width: $bp-lg) {
+			max-width: span(8);
+		}
 	}
 	.eyebrow {
-		font-size: var(--fs-small-1);
-		margin-bottom: 1.3em;
-		line-height: 1;
+		font-size: var(--fs-base);
+		margin-bottom: 4px;
+		line-height: 1.25;
 		letter-spacing: 0.025em;
+		font-weight: 600;
 	}
 	.title {
 		font-family: var(--swr-sans);
@@ -91,26 +143,46 @@
 	.subtitle {
 		margin-top: 1.15em;
 		font-family: var(--swr-sans);
-		line-height: 1.4;
+		line-height: 1.25;
 		font-size: var(--fs-base);
-		font-weight: 400;
+		font-weight: 500;
 		hyphens: auto;
 	}
 	.meta {
 		margin-top: 1.5em;
 		display: flex;
-		align-items: center;
-		column-gap: 2em;
-		flex-wrap: wrap;
+		flex-flow: column;
+		gap: 0.75em;
+		@media (min-width: $bp-md) {
+			flex-flow: row;
+			gap: var(--column-gap);
+		}
+	}
+	.date {
+		font-size: var(--fs-small-1);
+		dt {
+			color: var(--color-textSecondary);
+			font-weight: 400;
+		}
+		dd {
+			margin: 0;
+			color: var(--color-textPrimary);
+			font-weight: 700;
+		}
+		@media (min-width: $bp-md) {
+			flex: 0 0 span(3);
+		}
+		@media (min-width: 1200px) {
+			flex: 0 0 span(2);
+		}
 	}
 	.bylines {
 		display: flex;
 		flex-flow: column;
-		gap: 0.5em;
-		@media (min-width: 500px) {
-			gap: 1em;
-			align-items: center;
-			flex-flow: row;
+		gap: 8px;
+		align-self: start;
+		@media (min-width: $bp-sm) {
+			flex: 1;
 		}
 	}
 	.byline-images {
@@ -120,25 +192,26 @@
 		position: relative;
 		list-style: none;
 		overflow: hidden;
-		margin-right: -0.5em;
-		box-shadow: 0 1px 2px 1px rgba(black, 0.15);
+		margin-right: -1em;
 		border-radius: 1000px;
-		border: 1px solid var(--color-pageFill);
+		border: 0.5px solid var(--color-surfaceBorder);
 		img {
-			width: 2.25rem;
-			height: auto;
+			width: 48px;
+			height: 48px;
+			max-width: none;
 			display: block;
+			object-fit: cover;
 		}
 	}
 	.byline-names {
-		line-height: 1.35;
+		font-weight: 700;
+		line-height: 1.25;
 	}
-	.updated {
-		color: var(--color-textSecondary);
-		font-size: var(--fs-small-2);
-		letter-spacing: 0.025em;
+	.byline-prefix {
+		font-weight: 400;
 	}
 	:global(a) {
+		text-decoration: underline;
 		text-underline-offset: 0.25em;
 		text-decoration-color: var(--gray-light-1);
 		&:hover,
