@@ -1,18 +1,23 @@
-# sv
+# Client-side components for Sophora
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This is a collection of experimental client-side components for the Sophora CMS, meant to be used with the "Third Party / Drittplattform" content type.
 
-## Creating a project
+Components are built using [SvelteKit](https://svelte.dev/docs/kit/introduction) and the [SWR Data Lab component library](https://static.datenhub.net/apps/components/main/index.html?path=/docs/about--docs).
 
-If you're seeing this, you've probably already done this step. Congrats!
+The data displayed in the components can be configured via URL parameters.
 
-```bash
-# create a new project in the current directory
-npx sv create
+## Usage example: Datawrapper Switcher
 
-# create a new project in my-app
-npx sv create my-app
-```
+To display a switcher with multiple Datawrapper charts, you can use the following URL parameters:
+
+- `ids` – Comma-separated list of Datawrapper chart IDs
+- `labels` – Comma-separated list of labels to be used for the switcher
+- `fixedHeight` (`Int`, optional) – Fixed height in pixels to be used for the container element
+- `layout` (`row|column|auto`, optional) – Enforce a layout for the switcher. Defaults to `auto`, which will stack the labels vertically on small screens (`column`) and horizontally on larger screens (`row`)
+
+### Example URL:
+
+https://static.datenhub.net/apps/sophora-components/main/datawrapper-switcher.html?ids=oKR1L,bySDe,4r4Vi&labels=Super,E10,Diesel&layout=row
 
 ## Developing
 
@@ -34,5 +39,3 @@ npm run build
 ```
 
 You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

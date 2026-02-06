@@ -1,7 +1,6 @@
 <script>
-	import HighlightCard from '@components/HighlightCard';
-	import { DesignTokens } from '@components/DesignTokens';
-	import { onMount } from 'svelte';
+    import { DesignTokens, HighlightCard } from '@swr-data-lab/components';
+    import { onMount } from 'svelte';
 
 	let root;
 	let entries = [];
