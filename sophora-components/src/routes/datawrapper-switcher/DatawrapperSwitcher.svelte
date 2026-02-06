@@ -8,16 +8,14 @@
 	let labels = $state([]);
 	let ids = $state([]);
 	let fixedHeight = $state(null);
-	let activeColor = $state(null);
+	let layout = $state('auto');
 
 	onMount(() => {
 		const entries = getDataFromUrl(root);
 		labels = entries.labels.split(',') || [];
 		ids = entries.ids.split(',') || [];
 		fixedHeight = entries.fixedHeight || null;
-
-		// TODO: Implement active color property
-		activeColor = entries.activeColor || null;
+		layout = entries.layout || 'auto';
 	});
 </script>
 
@@ -27,6 +25,7 @@
 			options={labels}
 			size="small"
 			{activeIndex}
+			{layout}
 			value={labels[activeIndex]}
 			onchange={({ currentTarget }) => {
 				activeIndex = labels.indexOf(currentTarget.value);
