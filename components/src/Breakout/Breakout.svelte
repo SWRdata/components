@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 
 	interface BreakoutProps {
-		layout: 'medium' | 'large' | 'bleed';
+		layout: 'small' | 'medium' | 'large' | 'bleed';
 		children?: Snippet;
 	}
 	let { layout = 'medium', children }: BreakoutProps = $props();
@@ -13,56 +13,75 @@
 </div>
 
 <style lang="scss">
-	.container {
-		--margin: 16px;
-		--column-gap: 16px;
-		--column-width: calc((var(--grid-width) - var(--column-gap) * 11) / 12);
-		--grid-width: calc(100vw - var(--margin) * 2);
+	$bp-sm: 640px;
+	$bp-md: 768px;
+	$bp-lg: 1024px;
+	$bp-xl: 1280px;
+	$content-max-width: 1312px;
+	$grid-columns: 12;
 
-		@media (min-width: 640px) {
-			--margin: 40px;
+	// Span of x columns including white-space in between
+	@function span($cols) {
+		@return calc(var(--column-width) * #{$cols} + var(--column-gap) * #{($cols - 1)});
+	}
+
+	// Negative margin of x columns including white-space
+	@function offset($cols) {
+		@return calc((var(--column-width) + var(--column-gap)) * -#{$cols});
+	}
+
+	// Bleed helper to calculate negative margin based on number of columns
+	@function bleed($cols) {
+		@return calc((var(--column-width) + var(--column-gap)) * -#{$cols} - var(--margin));
+	}
+
+	.container {
+		--margin: max(16px, calc((100vw - #{$content-max-width}) / 2));
+		--column-gap: 16px;
+		--grid-width: min(calc(100vw - var(--margin) * 2), #{$content-max-width});
+		--column-width: calc(
+			(var(--grid-width) - var(--column-gap) * #{($grid-columns - 1)}) / #{$grid-columns}
+		);
+
+		max-width: 100vw;
+		margin: 0 auto;
+	}
+
+	.small {
+		width: span(10);
+		@media (min-width: $bp-sm) {
+			width: span(8);
 		}
-		@media (min-width: 768px) {
-			--margin: 40px;
-		}
-		@media (min-width: 1024px) {
-			--margin: 48px;
-			--column-gap: 32px;
-		}
-		@media (min-width: 1440px) {
-			--grid-width: calc(Min(1312px, 100vw));
-			--margin: calc((100vw - var(--grid-width)) * 0.5);
+		@media (min-width: $bp-lg) {
+			width: span(6);
 		}
 	}
 
 	.medium {
-		@media (min-width: 1024px) {
-			width: calc(var(--column-width) * 10 + var(--column-gap) * 9);
-			margin-left: calc((var(--column-width) * -1) + (var(--column-gap)) * -1);
+		@media (min-width: $bp-lg) {
+			width: span(10);
+			margin-left: offset(1);
 		}
 	}
+
 	.large {
-		@media (min-width: 640px) {
-			width: calc(var(--column-width) * 12 + var(--column-gap) * 11);
-			margin-left: calc((var(--column-width) * -1 + var(--column-gap) * -1));
+		width: span(12);
+		@media (min-width: $bp-sm) {
+			margin-left: offset(1);
 		}
-		@media (min-width: 1024px) {
-			width: calc(var(--column-width) * 12 + var(--column-gap) * 11);
-			margin-left: calc((var(--column-width) * -2 + var(--column-gap) * -2));
+		@media (min-width: $bp-lg) {
+			margin-left: offset(2);
 		}
 	}
+
 	.bleed {
 		width: 100vw;
-		margin-left: calc(var(--margin) * -1);
-
-		@media (min-width: 640px) {
-			margin-left: calc(var(--column-width) * -1 + (var(--column-gap)) * -1 - var(--margin) * 1);
+		margin-left: bleed(0);
+		@media (min-width: $bp-sm) {
+			margin-left: bleed(1);
 		}
-		@media (min-width: 768px) {
-			margin-left: calc(var(--column-width) * -1 + (var(--column-gap)) * -1 - (var(--margin) * 1));
-		}
-		@media (min-width: 1024px) {
-			margin-left: calc(var(--column-width) * -2 + (var(--column-gap)) * -2 - var(--margin) * 1);
+		@media (min-width: $bp-lg) {
+			margin-left: bleed(2);
 		}
 	}
 </style>

@@ -60,6 +60,21 @@
 	</DesignTokens>
 </Story>
 
+<Story name="Grouped charts" asChild>
+	<DesignTokens>
+		<ChartList
+			baseUrl="https://static.datenhub.net/apps/p110_wald-klimawandel/main"
+			charts={[
+				{ group: 'BW', title: 'Baden-Württemberg Loosers', slug: 'bw-loosers' },
+				{ group: 'BW', title: 'Baden-Württemberg Winners', slug: 'bw-winners' },
+				{ group: 'RP', title: 'Rheinland-Pfalz Loosers', slug: 'rp-loosers' },
+				{ title: 'Rheinland-Pfalz Winners', slug: 'rp-winners' }
+			]}
+			project="p110: Wie sieht der Wald von morgen aus?"
+		/>
+	</DesignTokens>
+</Story>
+
 <Story
 	name="Default base path (omitting basePath)"
 	asChild

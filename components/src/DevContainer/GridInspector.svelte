@@ -32,9 +32,10 @@
 		opacity: 0.1;
 		pointer-events: none;
 		z-index: 0;
+		max-width: none;
 	}
 	.col {
-		background: rgb(104, 120, 179);
+		background: rgba(104, 120, 179, 60%);
 		flex-grow: 0;
 		&:first-child {
 			border-left: 0;

@@ -24,6 +24,9 @@
 	>
 		<DesignTokens>
 			<div class="demo">
+				<Breakout layout="small">
+					<div class="chart">small</div>
+				</Breakout>
 				<Breakout layout="medium">
 					<div class="chart">medium</div>
 				</Breakout>

@@ -13,13 +13,13 @@
 </script>
 
 <Story name="Two Options" asChild>
-	<DesignTokens theme="light">
+	<DesignTokens theme="auto">
 		<Switcher options={['Option A', 'Option B']} value="Option A" size="default" label="Label" />
 	</DesignTokens>
 </Story>
 
 <Story name="Hidden Label" asChild>
-	<DesignTokens theme="light">
+	<DesignTokens theme="auto">
 		<Switcher
 			hideLabel
 			options={['Option A', 'Option B']}
@@ -47,7 +47,7 @@
 		});
 	}}
 >
-	<DesignTokens theme="light">
+	<DesignTokens theme="auto">
 		<Switcher
 			options={['Apples', 'Oranges', 'Bananas', 'Peaches']}
 			value="Oranges"
@@ -57,6 +57,49 @@
 	</DesignTokens>
 </Story>
 
+<Story
+	name="Force row layout"
+	asChild
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		console.log(canvas);
+		await step('Options are displayed in a row', async () => {
+			const list = canvas.getByRole('list');
+			expect(list.classList).toContain('layout-row');
+		});
+	}}
+>
+	<DesignTokens theme="auto">
+		<Switcher
+			options={['Do not wrap', 'on mobile']}
+			value="Do not wrap"
+			label="Label"
+			layout="row"
+		/>
+	</DesignTokens>
+</Story>
+
+<Story
+	name="Force column layout"
+	asChild
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		console.log(canvas);
+		await step('Options are displayed in a row', async () => {
+			const list = canvas.getByRole('list');
+			expect(list.classList).toContain('layout-column');
+		});
+	}}
+>
+	<DesignTokens theme="auto">
+		<Switcher
+			options={['Always wrap', 'even on', 'large screens']}
+			value="Always wrap"
+			label="Label"
+			layout="column"
+		/>
+	</DesignTokens>
+</Story>
 <Story
 	name="onchange event"
 	asChild

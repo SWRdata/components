@@ -1,7 +1,6 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import HighlightCard from './HighlightCard.svelte';
-	import DesignTokens from '../DesignTokens/DesignTokens.svelte';
+	import { HighlightCard, DesignTokens } from '../index.js';
 
 	const { Story } = defineMeta({
 		title: 'Display/Card/HighlightCard',
