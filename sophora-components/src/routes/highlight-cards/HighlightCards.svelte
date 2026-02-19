@@ -29,8 +29,8 @@
 	});
 </script>
 
-<div class="highlight-cards" bind:this={root}>
-	<DesignTokens>
+<DesignTokens>
+	<div class="highlight-cards" bind:this={root}>
 		{#each entries as entry}
 			<HighlightCard
 				topline={entry.topline}
@@ -39,28 +39,18 @@
 				subline={entry.subline}
 			/>
 		{/each}
-	</DesignTokens>
-</div>
+	</div>
+</DesignTokens>
 
 <style>
 	.highlight-cards {
-		/* Apply SWR.de default spacing */
-		padding-left: var(--cnt-wdth);
-		padding-right: var(--cnt-wdth);
-		padding-bottom: 1rem;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 2rem;
+		margin: 0.5rem 0;
 
 		@media (min-width: 1200px) {
-			margin: 0 -1rem;
-			display: flex;
-		}
-	}
-
-	:global(.highlight-cards > *) {
-		margin-bottom: 1rem;
-
-		@media (min-width: 1200px) {
-			margin: 0 1rem;
-			flex: 1;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 </style>
