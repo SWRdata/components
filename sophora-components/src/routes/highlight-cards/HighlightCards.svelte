@@ -29,7 +29,7 @@
 	.highlight-cards {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
-		gap: 2rem;
+		gap: 1rem;
 		margin: 0.5rem 0;
 
 		@media (min-width: 1200px) {
