@@ -12,8 +12,8 @@
 	});
 </script>
 
-<DesignTokens>
-	<div class="highlight-cards" bind:this={root}>
+<div class="highlight-cards" bind:this={root}>
+	<DesignTokens>
 		{#each entries as entry}
 			<HighlightCard
 				topline={entry.topline}
@@ -22,8 +22,8 @@
 				subline={entry.subline}
 			/>
 		{/each}
-	</div>
-</DesignTokens>
+	</DesignTokens>
+</div>
 
 <style>
 	.highlight-cards {
