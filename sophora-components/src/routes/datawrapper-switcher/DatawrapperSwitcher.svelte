@@ -21,7 +21,10 @@
 
 <div class="datawrapper-switcher" bind:this={root}>
 	<DesignTokens theme="auto">
-		<Switcher
+		<h1>Datawrapper switcher to be rendered here:</h1>
+		<pre>{JSON.stringify({ labels, ids, fixedHeight, layout }, null, 2)}</pre>
+
+		<!-- <Switcher
 			options={labels}
 			size="small"
 			{activeIndex}
@@ -30,9 +33,9 @@
 			onchange={({ currentTarget }) => {
 				activeIndex = labels.indexOf(currentTarget.value);
 			}}
-		/>
+		/> -->
 
-		<div class="datawrapper-chart-container">
+		<!-- <div class="datawrapper-chart-container">
 			{#each ids as id, index}
 				<div
 					class="datawrapper-chart"
@@ -46,7 +49,7 @@
 					></script>
 				</div>
 			{/each}
-		</div>
+		</div> -->
 	</DesignTokens>
 </div>
 
