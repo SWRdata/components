@@ -11,15 +11,21 @@
 	let layout = $state('auto');
 
 	let url = $state('');
+	let error = $state(null);
 
 	onMount(() => {
-		const entries = getDataFromUrl(root);
-		labels = entries.labels.split(',') || [];
-		ids = entries.ids.split(',') || [];
-		fixedHeight = entries.fixedHeight || null;
-		layout = entries.layout || 'auto';
-
 		url = window.location?.href;
+
+		try {
+			const entries = getDataFromUrl(root);
+			labels = entries.labels?.split(',') || [];
+			ids = entries.ids?.split(',') || [];
+			fixedHeight = entries.fixedHeight || null;
+			layout = entries.layout || 'auto';
+		} catch (e) {
+			console.error(e);
+			error = e;
+		}
 	});
 </script>
 
@@ -29,7 +35,9 @@
 		<pre>{JSON.stringify({ labels, ids, fixedHeight, layout }, null, 2)}</pre>
 		<pre>dataset url: {root?.parentNode?.parentNode?.dataset.url || 'n/a'}</pre>
 		<pre>actual url: {url || 'n/a'}</pre>
-
+		{#if error}
+			<pre style="color: red">{error}</pre>
+		{/if}
 		<!-- <Switcher
 			options={labels}
 			size="small"
