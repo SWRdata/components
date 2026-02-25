@@ -10,12 +10,16 @@
 	let fixedHeight = $state(null);
 	let layout = $state('auto');
 
+	let url = $state('');
+
 	onMount(() => {
 		const entries = getDataFromUrl(root);
 		labels = entries.labels.split(',') || [];
 		ids = entries.ids.split(',') || [];
 		fixedHeight = entries.fixedHeight || null;
 		layout = entries.layout || 'auto';
+
+		url = window.location?.href;
 	});
 </script>
 
@@ -23,6 +27,8 @@
 	<DesignTokens theme="auto">
 		<h1>Datawrapper switcher to be rendered here:</h1>
 		<pre>{JSON.stringify({ labels, ids, fixedHeight, layout }, null, 2)}</pre>
+		<pre>dataset url: {root?.parentNode?.parentNode?.dataset.url || 'n/a'}</pre>
+		<pre>actual url: {url || 'n/a'}</pre>
 
 		<!-- <Switcher
 			options={labels}
