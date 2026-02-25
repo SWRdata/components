@@ -35,5 +35,9 @@
 		@media (min-width: 1200px) {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
+
+		@media (prefers-color-scheme: dark) {
+			background: red;
+		}
 	}
 </style>
