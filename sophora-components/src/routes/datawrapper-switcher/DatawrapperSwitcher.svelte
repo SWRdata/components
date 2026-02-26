@@ -14,8 +14,6 @@
 	let error = $state(null);
 
 	onMount(() => {
-		url = window.location?.href;
-
 		try {
 			const entries = getDataFromUrl(root);
 			labels = entries.labels?.split(',') || [];
@@ -31,14 +29,7 @@
 
 <div class="datawrapper-switcher" bind:this={root}>
 	<DesignTokens theme="auto">
-		<h1>Datawrapper switcher to be rendered here:</h1>
-		<pre>{JSON.stringify({ labels, ids, fixedHeight, layout }, null, 2)}</pre>
-		<pre>dataset url: {root?.parentNode?.parentNode?.dataset.url || 'n/a'}</pre>
-		<pre>actual url: {url || 'n/a'}</pre>
-		{#if error}
-			<pre style="color: red">{error}</pre>
-		{/if}
-		<!-- <Switcher
+		<Switcher
 			options={labels}
 			size="small"
 			{activeIndex}
@@ -47,9 +38,9 @@
 			onchange={({ currentTarget }) => {
 				activeIndex = labels.indexOf(currentTarget.value);
 			}}
-		/> -->
+		/>
 
-		<!-- <div class="datawrapper-chart-container">
+		<div class="datawrapper-chart-container">
 			{#each ids as id, index}
 				<div
 					class="datawrapper-chart"
@@ -63,7 +54,15 @@
 					></script>
 				</div>
 			{/each}
-		</div> -->
+		</div>
+
+		<h3>Debug Information:</h3>
+		<p>data-url: {root?.parentNode?.parentNode?.dataset.url || 'n/a'}</p>
+		<br />
+		<pre>{JSON.stringify({ labels, ids, fixedHeight, layout }, null, 2)}</pre>
+		{#if error}
+			<pre style="color: red">{error}</pre>
+		{/if}
 	</DesignTokens>
 </div>
 
