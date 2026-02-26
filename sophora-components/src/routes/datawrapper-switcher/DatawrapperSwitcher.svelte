@@ -14,6 +14,8 @@
 	let error = $state(null);
 
 	onMount(() => {
+		url = window?.location.href;
+
 		try {
 			const entries = getDataFromUrl(root);
 			labels = entries.labels?.split(',') || [];
@@ -57,6 +59,7 @@
 		</div>
 
 		<h3>Debug Information:</h3>
+		<p>actual url: {url || 'n/a'}</p>
 		<p>data-url: {root?.parentNode?.parentNode?.dataset.url || 'n/a'}</p>
 		<br />
 		<pre>{JSON.stringify({ labels, ids, fixedHeight, layout }, null, 2)}</pre>
