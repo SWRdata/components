@@ -36,8 +36,9 @@
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
+		/* Explicitly set background color for dark mode, workaround for SWR Aktuell App */
 		@media (prefers-color-scheme: dark) {
-			background: red;
+			background-color: #0c0c0c;
 		}
 	}
 </style>
