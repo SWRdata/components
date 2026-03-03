@@ -10,7 +10,8 @@
 		type SymbolLayoutProps,
 		type LinePaintProps,
 		type MapGeoJSONFeature,
-		type MapLayerMouseEvent
+		type MapLayerMouseEvent,
+		type FilterSpecification
 	} from 'maplibre-gl';
 
 	import { getMapContext } from '../context.svelte.js';
@@ -24,7 +25,7 @@
 		/**
 		 * Maplibre [filter expression](https://maplibre.org/maplibre-style-spec/layers/#filter)
 		 */
-		filter?: any[];
+		filter?: FilterSpecification;
 		type: 'line' | 'fill' | 'circle' | 'symbol';
 		placeBelow?: string;
 		visible?: boolean;
@@ -88,6 +89,13 @@
 	$effect(() => {
 		if (map && styleLoaded && beforeId) {
 			map.addLayer(layerSpec, beforeId);
+		}
+	});
+
+	// Make filter reactive
+	$effect(() => {
+		if (styleLoaded && filter) {
+			map?.setFilter(id, filter);
 		}
 	});
 
