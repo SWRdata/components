@@ -10,13 +10,15 @@
 	import type { GeoJSON } from 'geojson';
 
 	import { SWRDataLabLight } from '../MapStyle';
+	import type { FilterSpecification } from 'maplibre-gl';
+	import { tokens } from '../../DesignTokens';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Layer/VectorLayer',
 		component: VectorLayer
 	});
 
-	const filters = [
+	const filters: FilterSpecification[] = [
 		['<', 'coverage_2025', 1],
 		['>', 'coverage_2025', 1]
 	];
@@ -132,7 +134,7 @@
 					id="coverage-fill"
 					filter={filters[selectedFilter]}
 					paint={{
-						'fill-color': '#ce541c'
+						'fill-color': tokens.shades.forest.base
 					}}
 				/>
 				<AttributionControl position="bottom-left" />
