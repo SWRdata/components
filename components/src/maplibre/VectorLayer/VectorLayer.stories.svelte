@@ -10,11 +10,20 @@
 	import type { GeoJSON } from 'geojson';
 
 	import { SWRDataLabLight } from '../MapStyle';
+	import type { FilterSpecification } from 'maplibre-gl';
+	import { tokens } from '../../DesignTokens';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Layer/VectorLayer',
 		component: VectorLayer
 	});
+
+	const filters: FilterSpecification[] = [
+		['<', 'coverage_2025', 1],
+		['>', 'coverage_2025', 1]
+	];
+
+	let selectedFilter: any = $state(0);
 
 	let hovered: any = $state();
 	const handleMouseMove = (e) => {
@@ -104,6 +113,14 @@
 
 <Story asChild name="Filter">
 	<DesignTokens theme="light">
+		<div class="controls">
+			<label for="filter-select">Select filter</label>
+			<select name="filter-select" id="filter-select" bind:value={selectedFilter}>
+				{#each filters as f, i}
+					<option value={i}>{JSON.stringify(f)}</option>
+				{/each}
+			</select>
+		</div>
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
 				<VectorTileSource
@@ -115,9 +132,9 @@
 					sourceLayer="coverage"
 					type="fill"
 					id="coverage-fill"
-					filter={['<', 'coverage_2025', 1]}
+					filter={filters[selectedFilter]}
 					paint={{
-						'fill-color': '#ce541c'
+						'fill-color': tokens.shades.forest.base
 					}}
 				/>
 				<AttributionControl position="bottom-left" />
@@ -130,5 +147,9 @@
 	.container {
 		width: 100%;
 		height: 600px;
+	}
+	.controls {
+		margin-bottom: 1em;
+		font-family: monospace;
 	}
 </style>
