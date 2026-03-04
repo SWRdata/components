@@ -19,14 +19,14 @@
 		maxZoom = 24,
 		id,
 		url = '',
-		tiles = [],
+		tiles,
 		attribution = ''
 	}: VectorTileSourceProps = $props();
 
 	const sourceSpec: VectorSourceSpecification = {
 		type: 'vector',
 		url,
-		tiles,
+		...(tiles ? tiles : {}),
 		maxzoom: maxZoom,
 		minzoom: minZoom,
 		attribution

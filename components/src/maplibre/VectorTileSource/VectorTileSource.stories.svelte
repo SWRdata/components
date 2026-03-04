@@ -41,6 +41,30 @@
 	</DesignTokens>
 </Story>
 
+<Story asChild name="tile json">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map showDebug={true} style={SWRDataLabLight()}>
+				<VectorTileSource
+					id="test-source"
+					url="https://tiles.versatiles.org/tiles/osm/tiles.json"
+				/>
+				<VectorLayer
+					sourceId="test-source"
+					sourceLayer="boundaries"
+					id="test-layer"
+					type="fill"
+					paint={{
+						'fill-color': 'purple',
+						'fill-opacity': 1
+					}}
+				/>
+				<AttributionControl position="bottom-left" />
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
 <style>
 	.container {
 		width: 100%;
