@@ -23,9 +23,21 @@
 		attribution = ''
 	}: VectorTileSourceProps = $props();
 
+	// Workaround for https://github.com/versatiles-org/versatiles-rs/issues/184
+	// Drop when/if this lands: https://github.com/maplibre/maplibre-gl-js/issues/182
+
+	async function fetchTileJSON(url) {
+		const res = await fetch(url);
+		const data = await res.json();
+		console.log(data);
+	}
+
+	if (url) {
+		fetchTileJSON(url);
+	}
+
 	const sourceSpec: VectorSourceSpecification = {
 		type: 'vector',
-		url,
 		...(tiles ? tiles : {}),
 		maxzoom: maxZoom,
 		minzoom: minZoom,
