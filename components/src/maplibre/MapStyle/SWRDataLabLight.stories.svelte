@@ -97,7 +97,9 @@
 				>
 					<VectorTileSource
 						id="demo-source"
-						url={`https://static.datenhub.net/data/p118_correctiv_waermewende/heating_merged_2.versatiles?{z}/{x}/{y}`}
+						tiles={[
+							`https://static.datenhub.net/data/p118_correctiv_waermewende/heating_merged_2.versatiles?{z}/{x}/{y}`
+						]}
 						attribution="Demo attribution"
 					/>
 

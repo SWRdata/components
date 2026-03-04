@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { type SourceSpecification } from 'maplibre-gl';
+	import { type VectorSourceSpecification } from 'maplibre-gl';
 	import MapSource from '../Source/MapSource.svelte';
 
 	interface VectorTileSourceProps {
 		id: string;
-		url: string;
+		url?: string;
+		tiles?: string[];
 		minZoom?: number;
 		maxZoom?: number;
 		/**
@@ -13,11 +14,19 @@
 		attribution?: string;
 	}
 
-	const { minZoom = 0, maxZoom = 24, id, url, attribution = '' }: VectorTileSourceProps = $props();
+	const {
+		minZoom = 0,
+		maxZoom = 24,
+		id,
+		url = '',
+		tiles = [],
+		attribution = ''
+	}: VectorTileSourceProps = $props();
 
-	const sourceSpec: SourceSpecification = {
+	const sourceSpec: VectorSourceSpecification = {
 		type: 'vector',
-		tiles: [url],
+		url,
+		tiles,
 		maxzoom: maxZoom,
 		minzoom: minZoom,
 		attribution

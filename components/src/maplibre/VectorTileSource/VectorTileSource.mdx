@@ -11,7 +11,7 @@ Loads tiled vector data from a tileserver. Any mablibre-supported tileserver wil
 ```jsx
 <Map>
 	<VectorTileSource
-		url="https://static.datenhub.net/rent_merged.versatiles?{z}/{x}/{y}"
+		tiles={['https://static.datenhub.net/rent_merged.versatiles?{z}/{x}/{y}']}
 		id="chargers"
 	/>
 	<VectorLayer sourceId="chargers" />
