@@ -11,20 +11,22 @@ import makeRoads from './components/Roads';
 import defaultOptions from './defaultOptions';
 import makeHillshade from './components/Hillshade';
 
+const water = '#fff';
+
 const tokens = {
 	sans_regular: ['swr_sans_regular'],
 	sans_medium: ['swr_sans_medium'],
 	sans_bold: ['swr_sans_bold'],
 	background: {
 		stops: [
-			[8, 'hsl(24, 29%, 98%)'],
-			[10, 'white']
+			[8, 'hsl(24, 20%, 97%)'],
+			[8, 'hsl(24, 10%, 97%)']
 		]
 	},
-	water: 'hsl(212, 71%, 83%)',
-	water_light: 'hsl(212, 41%, 90%)',
-	water_ocean: 'hsl(212, 60%, 83%)',
-	marsh: 'hsl(200, 14%, 97%)',
+	water,
+	water_light: water,
+	water_ocean: water,
+	marsh: 'hsl(200, 14%, 93%)',
 	grass: 'hsl(133, 36%, 95%)',
 	grass_dark: 'hsl(127, 49%, 93%)',
 	sand: 'hsl(60, 0%, 95%)',
@@ -38,7 +40,7 @@ const tokens = {
 	street_tertiary_case: 'hsl(0, 0%, 70%)',
 	label_primary: 'hsl(240, 10%, 2%)',
 	label_secondary: 'hsl(0, 0%, 18%)',
-	label_tertiary: 'hsl(60, 1%, 50%)',
+	label_tertiary: 'hsl(60, 1%, 25%)',
 	building: '#f3f2f1',
 	rail: '#d3d3d3',
 	boundary_country: '#8b8a89',
