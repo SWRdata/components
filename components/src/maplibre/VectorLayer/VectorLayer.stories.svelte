@@ -40,7 +40,9 @@
 			<Map showDebug={true} style={SWRDataLabLight()} cursor={hovered ? 'pointer' : ''}>
 				<VectorTileSource
 					id="ev-infra-source"
-					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`}
+					tiles={[
+						`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`
+					]}
 				/>
 				<VectorLayer
 					onmousemove={handleMouseMove}
@@ -125,7 +127,9 @@
 			<Map showDebug={true} style={SWRDataLabLight()}>
 				<VectorTileSource
 					id="ev-infra-source"
-					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`}
+					tiles={[
+						`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`
+					]}
 				/>
 				<VectorLayer
 					sourceId="ev-infra-source"

@@ -33,7 +33,9 @@
 			>
 				<VectorTileSource
 					id="ev-infra-source"
-					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`}
+					tiles={[
+						`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`
+					]}
 				/>
 				<VectorLayer
 					sourceId="ev-infra-source"
@@ -103,7 +105,9 @@
 			>
 				<VectorTileSource
 					id="ev-infra-source"
-					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`}
+					tiles={[
+						`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`
+					]}
 				/>
 				<VectorLayer
 					sourceId="ev-infra-source"
@@ -187,7 +191,9 @@
 			>
 				<VectorTileSource
 					id="ev-infra-source"
-					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`}
+					tiles={[
+						`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`
+					]}
 				/>
 				<VectorLayer
 					sourceId="ev-infra-source"

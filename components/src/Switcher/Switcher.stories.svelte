@@ -62,7 +62,6 @@
 	asChild
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
-		console.log(canvas);
 		await step('Options are displayed in a row', async () => {
 			const list = canvas.getByRole('list');
 			expect(list.classList).toContain('layout-row');
@@ -84,7 +83,6 @@
 	asChild
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
-		console.log(canvas);
 		await step('Options are displayed in a row', async () => {
 			const list = canvas.getByRole('list');
 			expect(list.classList).toContain('layout-column');
