@@ -5,9 +5,12 @@
 		type ProjectionSpecification,
 		type StyleSpecification
 	} from 'maplibre-gl';
-	import { onMount, onDestroy, type Snippet, getContext, hasContext } from 'svelte';
-	import { createMapContext, MapContext } from '../context.svelte.js';
+	
 	import { type Location } from '../types';
+
+	import { onMount, onDestroy, type Snippet, getContext, hasContext } from 'svelte';
+	
+	import { createMapContext, MapContext } from '../context.svelte.js';
 	import FallbackStyle from './FallbackStyle';
 	import { de } from './locale';
 
@@ -33,7 +36,7 @@
 		showDebug?: boolean;
 		options?: any;
 		/**
-		 * Set the mouse cursor. `""` (empty string) restores Maplibre's default behaviour. See VectorLayer/Default for a common usage example
+		 * Set the mouse cursor. `""` (empty string) restores Maplibre's default behaviour. See VectorLayer/Default for a usage example
 		 */
 		cursor?: string;
 		mapContext?: MapContext;
@@ -87,7 +90,8 @@
 	};
 
 	mapContext = createMapContext();
-	if (getContext('initialLocation') !== undefined && getContext('initialLocation') !== false) {
+
+	if (getContext('initialLocation')) {
 		initialLocation = getContext('initialLocation');
 	}
 
