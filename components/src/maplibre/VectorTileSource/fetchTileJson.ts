@@ -1,7 +1,7 @@
+import { type TileJsonData } from './types';
+
 // Workaround for https://github.com/versatiles-org/versatiles-rs/issues/184
 // Drop when/if this lands: https://github.com/maplibre/maplibre-gl-js/issues/182
-
-import { type TileJsonData } from './types';
 
 export default async function fetchTileJSON(url: string): Promise<TileJsonData> {
 	const u = new URL(url);
