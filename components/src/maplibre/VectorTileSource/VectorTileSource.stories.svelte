@@ -1,6 +1,8 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
+	import {shades} from '../../DesignTokens/Tokens.ts';
+
 	import VectorTileSource from './VectorTileSource.svelte';
 	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
 	import Map from '../Map/Map.svelte';
@@ -53,10 +55,10 @@
 					sourceId="test-source"
 					sourceLayer="boundaries"
 					id="test-layer"
-					type="fill"
+					type="line"
 					paint={{
-						'fill-color': 'purple',
-						'fill-opacity': 1
+						'line-color': shades.forest.dark1,
+						'line-width': 3
 					}}
 				/>
 				<AttributionControl position="bottom-left" />

@@ -1,6 +1,9 @@
 <script lang="ts">
-	import { type VectorSourceSpecification } from 'maplibre-gl';
+	import { type PromoteIdSpecification, type VectorSourceSpecification } from 'maplibre-gl';
+	import type { TileJsonData } from './types';
+
 	import MapSource from '../Source/MapSource.svelte';
+	import fetchTileJSON from './fetchTileJson';
 
 	interface VectorTileSourceProps {
 		id: string;
@@ -9,40 +12,32 @@
 		minZoom?: number;
 		maxZoom?: number;
 		/**
-		 * Attribution string for your data, usually rendered using an `<AttributionControl>`
+		 * Attribution string for your data, usually rendered using an `<AttributionControl/>`
 		 */
 		attribution?: string;
+		promoteId?: PromoteIdSpecification;
 	}
 
 	const {
-		minZoom = 0,
-		maxZoom = 24,
+		minZoom,
+		maxZoom,
 		id,
-		url = '',
+		url,
 		tiles,
-		attribution = ''
+		attribution,
+		promoteId
 	}: VectorTileSourceProps = $props();
 
-	// Workaround for https://github.com/versatiles-org/versatiles-rs/issues/184
-	// Drop when/if this lands: https://github.com/maplibre/maplibre-gl-js/issues/182
+	let tileJsonData = $derived(url ? await fetchTileJSON(url) : {});
 
-	async function fetchTileJSON(url) {
-		const res = await fetch(url);
-		const data = await res.json();
-		console.log(data);
-	}
-
-	if (url) {
-		fetchTileJSON(url);
-	}
-
-	const sourceSpec: VectorSourceSpecification = {
+	const sourceSpec: VectorSourceSpecification = $derived({
 		type: 'vector',
-		...(tiles ? tiles : {}),
-		maxzoom: maxZoom,
-		minzoom: minZoom,
-		attribution
-	};
+		tiles: tiles || tileJsonData.tiles || [],
+		maxzoom: maxZoom || tileJsonData.maxZoom || 24,
+		minzoom: minZoom || tileJsonData.minZoom || 0,
+		attribution: attribution || tileJsonData.attribution || '',
+		promoteId
+	});
 </script>
 
 <MapSource {id} {sourceSpec} />
