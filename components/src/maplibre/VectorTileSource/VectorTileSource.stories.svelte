@@ -1,6 +1,8 @@
 <script context="module" lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
+	import { shades } from '../../DesignTokens/Tokens.ts';
+
 	import VectorTileSource from './VectorTileSource.svelte';
 	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
 	import Map from '../Map/Map.svelte';
@@ -17,9 +19,53 @@
 	<DesignTokens theme="light">
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
+				<VectorTileSource id="test-source" url="https://tiles.datenhub.net/tiles/osm/tiles.json" />
+				<VectorLayer
+					sourceId="test-source"
+					sourceLayer="boundaries"
+					id="test-layer"
+					type="line"
+					paint={{
+						'line-color': shades.red.base,
+						'line-width': 2
+					}}
+				/>
+				<AttributionControl position="bottom-left" />
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
+<Story asChild name="TileJSON with absolute URLs">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map showDebug={true} style={SWRDataLabLight()}>
+				<VectorTileSource id="test-source" url="https://demotiles.maplibre.org/tiles/tiles.json" />
+				<VectorLayer
+					sourceId="test-source"
+					sourceLayer="countries"
+					id="test-layer"
+					type="line"
+					paint={{
+						'line-color': shades.red.base,
+						'line-width': 2
+					}}
+				/>
+				<AttributionControl position="bottom-left" />
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
+<Story asChild name="Usign bare tile URL">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map showDebug={true} style={SWRDataLabLight()}>
 				<VectorTileSource
 					id="ev-infra-source"
-					url={`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`}
+					tiles={[
+						`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`
+					]}
 					attribution="Demo attribution"
 				/>
 				<VectorLayer
@@ -28,9 +74,8 @@
 					id="ev-infra-outline"
 					type="line"
 					paint={{
-						'line-width': 0.5,
-						'line-color': 'purple',
-						'line-opacity': 1
+						'line-width': 1,
+						'line-color': shades.red.base
 					}}
 				/>
 				<AttributionControl position="bottom-left" />
