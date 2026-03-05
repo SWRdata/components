@@ -23,7 +23,13 @@
 		 * Limit search to one or more countries
 		 */
 		countries?: GeocodingLanguage | GeocodingCountry[];
+		/**
+		 * Limit search to one or more languages
+		 */
 		languages?: GeocodingLanguage | GeocodingLanguage[];
+		/**
+		 * Customise the URL parameter used to set the initial location
+		 */
 		urlParameter?: string;
 		children: Snippet;
 	}
@@ -41,18 +47,20 @@
 	const languagesArr = Array.isArray(languages) ? languages : [languages];
 
 	let geocoder: MaplibreGeocoderApi;
+
 	if (service === 'maptiler') {
 		geocoder = new MaptilerGeocoderAPI(key);
 	}
 
-	let location: Location | boolean | undefined = $state();
+	let location: any = $state({});
 
 	function bboxToArea(bbox: [number, number, number, number]) {
 		return (bbox[2] - bbox[0]) * (bbox[3] - bbox[1]);
 	}
 
-	onMount(async () => {
+	$effect(async () => {
 		const params = new URLSearchParams(window.location.search);
+
 		if (params.has(urlParameter)) {
 			const config: MaplibreGeocoderApiConfig = {
 				countries: countriesArr.join(','),
@@ -60,24 +68,21 @@
 				query: params.get(urlParameter)?.toString(),
 				limit: 1
 			};
+
 			const res = await geocoder.forwardGeocode(config);
+
 			if (res.features[0].bbox && res.features[0].geometry.type === 'Point') {
-				location = {
-					lat: res.features[0].geometry.coordinates[1],
-					lng: res.features[0].geometry.coordinates[0],
-					zoom: 11 - bboxToArea(res.features[0].bbox) * 5.5
-				};
+				location.lat = res.features[0].geometry.coordinates[1];
+				location.lng = res.features[0].geometry.coordinates[0];
+				location.zoom = 11 - bboxToArea(res.features[0].bbox) * 5.5;
+				location.active = true;
 			}
 		} else {
-			location = false;
+			location = {};
 		}
 	});
 
-	$effect.pre(() => {
-		setContext('initialLocation', location);
-	});
+	setContext('initialLocation', location);
 </script>
 
-{#if location !== undefined}
-	{@render children?.()}
-{/if}
+{@render children?.()}

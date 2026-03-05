@@ -5,11 +5,11 @@
 		type ProjectionSpecification,
 		type StyleSpecification
 	} from 'maplibre-gl';
-	
+
 	import { type Location } from '../types';
 
 	import { onMount, onDestroy, type Snippet, getContext, hasContext } from 'svelte';
-	
+
 	import { createMapContext, MapContext } from '../context.svelte.js';
 	import FallbackStyle from './FallbackStyle';
 	import { de } from './locale';
@@ -78,22 +78,23 @@
 	}: MapProps = $props();
 
 	let container: HTMLElement;
+	mapContext = createMapContext();
 
-	// Merge initial location with default object so individual
-	// properties (like pitch) can be omitted by the caller
-	let initialLocation = {
+	// Initial location is determined by (in order of precedence) :
+	// 1. An arbitrary default location
+	// 2. initialLocation prop
+	// 3. initialLocation context (notably set by <WithLinkLocation/>)
+
+	let contextLocation = getContext('initialLocation');
+
+	let initialLocation = $derived({
 		lat: 51.3,
 		lng: 10.2,
 		zoom: 5,
 		pitch: 0,
-		...receivedInitialLocation
-	};
-
-	mapContext = createMapContext();
-
-	if (getContext('initialLocation')) {
-		initialLocation = getContext('initialLocation');
-	}
+		...receivedInitialLocation,
+		...contextLocation
+	});
 
 	onMount(() => {
 		mapContext.map = new maplibre.Map({
@@ -155,6 +156,12 @@
 		}
 	});
 
+	$effect(() => {
+		mapContext.map?.jumpTo({
+			center: [initialLocation.lng, initialLocation.lat],
+			zoom: initialLocation.zoom
+		});
+	});
 	$effect(() => {
 		if (allowZoom === false) {
 			mapContext.map?.scrollZoom.disable();
