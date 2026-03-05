@@ -11,26 +11,33 @@ import makeRoads from './components/Roads';
 import defaultOptions from './defaultOptions';
 import makeHillshade from './components/Hillshade';
 
+const water = {
+	stops: [
+		[6, 'white'],
+		[6.5, 'hsl(216, 50%, 92%)']
+	]
+};
+
 const tokens = {
 	sans_regular: ['swr_sans_regular'],
 	sans_medium: ['swr_sans_medium'],
 	sans_bold: ['swr_sans_bold'],
 	background: {
 		stops: [
-			[8, 'hsl(24, 29%, 98%)'],
-			[10, 'white']
+			[6, 'hsl(24, 20%, 97%)'],
+			[6.5, 'hsl(24, 10%, 99%)']
 		]
 	},
-	water: 'hsl(212, 71%, 83%)',
-	water_light: 'hsl(212, 41%, 90%)',
-	water_ocean: 'hsl(212, 60%, 83%)',
-	marsh: 'hsl(200, 14%, 97%)',
+	water,
+	water_light: water,
+	water_ocean: water,
+	marsh: 'hsl(200, 14%, 93%)',
 	grass: 'hsl(133, 36%, 95%)',
 	grass_dark: 'hsl(127, 49%, 93%)',
 	sand: 'hsl(60, 0%, 95%)',
 	rock: 'hsl(192, 0%, 90%)',
 	street_primary: 'hsl(0, 4%, 95%)',
-	street_primary_faded: 'hsl(0, 4%, 96%)',
+	street_primary_faded: 'hsl(0, 4%, 93%)',
 	street_primary_case: 'hsl(240, 1%, 84%)',
 	street_secondary: 'hsl(0, 0%, 95%)',
 	street_secondary_case: 'hsl(0, 0%, 75%)',
@@ -38,7 +45,7 @@ const tokens = {
 	street_tertiary_case: 'hsl(0, 0%, 70%)',
 	label_primary: 'hsl(240, 10%, 2%)',
 	label_secondary: 'hsl(0, 0%, 18%)',
-	label_tertiary: 'hsl(60, 1%, 50%)',
+	label_tertiary: 'hsl(60, 1%, 25%)',
 	building: '#f3f2f1',
 	rail: '#d3d3d3',
 	boundary_country: '#8b8a89',
