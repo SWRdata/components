@@ -26,7 +26,7 @@
 	// actual source object back from the map instance
 	$effect(() => {
 		if (map && styleLoaded && firstRun) {
-			map.addSource(id, $state.snapshot(sourceSpec) as SourceSpecification);
+			map.addSource(id, $state.snapshot(sourceSpec));
 			source = map.getSource(id);
 			firstRun = false;
 		}

@@ -13,6 +13,12 @@
 		title: 'Maplibre/Source/VectorTileSource',
 		component: VectorTileSource
 	});
+
+	const demoUrls = [
+		'https://demotiles.maplibre.org/tiles/tiles.json',
+		'https://tiles.datenhub.net/tiles/osm/tiles.json'
+	];
+	let demoUrl = $state(demoUrls[1]);
 </script>
 
 <Story asChild name="Default">
@@ -57,7 +63,7 @@
 	</DesignTokens>
 </Story>
 
-<Story asChild name="Usign bare tile URL">
+<Story asChild name="Using a bare tile URL">
 	<DesignTokens theme="light">
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
@@ -78,6 +84,46 @@
 						'line-color': shades.red.base
 					}}
 				/>
+				<AttributionControl position="bottom-left" />
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
+<Story asChild name="Reactive url parameter">
+	<DesignTokens theme="light">
+		<label for="select-url">URL</label>
+		<select name="select-url" id="select-url" bind:value={demoUrl}>
+			{#each demoUrls as url}
+				<option>{url}</option>
+			{/each}
+		</select>
+		<div class="container">
+			<Map showDebug={true} style={SWRDataLabLight()}>
+				<VectorTileSource id="test-source" url={demoUrl} />
+
+				<VectorLayer
+					sourceId="test-source"
+					sourceLayer="countries"
+					id="test-layer"
+					type="line"
+					paint={{
+						'line-color': shades.red.base,
+						'line-width': 2
+					}}
+				/>
+
+				<VectorLayer
+					sourceId="test-source"
+					sourceLayer="boundaries"
+					id="test-layer-2"
+					type="line"
+					paint={{
+						'line-color': shades.forest.base,
+						'line-width': 2
+					}}
+				/>
+
 				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>

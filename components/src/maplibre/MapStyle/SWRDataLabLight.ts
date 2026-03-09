@@ -24,7 +24,7 @@ const tokens = {
 	sans_bold: ['swr_sans_bold'],
 	background: {
 		stops: [
-			[6, 'hsl(24, 20%, 97%)'],
+			[6, 'hsl(24, 20%, 96%)'],
 			[6.5, 'hsl(24, 10%, 99%)']
 		]
 	},
@@ -37,7 +37,7 @@ const tokens = {
 	sand: 'hsl(60, 0%, 95%)',
 	rock: 'hsl(192, 0%, 90%)',
 	street_primary: 'hsl(0, 4%, 95%)',
-	street_primary_faded: 'hsl(0, 4%, 93%)',
+	street_primary_faded: 'hsl(0, 4%, 90%)',
 	street_primary_case: 'hsl(240, 1%, 84%)',
 	street_secondary: 'hsl(0, 0%, 95%)',
 	street_secondary_case: 'hsl(0, 0%, 75%)',
