@@ -18,7 +18,7 @@
 		'https://demotiles.maplibre.org/tiles/tiles.json',
 		'https://tiles.datenhub.net/tiles/osm/tiles.json'
 	];
-	let demoUrl = $state(demoUrls[1]);
+	let demoUrl = $state(demoUrls[0]);
 </script>
 
 <Story asChild name="Default">
