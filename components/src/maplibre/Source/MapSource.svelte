@@ -1,11 +1,6 @@
 <script lang="ts">
 	import { onDestroy, type Snippet } from 'svelte';
-	import {
-		VectorTileSource,
-		type VectorSourceSpecification,
-		type Map,
-		type SourceSpecification
-	} from 'maplibre-gl';
+	import { type Map, type SourceSpecification } from 'maplibre-gl';
 	import { getMapContext, createSourceContext, SourceContext } from '../context.svelte.js';
 
 	type Source = maplibregl.VectorTileSource | maplibregl.GeoJSONSource;
@@ -47,13 +42,13 @@
 	});
 
 	$effect(() => {
-		if (!firstRun && source instanceof VectorTileSource) {
+		if (!firstRun && source.setTiles) {
 			source.setTiles(sourceSpec.tiles);
 		}
 	});
 
 	$effect(() => {
-		if (!firstRun && source instanceof VectorTileSource) {
+		if (!firstRun && source.setUrl) {
 			source.setUrl(sourceSpec.url);
 		}
 	});
