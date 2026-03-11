@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { onDestroy, type Snippet } from 'svelte';
-	import { type Map, type SourceSpecification } from 'maplibre-gl';
-	import { getMapContext, createSourceContext } from '../context.svelte.js';
+	import {
+		VectorTileSource,
+		type VectorSourceSpecification,
+		type Map,
+		type SourceSpecification
+	} from 'maplibre-gl';
+	import { getMapContext, createSourceContext, SourceContext } from '../context.svelte.js';
 
 	type Source = maplibregl.VectorTileSource | maplibregl.GeoJSONSource;
 
@@ -14,7 +19,8 @@
 	}
 
 	let { id, sourceSpec, source = $bindable(), children }: MapSourceProps = $props();
-	let firstRun = true;
+
+	let firstRun = $state(true);
 
 	// Get map context
 	const { map, styleLoaded } = $derived(getMapContext());
@@ -26,18 +32,29 @@
 	// actual source object back from the map instance
 	$effect(() => {
 		if (map && styleLoaded && firstRun) {
-			map.addSource(id, $state.snapshot(sourceSpec) as SourceSpecification);
+			map.addSource(id, $state.snapshot(sourceSpec));
 			source = map.getSource(id);
 			firstRun = false;
 		}
 	});
 
-	// 2. Do extra stuff with the source object
 	$effect(() => {
 		if (source && sourceSpec.type === 'geojson') {
 			if (firstRun === false) {
 				source.setData(sourceSpec.data);
 			}
+		}
+	});
+
+	$effect(() => {
+		if (!firstRun && source instanceof VectorTileSource) {
+			source.setTiles(sourceSpec.tiles);
+		}
+	});
+
+	$effect(() => {
+		if (!firstRun && source instanceof VectorTileSource) {
+			source.setUrl(sourceSpec.url);
 		}
 	});
 

@@ -18,15 +18,8 @@
 		promoteId?: PromoteIdSpecification;
 	}
 
-	const {
-		minZoom,
-		maxZoom,
-		id,
-		url,
-		tiles,
-		attribution,
-		promoteId
-	}: VectorTileSourceProps = $props();
+	const { minZoom, maxZoom, id, url, tiles, attribution, promoteId }: VectorTileSourceProps =
+		$props();
 
 	let tileJsonData = $derived(url ? await fetchTileJSON(url) : {});
 
