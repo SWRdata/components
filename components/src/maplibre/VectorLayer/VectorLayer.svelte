@@ -45,8 +45,7 @@
 		sourceId,
 		sourceLayer,
 		filter,
-		visible = true,
-		placeBelow = 'label-place-major-city',
+		placeBelow,
 		type,
 		paint,
 		layout,
@@ -80,15 +79,17 @@
 	$effect(() => {
 		if (map && styleLoaded) {
 			const style = map.getStyle();
-			beforeId = style.layers.find((l) => {
-				return l.id === placeBelow;
-			})?.id;
+			beforeId = placeBelow
+				? style.layers.find((l) => {
+						return l.id === placeBelow;
+					})?.id
+				: undefined;
 		}
 	});
 
 	$effect(() => {
-		if (map && styleLoaded && beforeId) {
-			map.addLayer(layerSpec, beforeId);
+		if (map && styleLoaded) {
+			beforeId ? map.addLayer(layerSpec, beforeId) : map.addLayer(layerSpec);
 		}
 	});
 
