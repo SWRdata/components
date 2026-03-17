@@ -113,6 +113,26 @@
 	</DesignTokens>
 </Story>
 
+<Story asChild name="feat/341">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map showDebug={true} style={SWRDataLabLight({ places: { showLabels: false } })}>
+				<GeoJsonSource id="demo" data={SamplePoints as GeoJSON} attribution="Demo attribution" />
+				<VectorLayer
+					sourceId="demo"
+					id="circles"
+					type="circle"
+					paint={{
+						'circle-radius': 12,
+						'circle-color': 'red'
+					}}
+				/>
+				<AttributionControl position="bottom-left" />
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
 <Story asChild name="Filter">
 	<DesignTokens theme="light">
 		<div class="controls">
