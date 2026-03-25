@@ -1,6 +1,7 @@
 <script>
 	import getDataFromUrl from '$lib/utils/getDataFromUrl';
-	import { DesignTokens, HighlightCard } from '@swr-data-lab/components';
+	import DesignTokens from '../../../components/src/DesignTokens/DesignTokens.svelte';
+	import HighlightCard from '../../../components/src/HighlightCard/HighlightCard.svelte';
 	import { onMount } from 'svelte';
 
 	let root;
@@ -14,7 +15,7 @@
 
 <div class="highlight-cards" bind:this={root}>
 	<DesignTokens>
-		{#each entries as entry}
+		{#each entries as entry, index (index)}
 			<HighlightCard
 				topline={entry.topline}
 				value={entry.value}

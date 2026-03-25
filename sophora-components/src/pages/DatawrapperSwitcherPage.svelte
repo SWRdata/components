@@ -1,7 +1,8 @@
 <script>
-	import { DevContainer } from '@swr-data-lab/components';
-	import DatawrapperSwitcher from './DatawrapperSwitcher.svelte';
-	import { dev } from '$app/environment';
+	import DevContainer from '../../../components/src/DevContainer/DevContainer.svelte';
+	import DatawrapperSwitcher from '../components/DatawrapperSwitcher.svelte';
+
+	const dev = import.meta.env.DEV;
 </script>
 
 {#if dev}

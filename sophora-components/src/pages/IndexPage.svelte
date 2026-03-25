@@ -1,6 +1,5 @@
 <script>
-	import { ChartList, DesignTokens } from '@swr-data-lab/components';
-	import { dev } from '$app/environment';
+	const dev = import.meta.env.DEV;
 
 	// Example parameters for the charts, can be used in development to prefill the charts with data
 	// TODO: Find a better way to manage example parameters, e.g. using Storybook or a list of example URLs
@@ -22,11 +21,3 @@
 		}
 	];
 </script>
-
-<DesignTokens theme="auto">
-	<ChartList
-		baseUrl="https://static.datenhub.net/apps/sophora-components/main"
-		project="Sophora-Components"
-		{charts}
-	/>
-</DesignTokens>

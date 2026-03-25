@@ -1,7 +1,8 @@
 <script>
-	import HighlightCards from './HighlightCards.svelte';
-	import { dev } from '$app/environment';
-	import { DevContainer } from '@swr-data-lab/components';
+	import DevContainer from '../../../components/src/DevContainer/DevContainer.svelte';
+	import HighlightCards from '../components/HighlightCards.svelte';
+
+	const dev = import.meta.env.DEV;
 </script>
 
 {#if dev}

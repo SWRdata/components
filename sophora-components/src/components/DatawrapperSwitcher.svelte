@@ -1,7 +1,8 @@
 <script>
 	import getDataFromUrl from '$lib/utils/getDataFromUrl';
-	import { Switcher, DesignTokens } from '@swr-data-lab/components';
-	import { browser } from '$app/environment';
+	import Switcher from '../../../components/src/Switcher/Switcher.svelte';
+	import DesignTokens from '../../../components/src/DesignTokens/DesignTokens.svelte';
+	import { onMount } from 'svelte';
 
 	let activeIndex = $state(0);
 	let root = $state(null);
@@ -10,11 +11,13 @@
 	let fixedHeight = $state(null);
 	let layout = $state('auto');
 
-	let url = $state(browser ? window.location.href : null);
+	let url = $state('');
 	let error = $state(null);
 
 	console.log('DatawrapperSwitcher initialized with url:', url);
-	$effect(() => {
+
+	onMount(() => {
+		url = window.location.href;
 		console.log('DatawrapperSwitcher mounted with root:', root);
 
 		try {
@@ -46,7 +49,7 @@
 		/>
 
 		<div class="datawrapper-chart-container">
-			{#each ids as id, index}
+			{#each ids as id, index (id)}
 				<div
 					class="datawrapper-chart"
 					class:datawrapper-chart-active={index === activeIndex}
