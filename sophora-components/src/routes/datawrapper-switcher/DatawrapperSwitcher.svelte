@@ -1,7 +1,7 @@
 <script>
 	import getDataFromUrl from '$lib/utils/getDataFromUrl';
 	import { Switcher, DesignTokens } from '@swr-data-lab/components';
-	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 
 	let activeIndex = $state(0);
 	let root = $state(null);
@@ -10,11 +10,12 @@
 	let fixedHeight = $state(null);
 	let layout = $state('auto');
 
-	let url = $state('');
+	let url = $state(browser ? window.location.href : null);
 	let error = $state(null);
 
-	onMount(() => {
-		url = window?.location.href;
+	console.log('DatawrapperSwitcher initialized with url:', url);
+	$effect(() => {
+		console.log('DatawrapperSwitcher mounted with root:', root);
 
 		try {
 			const entries = getDataFromUrl(root);
