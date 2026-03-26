@@ -1,5 +1,5 @@
 <script>
-	import DevContainer from '../../../components/src/DevContainer/DevContainer.svelte';
+	import DevContainer from '@swr-data-lab/components/dist/DevContainer/DevContainer.svelte';
 	import DatawrapperSwitcher from '../components/DatawrapperSwitcher.svelte';
 
 	const dev = import.meta.env.DEV;

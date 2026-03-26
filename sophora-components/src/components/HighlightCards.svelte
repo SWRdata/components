@@ -1,7 +1,7 @@
 <script>
 	import getDataFromUrl from '$lib/utils/getDataFromUrl';
-	import DesignTokens from '../../../components/src/DesignTokens/DesignTokens.svelte';
-	import HighlightCard from '../../../components/src/HighlightCard/HighlightCard.svelte';
+	import DesignTokens from '@swr-data-lab/components/dist/DesignTokens/DesignTokens.svelte';
+	import HighlightCard from '@swr-data-lab/components/dist/HighlightCard/HighlightCard.svelte';
 	import { onMount } from 'svelte';
 
 	let root;

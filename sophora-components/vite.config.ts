@@ -8,10 +8,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
 	plugins: [
 		{
-			name: 'resolve-app-environment',
+			name: 'resolve-custom-imports',
+			enforce: 'pre',
 			resolveId(id) {
 				if (id === '$app/environment') {
 					return resolve(__dirname, 'src/shims/app-environment.ts');
+				}
+				if (id.startsWith('@swr-data-lab/components/dist/')) {
+					return resolve(__dirname, 'node_modules', id);
 				}
 			}
 		},

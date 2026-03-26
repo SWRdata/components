@@ -1,7 +1,7 @@
 <script>
 	import getDataFromUrl from '$lib/utils/getDataFromUrl';
-	import Switcher from '../../../components/src/Switcher/Switcher.svelte';
-	import DesignTokens from '../../../components/src/DesignTokens/DesignTokens.svelte';
+	import Switcher from '@swr-data-lab/components/dist/Switcher/Switcher.svelte';
+	import DesignTokens from '@swr-data-lab/components/dist/DesignTokens/DesignTokens.svelte';
 	import { onMount } from 'svelte';
 
 	let activeIndex = $state(0);
