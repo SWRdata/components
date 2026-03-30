@@ -1,20 +1,20 @@
 <script>
 	import DevContainer from '@swr-data-lab/components/dist/DevContainer/DevContainer.svelte';
-	import DatawrapperSwitcher from '../components/DatawrapperSwitcher.svelte';
+	import HighlightCards from '../../components/HighlightCards.svelte';
 
 	const dev = import.meta.env.DEV;
 </script>
 
 {#if dev}
 	<DevContainer
+		theme="auto"
+		showGrid
 		paragraphsAbove={1}
 		paragraphsBelow={1}
-		showPlayer={false}
 		showArticleHeader={false}
-		theme="auto"
 	>
-		<DatawrapperSwitcher />
+		<HighlightCards />
 	</DevContainer>
 {:else}
-	<DatawrapperSwitcher />
+	<HighlightCards />
 {/if}
