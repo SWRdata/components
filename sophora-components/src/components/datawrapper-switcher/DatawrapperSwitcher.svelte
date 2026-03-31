@@ -11,15 +11,7 @@
 	let fixedHeight = $state(null);
 	let layout = $state('auto');
 
-	let url = $state('');
-	let error = $state(null);
-
-	console.log('DatawrapperSwitcher initialized with url:', url);
-
 	onMount(() => {
-		url = window.location.href;
-		console.log('DatawrapperSwitcher mounted with root:', root);
-
 		try {
 			const entries = getDataFromUrl(root);
 			labels = entries.labels?.split(',') || [];
@@ -28,10 +20,7 @@
 			layout = entries.layout || 'auto';
 		} catch (e) {
 			console.error(e);
-			error = e;
 		}
-
-		console.log('DatawrapperSwitcher props:', { labels, ids, fixedHeight, layout });
 	});
 </script>
 
@@ -63,15 +52,6 @@
 				</div>
 			{/each}
 		</div>
-
-		<h3>Debug Information:</h3>
-		<p>actual url: {url || 'n/a'}</p>
-		<p>data-url: {root?.parentNode?.parentNode?.dataset.url || 'n/a'}</p>
-		<br />
-		<pre>{JSON.stringify({ labels, ids, fixedHeight, layout }, null, 2)}</pre>
-		{#if error}
-			<pre style="color: red">{error}</pre>
-		{/if}
 	</DesignTokens>
 </div>
 
