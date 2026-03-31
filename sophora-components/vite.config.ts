@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
 				enforce: 'pre',
 				resolveId(id) {
 					if (id === '$app/environment') {
-						return resolve(__dirname, 'src/shims/app-environment.ts');
+						return resolve(__dirname, 'src/lib/shims/app-environment.ts');
 					}
 					if (id.startsWith('@swr-data-lab/components/dist/')) {
 						return resolve(__dirname, 'node_modules', id);

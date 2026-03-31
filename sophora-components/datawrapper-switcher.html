@@ -23,7 +23,16 @@
 		</style>
 	</head>
 	<body>
-		<div data-lab-components-embed="swr-sophora-components-datawrapper-switcher"></div>
-		<script type="module" src="/src/routes/datawrapper-switcher/entry.ts"></script>
+		<div data-lab-components-embed="datawrapper-switcher"></div>
+		<script type="module">
+			import { mount } from 'svelte';
+			import Embed from '/src/routes/datawrapper-switcher/embed.svelte';
+
+			document
+				.querySelectorAll('[data-lab-components-embed="datawrapper-switcher"]')
+				.forEach((target) => {
+					mount(Embed, { target });
+				});
+		</script>
 	</body>
 </html>

@@ -23,7 +23,16 @@
 		</style>
 	</head>
 	<body>
-		<div data-lab-components-embed="swr-sophora-components-highlight-cards"></div>
-		<script type="module" src="/src/routes/highlight-cards/entry.ts"></script>
+		<div data-lab-components-embed="highlight-cards"></div>
+		<script type="module">
+			import { mount } from 'svelte';
+			import Embed from '/src/routes/highlight-cards/embed.svelte';
+
+			document
+				.querySelectorAll('[data-lab-components-embed="highlight-cards"]')
+				.forEach((target) => {
+					mount(Embed, { target });
+				});
+		</script>
 	</body>
 </html>
