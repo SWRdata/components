@@ -25,14 +25,10 @@
 	<body>
 		<div data-lab-components-embed="highlight-cards"></div>
 		<script type="module">
-			import { mount } from 'svelte';
-			import Embed from '/src/routes/highlight-cards/embed.svelte';
+			import { mountEmbed } from '/src/lib/utils/mountEmbed';
+			import Embed from '/src/components/highlight-cards/embed.svelte';
 
-			document
-				.querySelectorAll('[data-lab-components-embed="highlight-cards"]')
-				.forEach((target) => {
-					mount(Embed, { target });
-				});
+			mountEmbed('highlight-cards', Embed);
 		</script>
 	</body>
 </html>

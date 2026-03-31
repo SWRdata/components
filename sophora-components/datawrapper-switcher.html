@@ -25,14 +25,10 @@
 	<body>
 		<div data-lab-components-embed="datawrapper-switcher"></div>
 		<script type="module">
-			import { mount } from 'svelte';
-			import Embed from '/src/routes/datawrapper-switcher/embed.svelte';
+			import { mountEmbed } from '/src/lib/utils/mountEmbed';
+			import Embed from '/src/components/datawrapper-switcher/embed.svelte';
 
-			document
-				.querySelectorAll('[data-lab-components-embed="datawrapper-switcher"]')
-				.forEach((target) => {
-					mount(Embed, { target });
-				});
+			mountEmbed('datawrapper-switcher', Embed);
 		</script>
 	</body>
 </html>
