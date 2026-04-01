@@ -28,6 +28,12 @@
 			import { mountEmbed } from '/src/lib/utils/mountEmbed';
 			import Embed from '/src/components/datawrapper-switcher/embed.svelte';
 
+			document.addEventListener('pjax:complete', () => {
+				console.log('pjax:complete, remounting datawrapper switcher embed');
+				mountEmbed('datawrapper-switcher', Embed);
+			});
+
+			console.log('DOM fully loaded, mounting datawrapper switcher embed');
 			mountEmbed('datawrapper-switcher', Embed);
 		</script>
 	</body>
