@@ -27,22 +27,11 @@
 		<script type="module">
 			import { mountEmbed } from '/src/lib/utils/mountEmbed';
 			import Embed from '/src/components/datawrapper-switcher/embed.svelte';
-
-			function mount() {
-				console.log('mounting datawrapper switcher embed');
-				mountEmbed('datawrapper-switcher', Embed);
-			}
-
-			window.addEventListener('popstate', () => {
-				console.log('popstate, remounting datawrapper switcher embed');
-				mount();
-			});
-
-			if (document.readyState === 'loading') {
-				document.addEventListener('DOMContentLoaded', mount);
-			} else {
-				mount();
-			}
+			window.__mountDatawrapperSwitcher = () => mountEmbed('datawrapper-switcher', Embed);
+			window.__mountDatawrapperSwitcher();
+		</script>
+		<script>
+			window.__mountDatawrapperSwitcher && window.__mountDatawrapperSwitcher();
 		</script>
 	</body>
 </html>

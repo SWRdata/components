@@ -28,7 +28,11 @@
 			import { mountEmbed } from '/src/lib/utils/mountEmbed';
 			import Embed from '/src/components/highlight-cards/embed.svelte';
 
-			mountEmbed('highlight-cards', Embed);
+			window.__mountHighlightCards = () => mountEmbed('highlight-cards', Embed);
+			window.__mountHighlightCards();
+		</script>
+		<script>
+			window.__mountHighlightCards && window.__mountHighlightCards();
 		</script>
 	</body>
 </html>
