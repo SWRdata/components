@@ -8,7 +8,7 @@ export async function handle({ event, resolve }) {
 				.replace(`id="data-lab-components-embed"`, `data-lab-components-embed="${containerID}"`)
 				.replace(
 					'document.currentScript.parentElement',
-					`document.querySelector("[data-lab-components-embed='${containerID}']")`
+					'document.currentScript.closest("[data-lab-components-embed]")'
 				)
 	});
 	return response;
