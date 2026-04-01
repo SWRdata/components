@@ -28,13 +28,21 @@
 			import { mountEmbed } from '/src/lib/utils/mountEmbed';
 			import Embed from '/src/components/datawrapper-switcher/embed.svelte';
 
-			document.addEventListener('pjax:complete', () => {
-				console.log('pjax:complete, remounting datawrapper switcher embed');
+			function mount() {
+				console.log('mounting datawrapper switcher embed');
 				mountEmbed('datawrapper-switcher', Embed);
+			}
+
+			window.addEventListener('popstate', () => {
+				console.log('popstate, remounting datawrapper switcher embed');
+				mount();
 			});
 
-			console.log('DOM fully loaded, mounting datawrapper switcher embed');
-			mountEmbed('datawrapper-switcher', Embed);
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', mount);
+			} else {
+				mount();
+			}
 		</script>
 	</body>
 </html>
