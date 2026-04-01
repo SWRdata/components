@@ -24,14 +24,26 @@
 	</head>
 	<body>
 		<div data-lab-components-embed="datawrapper-switcher"></div>
-		<script type="module">
-			import { mountEmbed } from '/src/lib/utils/mountEmbed';
-			import Embed from '/src/components/datawrapper-switcher/embed.svelte';
-			window.__mountDatawrapperSwitcher = () => mountEmbed('datawrapper-switcher', Embed);
-			window.__mountDatawrapperSwitcher();
-		</script>
 		<script>
-			window.__mountDatawrapperSwitcher && window.__mountDatawrapperSwitcher();
+			(() => {
+				const target = document.currentScript.previousElementSibling;
+				if (window.__mountDatawrapperSwitcher) {
+					window.__mountDatawrapperSwitcher(target);
+				} else {
+					document.addEventListener('DOMContentLoaded', () => {
+						window.__mountDatawrapperSwitcher(target);
+					});
+				}
+			})();
+		</script>
+		<script type="module">
+			import mountEmbed from '/src/lib/utils/mountEmbed';
+			import Embed from '/src/components/datawrapper-switcher/embed.svelte';
+
+			window.__mountDatawrapperSwitcher = (target) => {
+				console.log('Mounting Datawrapper Switcher component on', target);
+				mountEmbed(target, Embed);
+			};
 		</script>
 	</body>
 </html>

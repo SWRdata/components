@@ -24,15 +24,26 @@
 	</head>
 	<body>
 		<div data-lab-components-embed="highlight-cards"></div>
+		<script>
+			(() => {
+				const target = document.currentScript.previousElementSibling;
+				if (window.__mountHighlightCards) {
+					window.__mountHighlightCards(target);
+				} else {
+					document.addEventListener('DOMContentLoaded', () => {
+						window.__mountHighlightCards(target);
+					});
+				}
+			})();
+		</script>
 		<script type="module">
-			import { mountEmbed } from '/src/lib/utils/mountEmbed';
+			import mountEmbed from '/src/lib/utils/mountEmbed';
 			import Embed from '/src/components/highlight-cards/embed.svelte';
 
-			window.__mountHighlightCards = () => mountEmbed('highlight-cards', Embed);
-			window.__mountHighlightCards();
-		</script>
-		<script>
-			window.__mountHighlightCards && window.__mountHighlightCards();
+			window.__mountHighlightCards = (target) => {
+				console.log('Mounting Highlight Cards component on', target);
+				mountEmbed(target, Embed);
+			};
 		</script>
 	</body>
 </html>

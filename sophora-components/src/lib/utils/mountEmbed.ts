@@ -2,12 +2,9 @@ import { mount } from 'svelte';
 
 type ComponentConstructor = new (...args: any[]) => any;
 
-export async function mountEmbed(
-	componentName: string,
+export default async function mountEmbed(
+	target: Element,
 	Component: ComponentConstructor
 ): Promise<void> {
-	const selector = `[data-lab-components-embed="${componentName}"]`;
-	document.querySelectorAll(selector).forEach((target) => {
-		mount(Component, { target });
-	});
+	mount(Component, { target });
 }
