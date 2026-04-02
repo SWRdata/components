@@ -28,24 +28,21 @@ export default async function mountEmbeds(
 		$(document).on('pjax:end', () => {
 			let pollCount = 0;
 			const maxPolls = 10;
-			const pollInterval = 200; // ms
+			const pollDelay = 200; // ms
 
 			// Delay to ensure new DOM is ready for mounting.
 			// PJAX triggers 'pjax:end' before the mounting targets are actually available in the DOM.
 			const interval = window.setInterval(() => {
-				pollCount++;
 				const embedTargets = document.querySelectorAll(targetSelector);
-				if (!embedTargets.length) return;
 				if (embedTargets.length > 0) {
 					_mountEmbeds(embedTargets);
 					window.clearInterval(interval);
 					console.log(`Mounting embeds succeeded after ${pollCount} polls.`);
-				}
-				if (pollCount > maxPolls) {
+				} else if (++pollCount >= maxPolls) {
 					window.clearInterval(interval);
 					console.log(`Mounting embeds failed: targets not found after ${maxPolls} attempts.`);
 				}
-			}, pollInterval);
+			}, pollDelay);
 		});
 	}
 }
