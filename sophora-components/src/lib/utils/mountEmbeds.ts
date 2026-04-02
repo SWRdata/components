@@ -14,7 +14,8 @@ export default async function mountEmbeds(
 	const _mountEmbeds = () =>
 		(() => {
 			const embedTargets = document.querySelectorAll(targetSelector);
-			embedTargets.forEach((target) => {
+			embedTargets.forEach((target, index) => {
+				console.log(`>>> Mounting embed #${index} for target:`, target);
 				mount(Component, { target });
 			});
 		})();
