@@ -2,9 +2,13 @@ name: 'Run Storybook Tests'
 on:
   workflow_dispatch:
   push:
+    paths:
+      - 'components/**'
     branches:
       - main
   pull_request:
+    paths:
+      - 'components/**'
     types: [opened, synchronize]
 
 jobs:
