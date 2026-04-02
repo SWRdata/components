@@ -26,23 +26,30 @@
 		<div data-lab-components-embed="datawrapper-switcher"></div>
 		<script>
 			(() => {
-				const target = document.currentScript.previousElementSibling;
+				const dlEmbedTarget = document.currentScript.previousElementSibling;
+				console.log(
+					'Datawrapper Switcher embed target:',
+					dlEmbedTarget,
+					'Current script:',
+					document.currentScript
+				);
 				if (window.__mountDatawrapperSwitcher) {
-					window.__mountDatawrapperSwitcher(target);
-				} else {
-					document.addEventListener('DOMContentLoaded', () => {
-						window.__mountDatawrapperSwitcher(target);
-					});
+					console.log('Mount function already available, mounting immediately');
+					window.__mountDatawrapperSwitcher(dlEmbedTarget);
 				}
+				document.addEventListener('DOMContentLoaded', () => {
+					console.log('DOM fully loaded, mounting Datawrapper Switcher');
+					window.__mountDatawrapperSwitcher(dlEmbedTarget);
+				});
 			})();
 		</script>
 		<script type="module">
 			import mountEmbed from '/src/lib/utils/mountEmbed';
 			import Embed from '/src/components/datawrapper-switcher/embed.svelte';
 
-			window.__mountDatawrapperSwitcher = (target) => {
-				console.log('Mounting Datawrapper Switcher component on', target);
-				mountEmbed(target, Embed);
+			window.__mountDatawrapperSwitcher = (dlEmbedTarget) => {
+				console.log('Mounting Datawrapper Switcher component on', dlEmbedTarget);
+				mountEmbed(dlEmbedTarget, Embed);
 			};
 		</script>
 	</body>

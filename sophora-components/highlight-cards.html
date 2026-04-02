@@ -25,16 +25,14 @@
 	<body>
 		<div data-lab-components-embed="highlight-cards"></div>
 		<script>
-			(() => {
-				const target = document.currentScript.previousElementSibling;
-				if (window.__mountHighlightCards) {
+			const target = document.currentScript.previousElementSibling;
+			if (window.__mountHighlightCards) {
+				window.__mountHighlightCards(target);
+			} else {
+				document.addEventListener('DOMContentLoaded', () => {
 					window.__mountHighlightCards(target);
-				} else {
-					document.addEventListener('DOMContentLoaded', () => {
-						window.__mountHighlightCards(target);
-					});
-				}
-			})();
+				});
+			}
 		</script>
 		<script type="module">
 			import mountEmbed from '/src/lib/utils/mountEmbed';
