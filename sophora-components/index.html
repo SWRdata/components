@@ -2,10 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-		%sveltekit.head%
 
 		<style>
 			@font-face {
@@ -25,7 +22,15 @@
 			}
 		</style>
 	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div id="data-lab-components-embed">%sveltekit.body%</div>
+	<body>
+		<div data-lab-components-embed="swr-sophora-components"></div>
+		<script type="module">
+			import { mount } from 'svelte';
+			import IndexPage from '/src/index.svelte';
+
+			mount(IndexPage, {
+				target: document.querySelector('[data-lab-components-embed="swr-sophora-components"]')
+			});
+		</script>
 	</body>
 </html>

@@ -1,6 +1,7 @@
 <script>
 	import getDataFromUrl from '$lib/utils/getDataFromUrl';
-	import { DesignTokens, HighlightCard } from '@swr-data-lab/components';
+	import DesignTokens from '@swr-data-lab/components/dist/DesignTokens/DesignTokens.svelte';
+	import HighlightCard from '@swr-data-lab/components/dist/HighlightCard/HighlightCard.svelte';
 	import { onMount } from 'svelte';
 
 	let root;
@@ -14,7 +15,7 @@
 
 <div class="highlight-cards" bind:this={root}>
 	<DesignTokens>
-		{#each entries as entry}
+		{#each entries as entry, index (index)}
 			<HighlightCard
 				topline={entry.topline}
 				value={entry.value}
@@ -34,6 +35,11 @@
 
 		@media (min-width: 1200px) {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		/* Explicitly set background color for dark mode, workaround for SWR Aktuell App */
+		@media (prefers-color-scheme: dark) {
+			background-color: #0c0c0c;
 		}
 	}
 </style>

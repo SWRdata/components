@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<div data-lab-components-embed="highlight-cards"></div>
+		<script type="module">
+			import mountEmbeds from '/src/lib/utils/mountEmbeds';
+			import Embed from '/src/components/highlight-cards/embed.svelte';
+
+			mountEmbeds(Embed, '[data-lab-components-embed="highlight-cards"]');
+		</script>
+	</body>
+</html>

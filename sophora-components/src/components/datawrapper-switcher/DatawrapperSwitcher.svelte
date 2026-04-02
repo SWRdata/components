@@ -1,6 +1,7 @@
 <script>
 	import getDataFromUrl from '$lib/utils/getDataFromUrl';
-	import { Switcher, DesignTokens } from '@swr-data-lab/components';
+	import Switcher from '@swr-data-lab/components/dist/Switcher/Switcher.svelte';
+	import DesignTokens from '@swr-data-lab/components/dist/DesignTokens/DesignTokens.svelte';
 	import { onMount } from 'svelte';
 
 	let activeIndex = $state(0);
@@ -11,11 +12,15 @@
 	let layout = $state('auto');
 
 	onMount(() => {
-		const entries = getDataFromUrl(root);
-		labels = entries.labels.split(',') || [];
-		ids = entries.ids.split(',') || [];
-		fixedHeight = entries.fixedHeight || null;
-		layout = entries.layout || 'auto';
+		try {
+			const entries = getDataFromUrl(root);
+			labels = entries.labels?.split(',') || [];
+			ids = entries.ids?.split(',') || [];
+			fixedHeight = entries.fixedHeight || null;
+			layout = entries.layout || 'auto';
+		} catch (e) {
+			console.error(e);
+		}
 	});
 </script>
 
@@ -33,7 +38,7 @@
 		/>
 
 		<div class="datawrapper-chart-container">
-			{#each ids as id, index}
+			{#each ids as id, index (id)}
 				<div
 					class="datawrapper-chart"
 					class:datawrapper-chart-active={index === activeIndex}
