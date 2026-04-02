@@ -25,32 +25,10 @@
 	<body>
 		<div data-lab-components-embed="datawrapper-switcher"></div>
 		<script type="module">
-			import mountEmbed from '/src/lib/utils/mountEmbed';
+			import mountEmbeds from '/src/lib/utils/mountEmbeds';
 			import Embed from '/src/components/datawrapper-switcher/embed.svelte';
 
-			if (window.__mountDatawrapperSwitcher) {
-				console.warn(
-					'Datawrapper Switcher mount function already registered, skipping redefinition'
-				);
-			} else {
-				window.__mountDatawrapperSwitcher = () => {
-					const targets = document.querySelectorAll(
-						'[data-lab-components-embed="datawrapper-switcher"]'
-					);
-					console.log('Mounting Datawrapper Switcher components on', targets);
-					targets.forEach((t) => {
-						console.log('Mounting individual Datawrapper Switcher on', t);
-						mountEmbed(t, Embed);
-					});
-				};
-
-				document.addEventListener('popstate', () => {
-					console.log('Popstate event detected, remounting Datawrapper Switcher');
-					window.__mountDatawrapperSwitcher();
-				});
-				console.log('Module loaded, mounting Datawrapper Switcher immediately');
-				window.__mountDatawrapperSwitcher();
-			}
+			mountEmbeds(Embed, '[data-lab-components-embed="datawrapper-switcher"]');
 		</script>
 	</body>
 </html>
