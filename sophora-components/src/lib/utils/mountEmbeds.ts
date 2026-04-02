@@ -26,9 +26,9 @@ export default async function mountEmbeds(
 	// https://github.com/defunkt/jquery-pjax?tab=readme-ov-file#reinitializing-pluginswidget-on-new-page-content
 	if (window.$) {
 		$(document).on('pjax:end', () => {
-			let pollCount = 0;
 			const maxPolls = 10;
-			const pollDelay = 200; // ms
+			const pollDelay = 300; // ms
+			let pollCount = 0;
 
 			// Delay to ensure new DOM is ready for mounting.
 			// PJAX triggers 'pjax:end' before the mounting targets are actually available in the DOM.
@@ -37,10 +37,8 @@ export default async function mountEmbeds(
 				if (embedTargets.length > 0) {
 					_mountEmbeds(embedTargets);
 					window.clearInterval(interval);
-					console.log(`Mounting embeds succeeded after ${pollCount} polls.`);
 				} else if (++pollCount >= maxPolls) {
 					window.clearInterval(interval);
-					console.log(`Mounting embeds failed: targets not found after ${maxPolls} attempts.`);
 				}
 			}, pollDelay);
 		});
