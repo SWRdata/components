@@ -13,24 +13,22 @@ export default async function mountEmbeds(
 ): Promise<void> {
 	const _mountEmbeds = () =>
 		(() => {
-			console.log(
-				`Mounting components for selector: ${targetSelector}`,
-				document.querySelectorAll(targetSelector)
-			);
-			document.querySelectorAll(targetSelector).forEach((target) => {
-				console.log(`Mounting individual component on target:`, target);
+			const embedTargets = document.querySelectorAll(targetSelector);
+			embedTargets.forEach((target) => {
 				mount(Component, { target });
 			});
 		})();
 
-	// Mount the components on initial load
-	console.log('Mounting Datawrapper Switcher on initial load');
+	// Mount the embeds on initial page load
 	_mountEmbeds();
 
-	// Listen for PJAX navigation events to remount the component if needed
+	// SWR.dev uses PJAX and jQuery for client-side navigation, which replaces page content without a full reload.
+	// This means we need to re-mount the Svelte components after PJAX updates the DOM during client-side navigation.
+	// https://github.com/defunkt/jquery-pjax?tab=readme-ov-file#reinitializing-pluginswidget-on-new-page-content
 	if (window.$) {
 		$(document).on('pjax:end', () => {
-			// Delay to ensure new DOM is ready before attempting to mount
+			// Delay to ensure new DOM is ready for mounting.
+			// PJAX triggers 'pjax:end' before the mounting targets are actually available in the DOM.
 			setTimeout(() => _mountEmbeds(), 500);
 		});
 	}
