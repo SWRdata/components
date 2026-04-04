@@ -89,7 +89,9 @@
 
 	$effect(() => {
 		if (map && styleLoaded) {
-			beforeId ? map.addLayer(layerSpec, beforeId) : map.addLayer(layerSpec);
+			window.setTimeout(() => {
+				beforeId ? map.addLayer(layerSpec, beforeId) : map.addLayer(layerSpec);
+			}, 2000);
 		}
 	});
 

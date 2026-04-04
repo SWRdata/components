@@ -31,6 +31,10 @@
 		attribution: attribution || tileJsonData.attribution || '',
 		promoteId
 	});
+
+	$effect(() => {
+		console.log(sourceSpec);
+	});
 </script>
 
 <MapSource {id} {sourceSpec} />
