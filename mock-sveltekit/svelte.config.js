@@ -11,7 +11,10 @@ const config = {
 		adapter: adapter()
 	},
 	compilerOptions: {
-		customElement: !process.argv.includes('dev')
+		customElement: !process.argv.includes('dev'),
+		experimental: {
+			async: true
+		}
 	}
 };
 

@@ -17,7 +17,6 @@
 	let firstRun = $state(true);
 
 	$effect(() => {
-		console.log('source effect');
 		ctx.waitForStyleLoaded(() => {
 			ctx.addSource(id, sourceSpec);
 		});

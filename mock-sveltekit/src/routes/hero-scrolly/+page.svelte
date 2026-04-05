@@ -1,7 +1,7 @@
 <script>
+	import { Copy } from '../../../../components/src';
 	import HeroScrolly from '$lib/HeroScrolly.svelte';
 	import { dev } from '$app/environment';
-	import { Copy } from '@swr-data-lab/components';
 	import DevContainer from '$lib/components/DevContainer.svelte';
 </script>
 

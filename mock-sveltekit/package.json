@@ -11,9 +11,6 @@
 		"lint": "prettier --check .",
 		"format": "prettier --write ."
 	},
-	"dependencies": {
-		"@swr-data-lab/components": "1.0.6"
-	},
 	"devDependencies": {
 		"@rollup/plugin-dsv": "3.0.5",
 		"@sveltejs/adapter-static": "3.0.10",

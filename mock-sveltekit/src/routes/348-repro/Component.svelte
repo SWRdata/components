@@ -1,9 +1,7 @@
 <svelte:options customElement="p139-map-test" />
 
 <script lang="ts">
-	import Map from '../../../../src/maplibre/Map/Map.svelte';
-	import VectorTileSource from '../../../../src/maplibre/VectorTileSource/VectorTileSource.svelte';
-	import VectorLayer from '../../../../src/maplibre/VectorLayer/VectorLayer.svelte';
+	import { VectorTileSource, Map, VectorLayer } from '../../../../components/src';
 </script>
 
 <div class="container">
@@ -14,6 +12,7 @@
 			tiles={[
 				'https://static.datenhub.net/data/boundaries/admin_boundaries_2025-01-01.versatiles?{z}/{x}/{y}'
 			]}
+			maxZoom={8}
 		>
 			<VectorLayer
 				type="line"
