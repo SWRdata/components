@@ -1,7 +1,7 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
-	import { shades } from '../../DesignTokens/Tokens.ts';
+	import { shades } from '../../DesignTokens/Tokens';
 
 	import VectorTileSource from './VectorTileSource.svelte';
 	import VectorLayer from '../VectorLayer/VectorLayer.svelte';

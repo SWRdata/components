@@ -1,38 +1,28 @@
 <script lang="ts">
 	import {
 		type AddLayerObject,
-		type CircleLayoutProps,
-		type CirclePaintProps,
-		type FillLayoutProps,
-		type FillPaintProps,
-		type LineLayoutProps,
-		type SymbolPaintProps,
-		type SymbolLayoutProps,
-		type LinePaintProps,
 		type MapGeoJSONFeature,
 		type MapLayerMouseEvent,
 		type FilterSpecification
 	} from 'maplibre-gl';
 
 	import { getMapContext } from '../context.svelte.js';
-	import { onDestroy } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { resetLayerEventListener } from '../utils.js';
 
-	interface VectorLayerProps {
+	interface VectorLayerProps extends Omit<
+		maplibregl.LayerSpecification,
+		'id' | 'source' | 'source-layer'
+	> {
 		id: string;
 		sourceId: string;
 		sourceLayer?: string;
-		/**
-		 * Maplibre [filter expression](https://maplibre.org/maplibre-style-spec/layers/#filter)
-		 */
 		filter?: FilterSpecification;
 		type: 'line' | 'fill' | 'circle' | 'symbol';
 		placeBelow?: string;
 		visible?: boolean;
 		minZoom?: number;
 		maxZoom?: number;
-		paint?: LinePaintProps | FillPaintProps | CirclePaintProps | SymbolPaintProps;
-		layout?: LineLayoutProps | FillLayoutProps | CircleLayoutProps | SymbolLayoutProps;
 		hovered?: MapGeoJSONFeature | undefined;
 		selected?: MapGeoJSONFeature | undefined;
 
@@ -58,107 +48,96 @@
 		onmouseleave
 	}: VectorLayerProps = $props();
 
-	const { map, styleLoaded } = $derived(getMapContext());
+	const ctx = getMapContext();
 
 	let beforeId: string | undefined = $state();
 	let prevSelected: string | number | undefined = $state();
 	let prevHovered: string | number | undefined = $state();
 
-	const layerSpec = {
+	const layerSpec = $derived({
 		id,
 		type,
-		...(filter ? { filter } : {}),
 		source: sourceId,
 		'source-layer': sourceLayer || '',
-		layout: $state.snapshot(layout) ?? {},
-		paint: $state.snapshot(paint) ?? {},
+		...(filter ? { filter } : {}),
+		layout: layout ?? {},
+		paint: paint ?? {},
 		minzoom: minZoom,
 		maxzoom: maxZoom
-	} as AddLayerObject;
+	}) as AddLayerObject;
 
 	$effect(() => {
-		if (map && styleLoaded) {
-			const style = map.getStyle();
-			beforeId = placeBelow
-				? style.layers.find((l) => {
-						return l.id === placeBelow;
-					})?.id
-				: undefined;
-		}
-	});
+		console.log('layer effect');
 
-	$effect(() => {
-		if (map && styleLoaded) {
-			window.setTimeout(() => {
-				beforeId ? map.addLayer(layerSpec, beforeId) : map.addLayer(layerSpec);
-			}, 2000);
-		}
+		ctx.waitForStyleLoaded((m) => {
+			ctx.addLayer(layerSpec, placeBelow);
+		});
 	});
 
 	// Make filter reactive
 	$effect(() => {
-		if (styleLoaded && filter) {
-			map?.setFilter(id, filter);
+		if (ctx.map && ctx.styleLoaded && filter) {
+			ctx.map.setFilter(id, filter);
 		}
 	});
 
-	$effect(() => resetLayerEventListener(map, 'click', id, onclick));
-	$effect(() => resetLayerEventListener(map, 'mousemove', id, onmousemove));
-	$effect(() => resetLayerEventListener(map, 'mouseleave', id, onmouseleave));
+	// $effect(() => resetLayerEventListener(map, 'click', id, onclick));
+	// $effect(() => resetLayerEventListener(map, 'mousemove', id, onmousemove));
+	// $effect(() => resetLayerEventListener(map, 'mouseleave', id, onmouseleave));
 
-	// Set hovered feature state
-	$effect(() => {
-		if (styleLoaded) {
-			if (hovered) {
-				if (prevHovered || prevHovered === 0) {
-					map?.setFeatureState(
-						{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
-						{ hovered: false }
-					);
-				}
-				map?.setFeatureState(
-					{ source: sourceId, sourceLayer: sourceLayer, id: hovered.id },
-					{ hovered: true }
-				);
-				prevHovered = hovered.id;
-			} else {
-				if (prevHovered || prevHovered === 0) {
-					map?.setFeatureState(
-						{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
-						{ hovered: false }
-					);
-				}
-			}
-		}
-	});
+	// // Set hovered feature state
+	// $effect(() => {
+	// 	if (styleLoaded) {
+	// 		if (hovered) {
+	// 			if (prevHovered || prevHovered === 0) {
+	// 				map?.setFeatureState(
+	// 					{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
+	// 					{ hovered: false }
+	// 				);
+	// 			}
+	// 			map?.setFeatureState(
+	// 				{ source: sourceId, sourceLayer: sourceLayer, id: hovered.id },
+	// 				{ hovered: true }
+	// 			);
+	// 			prevHovered = hovered.id;
+	// 		} else {
+	// 			if (prevHovered || prevHovered === 0) {
+	// 				map?.setFeatureState(
+	// 					{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
+	// 					{ hovered: false }
+	// 				);
+	// 			}
+	// 		}
+	// 	}
+	// });
 
-	// Set selected feature state
-	$effect(() => {
-		if (styleLoaded) {
-			if (selected) {
-				if (prevSelected || prevSelected === 0) {
-					map?.setFeatureState(
-						{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
-						{ selected: false }
-					);
-				}
-				map?.setFeatureState(
-					{ source: sourceId, sourceLayer: sourceLayer, id: selected.id },
-					{ selected: true }
-				);
-				prevSelected = selected.id;
-			} else {
-				if (prevSelected || prevSelected === 0) {
-					map?.setFeatureState(
-						{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
-						{ selected: false }
-					);
-				}
-			}
-		}
-	});
+	// // Set selected feature state
+	// $effect(() => {
+	// 	if (styleLoaded) {
+	// 		if (selected) {
+	// 			if (prevSelected || prevSelected === 0) {
+	// 				map?.setFeatureState(
+	// 					{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
+	// 					{ selected: false }
+	// 				);
+	// 			}
+	// 			map?.setFeatureState(
+	// 				{ source: sourceId, sourceLayer: sourceLayer, id: selected.id },
+	// 				{ selected: true }
+	// 			);
+	// 			prevSelected = selected.id;
+	// 		} else {
+	// 			if (prevSelected || prevSelected === 0) {
+	// 				map?.setFeatureState(
+	// 					{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
+	// 					{ selected: false }
+	// 				);
+	// 			}
+	// 		}
+	// 	}
+	// });
 
 	onDestroy(() => {
-		if (map && map.getLayer(id)) map.removeLayer(id);
+		if (ctx.map && ctx.map.getLayer(id)) ctx.map.removeLayer(id);
 	});
 </script>

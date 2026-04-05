@@ -14,16 +14,16 @@
 			tiles={[
 				'https://static.datenhub.net/data/boundaries/admin_boundaries_2025-01-01.versatiles?{z}/{x}/{y}'
 			]}
-		></VectorTileSource>
-
-		<VectorLayer
-			type="line"
-			sourceLayer="administrative"
-			sourceId="admin_boundaries"
-			id="boundaries-outline"
-			filter={['==', 'admin_level', 6]}
-			paint={{ 'line-color': 'red', 'line-width': 0.5 }}
-		/>
+		>
+			<VectorLayer
+				type="line"
+				sourceLayer="administrative"
+				sourceId="admin_boundaries"
+				id="boundaries-outline"
+				filter={['==', 'admin_level', 6]}
+				paint={{ 'line-color': 'red', 'line-width': 0.5 }}
+			/>
+		</VectorTileSource>
 	</Map>
 </div>
 
