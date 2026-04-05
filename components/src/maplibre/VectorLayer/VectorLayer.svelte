@@ -7,7 +7,7 @@
 	} from 'maplibre-gl';
 
 	import { getMapContext } from '../context.svelte.js';
-	import { onDestroy, onMount } from 'svelte';
+	import { onDestroy } from 'svelte';
 	import { resetLayerEventListener } from '../utils.js';
 
 	interface VectorLayerProps extends Omit<
@@ -81,61 +81,61 @@
 		}
 	});
 
-	// $effect(() => resetLayerEventListener(map, 'click', id, onclick));
-	// $effect(() => resetLayerEventListener(map, 'mousemove', id, onmousemove));
-	// $effect(() => resetLayerEventListener(map, 'mouseleave', id, onmouseleave));
+	$effect(() => resetLayerEventListener(ctx.map, 'click', id, onclick));
+	$effect(() => resetLayerEventListener(ctx.map, 'mousemove', id, onmousemove));
+	$effect(() => resetLayerEventListener(ctx.map, 'mouseleave', id, onmouseleave));
 
-	// // Set hovered feature state
-	// $effect(() => {
-	// 	if (styleLoaded) {
-	// 		if (hovered) {
-	// 			if (prevHovered || prevHovered === 0) {
-	// 				map?.setFeatureState(
-	// 					{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
-	// 					{ hovered: false }
-	// 				);
-	// 			}
-	// 			map?.setFeatureState(
-	// 				{ source: sourceId, sourceLayer: sourceLayer, id: hovered.id },
-	// 				{ hovered: true }
-	// 			);
-	// 			prevHovered = hovered.id;
-	// 		} else {
-	// 			if (prevHovered || prevHovered === 0) {
-	// 				map?.setFeatureState(
-	// 					{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
-	// 					{ hovered: false }
-	// 				);
-	// 			}
-	// 		}
-	// 	}
-	// });
+	// Set hovered feature state
+	$effect(() => {
+		if (ctx.styleLoaded) {
+			if (hovered) {
+				if (prevHovered || prevHovered === 0) {
+					ctx.map?.setFeatureState(
+						{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
+						{ hovered: false }
+					);
+				}
+				ctx.map?.setFeatureState(
+					{ source: sourceId, sourceLayer: sourceLayer, id: hovered.id },
+					{ hovered: true }
+				);
+				prevHovered = hovered.id;
+			} else {
+				if (prevHovered || prevHovered === 0) {
+					ctx.map?.setFeatureState(
+						{ source: sourceId, sourceLayer: sourceLayer, id: prevHovered },
+						{ hovered: false }
+					);
+				}
+			}
+		}
+	});
 
-	// // Set selected feature state
-	// $effect(() => {
-	// 	if (styleLoaded) {
-	// 		if (selected) {
-	// 			if (prevSelected || prevSelected === 0) {
-	// 				map?.setFeatureState(
-	// 					{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
-	// 					{ selected: false }
-	// 				);
-	// 			}
-	// 			map?.setFeatureState(
-	// 				{ source: sourceId, sourceLayer: sourceLayer, id: selected.id },
-	// 				{ selected: true }
-	// 			);
-	// 			prevSelected = selected.id;
-	// 		} else {
-	// 			if (prevSelected || prevSelected === 0) {
-	// 				map?.setFeatureState(
-	// 					{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
-	// 					{ selected: false }
-	// 				);
-	// 			}
-	// 		}
-	// 	}
-	// });
+	// Set selected feature state
+	$effect(() => {
+		if (ctx.styleLoaded) {
+			if (selected) {
+				if (prevSelected || prevSelected === 0) {
+					ctx.map?.setFeatureState(
+						{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
+						{ selected: false }
+					);
+				}
+				ctx.map?.setFeatureState(
+					{ source: sourceId, sourceLayer: sourceLayer, id: selected.id },
+					{ selected: true }
+				);
+				prevSelected = selected.id;
+			} else {
+				if (prevSelected || prevSelected === 0) {
+					ctx.map?.setFeatureState(
+						{ source: sourceId, sourceLayer: sourceLayer, id: prevSelected },
+						{ selected: false }
+					);
+				}
+			}
+		}
+	});
 
 	onDestroy(() => {
 		if (ctx.map && ctx.map.getLayer(id)) ctx.map.removeLayer(id);
