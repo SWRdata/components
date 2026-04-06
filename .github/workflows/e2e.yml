@@ -17,16 +17,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    defaults:
-      run:
-        working-directory: ./mock-sveltekit
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: lts/*
-      - run: npm ci
-      - run: npx playwright install --with-deps
-      - run: npm run sync
-      - run: npm run build
-      - run: npx playwright test
+      - run: npm ci --workspace=mock-sveltekit
+      - run: npm run sync --workspace=components
+      - run: npm run sync --workspace=mock-sveltekit
+      - run: npm run build --workspace=mock-sveltekit
+      - run: npx playwright install --with-deps --workspace=mock-sveltekit
+      - run: npx playwright test --workspace=mock-sveltekit
