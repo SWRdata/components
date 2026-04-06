@@ -13,8 +13,8 @@ Svelte/kit component library for [SWR Data Lab](https://www.swr.de/home/swr-data
 
 ### Project structure
 
-1. `/components`: Central repository for components, utility scripts, and other reusable assets. We use [Storybook](https://storybook.js.org/) for previewing and component-level testing.
-2. `/mock-sveltekit`: Sample [SvelteKit](https://kit.svelte.dev/) application used to test our components and develop the configuration needed to build our applications for SWR.de, the SWR Aktuell native app and wherever else they need to go.
+1. `/components`: Central repository for components, utility scripts, and other reusable assets. We use [Storybook](https://storybook.js.org/) for previewing and component testing.
+2. `/mock-sveltekit`: Sample [SvelteKit](https://kit.svelte.dev/) application for e2e testing and developing the configuration needed to deploy our apps to SWR.de and the SWR Aktuell native app.
 3. `/mock-sophora`: Testing environment designed to mimic the SWR.de environment, featuring [`defunkt/jquery-pjax`](https://github.com/defunkt/jquery-pjax) navigation, global styles and server-side includes.
 4. `/sophora-components`: Experimental components that are intended to be used directly within SWR.de articles and pages via the "Datenjournalismus" module in the Sophora CMS.
 

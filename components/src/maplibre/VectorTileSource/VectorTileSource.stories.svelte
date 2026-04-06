@@ -25,17 +25,18 @@
 	<DesignTokens theme="light">
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
-				<VectorTileSource id="test-source" url="https://tiles.datenhub.net/tiles/osm/tiles.json" />
-				<VectorLayer
-					sourceId="test-source"
-					sourceLayer="boundaries"
-					id="test-layer"
-					type="line"
-					paint={{
-						'line-color': shades.red.base,
-						'line-width': 2
-					}}
-				/>
+				<VectorTileSource id="test-source" url="https://tiles.datenhub.net/tiles/osm/tiles.json">
+					<VectorLayer
+						sourceId="test-source"
+						sourceLayer="boundaries"
+						id="test-layer"
+						type="line"
+						paint={{
+							'line-color': shades.red.base,
+							'line-width': 2
+						}}
+					/>
+				</VectorTileSource>
 				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>
@@ -46,17 +47,18 @@
 	<DesignTokens theme="light">
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
-				<VectorTileSource id="test-source" url="https://demotiles.maplibre.org/tiles/tiles.json" />
-				<VectorLayer
-					sourceId="test-source"
-					sourceLayer="countries"
-					id="test-layer"
-					type="line"
-					paint={{
-						'line-color': shades.red.base,
-						'line-width': 2
-					}}
-				/>
+				<VectorTileSource id="test-source" url="https://demotiles.maplibre.org/tiles/tiles.json">
+					<VectorLayer
+						sourceId="test-source"
+						sourceLayer="countries"
+						id="test-layer"
+						type="line"
+						paint={{
+							'line-color': shades.red.base,
+							'line-width': 2
+						}}
+					/>
+				</VectorTileSource>
 				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>
@@ -73,17 +75,18 @@
 						`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`
 					]}
 					attribution="Demo attribution"
-				/>
-				<VectorLayer
-					sourceId="ev-infra-source"
-					sourceLayer="coverage"
-					id="ev-infra-outline"
-					type="line"
-					paint={{
-						'line-width': 1,
-						'line-color': shades.red.base
-					}}
-				/>
+				>
+					<VectorLayer
+						sourceId="ev-infra-source"
+						sourceLayer="coverage"
+						id="ev-infra-outline"
+						type="line"
+						paint={{
+							'line-width': 1,
+							'line-color': shades.red.base
+						}}
+					/>
+				</VectorTileSource>
 				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>
@@ -100,30 +103,29 @@
 		</select>
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
-				<VectorTileSource id="test-source" url={demoUrl} />
+				<VectorTileSource id="test-source" url={demoUrl}>
+					<VectorLayer
+						sourceId="test-source"
+						sourceLayer="countries"
+						id="test-layer"
+						type="line"
+						paint={{
+							'line-color': shades.red.base,
+							'line-width': 2
+						}}
+					/>
 
-				<VectorLayer
-					sourceId="test-source"
-					sourceLayer="countries"
-					id="test-layer"
-					type="line"
-					paint={{
-						'line-color': shades.red.base,
-						'line-width': 2
-					}}
-				/>
-
-				<VectorLayer
-					sourceId="test-source"
-					sourceLayer="boundaries"
-					id="test-layer-2"
-					type="line"
-					paint={{
-						'line-color': shades.forest.base,
-						'line-width': 2
-					}}
-				/>
-
+					<VectorLayer
+						sourceId="test-source"
+						sourceLayer="boundaries"
+						id="test-layer-2"
+						type="line"
+						paint={{
+							'line-color': shades.forest.base,
+							'line-width': 2
+						}}
+					/>
+				</VectorTileSource>
 				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>
