@@ -21,7 +21,7 @@ export default defineConfig({
 	],
 	webServer: {
 		command: 'npm run preview',
-		reuseExistingServer: !process.env.CI,
+		reuseExistingServer: false,
 		url: 'http://localhost:4173'
 	}
 });

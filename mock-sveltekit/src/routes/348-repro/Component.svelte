@@ -2,10 +2,20 @@
 
 <script lang="ts">
 	import { VectorTileSource, Map, VectorLayer } from '../../../../components/src';
+	let mapContext = $state();
+	let status = $state();
+
+	$effect(() => {
+		if (mapContext) {
+			mapContext.map.on('load', () => {
+				status = 'loaded';
+			});
+		}
+	});
 </script>
 
 <div class="container">
-	<Map>
+	<Map bind:mapContext>
 		<VectorTileSource
 			id="admin_boundaries"
 			promoteId="ars"
@@ -24,6 +34,7 @@
 			/>
 		</VectorTileSource>
 	</Map>
+	<p class="status">{status}</p>
 </div>
 
 <style lang="scss">

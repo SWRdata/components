@@ -28,4 +28,4 @@ jobs:
       - run: npm run sync --workspace=mock-sveltekit
       - run: npm run build --workspace=mock-sveltekit
       - run: npx playwright install --with-deps chromium
-      - run: cd mock-sveltekit && npx playwright test
+      - run: cd mock-sveltekit && npm run test

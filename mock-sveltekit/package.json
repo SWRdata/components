@@ -11,7 +11,7 @@
 		"lint": "prettier --check .",
 		"format": "prettier --write .",
 		"sync": "svelte-kit sync",
-		"test": "npx playwright test"
+		"test": "npm run build && npx playwright test"
 	},
 	"dependencies": {
 		"@maplibre/maplibre-gl-geocoder": "1.9.1",
