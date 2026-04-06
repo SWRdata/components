@@ -27,5 +27,5 @@ jobs:
       - run: npm ci --workspace=mock-sveltekit
       - run: npm run sync --workspace=mock-sveltekit
       - run: npm run build --workspace=mock-sveltekit
-      - run: npx playwright install --with-deps --workspace=mock-sveltekit
+      - run: npx playwright install --with-deps
       - run: npx playwright test --workspace=mock-sveltekit
