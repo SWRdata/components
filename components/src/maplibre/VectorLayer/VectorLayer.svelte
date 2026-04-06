@@ -67,8 +67,6 @@
 	}) as AddLayerObject;
 
 	$effect(() => {
-		console.log('layer effect');
-
 		ctx.waitForStyleLoaded((m) => {
 			ctx.addLayer(layerSpec, placeBelow);
 		});

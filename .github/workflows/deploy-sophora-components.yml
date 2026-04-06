@@ -1,4 +1,4 @@
-name: 'Deploy sophora-components'
+name: 'deploy sophora-components'
 on:
   workflow_dispatch:
   push:

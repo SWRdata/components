@@ -1,4 +1,4 @@
-name: 'Build and deploy map icons'
+name: 'deploy map icons'
 on:
   workflow_dispatch:
   push:

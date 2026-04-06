@@ -1,4 +1,4 @@
-name: 'Run Storybook Tests'
+name: component tests
 on:
   workflow_dispatch:
   push:
