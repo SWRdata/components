@@ -2,7 +2,7 @@
 
 Svelte/kit component library for [SWR Data Lab](https://www.swr.de/home/swr-data-lab-team-100.html) charts and interactives.
 
-[![Package version](https://img.shields.io/npm/v/%40swr-data-lab%2Fcomponents)](https://www.npmjs.com/package/@swr-data-lab/components) [![Deploy Storybook](https://github.com/SWRdata/components/actions/workflows/deploy-storybook.yml/badge.svg)](https://github.com/SWRdata/components/actions/workflows/deploy-storybook.yml) [![Run Storybook Tests](https://github.com/SWRdata/components/actions/workflows/test-storybook.yml/badge.svg)](https://github.com/SWRdata/components/actions/workflows/test-storybook.yml) [![Release to NPM](https://github.com/SWRdata/components/actions/workflows/release.yml/badge.svg)](https://github.com/SWRdata/components/actions/workflows/release.yml)
+[![Package version](https://img.shields.io/npm/v/%40swr-data-lab%2Fcomponents)](https://www.npmjs.com/package/@swr-data-lab/components) [![deploy storybook](https://github.com/SWRdata/components/actions/workflows/deploy-storybook.yml/badge.svg)](https://github.com/SWRdata/components/actions/workflows/deploy-storybook.yml) [![component tests](https://github.com/SWRdata/components/actions/workflows/test-storybook.yml/badge.svg)](https://github.com/SWRdata/components/actions/workflows/test-storybook.yml) [![e2e tests](https://github.com/SWRdata/components/actions/workflows/e2e.yml/badge.svg)](https://github.com/SWRdata/components/actions/workflows/e2e.yml) [![release](https://github.com/SWRdata/components/actions/workflows/release.yml/badge.svg)](https://github.com/SWRdata/components/actions/workflows/release.yml)
 
 ## Usage
 
