@@ -8,7 +8,7 @@
 
 	import { type Location } from '../types';
 
-	import { onMount, onDestroy, type Snippet, getContext, hasContext } from 'svelte';
+	import { onMount, onDestroy, type Snippet, getContext } from 'svelte';
 
 	import { createMapContext, MapContext } from '../context.svelte.js';
 	import FallbackStyle from './FallbackStyle';
@@ -21,7 +21,7 @@
 		 */
 		initialBounds?: LngLatBoundsLike;
 		maxBounds?: LngLatBoundsLike;
-		initialLocation?: Location;
+		initialLocation?: Partial<Location>;
 		allowPan?: boolean;
 		allowRotation?: boolean;
 		allowZoom?: boolean;
@@ -85,7 +85,7 @@
 	// 2. initialLocation prop
 	// 3. initialLocation context (notably set by <WithLinkLocation/>)
 
-	let contextLocation = getContext('initialLocation');
+	let contextLocation: Location = getContext('initialLocation');
 
 	let initialLocation = $derived({
 		lat: 51.3,
