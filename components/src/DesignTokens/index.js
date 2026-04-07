@@ -1,9 +1,10 @@
 import DesignTokens from './DesignTokens.svelte';
-import { shades, scales } from './Tokens';
+import { shades, scales, semantics } from './Tokens';
 
 const tokens = {
 	shades,
-	scales
+	scales,
+	semantics
 };
 
 export { DesignTokens, tokens };
