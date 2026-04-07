@@ -1,0 +1,31 @@
+name: e2e tests
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'components/**'
+      - 'mock-sveltekit/**'
+    branches:
+      - main
+  pull_request:
+    paths:
+      - 'components/**'
+      - 'mock-sveltekit/**'
+    types: [opened, synchronize]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: lts/*
+      - run: npm ci --workspace=components --include=dev
+      - run: npm run sync --workspace=components
+      - run: npm ci --workspace=mock-sveltekit
+      - run: npm run sync --workspace=mock-sveltekit
+      - run: npm run build --workspace=mock-sveltekit
+      - run: npx playwright install --with-deps chromium
+      - run: cd mock-sveltekit && npx playwright test

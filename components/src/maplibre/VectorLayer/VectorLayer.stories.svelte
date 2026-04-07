@@ -1,4 +1,6 @@
 <script module lang="ts">
+	import type { GeoJSON } from 'geojson';
+
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Map from '../Map/Map.svelte';
 	import VectorLayer from './VectorLayer.svelte';
@@ -7,7 +9,6 @@
 	import VectorTileSource from '../VectorTileSource/VectorTileSource.svelte';
 	import GeoJsonSource from '../GeoJSONSource/GeoJSONSource.svelte';
 	import SamplePoints from './sample-points.json';
-	import type { GeoJSON } from 'geojson';
 
 	import { SWRDataLabLight } from '../MapStyle';
 	import type { FilterSpecification } from 'maplibre-gl';
@@ -43,48 +44,49 @@
 					tiles={[
 						`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`
 					]}
-				/>
-				<VectorLayer
-					onmousemove={handleMouseMove}
-					onmouseleave={handleMouseLeave}
-					sourceId="ev-infra-source"
-					sourceLayer="coverage"
-					type="fill"
-					id="coverage-fill"
-					placeBelow="street-residential"
-					paint={{
-						'fill-color': [
-							'step',
-							['get', 'coverage_2025'],
-							'white',
-							1,
-							'lightgray',
-							1.3,
-							'lightgreen'
-						]
-					}}
-				/>
-				<VectorLayer
-					bind:hovered
-					sourceId="ev-infra-source"
-					sourceLayer="coverage"
-					id="ev-infra-outline"
-					type="line"
-					paint={{
-						'line-width': [
-							'case',
-							[
-								'any',
-								['boolean', ['feature-state', 'hovered'], false],
-								['boolean', ['feature-state', 'selected'], false]
+				>
+					<VectorLayer
+						onmousemove={handleMouseMove}
+						onmouseleave={handleMouseLeave}
+						sourceId="ev-infra-source"
+						sourceLayer="coverage"
+						type="fill"
+						id="coverage-fill"
+						placeBelow="street-residential"
+						paint={{
+							'fill-color': [
+								'step',
+								['get', 'coverage_2025'],
+								'white',
+								1,
+								'lightgray',
+								1.3,
+								'lightgreen'
+							]
+						}}
+					/>
+					<VectorLayer
+						bind:hovered
+						sourceId="ev-infra-source"
+						sourceLayer="coverage"
+						id="ev-infra-outline"
+						type="line"
+						paint={{
+							'line-width': [
+								'case',
+								[
+									'any',
+									['boolean', ['feature-state', 'hovered'], false],
+									['boolean', ['feature-state', 'selected'], false]
+								],
+								2,
+								0.5
 							],
-							2,
-							0.5
-						],
-						'line-color': 'purple',
-						'line-opacity': 1
-					}}
-				/>
+							'line-color': 'purple',
+							'line-opacity': 1
+						}}
+					/>
+				</VectorTileSource>
 				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>
@@ -150,17 +152,18 @@
 					tiles={[
 						`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`
 					]}
-				/>
-				<VectorLayer
-					sourceId="ev-infra-source"
-					sourceLayer="coverage"
-					type="fill"
-					id="coverage-fill"
-					filter={filters[selectedFilter]}
-					paint={{
-						'fill-color': tokens.shades.forest.base
-					}}
-				/>
+				>
+					<VectorLayer
+						sourceId="ev-infra-source"
+						sourceLayer="coverage"
+						type="fill"
+						id="coverage-fill"
+						filter={filters[selectedFilter]}
+						paint={{
+							'fill-color': tokens.shades.forest.base
+						}}
+					/>
+				</VectorTileSource>
 				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>

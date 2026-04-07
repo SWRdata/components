@@ -1,4 +1,11 @@
-import type { Map as MapLibre, Marker, LayerSpecification } from 'maplibre-gl';
+import type {
+	Map as MapLibre,
+	Marker,
+	LayerSpecification,
+	AddLayerObject,
+	SourceSpecification
+} from 'maplibre-gl';
+
 import { getContext, setContext } from 'svelte';
 
 const MAP_CONTEXT_KEY = Symbol.for('map-context');
@@ -19,6 +26,7 @@ export class MapContext {
 	minzoom = $state(0);
 	maxzoom = $state(24);
 	styleLoaded = $state(false);
+	private _pending: ((map: maplibregl.Map) => void)[] = [];
 	private _listener?: maplibregl.Listener = undefined;
 
 	get map() {
@@ -39,8 +47,47 @@ export class MapContext {
 		}
 	}
 
+	waitForStyleLoaded(fn: (map: maplibregl.Map) => void) {
+		if (!this.map) return;
+		this.map.style._loaded ? fn(this.map) : this._pending.push(fn);
+	}
+
+	addSource(id: string, spec: SourceSpecification) {
+		if (!this.map) throw new Error('map not initialized');
+		this.map.addSource(id, spec);
+	}
+
+	addLayer(spec: AddLayerObject, placeBelow: string | undefined) {
+		if (!this.map) throw new Error('map not initialized');
+
+		const style = this.map.getStyle();
+		const beforeId = placeBelow
+			? style.layers.find((l) => {
+					return l.id === placeBelow;
+				})?.id
+			: undefined;
+
+		beforeId ? this.map.addLayer(spec, beforeId) : this.map.addLayer(spec);
+	}
+
+	removeSource(id: string) {
+		if (!this.map) throw new Error('map not initialized');
+		const layers = this.map?.getStyle().layers;
+		layers
+			.filter((l) => l.type !== 'background' && l.source == id)
+			.forEach((l) => {
+				this.map?.removeLayer(l.id);
+			});
+
+		this.map.removeSource(id);
+	}
+
 	private _onstyledata(e: maplibregl.MapStyleDataEvent) {
 		this.styleLoaded = true;
+		this._pending.forEach((fn) => {
+			fn(e.target);
+		});
+		this._pending = [];
 	}
 }
 

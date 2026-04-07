@@ -1,70 +1,51 @@
 <script lang="ts">
-	import { onDestroy, type Snippet } from 'svelte';
+	import { onDestroy, onMount, type Snippet } from 'svelte';
 	import { type Map, type SourceSpecification } from 'maplibre-gl';
-	import { getMapContext, createSourceContext, SourceContext } from '../context.svelte.js';
-
-	type Source = maplibregl.VectorTileSource | maplibregl.GeoJSONSource;
+	import { getMapContext } from '../context.svelte.js';
 
 	interface MapSourceProps {
 		id: string;
+		source?: maplibregl.VectorTileSource | maplibregl.GeoJSONSource;
 		sourceSpec: SourceSpecification;
-		source?: Source;
 		onLoad?: (map: Map, url?: string, data?: string) => undefined;
 		children?: Snippet;
 	}
 
 	let { id, sourceSpec, source = $bindable(), children }: MapSourceProps = $props();
 
+	const ctx = getMapContext();
 	let firstRun = $state(true);
 
-	// Get map context
-	const { map, styleLoaded } = $derived(getMapContext());
-
-	// Create source context
-	const sourceContext = createSourceContext();
-
-	// 1. Add the source to the map using the spec, then get the
-	// actual source object back from the map instance
 	$effect(() => {
-		if (map && styleLoaded && firstRun) {
-			map.addSource(id, $state.snapshot(sourceSpec));
-			source = map.getSource(id);
-			firstRun = false;
+		ctx.waitForStyleLoaded(() => {
+			ctx.addSource(id, sourceSpec);
+		});
+		firstRun = false;
+	});
+
+	$effect(() => {
+		if (!firstRun && source && source.type === 'geojson') {
+			source.setData(sourceSpec.data);
 		}
 	});
 
 	$effect(() => {
-		if (source && sourceSpec.type === 'geojson') {
-			if (firstRun === false) {
-				source.setData(sourceSpec.data);
-			}
-		}
-	});
-
-	$effect(() => {
-		if (!firstRun && source.setTiles) {
+		if (!firstRun && source && source.type === 'vector') {
 			source.setTiles(sourceSpec.tiles);
 		}
 	});
 
 	$effect(() => {
-		if (!firstRun && source.setUrl) {
+		if (!firstRun && source) {
 			source.setUrl(sourceSpec.url);
 		}
 	});
 
 	onDestroy(() => {
-		if (map && styleLoaded) {
-			const layers = map?.getStyle().layers;
-			layers
-				.filter((l) => l.type !== 'background' && l.source == id)
-				.forEach((l) => {
-					map?.removeLayer(l.id);
-				});
-			map.removeSource(id);
-			source = undefined;
-		}
+		ctx.removeSource(id);
 	});
 </script>
 
-{@render children?.()}
+{#if !firstRun}
+	{@render children?.()}
+{/if}

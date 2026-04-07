@@ -7,5 +7,5 @@
 {#if dev}
 	<App />
 {:else}
-	<swrdata-element />
+	<swrdata-element></swrdata-element>
 {/if}

@@ -4,6 +4,7 @@
 
 	import MapSource from '../Source/MapSource.svelte';
 	import fetchTileJSON from './fetchTileJson';
+	import type { Snippet } from 'svelte';
 
 	interface VectorTileSourceProps {
 		id: string;
@@ -16,10 +17,19 @@
 		 */
 		attribution?: string;
 		promoteId?: PromoteIdSpecification;
+		children?: Snippet;
 	}
 
-	const { minZoom, maxZoom, id, url, tiles, attribution, promoteId }: VectorTileSourceProps =
-		$props();
+	const {
+		minZoom,
+		maxZoom,
+		id,
+		url,
+		tiles,
+		attribution,
+		promoteId,
+		children
+	}: VectorTileSourceProps = $props();
 
 	let tileJsonData = $derived(url ? await fetchTileJSON(url) : {});
 
@@ -33,4 +43,4 @@
 	});
 </script>
 
-<MapSource {id} {sourceSpec} />
+<MapSource {id} {sourceSpec} {children} />

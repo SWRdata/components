@@ -35,14 +35,14 @@ This example initialises a map using the SWRDataLabLight style, adds an addition
       <VectorTileSource
         id='ev-infra-source'
         url='https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}'>
+        <VectorLayer
+          sourceId='ev-infra-source'
+          sourceLayer='coverage'
+          id='ev-infra-outline'
+          type='line'
+          paint={{'line-width': 1, 'line-color': 'red'}}>
+        </VectorLayer>
       </VectorTileSource>
-      <VectorLayer
-        sourceId='ev-infra-source'
-        sourceLayer='coverage'
-        id='ev-infra-outline'
-        type='line'
-        paint={{'line-width': 1, 'line-color': 'red'}}>
-      </VectorLayer>
       <AttributionControl />
     </Map>
   </div>
