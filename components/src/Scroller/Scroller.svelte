@@ -1,4 +1,5 @@
 <script module lang="ts">
+	import { type Snippet } from 'svelte';
 	interface ScrollHandler {
 		(): void;
 	}
