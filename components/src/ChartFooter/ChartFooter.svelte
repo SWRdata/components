@@ -15,7 +15,7 @@
 
 <footer class={`container ${layout} align-${align}`}>
 	{#if children}
-		<Note>
+		<Note as="p">
 			{@render children()}
 		</Note>
 	{/if}
@@ -55,6 +55,12 @@
 		display: flex;
 		flex-flow: column;
 		align-items: flex-start;
+
+		&.align-left {
+			:global(p) {
+				max-width: 54em;
+			}
+		}
 		&.align-center {
 			align-items: center;
 			text-align: center;
