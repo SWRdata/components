@@ -105,7 +105,7 @@
 	}}
 >
 	<div>
-		<Scroller enableMouseEvents="background">
+		<Scroller interactive="background">
 			{#snippet background()}
 				<p>
 					This is the background content. It will stay fixed in place while the foreground scrolls

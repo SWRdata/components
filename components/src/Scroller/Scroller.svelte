@@ -171,7 +171,7 @@
 		/**
 		 * Whether background and/or foreground elements trigger mouse events
 		 */
-		enableMouseEvents?: 'background' | 'foreground' | 'all' | 'none';
+		interactive?: 'background' | 'foreground' | 'both' | 'none';
 	}
 
 	let {
@@ -182,7 +182,7 @@
 		threshold = 0.5,
 		query = 'section',
 		parallax = false,
-		enableMouseEvents = 'foreground',
+		interactive = 'foreground',
 		index = $bindable(0),
 		count = $bindable(0),
 		offset = $bindable(0),
@@ -296,7 +296,7 @@
 <svelte-scroller-outer bind:this={outerWrapper}>
 	<svelte-scroller-background-container
 		class="background-container"
-		style:pointer-events={['background', 'all'].includes(enableMouseEvents) ? 'all' : 'none'}
+		style:pointer-events={['background', 'both'].includes(interactive) ? 'all' : 'none'}
 	>
 		<svelte-scroller-background bind:this={backgroundWrapper} style={backgroundStyle}>
 			{@render background()}
@@ -305,7 +305,7 @@
 
 	<svelte-scroller-foreground
 		bind:this={foregroundWrapper}
-		style:pointer-events={['foreground', 'all'].includes(enableMouseEvents) ? 'all' : 'none'}
+		style:pointer-events={['foreground', 'both'].includes(interactive) ? 'all' : 'none'}
 	>
 		{@render foreground()}
 	</svelte-scroller-foreground>
