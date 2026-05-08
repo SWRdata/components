@@ -1,6 +1,6 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import { expect } from 'storybook/test';
+	import { expect, fn } from 'storybook/test';
 
 	import Scroller from './Scroller.svelte';
 
@@ -23,7 +23,7 @@
 <Story
 	name="Default"
 	asChild
-	play={async ({ step, canvasElement }) => {
+	play={async ({ step, canvasElement, userEvent }) => {
 		await step('Verify state values are set', async () => {
 			expect(index).toBeGreaterThanOrEqual(0);
 			expect(offset).toBeGreaterThanOrEqual(0);
@@ -74,6 +74,7 @@
 				<p><code>index</code> / {index}</p>
 				<p><code>offset</code> / {offset}</p>
 				<p><code>progress</code> / {progress}</p>
+				<button>I'm not clickable</button>
 			{/snippet}
 
 			{#snippet foreground()}
@@ -82,6 +83,40 @@
 				<section>This is the third section.</section>
 				<section>This is the fourth section.</section>
 				<section>This is the fifth section.</section>
+			{/snippet}
+		</Scroller>
+	</div>
+</Story>
+
+<Story
+	name="Enable background events"
+	asChild
+	play={async ({ step, canvasElement, userEvent }) => {
+		await step('Background button fires click event', async () => {
+			const handler = fn();
+			const button = canvasElement.querySelector('button');
+			expect(button).toBeDefined();
+			if (button) {
+				button.addEventListener('click', handler);
+				await userEvent.click(button);
+				expect(handler).toHaveBeenCalled();
+			}
+		});
+	}}
+>
+	<div>
+		<Scroller interactive="background">
+			{#snippet background()}
+				<p>
+					This is the background content. It will stay fixed in place while the foreground scrolls
+					over the top.
+				</p>
+				<button>I'm clickable</button>
+			{/snippet}
+
+			{#snippet foreground()}
+				<section>This is the first section.</section>
+				<section>This is the second section.</section>
 			{/snippet}
 		</Scroller>
 	</div>
