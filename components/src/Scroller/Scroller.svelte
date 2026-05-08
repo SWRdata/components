@@ -167,10 +167,14 @@
 		 * Whether the scroller is currently visible in the viewport (bindable)
 		 */
 		visible?: boolean;
+
+		/**
+		 * Whether background and/or foreground elements trigger mouse events
+		 */
+		enableMouseEvents?: 'background' | 'foreground' | 'all' | 'none';
 	}
 
 	let {
-		// Configuration props (read-only)
 		foreground = null,
 		background = null,
 		top = 0,
@@ -178,8 +182,7 @@
 		threshold = 0.5,
 		query = 'section',
 		parallax = false,
-
-		// Binding props (two-way binding)
+		enableMouseEvents = 'foreground',
 		index = $bindable(0),
 		count = $bindable(0),
 		offset = $bindable(0),
@@ -291,13 +294,19 @@
 <svelte:window bind:innerHeight={windowHeight} />
 
 <svelte-scroller-outer bind:this={outerWrapper}>
-	<svelte-scroller-background-container class="background-container">
+	<svelte-scroller-background-container
+		class="background-container"
+		style:pointer-events={['background', 'all'].includes(enableMouseEvents) ? 'all' : 'none'}
+	>
 		<svelte-scroller-background bind:this={backgroundWrapper} style={backgroundStyle}>
 			{@render background()}
 		</svelte-scroller-background>
 	</svelte-scroller-background-container>
 
-	<svelte-scroller-foreground bind:this={foregroundWrapper}>
+	<svelte-scroller-foreground
+		bind:this={foregroundWrapper}
+		style:pointer-events={['foreground', 'all'].includes(enableMouseEvents) ? 'all' : 'none'}
+	>
 		{@render foreground()}
 	</svelte-scroller-foreground>
 </svelte-scroller-outer>
@@ -334,7 +343,6 @@
 		width: 100%;
 		height: 100%;
 		max-width: 100%;
-		pointer-events: none;
 		will-change: transform;
 	}
 </style>
