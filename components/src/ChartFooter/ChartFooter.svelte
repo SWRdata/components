@@ -32,7 +32,7 @@
 
 	.container {
 		gap: 0.5rem;
-		:global(div) {
+		:global(p) {
 			width: 100%;
 		}
 	}
