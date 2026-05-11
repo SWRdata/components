@@ -5,6 +5,25 @@
 	import MapControl from '../MapControl/MapControl.svelte';
 	import { type GeocodingCountry, type GeocodingLanguage, type GeocodingService } from '../types';
 
+	type PlaceType =
+		| 'continental_marine'
+		| 'country'
+		| 'major_landform'
+		| 'region'
+		| 'subregion'
+		| 'county'
+		| 'joint_municipality'
+		| 'joint_submunicipality'
+		| 'municipality'
+		| 'municipal_district'
+		| 'locality'
+		| 'neighbourhood'
+		| 'place'
+		| 'postal_code'
+		| 'address'
+		| 'road'
+		| 'poi';
+
 	interface GeocoderControlProps {
 		service: GeocodingService;
 		/**
@@ -16,9 +35,13 @@
 		 */
 		limit?: number;
 		/**
-		 * Limit search to one or more countries
+		 * Limit search to one or more result type
 		 */
 		countries?: GeocodingCountry | GeocodingCountry[];
+		/**
+		 * Limit search to one or more countries
+		 */
+		types?: PlaceType | PlaceType[];
 		/**
 		 * Limit search to one or more languages. The UI is localised to the first language specified if [available](https://github.com/maplibre/maplibre-gl-geocoder/blob/main/lib/localization.ts).
 		 */
@@ -34,12 +57,14 @@
 		service = 'maptiler',
 		countries = 'de',
 		languages = 'en',
+		types = [],
 		placeholder,
 		limit = 3
 	}: GeocoderControlProps = $props();
 
 	const countriesArr = Array.isArray(countries) ? countries : [countries];
 	const languagesArr = Array.isArray(languages) ? languages : [languages];
+	const typesArr = Array.isArray(types) ? types : [types];
 
 	// Future: initialise a different GeocoderAPI depending on "service"
 	let geocoderAPI: MaplibreGeocoderApi = new MaptilerGeocoderAPI(key);
@@ -48,6 +73,7 @@
 		maplibregl: maplibre,
 		language: languagesArr.join(','),
 		countries: countriesArr.join(','),
+		types: typesArr.join(','),
 		showResultsWhileTyping: true,
 		showResultMarkers: false,
 		debounceSearch: 25,

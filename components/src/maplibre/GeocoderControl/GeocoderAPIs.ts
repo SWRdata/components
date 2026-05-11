@@ -19,7 +19,7 @@ export class MaptilerGeocoderAPI implements MaplibreGeocoderApi {
 		};
 		try {
 			const response = await fetch(
-				`https://api.maptiler.com/geocoding/${config.query}.json?country=${config.countries}&language=${config.language}&key=${this.key}`
+				`https://api.maptiler.com/geocoding/${config.query}.json?country=${config.countries}&language=${config.language}&types=${config.types}&key=${this.key}`
 			);
 			const geojson = await response.json();
 			for (const feature of geojson.features) {

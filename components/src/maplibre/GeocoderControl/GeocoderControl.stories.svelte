@@ -90,6 +90,22 @@
 	</DesignTokens>
 </Story>
 
+<Story asChild name="Limited result types">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
+				<GeocoderControl
+					placeholder="Search Gemeinden"
+					languages="de"
+					types={['county']}
+					service="maptiler"
+					key="V32kPHZjMa0Mkn6YvSzA"
+				/>
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
 <style>
 	.container {
 		width: 500px;
