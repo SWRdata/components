@@ -1,5 +1,5 @@
 <script lang="ts">
-	import maplibre from 'maplibre-gl';
+	import maplibre, { type ControlPosition } from 'maplibre-gl';
 	import MaplibreGeocoder, { type MaplibreGeocoderApi } from '@maplibre/maplibre-gl-geocoder';
 	import { MaptilerGeocoderAPI } from './GeocoderAPIs';
 	import MapControl from '../MapControl/MapControl.svelte';
@@ -36,6 +36,7 @@
 		 * Overwrite the default input placeholder
 		 */
 		placeholder?: string;
+		position?: ControlPosition;
 	}
 
 	const {
@@ -45,6 +46,7 @@
 		languages = 'en',
 		types = [],
 		placeholder,
+		position = 'top-left',
 		limit = 3
 	}: GeocoderControlProps = $props();
 
@@ -68,7 +70,7 @@
 	});
 </script>
 
-<MapControl control={geocoder} position="top-left" />
+<MapControl control={geocoder} {position} />
 
 <style lang="scss">
 	:global {
