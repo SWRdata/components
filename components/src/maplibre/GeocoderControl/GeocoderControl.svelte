@@ -3,7 +3,12 @@
 	import MaplibreGeocoder, { type MaplibreGeocoderApi } from '@maplibre/maplibre-gl-geocoder';
 	import { MaptilerGeocoderAPI } from './GeocoderAPIs';
 	import MapControl from '../MapControl/MapControl.svelte';
-	import { type GeocodingCountry, type GeocodingLanguage, type GeocodingService } from '../types';
+	import {
+		type GeocodingCountry,
+		type GeocodingLanguage,
+		type GeocodingPlaceType,
+		type GeocodingService
+	} from '../types';
 
 	interface GeocoderControlProps {
 		service: GeocodingService;
@@ -20,6 +25,10 @@
 		 */
 		countries?: GeocodingCountry | GeocodingCountry[];
 		/**
+		 * Limit search to one or more result type
+		 */
+		types?: GeocodingPlaceType | GeocodingPlaceType[];
+		/**
 		 * Limit search to one or more languages. The UI is localised to the first language specified if [available](https://github.com/maplibre/maplibre-gl-geocoder/blob/main/lib/localization.ts).
 		 */
 		languages?: GeocodingLanguage | GeocodingLanguage[];
@@ -34,12 +43,14 @@
 		service = 'maptiler',
 		countries = 'de',
 		languages = 'en',
+		types = [],
 		placeholder,
 		limit = 3
 	}: GeocoderControlProps = $props();
 
-	const countriesArr = Array.isArray(countries) ? countries : [countries];
-	const languagesArr = Array.isArray(languages) ? languages : [languages];
+	const countriesArr = $derived(Array.isArray(countries) ? countries : [countries]);
+	const languagesArr = $derived(Array.isArray(languages) ? languages : [languages]);
+	const typesArr = $derived(Array.isArray(types) ? types : [types]);
 
 	// Future: initialise a different GeocoderAPI depending on "service"
 	let geocoderAPI: MaplibreGeocoderApi = new MaptilerGeocoderAPI(key);
@@ -48,6 +59,7 @@
 		maplibregl: maplibre,
 		language: languagesArr.join(','),
 		countries: countriesArr.join(','),
+		types: typesArr.join(','),
 		showResultsWhileTyping: true,
 		showResultMarkers: false,
 		debounceSearch: 25,
