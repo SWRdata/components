@@ -95,9 +95,10 @@
 		<div class="container">
 			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<GeocoderControl
-					placeholder="Search Gemeinden"
+					placeholder="Search Länder"
 					languages="de"
-					types={['county']}
+					countries="de"
+					types={['region']}
 					service="maptiler"
 					key="V32kPHZjMa0Mkn6YvSzA"
 				/>

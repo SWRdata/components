@@ -3,26 +3,12 @@
 	import MaplibreGeocoder, { type MaplibreGeocoderApi } from '@maplibre/maplibre-gl-geocoder';
 	import { MaptilerGeocoderAPI } from './GeocoderAPIs';
 	import MapControl from '../MapControl/MapControl.svelte';
-	import { type GeocodingCountry, type GeocodingLanguage, type GeocodingService } from '../types';
-
-	type PlaceType =
-		| 'continental_marine'
-		| 'country'
-		| 'major_landform'
-		| 'region'
-		| 'subregion'
-		| 'county'
-		| 'joint_municipality'
-		| 'joint_submunicipality'
-		| 'municipality'
-		| 'municipal_district'
-		| 'locality'
-		| 'neighbourhood'
-		| 'place'
-		| 'postal_code'
-		| 'address'
-		| 'road'
-		| 'poi';
+	import {
+		type GeocodingCountry,
+		type GeocodingLanguage,
+		type GeocodingPlaceType,
+		type GeocodingService
+	} from '../types';
 
 	interface GeocoderControlProps {
 		service: GeocodingService;
@@ -35,13 +21,13 @@
 		 */
 		limit?: number;
 		/**
-		 * Limit search to one or more result type
+		 * Limit search to one or more countries
 		 */
 		countries?: GeocodingCountry | GeocodingCountry[];
 		/**
-		 * Limit search to one or more countries
+		 * Limit search to one or more result type
 		 */
-		types?: PlaceType | PlaceType[];
+		types?: GeocodingPlaceType | GeocodingPlaceType[];
 		/**
 		 * Limit search to one or more languages. The UI is localised to the first language specified if [available](https://github.com/maplibre/maplibre-gl-geocoder/blob/main/lib/localization.ts).
 		 */
@@ -62,9 +48,9 @@
 		limit = 3
 	}: GeocoderControlProps = $props();
 
-	const countriesArr = Array.isArray(countries) ? countries : [countries];
-	const languagesArr = Array.isArray(languages) ? languages : [languages];
-	const typesArr = Array.isArray(types) ? types : [types];
+	const countriesArr = $derived(Array.isArray(countries) ? countries : [countries]);
+	const languagesArr = $derived(Array.isArray(languages) ? languages : [languages]);
+	const typesArr = $derived(Array.isArray(types) ? types : [types]);
 
 	// Future: initialise a different GeocoderAPI depending on "service"
 	let geocoderAPI: MaplibreGeocoderApi = new MaptilerGeocoderAPI(key);

@@ -18,8 +18,21 @@ export class MaptilerGeocoderAPI implements MaplibreGeocoderApi {
 			features: []
 		};
 		try {
+			const params = new URLSearchParams(
+				Object.fromEntries(
+					Object.entries({
+						country: config.countries || '',
+						language: config.language || '',
+						types: config.types || '',
+						key: this.key || ''
+					}).filter(([_, value]) => {
+						return value !== '';
+					})
+				)
+			);
+
 			const response = await fetch(
-				`https://api.maptiler.com/geocoding/${config.query}.json?country=${config.countries}&language=${config.language}&types=${config.types}&key=${this.key}`
+				`https://api.maptiler.com/geocoding/${config.query}.json?${params.toString()}`
 			);
 			const geojson = await response.json();
 			for (const feature of geojson.features) {

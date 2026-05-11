@@ -10,8 +10,27 @@ export type Layer =
 	| FillExtrusionLayerSpecification;
 
 export type GeocodingService = 'maptiler';
-export type GeocodingCountry = 'de' | 'at';
-export type GeocodingLanguage = 'de' | 'en';
+export type GeocodingCountry = 'de' | 'at' | 'ch';
+export type GeocodingLanguage = 'de' | 'en' | 'it' | 'nl' | 'fr';
+
+export type GeocodingPlaceType =
+	| 'continental_marine'
+	| 'country'
+	| 'major_landform'
+	| 'region'
+	| 'subregion'
+	| 'county'
+	| 'joint_municipality'
+	| 'joint_submunicipality'
+	| 'municipality'
+	| 'municipal_district'
+	| 'locality'
+	| 'neighbourhood'
+	| 'place'
+	| 'postal_code'
+	| 'address'
+	| 'road'
+	| 'poi';
 
 export type V2 = [number, number];
 
