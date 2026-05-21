@@ -1,1 +1,24 @@
-county: kreis, municipality: gemeinde, region: bundesland
+import { Story, Meta, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+
+import * as GeocoderControlStories from './GeocoderControl.stories.svelte';
+
+<Meta of={GeocoderControlStories} />
+
+# GeocoderControl
+
+<Primary/>
+<Controls/>
+
+## Maptiler
+
+Maptiler doesn't allow filtering by German admin boundaries, but its `types` seem to map as follows:
+
+<table>
+<thead>
+<th>type</th>
+<th>boundary</th>
+</thead>
+<tr><td>county</td><td>Kreis</td></tr>
+<tr><td>municipality</td><td>Gemeinde</td></tr>
+<tr><td>region</td><td>Bundesland</td></tr>
+</table>
