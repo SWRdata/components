@@ -123,7 +123,7 @@
 
 <style>
 	.container {
-		width: 500px;
+		width: 800px;
 		height: 300px;
 	}
 </style>

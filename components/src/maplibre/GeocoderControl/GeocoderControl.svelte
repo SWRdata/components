@@ -25,7 +25,7 @@
 		 */
 		countries?: GeocodingCountry | GeocodingCountry[];
 		/**
-		 * Limit search to one or more result type
+		 * Limit search to one or more result type.
 		 */
 		types?: GeocodingPlaceType | GeocodingPlaceType[];
 		/**
@@ -86,6 +86,9 @@
 			button {
 				cursor: pointer;
 			}
+			* {
+				box-sizing: border-box;
+			}
 		}
 
 		.maplibre-gl-geocoder--error {
@@ -138,7 +141,7 @@
 			left: -1px;
 			list-style: none;
 			position: absolute;
-			width: 100%;
+			width: calc(100% + 2px);
 			top: 100%;
 			z-index: 1000;
 			overflow: hidden;
