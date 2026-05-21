@@ -43,7 +43,7 @@
 		closeButton: showCloseButton,
 		closeOnClick: closeOnClick,
 		maxWidth: `${maxWidth}px`,
-		offset: offset
+		offset
 	});
 
 	let el: Node | undefined = $state();
@@ -85,6 +85,7 @@
 	.mouseEvents {
 		pointer-events: all;
 	}
+
 	:global {
 		.maplibregl-popup {
 			top: 0;
