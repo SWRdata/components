@@ -21,7 +21,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "3.0.10",
-		"@sveltejs/kit": "2.56.0",
+		"@sveltejs/kit": "2.60.1",
 		"@sveltejs/svelte-scroller": "2.0.7",
 		"@sveltejs/vite-plugin-svelte": "7.0.0",
 		"dotenv": "17.2.3",
