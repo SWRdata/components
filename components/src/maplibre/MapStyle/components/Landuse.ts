@@ -313,7 +313,7 @@ export default function makeLanduse(tokens): any {
 			'source-layer': 'dam_polygons',
 			filter: ['==', 'kind', 'dam'],
 			paint: {
-				'fill-color': 'hsl(33,0%,95%)',
+				'fill-color': tokens.sand,
 				'fill-opacity': {
 					stops: [
 						[12, 0],
@@ -328,7 +328,7 @@ export default function makeLanduse(tokens): any {
 			'source-layer': 'dam_lines',
 			filter: ['==', 'kind', 'dam'],
 			paint: {
-				'line-color': 'hsl(205,0%,85%)'
+				'line-color': tokens.sand
 			},
 			layout: {
 				'line-cap': 'round',
