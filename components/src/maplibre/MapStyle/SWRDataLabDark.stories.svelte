@@ -80,57 +80,6 @@
 		</div>
 	</DesignTokens>
 </Story>
-<Story asChild name="fix/251">
-	<DesignTokens theme="dark">
-		<div class="grid">
-			<div class="container">
-				<Map
-					showDebug
-					style={SWRDataLabDark()}
-					initialLocation={{
-						lng: 10.005803094126804,
-						lat: 53.54086081679415,
-						zoom: 14.215291362684706,
-						pitch: 0
-					}}
-				>
-					<AttributionControl position="bottom-left" />
-				</Map>
-			</div>
-		</div>
-	</DesignTokens>
-</Story>
-<Story asChild name="fix/200">
-	<DesignTokens theme="dark">
-		<div class="grid">
-			<div class="container">
-				<Map
-					showDebug
-					style={SWRDataLabDark()}
-					initialLocation={{
-						lng: 8.96467732459405,
-						lat: 48.93101909877453,
-						zoom: 13.507311695217375,
-						pitch: 0
-					}}
-				>
-					<AttributionControl position="bottom-left" />
-				</Map>
-			</div>
-		</div>
-	</DesignTokens>
-</Story>
-<Story asChild name="fix/173">
-	<DesignTokens theme="dark">
-		<div class="grid">
-			<div class="container">
-				<Map showDebug style={SWRDataLabDark()} initialLocation={{ ...locations.berlin, zoom: 11 }}>
-					<AttributionControl position="bottom-left" />
-				</Map>
-			</div>
-		</div>
-	</DesignTokens>
-</Story>
 
 <Story asChild name="Bodensee z9">
 	<DesignTokens theme="dark">
@@ -218,6 +167,78 @@
 					initialLocation={locations.buildings}
 				>
 					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="fix/251">
+	<DesignTokens theme="dark">
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabDark()}
+					initialLocation={{
+						lng: 10.005803094126804,
+						lat: 53.54086081679415,
+						zoom: 14.215291362684706,
+						pitch: 0
+					}}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="fix/200">
+	<DesignTokens theme="dark">
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabDark()}
+					initialLocation={{
+						lng: 8.96467732459405,
+						lat: 48.93101909877453,
+						zoom: 13.507311695217375,
+						pitch: 0
+					}}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="fix/173">
+	<DesignTokens theme="dark">
+		<div class="grid">
+			<div class="container">
+				<Map showDebug style={SWRDataLabDark()} initialLocation={{ ...locations.berlin, zoom: 11 }}>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="fix/391">
+	<DesignTokens theme="dark">
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabDark()}
+					maxZoom={20}
+					initialLocation={{
+						lng: 7.162106315605001,
+						lat: 50.56038132182053,
+						zoom: 13.440582725369412,
+						pitch: 0
+					}}
+				>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>
