@@ -190,7 +190,7 @@ const semantics: ColourMap = {
 		light: '#ffffff'
 	},
 	surfaceBorder: {
-		dark: 'rgba(255,255,255,.15)',
+		dark: shades.gray.dark2,
 		light: shades.gray.light3
 	},
 	pageFill: {

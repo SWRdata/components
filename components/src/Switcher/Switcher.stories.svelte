@@ -6,7 +6,10 @@
 
 	const { Story } = defineMeta({
 		title: 'Form/Switcher',
-		component: Switcher
+		component: Switcher,
+		parameters: {
+			layout: 'fullscreen'
+		}
 	});
 
 	const onChangeSpy = fn();
@@ -14,7 +17,9 @@
 
 <Story name="Two Options" asChild>
 	<DesignTokens theme="auto">
-		<Switcher options={['Option A', 'Option B']} value="Option A" size="default" label="Label" />
+		<div class="container">
+			<Switcher options={['Option A', 'Option B']} value="Option A" size="default" label="Label" />
+		</div>
 	</DesignTokens>
 </Story>
 
@@ -48,12 +53,14 @@
 	}}
 >
 	<DesignTokens theme="auto">
-		<Switcher
-			options={['Apples', 'Oranges', 'Bananas', 'Peaches']}
-			value="Oranges"
-			label="Label"
-			size="small"
-		/>
+		<div class="container">
+			<Switcher
+				options={['Apples', 'Oranges', 'Bananas', 'Peaches']}
+				value="Oranges"
+				label="Label"
+				size="small"
+			/>
+		</div>
 	</DesignTokens>
 </Story>
 
@@ -123,3 +130,11 @@
 		/>
 	</DesignTokens>
 </Story>
+
+<style>
+	.container {
+		background: var(--color-pageFill);
+		padding: 5%;
+		min-height: 500px;
+	}
+</style>

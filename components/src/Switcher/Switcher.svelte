@@ -94,17 +94,12 @@
 	}
 
 	ul {
-		width: 100%;
-		display: flex;
+		display: inline-flex;
 		flex-direction: column;
-		overflow-x: auto;
 		padding: 0;
 		margin: 0;
-		border-top: 1px solid var(--color-textSecondary);
-		border-left: 1px solid var(--color-textSecondary);
 		color: var(--color-textPrimary);
-		background: var(--color-surfaceFill);
-		border-radius: var(--br-small);
+		gap: 0;
 
 		@media (min-width: base.$bp-s) {
 			flex-flow: row;
@@ -118,22 +113,12 @@
 	}
 	li {
 		display: contents;
-		&:last-child label {
-			border-bottom-right-radius: var(--br-small);
-		}
-		&:first-child label {
-			border-top-left-radius: var(--br-small);
-		}
 	}
 	input {
 		position: absolute;
 		left: -9999px;
 	}
-	.small label {
-		font-size: var(--fs-small-1);
-		height: 2em;
-		padding: 0 0.65em;
-	}
+
 	label {
 		font-size: var(--fs-base);
 		line-height: 1;
@@ -146,12 +131,10 @@
 		align-items: center;
 		color: currentColor;
 		position: relative;
-		transition: var(--fast);
-		text-underline-offset: 0.1em;
-		height: 2.25em;
-		border-right: 1px solid var(--color-textSecondary);
-		border-bottom: 1px solid var(--color-textSecondary);
-		flex-grow: 1;
+		user-select: none;
+		height: 2.15em;
+		margin-right: -1px;
+		border: 1px solid var(--color-surfaceBorder);
 
 		@media (min-width: base.$bp-s) {
 			flex-basis: 0;
@@ -163,17 +146,19 @@
 			flex-basis: auto;
 		}
 		.is-selected & {
-			background: var(--color-surfaceHover);
+			background: var(--color-surfaceFill);
+			transform: scale(1.1);
+			border: 1px solid var(--color-textSecondary);
+			box-shadow: 0 0 5px 1px rgba(black, 0.85);
+			z-index: 100;
 			font-weight: 700;
-
-			@media (prefers-color-scheme: dark) {
-				background: var(--gray-dark-2);
-			}
+			border-radius: 2px;
 		}
-		&:hover,
-		&:focus-visible {
-			text-decoration: underline;
-			text-decoration-color: var(--color-textSecondary);
+		.small & {
+			font-size: var(--fs-small-1);
+			letter-spacing: 0.01em;
+			height: 2em;
+			padding: 0 0.7em;
 		}
 	}
 </style>
