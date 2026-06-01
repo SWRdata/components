@@ -30,7 +30,9 @@
 		showTextShadow = false
 	}: SwrHeaderProps = $props();
 
-	const updated_on = updated ? (updated instanceof Date ? updated : new Date(updated)) : null;
+	const updated_on = $derived(
+		updated ? (updated instanceof Date ? updated : new Date(updated)) : null
+	);
 </script>
 
 <header class="container" class:show-text-shadow={showTextShadow}>
