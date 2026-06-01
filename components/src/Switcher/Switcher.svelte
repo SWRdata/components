@@ -167,7 +167,6 @@
 			z-index: 100;
 			font-weight: 700;
 			border-radius: 2px;
-			color: var(--violet-dark-5);
 		}
 		.small & {
 			font-size: var(--fs-small-1);
