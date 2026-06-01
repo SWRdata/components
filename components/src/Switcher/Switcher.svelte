@@ -26,6 +26,7 @@
 		 * The currently-selected option (bindable)
 		 */
 		value: string | null;
+		align?: 'left' | 'center';
 		/**
 		 * Fired when the selected value changes (Prefer `value` if possible)
 		 */
@@ -38,6 +39,7 @@
 		size = 'default',
 		hideLabel = false,
 		layout = 'auto',
+		align = 'left',
 		value = $bindable(null),
 		onchange
 	}: SwitcherProps = $props();
@@ -50,27 +52,22 @@
 	}
 </script>
 
-<fieldset class="container" class:small={size === 'small'}>
-	<div class="legend" class:hidden={hideLabel}>
+<fieldset class={['container', size, align]}>
+	<div class={['legend', { hidden: hideLabel }]}>
 		<FormLabel as="legend">{label}</FormLabel>
 	</div>
-	<ul
-		class:layout-row={layout === 'row'}
-		class:layout-column={layout === 'column'}
-		class:layout-auto={layout === 'auto'}
-		role="list"
-	>
+	<ul class={`layout-${layout}`} role="list">
 		{#each options as o (o)}
 			<li class:is-selected={o === value}>
 				<label for={optionToID(o)}>
 					{o}
 				</label>
 				<input
+					bind:group={value}
 					id={optionToID(o)}
 					name={groupName}
 					value={o}
 					type="radio"
-					bind:group={value}
 					{onchange}
 				/>
 			</li>
@@ -84,6 +81,15 @@
 	fieldset {
 		border: 0;
 		font-family: var(--swr-sans);
+		display: flex;
+		flex-flow: column;
+
+		&.left {
+			align-items: flex-start;
+		}
+		&.center {
+			align-items: center;
+		}
 	}
 
 	.legend {
@@ -159,8 +165,9 @@
 			box-shadow: 0 0 5px 1px var(--color-dropShadow);
 			background: var(--color-raisedSurfaceFill);
 			z-index: 100;
-			font-weight: 600;
+			font-weight: 700;
 			border-radius: 2px;
+			color: var(--violet-dark-5);
 		}
 		.small & {
 			font-size: var(--fs-small-1);

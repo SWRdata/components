@@ -13,12 +13,28 @@
 	});
 
 	const onChangeSpy = fn();
+	const dwIds = ['GjkbO', 'R5jey'];
+	let selectedDw = $state(dwIds[0]);
 </script>
 
 <Story name="Two Options" asChild>
 	<DesignTokens theme="auto">
 		<div class="container">
 			<Switcher options={['Option A', 'Option B']} value="Option A" size="default" label="Label" />
+		</div>
+	</DesignTokens>
+</Story>
+
+<Story name="Two Options, Centered Label" asChild>
+	<DesignTokens theme="auto">
+		<div class="container">
+			<Switcher
+				align="center"
+				options={['Option A', 'Option B']}
+				value="Option A"
+				size="default"
+				label="Label"
+			/>
 		</div>
 	</DesignTokens>
 </Story>
@@ -139,9 +155,48 @@
 	</DesignTokens>
 </Story>
 
+<Story name="Datawrapper Switcher" asChild>
+	<DesignTokens theme="auto">
+		<div class="container">
+			<div class="datawrapper-switcher">
+				<Switcher
+					align="center"
+					options={dwIds}
+					size="small"
+					label="Land auswählen"
+					bind:value={selectedDw}
+				/>
+				{#each dwIds as id}
+					<div class="datawrapper-chart" class:active={id === selectedDw} style:height="600px">
+						<img src={`https://datawrapper.dwcdn.net/${id}/full.png`} />
+					</div>
+				{/each}
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+
 <style>
 	.container {
 		background: var(--color-pageFill);
 		padding: 5%;
+	}
+
+	.datawrapper-switcher {
+		display: flex;
+		align-items: center;
+		flex-flow: column;
+		gap: 1rem;
+		img {
+			display: block;
+			width: 40rem;
+		}
+	}
+
+	.datawrapper-chart {
+		display: none;
+	}
+	.active {
+		display: block;
 	}
 </style>
