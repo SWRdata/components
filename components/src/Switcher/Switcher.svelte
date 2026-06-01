@@ -96,8 +96,7 @@
 	ul {
 		display: inline-flex;
 		flex-direction: column;
-		padding: 0;
-		margin: 0;
+		margin-top: 0.25em;
 		color: var(--color-textPrimary);
 		gap: 0;
 
@@ -123,7 +122,7 @@
 		font-size: var(--fs-base);
 		line-height: 1;
 		white-space: nowrap;
-		padding: 0 1em;
+		padding: 0 0.75em;
 		margin: 0;
 		cursor: pointer;
 		display: flex;
@@ -133,25 +132,34 @@
 		position: relative;
 		user-select: none;
 		height: 2.15em;
-		margin-right: -1px;
 		border: 1px solid var(--color-surfaceBorder);
+		background: var(--color-surfaceFill);
+		margin-bottom: -1px;
 
 		@media (min-width: base.$bp-s) {
 			flex-basis: 0;
+			margin-bottom: 0;
+			margin-right: -1px;
+		}
+		&:hover,
+		&:focus-visible {
+			background: var(--color-surfaceHover);
 		}
 		.layout-row & {
 			flex-basis: 0;
 		}
 		.layout-column & {
 			flex-basis: auto;
+			margin-right: 0;
+			margin-bottom: -1px;
 		}
 		.is-selected & {
-			background: var(--color-surfaceFill);
-			transform: scale(1.1);
+			transform: scale(1.125);
 			border: 1px solid var(--color-textSecondary);
-			box-shadow: 0 0 5px 1px rgba(black, 0.85);
+			box-shadow: 0 0 5px 1px var(--color-dropShadow);
+			background: var(--color-raisedSurfaceFill);
 			z-index: 100;
-			font-weight: 700;
+			font-weight: 600;
 			border-radius: 2px;
 		}
 		.small & {
@@ -159,6 +167,10 @@
 			letter-spacing: 0.01em;
 			height: 2em;
 			padding: 0 0.7em;
+			padding-bottom: 0.025em;
+			.is-selected & {
+				transform: scale(1.1);
+			}
 		}
 	}
 </style>

@@ -25,13 +25,15 @@
 
 <Story name="Hidden Label" asChild>
 	<DesignTokens theme="auto">
-		<Switcher
-			hideLabel
-			options={['Option A', 'Option B']}
-			value="Option A"
-			size="default"
-			label="Label"
-		/>
+		<div class="container">
+			<Switcher
+				hideLabel
+				options={['Option A', 'Option B']}
+				value="Option A"
+				size="default"
+				label="Label"
+			/>
+		</div>
 	</DesignTokens>
 </Story>
 
@@ -76,12 +78,14 @@
 	}}
 >
 	<DesignTokens theme="auto">
-		<Switcher
-			options={['Do not wrap', 'on mobile']}
-			value="Do not wrap"
-			label="Label"
-			layout="row"
-		/>
+		<div class="container">
+			<Switcher
+				options={['This switcher', 'will not wrap', 'on mobile']}
+				value="This switcher"
+				label="Label"
+				layout="row"
+			/>
+		</div>
 	</DesignTokens>
 </Story>
 
@@ -97,12 +101,14 @@
 	}}
 >
 	<DesignTokens theme="auto">
-		<Switcher
-			options={['Always wrap', 'even on', 'large screens']}
-			value="Always wrap"
-			label="Label"
-			layout="column"
-		/>
+		<div class="container">
+			<Switcher
+				options={['Always wrap', 'even on', 'large screens']}
+				value="Always wrap"
+				label="Label"
+				layout="column"
+			/>
+		</div>
 	</DesignTokens>
 </Story>
 <Story
@@ -121,13 +127,15 @@
 	}}
 >
 	<DesignTokens>
-		<Switcher
-			options={['Option A', 'Option B']}
-			value="Option A"
-			size="default"
-			label="Label"
-			onchange={onChangeSpy}
-		/>
+		<div class="container">
+			<Switcher
+				options={['Option A', 'Option B']}
+				value="Option A"
+				size="default"
+				label="Label"
+				onchange={onChangeSpy}
+			/>
+		</div>
 	</DesignTokens>
 </Story>
 
@@ -135,6 +143,5 @@
 	.container {
 		background: var(--color-pageFill);
 		padding: 5%;
-		min-height: 500px;
 	}
 </style>

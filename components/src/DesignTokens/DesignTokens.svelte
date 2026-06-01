@@ -62,6 +62,7 @@
 		--color-pageFill: var(--pageFill-light);
 		--color-surfaceFill: var(--surfaceFill-light);
 		--color-surfaceHover: var(--surfaceHover-light);
+		--color-raisedSurfaceFill: var(--raisedSurfaceFill-light);
 		--color-surfaceBorder: var(--surfaceBorder-light);
 		--color-dropShadow: var(--dropShadow-light);
 
@@ -70,6 +71,7 @@
 			--color-logoFillHover: var(--logoFillHover-dark);
 			--color-pageFill: var(--pageFill-dark);
 			--color-surfaceFill: var(--surfaceFill-dark);
+			--color-raisedSurfaceFill: var(--raisedSurfaceFill-dark);
 			--color-surfaceBorder: var(--surfaceBorder-dark);
 			--color-surfaceHover: var(--surfaceHover-dark);
 			--color-textPrimary: var(--textPrimary-dark);
