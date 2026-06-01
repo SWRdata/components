@@ -64,7 +64,7 @@
 		"layercake": "^10.0.2",
 		"mdx-mermaid": "2.0.3",
 		"nodemon": "^3.1.11",
-		"playwright": "1.58.1",
+		"playwright": "1.60.0",
 		"publint": "0.3.17",
 		"sass": "1.93.2",
 		"sass-embedded": "1.97.3",
