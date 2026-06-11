@@ -9,7 +9,7 @@
 		"access": "public"
 	},
 	"repository": {
-		"url": "https://github.com/SWRdata/components"
+		"url": "git+https://github.com/SWRdata/components.git"
 	},
 	"scripts": {
 		"dev": "vite dev",
