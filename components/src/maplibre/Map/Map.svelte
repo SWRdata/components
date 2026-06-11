@@ -188,7 +188,7 @@
 	};
 	const handleDebugCopyLocationClick = (e: MouseEvent) => {
 		if (e.target) {
-			const s = JSON.stringify({ lng: center?.lng, lat: center?.lat, zoom, pitch });
+			const s = JSON.stringify({ lng: center?.lng, lat: center?.lat, zoom, pitch, bearing });
 			navigator.clipboard.writeText(s);
 		}
 	};
