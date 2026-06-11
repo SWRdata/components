@@ -117,15 +117,15 @@
 		mapContext.map.on('load', () => {
 			zoom = mapContext.map?.getZoom();
 			center = mapContext.map?.getCenter();
-			pitch = mapContext.map?.getPitch();
-			bearing = mapContext.map?.getBearing();
+			pitch = mapContext.map?.getPitch() || 0;
+			bearing = mapContext.map?.getBearing() || 0;
 		});
 
 		mapContext.map.on('moveend', () => {
 			zoom = mapContext.map?.getZoom();
 			center = mapContext.map?.getCenter();
-			pitch = mapContext.map?.getPitch();
-			bearing = mapContext.map?.getBearing();
+			pitch = mapContext.map?.getPitch() || 0;
+			bearing = mapContext.map?.getBearing() || 0;
 		});
 
 		if (onmoveend) {
@@ -178,7 +178,7 @@
 		}
 	});
 
-	const debugValues = $derived(Object.entries({ zoom, pitch, allowZoom, allowPan, allowRotation }));
+	const debugValues = $derived(Object.entries({ zoom, pitch, bearing, allowZoom, allowPan, allowRotation }));
 	const handleDebugValueClick = (e: MouseEvent) => {
 		if (e.target) {
 			const t = e.target as HTMLElement;
@@ -188,7 +188,7 @@
 	};
 	const handleDebugCopyLocationClick = (e: MouseEvent) => {
 		if (e.target) {
-			const s = JSON.stringify({ lng: center?.lng, lat: center?.lat, zoom, pitch });
+			const s = JSON.stringify({ lng: center?.lng, lat: center?.lat, zoom, pitch, bearing });
 			navigator.clipboard.writeText(s);
 		}
 	};
