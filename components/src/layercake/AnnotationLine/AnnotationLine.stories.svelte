@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import { LayerCake, Svg } from 'layercake';
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import { expect } from 'storybook/test';

@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Select from './Select.svelte';
 	import FormLabel from '../FormLabel/FormLabel.svelte';

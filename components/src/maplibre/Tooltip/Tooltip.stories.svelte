@@ -117,59 +117,68 @@
 					tiles={[
 						`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`
 					]}
-				/>
-				<VectorLayer
-					sourceId="ev-infra-source"
-					type="fill"
-					id="coverage-fill"
-					sourceLayer="coverage"
-					placeBelow="street-residential"
-					onmousemove={(e) => {
-						hovered2 = e.features?.[0];
-					}}
-					onmouseleave={() => (hovered2 = undefined)}
-					onclick={(e) => {
-						selected = e.features?.[0];
-						selectCoords = e.lngLat;
-					}}
-					paint={{
-						'fill-color': ['step', ['get', 'coverage_2025'], 'white', 1, '#CCDCFF', 1.3, '#6280E5']
-					}}
-				/>
-				<VectorLayer
-					hovered={hovered2}
-					{selected}
-					sourceId="ev-infra-source"
-					sourceLayer="coverage"
-					id="ev-infra-outline"
-					type="line"
-					layout={{
-						'line-join': 'round'
-					}}
-					paint={{
-						'line-width': [
-							'case',
-							[
-								'any',
-								['boolean', ['feature-state', 'hovered'], false],
-								['boolean', ['feature-state', 'selected'], false]
+				>
+					<VectorLayer
+						sourceId="ev-infra-source"
+						type="fill"
+						id="coverage-fill"
+						sourceLayer="coverage"
+						placeBelow="street-residential"
+						onmousemove={(e) => {
+							hovered2 = e.features?.[0];
+						}}
+						onmouseleave={() => (hovered2 = undefined)}
+						onclick={(e) => {
+							selected = e.features?.[0];
+							selectCoords = e.lngLat;
+						}}
+						paint={{
+							'fill-color': [
+								'step',
+								['get', 'coverage_2025'],
+								'white',
+								1,
+								'#CCDCFF',
+								1.3,
+								'#6280E5'
+							]
+						}}
+					/>
+					<VectorLayer
+						hovered={hovered2}
+						{selected}
+						sourceId="ev-infra-source"
+						sourceLayer="coverage"
+						id="ev-infra-outline"
+						type="line"
+						layout={{
+							'line-join': 'round'
+						}}
+						paint={{
+							'line-width': [
+								'case',
+								[
+									'any',
+									['boolean', ['feature-state', 'hovered'], false],
+									['boolean', ['feature-state', 'selected'], false]
+								],
+								2,
+								0.5
 							],
-							2,
-							0.5
-						],
-						'line-color': [
-							'case',
-							[
-								'any',
-								['boolean', ['feature-state', 'hovered'], false],
-								['boolean', ['feature-state', 'selected'], false]
+							'line-color': [
+								'case',
+								[
+									'any',
+									['boolean', ['feature-state', 'hovered'], false],
+									['boolean', ['feature-state', 'selected'], false]
+								],
+								'#000',
+								'#555'
 							],
-							'#000',
-							'#555'
-						],
-						'line-opacity': 1
-					}}
-				/>
+							'line-opacity': 1
+						}}
+					/>
+				</VectorTileSource>
 				{#if selected}
 					<Tooltip
 						position={selectCoords}
@@ -203,67 +212,68 @@
 					tiles={[
 						`https://static.datenhub.net/data/p108_e_auto_check/ev_infra_merged.versatiles?{z}/{x}/{y}`
 					]}
-				/>
-				<VectorLayer
-					sourceId="ev-infra-source"
-					type="fill"
-					id="coverage-fill"
-					sourceLayer="coverage"
-					placeBelow="street-residential"
-					onmousemove={(e) => {
-						hovered2 = e.features?.[0];
-					}}
-					onmouseleave={() => (hovered2 = undefined)}
-					onclick={(e) => {
-						selected = e.features?.[0];
-						selectCoords = e.lngLat;
-					}}
-					paint={{
-						'fill-color': [
-							'step',
-							['get', 'coverage_2025'],
-							'#393636',
-							1,
-							'#262b38',
-							1.3,
-							'#6d4a77'
-						]
-					}}
-				/>
-				<VectorLayer
-					hovered={hovered2}
-					{selected}
-					sourceId="ev-infra-source"
-					sourceLayer="coverage"
-					id="ev-infra-outline"
-					type="line"
-					layout={{
-						'line-join': 'round'
-					}}
-					paint={{
-						'line-width': [
-							'case',
-							[
-								'any',
-								['boolean', ['feature-state', 'hovered'], false],
-								['boolean', ['feature-state', 'selected'], false]
+				>
+					<VectorLayer
+						sourceId="ev-infra-source"
+						type="fill"
+						id="coverage-fill"
+						sourceLayer="coverage"
+						placeBelow="street-residential"
+						onmousemove={(e) => {
+							hovered2 = e.features?.[0];
+						}}
+						onmouseleave={() => (hovered2 = undefined)}
+						onclick={(e) => {
+							selected = e.features?.[0];
+							selectCoords = e.lngLat;
+						}}
+						paint={{
+							'fill-color': [
+								'step',
+								['get', 'coverage_2025'],
+								'#393636',
+								1,
+								'#262b38',
+								1.3,
+								'#6d4a77'
+							]
+						}}
+					/>
+					<VectorLayer
+						hovered={hovered2}
+						{selected}
+						sourceId="ev-infra-source"
+						sourceLayer="coverage"
+						id="ev-infra-outline"
+						type="line"
+						layout={{
+							'line-join': 'round'
+						}}
+						paint={{
+							'line-width': [
+								'case',
+								[
+									'any',
+									['boolean', ['feature-state', 'hovered'], false],
+									['boolean', ['feature-state', 'selected'], false]
+								],
+								2,
+								0.5
 							],
-							2,
-							0.5
-						],
-						'line-color': [
-							'case',
-							[
-								'any',
-								['boolean', ['feature-state', 'hovered'], false],
-								['boolean', ['feature-state', 'selected'], false]
+							'line-color': [
+								'case',
+								[
+									'any',
+									['boolean', ['feature-state', 'hovered'], false],
+									['boolean', ['feature-state', 'selected'], false]
+								],
+								'#dfdbdb',
+								'#6d6d6d'
 							],
-							'#dfdbdb',
-							'#6d6d6d'
-						],
-						'line-opacity': 1
-					}}
-				/>
+							'line-opacity': 1
+						}}
+					/>
+				</VectorTileSource>
 				{#if selected}
 					<Tooltip
 						position={selectCoords}
