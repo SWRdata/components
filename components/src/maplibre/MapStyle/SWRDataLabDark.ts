@@ -33,7 +33,7 @@ const tokens = {
 	street_primary: 'hsl(220, 3%, 20%)',
 	street_primary_faded: '#252525',
 	street_primary_case: 'hsl(0, 11%, 7%)',
-	street_secondary: 'hsl(0, 0%, 22%)',
+	street_secondary: 'hsl(220, 3%, 20%)',
 	street_secondary_case: 'hsl(0, 0%, 0%)',
 	street_tertiary: 'hsl(0, 0%, 20%)',
 	street_tertiary_case: 'hsl(0, 0%, 14%)',
