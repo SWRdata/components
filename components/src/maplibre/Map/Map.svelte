@@ -1,6 +1,7 @@
 <script lang="ts">
 	import maplibre, {
 		type LngLatBoundsLike,
+		type LngLatLike,
 		type MapLibreEvent,
 		type ProjectionSpecification,
 		type StyleSpecification
@@ -200,7 +201,9 @@
 	};
 	const handleDebugCopyBoundsClick = (e: MouseEvent) => {
 		if (e.target) {
-			const s = JSON.stringify(bounds.toArray());
+			const s = JSON.stringify(
+				bounds.toArray().map((ll: [number, number]) => ll.map((c: number) => c.toFixed(5)))
+			);
 			navigator.clipboard.writeText(s);
 		}
 	};

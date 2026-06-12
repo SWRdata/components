@@ -281,9 +281,7 @@
 			const el = canvas.getByText('Copy Bounds');
 			el.click();
 			expect(spy).toHaveBeenCalledTimes(1);
-			expect(spy).toHaveBeenCalledWith(
-				'[[-2.763867187498761,46.99180980708053],[23.163867187501523,55.2386838776998]]'
-			);
+			expect(spy).toHaveBeenCalledWith('[["-2.76387","46.99181"],["23.16387","55.23868"]]');
 		});
 	}}
 >
