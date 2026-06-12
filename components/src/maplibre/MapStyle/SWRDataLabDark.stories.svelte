@@ -23,7 +23,7 @@
 				<Map showDebug style={SWRDataLabDark()} initialLocation={locations.germany}>
 					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 					<AttributionControl position="bottom-left" />
-					<NavigationControl />
+					<NavigationControl showCompass />
 				</Map>
 			</div>
 		</div>
@@ -236,6 +236,27 @@
 						lng: 7.162106315605001,
 						lat: 50.56038132182053,
 						zoom: 13.440582725369412,
+						pitch: 0
+					}}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="fix/398">
+	<DesignTokens theme="dark">
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabDark()}
+					maxZoom={20}
+					initialLocation={{
+						lng: 6.19604542728689,
+						lat: 50.029196152971906,
+						zoom: 16.901165450738834,
 						pitch: 0
 					}}
 				>

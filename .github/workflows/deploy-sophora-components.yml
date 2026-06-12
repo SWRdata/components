@@ -21,8 +21,8 @@ jobs:
       run:
         working-directory: ./sophora-components
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: 24
       - name: Create .env file for production
@@ -32,11 +32,11 @@ jobs:
           echo ASSETS_PATH=$ASSETS_PATH >> .env
       - run: npm ci
       - run: npm run build
-      - uses: google-github-actions/auth@v2
+      - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 #v3.0.0
         with:
           credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
       - name: 'Upload files to GCP'
-        uses: 'google-github-actions/upload-cloud-storage@v2'
+        uses: google-github-actions/upload-cloud-storage@6397bd7208e18d13ba2619ee21b9873edc94427a #v3.0.0
         with:
           path: './sophora-components/build'
           parent: false

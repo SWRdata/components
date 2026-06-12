@@ -9,7 +9,7 @@ export default function makeBuildings(tokens): any {
 		paint: {
 			'fill-extrusion-color': tokens.building,
 			'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 14.5, 0, 15, 1],
-			'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 14.5, 0, 15, ['get', 'hoehe']]
+			'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 14.5, 0, 15, ["to-number", ['get', 'hoehe']]]
 		}
 	};
 
