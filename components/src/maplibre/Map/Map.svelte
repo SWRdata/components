@@ -215,11 +215,11 @@
 	{#if showDebug}
 		<div class="debug">
 			<ul>
-				<li>
+				<li class="debug-location">
 					[{center?.lat.toFixed(2)}, {center?.lng.toFixed(2)}]
 				</li>
 				{#each debugValues as [key, value]}
-					<li>
+					<li class={`debug-${key}`}>
 						{key}=<button onclick={handleDebugValueClick}
 							>{value?.toLocaleString('en', { maximumSignificantDigits: 6 })}</button
 						>
