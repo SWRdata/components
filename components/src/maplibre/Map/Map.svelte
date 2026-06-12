@@ -31,6 +31,7 @@
 		center?: maplibre.LngLat;
 		pitch?: number;
 		bearing?: number;
+		bounds?: LngLatBounds;
 		loading?: boolean;
 		projection?: ProjectionSpecification;
 		showDebug?: boolean;
@@ -59,6 +60,7 @@
 		center = $bindable(),
 		pitch = $bindable(0),
 		bearing = $bindable(0),
+		bounds = $bindable(),
 		loading = $bindable(true),
 		projection = { type: 'mercator' },
 		allowPan = true,
@@ -85,7 +87,7 @@
 	// 2. initialLocation prop
 	// 3. initialLocation context (notably set by <WithLinkLocation/>)
 
-	let contextLocation: Location = getContext('initialLocation');
+	let contextLocation: Partial<Location> = getContext('initialLocation');
 
 	let initialLocation = $derived({
 		lat: 51.3,
@@ -119,6 +121,7 @@
 			center = mapContext.map?.getCenter();
 			pitch = mapContext.map?.getPitch() || 0;
 			bearing = mapContext.map?.getBearing() || 0;
+			bounds = mapContext.map?.getBounds();
 		});
 
 		mapContext.map.on('moveend', () => {
@@ -126,6 +129,7 @@
 			center = mapContext.map?.getCenter();
 			pitch = mapContext.map?.getPitch() || 0;
 			bearing = mapContext.map?.getBearing() || 0;
+			bounds = mapContext.map?.getBounds();
 		});
 
 		if (onmoveend) {
@@ -178,7 +182,9 @@
 		}
 	});
 
-	const debugValues = $derived(Object.entries({ zoom, pitch, bearing, allowZoom, allowPan, allowRotation }));
+	const debugValues = $derived(
+		Object.entries({ zoom, pitch, bearing, allowZoom, allowPan, allowRotation })
+	);
 	const handleDebugValueClick = (e: MouseEvent) => {
 		if (e.target) {
 			const t = e.target as HTMLElement;
@@ -192,6 +198,12 @@
 			navigator.clipboard.writeText(s);
 		}
 	};
+	const handleDebugCopyBoundsClick = (e: MouseEvent) => {
+		if (e.target) {
+			const s = JSON.stringify(bounds.toArray());
+			navigator.clipboard.writeText(s);
+		}
+	};
 </script>
 
 <div bind:this={container} class="container" data-testid="map-container">
@@ -201,19 +213,24 @@
 		{/if}
 	{/if}
 	{#if showDebug}
-		<ul class="debug">
-			<li>
-				[{center?.lat.toFixed(2)}, {center?.lng.toFixed(2)}]
-			</li>
-			{#each debugValues as [key, value]}
+		<div class="debug">
+			<ul>
 				<li>
-					{key}=<button onclick={handleDebugValueClick}
-						>{value?.toLocaleString('en', { maximumSignificantDigits: 6 })}</button
-					>
+					[{center?.lat.toFixed(2)}, {center?.lng.toFixed(2)}]
 				</li>
-			{/each}
-			<li><button onclick={handleDebugCopyLocationClick}>[Copy Location]</button></li>
-		</ul>
+				{#each debugValues as [key, value]}
+					<li>
+						{key}=<button onclick={handleDebugValueClick}
+							>{value?.toLocaleString('en', { maximumSignificantDigits: 6 })}</button
+						>
+					</li>
+				{/each}
+			</ul>
+			<ul>
+				<li><button onclick={handleDebugCopyLocationClick}>Copy Location</button></li>
+				<li><button onclick={handleDebugCopyBoundsClick}>Copy Bounds</button></li>
+			</ul>
+		</div>
 	{/if}
 </div>
 
@@ -227,17 +244,16 @@
 		position: absolute;
 		top: 0;
 		background: rgba(0, 0, 0, 0.75);
-		color: white;
+		color: #eee;
 		z-index: 1000;
-		padding: 2px;
+		padding: 4px;
 		font-size: 10px;
 		font-family: monospace;
 		display: flex;
 		flex-flow: column;
 		@media (min-width: 600px) {
-			gap: 1em;
+			gap: 0.5em;
 			right: 0;
-			flex-flow: row;
 		}
 		li {
 			list-style: none;
