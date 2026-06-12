@@ -37,7 +37,7 @@
 		value = $bindable(undefined)
 	}: SelectProps = $props();
 
-	const groupByFn = groupBy || ((item: SelectItem) => item.group as string);
+	const groupByFn = $derived(groupBy || ((item: SelectItem) => item.group as string));
 </script>
 
 <div class="container">

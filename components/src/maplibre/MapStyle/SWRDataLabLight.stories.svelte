@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Map from '../Map/Map.svelte';
 	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
@@ -97,36 +97,38 @@
 				>
 					<VectorTileSource
 						id="demo-source"
-						tiles={["https://static.datenhub.net/data/p118_correctiv_waermewende/heating_merged_2.versatiles?{z}/{x}/{y}"]}
+						tiles={[
+							'https://static.datenhub.net/data/p118_correctiv_waermewende/heating_merged_2.versatiles?{z}/{x}/{y}'
+						]}
 						attribution="Demo attribution"
-					/>
-
-					<VectorLayer
-						type="fill"
-						id="demo-10km"
-						sourceId="demo-source"
-						sourceLayer="heating_10km_squares"
-						placeBelow="street-residential"
-						minZoom={5}
-						paint={{
-							'fill-color': [
-								'match',
-								['get', 'dominant_source'],
-								'Gas',
-								'#CCDCFF',
-								'Heizoel',
-								'#5BCFE1',
-								'Holz_Holzpellets',
-								'#499F73',
-								'Fernwaerme',
-								'#A86C07',
-								'Strom',
-								'#FFD584',
-								'gray'
-							],
-							'fill-opacity': 1
-						}}
-					/>
+					>
+						<VectorLayer
+							type="fill"
+							id="demo-10km"
+							sourceId="demo-source"
+							sourceLayer="heating_10km_squares"
+							placeBelow="street-residential"
+							minZoom={5}
+							paint={{
+								'fill-color': [
+									'match',
+									['get', 'dominant_source'],
+									'Gas',
+									'#CCDCFF',
+									'Heizoel',
+									'#5BCFE1',
+									'Holz_Holzpellets',
+									'#499F73',
+									'Fernwaerme',
+									'#A86C07',
+									'Strom',
+									'#FFD584',
+									'gray'
+								],
+								'fill-opacity': 1
+							}}
+						/>
+					</VectorTileSource>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>
@@ -150,44 +152,46 @@
 					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 					<VectorTileSource
 						id="ev-infra-source"
-						tiles={["https://static.datenhub.net/data/p109_besser_wohnen/rent_merged_4.versatiles?{z}/{x}/{y}"]}
+						tiles={[
+							'https://static.datenhub.net/data/p109_besser_wohnen/rent_merged_4.versatiles?{z}/{x}/{y}'
+						]}
 						attribution="Demo attribution"
-					/>
-
-					<VectorLayer
-						type="fill"
-						id="rent-fill-1km"
-						sourceId="ev-infra-source"
-						sourceLayer="rent_100m"
-						placeBelow="street-residential"
-						minZoom={5}
-						paint={{
-							'fill-color': [
-								'step',
-								['get', 'durchschnMieteQM'],
-								'#f3eefa',
-								7,
-								'#FFB9A8',
-								9,
-								'#E92F02',
-								11,
-								'#5F1A0B'
-							],
-							'fill-opacity': 1
-						}}
-					/>
-					<VectorLayer
-						sourceId="ev-infra-source"
-						sourceLayer="rent_1km"
-						placeBelow="street-residential"
-						id="rent-outline-1km"
-						type="line"
-						paint={{
-							'line-width': 0.5,
-							'line-color': 'black',
-							'line-opacity': 0.5
-						}}
-					/>
+					>
+						<VectorLayer
+							type="fill"
+							id="rent-fill-1km"
+							sourceId="ev-infra-source"
+							sourceLayer="rent_100m"
+							placeBelow="street-residential"
+							minZoom={5}
+							paint={{
+								'fill-color': [
+									'step',
+									['get', 'durchschnMieteQM'],
+									'#f3eefa',
+									7,
+									'#FFB9A8',
+									9,
+									'#E92F02',
+									11,
+									'#5F1A0B'
+								],
+								'fill-opacity': 1
+							}}
+						/>
+						<VectorLayer
+							sourceId="ev-infra-source"
+							sourceLayer="rent_1km"
+							placeBelow="street-residential"
+							id="rent-outline-1km"
+							type="line"
+							paint={{
+								'line-width': 0.5,
+								'line-color': 'black',
+								'line-opacity': 0.5
+							}}
+						/>
+					</VectorTileSource>
 				</Map>
 			</div>
 		</div>

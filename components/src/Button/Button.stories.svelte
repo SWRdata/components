@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Button from './Button.svelte';
 	import DesignTokens from '../DesignTokens/DesignTokens.svelte';

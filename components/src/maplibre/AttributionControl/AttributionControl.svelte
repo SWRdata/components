@@ -6,6 +6,7 @@
 		position?: ControlPosition;
 		customAttribution?: string;
 	}
+
 	const { position = 'bottom-right', customAttribution }: AttributionControlProps = $props();
 </script>
 
