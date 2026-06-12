@@ -23,7 +23,7 @@
 				<Map showDebug style={SWRDataLabDark()} initialLocation={locations.germany}>
 					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 					<AttributionControl position="bottom-left" />
-					<NavigationControl />
+					<NavigationControl showCompass />
 				</Map>
 			</div>
 		</div>
