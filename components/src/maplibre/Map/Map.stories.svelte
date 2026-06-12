@@ -1,6 +1,6 @@
 <script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import { within, expect, userEvent, fn } from 'storybook/test';
+	import { within, expect, userEvent, fn, spyOn } from 'storybook/test';
 
 	import Map from './Map.svelte';
 	import ScaleControl from '../ScaleControl/ScaleControl.svelte';
@@ -142,7 +142,6 @@
 	name="Toggle zoom and pan"
 	play={async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
-		const containerEl = canvas.getByTestId('map-container');
 		const toggleZoomButton = canvas.getByTestId('toggle-zoom');
 		const togglePanButton = canvas.getByTestId('toggle-pan');
 
@@ -231,11 +230,64 @@
 		</DesignTokens>
 	</div>
 </Story>
+
 <Story asChild name="initialBounds">
 	<div class="container">
 		<DesignTokens theme="light">
 			<Map showDebug style={SWRDataLabLight()} initialBounds={[5.87, 47.1, 15.04, 55.1]}>
 				<ScaleControl />
+				<AttributionControl />
+			</Map>
+		</DesignTokens>
+	</div>
+</Story>
+
+<Story
+	asChild
+	name="Debug overlay"
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const containerEl = canvas.getByTestId('map-container');
+
+		await step('debug overlay renders', async () => {
+			const el = containerEl.querySelector('.debug');
+			expect(el).toBeTruthy();
+		});
+		await step('shows correct location', async () => {
+			const el = containerEl.querySelector('.debug-location');
+			expect(el).toHaveTextContent('[51.30, 10.20]');
+		});
+		await step('shows correct zoom', async () => {
+			const el = containerEl.querySelector('.debug-zoom');
+			expect(el).toHaveTextContent('zoom=5');
+		});
+		await step('shows correct bearing', async () => {
+			const el = containerEl.querySelector('.debug-bearing');
+			expect(el).toHaveTextContent('bearing=0');
+		});
+		await step('shows correct pitch', async () => {
+			const el = containerEl.querySelector('.debug-pitch');
+			expect(el).toHaveTextContent('pitch=0');
+		});
+		await step('copy location button yields correct result', async () => {
+			const spy = spyOn(navigator.clipboard, 'writeText');
+			const el = canvas.getByText('Copy Location');
+			el.click();
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(spy).toHaveBeenCalledWith('{"lng":10.2,"lat":51.3,"zoom":5,"pitch":0,"bearing":0}');
+		});
+		await step('copy bounds button yields correct result', async () => {
+			const spy = spyOn(navigator.clipboard, 'writeText');
+			const el = canvas.getByText('Copy Bounds');
+			el.click();
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(spy).toHaveBeenCalledWith('[["3.608","48.470"],["16.792","53.966"]]');
+		});
+	}}
+>
+	<div class="container" style:width="600px" style:height="400px">
+		<DesignTokens theme="light">
+			<Map showDebug style={SWRDataLabLight()} initialLocation={{ lat: 51.3, lng: 10.2, zoom: 5 }}>
 				<AttributionControl />
 			</Map>
 		</DesignTokens>
