@@ -202,7 +202,7 @@
 	const handleDebugCopyBoundsClick = (e: MouseEvent) => {
 		if (e.target) {
 			const s = JSON.stringify(
-				bounds.toArray().map((ll: [number, number]) => ll.map((c: number) => c.toFixed(5)))
+				bounds.toArray().map((ll: [number, number]) => ll.map((c: number) => c.toFixed(3)))
 			);
 			navigator.clipboard.writeText(s);
 		}

@@ -281,11 +281,11 @@
 			const el = canvas.getByText('Copy Bounds');
 			el.click();
 			expect(spy).toHaveBeenCalledTimes(1);
-			expect(spy).toHaveBeenCalledWith('[["-2.76387","46.99181"],["23.16387","55.23868"]]');
+			expect(spy).toHaveBeenCalledWith('[["3.60820","48.46959"],["16.79180","53.96605"]]');
 		});
 	}}
 >
-	<div class="container">
+	<div class="container" style:width="600px" style:height="400px">
 		<DesignTokens theme="light">
 			<Map showDebug style={SWRDataLabLight()} initialLocation={{ lat: 51.3, lng: 10.2, zoom: 5 }}>
 				<AttributionControl />
