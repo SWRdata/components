@@ -76,7 +76,7 @@ export default function makePlaceLabels(tokens) {
 				['in', 'kind', 'city', 'town'],
 				['>', 'population', 50_000],
 				['<', 'population', 100_000],
-				['!in', 'name_de', ...majorCities]
+				['!in', 'name', ...majorCities]
 			],
 			minzoom: 8.5,
 			layout: {
@@ -96,7 +96,7 @@ export default function makePlaceLabels(tokens) {
 				['in', 'kind', 'city', 'town'],
 				['>', 'population', 100_000],
 				['<', 'population', 400_000],
-				['!in', 'name_de', ...majorCities]
+				['!in', 'name', ...majorCities]
 			],
 			minzoom: 7,
 			maxzoom: 13,
@@ -115,7 +115,7 @@ export default function makePlaceLabels(tokens) {
 				'all',
 				['in', 'kind', 'city', 'town', 'state_capital'],
 				['>', 'population', 400_000],
-				['!in', 'name_de', ...majorCities]
+				['!in', 'name', ...majorCities]
 			],
 			minzoom: 7,
 			maxzoom: 12,
@@ -138,7 +138,7 @@ export default function makePlaceLabels(tokens) {
 		},
 		{
 			id: 'label-place-major-city',
-			filter: ['in', 'name_de', ...majorCities],
+			filter: ['in', 'name', ...majorCities],
 			minzoom: 5.5,
 			maxzoom: 12,
 			layout: {
@@ -167,7 +167,7 @@ export default function makePlaceLabels(tokens) {
 			layout: {
 				'text-font': tokens.sans_regular,
 				'text-letter-spacing': 0.01,
-				'text-field': '{name_de}',
+				'text-field': '{name}',
 				...el.layout
 			},
 
@@ -187,12 +187,12 @@ export default function makePlaceLabels(tokens) {
 			filter: [
 				'all',
 				['==', 'admin_level', 2],
-				['!in', 'name_de', 'Jersey', 'Guernsey', 'Insel Man']
+				['!in', 'name', 'Jersey', 'Guernsey', 'Insel Man']
 			],
 			minzoom: 4,
 			maxzoom: 8,
 			layout: {
-				'text-field': '{name_de}',
+				'text-field': '{name}',
 				'text-letter-spacing': 0.02,
 				'text-font': tokens.sans_regular,
 				'text-size': {

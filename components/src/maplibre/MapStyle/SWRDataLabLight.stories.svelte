@@ -279,7 +279,19 @@
 	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
-				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.stugge}>
+				<Map showDebug style={SWRDataLabLight({roads: {showLabels: true}})} initialLocation={locations.stugge}>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="Berlin z15">
+	<DesignTokens theme="light">
+		<div class="grid">
+			<div class="container">
+				<Map showDebug style={SWRDataLabLight({	roads: {
+					showLabels: true}})} initialLocation={{"lng":13.397677524739947,"lat":52.5175142188192,"zoom":14.99}}>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>
