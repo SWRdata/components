@@ -55,9 +55,9 @@
 	const typesArr = $derived(Array.isArray(types) ? types : [types]);
 
 	// Future: initialise a different GeocoderAPI depending on "service"
-	let geocoderAPI: MaplibreGeocoderApi = new MaptilerGeocoderAPI(key);
+	let geocoderAPI: MaplibreGeocoderApi = $derived(new MaptilerGeocoderAPI(key));
 
-	const geocoder = new MaplibreGeocoder(geocoderAPI, {
+	const geocoder = $derived(new MaplibreGeocoder(geocoderAPI, {
 		maplibregl: maplibre,
 		language: languagesArr.join(','),
 		countries: countriesArr.join(','),
@@ -67,7 +67,7 @@
 		debounceSearch: 25,
 		placeholder,
 		limit
-	});
+	}));
 </script>
 
 <MapControl control={geocoder} {position} />
