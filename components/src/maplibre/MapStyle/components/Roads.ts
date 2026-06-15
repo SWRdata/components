@@ -276,11 +276,10 @@ export default function makeRoads(tokens) {
 			'source-layer': 'street_labels',
 			...el,
 			layout: {
-				'text-field': '{name_de}',
+				'text-field': '{name}',
 				'text-font': tokens.sans_regular,
 				'symbol-placement': 'line',
 				'text-anchor': 'center',
-
 				...el.layout
 			},
 			paint: {

@@ -1165,7 +1165,7 @@ export default function makeWalking(tokens): any {
 			filter: ['==', 'kind', 'pedestrian'],
 			minzoom: 14,
 			layout: {
-				'text-field': '{name_de}',
+				'text-field': '{name}',
 				'text-font': tokens.sans_regular,
 				'symbol-placement': 'line',
 				'text-anchor': 'center',
