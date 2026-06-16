@@ -320,6 +320,7 @@
 			.maplibregl-canvas {
 			touch-action: none;
 		}
+
 		.maplibregl-ctrl-bottom-left,
 		.maplibregl-ctrl-bottom-right,
 		.maplibregl-ctrl-top-left,
@@ -372,10 +373,10 @@
 			box-sizing: border-box;
 			cursor: pointer;
 			display: block;
-			height: 29px;
 			outline: none;
 			padding: 0;
-			width: 29px;
+			width: 2.25rem;
+			height: 2.25rem;
 		}
 
 		.maplibregl-ctrl-group button + button {
