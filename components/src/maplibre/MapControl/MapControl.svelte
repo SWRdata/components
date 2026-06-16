@@ -29,7 +29,9 @@
 			map.addControl(ctrl, position);
 		}
 		return () => {
-			map?.removeControl(control);
+		  if (control){
+			  map?.removeControl(control);
+		  }
 		};
 	});
 </script>

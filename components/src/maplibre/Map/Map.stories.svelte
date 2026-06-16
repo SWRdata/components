@@ -26,7 +26,8 @@
 		component: Map
 	});
 
-	let mapContext: MapContext;
+	let mapContext: MapContext | undefined = $state();
+
 	const onMoveStart = fn();
 
 	let mapOptions = $state({
