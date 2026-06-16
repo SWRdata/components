@@ -8,7 +8,7 @@ import {
 
 
 export default interface GeocoderProps {
-	  map: Map
+	  map?: Map | null
 		service: GeocodingService;
 		/**
 		 * API key for selected geocoding `service`
