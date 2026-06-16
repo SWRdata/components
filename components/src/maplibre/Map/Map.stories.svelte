@@ -116,13 +116,13 @@
 			<button
 				data-testid="flyto-berlin"
 				onclick={() => {
-					mapContext.map?.flyTo({ center: [13.3849, 52.5026], zoom: 9.8 });
+					mapContext?.map?.flyTo({ center: [13.3849, 52.5026], zoom: 9.8 });
 				}}>Fly to Berlin</button
 			>
 			<button
 				data-testid="flyto-origin"
 				onclick={() => {
-					mapContext.map?.flyTo({ center: [10.43, 50.88], zoom: 5 });
+					mapContext?.map?.flyTo({ center: [10.43, 50.88], zoom: 5 });
 				}}>Reset</button
 			>
 			<Map
@@ -148,22 +148,22 @@
 
 		await step('toggle zoom off', async () => {
 			await userEvent.click(toggleZoomButton);
-			expect(mapContext.map?.scrollZoom.isEnabled()).toBe(false);
+			expect(mapContext?.map?.scrollZoom.isEnabled()).toBe(false);
 		});
 
 		await step('toggle zoom on', async () => {
 			await userEvent.click(toggleZoomButton);
-			expect(mapContext.map?.scrollZoom.isEnabled()).toBe(true);
+			expect(mapContext?.map?.scrollZoom.isEnabled()).toBe(true);
 		});
 
 		await step('toggle pan off', async () => {
 			await userEvent.click(togglePanButton);
-			expect(mapContext.map?.dragPan.isEnabled()).toBe(false);
+			expect(mapContext?.map?.dragPan.isEnabled()).toBe(false);
 		});
 
 		await step('toggle pan on', async () => {
 			await userEvent.click(togglePanButton);
-			expect(mapContext.map?.dragPan.isEnabled()).toBe(true);
+			expect(mapContext?.map?.dragPan.isEnabled()).toBe(true);
 		});
 	}}
 >
