@@ -1,6 +1,7 @@
 <script lang="ts">
 	import maplibre, {
 		type LngLatBoundsLike,
+		type LngLatBounds,
 		type LngLatLike,
 		type MapLibreEvent,
 		type ProjectionSpecification,
@@ -202,7 +203,7 @@
 	const handleDebugCopyBoundsClick = (e: MouseEvent) => {
 		if (e.target) {
 			const s = JSON.stringify(
-				bounds.toArray().map((ll: [number, number]) => ll.map((c: number) => c.toFixed(3)))
+				bounds?.toArray().map((ll: [number, number]) => ll.map((c: number) => c.toFixed(3)))
 			);
 			navigator.clipboard.writeText(s);
 		}
@@ -320,6 +321,7 @@
 			.maplibregl-canvas {
 			touch-action: none;
 		}
+
 		.maplibregl-ctrl-bottom-left,
 		.maplibregl-ctrl-bottom-right,
 		.maplibregl-ctrl-top-left,
@@ -372,10 +374,10 @@
 			box-sizing: border-box;
 			cursor: pointer;
 			display: block;
-			height: 29px;
 			outline: none;
 			padding: 0;
-			width: 29px;
+			width: 2.25rem;
+			height: 2.25rem;
 		}
 
 		.maplibregl-ctrl-group button + button {
