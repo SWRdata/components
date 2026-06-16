@@ -43,14 +43,10 @@
 		children
 	}: WithLinkLocationProps = $props();
 
-	const countriesArr = Array.isArray(countries) ? countries : [countries];
-	const languagesArr = Array.isArray(languages) ? languages : [languages];
+	const countriesArr = $derived(Array.isArray(countries) ? countries : [countries]);
+	const languagesArr = $derived(Array.isArray(languages) ? languages : [languages]);
 
-	let geocoder: MaplibreGeocoderApi;
-
-	if (service === 'maptiler') {
-		geocoder = new MaptilerGeocoderAPI(key);
-	}
+	const geocoder: MaplibreGeocoderApi = $derived(new MaptilerGeocoderAPI(key));
 
 	let location: any = $state({});
 
