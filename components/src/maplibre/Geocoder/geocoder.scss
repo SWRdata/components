@@ -31,6 +31,7 @@
 			border: 0;
 			height: 2em;
 			padding: 0 1.85em;
+			width: 100%;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
@@ -145,9 +146,12 @@
 		}
 
 		.maplibregl-ctrl-geocoder--icon-close {
-			right: 0;
+			right: .25em;
 			height: 1.15em;
-			opacity: 0.5;
+			opacity: 0.65;
+			&:hover, &:focus-visible {
+			  opacity: 1;
+			}
 		}
 		.maplibregl-ctrl-geocoder--icon-search {
 			left: 0.4em;
