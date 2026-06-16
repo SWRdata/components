@@ -22,7 +22,7 @@
 </Story>
 
 <Story asChild name="With compass">
-	<DesignTokens>
+	<DesignTokens theme="light">
 		<div class="container">
 			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
 				<NavigationControl showCompass visualizePitch />
