@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { type PromoteIdSpecification, type RasterDEMSourceSpecification, type VectorSourceSpecification,  } from 'maplibre-gl';
+	import { type PromoteIdSpecification, type RasterDEMSourceSpecification,  } from 'maplibre-gl';
 
 	import MapSource from '../Source/MapSource.svelte';
 	import type { SourceProps } from '../types';
 	import fetchTileJSON from '../fetchTileJson';
 
-	interface HillshadeSourceProps extends SourceProps {
+	interface RasterDEMSourceProps extends SourceProps {
 		url?: string;
 		tiles?: string[];
 		promoteId?: PromoteIdSpecification;
@@ -20,7 +20,7 @@
 		attribution,
 		promoteId,
 		children
-	}: HillshadeSourceProps = $props();
+	}: RasterDEMSourceProps = $props();
 
 	let tileJsonData = $derived(url ? await fetchTileJSON(url) : {});
 
