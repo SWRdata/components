@@ -7,6 +7,7 @@
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 
 	import { SWRDataLabLight } from '../MapStyle';
+	import HillshadeSource from '../HillshadeSource/HillshadeSource.svelte';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Layer/HillshadeLayer',
@@ -18,6 +19,18 @@
 	<DesignTokens theme="light">
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
+			  <HillshadeSource id='hillshade' url="https://tiles-dev.datenhub.net/tiles/elevation/tiles.json">
+					<HillshadeLayer sourceId="hillshade" id="test"
+					  paint={{
+                    'hillshade-method': 'standard',
+                    'hillshade-illumination-direction': 315,
+                    'hillshade-shadow-color': '#000000',
+                    'hillshade-highlight-color': '#FFFFFF',
+                    'hillshade-accent-color': '#000000',
+                    'hillshade-exaggeration': 0.5
+                }}
+            />
+					</HillshadeSource>
 				<AttributionControl position="bottom-left" />
 			</Map>
 		</div>

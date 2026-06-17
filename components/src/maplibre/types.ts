@@ -3,6 +3,7 @@ import type {
 	FillLayerSpecification,
 	LineLayerSpecification
 } from 'maplibre-gl';
+import type { Snippet } from 'svelte';
 
 export type Layer =
 	| LineLayerSpecification
@@ -39,4 +40,16 @@ export interface Location {
 	lng: number;
 	zoom: number;
 	pitch?: number;
+}
+
+export interface SourceProps {
+  id: string;
+  minZoom?: number;
+	maxZoom?: number;
+		/**
+		 * Attribution string for your data, usually rendered using an `<AttributionControl/>`
+		 */
+  attribution?: string;
+  children?: Snippet;
+
 }

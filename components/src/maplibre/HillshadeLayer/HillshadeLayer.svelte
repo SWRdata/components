@@ -3,11 +3,10 @@
 
 	import { getMapContext } from '../context.svelte.js';
 	import { onDestroy } from 'svelte';
-	import { resetLayerEventListener } from '../utils.js';
 
 	interface HillshadeLayerProps extends Omit<
 		maplibregl.HillshadeLayerSpecification,
-		'id' | 'source' | 'source-layer'
+		'id' | 'source' | 'source-layer' | 'type'
 	> {
 		id: string;
 		sourceId: string;
@@ -22,24 +21,17 @@
 		sourceId,
 		sourceLayer,
 		placeBelow,
-		type,
 		paint,
 		layout,
-		hovered = $bindable(),
-		selected = $bindable(),
 		minZoom = 0,
 		maxZoom = 24,
-		onclick,
-		onmousemove,
-		onmouseleave
 	}: HillshadeLayerProps = $props();
 
 	const ctx = getMapContext();
-	let beforeId: string | undefined = $state();
 
 	const layerSpec = $derived({
 		id,
-		type,
+		type: "hillshade",
 		source: sourceId,
 		'source-layer': sourceLayer || '',
 		layout: layout ?? {},
