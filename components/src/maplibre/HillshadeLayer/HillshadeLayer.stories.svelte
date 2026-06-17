@@ -11,7 +11,8 @@
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Layer/HillshadeLayer',
-		component: HillshadeLayer
+		component: HillshadeLayer,
+		tags: ["experimental"]
 	});
 </script>
 
