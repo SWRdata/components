@@ -34,7 +34,9 @@ export { default as GeocoderControl } from './maplibre/GeocoderControl/GeocoderC
 export { default as NavigationControl } from './maplibre/NavigationControl/NavigationControl.svelte';
 export { default as ScaleControl } from './maplibre/ScaleControl/ScaleControl.svelte';
 export { default as VectorLayer } from './maplibre/VectorLayer/VectorLayer.svelte';
+export { default as HillshadeLayer } from './maplibre/HillshadeLayer/HillshadeLayer.svelte';
 export { default as VectorTileSource } from './maplibre/VectorTileSource/VectorTileSource.svelte';
+export { default as RasterDEMSource } from './maplibre/RasterDEMSource/RasterDEMSource.svelte';
 export { default as GeoJSONSource } from './maplibre/GeoJSONSource/GeoJSONSource.svelte';
 export { default as ArrowSource } from './maplibre/ArrowSource/ArrowSource.svelte';
 export { default as MapSource } from './maplibre/Source/MapSource.svelte';

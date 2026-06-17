@@ -32,13 +32,13 @@
 
 	const { id, arrows = [], attribution = '' }: ArrowSourceProps = $props();
 
-	const ars: JsonArrow[] = arrows.map((a) => {
+	const ars: JsonArrow[] = $derived(arrows.map((a) => {
 		return {
 			width: a.width || 10,
 			points: quadraticToPoints(a.a, a.b, a.c),
 			headScale: a.headScale
 		};
-	});
+	}));
 
 	const arrowsToJson = (arrows: JsonArrow[] = []) => {
 		if (!map) return { type: 'FeatureCollection', features: [] } as GeoJSON.GeoJSON;
@@ -83,6 +83,7 @@
 	};
 
 	let sourceSpec: GeoJSONSourceSpecification = $state({
+	  // svelte-ignore state_referenced_locally
 		attribution,
 		type: 'geojson',
 		promoteId: 'id',

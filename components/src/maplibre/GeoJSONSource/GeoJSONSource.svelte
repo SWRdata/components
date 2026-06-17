@@ -2,18 +2,13 @@
 	// See: https://maplibre.org/maplibre-gl-js/docs/API/classes/GeoJSONSource/
 	import { type GeoJSONSourceSpecification } from 'maplibre-gl';
 	import MapSource from '../Source/MapSource.svelte';
+	import type { SourceProps } from '../types';
 
-	interface GeoJSONSourceProps {
-		id: string;
+	interface GeoJSONSourceProps extends Omit<SourceProps, "children"> {
 		/**
 		 * GeoJSON object or URL
 		 */
 		data: GeoJSON.GeoJSON | string;
-		/**
-		 * Attribution string for your data, usually rendered using an `<AttributionControl>`
-		 */
-		attribution?: string;
-		maxZoom?: number;
 		/**
 		 * Use a field from the feature data for IDs. Must coerce to integer.
 		 */
@@ -35,7 +30,7 @@
 		generateId = false
 	}: GeoJSONSourceProps = $props();
 
-	const sourceSpec: GeoJSONSourceSpecification = {
+	const sourceSpec: GeoJSONSourceSpecification = $derived({
 		type: 'geojson',
 		maxzoom: maxZoom,
 		attribution,
@@ -43,7 +38,7 @@
 		generateId,
 		lineMetrics,
 		data
-	};
+	});
 </script>
 
 <MapSource {id} {sourceSpec} />

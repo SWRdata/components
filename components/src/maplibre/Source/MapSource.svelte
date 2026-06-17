@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { onDestroy, onMount, type Snippet } from 'svelte';
-	import { type Map, type SourceSpecification } from 'maplibre-gl';
+	import { type GeoJSONSourceSpecification, type Map, type RasterDEMSourceSpecification, type VectorSourceSpecification } from 'maplibre-gl';
 	import { getMapContext } from '../context.svelte.js';
 
 	interface MapSourceProps {
 		id: string;
 		source?: maplibregl.VectorTileSource | maplibregl.GeoJSONSource;
-		sourceSpec: SourceSpecification;
+		sourceSpec: VectorSourceSpecification | GeoJSONSourceSpecification | RasterDEMSourceSpecification;
 		onLoad?: (map: Map, url?: string, data?: string) => undefined;
 		children?: Snippet;
 	}

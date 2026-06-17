@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { type PromoteIdSpecification, type VectorSourceSpecification } from 'maplibre-gl';
+	import { type PromoteIdSpecification, type RasterDEMSourceSpecification,  } from 'maplibre-gl';
 
 	import MapSource from '../Source/MapSource.svelte';
-	import fetchTileJSON from '../fetchTileJson';
 	import type { SourceProps } from '../types';
+	import fetchTileJSON from '../fetchTileJson';
 
-	interface VectorTileSourceProps extends SourceProps{
+	interface RasterDEMSourceProps extends SourceProps {
 		url?: string;
 		tiles?: string[];
 		promoteId?: PromoteIdSpecification;
@@ -20,12 +20,13 @@
 		attribution,
 		promoteId,
 		children
-	}: VectorTileSourceProps = $props();
+	}: RasterDEMSourceProps = $props();
 
 	let tileJsonData = $derived(url ? await fetchTileJSON(url) : {});
 
-	const sourceSpec: VectorSourceSpecification = $derived({
-		type: 'vector',
+	const sourceSpec: RasterDEMSourceSpecification = $derived({
+		type: 'raster-dem',
+	  tileSize: 256,
 		tiles: tiles || tileJsonData.tiles || [],
 		maxzoom: maxZoom || tileJsonData.maxZoom || 24,
 		minzoom: minZoom || tileJsonData.minZoom || 0,

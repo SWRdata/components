@@ -1,4 +1,4 @@
-import { type TileJsonData } from './types';
+import { type TileJsonData } from './VectorTileSource/types';
 
 // Workaround for https://github.com/versatiles-org/versatiles-rs/issues/184
 // Drop when/if this lands: https://github.com/maplibre/maplibre-gl-js/issues/182
