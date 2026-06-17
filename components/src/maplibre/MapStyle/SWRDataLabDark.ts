@@ -25,7 +25,7 @@ const tokens = {
 	water: 'hsl(210, 12%, 7%)',
 	water_light: 'hsl(210, 12%, 8%)',
 	water_ocean: 'hsl(214, 5%, 5%)',
-	marsh: 'hsl(180, 3%, 35%)',
+	marsh: 'hsl(160, 5%, 9%)',
 	grass: 'hsl(170, 15%, 12%)',
 	grass_dark: 'hsl(170, 12%, 10%)',
 	sand: 'hsl(0, 0%, 16%)',
