@@ -282,7 +282,7 @@
 			const el = canvas.getByText('Copy Bounds');
 			el.click();
 			expect(spy).toHaveBeenCalledTimes(1);
-			expect(spy).toHaveBeenCalledWith('[["3.608","48.470"],["16.792","53.966"]]');
+			expect(spy).toHaveBeenCalledWith('[[3.608,48.47],[16.792,53.966]]');
 		});
 	}}
 >
