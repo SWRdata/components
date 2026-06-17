@@ -282,6 +282,22 @@
 		</div>
 	</DesignTokens>
 </Story>
+<Story asChild name="fix/441">
+	<DesignTokens theme="dark">
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabDark()}
+					maxZoom={20}
+					initialLocation={{lng: 9.558006092459436, lat: 47.69445218974644, zoom: 15.664592047703644}}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
 
 <style>
 	.grid {
