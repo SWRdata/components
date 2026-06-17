@@ -20,7 +20,7 @@
 	<DesignTokens theme="light">
 		<div class="container">
 			<Map showDebug={true} style={SWRDataLabLight()}>
-			  <HillshadeSource id='hillshade' url="https://tiles-dev.datenhub.net/tiles/elevation/tiles.json">
+			  <HillshadeSource id='hillshade' url="https://tiles.datenhub.net/tiles/elevation/tiles.json">
 					<HillshadeLayer sourceId="hillshade" id="test"
 					  paint={{
                     'hillshade-method': 'standard',
