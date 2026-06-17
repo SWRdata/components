@@ -1,13 +1,10 @@
 <script lang="ts">
-	import maplibre, { type ControlPosition } from 'maplibre-gl';
-	import MaplibreGeocoder, { type MaplibreGeocoderApi } from '@maplibre/maplibre-gl-geocoder';
+	import maplibre from 'maplibre-gl';
+	import MaplibreGeocoder, { type CarmenGeojsonFeature, type MaplibreGeocoderApi } from '@maplibre/maplibre-gl-geocoder';
 	import { MaptilerGeocoderAPI } from './GeocoderAPIs';
-	import MapControl from '../MapControl/MapControl.svelte';
-	import type GeocoderProps from '../Geocoder/GeocoderProps';
 
-	interface GeocoderControlProps extends Omit<GeocoderProps, "map">{
-		position?: ControlPosition;
-	}
+	import type { Attachment } from 'svelte/attachments';
+	import type GeocoderProps from './GeocoderProps';
 
 	const {
 		key,
@@ -16,9 +13,9 @@
 		languages = 'en',
 		types = [],
 		placeholder,
-		position = 'top-left',
-		limit = 3
-	}: GeocoderControlProps = $props();
+		limit = 3,
+		map,
+	}: GeocoderProps = $props();
 
 	const countriesArr = $derived(Array.isArray(countries) ? countries : [countries]);
 	const languagesArr = $derived(Array.isArray(languages) ? languages : [languages]);
@@ -38,10 +35,26 @@
 		placeholder,
 		limit
 	}));
+
+	const handleResult = $derived((r: {result: CarmenGeojsonFeature})=>{
+	    const res = r.result
+	    if(res.bbox && map){
+					map.fitBounds([
+              [res.bbox[0], res.bbox[1]],
+              [res.bbox[2], res.bbox[3]],
+            ])
+				}
+
+	})
+
+	const attachGeocoder: Attachment = (el) => {
+			geocoder.addTo(el as HTMLElement);
+			geocoder.on("result", handleResult)
+	}
 </script>
 
-<MapControl control={geocoder} {position} />
+<div class="container" {@attach attachGeocoder}></div>
 
 <style lang="scss">
-  @use "../Geocoder/geocoder.scss"
+  @use "geocoder.scss"
 </style>
