@@ -1,7 +1,5 @@
 <script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import { within, expect } from 'storybook/test';
-
 	import Geocoder from './Geocoder.svelte';
 	import DesignTokens from '../../DesignTokens/DesignTokens.svelte';
 	import { SWRDataLabLight } from '../MapStyle';
@@ -19,8 +17,6 @@
 <Story
 	asChild
 	name="Default"
-	play={async ({ canvasElement, step }) => {
-	}}
 >
 	<DesignTokens theme="light">
 	<div class="container">
@@ -33,6 +29,21 @@
 		<div class="map-container">
 		  <Map bind:mapContext style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}/>
 		</div>
+	</div>
+	</DesignTokens>
+</Story>
+<Story
+	asChild
+	name="size=small"
+>
+	<DesignTokens theme="light">
+	<div class="container">
+			<Geocoder
+				languages="de"
+				size="small"
+				service="maptiler"
+				key="V32kPHZjMa0Mkn6YvSzA"
+		/>
 	</div>
 	</DesignTokens>
 </Story>
