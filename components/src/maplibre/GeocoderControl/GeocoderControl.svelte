@@ -15,6 +15,7 @@
 		countries = 'de',
 		languages = 'en',
 		types = [],
+		size="default",
 		placeholder,
 		position = 'top-left',
 		limit = 3

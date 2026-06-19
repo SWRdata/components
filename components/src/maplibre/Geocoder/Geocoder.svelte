@@ -14,6 +14,7 @@
 		types = [],
 		placeholder,
 		limit = 3,
+		size = "default",
 		map,
 	}: GeocoderProps = $props();
 
@@ -53,7 +54,7 @@
 	}
 </script>
 
-<div class="container" {@attach attachGeocoder}></div>
+<div class={["container", size]} {@attach attachGeocoder}></div>
 
 <style lang="scss">
   @use "geocoder.scss"
