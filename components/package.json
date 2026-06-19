@@ -5,6 +5,7 @@
 	"author": "SWR Data Lab",
 	"license": "UNLICENSED",
 	"type": "module",
+	"keywords": ["svelte"],
 	"publishConfig": {
 		"access": "public"
 	},
