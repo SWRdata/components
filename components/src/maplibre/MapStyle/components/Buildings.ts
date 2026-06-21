@@ -5,11 +5,11 @@ export default function makeBuildings(tokens): any {
 		source: 'basemap-de',
 		type: 'fill-extrusion',
 		minzoom: 14,
-		maxzoom: 20,
+    maxzoom: 20,
 		paint: {
 			'fill-extrusion-color': tokens.building,
-			'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 14.5, 0, 15, 1],
-			'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 14.5, 0, 15, ["to-number", ['get', 'hoehe']]]
+			'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 15.5, 0, 16, 1],
+			'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 15.5, 0, 16, ["to-number", ['get', 'hoehe']]]
 		}
 	};
 
