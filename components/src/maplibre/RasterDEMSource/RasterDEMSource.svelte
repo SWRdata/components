@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { type PromoteIdSpecification, type RasterDEMSourceSpecification,  } from 'maplibre-gl';
+	import { type PromoteIdSpecification, type RasterDEMSourceSpecification } from 'maplibre-gl';
 
-	import MapSource from '../Source/MapSource.svelte';
+	import MapSource from '../MapSource/MapSource.svelte';
 	import type { SourceProps } from '../types';
 	import fetchTileJSON from '../fetchTileJson';
 
@@ -26,7 +26,7 @@
 
 	const sourceSpec: RasterDEMSourceSpecification = $derived({
 		type: 'raster-dem',
-	  tileSize: 256,
+		tileSize: 256,
 		tiles: tiles || tileJsonData.tiles || [],
 		maxzoom: maxZoom || tileJsonData.maxZoom || 24,
 		minzoom: minZoom || tileJsonData.minZoom || 0,

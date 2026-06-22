@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { type PromoteIdSpecification, type VectorSourceSpecification } from 'maplibre-gl';
 
-	import MapSource from '../Source/MapSource.svelte';
+	import MapSource from '../MapSource/MapSource.svelte';
 	import fetchTileJSON from '../fetchTileJson';
 	import type { SourceProps } from '../types';
 
-	interface VectorTileSourceProps extends SourceProps{
+	interface VectorTileSourceProps extends SourceProps {
 		url?: string;
 		tiles?: string[];
 		promoteId?: PromoteIdSpecification;
