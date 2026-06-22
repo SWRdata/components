@@ -25,7 +25,7 @@
 	// Future: initialise a different GeocoderAPI depending on "service"
 	let geocoderAPI: MaplibreGeocoderApi = $derived(new MaptilerGeocoderAPI(key));
 
-	const geocoder = $derived(new MaplibreGeocoder(geocoderAPI, {
+	const geocoder = new MaplibreGeocoder(geocoderAPI, {
 		maplibregl: maplibre,
 		language: languagesArr.join(','),
 		countries: countriesArr.join(','),
@@ -35,9 +35,9 @@
 		debounceSearch: 25,
 		placeholder,
 		limit
-	}));
+	});
 
-	const handleResult = $derived((r: {result: CarmenGeojsonFeature})=>{
+	const handleResult = (r: {result: CarmenGeojsonFeature}) => {
 	    const res = r.result
 	    if(res.bbox && map){
 					map.fitBounds([
@@ -46,7 +46,7 @@
             ])
 				}
 
-	})
+	}
 
 	const attachGeocoder: Attachment = (el) => {
 			geocoder.addTo(el as HTMLElement);
