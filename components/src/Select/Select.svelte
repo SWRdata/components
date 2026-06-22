@@ -36,6 +36,10 @@
 		 * Only applies when `fuzzy` is enabled.
 		 */
 		fuzzyThreshold?: number;
+		/**
+		 * Message shown in the dropdown when no items match the filter.
+		 */
+		emptyText?: string;
 		value: SelectItem | undefined;
 	}
 
@@ -48,6 +52,7 @@
 		clearable = true,
 		fuzzy = false,
 		fuzzyThreshold = 0.35,
+		emptyText = 'Keine Treffer',
 		value = $bindable(undefined)
 	}: SelectProps = $props();
 
@@ -101,6 +106,11 @@
 				{selection.label}
 			</slot>
 		</div>
+		<div class="empty" slot="empty">
+			<slot name="empty">
+				{emptyText}
+			</slot>
+		</div>
 	</Select>
 </div>
 
@@ -117,5 +127,11 @@
 		--item-color: var(--color-textPrimary);
 		--item-hover-color: var(--color-textPrimary);
 		--selected-item-color: var(--color-textPrimary);
+	}
+
+	.empty {
+		text-align: var(--list-empty-text-align, center);
+		padding: var(--list-empty-padding, 20px 0);
+		color: var(--list-empty-color, #78848f);
 	}
 </style>

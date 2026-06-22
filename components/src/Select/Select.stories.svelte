@@ -45,6 +45,11 @@
 			await userEvent.click(clearButton);
 			expect(selectedItem).toEqual(undefined);
 		});
+
+		await step('The default empty message is shown when nothing matches', async () => {
+			await userEvent.type(select, 'xyz');
+			expect(canvas.getByText('Keine Treffer')).toBeInTheDocument();
+		});
 	}}
 >
 	<StoryTemplate
@@ -56,6 +61,33 @@
 				{ value: 'chocolate', label: 'Chocolate' },
 				{ value: 'cake', label: 'Cake' },
 				{ value: 'ice-cream', label: 'Ice Cream' }
+			]
+		}}
+	/>
+</Story>
+
+<Story
+	name="Custom empty message"
+	asChild
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const select = canvas.getByLabelText('Select');
+
+		await step('The custom empty message is shown when nothing matches', async () => {
+			await userEvent.type(select, 'Pizza');
+			expect(canvas.getByText('Keine passenden Eissorten')).toBeInTheDocument();
+		});
+	}}
+>
+	<StoryTemplate
+		bind:selectedItem
+		args={{
+			inputId: 'select',
+			emptyText: 'Keine passenden Eissorten',
+			items: [
+				{ value: 'vanilla', label: 'Vanille' },
+				{ value: 'chocolate', label: 'Schokolade' },
+				{ value: 'strawberry', label: 'Erdbeere' }
 			]
 		}}
 	/>
