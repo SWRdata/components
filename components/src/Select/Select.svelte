@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Select from 'svelte-select';
+	import Fuse from 'fuse.js';
 	import { type SelectItem } from './Select.types';
 
 	interface SelectProps {
@@ -24,6 +25,17 @@
 		 */
 		groupHeaderSelectable?: boolean;
 		clearable?: boolean;
+		/**
+		 * Enable fuzzy matching of the filter text against item labels (powered by Fuse.js).
+		 * When disabled (default), items are filtered with a plain case-insensitive substring match.
+		 */
+		fuzzy?: boolean;
+		/**
+		 * Fuse.js match tolerance (0 = exact, 1 = match anything). Lower is stricter.
+		 * Tune per dataset: short labels usually want a lower value than long, wordy ones.
+		 * Only applies when `fuzzy` is enabled.
+		 */
+		fuzzyThreshold?: number;
 		value: SelectItem | undefined;
 	}
 
@@ -34,10 +46,37 @@
 		groupBy,
 		groupHeaderSelectable = false,
 		clearable = true,
+		fuzzy = false,
+		fuzzyThreshold = 0.35,
 		value = $bindable(undefined)
 	}: SelectProps = $props();
 
 	const groupByFn = $derived(groupBy || ((item: SelectItem) => item.group as string));
+
+	// Index is rebuilt only when the option list or threshold changes, not on every keystroke.
+	const fuse = $derived(
+		fuzzy
+			? new Fuse(items, { keys: ['label'], threshold: fuzzyThreshold, ignoreLocation: true })
+			: null
+	);
+
+	// Replaces svelte-select's default substring matching with Fuse ranking
+	// (svelte-select handling of grouping untouched).
+	function fuzzyFilter({
+		filterText,
+		items: filterItems,
+		groupBy: groupByKey,
+		filterGroupedItems
+	}: {
+		filterText: string;
+		items: SelectItem[];
+		groupBy: unknown;
+		filterGroupedItems: (items: SelectItem[]) => SelectItem[];
+	}) {
+		const matched =
+			filterText && fuse ? fuse.search(filterText).map((result) => result.item) : filterItems;
+		return groupByKey ? filterGroupedItems(matched) : matched;
+	}
 </script>
 
 <div class="container">
@@ -48,6 +87,7 @@
 		{placeholder}
 		{groupHeaderSelectable}
 		{clearable}
+		filter={fuzzy ? fuzzyFilter : undefined}
 		class="container"
 		bind:value
 	>
