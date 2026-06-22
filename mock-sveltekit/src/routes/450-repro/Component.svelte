@@ -1,4 +1,5 @@
-<svelte:options customElement="p139-geocoder-test" />
+<svelte:options customElement={{tag: "p139-geocoder-test", shadow: "none"}} />
+<!-- Doesn't work: <svelte:options customElement={{tag: "p139-geocoder-test"}} /> -->
 
 <script lang="ts">
 	import { VectorTileSource, Map, VectorLayer, Geocoder, DesignTokens } from '../../../../components/src';
