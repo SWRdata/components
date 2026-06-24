@@ -30,7 +30,7 @@ export default interface GeocoderProps {
 	 */
 	bbox?: number[];
 	/**
-	 * A `[lon, lat]` array to use for biasing search results or the string `ip` to do server-side IP based geolocation.
+	 * A coordinate pair to biase search results
 	 */
 	proximity?: { longitude: number; latitude: number };
 	/**
