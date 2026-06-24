@@ -131,6 +131,22 @@
 		</div>
 	</DesignTokens>
 </Story>
+<Story asChild name="proximity">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
+				<GeocoderControl
+					position="top-right"
+					languages="de"
+					service="maptiler"
+					placeholder="Try 'Konstanz'"
+					proximity={{ longitude: 9.136, latitude: 48.617 }}
+					key="V32kPHZjMa0Mkn6YvSzA"
+				/>
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
 
 <style>
 	.container {

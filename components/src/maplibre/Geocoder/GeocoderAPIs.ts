@@ -17,6 +17,7 @@ export class MaptilerGeocoderAPI implements MaplibreGeocoderApi {
 			type: 'FeatureCollection',
 			features: []
 		};
+
 		try {
 			const params = new URLSearchParams(
 				Object.fromEntries(
@@ -24,6 +25,7 @@ export class MaptilerGeocoderAPI implements MaplibreGeocoderApi {
 						country: config.countries || '',
 						language: config.language || '',
 						types: config.types || '',
+						proximity: config.proximity?.join(',') || '',
 						bbox: config.bbox?.join(',') || '',
 						key: this.key || ''
 					}).filter(([_, value]) => {

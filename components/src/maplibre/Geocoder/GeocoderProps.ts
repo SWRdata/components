@@ -30,6 +30,10 @@ export default interface GeocoderProps {
 	 */
 	bbox?: number[];
 	/**
+	 * A coordinate pair to bias search results
+	 */
+	proximity?: { longitude: number; latitude: number };
+	/**
 	 * Limit search to one or more languages. The UI is localised to the first language specified if [available](https://github.com/maplibre/maplibre-gl-geocoder/blob/main/lib/localization.ts).
 	 */
 	languages?: GeocodingLanguage | GeocodingLanguage[];

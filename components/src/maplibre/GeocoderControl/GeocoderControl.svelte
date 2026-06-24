@@ -1,7 +1,7 @@
 <script lang="ts">
 	import maplibre, { type ControlPosition } from 'maplibre-gl';
 	import MaplibreGeocoder, { type MaplibreGeocoderApi } from '@maplibre/maplibre-gl-geocoder';
-	import { MaptilerGeocoderAPI } from './GeocoderAPIs';
+	import { MaptilerGeocoderAPI } from '../Geocoder/GeocoderAPIs';
 	import MapControl from '../MapControl/MapControl.svelte';
 	import type GeocoderProps from '../Geocoder/GeocoderProps';
 
@@ -16,6 +16,7 @@
 		languages = 'en',
 		types = [],
 		placeholder,
+		proximity,
 		bbox,
 		position = 'top-left',
 		limit = 3
@@ -34,7 +35,9 @@
 			language: languagesArr.join(','),
 			countries: countriesArr.join(','),
 			types: typesArr.join(','),
+			trackProximity: !proximity,
 			bbox,
+			proximity,
 			showResultsWhileTyping: true,
 			showResultMarkers: false,
 			debounceSearch: 25,
