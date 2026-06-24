@@ -5,7 +5,8 @@
 	const charts = [
 		{ title: '348 Repro', slug: '348-repro' },
 		{ title: 'Encapsulation Test', slug: 'encapsulation-test' },
-		{ title: 'Hero Scrolly', slug: 'hero-scrolly' }
+		{ title: 'Hero Scrolly', slug: 'hero-scrolly' },
+		{ title: '#425 Repro', slug: '452-repro' }
 	];
 </script>
 
