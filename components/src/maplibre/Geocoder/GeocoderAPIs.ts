@@ -17,6 +17,13 @@ export class MaptilerGeocoderAPI implements MaplibreGeocoderApi {
 			type: 'FeatureCollection',
 			features: []
 		};
+
+		const proximity = Array.isArray(config.proximity)
+			? config.proximity.join(',')
+			: config.proximity;
+
+		console.log(config);
+
 		try {
 			const params = new URLSearchParams(
 				Object.fromEntries(
@@ -24,6 +31,7 @@ export class MaptilerGeocoderAPI implements MaplibreGeocoderApi {
 						country: config.countries || '',
 						language: config.language || '',
 						types: config.types || '',
+						proximity: proximity || '',
 						bbox: config.bbox?.join(',') || '',
 						key: this.key || ''
 					}).filter(([_, value]) => {
