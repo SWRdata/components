@@ -37,6 +37,7 @@
 			countries: countriesArr.join(','),
 			types: typesArr.join(','),
 			bbox,
+			trackProximity: !proximity,
 			proximity,
 			showResultsWhileTyping: true,
 			showResultMarkers: false,
