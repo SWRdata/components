@@ -29,18 +29,20 @@
 	// Future: initialise a different GeocoderAPI depending on "service"
 	let geocoderAPI: MaplibreGeocoderApi = $derived(new MaptilerGeocoderAPI(key));
 
-	const geocoder = new MaplibreGeocoder(geocoderAPI, {
-		maplibregl: maplibre,
-		language: languagesArr.join(','),
-		countries: countriesArr.join(','),
-		types: typesArr.join(','),
-		bbox: bbox,
-		showResultsWhileTyping: true,
-		showResultMarkers: false,
-		debounceSearch: 25,
-		placeholder,
-		limit
-	});
+	const geocoder = $derived(
+		new MaplibreGeocoder(geocoderAPI, {
+			maplibregl: maplibre,
+			language: languagesArr.join(','),
+			countries: countriesArr.join(','),
+			types: typesArr.join(','),
+			bbox: bbox,
+			showResultsWhileTyping: true,
+			showResultMarkers: false,
+			debounceSearch: 25,
+			placeholder,
+			limit
+		})
+	);
 
 	const handleResult = (r: { result: CarmenGeojsonFeature }) => {
 		const res = r.result;
