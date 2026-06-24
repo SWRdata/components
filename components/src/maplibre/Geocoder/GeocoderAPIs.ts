@@ -24,7 +24,7 @@ export class MaptilerGeocoderAPI implements MaplibreGeocoderApi {
 						country: config.countries || '',
 						language: config.language || '',
 						types: config.types || '',
-						bbox: config.bbox || '',
+						bbox: config.bbox?.join(',') || '',
 						key: this.key || ''
 					}).filter(([_, value]) => {
 						return value !== '';
