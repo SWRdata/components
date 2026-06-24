@@ -34,11 +34,7 @@
 	<DesignTokens theme="light">
 		<div class="container">
 			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
-				<GeocoderControl
-					languages="de"
-					service="maptiler"
-					key="V32kPHZjMa0Mkn6YvSzA"
-				/>
+				<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 			</Map>
 		</div>
 	</DesignTokens>
@@ -113,6 +109,22 @@
 					position="top-right"
 					languages="de"
 					service="maptiler"
+					key="V32kPHZjMa0Mkn6YvSzA"
+				/>
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="bbox">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map style={SWRDataLabLight()} initialLocation={{ lat: 51, lng: 10, zoom: 20 }}>
+				<GeocoderControl
+					position="top-right"
+					languages="de"
+					service="maptiler"
+					placeholder="Try 'Frankfurt'"
+					bbox={[13.579, 51.994, 15.531, 52.674]}
 					key="V32kPHZjMa0Mkn6YvSzA"
 				/>
 			</Map>
