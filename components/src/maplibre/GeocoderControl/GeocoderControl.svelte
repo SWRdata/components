@@ -5,7 +5,7 @@
 	import MapControl from '../MapControl/MapControl.svelte';
 	import type GeocoderProps from '../Geocoder/GeocoderProps';
 
-	interface GeocoderControlProps extends Omit<GeocoderProps, "map">{
+	interface GeocoderControlProps extends Omit<GeocoderProps, 'map'> {
 		position?: ControlPosition;
 	}
 
@@ -15,8 +15,8 @@
 		countries = 'de',
 		languages = 'en',
 		types = [],
-		size="default",
 		placeholder,
+		bbox,
 		position = 'top-left',
 		limit = 3
 	}: GeocoderControlProps = $props();
@@ -28,21 +28,24 @@
 	// Future: initialise a different GeocoderAPI depending on "service"
 	let geocoderAPI: MaplibreGeocoderApi = $derived(new MaptilerGeocoderAPI(key));
 
-	const geocoder = $derived(new MaplibreGeocoder(geocoderAPI, {
-		maplibregl: maplibre,
-		language: languagesArr.join(','),
-		countries: countriesArr.join(','),
-		types: typesArr.join(','),
-		showResultsWhileTyping: true,
-		showResultMarkers: false,
-		debounceSearch: 25,
-		placeholder,
-		limit
-	}));
+	const geocoder = $derived(
+		new MaplibreGeocoder(geocoderAPI, {
+			maplibregl: maplibre,
+			language: languagesArr.join(','),
+			countries: countriesArr.join(','),
+			types: typesArr.join(','),
+			bbox,
+			showResultsWhileTyping: true,
+			showResultMarkers: false,
+			debounceSearch: 25,
+			placeholder,
+			limit
+		})
+	);
 </script>
 
 <MapControl control={geocoder} {position} />
 
 <style lang="scss">
-  @use "../Geocoder/geocoder.scss"
+	@use '../Geocoder/geocoder.scss';
 </style>
