@@ -30,7 +30,7 @@ export default interface GeocoderProps {
 	 */
 	bbox?: number[];
 	/**
-	 * A coordinate pair to biase search results
+	 * A coordinate pair to bias search results
 	 */
 	proximity?: { longitude: number; latitude: number };
 	/**
