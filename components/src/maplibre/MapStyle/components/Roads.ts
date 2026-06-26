@@ -1,4 +1,4 @@
-import { type Layer } from '../../types';
+import { type Layer, type styleTokens } from '../../types';
 import type { SymbolLayerSpecification } from 'maplibre-gl';
 
 const street_layout = {
@@ -10,7 +10,7 @@ const case_layout = {
 	'line-cap': 'butt'
 };
 
-export default function makeRoads(tokens) {
+export default function makeRoads(tokens: styleTokens) {
 	const motorway = {
 		line_color: {
 			stops: [
@@ -198,22 +198,37 @@ export default function makeRoads(tokens) {
 	const roadLabels: SymbolLayerSpecification[] = [
 		{
 			id: 'label-street-misc',
-			filter: ['in', 'kind', 'residential', 'livingstreet', 'unclassified'],
-			minzoom: 15,
+			filter: [
+				'in',
+				'kind',
+				'residential',
+				'pedestrian',
+				'livingstreet',
+				'living_street',
+				'unclassified',
+				'footway'
+			],
+			minzoom: 14,
 			layout: {
+				'text-letter-spacing': 0.02,
+				'text-overlap': 'cooperative',
 				'text-size': {
 					stops: [
 						[12, 10],
-						[15, 13]
+						[15, 12]
 					]
 				}
+			},
+			paint: {
+				'text-color': tokens.label_tertiary
 			}
 		},
 		{
 			id: 'label-street-tertiary',
 			filter: ['==', 'kind', 'tertiary'],
-			minzoom: 15,
+			minzoom: 14,
 			layout: {
+				'text-overlap': 'cooperative',
 				'text-size': {
 					stops: [
 						[12, 10],
@@ -227,27 +242,29 @@ export default function makeRoads(tokens) {
 			filter: ['==', 'kind', 'secondary'],
 			minzoom: 14,
 			layout: {
-				'text-letter-spacing': 0.025,
+				'text-letter-spacing': 0.01,
 				'text-size': {
 					stops: [
 						[12, 10],
 						[15, 14]
 					]
 				}
-			}
+			},
+			'text-overlap': 'always'
 		},
 		{
 			id: 'label-street-primary',
 			filter: ['==', 'kind', 'primary'],
 			minzoom: 14,
 			layout: {
-				'text-letter-spacing': 0.025,
+				'text-letter-spacing': 0.01,
 				'text-size': {
 					stops: [
 						[12, 10],
 						[15, 14]
 					]
-				}
+				},
+				'text-overlap': 'always'
 			},
 			paint: {
 				'text-color': tokens.label_primary
@@ -258,6 +275,8 @@ export default function makeRoads(tokens) {
 			filter: ['==', 'kind', 'trunk'],
 			minzoom: 13,
 			layout: {
+				'text-overlap': 'always',
+				'text-offset': [0, 4],
 				'text-size': {
 					stops: [
 						[12, 10],
@@ -279,16 +298,16 @@ export default function makeRoads(tokens) {
 				'text-field': '{name}',
 				'text-font': tokens.sans_regular,
 				'symbol-placement': 'line',
-				'text-anchor': 'center',
+				'text-variable-anchor': ['center', 'left', 'right'],
 				...el.layout
 			},
 			paint: {
 				'text-color': tokens.label_secondary,
 				'text-halo-color': tokens.background,
-				'text-halo-width': 1.5,
+				'text-halo-width': 1,
 				...el.paint
 			}
-		} as SymbolLayerSpecification;
+		};
 	});
 
 	const roadBridges: Layer[] = [
@@ -1258,16 +1277,11 @@ export default function makeRoads(tokens) {
 			layout: street_layout
 		},
 		{
-			id: 'street-livingstreet',
-			filter: [
-				'all',
-				['==', 'kind', 'living_street'],
-				['!=', 'bridge', true],
-				['!=', 'tunnel', true]
-			],
+			id: 'street-footway',
+			filter: ['all', ['in', 'kind', 'footway'], ['!=', 'bridge', true], ['!=', 'tunnel', true]],
 			paint: {
 				'line-color': street_residential.line_color,
-				'line-width': street_residential.line_width,
+				'line-width': 2,
 				'line-opacity': street_residential.line_opacity
 			},
 			layout: street_layout
@@ -1276,7 +1290,7 @@ export default function makeRoads(tokens) {
 			id: 'street-residential',
 			filter: [
 				'all',
-				['==', 'kind', 'residential'],
+				['in', 'kind', 'residential', 'livingstreet'],
 				['!=', 'bridge', true],
 				['!=', 'tunnel', true]
 			],

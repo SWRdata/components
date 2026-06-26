@@ -1,4 +1,5 @@
 import type { SymbolLayerSpecification } from 'maplibre-gl';
+import type { styleTokens } from '../../types';
 
 // Hand-authored list of place labes we want to show at low zoom levels
 // Ideally majorCities  would include Frankfurt and Leipzig, but they're not
@@ -11,7 +12,7 @@ const majorCities = ['Berlin', 'Stuttgart', 'München', 'Frankfurt', 'Hamburg', 
 // values for "city" and anything below.
 // See: https://github.com/versatiles-org/shortbread-tilemaker/blob/69e5d4c586a1d2726b746a24829bfb05d4dbeb91/process.lua#L198-L242
 
-export default function makePlaceLabels(tokens) {
+export default function makePlaceLabels(tokens: styleTokens) {
 	const placeLabels: SymbolLayerSpecification[] = [
 		{
 			id: 'label-place-quarter',
@@ -41,10 +42,12 @@ export default function makePlaceLabels(tokens) {
 			layout: {
 				'text-size': {
 					stops: [
-						[11, 14],
-						[15, 16]
+						[14, 12],
+						[16, 17]
 					]
-				}
+				},
+				'text-letter-spacing': 0.1,
+				'text-transform': 'uppercase'
 			},
 			paint: {
 				'text-color': tokens.label_secondary
@@ -63,7 +66,7 @@ export default function makePlaceLabels(tokens) {
 				'text-size': {
 					stops: [
 						[10, 14],
-						[12, 15]
+						[12, 16]
 					]
 				}
 			}
@@ -79,11 +82,13 @@ export default function makePlaceLabels(tokens) {
 				['!in', 'name', ...majorCities]
 			],
 			minzoom: 8.5,
+			maxzoom: 13,
+
 			layout: {
 				'text-size': {
 					stops: [
 						[8, 14],
-						[12, 16]
+						[12, 18]
 					]
 				}
 			}
@@ -184,11 +189,7 @@ export default function makePlaceLabels(tokens) {
 	const boundaryLabels = [
 		{
 			id: 'label-boundary-country',
-			filter: [
-				'all',
-				['==', 'admin_level', 2],
-				['!in', 'name', 'Jersey', 'Guernsey', 'Insel Man']
-			],
+			filter: ['all', ['==', 'admin_level', 2], ['!in', 'name', 'Jersey', 'Guernsey', 'Insel Man']],
 			minzoom: 4,
 			maxzoom: 8,
 			layout: {

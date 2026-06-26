@@ -52,3 +52,5 @@ export interface SourceProps {
 	attribution?: string;
 	children?: Snippet;
 }
+
+export type styleTokens = Record<string, string>;

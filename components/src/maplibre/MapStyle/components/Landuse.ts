@@ -1,6 +1,6 @@
-import { type Layer } from '../../types';
+import { type Layer, type styleTokens } from '../../types';
 
-export default function makeLanduse(tokens): any {
+export default function makeLanduse(tokens: styleTokens): any {
 	const landuse: Layer[] = [
 		{
 			id: 'background',

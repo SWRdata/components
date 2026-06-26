@@ -290,7 +290,31 @@
 					showDebug
 					style={SWRDataLabDark()}
 					maxZoom={20}
-					initialLocation={{lng: 9.558006092459436, lat: 47.69445218974644, zoom: 15.664592047703644}}
+					initialLocation={{
+						lng: 9.558006092459436,
+						lat: 47.69445218974644,
+						zoom: 15.664592047703644
+					}}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="feat/459">
+	<DesignTokens theme="dark">
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabDark()}
+					maxZoom={20}
+					initialLocation={{
+						lng: 9.168427169271467,
+						lat: 47.668888671750324,
+						zoom: 14.798741203087438
+					}}
 				>
 					<AttributionControl position="bottom-left" />
 				</Map>
