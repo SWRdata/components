@@ -11,7 +11,7 @@
 	import SamplePoints from './sample-points.json';
 
 	import { SWRDataLabLight } from '../MapStyle';
-	import type { FilterSpecification } from 'maplibre-gl';
+	import type { Feature, FilterSpecification, MapGeoJSONFeature } from 'maplibre-gl';
 	import { tokens } from '../../DesignTokens';
 
 	const { Story } = defineMeta({
@@ -24,14 +24,17 @@
 		['>', 'coverage_2025', 1]
 	];
 
-	let selectedFilter: any = $state(0);
+	const layers: string[] = ['hochwasser_depth_L', 'hochwasser_depth_M', 'hochwasser_depth_H'];
 
-	let hovered: any = $state();
-	const handleMouseMove = (e) => {
+	let selectedFilter: any = $state(0);
+	let selectedLayer: any = $state(0);
+
+	let hovered: MapGeoJSONFeature | undefined = $state();
+	const handleMouseMove = (e: any) => {
 		hovered = e.features?.[0];
 	};
 	const handleMouseLeave = () => {
-		hovered = null;
+		hovered = undefined;
 	};
 </script>
 
@@ -161,6 +164,48 @@
 						filter={filters[selectedFilter]}
 						paint={{
 							'fill-color': tokens.shades.forest.base
+						}}
+					/>
+				</VectorTileSource>
+				<AttributionControl position="bottom-left" />
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
+<Story asChild name="feat/460">
+	<DesignTokens theme="light">
+		<div class="controls">
+			<label for="filter-select">Select layer</label>
+			<select name="layer-select" id="layer-select" bind:value={selectedLayer}>
+				{#each layers as l, i}
+					<option value={i}>{l}</option>
+				{/each}
+			</select>
+		</div>
+		<div class="container">
+			<Map
+				showDebug={true}
+				style={SWRDataLabLight()}
+				initialLocation={{
+					lng: 8.311766543077056,
+					lat: 49.700849765957486,
+					zoom: 12.422750784646452
+				}}
+			>
+				<VectorTileSource
+					id="test-source"
+					tiles={[
+						`https://static.datenhub.net/data/components/hochwasser_DERP.versatiles?{z}/{x}/{y}`
+					]}
+				>
+					<VectorLayer
+						sourceId="test-source"
+						sourceLayer={layers[selectedLayer]}
+						type="fill"
+						id="coverage-fill"
+						paint={{
+							'fill-color': tokens.shades.red.base
 						}}
 					/>
 				</VectorTileSource>
