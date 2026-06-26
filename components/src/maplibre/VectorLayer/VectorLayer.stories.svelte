@@ -173,7 +173,7 @@
 	</DesignTokens>
 </Story>
 
-<Story asChild name="Reactive SourceLayer">
+<Story asChild name="feat/460">
 	<DesignTokens theme="light">
 		<div class="controls">
 			<label for="filter-select">Select layer</label>

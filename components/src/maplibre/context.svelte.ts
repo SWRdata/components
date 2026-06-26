@@ -26,7 +26,6 @@ export class MapContext {
 	minzoom = $state(0);
 	maxzoom = $state(24);
 	styleLoaded = $state(false);
-	idle = $state(false);
 	private _pending: ((map: maplibregl.Map) => void)[] = [];
 	private _listener?: maplibregl.Listener = undefined;
 
@@ -90,9 +89,6 @@ export class MapContext {
 			fn(e.target);
 		});
 		this._pending = [];
-	}
-	private _onIdle(e: maplibregl.MapLibreEvent) {
-		this.idle = true;
 	}
 }
 
