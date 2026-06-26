@@ -66,7 +66,7 @@
 	}) as AddLayerObject;
 
 	// svelte-ignore state_referenced_locally
-	const initialSourceLayer = sourceLayer;
+	let initialSourceLayer = sourceLayer;
 
 	$effect(() => {
 		ctx.waitForStyleLoaded((m) => {
@@ -88,6 +88,7 @@
 		if (ctx.map && ctx.styleLoaded && sourceLayer !== initialSourceLayer) {
 			ctx.map.removeLayer(id);
 			ctx.addLayer(layerSpec, placeBelow);
+			initialSourceLayer = sourceLayer;
 		}
 	});
 
