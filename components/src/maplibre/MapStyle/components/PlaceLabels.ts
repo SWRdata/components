@@ -25,7 +25,7 @@ export default function makePlaceLabels(tokens: styleTokens) {
 						[15, 13]
 					]
 				},
-				'text-letter-spacing': 0.1,
+				'text-letter-spacing': 0.05,
 				'text-transform': 'uppercase',
 				'text-overlap': 'never'
 			},
@@ -38,18 +38,18 @@ export default function makePlaceLabels(tokens: styleTokens) {
 			filter: [
 				'all',
 				['in', 'kind', 'suburb', 'village', 'hamlet', 'town'],
-				['>', 'population', 1000],
+				['>=', 'population', 1000],
 				['<', 'population', 15_000]
 			],
 			minzoom: 12,
 			layout: {
 				'text-size': {
 					stops: [
-						[14, 14],
-						[16, 17]
+						[14, 11],
+						[16, 15]
 					]
 				},
-				'text-letter-spacing': 0.1,
+				'text-letter-spacing': 0.05,
 				'text-transform': 'uppercase'
 			},
 			paint: {

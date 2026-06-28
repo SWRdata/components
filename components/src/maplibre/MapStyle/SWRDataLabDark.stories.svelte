@@ -6,9 +6,10 @@
 	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
 	import GeocoderControl from '../GeocoderControl/GeocoderControl.svelte';
 
-	import { SWRDataLabDark } from './index';
+	import { SWRDataLabDark, SWRDataLabLight } from './index';
 	import locations from './storyLocations';
 	import NavigationControl from '../NavigationControl/NavigationControl.svelte';
+	import { type RoadLabelDensity } from './types';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Style/SWR Data Lab Dark',
@@ -302,18 +303,41 @@
 		</div>
 	</DesignTokens>
 </Story>
-<Story asChild name="feat/459: road label density">
+<Story asChild name="feat/459: overview">
 	<DesignTokens theme="dark">
-		<div class="grid">
+		<div class="row">
+			{#each ['none', 'default', 'dense'] as s}
+				<div class="container">
+					{s}
+					<Map
+						showDebug={s === 'dense'}
+						maxZoom={20}
+						style={SWRDataLabDark({ roads: { labels: s as RoadLabelDensity } })}
+						initialLocation={{
+							lng: 8.269931078413038,
+							lat: 50.00421185075504,
+							zoom: 15.210111923487453
+						}}
+					>
+						<AttributionControl position="bottom-left" />
+					</Map>
+				</div>
+			{/each}
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="feat/459: dense">
+	<DesignTokens theme="dark">
+		<div class="row">
 			<div class="container">
 				<Map
 					showDebug
-					style={SWRDataLabDark()}
 					maxZoom={20}
+					style={SWRDataLabLight({ roads: { labels: 'dense' } })}
 					initialLocation={{
-						lng: 9.561655796873652,
-						lat: 47.6999494832024,
-						zoom: 15.426291620556794
+						lng: 8.272323926448053,
+						lat: 49.99821205810713,
+						zoom: 15.94311424606843
 					}}
 				>
 					<AttributionControl position="bottom-left" />
@@ -330,7 +354,12 @@
 		grid-template-rows: auto;
 		height: 700px;
 	}
+	.row {
+		display: flex;
+		height: 700px;
+	}
 	.container {
+		flex-grow: 1;
 		overflow: hidden;
 	}
 </style>

@@ -971,7 +971,7 @@ export default function makeRoads(tokens: styleTokens) {
 			id: 'street-residential:case',
 			filter: [
 				'all',
-				['==', 'kind', 'residential'],
+				['in', 'kind', 'residential', 'footway'],
 				['!=', 'bridge', true],
 				['!=', 'tunnel', true]
 			],
@@ -1163,10 +1163,10 @@ export default function makeRoads(tokens: styleTokens) {
 		},
 		{
 			id: 'street-footway',
-			filter: ['all', ['in', 'kind', 'footway'], ['!=', 'bridge', true], ['!=', 'tunnel', true]],
+			filter: ['all', ['in', 'kind', 'footway']],
 			paint: {
 				'line-color': street_residential.line_color,
-				'line-width': 2,
+				'line-width': street_residential.line_width,
 				'line-opacity': street_residential.line_opacity
 			},
 			layout: street_layout
@@ -1175,7 +1175,7 @@ export default function makeRoads(tokens: styleTokens) {
 			id: 'street-residential',
 			filter: [
 				'all',
-				['in', 'kind', 'residential', 'livingstreet'],
+				['in', 'kind', 'residential', 'living_street'],
 				['!=', 'bridge', true],
 				['!=', 'tunnel', true]
 			],

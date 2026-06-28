@@ -42,7 +42,7 @@ const tokens: styleTokens = {
 	street_tertiary_case: 'hsl(0, 0%, 14%)',
 	label_primary: 'hsl(240, 5%, 96%)',
 	label_secondary: 'hsl(0, 2%, 85%)',
-	label_tertiary: 'hsl(0, 1%, 75%)',
+	label_tertiary: 'hsl(0, 1%, 60%)',
 	boundary_country: '#6e6f71',
 	boundary_country_case: '#181818',
 	boundary_state: 'hsl(218, 4%, 37%)',
@@ -59,7 +59,6 @@ const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWa
 const { roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
 const { hillshade } = makeHillshade(tokens);
-const { roadLabels } = makeRoadLabels(tokens);
 
 interface styleFunction {
 	(options?: StyleOptions): StyleSpecification;
@@ -72,6 +71,7 @@ const style: styleFunction = (opts) => {
 	} as StyleOptions;
 
 	const { admin } = makeAdmin(tokens, options?.admin);
+	const { roadLabels } = makeRoadLabels(tokens, options?.roads?.labels);
 
 	return {
 		version: 8,
@@ -160,7 +160,7 @@ const style: styleFunction = (opts) => {
 
 			// 8. Labels
 			...(options.roads?.showLabels ? walkingLabels : []),
-			...(options.roads?.showLabels ? roadLabels : []),
+			...roadLabels,
 
 			// 9. Building extrusions
 			...(options.enableBuildingExtrusions ? [buildingExtrusions] : []),

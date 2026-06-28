@@ -48,8 +48,8 @@ const tokens: styleTokens = {
 	street_tertiary_case: 'hsl(0, 0%, 70%)',
 	label_primary: 'hsl(240, 10%, 2%)',
 	label_secondary: 'hsl(0, 0%, 18%)',
-	label_tertiary: 'hsl(60, 1%, 25%)',
-	building: '#f3f2f1',
+	label_tertiary: 'hsl(60, 1%, 35%)',
+	building: '#eee',
 	rail: '#d3d3d3',
 	boundary_country: '#8b8a89',
 	boundary_state: 'hsl(37, 10%, 75%)',
@@ -63,7 +63,6 @@ const { placeLabels, boundaryLabels } = makePlaceLabels(tokens);
 const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit(tokens);
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
 const { roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
-const { roadLabels } = makeRoadLabels(tokens);
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
 const { hillshade } = makeHillshade(tokens);
 
@@ -78,6 +77,7 @@ const style: styleFunction = (opts) => {
 	} as StyleOptions;
 
 	const { admin } = makeAdmin(tokens, options?.admin);
+	const { roadLabels } = makeRoadLabels(tokens, options?.roads?.labels);
 
 	return {
 		version: 8,
@@ -166,7 +166,7 @@ const style: styleFunction = (opts) => {
 
 			// 8. Labels
 			...(options.roads?.showLabels ? walkingLabels : []),
-			...(options.roads?.showLabels ? roadLabels : []),
+			...roadLabels,
 
 			// 9. Building extrusions
 			...(options.enableBuildingExtrusions ? [buildingExtrusions] : []),
