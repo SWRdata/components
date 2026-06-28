@@ -31,7 +31,7 @@ export default function makePlaceLabels(tokens: styleTokens) {
 				'text-font': tokens.sans_regular
 			},
 			paint: {
-				'text-halo-color': tokens.building,
+				'text-halo-color': tokens.background,
 				'text-color': tokens.label_secondary
 			}
 		},
@@ -49,7 +49,7 @@ export default function makePlaceLabels(tokens: styleTokens) {
 				'text-size': {
 					stops: [
 						[14, 11],
-						[16, 15]
+						[16, 18]
 					]
 				},
 				'text-letter-spacing': 0.1,
@@ -57,7 +57,7 @@ export default function makePlaceLabels(tokens: styleTokens) {
 			},
 			paint: {
 				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.building
+				'text-halo-color': tokens.background
 			}
 		},
 		{
