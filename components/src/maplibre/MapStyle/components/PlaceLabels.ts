@@ -25,11 +25,13 @@ export default function makePlaceLabels(tokens: styleTokens) {
 						[15, 13]
 					]
 				},
-				'text-letter-spacing': 0.05,
+				'text-letter-spacing': 0.075,
 				'text-transform': 'uppercase',
-				'text-overlap': 'never'
+				'text-overlap': 'never',
+				'text-font': tokens.sans_regular
 			},
 			paint: {
+				'text-halo-color': tokens.building,
 				'text-color': tokens.label_secondary
 			}
 		},
@@ -43,17 +45,19 @@ export default function makePlaceLabels(tokens: styleTokens) {
 			],
 			minzoom: 12,
 			layout: {
+				'text-font': tokens.sans_regular,
 				'text-size': {
 					stops: [
 						[14, 11],
 						[16, 15]
 					]
 				},
-				'text-letter-spacing': 0.05,
+				'text-letter-spacing': 0.1,
 				'text-transform': 'uppercase'
 			},
 			paint: {
-				'text-color': tokens.label_secondary
+				'text-color': tokens.label_secondary,
+				'text-halo-color': tokens.building
 			}
 		},
 		{

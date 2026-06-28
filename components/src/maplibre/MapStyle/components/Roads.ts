@@ -76,7 +76,15 @@ export default function makeRoads(tokens: styleTokens) {
 	const street_primary = {
 		paint: {
 			'line-color': tokens.street_primary,
-			'line-width': motorway.line_width,
+			'line-width': {
+				stops: [
+					[5, 1],
+					[7, 1.5],
+					[11, 2],
+					[12, 3],
+					[14, 6]
+				]
+			},
 			'line-opacity': {
 				stops: [
 					[8, 0],
@@ -90,7 +98,15 @@ export default function makeRoads(tokens: styleTokens) {
 	const street_primary_case = {
 		paint: {
 			'line-color': tokens.street_primary_case,
-			'line-width': motorway_case.line_width,
+			'line-width': {
+				stops: [
+					[5, 1],
+					[7, 1.5],
+					[11, 4],
+					[12, 5],
+					[14, 9]
+				]
+			},
 			'line-opacity': {
 				stops: [
 					[8, 0],
@@ -1136,7 +1152,7 @@ export default function makeRoads(tokens: styleTokens) {
 			id: 'street-service',
 			filter: [
 				'all',
-				['==', 'kind', 'service'],
+				['in', 'kind', 'service', 'footway'],
 				['!=', 'bridge', true],
 				['!=', 'tunnel', true],
 				['!=', 'service', 'driveway']
@@ -1147,7 +1163,7 @@ export default function makeRoads(tokens: styleTokens) {
 					stops: [
 						[14, 1],
 						[16, 3],
-						[18, 16],
+						[18, 12],
 						[19, 44],
 						[20, 88]
 					]
@@ -1161,16 +1177,7 @@ export default function makeRoads(tokens: styleTokens) {
 			},
 			layout: street_layout
 		},
-		{
-			id: 'street-footway',
-			filter: ['all', ['in', 'kind', 'footway']],
-			paint: {
-				'line-color': street_residential.line_color,
-				'line-width': street_residential.line_width,
-				'line-opacity': street_residential.line_opacity
-			},
-			layout: street_layout
-		},
+
 		{
 			id: 'street-residential',
 			filter: [

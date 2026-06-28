@@ -24,7 +24,7 @@ export default function makeRoadLabels(tokens: styleTokens, density: RoadLabelDe
 							'unclassified',
 							'footway'
 						],
-						minzoom: 14,
+						minzoom: 15,
 						layout: {
 							'text-letter-spacing': 0.05,
 							'text-overlap': 'cooperative',
@@ -42,7 +42,7 @@ export default function makeRoadLabels(tokens: styleTokens, density: RoadLabelDe
 					{
 						id: 'label-street-tertiary',
 						filter: ['==', 'kind', 'tertiary'],
-						minzoom: 14,
+						minzoom: 15,
 						layout: {
 							'text-overlap': 'cooperative',
 							'text-size': {
