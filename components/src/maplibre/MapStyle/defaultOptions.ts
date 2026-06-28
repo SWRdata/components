@@ -5,9 +5,6 @@ const opts: StyleOptions = {
 	places: {
 		showLabels: true
 	},
-	roads: {
-		showLabels: true
-	},
 	admin: {
 		show: true,
 		showLabels: true

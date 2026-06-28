@@ -72,7 +72,7 @@
 			<div class="container">
 				<Map
 					showDebug
-					style={SWRDataLabDark({ roads: { showLabels: false } })}
+					style={SWRDataLabDark({ roads: { labels: 'none' } })}
 					initialLocation={{ ...locations.berlin, zoom: 15 }}
 				>
 					<AttributionControl position="bottom-left" />
