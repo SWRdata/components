@@ -7,9 +7,12 @@ import makeLanduse from './components/Landuse';
 import makeTransit from './components/Transit';
 import makePlaceLabels from './components/PlaceLabels';
 import makeWalking from './components/Walking';
+import makeRoadLabels from './components/RoadLabels';
 import makeRoads from './components/Roads';
 import defaultOptions from './defaultOptions';
 import makeHillshade from './components/Hillshade';
+
+import type { styleTokens } from '../types';
 
 const water = {
 	stops: [
@@ -18,7 +21,7 @@ const water = {
 	]
 };
 
-const tokens = {
+const tokens: styleTokens = {
 	sans_regular: ['swr_sans_regular'],
 	sans_medium: ['swr_sans_medium'],
 	sans_bold: ['swr_sans_bold'],
@@ -59,7 +62,8 @@ const { landuse } = makeLanduse(tokens);
 const { placeLabels, boundaryLabels } = makePlaceLabels(tokens);
 const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit(tokens);
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
-const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
+const { roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
+const { roadLabels } = makeRoadLabels(tokens);
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
 const { hillshade } = makeHillshade(tokens);
 

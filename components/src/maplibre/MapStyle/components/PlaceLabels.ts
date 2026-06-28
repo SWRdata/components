@@ -17,14 +17,17 @@ export default function makePlaceLabels(tokens: styleTokens) {
 		{
 			id: 'label-place-quarter',
 			filter: ['all', ['in', 'kind', 'neighbourhood']],
-			minzoom: 13,
+			minzoom: 14.5,
 			layout: {
 				'text-size': {
 					stops: [
-						[10, 13],
-						[15, 16]
+						[10, 11],
+						[15, 13]
 					]
-				}
+				},
+				'text-letter-spacing': 0.1,
+				'text-transform': 'uppercase',
+				'text-overlap': 'never'
 			},
 			paint: {
 				'text-color': tokens.label_secondary
@@ -42,7 +45,7 @@ export default function makePlaceLabels(tokens: styleTokens) {
 			layout: {
 				'text-size': {
 					stops: [
-						[14, 12],
+						[14, 14],
 						[16, 17]
 					]
 				},

@@ -195,121 +195,6 @@ export default function makeRoads(tokens: styleTokens) {
 		}
 	};
 
-	const roadLabels: SymbolLayerSpecification[] = [
-		{
-			id: 'label-street-misc',
-			filter: [
-				'in',
-				'kind',
-				'residential',
-				'pedestrian',
-				'livingstreet',
-				'living_street',
-				'unclassified',
-				'footway'
-			],
-			minzoom: 14,
-			layout: {
-				'text-letter-spacing': 0.02,
-				'text-overlap': 'cooperative',
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 12]
-					]
-				}
-			},
-			paint: {
-				'text-color': tokens.label_tertiary
-			}
-		},
-		{
-			id: 'label-street-tertiary',
-			filter: ['==', 'kind', 'tertiary'],
-			minzoom: 14,
-			layout: {
-				'text-overlap': 'cooperative',
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 13]
-					]
-				}
-			}
-		},
-		{
-			id: 'label-street-secondary',
-			filter: ['==', 'kind', 'secondary'],
-			minzoom: 14,
-			layout: {
-				'text-letter-spacing': 0.01,
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 14]
-					]
-				}
-			},
-			'text-overlap': 'always'
-		},
-		{
-			id: 'label-street-primary',
-			filter: ['==', 'kind', 'primary'],
-			minzoom: 14,
-			layout: {
-				'text-letter-spacing': 0.01,
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 14]
-					]
-				},
-				'text-overlap': 'always'
-			},
-			paint: {
-				'text-color': tokens.label_primary
-			}
-		},
-		{
-			id: 'label-street-trunk',
-			filter: ['==', 'kind', 'trunk'],
-			minzoom: 13,
-			layout: {
-				'text-overlap': 'always',
-				'text-offset': [0, 4],
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 13]
-					]
-				}
-			},
-			paint: {
-				'text-color': tokens.label_primary
-			}
-		}
-	].map((el) => {
-		return {
-			type: 'symbol',
-			source: 'versatiles-osm',
-			'source-layer': 'street_labels',
-			...el,
-			layout: {
-				'text-field': '{name}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-variable-anchor': ['center', 'left', 'right'],
-				...el.layout
-			},
-			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 1,
-				...el.paint
-			}
-		};
-	});
-
 	const roadBridges: Layer[] = [
 		{
 			id: 'bridge-street-service:case',
@@ -1510,5 +1395,5 @@ export default function makeRoads(tokens: styleTokens) {
 		return { source: 'versatiles-osm', type: 'line', 'source-layer': 'streets', ...el } as Layer;
 	});
 
-	return { roadLabels, roadBridges, roadSurface, roadTunnels };
+	return { roadBridges, roadSurface, roadTunnels };
 }

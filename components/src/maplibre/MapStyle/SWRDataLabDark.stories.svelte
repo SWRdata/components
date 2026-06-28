@@ -302,7 +302,7 @@
 		</div>
 	</DesignTokens>
 </Story>
-<Story asChild name="feat/459">
+<Story asChild name="feat/459: road label density">
 	<DesignTokens theme="dark">
 		<div class="grid">
 			<div class="container">
@@ -311,9 +311,9 @@
 					style={SWRDataLabDark()}
 					maxZoom={20}
 					initialLocation={{
-						lng: 9.168427169271467,
-						lat: 47.668888671750324,
-						zoom: 14.798741203087438
+						lng: 9.561655796873652,
+						lat: 47.6999494832024,
+						zoom: 15.426291620556794
 					}}
 				>
 					<AttributionControl position="bottom-left" />

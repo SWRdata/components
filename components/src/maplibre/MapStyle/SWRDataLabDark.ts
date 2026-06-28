@@ -7,12 +7,15 @@ import makeAdmin from './components/Admin';
 import makeBuildings from './components/Buildings';
 import makeLanduse from './components/Landuse';
 import makeTransit from './components/Transit';
-import makePlaceLabels from './components/PlaceLabels';
 import makeWalking from './components/Walking';
 import makeRoads from './components/Roads';
+import makePlaceLabels from './components/PlaceLabels';
+import makeRoadLabels from './components/RoadLabels';
 import makeHillshade from './components/Hillshade';
 
-const tokens = {
+import type { styleTokens } from '../types';
+
+const tokens: styleTokens = {
 	sans_regular: ['swr_sans_regular'],
 	sans_medium: ['swr_sans_medium'],
 	sans_bold: ['swr_sans_bold'],
@@ -53,9 +56,10 @@ const { landuse } = makeLanduse(tokens);
 const { placeLabels, boundaryLabels } = makePlaceLabels(tokens);
 const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit(tokens);
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
-const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
+const { roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
 const { hillshade } = makeHillshade(tokens);
+const { roadLabels } = makeRoadLabels(tokens);
 
 interface styleFunction {
 	(options?: StyleOptions): StyleSpecification;
