@@ -333,7 +333,7 @@
 				<Map
 					showDebug
 					maxZoom={20}
-					style={SWRDataLabDark({ admin: { showLabels: true }, roads: { labels: 'dense' } })}
+					style={SWRDataLabDark({ roads: { labels: 'dense' } })}
 					initialLocation={{
 						lng: 9.567724147532317,
 						lat: 47.69833827241371,
