@@ -41,5 +41,9 @@ export default interface GeocoderProps {
 	 * Overwrite the default input placeholder
 	 */
 	placeholder?: string;
+	/**
+	 * Optional ID on the input element
+	 */
+	id?: string;
 	size?: 'small' | 'default';
 }

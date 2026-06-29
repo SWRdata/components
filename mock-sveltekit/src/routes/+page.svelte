@@ -3,9 +3,10 @@
 	import DesignTokens from '../../../components/src/DesignTokens/DesignTokens.svelte';
 
 	const charts = [
-		{ title: '348 Repro', slug: '348-repro' },
+		{ title: '#348 Repro', slug: '348-repro' },
 		{ title: 'Encapsulation Test', slug: 'encapsulation-test' },
-		{ title: 'Hero Scrolly', slug: 'hero-scrolly' }
+		{ title: 'Hero Scrolly', slug: 'hero-scrolly' },
+		{ title: '#450 Geocoder Repro', slug: '450-repro' }
 	];
 </script>
 

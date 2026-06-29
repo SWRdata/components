@@ -1,6 +1,7 @@
 import { type Layer, type styleTokens } from '../../types';
+import type { AdminOptions } from '../types';
 
-export default function makeAdmin(tokens: styleTokens, options): any {
+export default function makeAdmin(tokens: styleTokens, options: AdminOptions): any {
 	const admin: Layer[] = [
 		{
 			id: 'boundary-country:case',

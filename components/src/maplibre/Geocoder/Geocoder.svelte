@@ -1,9 +1,11 @@
 <script lang="ts">
 	import maplibre from 'maplibre-gl';
+
 	import MaplibreGeocoder, {
 		type CarmenGeojsonFeature,
 		type MaplibreGeocoderApi
-	} from '@maplibre/maplibre-gl-geocoder';
+	} from './maplibre-gl-geocoder';
+
 	import { MaptilerGeocoderAPI } from './GeocoderAPIs';
 
 	import type { Attachment } from 'svelte/attachments';
@@ -19,6 +21,7 @@
 		proximity,
 		placeholder,
 		limit = 3,
+		id = '',
 		size = 'default',
 		map
 	}: GeocoderProps = $props();
@@ -37,6 +40,7 @@
 			countries: countriesArr.join(','),
 			types: typesArr.join(','),
 			bbox,
+			id,
 			trackProximity: !proximity,
 			proximity,
 			showResultsWhileTyping: true,
