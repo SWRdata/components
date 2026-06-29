@@ -4,6 +4,10 @@ enum AdminLevel {
 }
 
 type RoadLabelDensity = 'none' | 'default' | 'dense';
+type AdminOptions = {
+	show?: boolean | AdminLevel[];
+	showLabels?: boolean;
+};
 
 interface StyleOptions {
 	enableBuildingExtrusions?: boolean;
@@ -11,13 +15,10 @@ interface StyleOptions {
 	places?: {
 		showLabels?: boolean;
 	};
-	admin?: {
-		show?: boolean | AdminLevel[];
-		showLabels?: boolean;
-	};
+	admin?: AdminOptions;
 	roads?: {
 		labels?: RoadLabelDensity;
 	};
 }
 
-export type { StyleOptions, RoadLabelDensity };
+export type { StyleOptions, RoadLabelDensity, AdminOptions };
