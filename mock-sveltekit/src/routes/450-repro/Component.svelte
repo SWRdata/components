@@ -31,10 +31,10 @@
 					key="oO1aTsULS3sqGPgn0qKN"
 					size="small"
 					countries={['de']}
-					placeholder={`z.b. „Sindelfingen“`}
+					placeholder="placeholder goes here"
 					types={['region', 'county', 'municipality']}
 					languages={['de']}
-					id="input-has-id"
+					id="input-id"
 				/>
 			{/if}
 		</div>
