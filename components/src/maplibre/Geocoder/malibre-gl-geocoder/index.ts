@@ -456,9 +456,6 @@ export default class MaplibreGeocoder {
 	 */
 	public addTo(container: string | HTMLElement | Map): void {
 		function addToExistingContainer(geocoder: MaplibreGeocoder, container: Element) {
-			if (!document.body.contains(container)) {
-				throw new Error('Element provided to #addTo() exists, but is not in the DOM');
-			}
 			const el = geocoder.onAdd(); //returns the input elements, which are then added to the requested html container
 			container.appendChild(el);
 		}

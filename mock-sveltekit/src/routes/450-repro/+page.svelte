@@ -3,4 +3,4 @@
 	import DevContainer from '$lib/components/DevContainer.svelte';
 </script>
 
-<p139-geocoder-test></p139-geocoder-test>
+<geocoder-test></geocoder-test>
