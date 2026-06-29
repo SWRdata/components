@@ -34,7 +34,7 @@
 					placeholder={`z.b. „Sindelfingen“`}
 					types={['region', 'county', 'municipality']}
 					languages={['de']}
-					id="test"
+					id="input-has-id"
 				/>
 			{/if}
 		</div>
