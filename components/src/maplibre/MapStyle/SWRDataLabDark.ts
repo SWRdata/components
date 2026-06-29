@@ -7,12 +7,15 @@ import makeAdmin from './components/Admin';
 import makeBuildings from './components/Buildings';
 import makeLanduse from './components/Landuse';
 import makeTransit from './components/Transit';
-import makePlaceLabels from './components/PlaceLabels';
 import makeWalking from './components/Walking';
 import makeRoads from './components/Roads';
+import makePlaceLabels from './components/PlaceLabels';
+import makeRoadLabels from './components/RoadLabels';
 import makeHillshade from './components/Hillshade';
 
-const tokens = {
+import type { styleTokens } from '../types';
+
+const tokens: styleTokens = {
 	sans_regular: ['swr_sans_regular'],
 	sans_medium: ['swr_sans_medium'],
 	sans_bold: ['swr_sans_bold'],
@@ -35,16 +38,16 @@ const tokens = {
 	street_primary_case: 'hsl(0, 11%, 7%)',
 	street_secondary: 'hsl(220, 3%, 20%)',
 	street_secondary_case: 'hsl(0, 0%, 0%)',
-	street_tertiary: 'hsl(0, 0%, 20%)',
+	street_tertiary: 'hsl(0, 0%, 15%)',
 	street_tertiary_case: 'hsl(0, 0%, 14%)',
 	label_primary: 'hsl(240, 5%, 96%)',
 	label_secondary: 'hsl(0, 2%, 85%)',
-	label_tertiary: 'hsl(0, 1%, 75%)',
+	label_tertiary: 'hsl(0, 1%, 60%)',
 	boundary_country: '#6e6f71',
 	boundary_country_case: '#181818',
 	boundary_state: 'hsl(218, 4%, 37%)',
 	rail: 'hsl(0, 0%, 33%)',
-	building: '#232325',
+	building: '#111',
 	hillshade_light: 'hsla(0, 0%, 77%, 0.15)',
 	hillshade_dark: 'hsla(0, 0%, 0%, 0.65)'
 };
@@ -53,7 +56,7 @@ const { landuse } = makeLanduse(tokens);
 const { placeLabels, boundaryLabels } = makePlaceLabels(tokens);
 const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit(tokens);
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
-const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
+const { roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
 const { hillshade } = makeHillshade(tokens);
 
@@ -68,6 +71,7 @@ const style: styleFunction = (opts) => {
 	} as StyleOptions;
 
 	const { admin } = makeAdmin(tokens, options?.admin);
+	const { roadLabels } = makeRoadLabels(tokens, options?.roads?.labels);
 
 	return {
 		version: 8,
@@ -155,8 +159,8 @@ const style: styleFunction = (opts) => {
 			...admin,
 
 			// 8. Labels
-			...(options.roads?.showLabels ? walkingLabels : []),
-			...(options.roads?.showLabels ? roadLabels : []),
+			...(options.roads?.labels !== 'none' ? walkingLabels : []),
+			...roadLabels,
 
 			// 9. Building extrusions
 			...(options.enableBuildingExtrusions ? [buildingExtrusions] : []),

@@ -1,4 +1,4 @@
-import { type Layer } from '../../types';
+import { type Layer, type styleTokens } from '../../types';
 import type { SymbolLayerSpecification } from 'maplibre-gl';
 
 const street_layout = {
@@ -10,7 +10,7 @@ const case_layout = {
 	'line-cap': 'butt'
 };
 
-export default function makeRoads(tokens) {
+export default function makeRoads(tokens: styleTokens) {
 	const motorway = {
 		line_color: {
 			stops: [
@@ -76,7 +76,15 @@ export default function makeRoads(tokens) {
 	const street_primary = {
 		paint: {
 			'line-color': tokens.street_primary,
-			'line-width': motorway.line_width,
+			'line-width': {
+				stops: [
+					[5, 1],
+					[7, 1.5],
+					[11, 2],
+					[12, 3],
+					[14, 6]
+				]
+			},
 			'line-opacity': {
 				stops: [
 					[8, 0],
@@ -90,7 +98,15 @@ export default function makeRoads(tokens) {
 	const street_primary_case = {
 		paint: {
 			'line-color': tokens.street_primary_case,
-			'line-width': motorway_case.line_width,
+			'line-width': {
+				stops: [
+					[5, 1],
+					[7, 1.5],
+					[11, 4],
+					[12, 5],
+					[14, 9]
+				]
+			},
 			'line-opacity': {
 				stops: [
 					[8, 0],
@@ -194,102 +210,6 @@ export default function makeRoads(tokens) {
 			]
 		}
 	};
-
-	const roadLabels: SymbolLayerSpecification[] = [
-		{
-			id: 'label-street-misc',
-			filter: ['in', 'kind', 'residential', 'livingstreet', 'unclassified'],
-			minzoom: 15,
-			layout: {
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 13]
-					]
-				}
-			}
-		},
-		{
-			id: 'label-street-tertiary',
-			filter: ['==', 'kind', 'tertiary'],
-			minzoom: 15,
-			layout: {
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 13]
-					]
-				}
-			}
-		},
-		{
-			id: 'label-street-secondary',
-			filter: ['==', 'kind', 'secondary'],
-			minzoom: 14,
-			layout: {
-				'text-letter-spacing': 0.025,
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 14]
-					]
-				}
-			}
-		},
-		{
-			id: 'label-street-primary',
-			filter: ['==', 'kind', 'primary'],
-			minzoom: 14,
-			layout: {
-				'text-letter-spacing': 0.025,
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 14]
-					]
-				}
-			},
-			paint: {
-				'text-color': tokens.label_primary
-			}
-		},
-		{
-			id: 'label-street-trunk',
-			filter: ['==', 'kind', 'trunk'],
-			minzoom: 13,
-			layout: {
-				'text-size': {
-					stops: [
-						[12, 10],
-						[15, 13]
-					]
-				}
-			},
-			paint: {
-				'text-color': tokens.label_primary
-			}
-		}
-	].map((el) => {
-		return {
-			type: 'symbol',
-			source: 'versatiles-osm',
-			'source-layer': 'street_labels',
-			...el,
-			layout: {
-				'text-field': '{name}',
-				'text-font': tokens.sans_regular,
-				'symbol-placement': 'line',
-				'text-anchor': 'center',
-				...el.layout
-			},
-			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background,
-				'text-halo-width': 1.5,
-				...el.paint
-			}
-		} as SymbolLayerSpecification;
-	});
 
 	const roadBridges: Layer[] = [
 		{
@@ -1067,7 +987,7 @@ export default function makeRoads(tokens) {
 			id: 'street-residential:case',
 			filter: [
 				'all',
-				['==', 'kind', 'residential'],
+				['in', 'kind', 'residential', 'footway'],
 				['!=', 'bridge', true],
 				['!=', 'tunnel', true]
 			],
@@ -1232,7 +1152,7 @@ export default function makeRoads(tokens) {
 			id: 'street-service',
 			filter: [
 				'all',
-				['==', 'kind', 'service'],
+				['in', 'kind', 'service', 'footway'],
 				['!=', 'bridge', true],
 				['!=', 'tunnel', true],
 				['!=', 'service', 'driveway']
@@ -1243,7 +1163,7 @@ export default function makeRoads(tokens) {
 					stops: [
 						[14, 1],
 						[16, 3],
-						[18, 16],
+						[18, 12],
 						[19, 44],
 						[20, 88]
 					]
@@ -1257,26 +1177,12 @@ export default function makeRoads(tokens) {
 			},
 			layout: street_layout
 		},
-		{
-			id: 'street-livingstreet',
-			filter: [
-				'all',
-				['==', 'kind', 'living_street'],
-				['!=', 'bridge', true],
-				['!=', 'tunnel', true]
-			],
-			paint: {
-				'line-color': street_residential.line_color,
-				'line-width': street_residential.line_width,
-				'line-opacity': street_residential.line_opacity
-			},
-			layout: street_layout
-		},
+
 		{
 			id: 'street-residential',
 			filter: [
 				'all',
-				['==', 'kind', 'residential'],
+				['in', 'kind', 'residential', 'living_street'],
 				['!=', 'bridge', true],
 				['!=', 'tunnel', true]
 			],
@@ -1496,5 +1402,5 @@ export default function makeRoads(tokens) {
 		return { source: 'versatiles-osm', type: 'line', 'source-layer': 'streets', ...el } as Layer;
 	});
 
-	return { roadLabels, roadBridges, roadSurface, roadTunnels };
+	return { roadBridges, roadSurface, roadTunnels };
 }

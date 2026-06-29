@@ -50,7 +50,6 @@
 
 	const ctx = getMapContext();
 
-	let beforeId: string | undefined = $state();
 	let prevSelected: string | number | undefined = $state();
 	let prevHovered: string | number | undefined = $state();
 
@@ -66,16 +65,30 @@
 		maxzoom: maxZoom
 	}) as AddLayerObject;
 
+	// svelte-ignore state_referenced_locally
+	let initialSourceLayer = sourceLayer;
+
 	$effect(() => {
 		ctx.waitForStyleLoaded((m) => {
 			ctx.addLayer(layerSpec, placeBelow);
 		});
 	});
 
-	// Make filter reactive
+	// make filter reactive
 	$effect(() => {
 		if (ctx.map && ctx.styleLoaded && filter) {
 			ctx.map.setFilter(id, filter);
+		}
+	});
+
+	// make sourceLayer reactive
+	// There is no setSourceLayer() method in maplibre, so we delete and re-create the layer instead
+	// Comparing initialSourceLayer ensures we don't do this on the initial render
+	$effect(() => {
+		if (ctx.map && ctx.styleLoaded && sourceLayer !== initialSourceLayer) {
+			ctx.map.removeLayer(id);
+			ctx.addLayer(layerSpec, placeBelow);
+			initialSourceLayer = sourceLayer;
 		}
 	});
 

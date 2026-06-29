@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, setContext, type Snippet } from 'svelte';
-	import { MaptilerGeocoderAPI } from '../GeocoderControl/GeocoderAPIs';
+	import { MaptilerGeocoderAPI } from '../Geocoder/GeocoderAPIs';
 	import {
 		type GeocodingCountry,
 		type GeocodingLanguage,

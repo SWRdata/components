@@ -1,4 +1,5 @@
 import type { SymbolLayerSpecification } from 'maplibre-gl';
+import type { styleTokens } from '../../types';
 
 // Hand-authored list of place labes we want to show at low zoom levels
 // Ideally majorCities  would include Frankfurt and Leipzig, but they're not
@@ -11,43 +12,72 @@ const majorCities = ['Berlin', 'Stuttgart', 'München', 'Frankfurt', 'Hamburg', 
 // values for "city" and anything below.
 // See: https://github.com/versatiles-org/shortbread-tilemaker/blob/69e5d4c586a1d2726b746a24829bfb05d4dbeb91/process.lua#L198-L242
 
-export default function makePlaceLabels(tokens) {
+export default function makePlaceLabels(tokens: styleTokens) {
 	const placeLabels: SymbolLayerSpecification[] = [
 		{
 			id: 'label-place-quarter',
-			filter: ['all', ['in', 'kind', 'neighbourhood']],
-			minzoom: 13,
+			filter: ['all', ['in', 'kind', 'neighbourhood'], ['>=', 'population', 200]],
+			minzoom: 14.5,
 			layout: {
 				'text-size': {
 					stops: [
-						[10, 13],
-						[15, 16]
+						[10, 11],
+						[15, 13]
 					]
-				}
+				},
+				'text-letter-spacing': 0.075,
+				'text-transform': 'uppercase',
+				'text-overlap': 'never',
+				'text-font': tokens.sans_regular
 			},
 			paint: {
+				'text-halo-color': tokens.background,
 				'text-color': tokens.label_secondary
 			}
 		},
 		{
-			id: 'label-place-suburb',
+			id: 'label-place-suburb-small',
 			filter: [
 				'all',
 				['in', 'kind', 'suburb', 'village', 'hamlet', 'town'],
-				['>', 'population', 1000],
-				['<', 'population', 15_000]
+				['<', 'population', 2000]
 			],
-			minzoom: 12,
+			minzoom: 13.5,
 			layout: {
+				'text-font': tokens.sans_regular,
 				'text-size': {
 					stops: [
-						[11, 14],
-						[15, 16]
+						[13, 13],
+						[16, 17]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary
+				'text-color': tokens.label_secondary,
+				'text-halo-color': tokens.background
+			}
+		},
+		{
+			id: 'label-place-suburb-big',
+			filter: [
+				'all',
+				['in', 'kind', 'suburb', 'village', 'hamlet', 'town'],
+				['>=', 'population', 2000],
+				['<', 'population', 15_000]
+			],
+			minzoom: 12,
+			layout: {
+				'text-font': tokens.sans_regular,
+				'text-size': {
+					stops: [
+						[13, 14],
+						[16, 18]
+					]
+				}
+			},
+			paint: {
+				'text-color': tokens.label_secondary,
+				'text-halo-color': tokens.background
 			}
 		},
 		{
@@ -63,7 +93,7 @@ export default function makePlaceLabels(tokens) {
 				'text-size': {
 					stops: [
 						[10, 14],
-						[12, 15]
+						[12, 16]
 					]
 				}
 			}
@@ -79,11 +109,13 @@ export default function makePlaceLabels(tokens) {
 				['!in', 'name', ...majorCities]
 			],
 			minzoom: 8.5,
+			maxzoom: 13,
+
 			layout: {
 				'text-size': {
 					stops: [
 						[8, 14],
-						[12, 16]
+						[12, 18]
 					]
 				}
 			}
@@ -98,7 +130,7 @@ export default function makePlaceLabels(tokens) {
 				['<', 'population', 400_000],
 				['!in', 'name', ...majorCities]
 			],
-			minzoom: 7,
+			minzoom: 7.5,
 			maxzoom: 13,
 			layout: {
 				'text-size': {
@@ -122,18 +154,13 @@ export default function makePlaceLabels(tokens) {
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 14],
+						[7, 15],
 						[15, 20]
 					]
 				}
 			},
 			paint: {
-				'text-color': {
-					stops: [
-						[7, tokens.label_tertiary],
-						[9, tokens.label_secondary]
-					]
-				}
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -150,12 +177,7 @@ export default function makePlaceLabels(tokens) {
 				}
 			},
 			paint: {
-				'text-color': {
-					stops: [
-						[7, tokens.label_tertiary],
-						[9, tokens.label_secondary]
-					]
-				}
+				'text-color': tokens.label_secondary
 			}
 		}
 	].map((el) => {
@@ -184,11 +206,7 @@ export default function makePlaceLabels(tokens) {
 	const boundaryLabels = [
 		{
 			id: 'label-boundary-country',
-			filter: [
-				'all',
-				['==', 'admin_level', 2],
-				['!in', 'name', 'Jersey', 'Guernsey', 'Insel Man']
-			],
+			filter: ['all', ['==', 'admin_level', 2], ['!in', 'name', 'Jersey', 'Guernsey', 'Insel Man']],
 			minzoom: 4,
 			maxzoom: 8,
 			layout: {

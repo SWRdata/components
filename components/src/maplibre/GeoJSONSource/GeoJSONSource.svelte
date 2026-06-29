@@ -1,10 +1,10 @@
 <script lang="ts">
 	// See: https://maplibre.org/maplibre-gl-js/docs/API/classes/GeoJSONSource/
 	import { type GeoJSONSourceSpecification } from 'maplibre-gl';
-	import MapSource from '../Source/MapSource.svelte';
+	import MapSource from '../MapSource/MapSource.svelte';
 	import type { SourceProps } from '../types';
 
-	interface GeoJSONSourceProps extends Omit<SourceProps, "children"> {
+	interface GeoJSONSourceProps extends Omit<SourceProps, 'children'> {
 		/**
 		 * GeoJSON object or URL
 		 */

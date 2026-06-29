@@ -43,13 +43,14 @@ export interface Location {
 }
 
 export interface SourceProps {
-  id: string;
-  minZoom?: number;
+	id: string;
+	minZoom?: number;
 	maxZoom?: number;
-		/**
-		 * Attribution string for your data, usually rendered using an `<AttributionControl/>`
-		 */
-  attribution?: string;
-  children?: Snippet;
-
+	/**
+	 * Attribution string for your data, usually rendered using an `<AttributionControl/>`
+	 */
+	attribution?: string;
+	children?: Snippet;
 }
+
+export type styleTokens = Record<string, any>;

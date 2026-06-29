@@ -39,6 +39,7 @@ export class MapContext {
 			this._map?.off('styledata', this._listener);
 			this._listener = undefined;
 		}
+
 		// Set new map instance and bind new event listeners
 		this._map = value;
 		if (this._map) {

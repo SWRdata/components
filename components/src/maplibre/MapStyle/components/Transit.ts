@@ -1,6 +1,6 @@
-import type { Layer } from '../../types';
+import type { Layer, styleTokens } from '../../types';
 
-export default function makeTransit(tokens) {
+export default function makeTransit(tokens: styleTokens) {
 	const rail = {
 		line_color: tokens.rail,
 		line_dasharray: [2, 2],

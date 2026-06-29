@@ -2,6 +2,9 @@ enum AdminLevel {
 	COUNTRY = 2,
 	BUNDESLAND = 4
 }
+
+type RoadLabelDensity = 'none' | 'default' | 'dense';
+
 interface StyleOptions {
 	enableBuildingExtrusions?: boolean;
 	enableHillshade?: boolean;
@@ -13,8 +16,8 @@ interface StyleOptions {
 		showLabels?: boolean;
 	};
 	roads?: {
-		showLabels?: boolean;
+		labels?: RoadLabelDensity;
 	};
 }
 
-export type { StyleOptions };
+export type { StyleOptions, RoadLabelDensity };

@@ -45,6 +45,11 @@
 			await userEvent.click(clearButton);
 			expect(selectedItem).toEqual(undefined);
 		});
+
+		await step('The default empty message is shown when nothing matches', async () => {
+			await userEvent.type(select, 'xyz');
+			expect(canvas.getByText('Keine Treffer')).toBeInTheDocument();
+		});
 	}}
 >
 	<StoryTemplate
@@ -56,6 +61,33 @@
 				{ value: 'chocolate', label: 'Chocolate' },
 				{ value: 'cake', label: 'Cake' },
 				{ value: 'ice-cream', label: 'Ice Cream' }
+			]
+		}}
+	/>
+</Story>
+
+<Story
+	name="Custom empty message"
+	asChild
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const select = canvas.getByLabelText('Select');
+
+		await step('The custom empty message is shown when nothing matches', async () => {
+			await userEvent.type(select, 'Pizza');
+			expect(canvas.getByText('Keine passenden Eissorten')).toBeInTheDocument();
+		});
+	}}
+>
+	<StoryTemplate
+		bind:selectedItem
+		args={{
+			inputId: 'select',
+			emptyText: 'Keine passenden Eissorten',
+			items: [
+				{ value: 'vanilla', label: 'Vanille' },
+				{ value: 'chocolate', label: 'Schokolade' },
+				{ value: 'strawberry', label: 'Erdbeere' }
 			]
 		}}
 	/>
@@ -157,6 +189,63 @@
 				bind:value={selectedItem}
 				inputId="job-select"
 				placeholder="z.B. Taxifahrer/in"
+				items={jobsData
+					.sort((a, b) => a.label.localeCompare(b.label))
+					.map((item) => ({
+						value: item.value,
+						label: `${item.label}: ${item.add_on}`, // used for filtering
+						details: {
+							title: item.label, // used for display
+							addon: item.add_on // used for display
+						}
+					}))}
+				groupHeaderSelectable={false}
+			>
+				<div slot="item" let:item class="custom-item">
+					<h4 class="custom-item-title" data-testid="custom-item-title">
+						{item.details.title}
+					</h4>
+					<p class="custom-item-addon" data-testid="custom-item-addon">{item.details.addon}</p>
+				</div>
+				<div slot="selection" let:selection class="selection">
+					{selection.details.title}
+				</div>
+			</Select>
+		{/snippet}
+	</StoryTemplate>
+</Story>
+
+<Story
+	name="Fuzzy (custom items)"
+	asChild
+	play={async ({ canvasElement, step }) => {
+		const canvas = within(canvasElement);
+		const select = canvas.getByLabelText('Berufe');
+
+		await step('An exact title still selects that item with fuzzy enabled', async () => {
+			await userEvent.type(select, 'Tierpflege{enter}');
+			expect(selectedItem?.details.title).toEqual('Tierpflege');
+		});
+
+		await step('A typo in the title still matches the closest item', async () => {
+			await userEvent.type(select, 'Journlismus{enter}');
+			expect(selectedItem?.details.title).toEqual('Journalismus');
+		});
+
+		await step('A typo in the add-on still matches the closest item', async () => {
+			await userEvent.type(select, 'Hundetrener{enter}');
+			expect(selectedItem?.details.title).toEqual('Tierpflege');
+		});
+	}}
+>
+	<StoryTemplate>
+		{#snippet demoComponent()}
+			<FormLabel htmlFor="job-select">Berufe</FormLabel>
+			<Select
+				bind:value={selectedItem}
+				inputId="job-select"
+				placeholder="z.B. Taxifahrer/in"
+				fuzzy
 				items={jobsData
 					.sort((a, b) => a.label.localeCompare(b.label))
 					.map((item) => ({

@@ -279,7 +279,7 @@
 	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
-				<Map showDebug style={SWRDataLabLight({roads: {showLabels: true}})} initialLocation={locations.stugge}>
+				<Map showDebug style={SWRDataLabLight()} initialLocation={locations.stugge}>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>
@@ -290,8 +290,11 @@
 	<DesignTokens theme="light">
 		<div class="grid">
 			<div class="container">
-				<Map showDebug style={SWRDataLabLight({	roads: {
-					showLabels: true}})} initialLocation={{"lng":13.397677524739947,"lat":52.5175142188192,"zoom":14.99}}>
+				<Map
+					showDebug
+					style={SWRDataLabLight()}
+					initialLocation={{ lng: 13.397677524739947, lat: 52.5175142188192, zoom: 14.99 }}
+				>
 					<AttributionControl position="bottom-left" />
 				</Map>
 			</div>
@@ -330,7 +333,7 @@
 			<div class="container">
 				<Map
 					showDebug
-					style={SWRDataLabLight({ enableBuildingExtrusions: true, roads: { showLabels: false } })}
+					style={SWRDataLabLight({ enableBuildingExtrusions: true, roads: { labels: 'none' } })}
 					maxZoom={20}
 					initialLocation={locations.buildings}
 				>

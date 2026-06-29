@@ -39,7 +39,7 @@ export { default as VectorTileSource } from './maplibre/VectorTileSource/VectorT
 export { default as RasterDEMSource } from './maplibre/RasterDEMSource/RasterDEMSource.svelte';
 export { default as GeoJSONSource } from './maplibre/GeoJSONSource/GeoJSONSource.svelte';
 export { default as ArrowSource } from './maplibre/ArrowSource/ArrowSource.svelte';
-export { default as MapSource } from './maplibre/Source/MapSource.svelte';
+export { default as MapSource } from './maplibre/MapSource/MapSource.svelte';
 export { default as Tooltip } from './maplibre/Tooltip/Tooltip.svelte';
 export { default as WithLinkLocation } from './maplibre/WithLinkLocation/WithLinkLocation.svelte';
 

@@ -7,9 +7,12 @@ import makeLanduse from './components/Landuse';
 import makeTransit from './components/Transit';
 import makePlaceLabels from './components/PlaceLabels';
 import makeWalking from './components/Walking';
+import makeRoadLabels from './components/RoadLabels';
 import makeRoads from './components/Roads';
 import defaultOptions from './defaultOptions';
 import makeHillshade from './components/Hillshade';
+
+import type { styleTokens } from '../types';
 
 const water = {
 	stops: [
@@ -18,7 +21,7 @@ const water = {
 	]
 };
 
-const tokens = {
+const tokens: styleTokens = {
 	sans_regular: ['swr_sans_regular'],
 	sans_medium: ['swr_sans_medium'],
 	sans_bold: ['swr_sans_bold'],
@@ -45,8 +48,8 @@ const tokens = {
 	street_tertiary_case: 'hsl(0, 0%, 70%)',
 	label_primary: 'hsl(240, 10%, 2%)',
 	label_secondary: 'hsl(0, 0%, 18%)',
-	label_tertiary: 'hsl(60, 1%, 25%)',
-	building: '#f3f2f1',
+	label_tertiary: 'hsl(60, 1%, 35%)',
+	building: '#eee',
 	rail: '#d3d3d3',
 	boundary_country: '#8b8a89',
 	boundary_state: 'hsl(37, 10%, 75%)',
@@ -59,7 +62,7 @@ const { landuse } = makeLanduse(tokens);
 const { placeLabels, boundaryLabels } = makePlaceLabels(tokens);
 const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit(tokens);
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
-const { roadLabels, roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
+const { roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
 const { buildingFootprints, buildingExtrusions, structureExtrusions } = makeBuildings(tokens);
 const { hillshade } = makeHillshade(tokens);
 
@@ -74,6 +77,7 @@ const style: styleFunction = (opts) => {
 	} as StyleOptions;
 
 	const { admin } = makeAdmin(tokens, options?.admin);
+	const { roadLabels } = makeRoadLabels(tokens, options?.roads?.labels);
 
 	return {
 		version: 8,
@@ -161,8 +165,8 @@ const style: styleFunction = (opts) => {
 			...admin,
 
 			// 8. Labels
-			...(options.roads?.showLabels ? walkingLabels : []),
-			...(options.roads?.showLabels ? roadLabels : []),
+			...(options.roads?.labels !== 'none' ? walkingLabels : []),
+			...roadLabels,
 
 			// 9. Building extrusions
 			...(options.enableBuildingExtrusions ? [buildingExtrusions] : []),

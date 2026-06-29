@@ -2,7 +2,7 @@
 	import { type GeoJSONSourceSpecification } from 'maplibre-gl';
 	import { onDestroy, onMount } from 'svelte';
 
-	import MapSource from '../Source';
+	import MapSource from '../MapSource';
 	import { getMapContext } from '../context.svelte.js';
 	import quadraticToPoints from './quadraticToPoints';
 
@@ -32,13 +32,15 @@
 
 	const { id, arrows = [], attribution = '' }: ArrowSourceProps = $props();
 
-	const ars: JsonArrow[] = $derived(arrows.map((a) => {
-		return {
-			width: a.width || 10,
-			points: quadraticToPoints(a.a, a.b, a.c),
-			headScale: a.headScale
-		};
-	}));
+	const ars: JsonArrow[] = $derived(
+		arrows.map((a) => {
+			return {
+				width: a.width || 10,
+				points: quadraticToPoints(a.a, a.b, a.c),
+				headScale: a.headScale
+			};
+		})
+	);
 
 	const arrowsToJson = (arrows: JsonArrow[] = []) => {
 		if (!map) return { type: 'FeatureCollection', features: [] } as GeoJSON.GeoJSON;
@@ -83,7 +85,7 @@
 	};
 
 	let sourceSpec: GeoJSONSourceSpecification = $state({
-	  // svelte-ignore state_referenced_locally
+		// svelte-ignore state_referenced_locally
 		attribution,
 		type: 'geojson',
 		promoteId: 'id',
