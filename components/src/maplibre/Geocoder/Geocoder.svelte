@@ -21,6 +21,7 @@
 		proximity,
 		placeholder,
 		limit = 3,
+		id = '',
 		size = 'default',
 		map
 	}: GeocoderProps = $props();
@@ -39,6 +40,7 @@
 			countries: countriesArr.join(','),
 			types: typesArr.join(','),
 			bbox,
+			id,
 			trackProximity: !proximity,
 			proximity,
 			showResultsWhileTyping: true,

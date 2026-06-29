@@ -87,6 +87,11 @@ export type MaplibreGeocoderOptions = {
 	 */
 	limit?: number;
 	/**
+	 * Optional ID on the input element
+	 * @default ""
+	 */
+	id?: string;
+	/**
 	 * Allow Maplibre to collect anonymous usage statistics from the plugin.
 	 * @default true
 	 */
@@ -525,6 +530,7 @@ export default class MaplibreGeocoder {
 		this._inputEl = document.createElement('input');
 		this._inputEl.type = 'search';
 		this._inputEl.className = 'maplibregl-ctrl-geocoder--input';
+		this._inputEl.id = this.options?.id || '';
 
 		this.setPlaceholder();
 

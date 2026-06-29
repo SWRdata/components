@@ -34,6 +34,7 @@
 					placeholder={`z.b. „Sindelfingen“`}
 					types={['region', 'county', 'municipality']}
 					languages={['de']}
+					id="test"
 				/>
 			{/if}
 		</div>
@@ -65,6 +66,7 @@
 <style>
 	.container {
 		padding: 5%;
+		max-width: 30rem;
 	}
 	.map {
 		aspect-ratio: 4 / 3;
