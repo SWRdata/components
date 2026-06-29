@@ -1,11 +1,11 @@
 <script lang="ts">
 	import maplibre from 'maplibre-gl';
-	import {
+
+	import MaplibreGeocoder, {
 		type CarmenGeojsonFeature,
 		type MaplibreGeocoderApi
-	} from '@maplibre/maplibre-gl-geocoder';
+	} from './maplibre-gl-geocoder';
 
-	import MaplibreGeocoder from './malibre-gl-geocoder';
 	import { MaptilerGeocoderAPI } from './GeocoderAPIs';
 
 	import type { Attachment } from 'svelte/attachments';
