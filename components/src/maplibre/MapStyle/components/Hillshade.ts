@@ -1,6 +1,6 @@
-import { type Layer } from '../../types';
+import { type Layer, type styleTokens } from '../../types';
 
-export default function makeHillshade(tokens): any {
+export default function makeHillshade(tokens: styleTokens): any {
 	const hillshade: Layer[] = [
 		{
 			id: 'hillshade-light',

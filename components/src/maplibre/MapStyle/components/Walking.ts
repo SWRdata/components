@@ -1,4 +1,4 @@
-import { type Layer } from '../../types';
+import { type Layer, type styleTokens } from '../../types';
 import type { SymbolLayerSpecification } from 'maplibre-gl';
 
 const street_layout = {
@@ -6,7 +6,7 @@ const street_layout = {
 	'line-cap': 'butt'
 };
 
-export default function makeWalking(tokens): any {
+export default function makeWalking(tokens: styleTokens): any {
 	const street_residential = {
 		line_color: tokens.street_tertiary,
 		line_width: {
