@@ -335,9 +335,9 @@
 					maxZoom={20}
 					style={SWRDataLabDark({ roads: { labels: 'dense' } })}
 					initialLocation={{
-						lng: 8.272323926448053,
-						lat: 49.99821205810713,
-						zoom: 15.94311424606843
+						lng: 9.558469031819868,
+						lat: 47.700057918000056,
+						zoom: 14.74477639533513
 					}}
 				>
 					<AttributionControl position="bottom-left" />

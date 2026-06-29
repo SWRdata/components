@@ -16,7 +16,7 @@ export default function makePlaceLabels(tokens: styleTokens) {
 	const placeLabels: SymbolLayerSpecification[] = [
 		{
 			id: 'label-place-quarter',
-			filter: ['all', ['in', 'kind', 'neighbourhood']],
+			filter: ['all', ['in', 'kind', 'neighbourhood'], ['>=', 'population', 200]],
 			minzoom: 14.5,
 			layout: {
 				'text-size': {
