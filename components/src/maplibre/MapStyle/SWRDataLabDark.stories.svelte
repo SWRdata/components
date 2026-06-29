@@ -333,11 +333,31 @@
 				<Map
 					showDebug
 					maxZoom={20}
+					style={SWRDataLabDark({ admin: { showLabels: true }, roads: { labels: 'dense' } })}
+					initialLocation={{
+						lng: 9.567724147532317,
+						lat: 47.69833827241371,
+						zoom: 12.235763594490303
+					}}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="State">
+	<DesignTokens theme="dark">
+		<div class="row">
+			<div class="container">
+				<Map
+					showDebug
+					maxZoom={20}
 					style={SWRDataLabDark({ roads: { labels: 'dense' } })}
 					initialLocation={{
-						lng: 9.558469031819868,
-						lat: 47.700057918000056,
-						zoom: 14.74477639533513
+						lng: 9.26731696227148,
+						lat: 48.75587434954403,
+						zoom: 7.1968492898445575
 					}}
 				>
 					<AttributionControl position="bottom-left" />

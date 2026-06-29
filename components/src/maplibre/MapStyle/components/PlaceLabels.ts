@@ -36,11 +36,33 @@ export default function makePlaceLabels(tokens: styleTokens) {
 			}
 		},
 		{
-			id: 'label-place-suburb',
+			id: 'label-place-suburb-small',
 			filter: [
 				'all',
 				['in', 'kind', 'suburb', 'village', 'hamlet', 'town'],
-				['>=', 'population', 1000],
+				['<', 'population', 2000]
+			],
+			minzoom: 13.5,
+			layout: {
+				'text-font': tokens.sans_regular,
+				'text-size': {
+					stops: [
+						[13, 13],
+						[16, 17]
+					]
+				}
+			},
+			paint: {
+				'text-color': tokens.label_secondary,
+				'text-halo-color': tokens.background
+			}
+		},
+		{
+			id: 'label-place-suburb-big',
+			filter: [
+				'all',
+				['in', 'kind', 'suburb', 'village', 'hamlet', 'town'],
+				['>=', 'population', 2000],
 				['<', 'population', 15_000]
 			],
 			minzoom: 12,
@@ -48,12 +70,10 @@ export default function makePlaceLabels(tokens: styleTokens) {
 				'text-font': tokens.sans_regular,
 				'text-size': {
 					stops: [
-						[14, 11],
+						[13, 14],
 						[16, 18]
 					]
-				},
-				'text-letter-spacing': 0.1,
-				'text-transform': 'uppercase'
+				}
 			},
 			paint: {
 				'text-color': tokens.label_secondary,
@@ -110,7 +130,7 @@ export default function makePlaceLabels(tokens: styleTokens) {
 				['<', 'population', 400_000],
 				['!in', 'name', ...majorCities]
 			],
-			minzoom: 7,
+			minzoom: 7.5,
 			maxzoom: 13,
 			layout: {
 				'text-size': {
@@ -134,18 +154,13 @@ export default function makePlaceLabels(tokens: styleTokens) {
 			layout: {
 				'text-size': {
 					stops: [
-						[7, 14],
+						[7, 15],
 						[15, 20]
 					]
 				}
 			},
 			paint: {
-				'text-color': {
-					stops: [
-						[7, tokens.label_tertiary],
-						[9, tokens.label_secondary]
-					]
-				}
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
@@ -162,12 +177,7 @@ export default function makePlaceLabels(tokens: styleTokens) {
 				}
 			},
 			paint: {
-				'text-color': {
-					stops: [
-						[7, tokens.label_tertiary],
-						[9, tokens.label_secondary]
-					]
-				}
+				'text-color': tokens.label_secondary
 			}
 		}
 	].map((el) => {
