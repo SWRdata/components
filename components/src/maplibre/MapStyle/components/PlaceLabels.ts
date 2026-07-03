@@ -88,10 +88,11 @@ export default function makePlaceLabels(tokens: styleTokens) {
 				['<', 'population', 50_000],
 				['>', 'population', 15_000]
 			],
-			minzoom: 10,
+			minzoom: 8,
 			layout: {
 				'text-size': {
 					stops: [
+						[8, 10],
 						[10, 14],
 						[12, 16]
 					]

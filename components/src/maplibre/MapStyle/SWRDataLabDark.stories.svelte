@@ -346,6 +346,26 @@
 		</div>
 	</DesignTokens>
 </Story>
+<Story asChild name="mid zoom">
+	<DesignTokens theme="dark">
+		<div class="row">
+			<div class="container">
+				<Map
+					showDebug
+					maxZoom={20}
+					style={SWRDataLabDark({ roads: { labels: 'dense' } })}
+					initialLocation={{
+						lng: 9.567724147532317,
+						lat: 47.69833827241371,
+						zoom: 9
+					}}
+				>
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
 <Story asChild name="State">
 	<DesignTokens theme="dark">
 		<div class="row">
