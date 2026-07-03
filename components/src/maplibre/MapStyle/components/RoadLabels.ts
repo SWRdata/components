@@ -1,8 +1,8 @@
 import type { styleTokens } from '../../types';
 import type { SymbolLayerSpecification } from 'maplibre-gl';
-import type { RoadLabelDensity } from '../types';
+import type { LabelDensity } from '../types';
 
-export default function makeRoadLabels(tokens: styleTokens, density: RoadLabelDensity = 'default') {
+export default function makeRoadLabels(tokens: styleTokens, density: LabelDensity = 'default') {
 	if (density === 'none') return { roadLabels: [] };
 
 	const roadLabels: SymbolLayerSpecification[] = [

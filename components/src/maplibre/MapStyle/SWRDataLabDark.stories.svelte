@@ -9,7 +9,7 @@
 	import { SWRDataLabDark, SWRDataLabLight } from './index';
 	import locations from './storyLocations';
 	import NavigationControl from '../NavigationControl/NavigationControl.svelte';
-	import { type RoadLabelDensity } from './types';
+	import { type LabelDensity } from './types';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Style/SWR Data Lab Dark',
@@ -51,7 +51,7 @@
 			<div class="container">
 				<Map
 					showDebug
-					style={SWRDataLabDark({ places: { showLabels: false } })}
+					style={SWRDataLabDark({ places: { labels: 'none' } })}
 					initialLocation={{
 						lng: 8.936,
 						lat: 49.662,
@@ -312,7 +312,7 @@
 					<Map
 						showDebug={s === 'dense'}
 						maxZoom={20}
-						style={SWRDataLabDark({ roads: { labels: s as RoadLabelDensity } })}
+						style={SWRDataLabDark({ roads: { labels: s as LabelDensity } })}
 						initialLocation={{
 							lng: 8.269931078413038,
 							lat: 50.00421185075504,
@@ -346,26 +346,31 @@
 		</div>
 	</DesignTokens>
 </Story>
-<Story asChild name="mid zoom">
+
+<Story asChild name="feat/459: overview">
 	<DesignTokens theme="dark">
 		<div class="row">
-			<div class="container">
-				<Map
-					showDebug
-					maxZoom={20}
-					style={SWRDataLabDark({ roads: { labels: 'dense' } })}
-					initialLocation={{
-						lng: 9.567724147532317,
-						lat: 47.69833827241371,
-						zoom: 9
-					}}
-				>
-					<AttributionControl position="bottom-left" />
-				</Map>
-			</div>
+			{#each ['none', 'default', 'dense'] as s}
+				<div class="container">
+					{s}
+					<Map
+						showDebug={s === 'dense'}
+						maxZoom={20}
+						style={SWRDataLabDark({ admin: { labels: s as LabelDensity } })}
+						initialLocation={{
+							lng: 8.269931078413038,
+							lat: 50.00421185075504,
+							zoom: 15.210111923487453
+						}}
+					>
+						<AttributionControl position="bottom-left" />
+					</Map>
+				</div>
+			{/each}
 		</div>
 	</DesignTokens>
 </Story>
+
 <Story asChild name="State">
 	<DesignTokens theme="dark">
 		<div class="row">

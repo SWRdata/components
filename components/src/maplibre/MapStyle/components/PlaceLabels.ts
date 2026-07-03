@@ -12,7 +12,7 @@ const majorCities = ['Berlin', 'Stuttgart', 'München', 'Frankfurt', 'Hamburg', 
 // values for "city" and anything below.
 // See: https://github.com/versatiles-org/shortbread-tilemaker/blob/69e5d4c586a1d2726b746a24829bfb05d4dbeb91/process.lua#L198-L242
 
-export default function makePlaceLabels(tokens: styleTokens) {
+export default function makePlaceLabels(tokens: styleTokens, options) {
 	const placeLabels: SymbolLayerSpecification[] = [
 		{
 			id: 'label-place-quarter',
