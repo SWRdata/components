@@ -98,8 +98,7 @@ const style: styleFunction = (opts) => {
 					maxzoom: 12,
 					minzoom: 0,
 					tiles: ['https://tiles.datenhub.net/tiles/elevation/{z}/{x}/{y}'],
-					attribution:
-						'<a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles, DEM Sources</a>'
+					attribution: '<a href="https://mapterhorn.com/attribution">© Mapterhorn</a>'
 				}
 			}),
 			...(options.enableBuildingExtrusions && {
