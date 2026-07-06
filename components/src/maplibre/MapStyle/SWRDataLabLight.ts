@@ -60,7 +60,7 @@ const tokens: styleTokens = {
 };
 
 const { landuse } = makeLanduse(tokens);
-const { placeLabels, boundaryLabels } = makePlaceLabels(tokens);
+const { placeLabels, boundaryLabels, placeDots } = makePlaceLabels(tokens, {});
 const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit(tokens);
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
 const { roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
@@ -166,7 +166,7 @@ const style: styleFunction = (opts) => {
 
 			// 10. Point labels
 			...(options.places?.showLabels ? placeLabels : []),
-
+			...(options.places?.showLabels ? placeDots : []),
 			// 11. Admin boundary labels
 			...(options.admin?.showLabels ? boundaryLabels : [])
 		]

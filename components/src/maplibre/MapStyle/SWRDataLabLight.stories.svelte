@@ -50,7 +50,7 @@
 			<div class="container">
 				<Map
 					showDebug
-					style={SWRDataLabLight({ admin: { show: false }, places: { showLabels: false } })}
+					style={SWRDataLabLight({ admin: { show: false }, places: { labels: 'none' } })}
 					initialLocation={{
 						lng: 9.0169,
 						lat: 48.0571,

@@ -5,6 +5,7 @@ export default function makeHillshade(tokens: styleTokens): any {
 		{
 			id: 'hillshade',
 			type: 'hillshade',
+			maxzoom: 13,
 			source: 'versatiles-elevation',
 			paint: {
 				'hillshade-exaggeration': 0.05,

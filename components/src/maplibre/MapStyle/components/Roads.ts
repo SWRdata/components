@@ -200,7 +200,10 @@ export default function makeRoads(tokens: styleTokens) {
 		line_width: {
 			stops: [
 				[14, 0],
-				[15, 4]
+				[16, 4],
+				[18, 26],
+				[19, 62],
+				[20, 122]
 			]
 		},
 		line_opacity: {
