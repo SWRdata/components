@@ -192,7 +192,7 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'text-size': {
 					stops: [
 						[7, 16],
-						[15, 28]
+						[15, 26]
 					]
 				},
 				'text-font': tokens.sans_medium
@@ -213,7 +213,7 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'text-size': {
 					stops: [
 						[7, 15],
-						[15, 28]
+						[15, 26]
 					]
 				},
 				'text-font': tokens.sans_medium
