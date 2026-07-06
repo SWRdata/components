@@ -357,9 +357,9 @@
 						maxZoom={20}
 						style={SWRDataLabDark({ enableHillshade: true })}
 						initialLocation={{
-							lng: 11.585027613393322,
-							lat: 48.150788140862915,
-							zoom: 11.114287648697289
+							lng: 8.658579253384687,
+							lat: 50.100208477094526,
+							zoom: 10.66488980559805
 						}}
 					>
 						<AttributionControl position="bottom-left" />

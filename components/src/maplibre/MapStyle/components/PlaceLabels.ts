@@ -54,7 +54,7 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'text-max-width': 8
 			},
 			paint: {
-				'text-color': tokens.label_secondary,
+				'text-color': tokens.label_tertiary,
 				'text-halo-color': tokens.background
 			}
 		},
@@ -64,20 +64,21 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'all',
 				['in', 'kind', 'suburb', 'village', 'hamlet', 'town'],
 				['>=', 'population', 2000],
-				['<', 'population', 5_000]
+				['<', 'population', 10_000]
 			],
 			minzoom: 10,
 			layout: {
 				'text-font': tokens.sans_regular,
+				'text-max-width': 8,
 				'text-size': {
 					stops: [
-						[10, 11],
+						[10, 12],
 						[16, 14]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary
+				'text-color': tokens.label_tertiary
 			}
 		},
 		{
@@ -85,16 +86,16 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 			filter: [
 				'all',
 				['in', 'kind', 'suburb', 'village', 'hamlet', 'town'],
-				['>', 'population', 20_000],
+				['>', 'population', 10_000],
 				['<', 'population', 50_000]
 			],
-			minzoom: 8,
+			minzoom: 9,
 			layout: {
 				'text-max-width': 8,
 				'text-size': {
 					stops: [
-						[8, 11],
-						[12, 16]
+						[8, 12],
+						[12, 14]
 					]
 				}
 			},
@@ -118,7 +119,7 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'text-max-width': 8,
 				'text-size': {
 					stops: [
-						[8, 12],
+						[8, 13],
 						[12, 16]
 					]
 				}
@@ -143,7 +144,7 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'text-size': {
 					stops: [
 						[7, 13],
-						[13, 17]
+						[13, 18]
 					]
 				}
 			}
