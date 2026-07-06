@@ -95,7 +95,7 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'text-size': {
 					stops: [
 						[8, 12],
-						[12, 14]
+						[12, 15]
 					]
 				}
 			},
