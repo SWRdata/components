@@ -3,22 +3,23 @@ enum AdminLevel {
 	BUNDESLAND = 4
 }
 
-type RoadLabelDensity = 'none' | 'default' | 'dense';
+type LabelDensity = 'none' | 'default' | 'dense';
+
 type AdminOptions = {
 	show?: boolean | AdminLevel[];
-	showLabels?: boolean;
+	showLabels?: boolean | AdminLevel[];
 };
 
 interface StyleOptions {
 	enableBuildingExtrusions?: boolean;
 	enableHillshade?: boolean;
 	places?: {
-		showLabels?: boolean;
+		labels: LabelDensity;
 	};
 	admin?: AdminOptions;
 	roads?: {
-		labels?: RoadLabelDensity;
+		labels?: LabelDensity;
 	};
 }
 
-export type { StyleOptions, RoadLabelDensity, AdminOptions };
+export type { StyleOptions, LabelDensity, AdminOptions };

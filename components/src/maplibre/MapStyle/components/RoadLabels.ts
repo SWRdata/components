@@ -1,8 +1,8 @@
 import type { styleTokens } from '../../types';
 import type { SymbolLayerSpecification } from 'maplibre-gl';
-import type { RoadLabelDensity } from '../types';
+import type { LabelDensity } from '../types';
 
-export default function makeRoadLabels(tokens: styleTokens, density: RoadLabelDensity = 'default') {
+export default function makeRoadLabels(tokens: styleTokens, density: LabelDensity = 'default') {
 	if (density === 'none') return { roadLabels: [] };
 
 	const roadLabels: SymbolLayerSpecification[] = [
@@ -26,17 +26,17 @@ export default function makeRoadLabels(tokens: styleTokens, density: RoadLabelDe
 						],
 						minzoom: 15,
 						layout: {
-							'text-letter-spacing': 0.05,
+							'text-letter-spacing': 0.025,
 							'text-overlap': 'cooperative',
 							'text-size': {
 								stops: [
 									[12, 10],
-									[15, 11]
+									[15, 12]
 								]
 							}
 						},
 						paint: {
-							'text-color': tokens.label_tertiary
+							'text-color': tokens.label_secondary
 						}
 					},
 					{
@@ -48,7 +48,7 @@ export default function makeRoadLabels(tokens: styleTokens, density: RoadLabelDe
 							'text-size': {
 								stops: [
 									[12, 10],
-									[15, 12]
+									[15, 14]
 								]
 							}
 						}
@@ -64,7 +64,7 @@ export default function makeRoadLabels(tokens: styleTokens, density: RoadLabelDe
 				'text-size': {
 					stops: [
 						[12, 9],
-						[15, 12]
+						[15, 13]
 					]
 				}
 			},
@@ -93,8 +93,8 @@ export default function makeRoadLabels(tokens: styleTokens, density: RoadLabelDe
 			...el,
 			layout: {
 				'text-field': '{name}',
-				'text-font': tokens.sans_regular,
 				'symbol-placement': 'line',
+				'text-font': tokens.sans_medium,
 				'text-max-angle': 20,
 				'text-variable-anchor': ['center', 'left', 'right'],
 				...el.layout
@@ -102,7 +102,8 @@ export default function makeRoadLabels(tokens: styleTokens, density: RoadLabelDe
 			paint: {
 				'text-color': tokens.label_secondary,
 				'text-halo-color': tokens.background,
-				'text-halo-width': 1,
+				'text-halo-width': 2,
+				'text-halo-blur': 2,
 				...el.paint
 			}
 		};

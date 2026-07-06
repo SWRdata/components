@@ -50,7 +50,7 @@
 			<div class="container">
 				<Map
 					showDebug
-					style={SWRDataLabLight({ admin: { show: false }, places: { showLabels: false } })}
+					style={SWRDataLabLight({ admin: { show: false }, places: { labels: 'none' } })}
 					initialLocation={{
 						lng: 9.0169,
 						lat: 48.0571,
@@ -336,6 +336,27 @@
 					style={SWRDataLabLight({ enableBuildingExtrusions: true, roads: { labels: 'none' } })}
 					maxZoom={20}
 					initialLocation={locations.buildings}
+				>
+					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
+					<AttributionControl position="bottom-left" />
+				</Map>
+			</div>
+		</div>
+	</DesignTokens>
+</Story>
+<Story asChild name="Tertiary road labels">
+	<DesignTokens theme="light">
+		<div class="grid">
+			<div class="container">
+				<Map
+					showDebug
+					style={SWRDataLabLight({ roads: { labels: 'dense' } })}
+					maxZoom={20}
+					initialLocation={{
+						lng: 9.5589729969887,
+						lat: 47.700018482763966,
+						zoom: 17.225334548916464
+					}}
 				>
 					<GeocoderControl languages="de" service="maptiler" key="V32kPHZjMa0Mkn6YvSzA" />
 					<AttributionControl position="bottom-left" />

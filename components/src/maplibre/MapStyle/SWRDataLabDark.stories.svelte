@@ -9,7 +9,6 @@
 	import { SWRDataLabDark, SWRDataLabLight } from './index';
 	import locations from './storyLocations';
 	import NavigationControl from '../NavigationControl/NavigationControl.svelte';
-	import { type RoadLabelDensity } from './types';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Style/SWR Data Lab Dark',
@@ -51,7 +50,7 @@
 			<div class="container">
 				<Map
 					showDebug
-					style={SWRDataLabDark({ places: { showLabels: false } })}
+					style={SWRDataLabDark({ places: { labels: 'none' } })}
 					initialLocation={{
 						lng: 8.936,
 						lat: 49.662,
@@ -312,7 +311,7 @@
 					<Map
 						showDebug={s === 'dense'}
 						maxZoom={20}
-						style={SWRDataLabDark({ roads: { labels: s as RoadLabelDensity } })}
+						style={SWRDataLabDark({ roads: { labels: s as LabelDensity } })}
 						initialLocation={{
 							lng: 8.269931078413038,
 							lat: 50.00421185075504,
@@ -346,6 +345,31 @@
 		</div>
 	</DesignTokens>
 </Story>
+
+<Story asChild name="feat/469: overview">
+	<DesignTokens theme="dark">
+		<div class="row">
+			{#each ['default'] as s}
+				<div class="container">
+					{s}
+					<Map
+						showDebug
+						maxZoom={20}
+						style={SWRDataLabDark({ enableHillshade: true })}
+						initialLocation={{
+							lng: 8.658579253384687,
+							lat: 50.100208477094526,
+							zoom: 10.66488980559805
+						}}
+					>
+						<AttributionControl position="bottom-left" />
+					</Map>
+				</div>
+			{/each}
+		</div>
+	</DesignTokens>
+</Story>
+
 <Story asChild name="State">
 	<DesignTokens theme="dark">
 		<div class="row">

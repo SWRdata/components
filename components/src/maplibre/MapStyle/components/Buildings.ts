@@ -28,6 +28,15 @@ export default function makeBuildings(tokens: styleTokens): any {
 		'source-layer': 'buildings',
 		paint: {
 			'fill-color': tokens.building,
+			'fill-outline-color': [
+				'interpolate',
+				['linear'],
+				['zoom'],
+				16,
+				'transparent',
+				17,
+				tokens.building_outline
+			],
 			'fill-opacity': {
 				stops: [
 					[15, 0],

@@ -48,12 +48,14 @@ const tokens: styleTokens = {
 	boundary_state: 'hsl(218, 4%, 37%)',
 	rail: 'hsl(0, 0%, 33%)',
 	building: '#111',
-	hillshade_light: 'hsla(0, 0%, 77%, 0.15)',
-	hillshade_dark: 'hsla(0, 0%, 0%, 0.65)'
+	building_outline: '#777',
+	hillshade_light: 'hsl(0, 0%, 50%)',
+	hillshade_dark: 'hsl(0, 0%, 0%)',
+	hillshade_accent: 'black'
 };
 
 const { landuse } = makeLanduse(tokens);
-const { placeLabels, boundaryLabels } = makePlaceLabels(tokens);
+const { placeLabels, boundaryLabels, placeDots } = makePlaceLabels(tokens, {});
 const { airports, transitBridges, transitSurface, transitTunnels } = makeTransit(tokens);
 const { walkingLabels, walkingTunnels, walkingSurface, walkingBridges } = makeWalking(tokens);
 const { roadBridges, roadSurface, roadTunnels } = makeRoads(tokens);
@@ -91,23 +93,13 @@ const style: styleFunction = (opts) => {
 				maxzoom: 14
 			},
 			...(options.enableHillshade && {
-				'versatiles-hillshade': {
-					tilejson: '3.0.0',
-					name: 'VersaTiles Hillshade Vectors',
-					description: 'VersaTiles Hillshade Vectors based on Mapzen Jörð Terrain Tiles',
-					attribution:
-						'<a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles, DEM Sources</a>',
-					version: '1.0.0',
-					tiles: ['https://tiles.datenhub.net/tiles/hillshade/{z}/{x}/{y}'],
-					type: 'vector',
-					scheme: 'xyz',
-					format: 'pbf',
-					bounds: [-180, -85.0511287798066, 180, 85.0511287798066],
-					minzoom: 0,
+				'versatiles-elevation': {
+					type: 'raster-dem',
+					tileSize: 256,
 					maxzoom: 12,
-					vector_layers: [
-						{ id: 'hillshade-vectors', fields: { shade: 'String' }, minzoom: 0, maxzoom: 12 }
-					]
+					minzoom: 0,
+					tiles: ['https://tiles.datenhub.net/tiles/elevation/{z}/{x}/{y}'],
+					attribution: '<a href="https://mapterhorn.com/attribution">© Mapterhorn</a>'
 				}
 			}),
 			...(options.enableBuildingExtrusions && {
@@ -167,6 +159,7 @@ const style: styleFunction = (opts) => {
 
 			// 10. Point labels
 			...(options.places?.showLabels ? placeLabels : []),
+			...(options.places?.showLabels ? placeDots : []),
 
 			// 11. Admin boundary labels
 			...(options.admin?.showLabels ? boundaryLabels : [])
