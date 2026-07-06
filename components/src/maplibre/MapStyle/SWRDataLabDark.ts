@@ -48,8 +48,9 @@ const tokens: styleTokens = {
 	boundary_state: 'hsl(218, 4%, 37%)',
 	rail: 'hsl(0, 0%, 33%)',
 	building: '#111',
-	hillshade_light: 'hsla(0, 0%, 77%, 0.15)',
-	hillshade_dark: 'hsla(0, 0%, 0%, 0.65)'
+	hillshade_light: 'hsl(0, 0%, 50%)',
+	hillshade_dark: 'hsl(0, 0%, 0%)',
+	hillshade_accent: 'black'
 };
 
 const { landuse } = makeLanduse(tokens);
@@ -91,23 +92,13 @@ const style: styleFunction = (opts) => {
 				maxzoom: 14
 			},
 			...(options.enableHillshade && {
-				'versatiles-hillshade': {
-					tilejson: '3.0.0',
-					name: 'VersaTiles Hillshade Vectors',
-					description: 'VersaTiles Hillshade Vectors based on Mapzen Jörð Terrain Tiles',
-					attribution:
-						'<a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles, DEM Sources</a>',
-					version: '1.0.0',
-					tiles: ['https://tiles.datenhub.net/tiles/hillshade/{z}/{x}/{y}'],
-					type: 'vector',
-					scheme: 'xyz',
-					format: 'pbf',
-					bounds: [-180, -85.0511287798066, 180, 85.0511287798066],
-					minzoom: 0,
+				'versatiles-elevation': {
+					type: 'raster-dem',
+					tileSize: 256,
 					maxzoom: 12,
-					vector_layers: [
-						{ id: 'hillshade-vectors', fields: { shade: 'String' }, minzoom: 0, maxzoom: 12 }
-					]
+					minzoom: 0,
+					tiles: ['https://tiles.datenhub.net/tiles/elevation/{z}/{x}/{y}'],
+					attribution: '<a href="https://mapterhorn.com/attribution">© Mapterhorn</a>'
 				}
 			}),
 			...(options.enableBuildingExtrusions && {
