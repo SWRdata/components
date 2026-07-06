@@ -5,7 +5,7 @@ import type { styleTokens } from '../../types';
 // Ideally majorCities  would include Frankfurt and Leipzig, but they're not
 // state capitals so they're not available in the versatiles data until z6
 
-const majorCities = ['Berlin', 'Stuttgart', 'München', 'Frankfurt', 'Hamburg', 'Mainz', 'Nürnberg'];
+const majorCities = ['Berlin', 'Stuttgart', 'München', 'Hamburg', 'Mainz', 'Nürnberg'];
 
 // For smaller cities we use the population field to derive our hierarchy,
 // though that's limited by the fact that versatiles hard-codes population
