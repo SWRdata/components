@@ -9,7 +9,6 @@
 	import { SWRDataLabDark, SWRDataLabLight } from './index';
 	import locations from './storyLocations';
 	import NavigationControl from '../NavigationControl/NavigationControl.svelte';
-	import { type LabelDensity } from './types';
 
 	const { Story } = defineMeta({
 		title: 'Maplibre/Style/SWR Data Lab Dark',
@@ -347,20 +346,20 @@
 	</DesignTokens>
 </Story>
 
-<Story asChild name="feat/459: overview">
+<Story asChild name="feat/469: overview">
 	<DesignTokens theme="dark">
 		<div class="row">
-			{#each ['none', 'default', 'dense'] as s}
+			{#each ['default'] as s}
 				<div class="container">
 					{s}
 					<Map
-						showDebug={s === 'dense'}
+						showDebug
 						maxZoom={20}
-						style={SWRDataLabDark({ admin: { labels: s as LabelDensity } })}
+						style={SWRDataLabDark({ enableHillshade: true })}
 						initialLocation={{
-							lng: 8.269931078413038,
-							lat: 50.00421185075504,
-							zoom: 15.210111923487453
+							lng: 11.041399193292023,
+							lat: 49.42147382696706,
+							zoom: 11.198697801346833
 						}}
 					>
 						<AttributionControl position="bottom-left" />

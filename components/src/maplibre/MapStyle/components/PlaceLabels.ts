@@ -1,11 +1,11 @@
-import type { SymbolLayerSpecification } from 'maplibre-gl';
+import type { CircleLayerSpecification, SymbolLayerSpecification } from 'maplibre-gl';
 import type { styleTokens } from '../../types';
 
 // Hand-authored list of place labes we want to show at low zoom levels
 // Ideally majorCities  would include Frankfurt and Leipzig, but they're not
 // state capitals so they're not available in the versatiles data until z6
 
-const majorCities = ['Berlin', 'Stuttgart', 'München', 'Frankfurt', 'Hamburg', 'Mainz'];
+const majorCities = ['Berlin', 'Stuttgart', 'München', 'Frankfurt', 'Hamburg', 'Mainz', 'Nürnberg'];
 
 // For smaller cities we use the population field to derive our hierarchy,
 // though that's limited by the fact that versatiles hard-codes population
@@ -42,7 +42,7 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				['in', 'kind', 'suburb', 'village', 'hamlet', 'town'],
 				['<', 'population', 2000]
 			],
-			minzoom: 13.5,
+			minzoom: 12,
 			layout: {
 				'text-font': tokens.sans_regular,
 				'text-size': {
@@ -50,7 +50,8 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 						[13, 13],
 						[16, 17]
 					]
-				}
+				},
+				'text-max-width': 8
 			},
 			paint: {
 				'text-color': tokens.label_secondary,
@@ -63,40 +64,42 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'all',
 				['in', 'kind', 'suburb', 'village', 'hamlet', 'town'],
 				['>=', 'population', 2000],
-				['<', 'population', 15_000]
+				['<', 'population', 5_000]
 			],
-			minzoom: 12,
+			minzoom: 10,
 			layout: {
 				'text-font': tokens.sans_regular,
 				'text-size': {
 					stops: [
-						[13, 14],
-						[16, 18]
+						[10, 11],
+						[16, 14]
 					]
 				}
 			},
 			paint: {
-				'text-color': tokens.label_secondary,
-				'text-halo-color': tokens.background
+				'text-color': tokens.label_secondary
 			}
 		},
 		{
 			id: 'label-place-town',
 			filter: [
 				'all',
-				['in', 'kind', 'village', 'hamlet', 'town'],
-				['<', 'population', 50_000],
-				['>', 'population', 15_000]
+				['in', 'kind', 'suburb', 'village', 'hamlet', 'town'],
+				['>', 'population', 20_000],
+				['<', 'population', 50_000]
 			],
 			minzoom: 8,
 			layout: {
+				'text-max-width': 8,
 				'text-size': {
 					stops: [
-						[8, 10],
-						[10, 14],
+						[8, 11],
 						[12, 16]
 					]
 				}
+			},
+			paint: {
+				'text-color': tokens.label_secondary
 			}
 		},
 
@@ -109,14 +112,14 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				['<', 'population', 100_000],
 				['!in', 'name', ...majorCities]
 			],
-			minzoom: 8.5,
+			minzoom: 8,
 			maxzoom: 13,
-
 			layout: {
+				'text-max-width': 10,
 				'text-size': {
 					stops: [
-						[8, 14],
-						[12, 18]
+						[8, 12],
+						[12, 16]
 					]
 				}
 			}
@@ -131,12 +134,14 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				['<', 'population', 400_000],
 				['!in', 'name', ...majorCities]
 			],
-			minzoom: 7.5,
+			minzoom: 7,
 			maxzoom: 13,
 			layout: {
+				'text-variable-anchor': ['bottom', 'bottom-left', 'bottom-right', 'right', 'left'],
+				'text-offset': [0.3, 0.4],
 				'text-size': {
 					stops: [
-						[7, 13],
+						[7, 14],
 						[13, 17]
 					]
 				}
@@ -148,11 +153,21 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'all',
 				['in', 'kind', 'city', 'town', 'state_capital'],
 				['>', 'population', 400_000],
-				['!in', 'name', ...majorCities]
+				['!in', 'name', ...majorCities, 'Frankfurt am Main']
 			],
 			minzoom: 7,
 			maxzoom: 12,
 			layout: {
+				'text-variable-anchor': [
+					'bottom',
+					'bottom-left',
+					'top-right',
+					'top-left',
+					'bottom-right',
+					'right',
+					'left'
+				],
+				'text-offset': [0.2, 0.4],
 				'text-size': {
 					stops: [
 						[7, 15],
@@ -170,12 +185,36 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 			minzoom: 5.5,
 			maxzoom: 12,
 			layout: {
+				'text-variable-anchor': ['bottom', 'bottom-right', 'right', 'left'],
+				'text-offset': [0.4, 0.4],
 				'text-size': {
 					stops: [
 						[7, 14],
-						[15, 25]
+						[15, 28]
 					]
-				}
+				},
+				'text-font': tokens.sans_bold
+			},
+			paint: {
+				'text-color': tokens.label_secondary
+			}
+		},
+		{
+			id: 'label-place-frankfurt',
+			filter: ['==', 'name', 'Frankfurt am Main'],
+			minzoom: 5.5,
+			maxzoom: 12,
+			layout: {
+				'text-variable-anchor': ['bottom', 'bottom-right', 'right', 'left'],
+				'text-offset': [0.4, 0.4],
+				'text-field': 'Frankfurt',
+				'text-size': {
+					stops: [
+						[7, 14],
+						[15, 28]
+					]
+				},
+				'text-font': tokens.sans_bold
 			},
 			paint: {
 				'text-color': tokens.label_secondary
@@ -201,7 +240,47 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'text-halo-blur': 0.5,
 				...el.paint
 			}
-		} as SymbolLayerSpecification;
+		};
+	});
+
+	const placeDots: CircleLayerSpecification[] = [
+		{
+			id: 'place-dots-minor',
+			minzoom: 7,
+			maxzoom: 13,
+			filter: [
+				'all',
+				['in', 'kind', 'city', 'town'],
+				['>', 'population', 100_000],
+				['<', 'population', 400_000],
+				['!in', 'name', ...majorCities]
+			],
+			layout: {},
+			paint: {
+				'circle-radius': 2,
+				'circle-stroke-color': tokens.background,
+				'circle-color': tokens.label_tertiary
+			}
+		},
+		{
+			id: 'place-dots-major',
+			filter: ['in', 'name', ...majorCities, 'Frankfurt am Main'],
+			minzoom: 5.5,
+			maxzoom: 12,
+			layout: {},
+			paint: {
+				'circle-radius': 3,
+				'circle-stroke-color': tokens.background,
+				'circle-color': tokens.label_tertiary
+			}
+		}
+	].map((el) => {
+		return {
+			type: 'circle',
+			source: 'versatiles-osm',
+			'source-layer': 'place_labels',
+			...el
+		} as CircleLayerSpecification;
 	});
 
 	const boundaryLabels = [
@@ -237,5 +316,5 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 		} as SymbolLayerSpecification;
 	});
 
-	return { placeLabels, boundaryLabels };
+	return { placeLabels, boundaryLabels, placeDots };
 }
