@@ -5,10 +5,10 @@ export default function makeHillshade(tokens: styleTokens): any {
 		{
 			id: 'hillshade',
 			type: 'hillshade',
-			maxzoom: 13,
+			maxzoom: 14,
 			source: 'versatiles-elevation',
 			paint: {
-				'hillshade-exaggeration': 0.05,
+				'hillshade-exaggeration': ['interpolate', ['linear'], ['zoom'], 13, 0.05, 13.5, 0],
 				'hillshade-shadow-color': tokens.hillshade_dark,
 				'hillshade-highlight-color': tokens.hillshade_light,
 				'hillshade-accent-color': tokens.hillshade_accent,

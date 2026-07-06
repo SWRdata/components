@@ -48,6 +48,7 @@ const tokens: styleTokens = {
 	boundary_state: 'hsl(218, 4%, 37%)',
 	rail: 'hsl(0, 0%, 33%)',
 	building: '#111',
+	building_outline: '#777',
 	hillshade_light: 'hsl(0, 0%, 50%)',
 	hillshade_dark: 'hsl(0, 0%, 0%)',
 	hillshade_accent: 'black'

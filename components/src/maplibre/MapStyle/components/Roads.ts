@@ -943,7 +943,7 @@ export default function makeRoads(tokens: styleTokens) {
 					stops: [
 						[14, 2],
 						[16, 4],
-						[18, 18],
+						[18, 13],
 						[19, 48],
 						[20, 96]
 					]
@@ -990,7 +990,7 @@ export default function makeRoads(tokens: styleTokens) {
 			id: 'street-residential:case',
 			filter: [
 				'all',
-				['in', 'kind', 'residential', 'footway'],
+				['in', 'kind', 'residential'],
 				['!=', 'bridge', true],
 				['!=', 'tunnel', true]
 			],
@@ -1155,7 +1155,7 @@ export default function makeRoads(tokens: styleTokens) {
 			id: 'street-service',
 			filter: [
 				'all',
-				['in', 'kind', 'service', 'footway'],
+				['in', 'kind', 'service'],
 				['!=', 'bridge', true],
 				['!=', 'tunnel', true],
 				['!=', 'service', 'driveway']
