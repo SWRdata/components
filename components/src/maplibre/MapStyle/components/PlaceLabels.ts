@@ -115,7 +115,7 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 			minzoom: 8,
 			maxzoom: 13,
 			layout: {
-				'text-max-width': 10,
+				'text-max-width': 8,
 				'text-size': {
 					stops: [
 						[8, 12],
@@ -139,9 +139,10 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 			layout: {
 				'text-variable-anchor': ['bottom', 'bottom-left', 'bottom-right', 'right', 'left'],
 				'text-offset': [0.3, 0.4],
+				'text-max-width': 10,
 				'text-size': {
 					stops: [
-						[7, 14],
+						[7, 13],
 						[13, 17]
 					]
 				}
@@ -167,10 +168,10 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 					'right',
 					'left'
 				],
-				'text-offset': [0.2, 0.4],
+				'text-offset': [0.2, 0.35],
 				'text-size': {
 					stops: [
-						[7, 15],
+						[7, 14],
 						[15, 20]
 					]
 				}
@@ -189,11 +190,11 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'text-offset': [0.4, 0.4],
 				'text-size': {
 					stops: [
-						[7, 15],
+						[7, 16],
 						[15, 28]
 					]
 				},
-				'text-font': tokens.sans_bold
+				'text-font': tokens.sans_medium
 			},
 			paint: {
 				'text-color': tokens.label_secondary
@@ -214,7 +215,7 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 						[15, 28]
 					]
 				},
-				'text-font': tokens.sans_bold
+				'text-font': tokens.sans_medium
 			},
 			paint: {
 				'text-color': tokens.label_secondary
