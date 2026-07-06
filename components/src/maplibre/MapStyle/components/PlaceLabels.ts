@@ -189,7 +189,7 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'text-offset': [0.4, 0.4],
 				'text-size': {
 					stops: [
-						[7, 14],
+						[7, 15],
 						[15, 28]
 					]
 				},
@@ -210,7 +210,7 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				'text-field': 'Frankfurt',
 				'text-size': {
 					stops: [
-						[7, 14],
+						[7, 15],
 						[15, 28]
 					]
 				},
@@ -269,9 +269,9 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 			maxzoom: 12,
 			layout: {},
 			paint: {
-				'circle-radius': 3,
+				'circle-radius': ['interpolate', ['linear'], ['zoom'], 5, 2, 10, 3],
 				'circle-stroke-color': tokens.background,
-				'circle-color': tokens.label_tertiary
+				'circle-color': tokens.label_secondary
 			}
 		}
 	].map((el) => {
