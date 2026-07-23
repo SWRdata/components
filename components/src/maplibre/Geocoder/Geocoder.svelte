@@ -45,7 +45,7 @@
 			proximity,
 			showResultsWhileTyping: true,
 			showResultMarkers: false,
-			debounceSearch: 25,
+			debounceSearch: 150,
 			placeholder,
 			limit
 		})
