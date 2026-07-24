@@ -38,7 +38,6 @@
 	"dependencies": {
 		"@maplibre/maplibre-gl-geocoder": "1.9.1",
 		"@maplibre/maplibre-gl-inspect": "1.7.1",
-		"fuse.js": "^7.4.2",
 		"maplibre-gl": "5.20.0",
 		"svelte-select": "5.8.3"
 	},
@@ -64,6 +63,7 @@
 		"@vitest/coverage-v8": "4.1.10",
 		"@vueless/storybook-dark-mode": "10.0.8",
 		"concurrently": "9.2.1",
+		"fuse.js": "7.5.0",
 		"http-server": "14.1.1",
 		"layercake": "^10.0.2",
 		"mdx-mermaid": "2.0.3",
