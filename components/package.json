@@ -5,7 +5,9 @@
 	"author": "SWR Data Lab",
 	"license": "UNLICENSED",
 	"type": "module",
-	"keywords": ["svelte"],
+	"keywords": [
+		"svelte"
+	],
 	"publishConfig": {
 		"access": "public"
 	},
@@ -74,7 +76,7 @@
 		"storybook": "10.5.3",
 		"svelte": "5.55.7",
 		"svelte-check": "4.5.0",
-		"svelte-preprocess": "6.0.3",
+		"svelte-preprocess": "6.0.5",
 		"typescript": "5.9.3",
 		"vite": "8.0.16",
 		"vitest": "4.1.9",
