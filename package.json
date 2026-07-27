@@ -16,5 +16,16 @@
 		"svelte-select": {
 			"svelte-floating-ui": "1.5.9"
 		}
+	},
+	"allowScripts": {
+		"@swc/core@1.15.41": false,
+		"svelte-preprocess@6.0.3": false,
+		"fsevents@2.3.3": false,
+		"fsevents@2.3.2": false,
+		"@parcel/watcher@2.5.6": false,
+		"esbuild@0.28.1": false,
+		"puppeteer@22.15.0": false,
+		"sharp@0.34.5": false,
+		"unrs-resolver@1.12.2": false
 	}
 }
