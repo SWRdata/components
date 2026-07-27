@@ -35,6 +35,7 @@ jobs:
           node-version: 24
           registry-url: 'https://registry.npmjs.org/'
           package-manager-cache: false
+      - run: npm install -g npm@12
       - run: npm ci
       - run: npm audit signatures
       - name: Release
