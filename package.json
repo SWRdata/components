@@ -6,6 +6,10 @@
 	"scripts": {},
 	"author": "",
 	"license": "UNLICENSED",
+	"engines": {
+		"node": "24.x",
+		"npm": "12.x"
+	},
 	"workspaces": [
 		"components",
 		"sophora-components",
