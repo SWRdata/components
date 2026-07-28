@@ -400,7 +400,7 @@
 					<Map
 						showDebug
 						maxZoom={20}
-						style={SWRDataLabDark({ enableHillshade: true })}
+						style={SWRDataLabDark()}
 						initialLocation={{
 							lng: 8.80983005654582,
 							lat: 48.57039816310041,
