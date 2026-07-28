@@ -391,6 +391,30 @@
 	</DesignTokens>
 </Story>
 
+<Story asChild name="fix/484">
+	<DesignTokens theme="dark">
+		<div class="row">
+			{#each ['default'] as s}
+				<div class="container">
+					{s}
+					<Map
+						showDebug
+						maxZoom={20}
+						style={SWRDataLabDark({ enableHillshade: true })}
+						initialLocation={{
+							lng: 8.80983005654582,
+							lat: 48.57039816310041,
+							zoom: 17.45260984879091
+						}}
+					>
+						<AttributionControl position="bottom-left" />
+					</Map>
+				</div>
+			{/each}
+		</div>
+	</DesignTokens>
+</Story>
+
 <style>
 	.grid {
 		display: grid;
