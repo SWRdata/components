@@ -77,7 +77,8 @@
 							{:else}
 								{byline.name}
 							{/if}
-						{/each}, <a href="https://www.swr.de/home/swr-data-lab-team-100.html">SWR Data Lab</a>
+						{/each},
+						<a href="https://www.swr.de/unternehmen/innovation/data-lab-106.html">SWR Data Lab</a>
 					</p>
 				</Caption>
 			</div>
