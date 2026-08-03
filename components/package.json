@@ -46,8 +46,8 @@
 		"svelte-select": "5.8.3"
 	},
 	"devDependencies": {
-		"@semantic-release/changelog": "6.0.3",
-		"@semantic-release/git": "10.0.1",
+		"@semantic-release/changelog": "7.0.0",
+		"@semantic-release/git": "11.0.1",
 		"@semantic-release/npm": "13.1.5",
 		"@storybook/addon-docs": "10.5.5",
 		"@storybook/addon-links": "10.5.5",
@@ -75,7 +75,7 @@
 		"publint": "0.3.17",
 		"sass": "1.93.2",
 		"sass-embedded": "1.97.3",
-		"semantic-release": "25.0.5",
+		"semantic-release": "25.0.8",
 		"storybook": "10.5.5",
 		"svelte": "5.55.7",
 		"svelte-check": "4.5.0",
