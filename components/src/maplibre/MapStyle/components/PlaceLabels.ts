@@ -53,8 +53,10 @@ export default function makePlaceLabels(tokens: styleTokens, options) {
 				},
 				'text-max-width': 8
 			},
-			paint: {
-				'text-color': tokens.label_tertiary,
+
+      paint: {
+        // Hides duplicate label, see https://github.com/SWRdata/components/issues/484
+				'text-color': ['case', ['==', ['id'], 15167636911], 'transparent', tokens.label_tertiary],
 				'text-halo-color': tokens.background
 			}
 		},
