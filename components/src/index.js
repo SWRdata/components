@@ -24,25 +24,6 @@ export { default as ChartFooter } from './ChartFooter/ChartFooter.svelte';
 export { default as Logotype } from './Logotype/Logotype.svelte';
 export { default as Middot } from './Middot/Middot.svelte';
 
-// Maplibre
-export { default as Map } from './maplibre/Map/Map.svelte';
-export { SWRDataLabLight, SWRDataLabDark } from './maplibre/MapStyle';
-export { default as MapControl } from './maplibre/MapControl/MapControl.svelte';
-export { default as AttributionControl } from './maplibre/AttributionControl/AttributionControl.svelte';
-export { default as Geocoder } from './maplibre/Geocoder/Geocoder.svelte';
-export { default as GeocoderControl } from './maplibre/GeocoderControl/GeocoderControl.svelte';
-export { default as NavigationControl } from './maplibre/NavigationControl/NavigationControl.svelte';
-export { default as ScaleControl } from './maplibre/ScaleControl/ScaleControl.svelte';
-export { default as VectorLayer } from './maplibre/VectorLayer/VectorLayer.svelte';
-export { default as HillshadeLayer } from './maplibre/HillshadeLayer/HillshadeLayer.svelte';
-export { default as VectorTileSource } from './maplibre/VectorTileSource/VectorTileSource.svelte';
-export { default as RasterDEMSource } from './maplibre/RasterDEMSource/RasterDEMSource.svelte';
-export { default as GeoJSONSource } from './maplibre/GeoJSONSource/GeoJSONSource.svelte';
-export { default as ArrowSource } from './maplibre/ArrowSource/ArrowSource.svelte';
-export { default as MapSource } from './maplibre/MapSource/MapSource.svelte';
-export { default as Tooltip } from './maplibre/Tooltip/Tooltip.svelte';
-export { default as WithLinkLocation } from './maplibre/WithLinkLocation/WithLinkLocation.svelte';
-
 // Layercake
 export { default as AnnotationLine } from './layercake/AnnotationLine/AnnotationLine.svelte';
 
