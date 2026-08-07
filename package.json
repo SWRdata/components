@@ -12,6 +12,7 @@
 	"workspaces": [
 		"components",
 		"components-map",
+		"storybook",
 		"sophora-components",
 		"mock-sophora",
 		"mock-sveltekit"
