@@ -1,10 +1,9 @@
-# TODO: delete after npmjs.org is configured to accept release-components
-name: release components
+name: release components-map
 
 on:
   push:
     paths:
-      - 'components/**'
+      - 'components-map/**'
     branches:
       - main
 
@@ -19,7 +18,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./components
+        working-directory: ./components-map
 
     permissions:
       contents: write
