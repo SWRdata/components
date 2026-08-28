@@ -1,7 +1,7 @@
 <svelte:options customElement="p139-map-test" />
 
 <script lang="ts">
-	import { VectorTileSource, Map, VectorLayer } from '../../../../components/src';
+	import { VectorTileSource, Map, VectorLayer } from '../../../../components-map/src';
 	let mapContext = $state();
 	let status = $state();
 

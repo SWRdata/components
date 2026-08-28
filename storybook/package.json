@@ -1,0 +1,53 @@
+{
+	"name": "@swr-data-lab/storybook",
+	"description": "Storybook for the SWR Data Lab component libraries",
+	"version": "0.0.0",
+	"private": true,
+	"author": "SWR Data Lab",
+	"license": "UNLICENSED",
+	"type": "module",
+	"engines": {
+		"node": "^24.18.0"
+	},
+	"scripts": {
+		"storybook": "storybook dev -p 6006",
+		"start": "storybook dev -p 6006",
+		"build-storybook": "storybook build --disable-telemetry",
+		"test-storybook": "vitest run --project=storybook",
+		"test-storybook:ci": "concurrently -k -s first -n \"Storybook,Test\" -c \"magenta,blue\" \"npm run build-storybook --quiet && npx http-server storybook-static --port 6006 --silent\" \"wait-on tcp:6006 && npm run test-storybook\""
+	},
+	"devDependencies": {
+		"@storybook/addon-docs": "10.5.5",
+		"@storybook/addon-links": "10.5.5",
+		"@storybook/addon-svelte-csf": "5.1.2",
+		"@storybook/addon-vitest": "10.5.5",
+		"@storybook/svelte-vite": "10.5.5",
+		"@sveltejs/enhanced-img": "0.11.0",
+		"@sveltejs/vite-plugin-svelte": "7.2.0",
+		"@swr-data-lab/components": "*",
+		"@swr-data-lab/components-map": "*",
+		"@types/geojson": "7946.0.16",
+		"@versatiles/style": "5.7.0",
+		"@vitest/browser": "4.1.10",
+		"@vitest/browser-playwright": "4.1.10",
+		"@vitest/coverage-v8": "4.1.10",
+		"@vueless/storybook-dark-mode": "9.0.8",
+		"concurrently": "9.2.1",
+		"http-server": "14.1.1",
+		"layercake": "^10.0.2",
+		"mdx-mermaid": "2.0.3",
+		"playwright": "1.60.0",
+		"sass": "1.93.2",
+		"sass-embedded": "1.97.3",
+		"storybook": "10.5.5",
+		"svelte": "5.55.7",
+		"svelte-preprocess": "6.0.3",
+		"typescript": "5.9.3",
+		"vite": "8.0.16",
+		"vitest": "^4.1.10",
+		"wait-on": "8.0.3"
+	},
+	"overrides": {
+		"storybook": "$storybook"
+	}
+}

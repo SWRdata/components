@@ -1,13 +1,8 @@
 <svelte:options customElement="geocoder-test" />
 
 <script lang="ts">
-	import {
-		VectorTileSource,
-		Map,
-		VectorLayer,
-		Geocoder,
-		DesignTokens
-	} from '../../../../components/src';
+	import { DesignTokens } from '../../../../components/src';
+	import { VectorTileSource, Map, VectorLayer, Geocoder } from '../../../../components-map/src';
 
 	let mapContext = $state();
 	let status = $state();

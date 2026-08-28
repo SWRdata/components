@@ -4,12 +4,14 @@ on:
   push:
     paths:
       - 'components/**'
+      - 'components-map/**'
       - 'mock-sveltekit/**'
     branches:
       - main
   pull_request:
     paths:
       - 'components/**'
+      - 'components-map/**'
       - 'mock-sveltekit/**'
     types: [opened, synchronize]
 
@@ -22,8 +24,7 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24.18
-      - run: npm ci --workspace=components --include=dev
-      - run: npm run sync --workspace=components
+      - run: npm ci --workspace=components --workspace=components-map --include=dev
       - run: npm ci --workspace=mock-sveltekit
       - run: npm run sync --workspace=mock-sveltekit
       - run: npm run build --workspace=mock-sveltekit
