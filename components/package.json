@@ -75,7 +75,7 @@
 		"publint": "0.3.17",
 		"sass": "1.93.2",
 		"sass-embedded": "1.97.3",
-		"semantic-release": "25.0.8",
+		"semantic-release": "25.0.9",
 		"storybook": "10.5.5",
 		"svelte": "5.55.7",
 		"svelte-check": "4.5.0",
