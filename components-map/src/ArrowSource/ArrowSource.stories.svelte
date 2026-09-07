@@ -1,0 +1,144 @@
+<script module lang="ts">
+	import { defineMeta } from '@storybook/addon-svelte-csf';
+	import Map from '../Map/Map.svelte';
+	import ArrowSource from './ArrowSource.svelte';
+	import VectorLayer from '../VectorLayer/VectorLayer.svelte';
+	import AttributionControl from '../AttributionControl/AttributionControl.svelte';
+
+	import { SWRDataLabLight } from '../MapStyle';
+	import { DesignTokens } from '@swr-data-lab/components';
+	import { tokens } from '@swr-data-lab/components';
+
+	const { Story } = defineMeta({
+		title: 'Maplibre/Source/ArrowSource',
+		component: ArrowSource
+	});
+</script>
+
+<Story asChild name="Default">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map
+				showDebug={true}
+				style={SWRDataLabLight()}
+				initialLocation={{
+					lng: -78.404,
+					lat: 13.411,
+					zoom: 5.124,
+					pitch: 0
+				}}
+			>
+				<ArrowSource
+					id="arrows"
+					attribution="Demo attribution"
+					arrows={[
+						{
+							width: 10,
+							a: [-80.1, 11.3],
+							b: [-84.783, 15.6],
+							c: [-81, 14.6]
+						},
+						{
+							width: 25,
+							a: [-71.1, 11.3],
+							b: [-75.783, 15.6],
+							c: [-75, 12.6]
+						}
+					]}
+				/>
+				<AttributionControl />
+				<VectorLayer
+					sourceId="arrows"
+					id="arrow-tails"
+					filter={['==', 'kind', 'arrow-tail']}
+					type="line"
+					paint={{
+						'line-gradient': [
+							'interpolate',
+							['linear'],
+							['line-progress'],
+							0,
+							'transparent',
+							0.4,
+							tokens.shades.violet.base
+						],
+						'line-width': ['get', 'width']
+					}}
+				/>
+
+				<VectorLayer
+					sourceId="arrows"
+					id="arrow-heads"
+					filter={['==', 'kind', 'arrow-head']}
+					type="fill"
+					paint={{
+						'fill-color': tokens.shades.violet.base
+					}}
+				/>
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
+<Story asChild name="fix/206">
+	<DesignTokens theme="light">
+		<div class="container">
+			<Map
+				showDebug={true}
+				style={SWRDataLabLight()}
+				initialLocation={{
+					lng: 7.72,
+					lat: 47.59,
+					zoom: 10
+				}}
+			>
+				<ArrowSource
+					id="arrows"
+					attribution=""
+					arrows={[{ a: [7.79, 47.55917], b: [7.69, 47.595], c: [7.69, 47.55], width: 40 }]}
+				/>
+				<AttributionControl />
+				<VectorLayer
+					sourceId="arrows"
+					id="arrow-tails"
+					filter={['==', 'kind', 'arrow-tail']}
+					type="line"
+					layout={{
+						'line-join': 'round',
+						'line-cap': 'square'
+					}}
+					paint={{
+						'line-gradient': [
+							'interpolate',
+							['linear'],
+							['line-progress'],
+							0,
+							'transparent',
+							0.4,
+							tokens.shades.red.base
+						],
+						'line-width': ['get', 'width']
+					}}
+				/>
+
+				<VectorLayer
+					sourceId="arrows"
+					id="arrow-heads"
+					filter={['==', 'kind', 'arrow-head']}
+					type="fill"
+					paint={{
+						'fill-color': tokens.shades.blue.base,
+						'fill-opacity': 0.7
+					}}
+				/>
+			</Map>
+		</div>
+	</DesignTokens>
+</Story>
+
+<style>
+	.container {
+		width: 100%;
+		height: 600px;
+	}
+</style>
