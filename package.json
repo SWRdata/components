@@ -25,10 +25,10 @@
 	"allowScripts": {
 		"fsevents@2.3.3": true,
 		"fsevents@2.3.2": true,
-		"svelte-preprocess@6.0.3": true,
+		"puppeteer@22.15.0": true,
 		"@parcel/watcher@2.5.6": true,
 		"esbuild@0.28.1": true,
-		"puppeteer@22.15.0": true,
-		"sharp@0.34.5": true
+		"sharp@0.34.5": true,
+		"svelte-preprocess@6.0.3": true
 	}
 }
