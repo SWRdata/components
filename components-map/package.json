@@ -35,7 +35,7 @@
 		"@maplibre/maplibre-gl-inspect": "1.7.1",
 		"events": "3.3.0",
 		"lodash.debounce": "4.0.8",
-		"maplibre-gl": "5.20.0",
+		"maplibre-gl": "6.4.1",
 		"subtag": "0.5.0",
 		"suggestions-list": "0.0.2",
 		"xtend": "4.0.2"
