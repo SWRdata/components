@@ -1,4 +1,5 @@
-name: release
+# TODO: delete after npmjs.org is configured to accept release-components
+name: release components
 
 on:
   push:

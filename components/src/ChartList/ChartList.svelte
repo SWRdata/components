@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
 	import Row from './Row.svelte';
 
 	type ProjectPrefix = 'p' | 't';
