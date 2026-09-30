@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'components/**'
+      - '.github/workflows/release-components.yml'
     branches:
       - main
 
