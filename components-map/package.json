@@ -28,6 +28,7 @@
 		"semantic-release": "semantic-release"
 	},
 	"peerDependencies": {
+		"@swr-data-lab/components": "^4.0.0",
 		"svelte": ">=5.0.0"
 	},
 	"dependencies": {
