@@ -38,6 +38,7 @@
 		"@semantic-release/npm": "13.1.5",
 		"@storybook/addon-docs": "10.5.5",
 		"@storybook/addon-svelte-csf": "5.1.2",
+		"@storybook/svelte": "10.5.5",
 		"@sveltejs/enhanced-img": "0.11.0",
 		"@sveltejs/package": "2.5.8",
 		"layercake": "^10.0.2",
