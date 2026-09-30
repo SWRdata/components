@@ -35,7 +35,7 @@
 		"svelte-select": "5.8.3"
 	},
 	"devDependencies": {
-		"@semantic-release/npm": "13.1.5",
+		"@semantic-release/npm": "13.2.0",
 		"@storybook/addon-docs": "10.5.5",
 		"@storybook/addon-svelte-csf": "5.1.2",
 		"@storybook/svelte": "10.5.5",
@@ -46,7 +46,7 @@
 		"publint": "0.3.17",
 		"sass": "1.93.2",
 		"sass-embedded": "1.97.3",
-		"semantic-release": "25.0.8",
+		"semantic-release": "25.0.9",
 		"semantic-release-monorepo": "8.0.2",
 		"storybook": "10.5.5",
 		"svelte": "5.55.7",
