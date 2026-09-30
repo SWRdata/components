@@ -55,6 +55,7 @@
 		"sass": "1.93.2",
 		"sass-embedded": "1.97.3",
 		"semantic-release": "25.0.8",
+		"semantic-release-monorepo": "8.0.2",
 		"storybook": "10.5.5",
 		"svelte": "5.55.7",
 		"svelte-check": "4.5.0",
@@ -62,6 +63,7 @@
 		"typescript": "5.9.3"
 	},
 	"release": {
+		"extends": "semantic-release-monorepo",
 		"tagFormat": "components-map-v${version}",
 		"plugins": [
 			"@semantic-release/commit-analyzer",
