@@ -1,8 +1,8 @@
 <script>
 	import { Copy } from '../../../../components/src';
-	import HeroScrolly from '$lib/HeroScrolly.svelte';
+	import HeroScrolly from '#lib/HeroScrolly.svelte';
 	import { dev } from '$app/environment';
-	import DevContainer from '$lib/components/DevContainer.svelte';
+	import DevContainer from '#lib/components/DevContainer.svelte';
 </script>
 
 {#if dev}
