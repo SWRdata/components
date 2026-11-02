@@ -1,7 +1,8 @@
 <svelte:options customElement="p118-hero-scrolly" />
 
 <script lang="ts">
-	import { DesignTokens, ChartFooter, Copy, Map, SWRDataLabLight } from '../../../components/src';
+	import { DesignTokens, ChartFooter, Copy } from '../../../components/src';
+	import { Map, SWRDataLabLight } from '../../../components-map/src';
 	import Scroller from '@sveltejs/svelte-scroller';
 	import Fullscreen from './components/Fullscreen.svelte';
 	import SlideContent from './components/SlideContent.svelte';

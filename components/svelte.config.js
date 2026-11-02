@@ -1,7 +1,6 @@
-import adapter from '@sveltejs/adapter-auto';
 import { sveltePreprocess } from 'svelte-preprocess';
 
-/** @type {import('@sveltejs/kit').Config} */
+/** @type {import('@sveltejs/package').Config} */
 const config = {
 	// We can't use vitePreprocess() here, see: https://github.com/sveltejs/kit/issues/13122
 	preprocess: sveltePreprocess({ scss: true }),
@@ -9,9 +8,6 @@ const config = {
 		experimental: {
 			async: true
 		}
-	},
-	kit: {
-		adapter: adapter()
 	}
 };
 

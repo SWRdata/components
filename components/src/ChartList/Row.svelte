@@ -1,5 +1,5 @@
 <script>
-	import { dev } from '$app/environment';
+	import { DEV as dev } from 'esm-env';
 	const { chart, group = false, rowspan = 0, baseUrl } = $props();
 
 	const route = $derived(`/${chart.slug}`);
