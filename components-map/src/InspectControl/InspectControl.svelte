@@ -1,6 +1,6 @@
 <script lang="ts">
 	import MaplibreInspect from '@maplibre/maplibre-gl-inspect';
-	import maplibre, { type ControlPosition } from 'maplibre-gl';
+	import { Popup, type ControlPosition } from 'maplibre-gl';
 	import MapControl from '../MapControl/MapControl.svelte';
 
 	interface InspectControlProps {
@@ -11,7 +11,7 @@
 
 <MapControl
 	control={new MaplibreInspect({
-		popup: new maplibre.Popup({ closeButton: false, closeOnClick: false })
+		popup: new Popup({ closeButton: false, closeOnClick: false })
 	})}
 	{position}
 />
