@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { type AddLayerObject } from 'maplibre-gl';
+	import { type AddLayerObject, type HillshadeLayerSpecification } from 'maplibre-gl';
 
 	import { getMapContext } from '../context.svelte.js';
 	import { onDestroy } from 'svelte';
 
 	interface HillshadeLayerProps extends Omit<
-		maplibregl.HillshadeLayerSpecification,
+		HillshadeLayerSpecification,
 		'id' | 'source' | 'source-layer' | 'type'
 	> {
 		id: string;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import maplibre, { type ControlPosition } from 'maplibre-gl';
+	import { AttributionControl, type ControlPosition } from 'maplibre-gl';
 	import MapControl from '../MapControl/MapControl.svelte';
 
 	interface AttributionControlProps {
@@ -12,7 +12,7 @@
 
 <MapControl
 	{position}
-	control={new maplibre.AttributionControl({
+	control={new AttributionControl({
 		customAttribution,
 		compact: false
 	})}
