@@ -3,7 +3,8 @@
 		type AddLayerObject,
 		type MapGeoJSONFeature,
 		type MapLayerMouseEvent,
-		type FilterSpecification
+		type FilterSpecification,
+		type LayerSpecification
 	} from 'maplibre-gl';
 
 	import { getMapContext } from '../context.svelte.js';
@@ -11,7 +12,7 @@
 	import { resetLayerEventListener } from '../utils.js';
 
 	interface VectorLayerProps extends Omit<
-		maplibregl.LayerSpecification,
+		LayerSpecification,
 		'id' | 'source' | 'source-layer'
 	> {
 		id: string;
