@@ -1,5 +1,5 @@
 <script lang="ts">
-	import maplibre, { type ControlPosition, type Unit } from 'maplibre-gl';
+	import { ScaleControl, type ControlPosition, type Unit } from 'maplibre-gl';
 	import MapControl from '../MapControl/MapControl.svelte';
 
 	interface ScaleControlProps {
@@ -10,7 +10,7 @@
 	let { maxWidth = 100, unit = 'metric', position = 'bottom-left' }: ScaleControlProps = $props();
 </script>
 
-<MapControl control={new maplibre.ScaleControl({ maxWidth, unit })} {position} />
+<MapControl control={new ScaleControl({ maxWidth, unit })} {position} />
 
 <style lang="scss">
 	:global {

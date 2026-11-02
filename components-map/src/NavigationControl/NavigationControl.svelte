@@ -1,5 +1,5 @@
 <script lang="ts">
-	import maplibre, { type ControlPosition } from 'maplibre-gl';
+	import { NavigationControl, type ControlPosition } from 'maplibre-gl';
 	import MapControl from '../MapControl/MapControl.svelte';
 
 	interface NavigationControlProps {
@@ -17,7 +17,7 @@
 	}: NavigationControlProps = $props();
 </script>
 
-<MapControl control={new maplibre.NavigationControl({ showCompass, visualizePitch })} {position} />
+<MapControl control={new NavigationControl({ showCompass, visualizePitch })} {position} />
 
 <style lang="scss">
 	:global {

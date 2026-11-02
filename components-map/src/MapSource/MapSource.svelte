@@ -1,16 +1,18 @@
 <script lang="ts">
 	import {
+		type GeoJSONSource,
 		type GeoJSONSourceSpecification,
 		type Map,
 		type RasterDEMSourceSpecification,
-		type VectorSourceSpecification
+		type VectorSourceSpecification,
+		type VectorTileSource
 	} from 'maplibre-gl';
 	import { onDestroy, type Snippet } from 'svelte';
 	import { getMapContext } from '../context.svelte.js';
 
 	interface MapSourceProps {
 		id: string;
-		source?: maplibregl.VectorTileSource | maplibregl.GeoJSONSource;
+		source?: VectorTileSource | GeoJSONSource;
 		sourceSpec:
 			| VectorSourceSpecification
 			| GeoJSONSourceSpecification
@@ -44,7 +46,7 @@
 	});
 
 	$effect(() => {
-		if (!firstRun && source) {
+		if (!firstRun && source && source.type === 'vector') {
 			source.setUrl(sourceSpec.url);
 		}
 	});

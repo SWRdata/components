@@ -1,5 +1,6 @@
 <script lang="ts">
-	import maplibre, { type ControlPosition } from 'maplibre-gl';
+	import * as maplibre from 'maplibre-gl';
+	import type { ControlPosition } from 'maplibre-gl';
 	import MaplibreGeocoder, { type MaplibreGeocoderApi } from '../Geocoder/maplibre-gl-geocoder';
 	import { MaptilerGeocoderAPI } from '../Geocoder/GeocoderAPIs';
 	import MapControl from '../MapControl/MapControl.svelte';

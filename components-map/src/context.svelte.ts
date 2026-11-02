@@ -1,5 +1,6 @@
 import type {
 	Map as MapLibre,
+	MapStyleDataEvent,
 	Marker,
 	LayerSpecification,
 	AddLayerObject,
@@ -26,14 +27,14 @@ export class MapContext {
 	minzoom = $state(0);
 	maxzoom = $state(24);
 	styleLoaded = $state(false);
-	private _pending: ((map: maplibregl.Map) => void)[] = [];
-	private _listener?: maplibregl.Listener = undefined;
+	private _pending: ((map: MapLibre) => void)[] = [];
+	private _listener?: (e: MapStyleDataEvent) => void = undefined;
 
 	get map() {
 		return this._map;
 	}
 
-	set map(value: maplibregl.Map | null) {
+	set map(value: MapLibre | null) {
 		// Unbind any old event listeners
 		if (this._listener) {
 			this._map?.off('styledata', this._listener);
@@ -48,7 +49,7 @@ export class MapContext {
 		}
 	}
 
-	waitForStyleLoaded(fn: (map: maplibregl.Map) => void) {
+	waitForStyleLoaded(fn: (map: MapLibre) => void) {
 		if (!this.map) return;
 		this.map.style._loaded ? fn(this.map) : this._pending.push(fn);
 	}
@@ -83,7 +84,7 @@ export class MapContext {
 		this.map.removeSource(id);
 	}
 
-	private _onstyledata(e: maplibregl.MapStyleDataEvent) {
+	private _onstyledata(e: MapStyleDataEvent) {
 		this.styleLoaded = true;
 		this._pending.forEach((fn) => {
 			fn(e.target);

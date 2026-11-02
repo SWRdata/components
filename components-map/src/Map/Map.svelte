@@ -1,5 +1,15 @@
+<script module lang="ts">
+	import { setWorkerUrl } from 'maplibre-gl';
+	import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
+
+	// maplibre-gl v6 can't locate its worker inside a bundler, so we point it at the bundled file
+	setWorkerUrl(workerUrl);
+</script>
+
 <script lang="ts">
-	import maplibre, {
+	import {
+		Map as MapLibreMap,
+		type LngLat,
 		type LngLatBoundsLike,
 		type LngLatBounds,
 		type LngLatLike,
@@ -30,7 +40,7 @@
 		minZoom?: number;
 		maxZoom?: number;
 		zoom?: number;
-		center?: maplibre.LngLat;
+		center?: LngLat;
 		pitch?: number;
 		bearing?: number;
 		bounds?: LngLatBounds;
@@ -101,7 +111,7 @@
 	});
 
 	onMount(() => {
-		mapContext.map = new maplibre.Map({
+		mapContext.map = new MapLibreMap({
 			container,
 			style,
 			minZoom,
