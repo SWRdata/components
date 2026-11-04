@@ -3,14 +3,8 @@ import subtag from 'subtag';
 import debounce from 'lodash.debounce';
 import extend from 'xtend';
 import { EventEmitter } from 'events';
-import type {
-	Marker,
-	Popup,
-	Map,
-	FlyToOptions,
-	MarkerOptions,
-	default as MaplibreGl
-} from 'maplibre-gl';
+import type * as MaplibreGl from 'maplibre-gl';
+import type { Marker, Popup, Map, FlyToOptions, MarkerOptions } from 'maplibre-gl';
 
 import { exceptions } from './exceptions';
 import localization from './localization';

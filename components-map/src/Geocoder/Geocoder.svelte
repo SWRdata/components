@@ -1,5 +1,5 @@
 <script lang="ts">
-	import maplibre from 'maplibre-gl';
+	import * as maplibre from 'maplibre-gl';
 
 	import MaplibreGeocoder, {
 		type CarmenGeojsonFeature,
