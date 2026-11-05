@@ -7,8 +7,8 @@
 	interface ChartSpec {
 		/** Display title shown in the chart list */
 		title: string;
-		/** Explicit URL to use for the chart link instead of generating from slug */
-		url: string;
+		/** Full URL for the chart link (preferred) */
+		url?: string;
 		/** Optional grouping key for organizing charts into sections */
 		group?: string;
 		/** @deprecated Use a full `url` instead */

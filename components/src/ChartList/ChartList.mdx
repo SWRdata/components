@@ -16,17 +16,16 @@ In your `+page.svelte`:
 <script>
   import { ChartList, DesignTokens } from '@swr-data-lab/components';
 
-  const baseUrl = 'https://static.datenhub.net/apps/p110_wald-klimawandel/main';
   const charts = [
-    { title: 'Baden-Württemberg Loosers', slug: 'bw-loosers' },
-    { title: 'Baden-Württemberg Winners', slug: 'bw-winners' },
-    { title: 'Rheinland-Pfalz Loosers', slug: 'rp-loosers' },
-    { title: 'Rheinland-Pfalz Winners', slug: 'rp-winners' }
+    { title: 'Baden-Württemberg Loosers', url: 'https://static.datenhub.net/apps/p110_wald-klimawandel/main/bw-loosers.html' },
+    { title: 'Baden-Württemberg Winners', url: 'https://static.datenhub.net/apps/p110_wald-klimawandel/main/bw-winners.html' },
+    { title: 'Rheinland-Pfalz Loosers', url: 'https://static.datenhub.net/apps/p110_wald-klimawandel/main/rp-loosers.html' },
+    { title: 'Rheinland-Pfalz Winners', url: 'https://static.datenhub.net/apps/p110_wald-klimawandel/main/rp-winners.html' }
   ];
 </script>
 
 <DesignTokens>
-  <ChartList {baseUrl} {charts} project="p110: Wie sieht der Wald von morgen aus?" />
+  <ChartList {charts} project="p110: Wie sieht der Wald von morgen aus?" />
 </DesignTokens>
 ```
 
@@ -37,13 +36,15 @@ In your `+page.svelte`:
   ```ts
   interface ChartSpec {
   	title: string;
-  	slug: string;
-  	group?: string;
+  	url: string;           // Full chart URL (preferred)
+  	group?: string;        // Optional grouping key
+  	slug?: string;         // @deprecated Use `url` instead
   }
   ```
 
 - `project` is a string of the shape `<Project Number>: <Project Title>`.
-- `group` is an optional group name (useful for grouping charts by bundesland)
+- `group` is an optional group name (useful for grouping charts by bundesland).
+- `baseUrl` is **deprecated** — provide a full per-chart `url` instead.
 
 <Story of={ChartListStories.GroupedCharts} />
 
