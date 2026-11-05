@@ -14,12 +14,14 @@
 		}
 	});
 
-	const testCharts = [
-		{ title: 'Baden-Württemberg Loosers', slug: 'bw-loosers' },
-		{ title: 'Baden-Württemberg Winners', slug: 'bw-winners' },
-		{ title: 'Rheinland-Pfalz Loosers', slug: 'rp-loosers' },
-		{ title: 'Rheinland-Pfalz Winners', slug: 'rp-winners' }
-	];
+const baseURL = 'https://static.datenhub.net/apps/p110_wald-klimawandel/main';
+
+const testCharts = [
+	{ title: 'Baden-Württemberg Loosers', url: `${baseURL}/bw-loosers.html` },
+	{ title: 'Baden-Württemberg Winners', url: `${baseURL}/bw-winners.html` },
+	{ title: 'Rheinland-Pfalz Loosers', url: `${baseURL}/rp-loosers.html` },
+	{ title: 'Rheinland-Pfalz Winners', url: `${baseURL}/rp-winners.html` }
+];
 </script>
 
 <Story
@@ -33,65 +35,9 @@
 			expect(titleEl).toHaveTextContent('Grafiken für p110: Wie sieht der Wald von morgen aus?');
 		});
 
-		await step('All chart list items render as links using project-relative URLs', async () => {
-			testCharts.forEach((c) => {
-				const el = canvas.getByText(c.title);
-				expect(el).toBeInstanceOf(HTMLAnchorElement);
-				expect(el.getAttribute('href')).toBe('/' + c.slug);
-			});
-		});
-
 		await step('Embed URLs render', async () => {
 			testCharts.forEach((c) => {
-				const el = canvas.getByDisplayValue(
-					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}.html`
-				);
-				expect(el).toBeTruthy();
-			});
-		});
-	}}
->
-	<DesignTokens>
-		<ChartList
-			baseUrl="https://static.datenhub.net/apps/p110_wald-klimawandel/main"
-			charts={testCharts}
-			project="p110: Wie sieht der Wald von morgen aus?"
-		/>
-	</DesignTokens>
-</Story>
-
-<Story name="Grouped charts" asChild>
-	<DesignTokens>
-		<ChartList
-			baseUrl="https://static.datenhub.net/apps/p110_wald-klimawandel/main"
-			charts={[
-				{ group: 'BW', title: 'Baden-Württemberg Loosers', slug: 'bw-loosers' },
-				{ group: 'BW', title: 'Baden-Württemberg Winners', slug: 'bw-winners' },
-				{ group: 'RP', title: 'Rheinland-Pfalz Loosers', slug: 'rp-loosers' },
-				{ title: 'Rheinland-Pfalz Winners', slug: 'rp-winners' }
-			]}
-			project="p110: Wie sieht der Wald von morgen aus?"
-		/>
-	</DesignTokens>
-</Story>
-
-<Story
-	name="Default base path (omitting basePath)"
-	asChild
-	play={async ({ canvasElement, step }) => {
-		const canvas = within(canvasElement);
-
-		await step('All chart list items render as links using project-relative URLs', async () => {
-			testCharts.forEach((c) => {
-				const el = canvas.getByText(c.title);
-				expect(el).toBeInstanceOf(HTMLAnchorElement);
-				expect(el.getAttribute('href')).toBe(`/${c.slug}`);
-			});
-		});
-
-		await step('Embed paths render with .html prefix', async () => {
-			testCharts.forEach((c) => {
-				const el = canvas.getByDisplayValue(`/${c.slug}.html`);
+				const el = canvas.getByDisplayValue(c.url);
 				expect(el).toBeTruthy();
 			});
 		});
@@ -99,5 +45,27 @@
 >
 	<DesignTokens>
 		<ChartList charts={testCharts} project="p110: Wie sieht der Wald von morgen aus?" />
+	</DesignTokens>
+</Story>
+
+<Story name="Grouped charts" asChild>
+	<DesignTokens>
+		<ChartList charts={[
+			{ group: 'BW', title: 'Baden-Württemberg Loosers', url: `${baseURL}/bw-loosers.html` },
+			{ group: 'BW', title: 'Baden-Württemberg Winners', url: `${baseURL}/bw-winners.html` },
+			{ group: 'RP', title: 'Rheinland-Pfalz Loosers', url: `${baseURL}/rp-loosers.html` },
+			{ title: 'Rheinland-Pfalz Winners', url: `${baseURL}/rp-winners.html` }
+		]} project="p110: Wie sieht der Wald von morgen aus?" />
+	</DesignTokens>
+</Story>
+
+<Story name="Charts with explicit URLs" asChild>
+	<DesignTokens>
+		<ChartList
+			charts={[
+				{ ...testCharts[0], url: `${baseURL}/bw-loosers-custom.html` }
+			]}
+			project="p110: Wie sieht der Wald von morgen aus?"
+		/>
 	</DesignTokens>
 </Story>

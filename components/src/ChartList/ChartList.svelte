@@ -5,16 +5,23 @@
 	type ProjectIdentifier = `${ProjectPrefix}${number}: ${string}`;
 
 	interface ChartSpec {
+		/** Display title shown in the chart list */
 		title: string;
-		slug: string;
+		/** Full URL for the chart link (preferred) */
+		url?: string;
+		/** Optional grouping key for organizing charts into sections */
 		group?: string;
+		/** @deprecated Use a full `url` instead */
+		slug?: string;
 	}
 	interface ChartListProps {
 		project?: ProjectIdentifier;
 		charts?: ChartSpec[];
+		/** @deprecated Use a full per-chart `url` instead */
 		baseUrl?: string;
 	}
 	let { project, charts = [], baseUrl }: ChartListProps = $props();
+	const embedBaseUrl = $derived(baseUrl);
 
 	const groups: string[] = $derived(
 		Array.from(new Set(charts.map((c) => c.group).filter((c) => typeof c === 'string')))
