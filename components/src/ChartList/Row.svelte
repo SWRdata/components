@@ -2,7 +2,7 @@
 	import { DEV as dev } from 'esm-env';
 	const { chart, group = false, rowspan = 0, baseUrl } = $props();
 
-	const route = $derived(`/${chart.slug}`);
+	const route = $derived(`${baseUrl ?? ''}/${chart.slug}`);
 </script>
 
 <tr>
@@ -10,12 +10,12 @@
 		<td {rowspan}>{chart.group}</td>
 	{/if}
 	<td>
-		<a rel="external" href={dev ? route : `./${chart.slug}.html`}>
+		<a rel="external" href={chart.url ?? (dev ? route : route + '.html')}>
 			{chart.title}
 		</a>
 	</td>
 	<td>
-		<input type="text" value={`${baseUrl ?? ''}${route}.html`} />
+		<input type="text" value={chart.url ?? `${baseUrl ?? ''}/${chart.slug}.html`} />
 	</td>
 </tr>
 

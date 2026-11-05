@@ -75,6 +75,18 @@
 	</DesignTokens>
 </Story>
 
+<Story name="Charts with explicit URLs" asChild>
+	<DesignTokens>
+		<ChartList
+			baseUrl="https://static.datenhub.net/apps/p110_wald-klimawandel/main"
+			charts={[
+				{ ...testCharts[0], url: `https://static.datenhub.net/apps/p110_wald-klimawandel/main/${testCharts[0].slug}.html` }
+			]}
+			project="p110: Wie sieht der Wald von morgen aus?"
+		/>
+	</DesignTokens>
+</Story>
+
 <Story
 	name="Default base path (omitting basePath)"
 	asChild
@@ -85,13 +97,15 @@
 			testCharts.forEach((c) => {
 				const el = canvas.getByText(c.title);
 				expect(el).toBeInstanceOf(HTMLAnchorElement);
-				expect(el.getAttribute('href')).toBe(`/${c.slug}`);
+				expect(el.getAttribute('href')).toBe('/' + c.slug);
 			});
 		});
 
-		await step('Embed paths render with .html prefix', async () => {
+		await step('Embed URLs render', async () => {
 			testCharts.forEach((c) => {
-				const el = canvas.getByDisplayValue(`/${c.slug}.html`);
+				const el = canvas.getByDisplayValue(
+					`https://static.datenhub.net/apps/p110_wald-klimawandel/main/${c.slug}.html`
+				);
 				expect(el).toBeTruthy();
 			});
 		});
