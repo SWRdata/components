@@ -1,5 +1,5 @@
 name: 'Authenticate to GCP'
-description: 'Authenticate to Google Cloud using a service account key'
+description: 'Authenticate to Google Cloud using Workload Identity Federation'
 
 inputs:
   project_id:
