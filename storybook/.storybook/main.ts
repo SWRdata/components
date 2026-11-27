@@ -37,7 +37,21 @@ const config: StorybookConfig = {
 		options: {}
 	},
 
-	docs: {}
+	docs: {},
+
+	// The MDX files in components/ and components-map/ would otherwise resolve their own
+	// copies of these packages, giving the docs blocks a different theme context than the
+	// DocsRenderer, leading to e.g., "Cannot read properties of undefined (reading 'fonts')".
+	viteFinal: async (config) => {
+		config.resolve ??= {};
+		config.resolve.dedupe = [
+			...(config.resolve.dedupe ?? []),
+			'storybook',
+			'@storybook/addon-docs',
+			'@storybook/react-dom-shim'
+		];
+		return config;
+	}
 };
 
 export default config;
